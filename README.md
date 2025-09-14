@@ -8,18 +8,19 @@ This repository contains **well-explained solutions in Java** for commonly asked
 ## 🔹 Table of Contents
 
 ### Arrays
-1. [Missing Number in an Array](questions/arrays/missing_number.md)
-2. [Two Sum](questions/arrays/two_sum.md)
-3. [Subarray with Given Sum](questions/arrays/subarray_sum.md)
-4. [Majority Element](questions/arrays/majority_element.md)
-5. [Max Consecutive Ones](questions/arrays/max_consecutive_ones.md)
-6. [Sort an Array of 0s, 1s, and 2s](questions/arrays/sort012.md)
-7. [Spiral Matrix](questions/arrays/spiral_matrix.md)
-8. [Find the Duplicate Number](questions/arrays/duplicate_number.md)
-9. [Largest Number Formed from an Array](questions/arrays/largest_number.md)
-10. [Next Permutation](questions/arrays/next_permutation.md)
-11. [Merge Overlapping Intervals](questions/arrays/merge_intervals.md)
-12. [First Missing Positive](questions/arrays/missing_positive.md)
+1. [Missing Number in an Array](questions/arrays/missing_number.md) - **Easy ✅**
+2. [Two Sum](questions/arrays/two_sum.md) - **Easy ✅**
+3. [Subarray with Given Sum](questions/arrays/subarray_sum.md) - **Easy ✅**
+4. [Max Consecutive Ones](questions/arrays/max_consecutive_ones.md) - **Easy ✅**
+5. [Sort an Array of 0s, 1s, and 2s](questions/arrays/sort012.md) - **Easy-Medium ⚡**
+6. [Majority Element](questions/arrays/majority_element.md) - **Medium ⚡**
+7. [Spiral Matrix](questions/arrays/spiral_matrix.md) - **Medium ⚡**
+8. [Find the Duplicate Number](questions/arrays/duplicate_number.md) - **Medium ⚡**
+9. [Largest Number Formed from an Array](questions/arrays/largest_number.md) - **Medium-Hard 🔥**
+10. [Next Permutation](questions/arrays/next_permutation.md) - **Medium-Hard 🔥**
+11. [Merge Overlapping Intervals](questions/arrays/merge_intervals.md) - **Medium-Hard 🔥**
+12. [First Missing Positive](questions/arrays/missing_positive.md) - **Hard 🔥**
+
 ---
 
 ## 🔹 How to Use
