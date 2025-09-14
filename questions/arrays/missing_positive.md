@@ -1,5 +1,7 @@
 # First Missing Positive
 
+**Difficulty:** Hard 🔥
+
 ---
 
 ## 🔹 Problem Statement
@@ -43,34 +45,90 @@ Given an unsorted integer array, find the **smallest missing positive integer**.
 ## 🔹 Java Code
 
 ```java
+import java.util.HashSet;
+import java.util.Set;
+
 public class FirstMissingPositive {
 
-    public static int firstMissingPositive(int[] nums) {
+    // -----------------------
+    // 1. Brute Force Approach
+    // -----------------------
+    public static int firstMissingPositiveBrute(int[] nums) {
         int n = nums.length;
 
-        // Place each number in its right place if possible
+        // Check numbers from 1 to n+1
+        for (int i = 1; i <= n + 1; i++) {
+            boolean found = false;
+
+            // Scan entire array to see if i exists
+            for (int num : nums) {
+                if (num == i) {
+                    found = true;
+                    break;
+                }
+            }
+
+            // i not found → return as missing
+            if (!found) return i;
+        }
+
+        return n + 1; // default case
+    }
+
+    // -----------------------
+    // 2. HashSet Approach
+    // -----------------------
+    public static int firstMissingPositiveHashSet(int[] nums) {
+        int n = nums.length;
+        Set<Integer> set = new HashSet<>();
+
+        // Add all positive numbers to set
+        for (int num : nums) {
+            if (num > 0) set.add(num);
+        }
+
+        // Find the first missing positive
+        for (int i = 1; i <= n + 1; i++) {
+            if (!set.contains(i)) return i;
+        }
+
+        return n + 1; // default case
+    }
+
+    // -----------------------
+    // 3. Optimal In-place Hashing
+    // -----------------------
+    public static int firstMissingPositiveOptimal(int[] nums) {
+        int n = nums.length;
+
+        // Place each number at its correct index (1 → index 0, 2 → index 1, etc.)
         for (int i = 0; i < n; i++) {
             while (nums[i] > 0 && nums[i] <= n && nums[nums[i] - 1] != nums[i]) {
                 swap(nums, i, nums[i] - 1);
             }
         }
 
-        // Find first place where index+1 != number
+        // The first index where index+1 != number is the missing positive
         for (int i = 0; i < n; i++) {
             if (nums[i] != i + 1) {
                 return i + 1;
             }
         }
 
+        // All numbers in place → missing positive is n+1
         return n + 1;
     }
 
+    // -----------------------
+    // Helper Method: Swap
+    // -----------------------
     private static void swap(int[] nums, int i, int j) {
         int tmp = nums[i];
         nums[i] = nums[j];
         nums[j] = tmp;
     }
 }
+
 ```
 ---
 
