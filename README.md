@@ -13,29 +13,13 @@ This repository contains **well-explained solutions in Java** for commonly asked
 3. [Subarray with Given Sum](questions/arrays/subarray_sum.md)
 4. [Majority Element](questions/arrays/majority_element.md)
 5. [Max Consecutive Ones](questions/arrays/max_consecutive_ones.md)
-6. [Sort an Array of 0s, 1s, and 2s](questions/arrays/sort_0_1_2.md)
+6. [Sort an Array of 0s, 1s, and 2s](questions/arrays/sort012.md)
 7. [Spiral Matrix](questions/arrays/spiral_matrix.md)
-8. [Find the Duplicate Number](questions/arrays/find_duplicate_number.md)
+8. [Find the Duplicate Number](questions/arrays/duplicate_number.md)
 9. [Largest Number Formed from an Array](questions/arrays/largest_number.md)
 10. [Next Permutation](questions/arrays/next_permutation.md)
 11. [Merge Overlapping Intervals](questions/arrays/merge_intervals.md)
-12. [First Missing Positive](questions/arrays/first_missing_positive.md)
-
-### Strings
-1. [Maximum Occurring Character](questions/strings/max_occurring_char.md)
-2. [Longest Substring Without Repeating Characters](questions/strings/longest_substring_no_repeat.md)
-3. [Minimum Window Substring](questions/strings/minimum_window_substring.md)
-4. [Alien Dictionary](questions/strings/alien_dictionary.md)
-
-### Graphs
-1. [Number of Islands](questions/graphs/number_of_islands.md)
-2. [Word Ladder II](questions/graphs/word_ladder_II.md)
-3. [Clone Graph](questions/graphs/clone_graph.md)
-
-### Others
-1. [LRU Cache Implementation](questions/others/lru_cache.md)
-2. [Top K Frequent Elements](questions/others/top_k_frequent.md)
-
+12. [First Missing Positive](questions/arrays/missing_positive.md)
 ---
 
 ## 🔹 How to Use
