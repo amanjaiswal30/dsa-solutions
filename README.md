@@ -42,6 +42,16 @@ All solutions follow a **structured and easy-to-understand format** for learning
 
 ---
 
+### Linked Lists
+
+| # | Problem                                                                                          | Difficulty |
+|---|--------------------------------------------------------------------------------------------------|------------|
+| 1 | [Intersection Point in Y-Shaped Linked List](questions/linked lists/linked_list_intersection.md) |            |
+| 2 | [Remove N-th Node from End of a Linked List](questions/linked lists/remove_nth_node_from_end.md) |            |
+| 3 | [Find the Middle Element of a Linked List](questions/linked lists/linked_list_middle.md)         |            |
+
+---
+
 ## 🔹 How to Use
 1. Navigate to the folder of the problem you want to solve.
 2. Open the corresponding Markdown file.
