@@ -1,5 +1,7 @@
 # Two Sum
 
+**Difficulty:** Easy ✅
+
 ---
 
 ## 🔹 Problem Statement
@@ -98,6 +100,7 @@ public class TwoSum {
     }
 }
 ```
+
 ---
 
 ## 🔹 Complexity Analysis

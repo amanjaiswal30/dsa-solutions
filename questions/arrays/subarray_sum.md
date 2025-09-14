@@ -1,5 +1,7 @@
 # Subarray with Given Sum
 
+**Difficulty:** Easy ✅
+
 ---
 
 ## 🔹 Problem Statement
@@ -107,6 +109,7 @@ public class SubarrayWithGivenSum {
     }
 }
 ```
+
 ---
 
 ## 🔹 Complexity Analysis

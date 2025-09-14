@@ -1,5 +1,7 @@
 # Max Consecutive Ones
 
+**Difficulty:** Easy ✅
+
 ---
 
 ## 🔹 Problem Statement
@@ -90,6 +92,7 @@ public class MaxConsecutiveOnes {
     }
 }
 ```
+
 ---
 
 ## 🔹 Complexity Analysis
