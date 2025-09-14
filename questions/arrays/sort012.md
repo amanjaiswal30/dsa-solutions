@@ -1,5 +1,7 @@
 # Sort an Array of 0s, 1s, and 2s
 
+**Difficulty:** Easy-Medium ⚡
+
 ---
 
 ## 🔹 Problem Statement
@@ -91,6 +93,7 @@ public class SortColors {
     }
 }
 ```
+
 ---
 
 ## 🔹 Complexity Analysis

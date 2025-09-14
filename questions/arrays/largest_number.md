@@ -1,5 +1,7 @@
 # Largest Number Formed from an Array
 
+**Difficulty:** Medium-Hard 🔥
+
 ---
 
 ## 🔹 Problem Statement
@@ -8,7 +10,7 @@ Given a list of non-negative integers, arrange them such that they form the **la
 ---
 
 ## 🔹 Logic & Intuition
-- To form the largest number, compare numbers based on their **concatenation order** rather than their numeric value.
+- To form the largest number, compare numbers based on their **concatenation order** rather than numeric value.
 - For example, compare `X + Y` and `Y + X` (strings concatenated) — whichever is **lexicographically larger** should come first.
 - Sort the array based on this **custom comparator** and join the numbers.
 
@@ -17,11 +19,11 @@ Given a list of non-negative integers, arrange them such that they form the **la
 ## 🔹 Approaches
 
 ### 1. Brute Force (All Permutations)
-- Generate all possible permutations and find the largest concatenated number.
-- **Time Complexity:** O(n!) — impractical for large input.
-- **Space Complexity:** O(n!)
-
----
+- Generate all possible **permutations** of the array.
+- Convert each permutation to a concatenated number (as string).
+- Track the **largest number** among all permutations.
+- **Time Complexity:** O(n!) — impractical for large arrays.
+- **Space Complexity:** O(n!) for storing permutations.
 
 ### 2. Custom Sort (Optimal)
 - Convert numbers to strings.
@@ -40,35 +42,52 @@ import java.util.Comparator;
 
 public class LargestNumber {
 
-    public static String largestNumber(int[] nums) {
-        // Convert to String array
+    // Brute force using all permutations
+    public static String largestNumberBrute(int[] nums) {
+        return permuteAndFindLargest(nums, 0, nums.length - 1, "");
+    }
+
+    private static String permuteAndFindLargest(int[] nums, int l, int r, String max) {
+        if (l == r) {
+            StringBuilder sb = new StringBuilder();
+            for (int num : nums) sb.append(num);
+            String current = sb.toString();
+            if (max.equals("") || current.compareTo(max) > 0) {
+                max = current;
+            }
+            return max;
+        }
+        for (int i = l; i <= r; i++) {
+            swap(nums, l, i);
+            max = permuteAndFindLargest(nums, l + 1, r, max);
+            swap(nums, l, i); // backtrack
+        }
+        return max;
+    }
+
+    private static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    // Optimal solution using custom sort
+    public static String largestNumberOptimal(int[] nums) {
         String[] strNums = new String[nums.length];
-        for (int i = 0; i < nums.length; i++) {
-            strNums[i] = String.valueOf(nums[i]);
-        }
+        for (int i = 0; i < nums.length; i++) strNums[i] = String.valueOf(nums[i]);
 
-        // Sort using custom comparator
-        Arrays.sort(strNums, (a, b) -> {
-            String order1 = a + b;
-            String order2 = b + a;
-            return order2.compareTo(order1); // descending order
-        });
+        Arrays.sort(strNums, (a, b) -> (b + a).compareTo(a + b));
 
-        // If highest number is "0", result is "0"
-        if (strNums[0].equals("0")) {
-            return "0";
-        }
+        if (strNums[0].equals("0")) return "0";
 
-        // Build the largest number
-        StringBuilder largestNumber = new StringBuilder();
-        for (String num : strNums) {
-            largestNumber.append(num);
-        }
+        StringBuilder sb = new StringBuilder();
+        for (String s : strNums) sb.append(s);
 
-        return largestNumber.toString();
+        return sb.toString();
     }
 }
 ```
+
 ---
 
 ## 🔹 Complexity Analysis

@@ -1,5 +1,7 @@
 # Find the Duplicate Number
 
+**Difficulty:** Medium ⚡
+
 ---
 
 ## 🔹 Problem Statement
@@ -109,6 +111,7 @@ public class FindDuplicateNumber {
     }
 }
 ```
+
 ---
 
 ## 🔹 Complexity Analysis

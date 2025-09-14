@@ -1,5 +1,7 @@
 # Merge Overlapping Intervals
 
+**Difficulty:** Medium-Hard 🔥
+
 ---
 
 ## 🔹 Problem Statement
@@ -20,7 +22,7 @@ Return the merged intervals as a list.
 
 ### 1. Brute Force
 - For each interval, check overlap with every other interval.
-- Merge overlapping intervals.
+- Merge overlapping intervals repeatedly until no overlaps remain.
 - **Time Complexity:** O(n²)
 - **Space Complexity:** O(n) (for result)
 
@@ -43,26 +45,54 @@ import java.util.List;
 
 public class MergeIntervals {
 
-    public static int[][] merge(int[][] intervals) {
-        if (intervals.length <= 1) {
-            return intervals;
-        }
+    // Brute Force Approach
+    public static int[][] mergeBrute(int[][] intervals) {
+        List<int[]> result = new ArrayList<>(Arrays.asList(intervals));
 
-        // Sort by start time
-        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+        boolean mergedAny;
+        do {
+            mergedAny = false;
+            for (int i = 0; i < result.size(); i++) {
+                int[] a = result.get(i);
+                for (int j = i + 1; j < result.size(); j++) {
+                    int[] b = result.get(j);
+                    if (isOverlap(a, b)) {
+                        // Merge a and b
+                        int start = Math.min(a[0], b[0]);
+                        int end = Math.max(a[1], b[1]);
+                        result.set(i, new int[]{start, end});
+                        result.remove(j);
+                        mergedAny = true;
+                        break; // Restart inner loop
+                    }
+                }
+                if (mergedAny) break; // Restart outer loop
+            }
+        } while (mergedAny);
+
+        return result.toArray(new int[result.size()][]);
+    }
+
+    private static boolean isOverlap(int[] a, int[] b) {
+        return a[0] <= b[1] && b[0] <= a[1];
+    }
+
+    // Optimal Approach
+    public static int[][] mergeOptimal(int[][] intervals) {
+        if (intervals.length <= 1) return intervals;
+
+        Arrays.sort(intervals, (x, y) -> Integer.compare(x[0], y[0]));
 
         List<int[]> merged = new ArrayList<>();
-        int[] currentInterval = intervals[0];
-        merged.add(currentInterval);
+        int[] current = intervals[0];
+        merged.add(current);
 
         for (int[] interval : intervals) {
-            if (interval[0] <= currentInterval[1]) {
-                // Overlapping intervals, merge
-                currentInterval[1] = Math.max(currentInterval[1], interval[1]);
+            if (interval[0] <= current[1]) {
+                current[1] = Math.max(current[1], interval[1]);
             } else {
-                // No overlap, add new interval
-                currentInterval = interval;
-                merged.add(currentInterval);
+                current = interval;
+                merged.add(current);
             }
         }
 

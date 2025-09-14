@@ -1,5 +1,7 @@
 # Majority Element
 
+**Difficulty:** Medium ⚡
+
 ---
 
 ## 🔹 Problem Statement
