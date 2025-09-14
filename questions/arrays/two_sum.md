@@ -4,7 +4,7 @@
 
 ## 🔹 Problem Statement
 Given an array of integers and a target sum, find indices of the two numbers such that they add up to the target.  
-Assume exactly one solution exists and you can’t use the same element twice.
+Assume exactly one solution exists, and you can’t use the same element twice.
 
 ---
 
