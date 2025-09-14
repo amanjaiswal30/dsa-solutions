@@ -10,7 +10,7 @@ This repository contains **well-explained solutions in Java** for commonly asked
 ### Arrays
 1. [Missing Number in an Array](questions/arrays/missing_number.md)
 2. [Two Sum](questions/arrays/two_sum.md)
-3. [Subarray with Given Sum](questions/arrays/subarray_with_given_sum.md)
+3. [Subarray with Given Sum](questions/arrays/subarray_sum.md)
 4. [Majority Element](questions/arrays/majority_element.md)
 5. [Max Consecutive Ones](questions/arrays/max_consecutive_ones.md)
 6. [Sort an Array of 0s, 1s, and 2s](questions/arrays/sort_0_1_2.md)
