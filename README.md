@@ -46,9 +46,14 @@ All solutions follow a **structured and easy-to-understand format** for learning
 
 | # | Problem                                                                                          | Difficulty |
 |---|--------------------------------------------------------------------------------------------------|------------|
-| 1 | [Intersection Point in Y-Shaped Linked List](questions/linked_lists/linked_list_intersection.md) |            |
-| 2 | [Remove N-th Node from End of a Linked List](questions/linked_lists/remove_nth_node_from_end.md) |            |
-| 3 | [Find the Middle Element of a Linked List](questions/linked_lists/linked_list_middle.md)         |            |
+| 1 | [Find the Middle Element of a Linked List](questions/linked_lists/linked_list_middle.md)         | Easy ✅     |
+| 2 | [Reverse a Linked List](questions/linked_lists/reverse_linked_list.md)                           | Easy ✅     |
+| 3 | [Remove N-th Node from End of a Linked List](questions/linked_lists/remove_nth_node_from_end.md) | Medium ⚡   |
+| 4 | [Rotate a Linked List](questions/linked_lists/rotate_linked_list.md)                             | Medium ⚡   |
+| 5 | [Check if a Linked List is a Palindrome](questions/linked_lists/linked_list_pallindrome.md)      | Medium ⚡   |
+| 6 | [Intersection Point in Y-Shaped Linked List](questions/linked_lists/linked_list_intersection.md) | Medium ⚡   |
+
+
 
 ---
 
