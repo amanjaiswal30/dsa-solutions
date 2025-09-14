@@ -1,3 +1,5 @@
 title: "DSA Questions & Solutions"
-description: "Collection of common Data Structures & Algorithms problems with explanations and Java solutions."
+description: "Collection of Data Structures & Algorithms problems with explanations and Java solutions."
 theme: jekyll-theme-cayman
+baseurl: "" # leave empty for root
+url: "https://amanjaiswal30.github.io" # replace USERNAME with your GitHub username
