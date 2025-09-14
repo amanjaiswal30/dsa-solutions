@@ -119,18 +119,18 @@ public class SubarrayWithGivenSum {
 ---
 
 ## 🔹 Edge Cases
-1. `nums = [5], target = 5` → `[0, 0]`  
-2. `nums = [5], target = 10` → `[-1, -1]`  
-3. `nums = [1, 2, 3], target = 6` → `[0, 2]`  
+1. `nums = [5], target = 5` → `[0, 0]`
+2. `nums = [5], target = 10` → `[-1, -1]`
+3. `nums = [1, 2, 3], target = 6` → `[0, 2]`
 4. Large array with no valid subarray → return `[-1, -1]`
 
 ---
 
 ## 🔹 Interviewer Follow-ups
 - How would you handle **negative numbers** in the array?  
-  → Sliding window won’t work. Use **prefix sum + HashMap** (O(n)).  
+  → Sliding window won’t work. Use **prefix sum + HashMap** (O(n)).
 - How to find **all such subarrays** instead of just one?  
-  → Modify the loop to continue searching after finding one.  
+  → Modify the loop to continue searching after finding one.
 - What if the array is **circular**?  
   → Use modular arithmetic with prefix sums.  
 
