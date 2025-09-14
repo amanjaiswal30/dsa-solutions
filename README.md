@@ -16,20 +16,23 @@ All solutions follow a **structured and easy-to-understand format** for learning
 
 ### Arrays
 
-| #  | Problem                                                                   | Difficulty     |
-|----|---------------------------------------------------------------------------|----------------|
-| 1  | [Missing Number in an Array](questions/arrays/missing_number.md)          | Easy ✅         |
-| 2  | [Two Sum](questions/arrays/two_sum.md)                                    | Easy ✅         |
-| 3  | [Subarray with Given Sum](questions/arrays/subarray_sum.md)               | Easy ✅         |
-| 4  | [Max Consecutive Ones](questions/arrays/max_consecutive_ones.md)          | Easy ✅         |
-| 5  | [Sort an Array of 0s, 1s, and 2s](questions/arrays/sort012.md)            | Easy-Medium ⚡  |
-| 6  | [Majority Element](questions/arrays/majority_element.md)                  | Medium ⚡       |
-| 7  | [Spiral Matrix](questions/arrays/spiral_matrix.md)                        | Medium ⚡       |
-| 8  | [Find the Duplicate Number](questions/arrays/duplicate_number.md)         | Medium ⚡       |
-| 9  | [Largest Number Formed from an Array](questions/arrays/largest_number.md) | Medium-Hard 🔥 |
-| 10 | [Next Permutation](questions/arrays/next_permutation.md)                  | Medium-Hard 🔥 |
-| 11 | [Merge Overlapping Intervals](questions/arrays/merge_intervals.md)        | Medium-Hard 🔥 |
-| 12 | [First Missing Positive](questions/arrays/missing_positive.md)            | Hard 🔥        |
+| #  | Problem                                                                           | Difficulty     |
+|----|-----------------------------------------------------------------------------------|----------------|
+| 1  | [Missing Number in an Array](questions/arrays/missing_number.md)                  | Easy ✅         |
+| 2  | [Insert an Element in a Sorted Array](questions/arrays/insert_in_sorted_array.md) | Easy ✅         |
+| 3  | [Second-Largest Number in an Array](questions/arrays/second_largest.md)           | Easy ✅         |
+| 4  | [Two Sum](questions/arrays/two_sum.md)                                            | Easy ✅         |
+| 5  | [Subarray with Given Sum](questions/arrays/subarray_sum.md)                       | Easy ✅         |
+| 6  | [Max Consecutive Ones](questions/arrays/max_consecutive_ones.md)                  | Easy ✅         |
+| 7  | [Sort an Array of 0s, 1s, and 2s](questions/arrays/sort012.md)                    | Easy-Medium ⚡  |
+| 8  | [Majority Element](questions/arrays/majority_element.md)                          | Medium ⚡       |
+| 9  | [Spiral Matrix](questions/arrays/spiral_matrix.md)                                | Medium ⚡       |
+| 10 | [Find the Duplicate Number](questions/arrays/duplicate_number.md)                 | Medium ⚡       |
+| 11 | [Minimum Number of Meeting Rooms](questions/arrays/number_of_meeting_rooms.md)    | Medium ⚡       |
+| 12 | [Largest Number Formed from an Array](questions/arrays/largest_number.md)         | Medium-Hard 🔥 |
+| 13 | [Next Permutation](questions/arrays/next_permutation.md)                          | Medium-Hard 🔥 |
+| 14 | [Merge Overlapping Intervals](questions/arrays/merge_intervals.md)                | Medium-Hard 🔥 |
+| 15 | [First Missing Positive](questions/arrays/missing_positive.md)                    | Hard 🔥        |
 
 ---
 
