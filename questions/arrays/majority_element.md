@@ -111,6 +111,7 @@ public class MajorityElement {
     }
 }
 ```
+
 ---
 
 ## 🔹 Complexity Analysis

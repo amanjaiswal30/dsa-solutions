@@ -100,6 +100,7 @@ public class NextPermutation {
     }
 }
 ```
+
 ---
 
 ## 🔹 Complexity Analysis

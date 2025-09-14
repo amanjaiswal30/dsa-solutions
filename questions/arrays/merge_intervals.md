@@ -100,6 +100,7 @@ public class MergeIntervals {
     }
 }
 ```
+
 ---
 
 ## 🔹 Complexity Analysis
