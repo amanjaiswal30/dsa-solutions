@@ -1,5 +1,7 @@
 # Missing Number in an Array
 
+**Difficulty:** Easy ✅
+
 ---
 
 ## 🔹 Problem Statement
@@ -106,8 +108,6 @@ public class MissingNumber {
 }
 ```
 ---
-
-## 🔹 Complexity Analysis
 
 ## 🔹 Complexity Analysis
 
