@@ -44,16 +44,24 @@ All solutions follow a **structured and easy-to-understand format** for learning
 
 ### Linked Lists
 
-| # | Problem                                                                                          | Difficulty |
-|---|--------------------------------------------------------------------------------------------------|------------|
-| 1 | [Find the Middle Element of a Linked List](questions/linked_lists/linked_list_middle.md)         | Easy ✅     |
-| 2 | [Reverse a Linked List](questions/linked_lists/reverse_linked_list.md)                           | Easy ✅     |
-| 3 | [Remove N-th Node from End of a Linked List](questions/linked_lists/remove_nth_node_from_end.md) | Medium ⚡   |
-| 4 | [Rotate a Linked List](questions/linked_lists/rotate_linked_list.md)                             | Medium ⚡   |
-| 5 | [Check if a Linked List is a Palindrome](questions/linked_lists/linked_list_pallindrome.md)      | Medium ⚡   |
-| 6 | [Intersection Point in Y-Shaped Linked List](questions/linked_lists/linked_list_intersection.md) | Medium ⚡   |
-
-
+| #  | Problem                                                                                                             | Difficulty     |
+|----|---------------------------------------------------------------------------------------------------------------------|----------------|
+| 1  | [Find the Middle Element of a Linked List](questions/linked_lists/linked_list_middle.md)                            | Easy ✅         |
+| 2  | [Reverse a Linked List](questions/linked_lists/reverse_linked_list.md)                                              | Easy ✅         |
+| 3  | [Remove N-th Node from End of a Linked List](questions/linked_lists/remove_nth_node_from_end.md)                    | Medium ⚡       |
+| 4  | [Rotate a Linked List](questions/linked_lists/rotate_linked_list.md)                                                | Medium ⚡       |
+| 5  | [Check if a Linked List is a Palindrome](questions/linked_lists/linked_list_pallindrome.md)                         | Medium ⚡       |
+| 6  | [Intersection Point in Y-Shaped Linked List](questions/linked_lists/linked_list_intersection.md)                    | Medium ⚡       |
+| 7  | [Add Two Numbers Represented by Linked Lists](questions/linked_lists/add_two_numbers.md)                            | Medium ⚡       |
+| 8  | [Clone a Linked List with Next and Random Pointer](questions/linked_lists/clone_random_pointer.md)                  | Medium ⚡       |
+| 9  | [Delete N Nodes After M Nodes of a Linked List](questions/linked_lists/delete_n_after_m.md)                         | Medium ⚡       |
+| 10 | [Detect and Remove Loop in a Linked List](questions/linked_lists/detect_remove_loop.md)                             | Medium ⚡       |
+| 11 | [Find the Length of Loop in a Linked List](questions/linked_lists/loop_length.md)                                   | Medium ⚡       |
+| 12 | [Merge K Sorted Linked Lists](questions/linked_lists/merge_k_sorted_lists.md)                                       | Medium-Hard 🔥 |
+| 13 | [Reorder List](questions/linked_lists/reorder_list.md)                                                              | Medium-Hard 🔥 |
+| 14 | [Reverse Linked List in Groups of Size K](questions/linked_lists/reverse_k_group.md)                                | Medium-Hard 🔥 |
+| 15 | [Segregate Even and Odd Valued Nodes in a Linked List](questions/linked_lists/seggregate_even_odd_values.md)        | Medium ⚡       |
+| 16 | [Segregate Even and Odd Positioned Nodes in a Linked List](questions/linked_lists/seggregate_even_odd_positions.md) | Medium ⚡       |
 
 ---
 
