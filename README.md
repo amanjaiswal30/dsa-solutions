@@ -60,8 +60,8 @@ All solutions follow a **structured and easy-to-understand format** for learning
 | 12 | [Merge K Sorted Linked Lists](questions/linked_lists/merge_k_sorted_lists.md)                                       | Medium-Hard 🔥 |
 | 13 | [Reorder List](questions/linked_lists/reorder_list.md)                                                              | Medium-Hard 🔥 |
 | 14 | [Reverse Linked List in Groups of Size K](questions/linked_lists/reverse_k_group.md)                                | Medium-Hard 🔥 |
-| 15 | [Segregate Even and Odd Valued Nodes in a Linked List](questions/linked_lists/seggregate_even_odd_values.md)        | Medium ⚡       |
-| 16 | [Segregate Even and Odd Positioned Nodes in a Linked List](questions/linked_lists/seggregate_even_odd_positions.md) | Medium ⚡       |
+| 15 | [Segregate Even and Odd Valued Nodes in a Linked List](questions/linked_lists/seggregate_even_odd_values.md)        | Medium-Hard 🔥 |
+| 16 | [Segregate Even and Odd Positioned Nodes in a Linked List](questions/linked_lists/seggregate_even_odd_positions.md) | Medium-Hard 🔥 |
 
 ---
 
