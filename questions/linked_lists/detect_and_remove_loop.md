@@ -47,50 +47,41 @@ If a loop exists, **remove the loop** and restore the linked list.
 ```java
 public class DetectAndRemoveLoop {
 
-    static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int val) {
-            this.val = val;
-        }
+  static class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int val) {
+      this.val = val;
     }
+  }
 
-    public static void detectAndRemoveLoop(ListNode head) {
-        if (head == null || head.next == null) return;
+  public static void detectAndRemoveLoop(ListNode head) {
+    if (head == null || head.next == null) return;
 
-        ListNode slow = head, fast = head;
+    ListNode slow = head;
+    ListNode fast = head;
+    ListNode pre = null;
+    ListNode ptr = head;
 
-        // Step 1: Detect loop using Floyd’s algorithm
-        boolean hasLoop = false;
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
+    while (fast != null && fast.next != null) {
+      fast = fast.next.next;
+      pre = slow;
+      slow = slow.next;
 
-            if (slow == fast) {
-                hasLoop = true;
-                break;
-            }
+      if (slow == fast) {  // Loop detected
+        // Move ptr from head and slow from meeting point to find loop start
+        while (ptr != slow) {
+          ptr = ptr.next;
+          pre = slow;
+          slow = slow.next;
         }
 
-        if (!hasLoop) return; // No loop found
-
-        // Step 2: Find the start of the loop
-        slow = head;
-        while (slow != fast) {
-            slow = slow.next;
-            fast = fast.next;
-        }
-
-        // 'slow' (or 'fast') now points to the start of the loop
-
-        // Step 3: Find the node before loop start and break the loop
-        ListNode ptr = slow;
-        while (ptr.next != slow) {
-            ptr = ptr.next;
-        }
-
-        ptr.next = null; // Remove loop
+        // Break the loop
+        pre.next = null;
+        return;
+      }
     }
+  }
 }
 ```
 

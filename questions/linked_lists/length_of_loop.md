@@ -30,43 +30,38 @@ We use **Floyd’s Cycle Detection Algorithm** (Tortoise and Hare):
 ```java
 public class LoopLength {
 
-    static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int val) {
-            this.val = val;
-        }
+  static class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int val) {
+      this.val = val;
     }
+  }
 
-    public static int countLoopLength(ListNode head) {
-        ListNode slow = head, fast = head;
+  public static int countLoopLength(ListNode head) {
+    ListNode slow = head, fast = head;
 
-        // Step 1: Detect loop
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
+    // Step 1: Detect loop using Floyd's algorithm
+    while (fast != null && fast.next != null) {
+      slow = slow.next;
+      fast = fast.next.next;
 
-            if (slow == fast) {
-                // Loop detected → count length
-                return countLength(slow);
-            }
-        }
-
-        return 0; // No loop
-    }
-
-    // Helper to count nodes inside the loop
-    private static int countLength(ListNode nodeInLoop) {
+      if (slow == fast) { // Loop detected
         int count = 1;
-        ListNode temp = nodeInLoop.next;
+        slow = slow.next;
 
-        while (temp != nodeInLoop) {
-            count++;
-            temp = temp.next;
+        // Step 2: Count nodes in the loop
+        while (slow != fast) {
+          slow = slow.next;
+          count++;
         }
 
         return count;
+      }
     }
+
+    return 0; // No loop
+  }
 }
 ```
 ---
