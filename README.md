@@ -16,29 +16,31 @@ All solutions follow a **structured and easy-to-understand format** for learning
 
 ### Arrays
 
-| #  | Problem                                                                              | Difficulty     |
-|----|--------------------------------------------------------------------------------------|----------------|
-| 1  | [Missing Number in an Array](questions/arrays/missing_number.md)                     | Easy ✅         |
-| 2  | [Insert an Element in a Sorted Array](questions/arrays/insert_in_sorted_array.md)    | Easy ✅         |
-| 3  | [Second-Largest Number in an Array](questions/arrays/second_largest.md)              | Easy ✅         |
-| 4  | [Two Sum](questions/arrays/two_sum.md)                                               | Easy ✅         |
-| 5  | [Subarray with Given Sum](questions/arrays/subarray_sum.md)                          | Easy ✅         |
-| 6  | [Max Consecutive Ones](questions/arrays/max_consecutive_ones.md)                     | Easy ✅         |
-| 7  | [Sort an Array of 0s, 1s, and 2s](questions/arrays/sort012.md)                       | Easy-Medium ⚡  |
-| 8  | [Majority Element](questions/arrays/majority_element.md)                             | Medium ⚡       |
-| 9  | [3-Sum](questions/arrays/3-sum.md)                                                   | Medium ⚡       |
-| 10 | [Container with Most Water](questions/arrays/container_with_most_water.md)           | Medium ⚡       |
-| 11 | [Subarray with At Most K Distinct Elements](questions/arrays/subarray_k_elements.md) | Medium ⚡       |
-| 12 | [Subarray Sum Equals K](questions/arrays/subarray_sum_equals_k.md)                   | Medium ⚡       |
-| 13 | [Rotate Image](questions/arrays/rotate_image.md)                                     | Medium ⚡       |
-| 14 | [Gas Station Problem](questions/arrays/gas_station.md)                               | Medium ⚡       |
-| 15 | [Spiral Matrix](questions/arrays/spiral_matrix.md)                                   | Medium ⚡       |
-| 16 | [Find the Duplicate Number](questions/arrays/duplicate_number.md)                    | Medium ⚡       |
-| 17 | [Minimum Number of Meeting Rooms](questions/arrays/number_of_meeting_rooms.md)       | Medium ⚡       |
-| 18 | [Largest Number Formed from an Array](questions/arrays/largest_number.md)            | Medium-Hard 🔥 |
-| 19 | [Next Permutation](questions/arrays/next_permutation.md)                             | Medium-Hard 🔥 |
-| 20 | [Merge Overlapping Intervals](questions/arrays/merge_intervals.md)                   | Medium-Hard 🔥 |
-| 21 | [First Missing Positive](questions/arrays/missing_positive.md)                       | Hard 🔥        |
+| #       | Problem                                                                              | Difficulty     |
+|---------|--------------------------------------------------------------------------------------|----------------|
+| 1       | [Missing Number in an Array](questions/arrays/missing_number.md)                     | Easy ✅         |
+| 2       | [Insert an Element in a Sorted Array](questions/arrays/insert_in_sorted_array.md)    | Easy ✅         |
+| 3       | [Second-Largest Number in an Array](questions/arrays/second_largest.md)              | Easy ✅         |
+| 4       | [Two Sum](questions/arrays/two_sum.md)                                               | Easy ✅         |
+| 5       | [Subarray with Given Sum](questions/arrays/subarray_sum.md)                          | Easy ✅         |
+| 6       | [Max Consecutive Ones](questions/arrays/max_consecutive_ones.md)                     | Easy ✅         |
+| 7       | [Tic Tac Toe Winner Detection](questions/arrays/tic_tac_toe.md)                      | Easy ✅         |
+| 8       | [Sort an Array of 0s, 1s, and 2s](questions/arrays/sort012.md)                       | Easy-Medium ⚡  |
+| 9       | [Majority Element](questions/arrays/majority_element.md)                             | Medium ⚡       |
+| 10      | [3-Sum](questions/arrays/3-sum.md)                                                   | Medium ⚡       |
+| 11      | [Container with Most Water](questions/arrays/container_with_most_water.md)           | Medium ⚡       |
+| 12      | [Subarray with At Most K Distinct Elements](questions/arrays/subarray_k_elements.md) | Medium ⚡       |
+| 13      | [Subarray Sum Equals K](questions/arrays/subarray_sum_equals_k.md)                   | Medium ⚡       |
+| 14      | [Rotate Image](questions/arrays/rotate_image.md)                                     | Medium ⚡       |
+| 15      | [Gas Station Problem](questions/arrays/gas_station.md)                               | Medium ⚡       |
+| 16      | [Spiral Matrix](questions/arrays/spiral_matrix.md)                                   | Medium ⚡       |
+| 17      | [Find the Duplicate Number](questions/arrays/duplicate_number.md)                    | Medium ⚡       |
+| 18      | [Minimum Number of Meeting Rooms](questions/arrays/number_of_meeting_rooms.md)       | Medium ⚡       |
+| 19      | [Peak Element](questions/arrays/peak_element.md)                                     | Medium ⚡       |
+| 20      | [Largest Number Formed from an Array](questions/arrays/largest_number.md)            | Medium-Hard 🔥 |
+| 21      | [Next Permutation](questions/arrays/next_permutation.md)                             | Medium-Hard 🔥 |
+| 22      | [Merge Overlapping Intervals](questions/arrays/merge_intervals.md)                   | Medium-Hard 🔥 |
+| 23      | [First Missing Positive](questions/arrays/missing_positive.md)                       | Hard 🔥        |
 
 ---
 
