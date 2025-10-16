@@ -44,6 +44,21 @@ All solutions follow a **structured and easy-to-understand format** for learning
 
 ---
 
+### Strings
+
+| #  | Problem                                                                                                               | Difficulty |
+|----|-----------------------------------------------------------------------------------------------------------------------|------------|
+| 1  | [Generate Binary Numbers from 1 to N](questions/strings/1-n_binary-numbers.md)                                        | Easy ✅     |
+| 2  | [First Non-Repeating Character in a Stream](questions/strings/first_non_repeating_character_in_a_stream.md)           | Medium ⚡   |
+| 3  | [Group Anagrams](questions/strings/group_anagrams.md)                                                                 | Medium ⚡   |
+| 4  | [Longest Substring Without Repeating Characters](questions/strings/longest_substring_without_repeating_characters.md) | Medium ⚡   |
+| 5  | [No Adjacent Characters Together](questions/strings/no_adjacent_characters_together.md)                               | Medium ⚡   |
+| 6  | [Minimum Window Substring](questions/strings/minimum_window_substring.md)                                             | Hard 🔥    |
+| 7  | [Sliding Window Maximum](questions/strings/sliding_window_maximum.md)                                                 | Hard 🔥    |
+| 8  | [Longest Duplicate Substring](questions/strings/longest_duplicate_substring.md)                                       | Hard 🔥    |
+
+---
+
 ### Linked Lists
 
 | #  | Problem                                                                                                           | Difficulty     |
@@ -66,20 +81,6 @@ All solutions follow a **structured and easy-to-understand format** for learning
 | 16 | [Segregate Even and Odd Positioned Nodes in a Linked List](questions/linked_lists/segregate_odd_even_position.md) | Medium-Hard 🔥 |
 
 ---
-
-### Strings
-
-| #  | Problem                                                                                                               | Difficulty |
-|----|-----------------------------------------------------------------------------------------------------------------------|------------|
-| 1  | [Generate Binary Numbers from 1 to N](questions/strings/1-n_binary-numbers.md)                                        | Easy ✅     |
-| 2  | [First Non-Repeating Character in a Stream](questions/strings/first_non_repeating_character_in_a_stream.md)           | Medium ⚡   |
-| 3  | [Group Anagrams](questions/strings/group_anagrams.md)                                                                 | Medium ⚡   |
-| 4  | [Longest Substring Without Repeating Characters](questions/strings/longest_substring_without_repeating_characters.md) | Medium ⚡   |
-| 5  | [No Adjacent Characters Together](questions/strings/no_adjacent_characters_together.md)                               | Medium ⚡   |
-| 6  | [Minimum Window Substring](questions/strings/minimum_window_substring.md)                                             | Hard 🔥    |
-| 7  | [Sliding Window Maximum](questions/strings/sliding_window_maximum.md)                                                 | Hard 🔥    |
-| 8  | [Longest Duplicate Substring](questions/strings/longest_duplicate_substring.md)                                       | Hard 🔥    |
-
 
 ## 🔹 How to Use
 1. Navigate to the folder of the problem you want to solve.
