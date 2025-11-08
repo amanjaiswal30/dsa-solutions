@@ -25,7 +25,7 @@ questions/
 ├── stacks/          # Stack-based problems (9+ problems)
 ├── trees/           # Binary Tree & BST problems (34+ problems)
 ├── heaps/           # Heap & Priority Queue problems (4+ problems)
-└── graphs/          # Graph algorithms & traversals (8+ problems)
+└── graphs/          # Graph algorithms & traversals (13+ problems)
 ```
 
 ---
@@ -204,30 +204,40 @@ questions/
 | [Median from Data Stream](questions/heaps/median_from_data_stream.md) | Hard 🔥 | Two Heaps |
 | [Merge K Sorted Arrays](questions/heaps/merge_k_sorted_arrays.md) | Hard 🔥 | Min Heap, Merge |
 
-### 🌐 Graph Algorithms (8 Problems)
+### 🌐 Graph Algorithms (13 Problems)
 **Advanced Structures** - Explore DFS, BFS, topological sort, and advanced graph algorithms.
 
 | Problem | Difficulty | Key Concepts |
 |---------|------------|--------------|
+| [Find If Path Exists](questions/graphs/find_if_path_exists.md) | Easy ✅ | DFS, BFS, Union-Find |
+| [Cycle in Undirected Graph](questions/graphs/cycle_in_undirected_graph.md) | Medium ⚡ | DFS, BFS, Union-Find |
+| [Cycle in Directed Graph](questions/graphs/cycle_in_directed_graph.md) | Medium ⚡ | DFS, Recursion Stack |
+| [Topological Sort](questions/graphs/topological_sort.md) | Medium ⚡ | DFS, BFS, Kahn's Algorithm |
 | [Number of Islands](questions/graphs/number_of_islands.md) | Medium ⚡ | DFS, BFS, Connected Components |
 | [Course Schedule](questions/graphs/course_schedule.md) | Medium ⚡ | Topological Sort, Cycle Detection |
 | [Clone Graph](questions/graphs/clone_graph.md) | Medium ⚡ | Graph Traversal, HashMap |
+| [Alien Dictionary](questions/graphs/alien_dictionary.md) | Hard 🔥 | Topological Sort, Graph Construction |
 | [Word Ladder](questions/graphs/word_ladder_I.md) | Hard 🔥 | BFS, Shortest Path |
 | [Word Ladder II](questions/graphs/word_ladder_II.md) | Hard 🔥 | BFS, Path Reconstruction |
 
 <details>
-<summary><strong>📋 Complete Graphs List (8 problems)</strong></summary>
+<summary><strong>📋 Complete Graphs List (13 problems)</strong></summary>
 
 | # | Problem | Difficulty |
 |---|---------|------------|
-| 1 | [Clone Graph](questions/graphs/clone_graph.md) | Medium ⚡ |
-| 2 | [Course Schedule](questions/graphs/course_schedule.md) | Medium ⚡ |
-| 3 | [Number of Islands](questions/graphs/number_of_islands.md) | Medium ⚡ |
-| 4 | [Person Relationships](questions/graphs/person_relationships.md) | Medium ⚡ |
-| 5 | [Region in Binary Matrix](questions/graphs/region_in_a_binary_matrix.md) | Medium ⚡ |
-| 6 | [Rotting Oranges](questions/graphs/rotting_oranges.md) | Medium ⚡ |
-| 7 | [Word Ladder I](questions/graphs/word_ladder_I.md) | Hard 🔥 |
-| 8 | [Word Ladder II](questions/graphs/word_ladder_II.md) | Hard 🔥 |
+| 1 | [Find If Path Exists](questions/graphs/find_if_path_exists.md) | Easy ✅ |
+| 2 | [Cycle in Undirected Graph](questions/graphs/cycle_in_undirected_graph.md) | Medium ⚡ |
+| 3 | [Cycle in Directed Graph](questions/graphs/cycle_in_directed_graph.md) | Medium ⚡ |
+| 4 | [Topological Sort](questions/graphs/topological_sort.md) | Medium ⚡ |
+| 5 | [Number of Islands](questions/graphs/number_of_islands.md) | Medium ⚡ |
+| 6 | [Course Schedule](questions/graphs/course_schedule.md) | Medium ⚡ |
+| 7 | [Clone Graph](questions/graphs/clone_graph.md) | Medium ⚡ |
+| 8 | [Alien Dictionary](questions/graphs/alien_dictionary.md) | Hard 🔥 |
+| 9 | [Person Relationships](questions/graphs/person_relationships.md) | Medium ⚡ |
+| 10 | [Region in Binary Matrix](questions/graphs/region_in_a_binary_matrix.md) | Medium ⚡ |
+| 11 | [Rotting Oranges](questions/graphs/rotting_oranges.md) | Medium ⚡ |
+| 12 | [Word Ladder I](questions/graphs/word_ladder_I.md) | Hard 🔥 |
+| 13 | [Word Ladder II](questions/graphs/word_ladder_II.md) | Hard 🔥 |
 
 </details>
 
@@ -298,9 +308,9 @@ Track your progress with our **iterative learning path**:
 - [ ] **Stacks & Queues** (9/9) - Linear Structures
 - [ ] **Trees & BST** (34/34) - Hierarchical Structures
 - [ ] **Heaps** (4/4) - Special Tree Structures
-- [ ] **Graphs** (8/8) - Advanced Structures
+- [ ] **Graphs** (13/13) - Advanced Structures
 
-**Total: 104 Problems**
+**Total: 109 Problems**
 
 ---
 

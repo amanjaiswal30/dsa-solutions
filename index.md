@@ -67,13 +67,13 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
   
   <div class="stat-card">
     <h3>🌐 Graphs</h3>
-    <p><strong>8 Problems</strong></p>
+    <p><strong>13 Problems</strong></p>
     <p>DFS, BFS, Topological Sort, Shortest Path</p>
   </div>
   
   <div class="stat-card total">
     <h3>🎯 Total</h3>
-    <p><strong>104 Problems</strong></p>
+    <p><strong>109 Problems</strong></p>
     <p>Complete Interview Coverage</p>
   </div>
 </div>
@@ -126,7 +126,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
 | [**Stacks & Queues**](questions/stacks/) | 9 | Easy → Hard | Monotonic Stack, Expression Evaluation |
 | [**Trees & BST**](questions/trees/) | 34 | Easy → Hard | Tree Traversals, BST Operations, LCA |
 | [**Heaps**](questions/heaps/) | 4 | Medium → Hard | Priority Queues, Top K Problems |
-| [**Graphs**](questions/graphs/) | 8 | Medium → Hard | DFS, BFS, Topological Sort, Shortest Path |
+| [**Graphs**](questions/graphs/) | 13 | Easy → Hard | DFS, BFS, Topological Sort, Shortest Path |
 
 ---
 
@@ -339,7 +339,7 @@ Join our community of learners and contributors!
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=amanjaiswal30&show_icons=true&theme=radical)
 
 **Languages Used:** Java (Primary), Markdown (Documentation)  
-**Total Files:** 104 problem solutions + documentation  
+**Total Files:** 109 problem solutions + documentation  
 **Last Updated:** November 2024  
 **License:** MIT License
 
