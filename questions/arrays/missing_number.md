@@ -7,20 +7,26 @@
 ## 🔹 Problem Statement
 Given an array containing `n` distinct numbers taken from the range `0` to `n`, find the single missing number.
 
-### Examples
+## 🔹 Examples
+
 **Example 1:**  
 Input: `nums = [3, 0, 1]`  
-Output: `2`
+Output: `2`  
+Explanation: The numbers are from 0 to 3, and 2 is missing.
 
 **Example 2:**  
 Input: `nums = [0, 1]`  
-Output: `2`
+Output: `2`  
+Explanation: The numbers are from 0 to 2, and 2 is missing.
 
 **Example 3:**  
 Input: `nums = [9,6,4,2,3,5,7,0,1]`  
-Output: `8`
+Output: `8`  
+Explanation: The numbers are from 0 to 9, and 8 is missing.
 
-### Constraints
+---
+
+## 🔹 Constraints
 - `n == nums.length`
 - `1 <= n <= 10^4`
 - `0 <= nums[i] <= n`
@@ -28,7 +34,7 @@ Output: `8`
 
 ---
 
-## 🔹 Logic & Intuition
+## 🔹 Intuition & Logic
 - The array contains numbers from `0` to `n` with exactly **one missing number**.
 - The sum of numbers from `0` to `n` is:
 
@@ -127,10 +133,9 @@ public class MissingNumber {
 
 ---
 
-## 🔹 Interviewer Follow-ups
-- What if **two numbers** are missing?  
-  → Use **expected sum & expected square sum** to solve.
-- What if **duplicates exist**?  
-  → Problem changes to **"Find missing + duplicate numbers"**.
-
----
+## 🔹 Follow-Up Questions
+1. What if **two numbers** are missing?  
+   → Use **expected sum & expected square sum** to solve.
+2. What if **duplicates exist**?  
+   → Problem changes to **"Find missing + duplicate numbers"**.
+3. How would you handle this if the range was very large (e.g., 0 to 10^9)?

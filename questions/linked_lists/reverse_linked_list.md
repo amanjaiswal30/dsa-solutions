@@ -1,13 +1,40 @@
-# 🔹 Reverse a Linked List
+# Reverse a Linked List
+
+**Difficulty:** Easy ✅
 
 ---
 
-## 📌 Problem Statement
+## 🔹 Problem Statement
 Given the head of a singly linked list, reverse the list and return the **new head**.
 
 ---
 
-## 💡 Logic & Intuition
+## 🔹 Examples
+
+**Example 1:**  
+Input: `head = [1,2,3,4,5]`  
+Output: `[5,4,3,2,1]`  
+Explanation: The linked list is reversed.
+
+**Example 2:**  
+Input: `head = [1,2]`  
+Output: `[2,1]`  
+Explanation: The linked list is reversed.
+
+**Example 3:**  
+Input: `head = []`  
+Output: `[]`  
+Explanation: Empty list remains empty.
+
+---
+
+## 🔹 Constraints
+- The number of nodes in the list is the range `[0, 5000]`
+- `-5000 <= Node.val <= 5000`
+
+---
+
+## 🔹 Intuition & Logic
 - To reverse a linked list, you need to **change the direction** of each node’s `next` pointer so that it points to the **previous node**.
 - Two common approaches: **iterative** and **recursive**.
 

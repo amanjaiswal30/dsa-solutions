@@ -1,8 +1,10 @@
-# 🔹 Valid Parentheses
+# Valid Parentheses
+
+**Difficulty:** Easy ✅
 
 ---
 
-## 📌 Problem Statement
+## 🔹 Problem Statement
 Given a string `s` consisting of the characters `'('`, `')'`, `'{'`, `'}'`, `'['`, and `']'`, determine if the string is **valid**.
 
 A string is valid if:
@@ -12,7 +14,7 @@ A string is valid if:
 
 ---
 
-## 🧩 Example Inputs & Outputs
+## 🔹 Examples
 | Input      | Output  |
 |------------|---------|
 | `"()[]{}"` | `true`  |
@@ -23,7 +25,7 @@ A string is valid if:
 
 ---
 
-## 💡 Logic & Intuition
+## 🔹 Intuition & Logic
 - Brackets must **match in type** and follow **LIFO order**.
 - A **stack** is the natural choice.
 - Approaches:

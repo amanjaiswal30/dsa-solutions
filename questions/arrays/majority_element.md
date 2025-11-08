@@ -28,7 +28,7 @@ Output: `2`
 
 ---
 
-## 🔹 Logic & Intuition
+## 🔹 Intuition & Logic
 - The **majority element** appears more than half the time.
 - If you **sort the array**, the middle element is guaranteed to be the majority.
 - A **hash map** can count frequencies in one pass.
@@ -136,21 +136,12 @@ public class MajorityElement {
 
 ---
 
-## 🔹 Interviewer Follow-ups
-- What if there is **no majority element**?
-    - By definition, in this problem statement, majority **always exists**.
-    - But if not guaranteed, Boyer-Moore result should be verified with a second pass.
+## 🔹 Follow-Up Questions
+1. What if there is **no majority element**?
+   → By definition, in this problem statement, majority **always exists**. But if not guaranteed, Boyer-Moore result should be verified with a second pass.
 
-- Can you extend this for **n/3 majority element(s)?**
-    - Yes, use a **modified Boyer-Moore** keeping track of **two candidates**.
+2. Can you extend this for **n/3 majority element(s)?**
+   → Yes, use a **modified Boyer-Moore** keeping track of **two candidates**.
 
-- How would you solve it in a **streaming scenario** (real-time input)?
-    - Apply Boyer-Moore Voting Algorithm while streaming elements.
-
----
-
-## 🔹 Key Takeaways
-- Sorting works but is not optimal.
-- HashMap gives linear time but extra space.
-- Boyer-Moore is the **best choice** (O(n), O(1)).
-- Be ready to **extend Boyer-Moore** for variations like n/3 majority.  
+3. How would you solve it in a **streaming scenario** (real-time input)?
+   → Apply Boyer-Moore Voting Algorithm while streaming elements.
