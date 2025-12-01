@@ -71,9 +71,15 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
     <p>DFS, BFS, Topological Sort, Shortest Path</p>
   </div>
   
+  <div class="stat-card">
+    <h3>🎯 Dynamic Programming</h3>
+    <p><strong>1 Problem</strong></p>
+    <p>Memoization, Tabulation, Optimization</p>
+  </div>
+  
   <div class="stat-card total">
     <h3>🎯 Total</h3>
-    <p><strong>109 Problems</strong></p>
+    <p><strong>110 Problems</strong></p>
     <p>Complete Interview Coverage</p>
   </div>
 </div>
@@ -127,6 +133,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
 | [**Trees & BST**](questions/trees/) | 34 | Easy → Hard | Tree Traversals, BST Operations, LCA |
 | [**Heaps**](questions/heaps/) | 4 | Medium → Hard | Priority Queues, Top K Problems |
 | [**Graphs**](questions/graphs/) | 13 | Easy → Hard | DFS, BFS, Topological Sort, Shortest Path |
+| [**Dynamic Programming**](questions/dynamic_programming/) | 1 | Easy → Hard | Memoization, Tabulation, Space Optimization |
 
 ---
 
@@ -339,7 +346,7 @@ Join our community of learners and contributors!
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=amanjaiswal30&show_icons=true&theme=radical)
 
 **Languages Used:** Java (Primary), Markdown (Documentation)  
-**Total Files:** 109 problem solutions + documentation  
+**Total Files:** 110 problem solutions + documentation  
 **Last Updated:** November 2024  
 **License:** MIT License
 

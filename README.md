@@ -19,13 +19,14 @@ Welcome to my **comprehensive DSA Solutions Repository**! This repository contai
 
 ```
 questions/
-├── arrays/          # Array & Matrix problems (25+ problems)
-├── strings/         # String processing & algorithms (8+ problems)
-├── linked_lists/    # Linked List manipulations (16+ problems)
-├── stacks/          # Stack-based problems (9+ problems)
-├── trees/           # Binary Tree & BST problems (34+ problems)
-├── heaps/           # Heap & Priority Queue problems (4+ problems)
-└── graphs/          # Graph algorithms & traversals (13+ problems)
+├── arrays/               # Array & Matrix problems (25+ problems)
+├── strings/              # String processing & algorithms (8+ problems)
+├── linked_lists/         # Linked List manipulations (16+ problems)
+├── stacks/               # Stack-based problems (9+ problems)
+├── trees/                # Binary Tree & BST problems (34+ problems)
+├── heaps/                # Heap & Priority Queue problems (4+ problems)
+├── graphs/               # Graph algorithms & traversals (13+ problems)
+└── dynamic_programming/  # DP problems with detailed explanations (1+ problems)
 ```
 
 ---
@@ -241,6 +242,22 @@ questions/
 
 </details>
 
+### 🎯 Dynamic Programming (1 Problem)
+**Master Optimization** - Learn memoization, tabulation, and space optimization techniques.
+
+| Problem | Difficulty | Key Concepts |
+|---------|------------|--------------|
+| [Climbing Stairs](questions/dynamic_programming/climbing_stairs.md) | Easy ✅ | Recursion, Memoization, Tabulation, Space Optimization |
+
+<details>
+<summary><strong>📋 Complete DP List (1 problem - Growing!)</strong></summary>
+
+| # | Problem | Difficulty |
+|---|---------|------------|
+| 1 | [Climbing Stairs](questions/dynamic_programming/climbing_stairs.md) | Easy ✅ |
+
+</details>
+
 ---
 
 ## 🚀 How to Use This Repository
@@ -309,8 +326,9 @@ Track your progress with our **iterative learning path**:
 - [ ] **Trees & BST** (34/34) - Hierarchical Structures
 - [ ] **Heaps** (4/4) - Special Tree Structures
 - [ ] **Graphs** (13/13) - Advanced Structures
+- [ ] **Dynamic Programming** (1/1) - Master Optimization
 
-**Total: 109 Problems**
+**Total: 110 Problems**
 
 ---
 
