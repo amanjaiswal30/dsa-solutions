@@ -447,6 +447,7 @@ public class LISVariations {
 
 #### Code (Java)
 
+{% raw %}
 ```java
 public class LISVariations {
     
@@ -490,6 +491,7 @@ public class LISVariations {
     }
 }
 ```
+{% endraw %}
 
 ---
 

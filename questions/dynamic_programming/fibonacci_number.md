@@ -286,6 +286,7 @@ Using **fast matrix exponentiation** (like binary exponentiation), we can comput
 
 ### Code (Java)
 
+{% raw %}
 ```java
 public class FibonacciNumber {
     
@@ -323,6 +324,7 @@ public class FibonacciNumber {
     }
 }
 ```
+{% endraw %}
 
 ### Complexity
 - **Time Complexity:** O(log n) ⚡
