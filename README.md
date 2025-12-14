@@ -1,6 +1,6 @@
 # 📚 Data Structures & Algorithms Solutions
 
-Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 100+ commonly asked coding interview problems.
+Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 132 commonly asked coding interview problems.
 
 ---
 
@@ -26,7 +26,7 @@ questions/
 ├── trees/                # Binary Tree & BST problems (34+ problems)
 ├── heaps/                # Heap & Priority Queue problems (4+ problems)
 ├── graphs/               # Graph algorithms & traversals (13+ problems)
-└── dynamic_programming/  # DP problems with detailed explanations (1+ problems)
+└── dynamic_programming/  # DP problems with detailed explanations (23 problems)
 ```
 
 ---
@@ -242,19 +242,56 @@ questions/
 
 </details>
 
-### 🎯 Dynamic Programming (1 Problem)
-**Master Optimization** - Learn memoization, tabulation, and space optimization techniques.
+### 🎯 Dynamic Programming (23 Problems)
+**Master Optimization** - Learn memoization, tabulation, and space optimization techniques through classic DP patterns.
 
 | Problem | Difficulty | Key Concepts |
 |---------|------------|--------------|
 | [Climbing Stairs](questions/dynamic_programming/climbing_stairs.md) | Easy ✅ | Recursion, Memoization, Tabulation, Space Optimization |
+| [Min Cost Climbing Stairs](questions/dynamic_programming/min_cost_climbing_stairs.md) | Easy ✅ | DP, Space Optimization |
+| [Maximum Subarray Sum (Kadane's)](questions/dynamic_programming/maximum_subarray_sum.md) | Medium ⚡ | Kadane's Algorithm |
+| [House Robber](questions/dynamic_programming/house_robber.md) | Medium ⚡ | Max Sum Without Adjacent |
+| [0/1 Knapsack](questions/dynamic_programming/knapsack_0_1.md) | Medium ⚡ | 2D DP, Space Optimization, Subset Problems |
+| [Partition Equal Subset Sum](questions/dynamic_programming/partition_equal_subset_sum.md) | Medium ⚡ | Subset Sum, 0/1 Knapsack |
+| [Coin Change](questions/dynamic_programming/coin_change.md) | Medium ⚡ | Unbounded Knapsack, Bottom-Up DP |
+| [Rod Cutting](questions/dynamic_programming/rod_cutting.md) | Medium ⚡ | Unbounded Knapsack, Optimization |
+| [Longest Common Subsequence](questions/dynamic_programming/longest_common_subsequence.md) | Medium ⚡ | String DP, LCS Pattern |
+| [Edit Distance](questions/dynamic_programming/edit_distance.md) | Medium ⚡ | String DP, Levenshtein Distance |
+| [Word Break](questions/dynamic_programming/word_break.md) | Medium ⚡ | String Segmentation, Trie |
+| [Longest Increasing Subsequence](questions/dynamic_programming/longest_increasing_subsequence.md) | Medium ⚡ | Binary Search, O(n log n) |
+| [Min Cost Path in Grid](questions/dynamic_programming/min_cost_path.md) | Medium ⚡ | Grid DP, Path Finding |
+| [Jump Game (Min Jumps)](questions/dynamic_programming/jump_game.md) | Medium ⚡ | Greedy, BFS, DP |
+| [Palindrome Partitioning II](questions/dynamic_programming/palindrome_partitioning.md) | Hard 🔥 | Interval DP, Min Cuts |
+| [Matrix Chain Multiplication](questions/dynamic_programming/matrix_chain_multiplication.md) | Hard 🔥 | Interval DP, Optimization |
 
 <details>
-<summary><strong>📋 Complete DP List (1 problem - Growing!)</strong></summary>
+<summary><strong>📋 Complete DP List (23 problems)</strong></summary>
 
 | # | Problem | Difficulty |
 |---|---------|------------|
-| 1 | [Climbing Stairs](questions/dynamic_programming/climbing_stairs.md) | Easy ✅ |
+| 1 | [Fibonacci Number](questions/dynamic_programming/fibonacci_number.md) | Easy ✅ |
+| 2 | [Climbing Stairs](questions/dynamic_programming/climbing_stairs.md) | Easy ✅ |
+| 3 | [Min Cost Climbing Stairs](questions/dynamic_programming/min_cost_climbing_stairs.md) | Easy ✅ |
+| 4 | [Maximum Subarray Sum (Kadane's)](questions/dynamic_programming/maximum_subarray_sum.md) | Medium ⚡ |
+| 5 | [Maximum Product Subarray](questions/dynamic_programming/maximum_product_subarray.md) | Medium ⚡ |
+| 6 | [House Robber (Max Sum Without Adjacent)](questions/dynamic_programming/house_robber.md) | Medium ⚡ |
+| 7 | [Min Cost Path in Grid](questions/dynamic_programming/min_cost_path.md) | Medium ⚡ |
+| 8 | [Jump Game (Min Jumps to Reach End)](questions/dynamic_programming/jump_game.md) | Medium ⚡ |
+| 9 | [0/1 Knapsack](questions/dynamic_programming/knapsack_0_1.md) | Medium ⚡ |
+| 10 | [Partition Equal Subset Sum](questions/dynamic_programming/partition_equal_subset_sum.md) | Medium ⚡ |
+| 11 | [Coin Change](questions/dynamic_programming/coin_change.md) | Medium ⚡ |
+| 12 | [Rod Cutting Problem](questions/dynamic_programming/rod_cutting.md) | Medium ⚡ |
+| 13 | [Longest Common Subsequence](questions/dynamic_programming/longest_common_subsequence.md) | Medium ⚡ |
+| 14 | [Longest Common Substring](questions/dynamic_programming/longest_common_substring.md) | Medium ⚡ |
+| 15 | [Longest Increasing Subsequence](questions/dynamic_programming/longest_increasing_subsequence.md) | Medium ⚡ |
+| 16 | [Longest Palindromic Subsequence](questions/dynamic_programming/longest_palindromic_subsequence.md) | Medium ⚡ |
+| 17 | [Longest Bitonic Subsequence](questions/dynamic_programming/longest_bitonic_subsequence.md) | Medium ⚡ |
+| 18 | [Edit Distance](questions/dynamic_programming/edit_distance.md) | Medium ⚡ |
+| 19 | [Interleaving String](questions/dynamic_programming/interleaving_string.md) | Medium ⚡ |
+| 20 | [Word Break](questions/dynamic_programming/word_break.md) | Medium ⚡ |
+| 21 | [Palindrome Partitioning II](questions/dynamic_programming/palindrome_partitioning.md) | Hard 🔥 |
+| 22 | [Matrix Chain Multiplication](questions/dynamic_programming/matrix_chain_multiplication.md) | Hard 🔥 |
+| 23 | [Maximal Rectangle](questions/dynamic_programming/maximal_rectangle.md) | Hard 🔥 |
 
 </details>
 
@@ -326,9 +363,9 @@ Track your progress with our **iterative learning path**:
 - [ ] **Trees & BST** (34/34) - Hierarchical Structures
 - [ ] **Heaps** (4/4) - Special Tree Structures
 - [ ] **Graphs** (13/13) - Advanced Structures
-- [ ] **Dynamic Programming** (1/1) - Master Optimization
+- [ ] **Dynamic Programming** (23/23) - Master Optimization
 
-**Total: 110 Problems**
+**Total: 132 Problems**
 
 ---
 
