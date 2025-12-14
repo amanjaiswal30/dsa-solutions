@@ -1,11 +1,3 @@
 title: "DSA Solutions - Interview Preparation"
 description: "132 well-structured Java solutions for coding interview problems from FAANG and top tech companies"
 theme: jekyll-theme-cayman
-baseurl: "/dsa-solutions"
-url: "https://amanjaiswal30.github.io"
-
-# Social links
-github_username: amanjaiswal30
-
-# SEO
-lang: en-US
