@@ -4,12 +4,8 @@ theme: jekyll-theme-cayman
 baseurl: "/dsa-solutions"
 url: "https://amanjaiswal30.github.io"
 
-# Social links (optional)
+# Social links
 github_username: amanjaiswal30
-linkedin_username: amanjaiswal30
 
 # SEO
 lang: en-US
-plugins:
-  - jekyll-seo-tag
-  - jekyll-sitemap
