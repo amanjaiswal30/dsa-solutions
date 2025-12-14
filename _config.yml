@@ -1,5 +1,15 @@
-title: "DSA Questions & Solutions"
-description: "Collection of Data Structures & Algorithms problems with explanations and Java solutions."
+title: "DSA Solutions - Interview Preparation"
+description: "132 well-structured Java solutions for coding interview problems from FAANG and top tech companies"
 theme: jekyll-theme-cayman
-baseurl: "" # leave empty for root
-url: "https://amanjaiswal30.github.io" # replace USERNAME with your GitHub username
+baseurl: "/dsa-solutions"
+url: "https://amanjaiswal30.github.io"
+
+# Social links (optional)
+github_username: amanjaiswal30
+linkedin_username: amanjaiswal30
+
+# SEO
+lang: en-US
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
