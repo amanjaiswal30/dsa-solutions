@@ -1,5 +1,8 @@
 # 🔹 Problem: Check if a Binary Tree is Sum Tree
 
+![](../../assets/images/trees/check_sum_tree.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

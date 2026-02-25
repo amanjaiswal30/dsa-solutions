@@ -1,5 +1,8 @@
 # 🔹 Problem: Construct Binary Tree from Preorder and Inorder Traversal
 
+![](../../assets/images/trees/construct_binary_tree_from_preorder.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

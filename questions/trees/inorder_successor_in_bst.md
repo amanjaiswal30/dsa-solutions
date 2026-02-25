@@ -1,5 +1,8 @@
 # 🔹 Problem: Inorder Successor in a Binary Search Tree
 
+![](../../assets/images/trees/inorder_successor_in_bst.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

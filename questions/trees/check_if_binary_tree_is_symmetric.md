@@ -1,5 +1,8 @@
 # 🔹 Problem: Check if a Binary Tree is Symmetric
 
+![](../../assets/images/trees/check_if_binary_tree_is_symmetric.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

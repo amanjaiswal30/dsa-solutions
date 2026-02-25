@@ -1,5 +1,8 @@
 # 🔹 Problem: Serialize and Deserialize Binary Tree
 
+![](../../assets/images/trees/serialize_deserialize_binary_tree.svg)
+
+
 **Difficulty:** Hard ⚡⚡
 
 ---

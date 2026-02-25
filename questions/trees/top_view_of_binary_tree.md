@@ -1,5 +1,8 @@
 # 🔹 Problem: Top View of a Binary Tree
 
+![](../../assets/images/trees/top_view_of_binary_tree.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

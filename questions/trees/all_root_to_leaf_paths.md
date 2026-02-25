@@ -1,5 +1,8 @@
 # 🔹 Problem: All Root to Leaf Paths
 
+![](../../assets/images/trees/all_root_to_leaf_paths.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

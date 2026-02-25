@@ -1,5 +1,8 @@
 # 🔹 Problem: Diameter of a Binary Tree
 
+![](../../assets/images/trees/diameter_of_tree.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

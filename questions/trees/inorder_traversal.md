@@ -1,5 +1,8 @@
 # 🔹 Problem: Inorder Traversal of a Binary Tree
 
+![](../../assets/images/trees/inorder_traversal.svg)
+
+
 **Difficulty:** Easy 🌱
 
 ---

@@ -1,5 +1,8 @@
 # 🔹 Problem: Left View of a Binary Tree
 
+![](../../assets/images/trees/left_view_of_tree.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

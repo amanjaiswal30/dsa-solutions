@@ -1,5 +1,8 @@
 # 🔹 Problem: Check if a Binary Tree is BST
 
+![](../../assets/images/trees/check_binary_search_tree.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

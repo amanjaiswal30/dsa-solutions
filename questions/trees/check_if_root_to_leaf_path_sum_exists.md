@@ -1,5 +1,8 @@
 # 🔹 Problem: Check if Root to Leaf Path Sum Exists
 
+![](../../assets/images/trees/check_if_root_to_leaf_path_sum_exists.svg)
+
+
 **Difficulty:** Easy 🌱
 
 ---

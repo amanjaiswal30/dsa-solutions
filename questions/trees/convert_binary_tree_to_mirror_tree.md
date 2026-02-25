@@ -1,5 +1,8 @@
 # 🔹 Problem: Convert a Given Binary Tree into its Mirror Tree
 
+![](../../assets/images/trees/convert_binary_tree_to_mirror_tree.svg)
+
+
 **Difficulty:** Easy 🌱
 
 ---

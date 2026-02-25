@@ -1,5 +1,8 @@
 # 🔹 Problem: Check if a Binary Tree is Balanced
 
+![](../../assets/images/trees/check_tree_balanced.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

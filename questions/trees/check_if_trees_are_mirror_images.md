@@ -1,5 +1,8 @@
 # 🔹 Problem: Check if Two Binary Trees are Mirror Images of Each Other
 
+![](../../assets/images/trees/check_if_trees_are_mirror_images.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

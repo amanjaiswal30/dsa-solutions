@@ -1,5 +1,8 @@
 # 🔹 Problem: Maximum Path Sum from Leaf to Leaf
 
+![](../../assets/images/trees/max_path_sum_leaf_to_leaf.svg)
+
+
 **Difficulty:** Hard ⚡⚡
 
 ---

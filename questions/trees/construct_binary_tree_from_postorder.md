@@ -1,5 +1,8 @@
 # 🔹 Problem: Construct Binary Tree from Inorder and Postorder Traversal
 
+![](../../assets/images/trees/construct_binary_tree_from_postorder.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

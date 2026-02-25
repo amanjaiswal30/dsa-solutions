@@ -1,5 +1,8 @@
 # 🔹 Problem: Delete a Node from a Binary Search Tree
 
+![](../../assets/images/trees/delete_node_from_bst.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

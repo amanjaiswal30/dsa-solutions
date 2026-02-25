@@ -1,5 +1,8 @@
 # 🔹 Problem: Vertical Order Traversal of a Binary Tree
 
+![](../../assets/images/trees/vertical_order_traversal.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

@@ -1,5 +1,8 @@
 # 🔹 Problem: Time to Burn a Binary Tree
 
+![](../../assets/images/trees/burning_tree.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

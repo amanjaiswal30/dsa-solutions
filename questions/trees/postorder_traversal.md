@@ -1,5 +1,8 @@
 # 🔹 Problem: Postorder Traversal of a Binary Tree
 
+![](../../assets/images/trees/postorder_traversal.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

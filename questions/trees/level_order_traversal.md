@@ -1,5 +1,8 @@
 # 🔹 Problem: Level Order Traversal of a Binary Tree
 
+![](../../assets/images/trees/level_order_traversal.svg)
+
+
 **Difficulty:** Easy 🌱
 
 ---

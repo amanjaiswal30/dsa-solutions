@@ -1,5 +1,8 @@
 # 🔹 Problem: Determine Height of a Binary Tree
 
+![](../../assets/images/trees/height_of_tree.svg)
+
+
 **Difficulty:** Easy 🌱
 
 ---

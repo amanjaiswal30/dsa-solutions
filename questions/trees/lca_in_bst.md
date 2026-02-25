@@ -1,5 +1,8 @@
 # 🔹 Problem: Lowest Common Ancestor in a Binary Search Tree
 
+![](../../assets/images/trees/lca_in_bst.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

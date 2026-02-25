@@ -1,5 +1,8 @@
 # 🔹 Problem: Insert a Node in a Binary Search Tree
 
+![](../../assets/images/trees/insert_node_in_bst.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

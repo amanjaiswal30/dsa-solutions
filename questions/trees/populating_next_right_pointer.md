@@ -1,5 +1,8 @@
 # 🔹 Problem: Populating Next Right Pointers in Each Node
 
+![](../../assets/images/trees/populating_next_right_pointer.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

@@ -1,5 +1,8 @@
 # 🔹 Problem: Kth Smallest Element in a Binary Search Tree
 
+![](../../assets/images/trees/kth_smallest_element_in_bst.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

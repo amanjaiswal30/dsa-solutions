@@ -1,5 +1,8 @@
 # 🔹 Problem: Maximum Path Sum from Any Node to Any Node
 
+![](../../assets/images/trees/max_path_sum_from_node_to_node.svg)
+
+
 **Difficulty:** Hard ⚡⚡
 
 ---

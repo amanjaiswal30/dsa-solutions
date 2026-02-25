@@ -1,5 +1,8 @@
 # 🔹 Problem: Find the Distance Between Two Nodes in a Binary Tree
 
+![](../../assets/images/trees/distance_between_two_nodes.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

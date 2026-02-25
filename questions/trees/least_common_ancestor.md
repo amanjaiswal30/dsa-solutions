@@ -1,5 +1,8 @@
 # 🔹 Problem: Least Common Ancestor (LCA) of a Binary Tree
 
+![](../../assets/images/trees/least_common_ancestor.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

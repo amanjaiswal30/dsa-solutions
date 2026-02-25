@@ -1,5 +1,8 @@
 # 🔹 Problem: Preorder Traversal of a Binary Tree
 
+![](../../assets/images/trees/preorder_traversal.svg)
+
+
 **Difficulty:** Easy 🌱
 
 ---

@@ -1,5 +1,8 @@
 # 🔹 Problem: Invert a Binary Tree
 
+![](../../assets/images/trees/invert_binary_tree.svg)
+
+
 **Difficulty:** Easy 🌱
 
 ---
