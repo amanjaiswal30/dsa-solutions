@@ -1,4 +1,31 @@
 <svg width="900" height="610" xmlns="http://www.w3.org/2000/svg">
+<style>
+  /* Two-heaps: insertions, balance, peek — 8s ease-in-out */
+  @keyframes brute_s0{0%,8%{fill:#FDEDEC;stroke:#E74C3C;stroke-width:2}14%,100%{fill:#FDEDEC;stroke:#E74C3C}}
+  @keyframes brute_s1{0%,14%{fill:#FDEDEC}20%,28%{fill:#FDEDEC;stroke-width:2}34%,100%{fill:#FDEDEC}}
+  @keyframes brute_s2{0%,28%{fill:#FDEDEC}34%,44%{fill:#FDEBD0;stroke:#E67E22;stroke-width:2}50%,100%{fill:#FDEDEC}}
+  @keyframes brute_s3{0%,50%{fill:#FDEDEC}56%,66%{fill:#FDEDEC;stroke-width:2}72%,100%{fill:#FDEDEC}}
+  @keyframes brute_s4{0%,66%{fill:#FDEDEC}72%,88%{fill:#FDEBD0;stroke:#E67E22;stroke-width:2}94%,100%{fill:#FDEDEC}}
+  .brute_step0{animation:brute_s0 8s ease-in-out infinite}
+  .brute_step1{animation:brute_s1 8s ease-in-out infinite}
+  .brute_step2{animation:brute_s2 8s ease-in-out infinite}
+  .brute_step3{animation:brute_s3 8s ease-in-out infinite}
+  .brute_step4{animation:brute_s4 8s ease-in-out infinite}
+
+  @keyframes heap_add0{0%,6%{fill:#EAFAF1;stroke:#27AE60;stroke-width:2.5}12%,100%{fill:#EAFAF1;stroke:#27AE60}}
+  @keyframes heap_add1{0%,18%{fill:#EAFAF1}24%,32%{fill:#EAFAF1;stroke:#27AE60;stroke-width:2.5}38%,100%{fill:#EAFAF1}}
+  @keyframes heap_add2{0%,38%{fill:#EAFAF1}44%,54%{fill:#FDEBD0;stroke:#E67E22;stroke-width:2}60%,100%{fill:#EAFAF1}}
+  @keyframes heap_add3{0%,66%{fill:#EAFAF1}72%,86%{fill:#D5F5E3;stroke:#27AE60;stroke-width:3}92%,100%{fill:#EAFAF1}}
+  .mh_step0{animation:heap_add0 8s ease-in-out infinite}
+  .mh_step1{animation:heap_add1 8s ease-in-out infinite}
+  .mh_step2{animation:heap_add2 8s ease-in-out infinite}
+  .mh_step3{animation:heap_add3 8s ease-in-out infinite}
+
+  @keyframes maxheap_pulse{0%,20%{fill:#EAFAF1;stroke:#27AE60}25%,35%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2.5}40%,100%{fill:#EAFAF1;stroke:#27AE60}}
+  @keyframes minheap_pulse{0%,50%{fill:#EBF5FB;stroke:#2980B9}55%,65%{fill:#D6EAF8;stroke:#2980B9;stroke-width:2.5}70%,100%{fill:#EBF5FB;stroke:#2980B9}}
+  .maxheap_panel{animation:maxheap_pulse 8s ease-in-out infinite}
+  .minheap_panel{animation:minheap_pulse 8s ease-in-out infinite}
+</style>
   <!-- Background -->
   <rect width="900" height="610" fill="#F8F9FA" rx="10"/>
   <!-- Title Bar -->
@@ -26,13 +53,13 @@
 
   <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Keep list, sort when median needed:</text>
 
-  <rect x="30" y="186" width="360" height="26" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <rect class="brute_step0" x="30" y="186" width="360" height="26" fill="#FDEDEC" stroke="#E74C3C" stroke-width="2" rx="3"/>
   <text x="210" y="203" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">addNum(1): list=[1]</text>
 
-  <rect x="30" y="216" width="360" height="26" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <rect class="brute_step1" x="30" y="216" width="360" height="26" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
   <text x="210" y="233" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">addNum(2): list=[1,2]</text>
 
-  <rect x="30" y="246" width="360" height="30" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <rect class="brute_step2" x="30" y="246" width="360" height="30" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
   <text x="210" y="261" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">findMedian(): sort [1,2] → (1+2)/2 = 1.5 ✓</text>
   <text x="210" y="271" font-family="Arial" font-size="9" fill="#E74C3C" text-anchor="middle">⚠ Sort O(n log n) each time!</text>
 
@@ -70,12 +97,12 @@
   <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Max-heap (low) | Min-heap (high):</text>
 
   <!-- Two heap visualization -->
-  <rect x="505" y="186" width="172" height="60" fill="#EAFAF1" stroke="#27AE60" rx="4"/>
+  <rect class="maxheap_panel" x="505" y="186" width="172" height="60" fill="#EAFAF1" stroke="#27AE60" rx="4"/>
   <text x="591" y="203" font-family="Arial" font-size="11" font-weight="bold" fill="#27AE60" text-anchor="middle">MAX-HEAP (low)</text>
   <text x="591" y="220" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">smaller half</text>
   <text x="591" y="237" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">top = max of lower</text>
 
-  <rect x="715" y="186" width="162" height="60" fill="#EBF5FB" stroke="#2980B9" rx="4"/>
+  <rect class="minheap_panel" x="715" y="186" width="162" height="60" fill="#EBF5FB" stroke="#2980B9" rx="4"/>
   <text x="796" y="203" font-family="Arial" font-size="11" font-weight="bold" fill="#2980B9" text-anchor="middle">MIN-HEAP (high)</text>
   <text x="796" y="220" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">larger half</text>
   <text x="796" y="237" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">top = min of upper</text>

@@ -1,4 +1,23 @@
 <svg width="900" height="610" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes push_slide{0%{opacity:0;transform:translateY(24px)}15%{opacity:1;transform:translateY(0)}100%{opacity:1;transform:translateY(0)}}
+  @keyframes pop_slide{0%{opacity:1;transform:translateY(0)}15%{opacity:0;transform:translateY(20px)}100%{opacity:0;transform:translateY(20px)}}
+  @keyframes row_hl{0%,8%{fill:#EBF5FB}12%,25%{fill:#D5E8D4;stroke:#27AE60}30%,100%{fill:#EBF5FB}}
+  @keyframes row_hl2{25%,33%{fill:#D5E8D4}37%,100%{fill:#EBF5FB}}
+  @keyframes r0{0%,10%{fill:#FADBD8}18%,28%{fill:#D5F5E3;stroke:#27AE60}35%,100%{fill:#FADBD8}}
+  @keyframes r1{18%,28%{fill:#D5F5E3;stroke:#27AE60}35%,45%{fill:#D5E8D4}50%,100%{fill:#EBF5FB}}
+  .st_row1{animation:row_hl 8s ease-in-out infinite}
+  .st_row2{animation:row_hl 8s 1s ease-in-out infinite}
+  .st_row3{animation:row_hl 8s 2s ease-in-out infinite}
+  .st_row4{animation:row_hl2 8s 3s ease-in-out infinite}
+  .st_row5{animation:row_hl2 8s 4s ease-in-out infinite}
+  .st_row6{animation:row_hl 8s 5s ease-in-out infinite}
+  .st_row7{animation:row_hl 8s 6s ease-in-out infinite}
+  .st_row8{animation:row_hl2 8s 7s ease-in-out infinite}
+  .arr0{animation:r0 8s ease-in-out infinite}
+  .arr1{animation:r1 8s ease-in-out infinite}
+  .arr2{animation:r1 8s 0.5s ease-in-out infinite}
+</style>
   <rect width="900" height="610" fill="#F8F9FA" rx="10"/>
   <rect width="900" height="55" fill="#2C3E50" rx="10"/>
   <rect x="0" y="45" width="900" height="10" fill="#2C3E50"/>
@@ -25,9 +44,9 @@
   <!-- Mini array visualization -->
   <text x="25" y="222" font-family="Arial" font-size="10" fill="#7F8C8D">For T=[73, 74, 75, 71, 69, 72, 76, 73]:</text>
   <g transform="translate(25,228)">
-    <rect x="0" y="0" width="28" height="24" fill="#FADBD8" stroke="#E74C3C" rx="2"/><text x="14" y="17" font-family="Arial" font-size="9" fill="#C0392B" text-anchor="middle">73</text>
-    <rect x="30" y="0" width="28" height="24" fill="#EBF5FB" stroke="#3498DB" rx="2"/><text x="44" y="17" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">74</text>
-    <rect x="60" y="0" width="28" height="24" fill="#EBF5FB" stroke="#3498DB" rx="2"/><text x="74" y="17" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">75</text>
+    <rect class="arr0" x="0" y="0" width="28" height="24" fill="#FADBD8" stroke="#E74C3C" rx="2"/><text x="14" y="17" font-family="Arial" font-size="9" fill="#C0392B" text-anchor="middle">73</text>
+    <rect class="arr1" x="30" y="0" width="28" height="24" fill="#EBF5FB" stroke="#3498DB" rx="2"/><text x="44" y="17" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">74</text>
+    <rect class="arr2" x="60" y="0" width="28" height="24" fill="#EBF5FB" stroke="#3498DB" rx="2"/><text x="74" y="17" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">75</text>
     <rect x="90" y="0" width="28" height="24" fill="#FADBD8" stroke="#E74C3C" rx="2"/><text x="104" y="17" font-family="Arial" font-size="9" fill="#C0392B" text-anchor="middle">71</text>
     <rect x="120" y="0" width="28" height="24" fill="#FADBD8" stroke="#E74C3C" rx="2"/><text x="134" y="17" font-family="Arial" font-size="9" fill="#C0392B" text-anchor="middle">69</text>
     <rect x="150" y="0" width="28" height="24" fill="#EBF5FB" stroke="#3498DB" rx="2"/><text x="164" y="17" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">72</text>

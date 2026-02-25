@@ -1,4 +1,20 @@
 <svg width="900" height="560" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes step1 { 0%,8%{opacity:0.5} 12%,100%{opacity:1} }
+  @keyframes step2 { 0%,25%{opacity:0.5} 30%,100%{opacity:1} }
+  @keyframes step3 { 0%,42%{opacity:0.5} 46%,100%{opacity:1} }
+  @keyframes panel-pulse { 0%,20%{stroke-width:2} 35%,50%{stroke-width:2.5} 65%,100%{stroke-width:2} }
+  @keyframes arrow-glow { 0%,15%{opacity:0.6;stroke:#7F8C8D} 33%,50%{opacity:1;stroke:#3498DB} 66%,100%{opacity:0.6;stroke:#7F8C8D} }
+  @keyframes row-hl { 0%,55%{fill:#EAFAF1} 60%,70%{fill:#D5F5E3} 75%,100%{fill:#EAFAF1} }
+  .anim-step1{animation:step1 9s ease-in-out infinite}
+  .anim-step2{animation:step2 9s ease-in-out infinite}
+  .anim-step3{animation:step3 9s ease-in-out infinite}
+  .anim-panel1{animation:panel-pulse 9s ease-in-out infinite}
+  .anim-panel2{animation:panel-pulse 9s ease-in-out 1.2s infinite}
+  .anim-panel3{animation:panel-pulse 9s ease-in-out 2.4s infinite}
+  .anim-arrow{animation:arrow-glow 9s ease-in-out infinite}
+  .anim-row{animation:row-hl 9s ease-in-out infinite}
+</style>
   <rect width="900" height="560" fill="#F8F9FA" rx="10"/>
   <rect width="900" height="55" fill="#2C3E50" rx="10"/>
   <rect y="45" width="900" height="10" fill="#2C3E50"/>
@@ -12,13 +28,13 @@
   <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">0=empty, 1=fresh, 2=rotten. All rotten spread simultaneously each minute. Return -1 if fresh remains.</text>
 
   <!-- Step 1 Panel -->
-  <rect x="15" y="115" width="268" height="320" fill="#FFFFFF" stroke="#27AE60" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="268" height="320" fill="#FFFFFF" stroke="#27AE60" stroke-width="2" rx="7" class="anim-panel1"/>
   <rect x="15" y="115" width="268" height="40" fill="#27AE60" rx="7"/>
   <rect x="15" y="140" width="268" height="15" fill="#27AE60"/>
   <text x="149" y="140" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Step 1: Initialize Queue</text>
   <text x="149" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">Add ALL rotten to queue at once</text>
 
-  <rect x="25" y="164" width="248" height="104" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect x="25" y="164" width="248" height="104" fill="#EAFAF1" stroke="#27AE60" rx="3" class="anim-step1"/>
   <text x="149" y="180" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Grid: [[2,1,1],[1,1,0],[0,1,1]]</text>
   <text x="149" y="196" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Scan all cells:</text>
   <text x="149" y="211" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">  cell(0,0)=2 → queue.add((0,0,0))</text>
@@ -26,7 +42,7 @@
   <text x="149" y="244" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">Queue:[(0,0,t=0)], fresh=6 ✓</text>
 
   <text x="25" y="283" font-family="Arial" font-size="11" fill="#555">Key insight:</text>
-  <rect x="25" y="289" width="248" height="36" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect x="25" y="289" width="248" height="36" fill="#EAFAF1" stroke="#27AE60" rx="3" class="anim-step2"/>
   <text x="149" y="304" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Start BFS from ALL rotten cells</text>
   <text x="149" y="318" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">simultaneously (multi-source BFS!)</text>
 
@@ -37,17 +53,17 @@
   <text x="25" y="415" font-family="Arial" font-size="11" fill="#888">This simulates minutes passing</text>
 
   <!-- Arrow 1 to 2 -->
-  <line x1="283" y1="278" x2="314" y2="278" stroke="#7F8C8D" stroke-width="2.5"/>
+  <line x1="283" y1="278" x2="314" y2="278" stroke="#7F8C8D" stroke-width="2.5" class="anim-arrow"/>
   <polygon points="314,273 326,278 314,283" fill="#7F8C8D"/>
 
   <!-- Step 2 Panel -->
-  <rect x="326" y="115" width="268" height="320" fill="#FFFFFF" stroke="#27AE60" stroke-width="2" rx="7"/>
+  <rect x="326" y="115" width="268" height="320" fill="#FFFFFF" stroke="#27AE60" stroke-width="2" rx="7" class="anim-panel2"/>
   <rect x="326" y="115" width="268" height="40" fill="#27AE60" rx="7"/>
   <rect x="326" y="140" width="268" height="15" fill="#27AE60"/>
   <text x="460" y="140" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Step 2: BFS Propagation</text>
   <text x="460" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">Spread rotten, decrement fresh count</text>
 
-  <rect x="336" y="164" width="248" height="104" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect x="336" y="164" width="248" height="104" fill="#EAFAF1" stroke="#27AE60" rx="3" class="anim-step2"/>
   <text x="460" y="180" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Poll(0,0,t=0): check 4 neighbors</text>
   <text x="460" y="195" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">  (0,1)=1 fresh → set 2, fresh--, add(0,1,t=1)</text>
   <text x="460" y="210" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">  (1,0)=1 fresh → set 2, fresh--, add(1,0,t=1)</text>
@@ -55,7 +71,7 @@
   <text x="460" y="244" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">Continue spreading... time tracks max ✓</text>
 
   <text x="336" y="283" font-family="Arial" font-size="11" fill="#555">BFS spread logic:</text>
-  <rect x="336" y="289" width="248" height="36" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect x="336" y="289" width="248" height="36" fill="#EAFAF1" stroke="#27AE60" rx="3" class="anim-step3"/>
   <text x="460" y="304" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">if neighbor==1 (fresh):</text>
   <text x="460" y="318" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">  mark 2, fresh--, add(r,c,t+1)</text>
 
@@ -66,17 +82,17 @@
   <text x="336" y="415" font-family="Arial" font-size="11" fill="#888">4 directions: up/down/left/right</text>
 
   <!-- Arrow 2 to 3 -->
-  <line x1="594" y1="278" x2="625" y2="278" stroke="#7F8C8D" stroke-width="2.5"/>
+  <line x1="594" y1="278" x2="625" y2="278" stroke="#7F8C8D" stroke-width="2.5" class="anim-arrow"/>
   <polygon points="625,273 637,278 625,283" fill="#7F8C8D"/>
 
   <!-- Step 3 Panel -->
-  <rect x="637" y="115" width="248" height="320" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="637" y="115" width="248" height="320" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7" class="anim-panel3"/>
   <rect x="637" y="115" width="248" height="40" fill="#27AE60" rx="7"/>
   <rect x="637" y="140" width="248" height="15" fill="#27AE60"/>
   <text x="761" y="140" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Step 3: Check Result ⭐</text>
   <text x="761" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">fresh==0 ? time : -1</text>
 
-  <rect x="647" y="164" width="228" height="104" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect x="647" y="164" width="228" height="104" fill="#EAFAF1" stroke="#27AE60" rx="3" class="anim-step3"/>
   <text x="761" y="180" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">After BFS completes:</text>
   <text x="761" y="196" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Case 1: fresh==0</text>
   <text x="761" y="211" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">  return time (=4 minutes) ✓</text>
@@ -84,7 +100,7 @@
   <text x="761" y="244" font-family="Arial" font-size="10" fill="#E74C3C" font-weight="bold" text-anchor="middle">  return -1 (impossible!) ✓</text>
 
   <text x="647" y="283" font-family="Arial" font-size="11" fill="#555">Edge cases:</text>
-  <rect x="647" y="289" width="228" height="36" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect x="647" y="289" width="228" height="36" fill="#EAFAF1" stroke="#27AE60" rx="3" class="anim-step2"/>
   <text x="761" y="304" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">No fresh oranges: return 0</text>
   <text x="761" y="318" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">No rotten &amp; fresh exist: return -1</text>
 
@@ -105,7 +121,7 @@
   <text x="500" y="495" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
   <text x="750" y="495" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
   <line x1="15" y1="503" x2="885" y2="503" stroke="#DEE2E6" stroke-width="1"/>
-  <rect x="15" y="503" width="870" height="24" fill="#EAFAF1"/>
+  <rect x="15" y="503" width="870" height="24" fill="#EAFAF1" class="anim-row"/>
   <text x="200" y="519" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Multi-Source BFS ⭐ (only approach)</text>
   <text x="500" y="519" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(M×N)</text>
   <text x="750" y="519" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(M×N)</text>

@@ -1,4 +1,12 @@
 <svg width="900" height="575" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes a1 { 0%,12%,100%{fill:#FDEDEC;stroke:#E74C3C} 18%,35%{fill:#D5F5E3;stroke:#27AE60} 40%,100%{fill:#FDEDEC;stroke:#E74C3C} }
+  @keyframes a2 { 0%,52%,62%,100%{fill:#EAFAF1;stroke:#27AE60} 66%,88%{fill:#D5F5E3;stroke:#1E8449} 92%,100%{fill:#EAFAF1;stroke:#27AE60} }
+  @keyframes ap { 0%,100%{opacity:1} 50%{opacity:0.65} }
+  .pa1{animation:a1 8s ease-in-out infinite}
+  .pa2{animation:a2 8s ease-in-out infinite}
+  .par{animation:ap 8s ease-in-out infinite}
+</style>
   <rect width="900" height="575" fill="#F8F9FA" rx="10"/>
   <rect width="900" height="55" fill="#2C3E50" rx="10"/>
   <rect y="45" width="900" height="10" fill="#2C3E50"/>
@@ -21,7 +29,7 @@
   <text x="210" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(n) time | O(n) space</text>
 
   <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Copy values to array, check palindrome:</text>
-  <rect x="30" y="184" width="360" height="72" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <rect class="pa1" x="30" y="184" width="360" height="72" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
   <text x="210" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Traverse list → ArrayList [1, 2, 3, 2, 1]</text>
   <text x="210" y="215" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Two pointer: left=0, right=4</text>
   <text x="210" y="230" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">1==1 ✓, 2==2 ✓, mid → palindrome!</text>
@@ -38,8 +46,8 @@
   <text x="30" y="422" font-family="Arial" font-size="11" fill="#888">Saves n-/2 nodes of extra memory</text>
 
   <!-- Evolution Arrow -->
-  <line x1="410" y1="268" x2="480" y2="268" stroke="#7F8C8D" stroke-width="2.5"/>
-  <polygon points="480,263 492,268 480,273" fill="#7F8C8D"/>
+  <line class="par" x1="410" y1="268" x2="480" y2="268" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon class="par" points="480,263 492,268 480,273" fill="#7F8C8D"/>
   <rect x="410" y="240" width="72" height="56" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
   <text x="446" y="254" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Reverse</text>
   <text x="446" y="266" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">2nd half</text>
@@ -55,7 +63,7 @@
   <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">3-step in-place approach (1→2→3→2→1):</text>
 
   <text x="505" y="198" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">Step 1 — Find middle (slow/fast):</text>
-  <rect x="505" y="204" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect class="pa2" x="505" y="204" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
   <text x="686" y="219" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">slow=1step, fast=2steps → slow stops at node(3) (middle)</text>
   <text x="686" y="231" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">while (fast.next != null &amp;&amp; fast.next.next != null)</text>
 

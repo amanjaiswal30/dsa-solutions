@@ -1,4 +1,12 @@
 <svg width="900" height="580" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes step_hl1 { 0%,10%,100%{fill:#FDEDEC;stroke:#E74C3C} 15%,28%{fill:#D5F5E3;stroke:#27AE60} 32%,100%{fill:#FDEDEC;stroke:#E74C3C} }
+  @keyframes step_hl2 { 0%,45%,55%,100%{fill:#EAFAF1;stroke:#27AE60} 58%,72%{fill:#D5F5E3;stroke:#1E8449} 76%,100%{fill:#EAFAF1;stroke:#27AE60} }
+  @keyframes arr_pulse { 0%,100%{opacity:1} 50%{opacity:0.65} }
+  .sh1{animation:step_hl1 8s ease-in-out infinite}
+  .sh2{animation:step_hl2 8s ease-in-out infinite}
+  .ap{animation:arr_pulse 8s ease-in-out infinite}
+</style>
   <rect width="900" height="580" fill="#F8F9FA" rx="10"/>
   <rect width="900" height="55" fill="#2C3E50" rx="10"/>
   <rect y="45" width="900" height="10" fill="#2C3E50"/>
@@ -19,7 +27,7 @@
   <text x="210" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(n) time | O(n) space</text>
 
   <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Pass 1: Create clone nodes, store mapping:</text>
-  <rect x="30" y="184" width="360" height="40" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <rect class="sh1" x="30" y="184" width="360" height="40" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
   <text x="210" y="199" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">HashMap: {orig1→clone1, orig2→clone2, orig3→clone3}</text>
   <text x="210" y="214" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Each clone has same value but no pointers set yet</text>
 
@@ -37,8 +45,8 @@
   <text x="30" y="418" font-family="Arial" font-size="11" fill="#888">Both approaches make exactly 2 passes</text>
 
   <!-- Evolution Arrow -->
-  <line x1="410" y1="268" x2="480" y2="268" stroke="#7F8C8D" stroke-width="2.5"/>
-  <polygon points="480,263 492,268 480,273" fill="#7F8C8D"/>
+  <line class="ap" x1="410" y1="268" x2="480" y2="268" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon class="ap" points="480,263 492,268 480,273" fill="#7F8C8D"/>
   <rect x="410" y="240" width="72" height="56" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
   <text x="446" y="254" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Embed</text>
   <text x="446" y="266" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">clones in-</text>
@@ -52,7 +60,7 @@
   <text x="688" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(n) time | O(1) space</text>
 
   <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Step 1: Interleave clone after each original:</text>
-  <rect x="505" y="184" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect class="sh2" x="505" y="184" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
   <text x="686" y="199" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">1→1'→2→2'→3→3' (clones inserted after originals)</text>
   <text x="686" y="211" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">clone.next = curr.next; curr.next = clone</text>
 

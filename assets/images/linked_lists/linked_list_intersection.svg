@@ -1,4 +1,14 @@
 <svg width="900" height="600" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes br { 0%,8%,100%{fill:#FDEDEC;stroke:#E74C3C} 12%,28%{fill:#D5F5E3;stroke:#27AE60} 32%,100%{fill:#FDEDEC;stroke:#E74C3C} }
+  @keyframes hash { 0%,38%,48%,100%{fill:#FEF9E7;stroke:#E67E22} 52%,68%{fill:#D5F5E3;stroke:#27AE60} 72%,100%{fill:#FEF9E7;stroke:#E67E22} }
+  @keyframes twoptr { 0%,68%,78%,100%{fill:#EAFAF1;stroke:#27AE60} 82%,95%{fill:#D5F5E3;stroke:#1E8449} 100%{fill:#EAFAF1;stroke:#27AE60} }
+  @keyframes arrow { 0%,100%{opacity:1} 50%{opacity:0.6} }
+  .br{animation:br 8s ease-in-out infinite}
+  .hash{animation:hash 8s ease-in-out infinite}
+  .tp{animation:twoptr 8s ease-in-out infinite}
+  .arr{animation:arrow 8s ease-in-out infinite}
+</style>
   <rect width="900" height="600" fill="#F8F9FA" rx="10"/>
   <rect width="900" height="55" fill="#2C3E50" rx="10"/>
   <rect y="45" width="900" height="10" fill="#2C3E50"/>
@@ -20,7 +30,7 @@
   <text x="142" y="152" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(m×n) | O(1) space</text>
 
   <text x="30" y="177" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">For each node in L1, scan all L2:</text>
-  <rect x="30" y="183" width="226" height="64" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <rect class="br" x="30" y="183" width="226" height="64" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
   <text x="143" y="199" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">for a: check e,f,c,d → no match</text>
   <text x="143" y="213" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">for b: check e,f,c,d → no match</text>
   <text x="143" y="230" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">for c: check e,f,c → MATCH! ✓</text>
@@ -37,8 +47,8 @@
   <text x="30" y="425" font-family="Arial" font-size="10" fill="#888">achieve O(m+n) time</text>
 
   <!-- Arrow 1 -->
-  <line x1="274" y1="272" x2="296" y2="272" stroke="#7F8C8D" stroke-width="2"/>
-  <polygon points="294,267 305,272 294,277" fill="#7F8C8D"/>
+  <line class="arr" x1="274" y1="272" x2="296" y2="272" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon class="arr" points="294,267 305,272 294,277" fill="#7F8C8D"/>
 
   <!-- Approach 2: Hashing -->
   <rect x="308" y="115" width="255" height="315" fill="#FFFFFF" stroke="#E67E22" stroke-width="2" rx="7"/>
@@ -48,7 +58,7 @@
   <text x="435" y="152" font-family="Arial" font-size="10" fill="#FDEBD0" text-anchor="middle">O(m+n) time | O(m) space</text>
 
   <text x="322" y="177" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">Store L1 in HashSet, scan L2:</text>
-  <rect x="322" y="183" width="228" height="64" fill="#FEF9E7" stroke="#E67E22" rx="3"/>
+  <rect class="hash" x="322" y="183" width="228" height="64" fill="#FEF9E7" stroke="#E67E22" rx="3"/>
   <text x="436" y="199" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Pass 1: Add a,b,c,d to HashSet</text>
   <text x="436" y="214" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Pass 2: check e → no; f → no</text>
   <text x="436" y="232" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">check c → IN SET! Return c ✓</text>
@@ -64,8 +74,8 @@
   <text x="322" y="410" font-family="Arial" font-size="10" fill="#888">when pointer reaches end</text>
 
   <!-- Arrow 2 -->
-  <line x1="567" y1="272" x2="590" y2="272" stroke="#7F8C8D" stroke-width="2"/>
-  <polygon points="588,267 599,272 588,277" fill="#7F8C8D"/>
+  <line class="arr" x1="567" y1="272" x2="590" y2="272" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon class="arr" points="588,267 599,272 588,277" fill="#7F8C8D"/>
 
   <!-- Approach 3: Two Pointer -->
   <rect x="602" y="115" width="283" height="315" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
@@ -75,7 +85,7 @@
   <text x="743" y="152" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(m+n) time | O(1) space</text>
 
   <text x="617" y="177" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">Switch to other list's head at end:</text>
-  <rect x="617" y="183" width="254" height="76" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect class="tp" x="617" y="183" width="254" height="76" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
   <text x="744" y="199" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">a=headA, b=headB</text>
   <text x="744" y="214" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">while (a != b):</text>
   <text x="744" y="229" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">  a = (a==null) ? headB : a.next</text>

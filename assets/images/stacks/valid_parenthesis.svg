@@ -1,4 +1,16 @@
 <svg width="900" height="620" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes push_hl{0%,10%{fill:#EBF5FB}15%,35%{fill:#D5E8D4;stroke:#27AE60}40%,100%{fill:#EBF5FB}}
+  @keyframes pop_hl{0%,10%{fill:#D5E8D4}15%,35%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}40%,100%{fill:#D5E8D4}}
+  @keyframes pass_hl{0%,45%{fill:#EBF5FB}52%,78%{fill:#D5E8D4;stroke:#27AE60}83%,100%{fill:#EBF5FB}}
+  .vp_r1{animation:push_hl 8s 0s ease-in-out infinite}
+  .vp_r2{animation:push_hl 8s 0.8s ease-in-out infinite}
+  .vp_r3{animation:push_hl 8s 1.6s ease-in-out infinite}
+  .vp_r4{animation:pop_hl 8s 2.4s ease-in-out infinite}
+  .vp_r5{animation:pop_hl 8s 3.2s ease-in-out infinite}
+  .vp_r6{animation:pop_hl 8s 4s ease-in-out infinite}
+  .vp_brute{animation:pass_hl 8s 5s ease-in-out infinite}
+</style>
   <rect width="900" height="620" fill="#F8F9FA" rx="10"/>
   <!-- Title Bar -->
   <rect width="900" height="55" fill="#2C3E50" rx="10"/>
@@ -37,7 +49,7 @@
   <text x="144" y="227" font-family="Arial" font-size="12" fill="#2C3E50" font-weight="bold" text-anchor="middle">Start:  "( [ { } ] )"</text>
 
   <text x="144" y="252" font-family="Arial" font-size="10" fill="#7F8C8D" text-anchor="middle">▼  replace "{}" with ""</text>
-  <rect x="25" y="257" width="238" height="26" fill="#FDEBD0" stroke="#E67E22" stroke-width="1" rx="3"/>
+  <rect class="vp_brute" x="25" y="257" width="238" height="26" fill="#FDEBD0" stroke="#E67E22" stroke-width="1" rx="3"/>
   <text x="144" y="274" font-family="Arial" font-size="12" fill="#2C3E50" font-weight="bold" text-anchor="middle">Pass 1:  "( [     ] )"</text>
 
   <text x="144" y="298" font-family="Arial" font-size="10" fill="#7F8C8D" text-anchor="middle">▼  replace "[]" with ""</text>
@@ -77,37 +89,37 @@
   <text x="490" y="208" font-family="Arial" font-size="10" fill="#555" font-weight="bold">Stack (top→)</text>
 
   <!-- Row: ( -->
-  <rect x="333" y="214" width="238" height="22" fill="#EBF5FB"/>
+  <rect class="vp_r1" x="333" y="214" width="238" height="22" fill="#EBF5FB"/>
   <text x="350" y="229" font-family="Arial" font-size="12" fill="#3498DB" font-weight="bold">(</text>
   <text x="395" y="229" font-family="Arial" font-size="11" fill="#2C3E50">push</text>
   <text x="485" y="229" font-family="Arial" font-size="11" fill="#2C3E50" font-weight="bold">( ]</text>
 
   <!-- Row: [ -->
-  <rect x="333" y="236" width="238" height="22" fill="#EBF5FB"/>
+  <rect class="vp_r2" x="333" y="236" width="238" height="22" fill="#EBF5FB"/>
   <text x="350" y="251" font-family="Arial" font-size="12" fill="#3498DB" font-weight="bold">[</text>
   <text x="395" y="251" font-family="Arial" font-size="11" fill="#2C3E50">push</text>
   <text x="485" y="251" font-family="Arial" font-size="11" fill="#2C3E50" font-weight="bold">( [ ]</text>
 
   <!-- Row: { -->
-  <rect x="333" y="258" width="238" height="22" fill="#EBF5FB"/>
+  <rect class="vp_r3" x="333" y="258" width="238" height="22" fill="#EBF5FB"/>
   <text x="350" y="273" font-family="Arial" font-size="12" fill="#3498DB" font-weight="bold">{</text>
   <text x="395" y="273" font-family="Arial" font-size="11" fill="#2C3E50">push</text>
   <text x="485" y="273" font-family="Arial" font-size="11" fill="#2C3E50" font-weight="bold">( [ { ]</text>
 
   <!-- Row: } MATCH -->
-  <rect x="333" y="280" width="238" height="22" fill="#D5E8D4"/>
+  <rect class="vp_r4" x="333" y="280" width="238" height="22" fill="#D5E8D4"/>
   <text x="350" y="295" font-family="Arial" font-size="12" fill="#27AE60" font-weight="bold">}</text>
   <text x="395" y="295" font-family="Arial" font-size="11" fill="#27AE60">pop { ✓</text>
   <text x="485" y="295" font-family="Arial" font-size="11" fill="#2C3E50" font-weight="bold">( [ ]</text>
 
   <!-- Row: ] MATCH -->
-  <rect x="333" y="302" width="238" height="22" fill="#D5E8D4"/>
+  <rect class="vp_r5" x="333" y="302" width="238" height="22" fill="#D5E8D4"/>
   <text x="350" y="317" font-family="Arial" font-size="12" fill="#27AE60" font-weight="bold">]</text>
   <text x="395" y="317" font-family="Arial" font-size="11" fill="#27AE60">pop [ ✓</text>
   <text x="485" y="317" font-family="Arial" font-size="11" fill="#2C3E50" font-weight="bold">( ]</text>
 
   <!-- Row: ) MATCH -->
-  <rect x="333" y="324" width="238" height="22" fill="#D5E8D4"/>
+  <rect class="vp_r6" x="333" y="324" width="238" height="22" fill="#D5E8D4"/>
   <text x="350" y="339" font-family="Arial" font-size="12" fill="#27AE60" font-weight="bold">)</text>
   <text x="395" y="339" font-family="Arial" font-size="11" fill="#27AE60">pop ( ✓</text>
   <text x="485" y="339" font-family="Arial" font-size="11" fill="#2C3E50" font-weight="bold">[ ]</text>

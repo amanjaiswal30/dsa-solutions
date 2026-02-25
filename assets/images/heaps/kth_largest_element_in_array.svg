@@ -1,4 +1,33 @@
 <svg width="900" height="640" xmlns="http://www.w3.org/2000/svg">
+<style>
+  /* Heap: insertions, deletions, heapify — 8s ease-in-out */
+  @keyframes sort_hl {0%,8%{fill:#ECF0F1;stroke:#BDC3C7}12%,22%{fill:#D5F5E3;stroke:#27AE60;stroke-width:3}26%,100%{fill:#E74C3C;stroke:#C0392B;stroke-width:2}}
+  .kth_sort_box{animation:sort_hl 8s ease-in-out infinite}
+  @keyframes heap_s0{0%,4%{stroke-width:2}8%,100%{stroke-width:1}}
+  @keyframes heap_s1{0%,8%{stroke-width:1}12%,18%{stroke-width:2}22%,100%{stroke-width:1}}
+  @keyframes heap_s2{0%,18%{fill:#FEF9E7}22%,28%{fill:#FDEDEC;stroke:#E74C3C;stroke-width:2}32%,100%{fill:#FEF9E7;stroke:#F39C12}}
+  @keyframes heap_s3{0%,32%{stroke-width:1}36%,42%{stroke-width:2}46%,100%{stroke-width:1}}
+  @keyframes heap_s4{0%,46%{stroke-width:1}50%,56%{stroke-width:2}60%,100%{stroke-width:1}}
+  @keyframes heap_s5{0%,60%{fill:#FEF9E7}64%,70%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}74%,100%{fill:#FEF9E7;stroke:#F39C12}}
+  .heap_step0{animation:heap_s0 8s ease-in-out infinite}
+  .heap_step1{animation:heap_s1 8s ease-in-out infinite}
+  .heap_step2{animation:heap_s2 8s ease-in-out infinite}
+  .heap_step3{animation:heap_s3 8s ease-in-out infinite}
+  .heap_step4{animation:heap_s4 8s ease-in-out infinite}
+  .heap_step5{animation:heap_s5 8s ease-in-out infinite}
+  @keyframes qs_s0{0%,10%{stroke-width:3}18%,100%{stroke-width:2}}
+  @keyframes qs_s1{0%,18%{stroke-width:2}26%,34%{stroke-width:3}42%,100%{stroke-width:2}}
+  @keyframes qs_s2{0%,42%{stroke-width:2}50%,58%{stroke-width:3}66%,100%{stroke-width:2}}
+  @keyframes qs_s3{0%,66%{stroke-width:2}74%,88%{stroke-width:3;fill:#D5F5E3}92%,100%{stroke-width:2;fill:#EAFAF1}}
+  .qs_step0{animation:qs_s0 8s ease-in-out infinite}
+  .qs_step1{animation:qs_s1 8s ease-in-out infinite}
+  .qs_step2{animation:qs_s2 8s ease-in-out infinite}
+  .qs_step3{animation:qs_s3 8s ease-in-out infinite}
+  @keyframes sorted_box{0%,12%{fill:#ECF0F1;stroke:#BDC3C7}16%,24%{fill:#FDEBD0;stroke:#E67E22}28%,36%{fill:#D5F5E3;stroke:#27AE60}40%,100%{fill:#ECF0F1;stroke:#BDC3C7}}
+  .sorted_1,.sorted_2,.sorted_3,.sorted_4,.sorted_6{animation:sorted_box 8s ease-in-out infinite}
+  .sorted_1{animation-delay:0s}.sorted_2{animation-delay:0.3s}.sorted_3{animation-delay:0.6s}
+  .sorted_4{animation-delay:0.9s}.sorted_6{animation-delay:1.5s}
+</style>
   <!-- Background -->
   <rect width="900" height="640" fill="#F8F9FA" rx="10"/>
   <!-- Title Bar -->
@@ -27,17 +56,17 @@
   <text x="30" y="196" font-family="Arial" font-size="11" fill="#555">nums=[3,2,1,5,6,4]</text>
   <text x="30" y="212" font-family="Arial" font-size="11" fill="#555">sort ascending:</text>
 
-  <rect x="30" y="220" width="26" height="26" fill="#ECF0F1" stroke="#BDC3C7" rx="3"/>
+  <rect class="sorted_1" x="30" y="220" width="26" height="26" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="2" rx="3"/>
   <text x="43" y="237" font-family="Arial" font-size="11" fill="#777" text-anchor="middle">1</text>
-  <rect x="59" y="220" width="26" height="26" fill="#ECF0F1" stroke="#BDC3C7" rx="3"/>
+  <rect class="sorted_2" x="59" y="220" width="26" height="26" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="2" rx="3"/>
   <text x="72" y="237" font-family="Arial" font-size="11" fill="#777" text-anchor="middle">2</text>
-  <rect x="88" y="220" width="26" height="26" fill="#ECF0F1" stroke="#BDC3C7" rx="3"/>
+  <rect class="sorted_3" x="88" y="220" width="26" height="26" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="2" rx="3"/>
   <text x="101" y="237" font-family="Arial" font-size="11" fill="#777" text-anchor="middle">3</text>
-  <rect x="117" y="220" width="26" height="26" fill="#ECF0F1" stroke="#BDC3C7" rx="3"/>
+  <rect class="sorted_4" x="117" y="220" width="26" height="26" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="2" rx="3"/>
   <text x="130" y="237" font-family="Arial" font-size="11" fill="#777" text-anchor="middle">4</text>
-  <rect x="146" y="220" width="26" height="26" fill="#E74C3C" stroke="#C0392B" rx="3"/>
+  <rect class="kth_sort_box" x="146" y="220" width="26" height="26" fill="#E74C3C" stroke="#C0392B" stroke-width="2" rx="3"/>
   <text x="159" y="237" font-family="Arial" font-size="11" font-weight="bold" fill="white" text-anchor="middle">5</text>
-  <rect x="175" y="220" width="26" height="26" fill="#ECF0F1" stroke="#BDC3C7" rx="3"/>
+  <rect class="sorted_6" x="175" y="220" width="26" height="26" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="2" rx="3"/>
   <text x="188" y="237" font-family="Arial" font-size="11" fill="#777" text-anchor="middle">6</text>
 
   <text x="159" y="256" font-family="Arial" font-size="9" fill="#E74C3C" text-anchor="middle">n-k=4</text>
@@ -71,22 +100,22 @@
   <text x="340" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Min-heap of size k, poll when over:</text>
   <text x="340" y="196" font-family="Arial" font-size="11" fill="#555">k=2, process each element:</text>
 
-  <rect x="340" y="204" width="230" height="22" fill="#FEF9E7" stroke="#F39C12" rx="3"/>
+  <rect class="heap_step0" x="340" y="204" width="230" height="22" fill="#FEF9E7" stroke="#F39C12" stroke-width="1" rx="3"/>
   <text x="455" y="219" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">add 3 → heap=[3]</text>
 
-  <rect x="340" y="230" width="230" height="22" fill="#FEF9E7" stroke="#F39C12" rx="3"/>
+  <rect class="heap_step1" x="340" y="230" width="230" height="22" fill="#FEF9E7" stroke="#F39C12" rx="3"/>
   <text x="455" y="245" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">add 2 → heap=[2,3] (size=k=2)</text>
 
-  <rect x="340" y="256" width="230" height="22" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <rect class="heap_step2" x="340" y="256" width="230" height="22" fill="#FEF9E7" stroke="#F39C12" rx="3"/>
   <text x="455" y="271" font-family="Arial" font-size="10" fill="#E74C3C" text-anchor="middle">add 1 → size>k → pop 1 → heap=[2,3]</text>
 
-  <rect x="340" y="282" width="230" height="22" fill="#FEF9E7" stroke="#F39C12" rx="3"/>
+  <rect class="heap_step3" x="340" y="282" width="230" height="22" fill="#FEF9E7" stroke="#F39C12" rx="3"/>
   <text x="455" y="297" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">add 5 → pop 2 → heap=[3,5]</text>
 
-  <rect x="340" y="308" width="230" height="22" fill="#FEF9E7" stroke="#F39C12" rx="3"/>
+  <rect class="heap_step4" x="340" y="308" width="230" height="22" fill="#FEF9E7" stroke="#F39C12" rx="3"/>
   <text x="455" y="323" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">add 6 → pop 3 → heap=[5,6]</text>
 
-  <rect x="340" y="334" width="230" height="22" fill="#FEF9E7" stroke="#F39C12" rx="3"/>
+  <rect class="heap_step5" x="340" y="334" width="230" height="22" fill="#FEF9E7" stroke="#F39C12" rx="3"/>
   <text x="455" y="349" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">add 4 → pop 4 → heap=[5,6]</text>
 
   <text x="455" y="380" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">heap.peek() = 5 ✓</text>

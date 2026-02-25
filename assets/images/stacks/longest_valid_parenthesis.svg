@@ -1,4 +1,15 @@
 <svg width="900" height="620" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes push_hl{0%,10%{fill:#EBF5FB}15%,30%{fill:#D5E8D4;stroke:#27AE60}35%,100%{fill:#EBF5FB}}
+  @keyframes pop_hl{0%,10%{fill:#FADBD8}15%,30%{fill:#D5E8D4;stroke:#27AE60}35%,100%{fill:#FADBD8}}
+  @keyframes match_hl{0%,20%{fill:#D5E8D4}25%,45%{fill:#D5F5E3;stroke-width:2}50%,100%{fill:#D5E8D4}}
+  .lvp_r1{animation:pop_hl 8s 0s ease-in-out infinite}
+  .lvp_r2{animation:push_hl 8s 0.8s ease-in-out infinite}
+  .lvp_r3{animation:match_hl 8s 1.6s ease-in-out infinite}
+  .lvp_r4{animation:push_hl 8s 2.4s ease-in-out infinite}
+  .lvp_r5{animation:match_hl 8s 3.2s ease-in-out infinite}
+  .lvp_r6{animation:pop_hl 8s 4s ease-in-out infinite}
+</style>
   <rect width="900" height="620" fill="#F8F9FA" rx="10"/>
   <rect width="900" height="55" fill="#2C3E50" rx="10"/>
   <rect x="0" y="45" width="900" height="10" fill="#2C3E50"/>
@@ -83,22 +94,22 @@
 
   <text x="343" y="255" font-family="Arial" font-size="9" fill="#7F8C8D">Init:                          [-1]</text>
 
-  <rect x="333" y="259" width="238" height="18" fill="#FADBD8"/>
+  <rect class="lvp_r1" x="333" y="259" width="238" height="18" fill="#FADBD8"/>
   <text x="343" y="271" font-family="Arial" font-size="9" fill="#C0392B">0    )    pop(-1). empty→push 0    [0]</text>
 
-  <rect x="333" y="277" width="238" height="18" fill="#EBF5FB"/>
+  <rect class="lvp_r2" x="333" y="277" width="238" height="18" fill="#EBF5FB"/>
   <text x="343" y="289" font-family="Arial" font-size="9" fill="#2C3E50">1    (    push 1                  [0,1]</text>
 
-  <rect x="333" y="295" width="238" height="18" fill="#D5E8D4"/>
+  <rect class="lvp_r3" x="333" y="295" width="238" height="18" fill="#D5E8D4"/>
   <text x="343" y="307" font-family="Arial" font-size="9" fill="#1E8449">2    )    pop 1. len=2-peek(0)=2   [0]  max=2</text>
 
-  <rect x="333" y="313" width="238" height="18" fill="#EBF5FB"/>
+  <rect class="lvp_r4" x="333" y="313" width="238" height="18" fill="#EBF5FB"/>
   <text x="343" y="325" font-family="Arial" font-size="9" fill="#2C3E50">3    (    push 3                  [0,3]</text>
 
-  <rect x="333" y="331" width="238" height="18" fill="#D5E8D4"/>
+  <rect class="lvp_r5" x="333" y="331" width="238" height="18" fill="#D5E8D4"/>
   <text x="343" y="343" font-family="Arial" font-size="9" fill="#1E8449">4    )    pop 3. len=4-peek(0)=4   [0]  max=4</text>
 
-  <rect x="333" y="349" width="238" height="18" fill="#FADBD8"/>
+  <rect class="lvp_r6" x="333" y="349" width="238" height="18" fill="#FADBD8"/>
   <text x="343" y="361" font-family="Arial" font-size="9" fill="#C0392B">5    )    pop 0. empty→push 5      [5]  max=4</text>
 
   <rect x="333" y="374" width="238" height="26" fill="#D5E8D4" stroke="#27AE60" rx="3"/>

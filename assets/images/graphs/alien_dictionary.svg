@@ -1,4 +1,24 @@
 <svg width="900" height="600" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes node-pulse { 0%,20%{fill:#EBF5FB;stroke:#3498DB} 25%,45%{fill:#D5F5E3;stroke:#27AE60} 50%,70%{fill:#FDEBD0;stroke:#E67E22} 75%,95%{fill:#FDEDEC;stroke:#E74C3C} 100%{fill:#EBF5FB;stroke:#3498DB} }
+  @keyframes step1 { 0%,8%{opacity:0.5} 12%,100%{opacity:1} }
+  @keyframes step2 { 0%,18%{opacity:0.5} 22%,100%{opacity:1} }
+  @keyframes step3 { 0%,28%{opacity:0.5} 32%,100%{opacity:1} }
+  @keyframes step4 { 0%,38%{opacity:0.5} 42%,100%{opacity:1} }
+  @keyframes approach-pulse { 0%,40%{stroke-width:2} 50%,60%{stroke-width:2.5} 70%,100%{stroke-width:2} }
+  @keyframes arrow-glow { 0%,30%{opacity:0.6;stroke:#7F8C8D} 50%,70%{opacity:1;stroke:#3498DB} 90%,100%{opacity:0.6;stroke:#7F8C8D} }
+  @keyframes row1 { 0%,45%{fill:#FDEDEC} 50%,55%{fill:#D5F5E3} 60%,100%{fill:#FDEDEC} }
+  @keyframes row2 { 0%,55%{fill:#EAFAF1} 60%,65%{fill:#D5F5E3} 70%,100%{fill:#EAFAF1} }
+  .anim-step1{animation:step1 9s ease-in-out infinite}
+  .anim-step2{animation:step2 9s ease-in-out infinite}
+  .anim-step3{animation:step3 9s ease-in-out infinite}
+  .anim-step4{animation:step4 9s ease-in-out infinite}
+  .anim-approach1{animation:approach-pulse 9s ease-in-out infinite}
+  .anim-approach2{animation:approach-pulse 9s ease-in-out 1.5s infinite}
+  .anim-arrow{animation:arrow-glow 9s ease-in-out infinite}
+  .anim-row1{animation:row1 9s ease-in-out infinite}
+  .anim-row2{animation:row2 9s ease-in-out infinite}
+</style>
   <rect width="900" height="600" fill="#F8F9FA" rx="10"/>
   <rect width="900" height="55" fill="#2C3E50" rx="10"/>
   <rect y="45" width="900" height="10" fill="#2C3E50"/>
@@ -13,31 +33,31 @@
   <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Compare adjacent words to find first differing char → build directed graph → topological sort.</text>
 
   <!-- Approach 1: Kahn's BFS -->
-  <rect x="15" y="115" width="390" height="360" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="390" height="360" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7" class="anim-approach1"/>
   <rect x="15" y="115" width="390" height="40" fill="#E74C3C" rx="7"/>
   <rect x="15" y="140" width="390" height="15" fill="#E74C3C"/>
   <text x="210" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Kahn's BFS</text>
   <text x="210" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(C) time | O(1) space (≤26 chars)</text>
 
   <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Step 1: Build graph from word pairs:</text>
-  <rect x="30" y="184" width="360" height="48" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <rect x="30" y="184" width="360" height="48" fill="#FDEDEC" stroke="#E74C3C" rx="3" class="anim-step1"/>
   <text x="210" y="199" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">wrt vs wrf → t≠f → t→f (t comes before f)</text>
   <text x="210" y="214" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">wrf vs er  → w≠e → w→e</text>
   <text x="210" y="229" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">er vs ett → r≠t → r→t; ett vs rftt → e→r</text>
 
   <text x="30" y="254" font-family="Arial" font-size="11" fill="#555">Step 2: Calculate indegrees:</text>
-  <rect x="30" y="260" width="360" height="28" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <rect x="30" y="260" width="360" height="28" fill="#FDEDEC" stroke="#E74C3C" rx="3" class="anim-step2"/>
   <text x="210" y="275" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">w=0, e=1(←w), r=1(←e), t=1(←r), f=1(←t)</text>
   <text x="210" y="287" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Queue starts: [w] (only indegree=0)</text>
 
   <text x="30" y="310" font-family="Arial" font-size="11" fill="#555">Step 3: BFS process queue:</text>
-  <rect x="30" y="316" width="360" height="48" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <rect x="30" y="316" width="360" height="48" fill="#FDEDEC" stroke="#E74C3C" rx="3" class="anim-step3"/>
   <text x="210" y="331" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">poll w → result="w", add e (indeg 0) → queue=[e]</text>
   <text x="210" y="346" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">poll e → result="we", add r → poll r → add t</text>
   <text x="210" y="361" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">poll t → add f → poll f → result="wertf" ✓</text>
 
   <text x="30" y="386" font-family="Arial" font-size="11" fill="#555">Step 4: Validate (no cycle):</text>
-  <rect x="30" y="392" width="360" height="20" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <rect x="30" y="392" width="360" height="20" fill="#FDEDEC" stroke="#E74C3C" rx="3" class="anim-step4"/>
   <text x="210" y="406" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">result.length == uniqueChars → valid, return "wertf"</text>
 
   <text x="30" y="428" font-family="Arial" font-size="11" fill="#E74C3C">⚠ If result.length &lt; chars → cycle → return ""</text>
@@ -45,34 +65,34 @@
   <text x="30" y="464" font-family="Arial" font-size="11" fill="#888">Multiple valid orderings may exist</text>
 
   <!-- Evolution Arrow -->
-  <line x1="410" y1="290" x2="480" y2="290" stroke="#7F8C8D" stroke-width="2.5"/>
-  <polygon points="480,285 492,290 480,295" fill="#7F8C8D"/>
+  <line x1="410" y1="290" x2="480" y2="290" stroke="#7F8C8D" stroke-width="2.5" class="anim-arrow"/>
+  <polygon points="480,285 492,290 480,295" fill="#7F8C8D" class="anim-arrow"/>
   <rect x="410" y="262" width="72" height="56" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
   <text x="446" y="276" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 DFS</text>
   <text x="446" y="288" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">post-order</text>
   <text x="446" y="300" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">+ reverse!</text>
 
   <!-- Approach 2: DFS -->
-  <rect x="492" y="115" width="393" height="360" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="492" y="115" width="393" height="360" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7" class="anim-approach2"/>
   <rect x="492" y="115" width="393" height="40" fill="#27AE60" rx="7"/>
   <rect x="492" y="140" width="393" height="15" fill="#27AE60"/>
   <text x="688" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: DFS Topological Sort ⭐</text>
   <text x="688" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(C) time | O(1) space (≤26 chars)</text>
 
   <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Three-color DFS (White=0, Gray=1, Black=2):</text>
-  <rect x="505" y="184" width="362" height="60" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect x="505" y="184" width="362" height="60" fill="#EAFAF1" stroke="#27AE60" rx="3" class="anim-step1"/>
   <text x="686" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">White=unvisited, Gray=in progress, Black=done</text>
   <text x="686" y="215" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">If we visit a Gray node → CYCLE detected → return ""</text>
   <text x="686" y="233" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">Push to stack after all neighbors processed (post-order)</text>
 
   <text x="505" y="264" font-family="Arial" font-size="11" fill="#555">DFS trace on graph w→e→r→t→f:</text>
-  <rect x="505" y="270" width="362" height="60" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect x="505" y="270" width="362" height="60" fill="#EAFAF1" stroke="#27AE60" rx="3" class="anim-step2"/>
   <text x="686" y="286" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Start DFS from w: w→e→r→t→f (f has no neighbors)</text>
   <text x="686" y="301" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">stack.push(f), backtrack to t→push(t), r→push(r)</text>
   <text x="686" y="319" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">Pop stack: w,e,r,t,f → Result: "wertf" ✓</text>
 
   <text x="505" y="350" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Cycle detection:</text>
-  <rect x="505" y="356" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect x="505" y="356" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3" class="anim-step3"/>
   <text x="686" y="371" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Neighbor is Gray (1) → back edge → cycle → return ""</text>
   <text x="686" y="383" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">e.g. ["z","x","z"] → z→x→z → Gray detected!</text>
 
@@ -92,12 +112,12 @@
   <text x="500" y="534" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
   <text x="750" y="534" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
   <line x1="15" y1="542" x2="885" y2="542" stroke="#DEE2E6" stroke-width="1"/>
-  <rect x="15" y="542" width="870" height="24" fill="#FDEDEC"/>
+  <rect x="15" y="542" width="870" height="24" fill="#FDEDEC" class="anim-row1"/>
   <text x="200" y="558" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Kahn's BFS (Topological Sort)</text>
   <text x="500" y="558" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(C)</text>
   <text x="750" y="558" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(1) (≤26 chars)</text>
   <line x1="15" y1="566" x2="885" y2="566" stroke="#DEE2E6" stroke-width="1"/>
-  <rect x="15" y="566" width="870" height="24" fill="#EAFAF1"/>
+  <rect x="15" y="566" width="870" height="24" fill="#EAFAF1" class="anim-row2"/>
   <text x="200" y="582" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">DFS Three-Color Topological Sort ⭐</text>
   <text x="500" y="582" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(C)</text>
   <text x="750" y="582" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(1) (≤26 chars)</text>

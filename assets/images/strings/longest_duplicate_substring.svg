@@ -1,4 +1,27 @@
 <svg width="900" height="610" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes len_highlight {
+    0%,40%   {fill:#888}
+    45%,60%  {fill:#E74C3C;font-weight:bold}
+    65%,100% {fill:#888}
+  }
+  .len3{animation:len_highlight 8s ease-in-out infinite}
+  
+  @keyframes box_pulse {
+    0%,25%   {fill:#EAFAF1;stroke:#27AE60}
+    30%,45%  {fill:#D5F5E3;stroke:#27AE60;stroke-width:2.5}
+    50%,100% {fill:#EAFAF1;stroke:#27AE60}
+  }
+  .b1{animation:box_pulse 8s 0s ease-in-out infinite}
+  .b2{animation:box_pulse 8s 2s ease-in-out infinite}
+  .b3{animation:box_pulse 8s 4s ease-in-out infinite}
+  
+  @keyframes arrow_pulse {
+    0%,100% {opacity:1}
+    50%     {opacity:0.5}
+  }
+  .arrow_anim{animation:arrow_pulse 3s ease-in-out infinite}
+</style>
   <!-- Background -->
   <rect width="900" height="610" fill="#F8F9FA" rx="10"/>
   <!-- Title Bar -->
@@ -34,7 +57,7 @@
   <!-- Length 2 -->
   <text x="30" y="234" font-family="Arial" font-size="10" fill="#888">len=2: ba, an, na, an, na → "an","na" duplicated</text>
   <!-- Length 3 -->
-  <text x="30" y="250" font-family="Arial" font-size="10" fill="#E74C3C">len=3: ban, ana, nan, ana → "ana" duplicated ←longest!</text>
+  <text class="len3" x="30" y="250" font-family="Arial" font-size="10" fill="#E74C3C">len=3: ban, ana, nan, ana → "ana" duplicated ←longest!</text>
   <!-- Length 4 -->
   <text x="30" y="266" font-family="Arial" font-size="10" fill="#888">len=4: bana, anan, nana → no duplicates</text>
   <!-- Length 5 -->
@@ -52,8 +75,8 @@
   <text x="30" y="450" font-family="Arial" font-size="11" fill="#888">No smart search — checks everything blindly</text>
 
   <!-- Evolution Arrow -->
-  <line x1="410" y1="290" x2="480" y2="290" stroke="#7F8C8D" stroke-width="2.5"/>
-  <polygon points="480,285 492,290 480,295" fill="#7F8C8D"/>
+  <line class="arrow_anim" x1="410" y1="290" x2="480" y2="290" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon class="arrow_anim" points="480,285 492,290 480,295" fill="#7F8C8D"/>
   <rect x="410" y="255" width="72" height="70" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
   <text x="446" y="269" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Binary</text>
   <text x="446" y="281" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">Search on</text>
@@ -70,14 +93,14 @@
   <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Binary Search on answer length L:</text>
 
   <!-- Binary search visualization -->
-  <rect x="505" y="186" width="362" height="56" fill="#EAFAF1" stroke="#27AE60" rx="4"/>
+  <rect class="b1" x="505" y="186" width="362" height="56" fill="#EAFAF1" stroke="#27AE60" stroke-width="2" rx="4"/>
   <text x="686" y="202" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">lo=1, hi=n → mid=(lo+hi)/2</text>
   <text x="686" y="218" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">if duplicate of len=mid exists → lo=mid+1</text>
   <text x="686" y="234" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">else → hi=mid-1</text>
 
   <text x="505" y="262" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Rabin-Karp Rolling Hash to check duplicates:</text>
 
-  <rect x="505" y="270" width="362" height="80" fill="#EAFAF1" stroke="#27AE60" rx="4"/>
+  <rect class="b2" x="505" y="270" width="362" height="80" fill="#EAFAF1" stroke="#27AE60" stroke-width="2" rx="4"/>
   <text x="686" y="288" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">hash(s[i..i+L]) = s[i]·base^L + ... + s[i+L-1]</text>
   <text x="686" y="304" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Roll: remove s[i], add s[i+L]</text>
   <text x="686" y="320" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">new_hash = (old_hash · base - s[i]·base^L + s[i+L])</text>
@@ -85,7 +108,7 @@
 
   <text x="505" y="365" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">For "banana", binary search trace:</text>
 
-  <rect x="505" y="373" width="362" height="72" fill="#EAFAF1" stroke="#27AE60" rx="4"/>
+  <rect class="b3" x="505" y="373" width="362" height="72" fill="#EAFAF1" stroke="#27AE60" stroke-width="2" rx="4"/>
   <text x="686" y="390" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">lo=1,hi=6 → mid=3: check len=3</text>
   <text x="686" y="406" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">"ana" found! → lo=4, result="ana"</text>
   <text x="686" y="422" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">mid=5: check len=5 → no dup → hi=4</text>

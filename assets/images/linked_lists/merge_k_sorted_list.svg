@@ -1,4 +1,14 @@
 <svg width="900" height="600" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes bf { 0%,8%,100%{fill:#FDEDEC;stroke:#E74C3C} 12%,28%{fill:#D5F5E3;stroke:#27AE60} 32%,100%{fill:#FDEDEC;stroke:#E74C3C} }
+  @keyframes seq { 0%,38%,48%,100%{fill:#FEF9E7;stroke:#E67E22} 52%,68%{fill:#D5F5E3;stroke:#27AE60} 72%,100%{fill:#FEF9E7;stroke:#E67E22} }
+  @keyframes heap { 0%,68%,78%,100%{fill:#EAFAF1;stroke:#27AE60} 82%,95%{fill:#D5F5E3;stroke:#1E8449} 100%{fill:#EAFAF1;stroke:#27AE60} }
+  @keyframes ar { 0%,100%{opacity:1} 50%{opacity:0.6} }
+  .bf{animation:bf 8s ease-in-out infinite}
+  .seq{animation:seq 8s ease-in-out infinite}
+  .heap{animation:heap 8s ease-in-out infinite}
+  .ar{animation:ar 8s ease-in-out infinite}
+</style>
   <rect width="900" height="600" fill="#F8F9FA" rx="10"/>
   <rect width="900" height="55" fill="#2C3E50" rx="10"/>
   <rect y="45" width="900" height="10" fill="#2C3E50"/>
@@ -47,7 +57,7 @@
   <text x="435" y="152" font-family="Arial" font-size="10" fill="#FDEBD0" text-anchor="middle">O(kN) time | O(1) space</text>
 
   <text x="322" y="177" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">Merge one list at a time:</text>
-  <rect x="322" y="183" width="228" height="72" fill="#FEF9E7" stroke="#E67E22" rx="3"/>
+  <rect class="seq" x="322" y="183" width="228" height="72" fill="#FEF9E7" stroke="#E67E22" rx="3"/>
   <text x="436" y="199" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">result = list[0] = 1→4→5</text>
   <text x="436" y="214" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">merge with list[1]: 1→1→3→4→4→5</text>
   <text x="436" y="232" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">merge with list[2]: 1→1→2→3→4→4→5→6 ✓</text>
@@ -62,8 +72,8 @@
   <text x="322" y="397" font-family="Arial" font-size="10" fill="#888">merging two lists at a time</text>
 
   <!-- Arrow 2 -->
-  <line x1="567" y1="272" x2="590" y2="272" stroke="#7F8C8D" stroke-width="2"/>
-  <polygon points="588,267 599,272 588,277" fill="#7F8C8D"/>
+  <line class="ar" x1="567" y1="272" x2="590" y2="272" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon class="ar" points="588,267 599,272 588,277" fill="#7F8C8D"/>
 
   <!-- Approach 3: Min Heap -->
   <rect x="602" y="115" width="283" height="315" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
@@ -73,7 +83,7 @@
   <text x="743" y="152" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(N log k) time | O(k) space</text>
 
   <text x="617" y="177" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">Use priority queue of k list heads:</text>
-  <rect x="617" y="183" width="254" height="88" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect class="heap" x="617" y="183" width="254" height="88" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
   <text x="744" y="199" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Init heap with heads: {1(L1), 1(L2), 2(L3)}</text>
   <text x="744" y="214" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Poll min=1(L1) → push 4(L1): {1,2,4}</text>
   <text x="744" y="229" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Poll min=1(L2) → push 3(L2): {2,3,4}</text>

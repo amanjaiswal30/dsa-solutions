@@ -1,4 +1,12 @@
 <svg width="900" height="590" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes iter_box { 0%,12%,100%{fill:#FDEDEC;stroke:#E74C3C} 18%,42%{fill:#D5F5E3;stroke:#27AE60} 46%,100%{fill:#FDEDEC;stroke:#E74C3C} }
+  @keyframes rec_box { 0%,55%,65%,100%{fill:#EAFAF1;stroke:#27AE60} 70%,92%{fill:#D5F5E3;stroke:#1E8449} 96%,100%{fill:#EAFAF1;stroke:#27AE60} }
+  @keyframes ap { 0%,100%{opacity:1} 50%{opacity:0.65} }
+  .ib{animation:iter_box 8s ease-in-out infinite}
+  .rb{animation:rec_box 8s ease-in-out infinite}
+  .ap{animation:ap 8s ease-in-out infinite}
+</style>
   <rect width="900" height="590" fill="#F8F9FA" rx="10"/>
   <rect width="900" height="55" fill="#2C3E50" rx="10"/>
   <rect y="45" width="900" height="10" fill="#2C3E50"/>
@@ -26,7 +34,7 @@
   <!-- Initial state -->
   <text x="30" y="198" font-family="Arial" font-size="11" fill="#666">Initial: prev=null, curr=1</text>
   <!-- Node boxes -->
-  <rect x="30" y="203" width="30" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <rect class="ib" x="30" y="203" width="30" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
   <text x="45" y="219" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">1</text>
   <line x1="60" y1="215" x2="78" y2="215" stroke="#E74C3C" stroke-width="1.5"/>
   <polygon points="78,211 86,215 78,219" fill="#E74C3C"/>
@@ -59,8 +67,8 @@
   <text x="30" y="444" font-family="Arial" font-size="11" fill="#888">5→4→3→2→1→null ✓</text>
 
   <!-- Evolution Arrow -->
-  <line x1="410" y1="290" x2="480" y2="290" stroke="#7F8C8D" stroke-width="2.5"/>
-  <polygon points="480,285 492,290 480,295" fill="#7F8C8D"/>
+  <line class="ap" x1="410" y1="290" x2="480" y2="290" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon class="ap" points="480,285 492,290 480,295" fill="#7F8C8D"/>
   <rect x="410" y="262" width="72" height="56" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
   <text x="446" y="277" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Trust</text>
   <text x="446" y="289" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">recursive</text>
@@ -76,7 +84,7 @@
   <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Recurse to end, reverse on way back:</text>
 
   <text x="505" y="198" font-family="Arial" font-size="11" fill="#555">Call stack builds up:</text>
-  <rect x="505" y="204" width="362" height="22" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect class="rb" x="505" y="204" width="362" height="22" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
   <text x="686" y="219" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">reverse(1) → calls reverse(2)</text>
   <rect x="525" y="230" width="340" height="22" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
   <text x="695" y="245" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">reverse(2) → calls reverse(3)</text>

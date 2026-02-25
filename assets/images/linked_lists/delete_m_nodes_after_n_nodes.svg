@@ -1,4 +1,12 @@
 <svg width="900" height="590" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes box_hl1 { 0%,12%,100%{fill:#FDEDEC;stroke:#E74C3C} 18%,35%{fill:#D5F5E3;stroke:#27AE60} 40%,100%{fill:#FDEDEC;stroke:#E74C3C} }
+  @keyframes box_hl2 { 0%,55%,65%,100%{fill:#EAFAF1;stroke:#27AE60} 68%,85%{fill:#D5F5E3;stroke:#1E8449} 90%,100%{fill:#EAFAF1;stroke:#27AE60} }
+  @keyframes arrow_fade { 0%,100%{opacity:1} 50%{opacity:0.6} }
+  .bh1{animation:box_hl1 8s ease-in-out infinite}
+  .bh2{animation:box_hl2 8s ease-in-out infinite}
+  .af{animation:arrow_fade 8s ease-in-out infinite}
+</style>
   <rect width="900" height="590" fill="#F8F9FA" rx="10"/>
   <rect width="900" height="55" fill="#2C3E50" rx="10"/>
   <rect y="45" width="900" height="10" fill="#2C3E50"/>
@@ -20,7 +28,7 @@
   <text x="210" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(n) time | O(1) space</text>
 
   <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Traverse, skip M, delete N, repeat:</text>
-  <rect x="30" y="184" width="360" height="92" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <rect class="bh1" x="30" y="184" width="360" height="92" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
   <text x="210" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">curr = head (node 1)</text>
   <text x="210" y="215" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Skip M=2: curr moves to node 2</text>
   <text x="210" y="230" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Delete N=3: temp skips 3,4,5 → lands at 6</text>
@@ -39,8 +47,8 @@
   <text x="30" y="434" font-family="Arial" font-size="11" fill="#888">curr=temp continues from after deleted section</text>
 
   <!-- Evolution Arrow -->
-  <line x1="410" y1="268" x2="480" y2="268" stroke="#7F8C8D" stroke-width="2.5"/>
-  <polygon points="480,263 492,268 480,273" fill="#7F8C8D"/>
+  <line class="af" x1="410" y1="268" x2="480" y2="268" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon class="af" points="480,263 492,268 480,273" fill="#7F8C8D"/>
   <rect x="410" y="240" width="72" height="56" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
   <text x="446" y="254" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Same</text>
   <text x="446" y="266" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">logic, use</text>
@@ -54,7 +62,7 @@
   <text x="688" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(n) time | O(n/M) stack space</text>
 
   <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Recursively skip M then delete N:</text>
-  <rect x="505" y="184" width="362" height="88" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect class="bh2" x="505" y="184" width="362" height="88" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
   <text x="686" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">skip M nodes (curr advances M steps)</text>
   <text x="686" y="215" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">if curr==null → return head</text>
   <text x="686" y="230" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">advance temp N steps (deletes N nodes)</text>

@@ -1,4 +1,21 @@
 <svg width="900" height="580" xmlns="http://www.w3.org/2000/svg">
+<style>
+  /* Step boxes sequential highlight */
+  @keyframes step_hl {0%,14%,26%,100%{fill:#FDEDEC;stroke:#E74C3C;stroke-width:2} 15%,25%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2.5}}
+  .s1{animation:step_hl 8s 0s ease-in-out infinite}
+  .s2{animation:step_hl 8s 1.2s ease-in-out infinite}
+  .s3{animation:step_hl 8s 2.4s ease-in-out infinite}
+  .s4{animation:step_hl 8s 3.6s ease-in-out infinite}
+  .s5{animation:step_hl 8s 4.8s ease-in-out infinite}
+
+  @keyframes tree_pulse {0%,100%{fill:#27AE60;fill-opacity:1} 50%{fill:#82E0AA;fill-opacity:0.9}}
+  .t0{animation:tree_pulse 8s 0s ease-in-out infinite}
+  .t1{animation:tree_pulse 8s 0.8s ease-in-out infinite}
+  .t2{animation:tree_pulse 8s 1.6s ease-in-out infinite}
+
+  @keyframes arrow_pulse {0%,100%{opacity:1} 50%{opacity:0.7}}
+  .arrow_box{animation:arrow_pulse 8s ease-in-out infinite}
+</style>
   <!-- Background -->
   <rect width="900" height="580" fill="#F8F9FA" rx="10"/>
   <!-- Title Bar -->
@@ -28,19 +45,19 @@
   <text x="30" y="198" font-family="Arial" font-size="11" fill="#555">For i = 1 to n: convert to binary string</text>
 
   <!-- Step boxes -->
-  <rect x="30" y="208" width="360" height="28" fill="#FDEDEC" stroke="#E74C3C" rx="4"/>
+  <rect class="s1" x="30" y="208" width="360" height="28" fill="#FDEDEC" stroke="#E74C3C" stroke-width="2" rx="4"/>
   <text x="210" y="227" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">i=1: Integer.toBinaryString(1) → "1"</text>
 
-  <rect x="30" y="242" width="360" height="28" fill="#FDEDEC" stroke="#E74C3C" rx="4"/>
+  <rect class="s2" x="30" y="242" width="360" height="28" fill="#FDEDEC" stroke="#E74C3C" stroke-width="2" rx="4"/>
   <text x="210" y="261" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">i=2: Integer.toBinaryString(2) → "10"</text>
 
-  <rect x="30" y="276" width="360" height="28" fill="#FDEDEC" stroke="#E74C3C" rx="4"/>
+  <rect class="s3" x="30" y="276" width="360" height="28" fill="#FDEDEC" stroke="#E74C3C" stroke-width="2" rx="4"/>
   <text x="210" y="295" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">i=3: Integer.toBinaryString(3) → "11"</text>
 
-  <rect x="30" y="310" width="360" height="28" fill="#FDEDEC" stroke="#E74C3C" rx="4"/>
+  <rect class="s4" x="30" y="310" width="360" height="28" fill="#FDEDEC" stroke="#E74C3C" stroke-width="2" rx="4"/>
   <text x="210" y="329" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">i=4: Integer.toBinaryString(4) → "100"</text>
 
-  <rect x="30" y="344" width="360" height="28" fill="#FDEDEC" stroke="#E74C3C" rx="4"/>
+  <rect class="s5" x="30" y="344" width="360" height="28" fill="#FDEDEC" stroke="#E74C3C" stroke-width="2" rx="4"/>
   <text x="210" y="363" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">i=5: Integer.toBinaryString(5) → "101"</text>
 
   <text x="30" y="398" font-family="Arial" font-size="11" fill="#888">Each conversion is O(log i) → total O(n log n)</text>
@@ -49,7 +66,7 @@
   <!-- Evolution Arrow -->
   <line x1="410" y1="275" x2="480" y2="275" stroke="#7F8C8D" stroke-width="2.5"/>
   <polygon points="480,270 492,275 480,280" fill="#7F8C8D"/>
-  <rect x="410" y="248" width="72" height="54" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
+  <rect class="arrow_box" x="410" y="248" width="72" height="54" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
   <text x="446" y="263" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Think</text>
   <text x="446" y="275" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">BFS tree</text>
   <text x="446" y="287" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">expansion!</text>
@@ -66,27 +83,27 @@
 
   <!-- BFS Tree visualization -->
   <!-- Level 0 -->
-  <rect x="660" y="204" width="56" height="24" fill="#27AE60" stroke="#1E8449" rx="4"/>
+  <rect class="t0" x="660" y="204" width="56" height="24" fill="#27AE60" stroke="#1E8449" rx="4"/>
   <text x="688" y="220" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">"1"</text>
 
   <!-- Level 1 branches -->
   <line x1="660" y1="228" x2="600" y2="250" stroke="#27AE60" stroke-width="1.5"/>
   <line x1="716" y1="228" x2="776" y2="250" stroke="#27AE60" stroke-width="1.5"/>
 
-  <rect x="568" y="250" width="56" height="24" fill="#2ECC71" stroke="#27AE60" rx="4"/>
+  <rect class="t1" x="568" y="250" width="56" height="24" fill="#2ECC71" stroke="#27AE60" rx="4"/>
   <text x="596" y="266" font-family="Arial" font-size="11" fill="white" text-anchor="middle">"10"</text>
 
-  <rect x="748" y="250" width="56" height="24" fill="#2ECC71" stroke="#27AE60" rx="4"/>
+  <rect class="t1" x="748" y="250" width="56" height="24" fill="#2ECC71" stroke="#27AE60" rx="4"/>
   <text x="776" y="266" font-family="Arial" font-size="11" fill="white" text-anchor="middle">"11"</text>
 
   <!-- Level 2 branches -->
   <line x1="568" y1="274" x2="525" y2="296" stroke="#27AE60" stroke-width="1.5"/>
   <line x1="624" y1="274" x2="667" y2="296" stroke="#27AE60" stroke-width="1.5"/>
 
-  <rect x="503" y="296" width="44" height="22" fill="#82E0AA" stroke="#27AE60" rx="4"/>
+  <rect class="t2" x="503" y="296" width="44" height="22" fill="#82E0AA" stroke="#27AE60" rx="4"/>
   <text x="525" y="311" font-family="Arial" font-size="10" fill="#1E5631" text-anchor="middle">"100"</text>
 
-  <rect x="647" y="296" width="44" height="22" fill="#82E0AA" stroke="#27AE60" rx="4"/>
+  <rect class="t2" x="647" y="296" width="44" height="22" fill="#82E0AA" stroke="#27AE60" rx="4"/>
   <text x="669" y="311" font-family="Arial" font-size="10" fill="#1E5631" text-anchor="middle">"101"</text>
 
   <!-- Queue state visualization -->

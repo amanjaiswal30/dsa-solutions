@@ -1,4 +1,28 @@
 <svg width="900" height="610" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes stack_pulse {
+    0%,20%   {fill:#EBF5FB;stroke:#3498DB}
+    25%,40%  {fill:#D5E8D4;stroke:#27AE60;stroke-width:2.5}
+    45%,100% {fill:#EBF5FB;stroke:#3498DB}
+  }
+  .ms_top{animation:stack_pulse 8s 0s ease-in-out infinite}
+  .ms_s2{animation:stack_pulse 8s 1s ease-in-out infinite}
+  .ms_s3{animation:stack_pulse 8s 2s ease-in-out infinite}
+  .ms_bot{animation:stack_pulse 8s 3s ease-in-out infinite}
+  
+  @keyframes min_highlight {
+    0%,40%   {fill:#E8DAEF;stroke:#8E44AD}
+    45%,60%  {fill:#D5F5E3;stroke:#27AE60;stroke-width:2.5}
+    65%,100% {fill:#E8DAEF;stroke:#8E44AD}
+  }
+  .ms_min{animation:min_highlight 8s ease-in-out infinite}
+  
+  @keyframes arrow_pulse {
+    0%,100% {opacity:1}
+    50%     {opacity:0.6}
+  }
+  .arrow_anim{animation:arrow_pulse 3s ease-in-out infinite}
+</style>
   <rect width="900" height="610" fill="#F8F9FA" rx="10"/>
   <rect width="900" height="55" fill="#2C3E50" rx="10"/>
   <rect x="0" y="45" width="900" height="10" fill="#2C3E50"/>
@@ -27,14 +51,14 @@
   <text x="25" y="222" font-family="Arial" font-size="10" fill="#7F8C8D" font-weight="bold">After push(5,3,7,2):</text>
   <!-- Stack box -->
   <rect x="50" y="228" width="60" height="115" fill="none" stroke="#2C3E50" stroke-width="2"/>
-  <rect x="50" y="228" width="60" height="28" fill="#FADBD8" stroke="#E74C3C"/>
+  <rect class="ms_top" x="50" y="228" width="60" height="28" fill="#FADBD8" stroke="#E74C3C"/>
   <text x="80" y="247" font-family="Arial" font-size="14" font-weight="bold" fill="#E74C3C" text-anchor="middle">2</text>
   <text x="116" y="247" font-family="Arial" font-size="10" fill="#7F8C8D">← top</text>
-  <rect x="50" y="256" width="60" height="28" fill="#EBF5FB" stroke="#3498DB"/>
+  <rect class="ms_s2" x="50" y="256" width="60" height="28" fill="#EBF5FB" stroke="#3498DB"/>
   <text x="80" y="275" font-family="Arial" font-size="14" font-weight="bold" fill="#3498DB" text-anchor="middle">7</text>
-  <rect x="50" y="284" width="60" height="28" fill="#EBF5FB" stroke="#3498DB"/>
+  <rect class="ms_s3" x="50" y="284" width="60" height="28" fill="#EBF5FB" stroke="#3498DB"/>
   <text x="80" y="303" font-family="Arial" font-size="14" font-weight="bold" fill="#3498DB" text-anchor="middle">3</text>
-  <rect x="50" y="312" width="60" height="28" fill="#EBF5FB" stroke="#3498DB"/>
+  <rect class="ms_bot" x="50" y="312" width="60" height="28" fill="#EBF5FB" stroke="#3498DB"/>
   <text x="80" y="331" font-family="Arial" font-size="14" font-weight="bold" fill="#3498DB" text-anchor="middle">5</text>
 
   <text x="145" y="260" font-family="Arial" font-size="10" fill="#E74C3C">getMin() must scan</text>
@@ -52,8 +76,8 @@
   <text x="35" y="418" font-family="Arial" font-size="10" fill="#E67E22">Fix: maintain a parallel min-tracking stack</text>
 
   <!-- Arrow 1 -->
-  <line x1="275" y1="295" x2="313" y2="295" stroke="#7F8C8D" stroke-width="2"/>
-  <polygon points="313,290 323,295 313,300" fill="#7F8C8D"/>
+  <line class="arrow_anim" x1="275" y1="295" x2="313" y2="295" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon class="arrow_anim" points="313,290 323,295 313,300" fill="#7F8C8D"/>
   <rect x="265" y="268" width="68" height="22" fill="#FFF8E1" stroke="#F39C12" rx="3"/>
   <text x="299" y="281" font-family="Arial" font-size="9" fill="#D35400" text-anchor="middle">💡 Track</text>
   <text x="299" y="291" font-family="Arial" font-size="9" fill="#D35400" text-anchor="middle">min live!</text>
@@ -73,8 +97,8 @@
   <text x="370" y="238" font-family="Arial" font-size="10" fill="#2980B9" text-anchor="middle" font-weight="bold">stack</text>
   <text x="500" y="238" font-family="Arial" font-size="10" fill="#8E44AD" text-anchor="middle" font-weight="bold">minStack</text>
 
-  <rect x="340" y="242" width="55" height="25" fill="#D5E8D4" stroke="#27AE60"/><text x="368" y="258" font-family="Arial" font-size="12" font-weight="bold" fill="#1E8449" text-anchor="middle">2</text>
-  <rect x="465" y="242" width="55" height="25" fill="#D5E8D4" stroke="#27AE60"/><text x="493" y="258" font-family="Arial" font-size="12" font-weight="bold" fill="#1E8449" text-anchor="middle">2</text>
+  <rect class="ms_min" x="340" y="242" width="55" height="25" fill="#D5E8D4" stroke="#27AE60"/><text x="368" y="258" font-family="Arial" font-size="12" font-weight="bold" fill="#1E8449" text-anchor="middle">2</text>
+  <rect class="ms_min" x="465" y="242" width="55" height="25" fill="#D5E8D4" stroke="#27AE60"/><text x="493" y="258" font-family="Arial" font-size="12" font-weight="bold" fill="#1E8449" text-anchor="middle">2</text>
   <text x="430" y="258" font-family="Arial" font-size="10" fill="#7F8C8D" text-anchor="middle">→ min=2</text>
 
   <rect x="340" y="267" width="55" height="25" fill="#EBF5FB" stroke="#3498DB"/><text x="368" y="283" font-family="Arial" font-size="12" font-weight="bold" fill="#3498DB" text-anchor="middle">7</text>
@@ -100,8 +124,8 @@
   <text x="343" y="448" font-family="Arial" font-size="10" fill="#27AE60">→ Yes! Store diffs (encoded values)</text>
 
   <!-- Arrow 2 -->
-  <line x1="583" y1="295" x2="621" y2="295" stroke="#7F8C8D" stroke-width="2"/>
-  <polygon points="621,290 631,295 621,300" fill="#7F8C8D"/>
+  <line class="arrow_anim" x1="583" y1="295" x2="621" y2="295" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon class="arrow_anim" points="621,290 631,295 621,300" fill="#7F8C8D"/>
   <rect x="573" y="268" width="68" height="22" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
   <text x="607" y="281" font-family="Arial" font-size="9" fill="#1E8449" text-anchor="middle">Encode</text>
   <text x="607" y="291" font-family="Arial" font-size="9" fill="#1E8449" text-anchor="middle">as diffs!</text>

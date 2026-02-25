@@ -1,4 +1,19 @@
 <svg width="900" height="560" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes phase_highlight {
+    0%,20%   {fill:#EAFAF1;stroke:#27AE60}
+    25%,40%  {fill:#D5F5E3;stroke:#27AE60;stroke-width:2.5}
+    45%,100% {fill:#EAFAF1;stroke:#27AE60}
+  }
+  .ph1{animation:phase_highlight 8s 0s ease-in-out infinite}
+  .ph2{animation:phase_highlight 8s 3s ease-in-out infinite}
+  
+  @keyframes arrow_pulse {
+    0%,100% {opacity:1}
+    50%     {opacity:0.6}
+  }
+  .arrow_anim{animation:arrow_pulse 3s ease-in-out infinite}
+</style>
   <rect width="900" height="560" fill="#F8F9FA" rx="10"/>
   <rect width="900" height="55" fill="#2C3E50" rx="10"/>
   <rect y="45" width="900" height="10" fill="#2C3E50"/>
@@ -42,8 +57,8 @@
   <text x="30" y="400" font-family="Arial" font-size="11" fill="#888">Floyd's can do this with O(1) space!</text>
 
   <!-- Evolution Arrow -->
-  <line x1="410" y1="270" x2="480" y2="270" stroke="#7F8C8D" stroke-width="2.5"/>
-  <polygon points="480,265 492,270 480,275" fill="#7F8C8D"/>
+  <line class="arrow_anim" x1="410" y1="270" x2="480" y2="270" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon class="arrow_anim" points="480,265 492,270 480,275" fill="#7F8C8D"/>
   <rect x="410" y="242" width="72" height="56" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
   <text x="446" y="256" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Floyd's</text>
   <text x="446" y="268" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">detect then</text>
@@ -58,13 +73,13 @@
 
   <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Phase 1: Detect meeting point in loop:</text>
 
-  <rect x="505" y="186" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect class="ph1" x="505" y="186" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
   <text x="686" y="201" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">slow(1step)+fast(2steps) → meet inside loop</text>
   <text x="686" y="213" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">slow=fast=node(4) (meeting point)</text>
 
   <text x="505" y="232" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Phase 2: Count loop length from meeting:</text>
 
-  <rect x="505" y="238" width="362" height="56" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect class="ph2" x="505" y="238" width="362" height="56" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
   <text x="686" y="253" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Keep slow fixed, move count pointer</text>
   <text x="686" y="265" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">count=1: count.next=5</text>
   <text x="686" y="277" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">count=2: count.next=3</text>

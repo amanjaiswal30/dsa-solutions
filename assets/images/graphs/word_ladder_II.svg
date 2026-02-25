@@ -1,4 +1,19 @@
 <svg width="900" height="590" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes step1 { 0%,8%{opacity:0.5} 12%,100%{opacity:1} }
+  @keyframes step2 { 0%,18%{opacity:0.5} 22%,100%{opacity:1} }
+  @keyframes approach-pulse { 0%,40%{stroke-width:2} 50%,60%{stroke-width:2.5} 70%,100%{stroke-width:2} }
+  @keyframes arrow-glow { 0%,30%{opacity:0.6;stroke:#7F8C8D} 50%,70%{opacity:1;stroke:#3498DB} 90%,100%{opacity:0.6;stroke:#7F8C8D} }
+  @keyframes row1 { 0%,45%{fill:#FDEDEC} 50%,55%{fill:#D5F5E3} 60%,100%{fill:#FDEDEC} }
+  @keyframes row2 { 0%,55%{fill:#EAFAF1} 60%,65%{fill:#D5F5E3} 70%,100%{fill:#EAFAF1} }
+  .anim-step1{animation:step1 9s ease-in-out infinite}
+  .anim-step2{animation:step2 9s ease-in-out infinite}
+  .anim-approach1{animation:approach-pulse 9s ease-in-out infinite}
+  .anim-approach2{animation:approach-pulse 9s ease-in-out 1.5s infinite}
+  .anim-arrow{animation:arrow-glow 9s ease-in-out infinite}
+  .anim-row1{animation:row1 9s ease-in-out infinite}
+  .anim-row2{animation:row2 9s ease-in-out infinite}
+</style>
   <rect width="900" height="590" fill="#F8F9FA" rx="10"/>
   <rect width="900" height="55" fill="#2C3E50" rx="10"/>
   <rect y="45" width="900" height="10" fill="#2C3E50"/>
@@ -12,14 +27,14 @@
   <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Find ALL shortest paths. Word Ladder I finds one; this finds all. BFS builds level graph, DFS enumerates paths.</text>
 
   <!-- Approach 1: BFS + HashMap Parents -->
-  <rect x="15" y="115" width="390" height="345" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="390" height="345" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7" class="anim-approach1"/>
   <rect x="15" y="115" width="390" height="40" fill="#E74C3C" rx="7"/>
   <rect x="15" y="140" width="390" height="15" fill="#E74C3C"/>
   <text x="210" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: BFS Level + Parents Map</text>
   <text x="210" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(M²×N) BFS + O(path count) DFS</text>
 
   <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">BFS builds parent map, DFS finds paths:</text>
-  <rect x="30" y="184" width="360" height="96" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <rect x="30" y="184" width="360" height="96" fill="#FDEDEC" stroke="#E74C3C" rx="3" class="anim-step1"/>
   <text x="210" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Phase 1 - BFS level by level:</text>
   <text x="210" y="215" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">  parents["hot"] = {"hit"}</text>
   <text x="210" y="230" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">  parents["dot"] = {"hot"}, parents["lot"] = {"hot"}</text>
@@ -28,7 +43,7 @@
   <text x="210" y="278" font-family="Arial" font-size="10" fill="#E74C3C" font-weight="bold" text-anchor="middle">Phase 2 - DFS from endWord, reverse → all paths ✓</text>
 
   <text x="30" y="300" font-family="Arial" font-size="11" fill="#555">BFS key rule:</text>
-  <rect x="30" y="306" width="360" height="36" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <rect x="30" y="306" width="360" height="36" fill="#FDEDEC" stroke="#E74C3C" rx="3" class="anim-step2"/>
   <text x="210" y="321" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Only add parents from SAME level (not later)</text>
   <text x="210" y="335" font-family="Arial" font-size="10" fill="#E74C3C" font-weight="bold" text-anchor="middle">Remove words from set AFTER processing level!</text>
 
@@ -41,7 +56,7 @@
   <text x="30" y="468" font-family="Arial" font-size="11" fill="#888">Bidirectional BFS improves performance</text>
 
   <!-- Evolution Arrow -->
-  <line x1="410" y1="290" x2="480" y2="290" stroke="#7F8C8D" stroke-width="2.5"/>
+  <line x1="410" y1="290" x2="480" y2="290" stroke="#7F8C8D" stroke-width="2.5" class="anim-arrow"/>
   <polygon points="480,285 492,290 480,295" fill="#7F8C8D"/>
   <rect x="410" y="262" width="72" height="56" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
   <text x="446" y="276" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Track</text>
@@ -49,14 +64,14 @@
   <text x="446" y="300" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">parents!</text>
 
   <!-- Approach 2: BFS + Backtrack DFS -->
-  <rect x="492" y="115" width="393" height="345" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="492" y="115" width="393" height="345" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7" class="anim-approach2"/>
   <rect x="492" y="115" width="393" height="40" fill="#27AE60" rx="7"/>
   <rect x="492" y="140" width="393" height="15" fill="#27AE60"/>
   <text x="688" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: BFS + Backtrack DFS ⭐</text>
   <text x="688" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(M²×N) BFS | efficient path enumeration</text>
 
   <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">BFS to find levels, DFS for all paths:</text>
-  <rect x="505" y="184" width="362" height="96" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect x="505" y="184" width="362" height="96" fill="#EAFAF1" stroke="#27AE60" rx="3" class="anim-step1"/>
   <text x="686" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">BFS: store word→level in map</text>
   <text x="686" y="215" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">  "hit"→0, "hot"→1, "dot"/"lot"→2</text>
   <text x="686" y="230" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">  "dog"/"log"→3, "cog"→4</text>
@@ -65,7 +80,7 @@
   <text x="686" y="278" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">  hit→hot→lot→log→cog ✓  (both paths!) ✓</text>
 
   <text x="505" y="300" font-family="Arial" font-size="11" fill="#555">DFS constraint:</text>
-  <rect x="505" y="306" width="362" height="36" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect x="505" y="306" width="362" height="36" fill="#EAFAF1" stroke="#27AE60" rx="3" class="anim-step2"/>
   <text x="686" y="321" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">only visit neighbor if level[nbr]==level[curr]+1</text>
   <text x="686" y="335" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">ensures we only follow shortest paths!</text>
 
@@ -88,12 +103,12 @@
   <text x="500" y="520" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">BFS Phase</text>
   <text x="750" y="520" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Path Enum Phase</text>
   <line x1="15" y1="528" x2="885" y2="528" stroke="#DEE2E6" stroke-width="1"/>
-  <rect x="15" y="528" width="870" height="24" fill="#FDEDEC"/>
+  <rect x="15" y="528" width="870" height="24" fill="#FDEDEC" class="anim-row1"/>
   <text x="200" y="544" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">BFS + Parents HashMap</text>
   <text x="500" y="544" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(M²×N)</text>
   <text x="750" y="544" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(paths × path_len)</text>
   <line x1="15" y1="552" x2="885" y2="552" stroke="#DEE2E6" stroke-width="1"/>
-  <rect x="15" y="552" width="870" height="24" fill="#EAFAF1"/>
+  <rect x="15" y="552" width="870" height="24" fill="#EAFAF1" class="anim-row2"/>
   <text x="200" y="568" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">BFS Levels + Backtrack DFS ⭐</text>
   <text x="500" y="568" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(M²×N)</text>
   <text x="750" y="568" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(paths × path_len)</text>

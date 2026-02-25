@@ -1,4 +1,12 @@
 <svg width="900" height="610" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes visit_hl { 0%,5%,100%{fill:#FDEDEC;stroke:#E74C3C} 10%,20%{fill:#D5F5E3;stroke:#27AE60} 25%,100%{fill:#FDEDEC;stroke:#E74C3C} }
+  @keyframes phase_hl { 0%,45%,55%,100%{fill:#EAFAF1;stroke:#27AE60} 58%,78%{fill:#D5F5E3;stroke:#1E8449} 82%,100%{fill:#EAFAF1;stroke:#27AE60} }
+  @keyframes arr_anim { 0%,100%{opacity:1} 50%{opacity:0.6} }
+  .v1{animation:visit_hl 8s ease-in-out infinite}
+  .v2{animation:phase_hl 8s ease-in-out infinite}
+  .ar{animation:arr_anim 8s ease-in-out infinite}
+</style>
   <rect width="900" height="610" fill="#F8F9FA" rx="10"/>
   <rect width="900" height="55" fill="#2C3E50" rx="10"/>
   <rect y="45" width="900" height="10" fill="#2C3E50"/>
@@ -21,7 +29,7 @@
 
   <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Store visited nodes, detect first repeat:</text>
 
-  <rect x="30" y="186" width="360" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <rect class="v1" x="30" y="186" width="360" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
   <text x="210" y="202" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Visit 1 → set={1}, prev=null</text>
 
   <rect x="30" y="214" width="360" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
@@ -48,8 +56,8 @@
   <text x="30" y="472" font-family="Arial" font-size="11" fill="#888">Traversal: O(n), HashSet lookup: O(1)</text>
 
   <!-- Evolution Arrow -->
-  <line x1="410" y1="300" x2="480" y2="300" stroke="#7F8C8D" stroke-width="2.5"/>
-  <polygon points="480,295 492,300 480,305" fill="#7F8C8D"/>
+  <line class="ar" x1="410" y1="300" x2="480" y2="300" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon class="ar" points="480,295 492,300 480,305" fill="#7F8C8D"/>
   <rect x="410" y="268" width="72" height="64" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
   <text x="446" y="283" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Floyd's</text>
   <text x="446" y="295" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">slow/fast</text>
@@ -66,7 +74,7 @@
 
   <!-- Phase 1 -->
   <text x="505" y="198" font-family="Arial" font-size="11" font-weight="bold" fill="#27AE60">Phase 1: Slow(1 step) + Fast(2 steps)</text>
-  <rect x="505" y="204" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect class="v2" x="505" y="204" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
   <text x="686" y="217" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">1→2→3→4→5→(3) loop</text>
   <text x="686" y="229" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">slow=3, fast=3 → they meet! Loop detected ✓</text>
 

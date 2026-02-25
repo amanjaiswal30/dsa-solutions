@@ -1,4 +1,22 @@
 <svg width="900" height="590" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes step1 { 0%,6%{opacity:0.5} 10%,100%{opacity:1} }
+  @keyframes step2 { 0%,14%{opacity:0.5} 18%,100%{opacity:1} }
+  @keyframes approach-pulse { 0%,30%{stroke-width:2} 40%,50%{stroke-width:2.5} 60%,100%{stroke-width:2} }
+  @keyframes arrow-glow { 0%,20%{opacity:0.6;stroke:#7F8C8D} 40%,60%{opacity:1;stroke:#3498DB} 80%,100%{opacity:0.6;stroke:#7F8C8D} }
+  @keyframes row1 { 0%,35%{fill:#FDEDEC} 40%,45%{fill:#D5F5E3} 50%,100%{fill:#FDEDEC} }
+  @keyframes row2 { 0%,45%{fill:#FEF9E7} 50%,55%{fill:#D5F5E3} 60%,100%{fill:#FEF9E7} }
+  @keyframes row3 { 0%,55%{fill:#EAFAF1} 60%,65%{fill:#D5F5E3} 70%,100%{fill:#EAFAF1} }
+  .anim-step1{animation:step1 9s ease-in-out infinite}
+  .anim-step2{animation:step2 9s ease-in-out infinite}
+  .anim-approach1{animation:approach-pulse 9s ease-in-out infinite}
+  .anim-approach2{animation:approach-pulse 9s ease-in-out 0.8s infinite}
+  .anim-approach3{animation:approach-pulse 9s ease-in-out 1.6s infinite}
+  .anim-arrow{animation:arrow-glow 9s ease-in-out infinite}
+  .anim-row1{animation:row1 9s ease-in-out infinite}
+  .anim-row2{animation:row2 9s ease-in-out infinite}
+  .anim-row3{animation:row3 9s ease-in-out infinite}
+</style>
   <rect width="900" height="590" fill="#F8F9FA" rx="10"/>
   <rect width="900" height="55" fill="#2C3E50" rx="10"/>
   <rect y="45" width="900" height="10" fill="#2C3E50"/>
@@ -12,14 +30,14 @@
   <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Check if any path exists from source to destination. Undirected graph. Three classic graph traversal approaches.</text>
 
   <!-- Approach 1: DFS -->
-  <rect x="15" y="115" width="250" height="330" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="250" height="330" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7" class="anim-approach1"/>
   <rect x="15" y="115" width="250" height="40" fill="#E74C3C" rx="7"/>
   <rect x="15" y="140" width="250" height="15" fill="#E74C3C"/>
   <text x="140" y="140" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 1: DFS</text>
   <text x="140" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(V+E) time | O(V) space</text>
 
   <text x="25" y="175" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">Recursively explore from source:</text>
-  <rect x="25" y="181" width="230" height="80" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <rect x="25" y="181" width="230" height="80" fill="#FDEDEC" stroke="#E74C3C" rx="3" class="anim-step1"/>
   <text x="140" y="197" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">visited={}; dfs(src=0, dst=2)</text>
   <text x="140" y="210" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">  if 0==dst → false; mark 0 visited</text>
   <text x="140" y="223" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">  explore nbrs [1,2]</text>
@@ -27,7 +45,7 @@
   <text x="140" y="251" font-family="Arial" font-size="9" fill="#27AE60" font-weight="bold" text-anchor="middle">  2==dst → return true! ✓</text>
 
   <text x="25" y="278" font-family="Arial" font-size="10" fill="#555">Base cases:</text>
-  <rect x="25" y="284" width="230" height="36" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <rect x="25" y="284" width="230" height="36" fill="#FDEDEC" stroke="#E74C3C" rx="3" class="anim-step2"/>
   <text x="140" y="299" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">if node==dst: return true</text>
   <text x="140" y="311" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">if node in visited: return false</text>
 
@@ -39,7 +57,7 @@
   <text x="25" y="426" font-family="Arial" font-size="10" fill="#888">Multiple queries? Build UF once!</text>
 
   <!-- Evolution Arrow 1 -->
-  <line x1="265" y1="290" x2="317" y2="290" stroke="#7F8C8D" stroke-width="2"/>
+  <line x1="265" y1="290" x2="317" y2="290" stroke="#7F8C8D" stroke-width="2" class="anim-arrow"/>
   <polygon points="317,286 325,290 317,294" fill="#7F8C8D"/>
   <rect x="265" y="266" width="52" height="48" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
   <text x="291" y="280" font-family="Arial" font-size="8" fill="#555" text-anchor="middle" font-weight="bold">💡 BFS</text>
@@ -47,14 +65,14 @@
   <text x="291" y="304" font-family="Arial" font-size="8" fill="#555" text-anchor="middle">level!</text>
 
   <!-- Approach 2: BFS -->
-  <rect x="320" y="115" width="250" height="330" fill="#FFFFFF" stroke="#E67E22" stroke-width="2" rx="7"/>
+  <rect x="320" y="115" width="250" height="330" fill="#FFFFFF" stroke="#E67E22" stroke-width="2" rx="7" class="anim-approach2"/>
   <rect x="320" y="115" width="250" height="40" fill="#E67E22" rx="7"/>
   <rect x="320" y="140" width="250" height="15" fill="#E67E22"/>
   <text x="445" y="140" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 2: BFS</text>
   <text x="445" y="153" font-family="Arial" font-size="10" fill="#FAD7A0" text-anchor="middle">O(V+E) time | O(V) space</text>
 
   <text x="330" y="175" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">Level-order exploration:</text>
-  <rect x="330" y="181" width="230" height="80" fill="#FEF9E7" stroke="#E67E22" rx="3"/>
+  <rect x="330" y="181" width="230" height="80" fill="#FEF9E7" stroke="#E67E22" rx="3" class="anim-step1"/>
   <text x="445" y="197" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">Queue:[0], visited={0}</text>
   <text x="445" y="210" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">Poll 0: if 0==dst? No</text>
   <text x="445" y="223" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">  nbrs=[1,2]; add both; visited={0,1,2}</text>
@@ -62,7 +80,7 @@
   <text x="445" y="251" font-family="Arial" font-size="9" fill="#27AE60" font-weight="bold" text-anchor="middle">Poll 2: 2==dst → return true! ✓</text>
 
   <text x="330" y="278" font-family="Arial" font-size="10" fill="#555">Early exit:</text>
-  <rect x="330" y="284" width="230" height="28" fill="#FEF9E7" stroke="#E67E22" rx="3"/>
+  <rect x="330" y="284" width="230" height="28" fill="#FEF9E7" stroke="#E67E22" rx="3" class="anim-step2"/>
   <text x="445" y="299" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">if dequeued node == dst: return true</text>
   <text x="445" y="311" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">add unvisited neighbors to queue</text>
 
@@ -74,7 +92,7 @@
   <text x="330" y="426" font-family="Arial" font-size="10" fill="#888">Multiple queries → build UF once</text>
 
   <!-- Evolution Arrow 2 -->
-  <line x1="570" y1="290" x2="622" y2="290" stroke="#7F8C8D" stroke-width="2"/>
+  <line x1="570" y1="290" x2="622" y2="290" stroke="#7F8C8D" stroke-width="2" class="anim-arrow"/>
   <polygon points="622,286 630,290 622,294" fill="#7F8C8D"/>
   <rect x="570" y="266" width="52" height="48" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
   <text x="596" y="280" font-family="Arial" font-size="8" fill="#555" text-anchor="middle" font-weight="bold">💡 Union</text>
@@ -82,14 +100,14 @@
   <text x="596" y="304" font-family="Arial" font-size="8" fill="#555" text-anchor="middle">queries!</text>
 
   <!-- Approach 3: Union-Find -->
-  <rect x="628" y="115" width="257" height="330" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="628" y="115" width="257" height="330" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7" class="anim-approach3"/>
   <rect x="628" y="115" width="257" height="40" fill="#27AE60" rx="7"/>
   <rect x="628" y="140" width="257" height="15" fill="#27AE60"/>
   <text x="756" y="140" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 3: Union-Find ⭐</text>
   <text x="756" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(E·α(V)) build | O(α(V)) query</text>
 
   <text x="638" y="175" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">Build components, then query:</text>
-  <rect x="638" y="181" width="237" height="80" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect x="638" y="181" width="237" height="80" fill="#EAFAF1" stroke="#27AE60" rx="3" class="anim-step1"/>
   <text x="756" y="197" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">parent=[0,1,2]; union all edges</text>
   <text x="756" y="210" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">union(0,1): one component {0,1}</text>
   <text x="756" y="223" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">union(1,2): one component {0,1,2}</text>
@@ -97,7 +115,7 @@
   <text x="756" y="251" font-family="Arial" font-size="9" fill="#27AE60" font-weight="bold" text-anchor="middle">find(0)==find(2) → path exists! ✓</text>
 
   <text x="638" y="278" font-family="Arial" font-size="10" fill="#555">Query step:</text>
-  <rect x="638" y="284" width="237" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect x="638" y="284" width="237" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3" class="anim-step2"/>
   <text x="756" y="299" font-family="Arial" font-size="9" fill="#27AE60" font-weight="bold" text-anchor="middle">return find(source) == find(destination)</text>
 
   <text x="638" y="328" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold">Excellent for multiple queries!</text>
@@ -119,17 +137,17 @@
   <text x="500" y="505" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
   <text x="750" y="505" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
   <line x1="15" y1="513" x2="885" y2="513" stroke="#DEE2E6" stroke-width="1"/>
-  <rect x="15" y="513" width="870" height="21" fill="#FDEDEC"/>
+  <rect x="15" y="513" width="870" height="21" fill="#FDEDEC" class="anim-row1"/>
   <text x="200" y="527" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">DFS (Recursive)</text>
   <text x="500" y="527" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(V+E)</text>
   <text x="750" y="527" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(V) + recursion stack</text>
   <line x1="15" y1="534" x2="885" y2="534" stroke="#DEE2E6" stroke-width="1"/>
-  <rect x="15" y="534" width="870" height="21" fill="#FEF9E7"/>
+  <rect x="15" y="534" width="870" height="21" fill="#FEF9E7" class="anim-row2"/>
   <text x="200" y="548" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">BFS (Iterative)</text>
   <text x="500" y="548" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(V+E)</text>
   <text x="750" y="548" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(V)</text>
   <line x1="15" y1="555" x2="885" y2="555" stroke="#DEE2E6" stroke-width="1"/>
-  <rect x="15" y="555" width="870" height="21" fill="#EAFAF1"/>
+  <rect x="15" y="555" width="870" height="21" fill="#EAFAF1" class="anim-row3"/>
   <text x="200" y="569" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Union-Find ⭐</text>
   <text x="500" y="569" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(E·α(V)) build</text>
   <text x="750" y="569" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(V)</text>

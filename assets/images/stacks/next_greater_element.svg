@@ -1,4 +1,15 @@
 <svg width="900" height="610" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes step_hl{0%,10%{fill:#F8F9FA}15%,38%{fill:#D5E8D4;stroke:#27AE60}43%,100%{fill:#F8F9FA}}
+  @keyframes arr_hl{0%,25%{fill:#E8F8F5;stroke:#27AE60}30%,55%{fill:#D5F5E3;stroke-width:2}60%,100%{fill:#E8F8F5;stroke:#27AE60}}
+  @keyframes circ_hl{0%,60%{fill:#FADBD8}68%,88%{fill:#D5E8D4;stroke:#27AE60}93%,100%{fill:#FADBD8}}
+  .nge_r1{animation:step_hl 8s 0s ease-in-out infinite}
+  .nge_r2{animation:step_hl 8s 1.2s ease-in-out infinite}
+  .nge_r3{animation:step_hl 8s 2.4s ease-in-out infinite}
+  .nge_r4{animation:step_hl 8s 3.6s ease-in-out infinite}
+  .nge_arr{animation:arr_hl 8s 4s ease-in-out infinite}
+  .nge_circ{animation:circ_hl 8s ease-in-out infinite}
+</style>
   <rect width="900" height="610" fill="#F8F9FA" rx="10"/>
   <rect width="900" height="55" fill="#2C3E50" rx="10"/>
   <rect x="0" y="45" width="900" height="10" fill="#2C3E50"/>
@@ -32,7 +43,7 @@
   <g transform="translate(25,224)">
     <rect x="0" y="0" width="40" height="32" fill="#FADBD8" stroke="#E74C3C" rx="3"/>
     <text x="20" y="21" font-family="Arial" font-size="14" font-weight="bold" fill="#E74C3C" text-anchor="middle">4</text>
-    <rect x="44" y="0" width="40" height="32" fill="#E8F8F5" stroke="#27AE60" rx="3"/>
+    <rect class="nge_arr" x="44" y="0" width="40" height="32" fill="#E8F8F5" stroke="#27AE60" rx="3"/>
     <text x="64" y="21" font-family="Arial" font-size="14" font-weight="bold" fill="#27AE60" text-anchor="middle">5</text>
     <rect x="88" y="0" width="40" height="32" fill="#EBF5FB" stroke="#3498DB" rx="3"/>
     <text x="108" y="21" font-family="Arial" font-size="14" font-weight="bold" fill="#3498DB" text-anchor="middle">2</text>
@@ -90,13 +101,13 @@
   <text x="343" y="285" font-family="Arial" font-size="10" fill="#7F8C8D">push 2. Stack: [25, 2]</text>
 
   <!-- i=1: pop 2 (≤5), top=25>5, result=25 -->
-  <rect x="333" y="295" width="238" height="40" fill="#FEF9EF" stroke="#E67E22" rx="3"/>
+  <rect class="nge_r3" x="333" y="295" width="238" height="40" fill="#FEF9EF" stroke="#E67E22" rx="3"/>
   <text x="343" y="308" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">i=1 (5): top=2 ≤ 5 → pop 2</text>
   <text x="343" y="322" font-family="Arial" font-size="10" fill="#27AE60">top=25 &gt; 5 → result[1]=25</text>
   <text x="343" y="335" font-family="Arial" font-size="10" fill="#7F8C8D">push 5. Stack: [25, 5]</text>
 
   <!-- i=0: pop 5 (≤4? No! 5>4), result=5 -->
-  <rect x="333" y="338" width="238" height="40" fill="#D5E8D4" stroke="#27AE60" rx="3"/>
+  <rect class="nge_r4" x="333" y="338" width="238" height="40" fill="#D5E8D4" stroke="#27AE60" rx="3"/>
   <text x="343" y="351" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">i=0 (4): top=5 &gt; 4 → result[0]=5</text>
   <text x="343" y="365" font-family="Arial" font-size="10" fill="#27AE60">push 4. Stack: [25, 5, 4]</text>
   <text x="343" y="378" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold">Result: [5, 25, 25, -1] ✓</text>
@@ -129,7 +140,7 @@
   <!-- Circular concept -->
   <circle cx="758" cy="280" r="50" fill="none" stroke="#DEE2E6" stroke-width="1.5" stroke-dasharray="5"/>
   <!-- Elements around circle -->
-  <circle cx="758" cy="232" r="16" fill="#FADBD8" stroke="#E74C3C"/>
+  <circle class="nge_circ" cx="758" cy="232" r="16" fill="#FADBD8" stroke="#E74C3C"/>
   <text x="758" y="237" font-family="Arial" font-size="12" font-weight="bold" fill="#E74C3C" text-anchor="middle">3</text>
   <circle cx="805" cy="278" r="16" fill="#D6EAF8" stroke="#2980B9"/>
   <text x="805" y="283" font-family="Arial" font-size="12" font-weight="bold" fill="#2980B9" text-anchor="middle">1</text>

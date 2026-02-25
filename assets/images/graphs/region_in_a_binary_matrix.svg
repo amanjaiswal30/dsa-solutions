@@ -1,4 +1,19 @@
 <svg width="900" height="570" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes step1 { 0%,8%{opacity:0.5} 12%,100%{opacity:1} }
+  @keyframes step2 { 0%,18%{opacity:0.5} 22%,100%{opacity:1} }
+  @keyframes approach-pulse { 0%,40%{stroke-width:2} 50%,60%{stroke-width:2.5} 70%,100%{stroke-width:2} }
+  @keyframes arrow-glow { 0%,30%{opacity:0.6;stroke:#7F8C8D} 50%,70%{opacity:1;stroke:#3498DB} 90%,100%{opacity:0.6;stroke:#7F8C8D} }
+  @keyframes row1 { 0%,45%{fill:#FDEDEC} 50%,55%{fill:#D5F5E3} 60%,100%{fill:#FDEDEC} }
+  @keyframes row2 { 0%,55%{fill:#EAFAF1} 60%,65%{fill:#D5F5E3} 70%,100%{fill:#EAFAF1} }
+  .anim-step1{animation:step1 9s ease-in-out infinite}
+  .anim-step2{animation:step2 9s ease-in-out infinite}
+  .anim-approach1{animation:approach-pulse 9s ease-in-out infinite}
+  .anim-approach2{animation:approach-pulse 9s ease-in-out 1.5s infinite}
+  .anim-arrow{animation:arrow-glow 9s ease-in-out infinite}
+  .anim-row1{animation:row1 9s ease-in-out infinite}
+  .anim-row2{animation:row2 9s ease-in-out infinite}
+</style>
   <rect width="900" height="570" fill="#F8F9FA" rx="10"/>
   <rect width="900" height="55" fill="#2C3E50" rx="10"/>
   <rect y="45" width="900" height="10" fill="#2C3E50"/>
@@ -12,14 +27,14 @@
   <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Like Number of Islands but 8-directional (includes diagonals). Flood-fill connected 1s in all 8 directions.</text>
 
   <!-- Approach 1: DFS 8-direction -->
-  <rect x="15" y="115" width="390" height="325" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="390" height="325" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7" class="anim-approach1"/>
   <rect x="15" y="115" width="390" height="40" fill="#E74C3C" rx="7"/>
   <rect x="15" y="140" width="390" height="15" fill="#E74C3C"/>
   <text x="210" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: DFS (8-directional)</text>
   <text x="210" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(M×N) time | O(M×N) space</text>
 
   <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Flood-fill including diagonals:</text>
-  <rect x="30" y="184" width="360" height="76" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <rect x="30" y="184" width="360" height="76" fill="#FDEDEC" stroke="#E74C3C" rx="3" class="anim-step1"/>
   <text x="210" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Scan grid; find 1 at (0,0) → count++</text>
   <text x="210" y="215" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">dfs(0,0): sink to 0, explore 8 neighbors</text>
   <text x="210" y="230" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">  (0,1) is 1 → dfs(0,1): sink, explore</text>
@@ -27,7 +42,7 @@
   <text x="210" y="260" font-family="Arial" font-size="10" fill="#E74C3C" font-weight="bold" text-anchor="middle">Region 1 fully sunk → continue scan → region 2 ✓</text>
 
   <text x="30" y="283" font-family="Arial" font-size="11" fill="#555">8 directions array:</text>
-  <rect x="30" y="289" width="360" height="28" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <rect x="30" y="289" width="360" height="28" fill="#FDEDEC" stroke="#E74C3C" rx="3" class="anim-step2"/>
   <text x="210" y="304" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">dirs = [(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]</text>
 
   <text x="30" y="335" font-family="Arial" font-size="11" fill="#E74C3C">⚠ Only difference from #Islands: 8 dirs!</text>
@@ -38,7 +53,7 @@
   <text x="30" y="425" font-family="Arial" font-size="11" fill="#888">Same pattern as Number of Islands!</text>
 
   <!-- Evolution Arrow -->
-  <line x1="410" y1="278" x2="480" y2="278" stroke="#7F8C8D" stroke-width="2.5"/>
+  <line x1="410" y1="278" x2="480" y2="278" stroke="#7F8C8D" stroke-width="2.5" class="anim-arrow"/>
   <polygon points="480,273 492,278 480,283" fill="#7F8C8D"/>
   <rect x="410" y="250" width="72" height="56" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
   <text x="446" y="264" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 BFS</text>
@@ -46,14 +61,14 @@
   <text x="446" y="288" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">queue!</text>
 
   <!-- Approach 2: BFS 8-direction -->
-  <rect x="492" y="115" width="393" height="325" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="492" y="115" width="393" height="325" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7" class="anim-approach2"/>
   <rect x="492" y="115" width="393" height="40" fill="#27AE60" rx="7"/>
   <rect x="492" y="140" width="393" height="15" fill="#27AE60"/>
   <text x="688" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: BFS (8-directional) ⭐</text>
   <text x="688" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(M×N) time | O(min(M,N)) space</text>
 
   <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Queue-based 8-dir flood fill:</text>
-  <rect x="505" y="184" width="362" height="76" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect x="505" y="184" width="362" height="76" fill="#EAFAF1" stroke="#27AE60" rx="3" class="anim-step1"/>
   <text x="686" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Find 1 at (0,0) → count++; sink, queue=[(0,0)]</text>
   <text x="686" y="215" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Poll (0,0): check all 8 neighbors</text>
   <text x="686" y="230" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">  (0,1)=1: sink, add to queue</text>
@@ -61,7 +76,7 @@
   <text x="686" y="260" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">Process until empty → region done ✓</text>
 
   <text x="505" y="283" font-family="Arial" font-size="11" fill="#555">BFS 8-dir template:</text>
-  <rect x="505" y="289" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect x="505" y="289" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3" class="anim-step2"/>
   <text x="686" y="304" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">for each (dr,dc) in dirs: if valid &amp;&amp; grid==1</text>
   <text x="686" y="316" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">  sink cell, add (r+dr, c+dc) to queue</text>
 
@@ -83,12 +98,12 @@
   <text x="500" y="499" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
   <text x="750" y="499" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
   <line x1="15" y1="507" x2="885" y2="507" stroke="#DEE2E6" stroke-width="1"/>
-  <rect x="15" y="507" width="870" height="24" fill="#FDEDEC"/>
+  <rect x="15" y="507" width="870" height="24" fill="#FDEDEC" class="anim-row1"/>
   <text x="200" y="523" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">DFS 8-directional</text>
   <text x="500" y="523" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(M×N)</text>
   <text x="750" y="523" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(M×N) recursion stack</text>
   <line x1="15" y1="531" x2="885" y2="531" stroke="#DEE2E6" stroke-width="1"/>
-  <rect x="15" y="531" width="870" height="24" fill="#EAFAF1"/>
+  <rect x="15" y="531" width="870" height="24" fill="#EAFAF1" class="anim-row2"/>
   <text x="200" y="547" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">BFS 8-directional ⭐</text>
   <text x="500" y="547" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(M×N)</text>
   <text x="750" y="547" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(min(M,N))</text>

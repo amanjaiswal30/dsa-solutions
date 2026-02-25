@@ -1,4 +1,22 @@
 <svg width="900" height="620" xmlns="http://www.w3.org/2000/svg">
+<style>
+  /* Position grid chars pulse */
+  @keyframes pos_hl {0%,100%{fill:#E74C3C;stroke:#C0392B} 50%{fill:#C0392B;fill-opacity:0.9}}
+  .pa{animation:pos_hl 8s 0s ease-in-out infinite}
+  .pa2{animation:pos_hl 8s 0.4s ease-in-out infinite}
+  @keyframes pos_b {0%,100%{fill:#3498DB;stroke:#2980B9} 50%{fill:#2980B9;fill-opacity:0.9}}
+  .pb{animation:pos_b 8s 0.8s ease-in-out infinite}
+
+  /* Heap step boxes sequential (approach 2) */
+  @keyframes heap_hl {0%,20%,35%,100%{fill:#EAFAF1;stroke:#27AE60;stroke-width:2} 22%,33%{fill:#D5F5E3;stroke:#1E8449;stroke-width:2.5}}
+  .h1{animation:heap_hl 8s 0s ease-in-out infinite}
+  .h2{animation:heap_hl 8s 1.6s ease-in-out infinite}
+  .h3{animation:heap_hl 8s 3.2s ease-in-out infinite}
+  .h4{animation:heap_hl 8s 4.8s ease-in-out infinite}
+
+  @keyframes think_pulse {0%,100%{opacity:1} 50%{opacity:0.75}}
+  .think_box{animation:think_pulse 8s ease-in-out infinite}
+</style>
   <!-- Background -->
   <rect width="900" height="620" fill="#F8F9FA" rx="10"/>
   <!-- Title Bar -->
@@ -65,7 +83,7 @@
   <!-- Evolution Arrow -->
   <line x1="410" y1="295" x2="480" y2="295" stroke="#7F8C8D" stroke-width="2.5"/>
   <polygon points="480,290 492,295 480,300" fill="#7F8C8D"/>
-  <rect x="410" y="262" width="72" height="66" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
+  <rect class="think_box" x="410" y="262" width="72" height="66" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
   <text x="446" y="276" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Max</text>
   <text x="446" y="288" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">Heap for</text>
   <text x="446" y="300" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">dynamic</text>
@@ -82,19 +100,19 @@
   <text x="505" y="196" font-family="Arial" font-size="11" fill="#666">s = "aab" → heap: [(a,2),(b,1)]</text>
 
   <!-- Heap state steps -->
-  <rect x="505" y="204" width="362" height="36" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect class="h1" x="505" y="204" width="362" height="36" fill="#EAFAF1" stroke="#27AE60" stroke-width="2" rx="3"/>
   <text x="686" y="218" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Step 1: pop (a,2), result="a", dec→(a,1)</text>
   <text x="686" y="232" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">heap=[(b,1)], prev=(a,1)</text>
 
-  <rect x="505" y="244" width="362" height="36" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect class="h2" x="505" y="244" width="362" height="36" fill="#EAFAF1" stroke="#27AE60" stroke-width="2" rx="3"/>
   <text x="686" y="258" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Step 2: pop (b,1), result="ab", dec→(b,0)</text>
   <text x="686" y="272" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">push prev (a,1) back → heap=[(a,1)], prev=(b,0)</text>
 
-  <rect x="505" y="284" width="362" height="36" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <rect class="h3" x="505" y="284" width="362" height="36" fill="#EAFAF1" stroke="#27AE60" stroke-width="2" rx="3"/>
   <text x="686" y="298" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Step 3: pop (a,1), result="aba", dec→(a,0)</text>
   <text x="686" y="312" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">prev=(b,0) not pushed (freq=0). heap=[]</text>
 
-  <rect x="505" y="324" width="362" height="24" fill="#D5F5E3" stroke="#27AE60" rx="3"/>
+  <rect class="h4" x="505" y="324" width="362" height="24" fill="#D5F5E3" stroke="#27AE60" stroke-width="2" rx="3"/>
   <text x="686" y="340" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">result.length==s.length → return "aba" ✓</text>
 
   <!-- Heap visualization -->

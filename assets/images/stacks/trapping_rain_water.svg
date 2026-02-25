@@ -1,4 +1,13 @@
 <svg width="900" height="640" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes bar_hl{0%,15%{fill:#8FBC8F;stroke:#2ECC71}22%,45%{fill:#85C1E9;stroke:#2980B9;stroke-width:2}52%,100%{fill:#8FBC8F;stroke:#2ECC71}}
+  @keyframes step_hl{0%,12%{fill:#EBF5FB}18%,42%{fill:#D5E8D4;stroke:#27AE60}48%,100%{fill:#EBF5FB}}
+  .trw_bar{animation:bar_hl 8s ease-in-out infinite}
+  .trw_s1{animation:step_hl 8s 0s ease-in-out infinite}
+  .trw_s2{animation:step_hl 8s 1.2s ease-in-out infinite}
+  .trw_s3{animation:step_hl 8s 2.4s ease-in-out infinite}
+  .trw_s4{animation:step_hl 8s 3.6s ease-in-out infinite}
+</style>
   <rect width="900" height="640" fill="#F8F9FA" rx="10"/>
   <!-- Title Bar -->
   <rect width="900" height="55" fill="#2C3E50" rx="10"/>
@@ -30,9 +39,9 @@
 
   <!-- Mini bars -->
   <rect x="30" y="280" width="28" height="0" fill="#8FBC8F" stroke="#2ECC71" rx="2"/>
-  <rect x="62" y="252" width="28" height="28" fill="#8FBC8F" stroke="#2ECC71" rx="2"/>
-  <rect x="94" y="280" width="28" height="0" fill="#8FBC8F" stroke="#2ECC71" rx="2"/>
-  <rect x="126" y="224" width="28" height="56" fill="#8FBC8F" stroke="#2ECC71" rx="2"/>
+  <rect class="trw_bar" x="62" y="252" width="28" height="28" fill="#8FBC8F" stroke="#2ECC71" rx="2"/>
+  <rect class="trw_bar" x="94" y="280" width="28" height="0" fill="#8FBC8F" stroke="#2ECC71" rx="2"/>
+  <rect class="trw_bar" x="126" y="224" width="28" height="56" fill="#8FBC8F" stroke="#2ECC71" rx="2"/>
   <!-- Ground -->
   <line x1="25" y1="280" x2="230" y2="280" stroke="#2C3E50" stroke-width="2"/>
   <!-- Scan arrows -->
@@ -138,24 +147,24 @@
   <text x="641" y="220" font-family="Arial" font-size="10" fill="#7F8C8D" font-weight="bold">heights = [0,1,0,2,1,0,1,3,2,1,2,1]</text>
 
   <!-- Step 1 -->
-  <rect x="641" y="226" width="234" height="36" fill="#EBF5FB" stroke="#3498DB" rx="3"/>
+  <rect class="trw_s1" x="641" y="226" width="234" height="36" fill="#EBF5FB" stroke="#3498DB" rx="3"/>
   <text x="651" y="240" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">Step 1: L=0(h=0)  R=11(h=1)</text>
   <text x="651" y="254" font-family="Arial" font-size="10" fill="#2C3E50">h[L]≤h[R] → process LEFT side</text>
 
   <!-- Step 2 -->
-  <rect x="641" y="265" width="234" height="50" fill="#EBF5FB" stroke="#3498DB" rx="3"/>
+  <rect class="trw_s2" x="641" y="265" width="234" height="50" fill="#EBF5FB" stroke="#3498DB" rx="3"/>
   <text x="651" y="279" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">Step 2: h[L]=0 &lt; leftMax=0 → update leftMax</text>
   <text x="651" y="293" font-family="Arial" font-size="10" fill="#27AE60">h[L]=0 ≥ leftMax=0 → leftMax=0</text>
   <text x="651" y="307" font-family="Arial" font-size="10" fill="#27AE60">No water (bar = max so far). L++</text>
 
   <!-- Step 3 -->
-  <rect x="641" y="318" width="234" height="50" fill="#D5E8D4" stroke="#27AE60" rx="3"/>
+  <rect class="trw_s3" x="641" y="318" width="234" height="50" fill="#D5E8D4" stroke="#27AE60" rx="3"/>
   <text x="651" y="332" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">Step 3: L=1(h=1), leftMax=0</text>
   <text x="651" y="346" font-family="Arial" font-size="10" fill="#27AE60">h[L]=1 ≥ leftMax → leftMax=1, L++</text>
   <text x="651" y="360" font-family="Arial" font-size="10" fill="#2C3E50">L=2(h=0), leftMax=1</text>
 
   <!-- Step 4 -->
-  <rect x="641" y="371" width="234" height="36" fill="#D5E8D4" stroke="#27AE60" rx="3"/>
+  <rect class="trw_s4" x="641" y="371" width="234" height="36" fill="#D5E8D4" stroke="#27AE60" rx="3"/>
   <text x="651" y="385" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold">h[L]=0 &lt; leftMax=1 →</text>
   <text x="651" y="399" font-family="Arial" font-size="10" fill="#27AE60">water += 1−0 = 1 💧  L++</text>
 
