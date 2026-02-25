@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#fff}
+  .prob{font:13px sans-serif;fill:#333;text-anchor:middle;dominant-baseline:middle}
+  .sec{font:bold 13px sans-serif;fill:#333}
+  .nd{fill:#ddeeff;stroke:#6699cc;stroke-width:2}
+  .ndHL{fill:#ffd700;stroke:#cc8800;stroke-width:2.5}
+  .edge{stroke:#999;stroke-width:2;fill:none}
+  .lbl{font:12px monospace;text-anchor:middle;dominant-baseline:middle}
+  .cmp{font:12px sans-serif;fill:#555}
+  .evol{fill:#fffde7;stroke:#f0c040;stroke-width:1.5}
+  .ins{font:12px sans-serif;fill:#666;font-style:italic}
+  .tbl{font:12px sans-serif;fill:#333}
+  @keyframes ndVisit0{0%,10%{fill:#ddeeff}20%,40%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit1{0%,20%{fill:#ddeeff}30%,50%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit2{0%,30%{fill:#ddeeff}40%,60%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit3{0%,40%{fill:#ddeeff}50%,70%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit4{0%,50%{fill:#ddeeff}60%,80%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit5{0%,60%{fill:#ddeeff}70%,85%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit6{0%,70%{fill:#ddeeff}80%,90%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes sl0{0%,15%{opacity:0}20%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl1{0%,25%{opacity:0}30%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl2{0%,35%{opacity:0}40%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl3{0%,45%{opacity:0}50%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl4{0%,55%{opacity:0}60%,90%{opacity:1}100%{opacity:0}}
+  @keyframes ar0{0%,10%{fill:#fff5f5}20%,100%{fill:#ccffcc}}
+  @keyframes ar1{0%,25%{fill:#fff5f5}35%,100%{fill:#ccffcc}}
+  @keyframes ar2{0%,40%{fill:#fff5f5}50%,100%{fill:#ccffcc}}
+  @keyframes gainPulse{0%,100%{fill:#ddeeff}50%{fill:#90ee90}}
+  .n0{animation:ndVisit0 4s infinite}
+  .n1{animation:ndVisit1 4s infinite}
+  .n2{animation:ndVisit2 4s infinite}
+  .n3{animation:ndVisit3 4s infinite}
+  .n4{animation:ndVisit4 4s infinite}
+  .n5{animation:ndVisit5 4s infinite}
+  .n6{animation:ndVisit6 4s infinite}
+  .gn{animation:gainPulse 2s infinite}
+</style>
+<rect width="900" height="690" fill="#f8f9fa"/>
+<!-- Title bar -->
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="30" class="title" text-anchor="middle" dominant-baseline="middle">Max Path Sum: Any Node to Any Node</text>
+<!-- Problem strip -->
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="68" class="prob">Tree: -10→{9, 20→{15,7}} | Max path sum = 42 (path: 15→20→7 = 15+20+7)</text>
+
+<!-- Approach 1 block -->
+<rect x="16" y="92" width="868" height="218" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="30" y="110" class="sec" fill="#fff">Approach 1: O(n²) — Try All Node Pairs (with path computation)</text>
+<text x="38" y="138" class="cmp" fill="#c0392b">• For every pair of nodes, compute the path sum → O(n) per pair → O(n²) total</text>
+<text x="38" y="158" class="cmp" fill="#c0392b">• Path goes through LCA; need to find LCA and accumulate sum → very slow for large trees</text>
+
+<!-- Tree for Approach 1 -->
+<line x1="350" y1="185" x2="250" y2="240" class="edge"/>
+<line x1="350" y1="185" x2="500" y2="240" class="edge"/>
+<line x1="500" y1="240" x2="430" y2="285" class="edge"/>
+<line x1="500" y1="240" x2="570" y2="285" class="edge"/>
+<circle cx="350" cy="185" r="22" class="nd n1"/>
+<text x="350" y="185" class="lbl">-10</text>
+<circle cx="250" cy="240" r="22" class="nd n2"/>
+<text x="250" y="240" class="lbl">9</text>
+<circle cx="500" cy="240" r="22" class="nd n3"/>
+<text x="500" y="240" class="lbl">20</text>
+<circle cx="430" cy="285" r="22" class="nd n4"/>
+<text x="430" y="285" class="lbl">15</text>
+<circle cx="570" cy="285" r="22" class="nd n5"/>
+<text x="570" y="285" class="lbl">7</text>
+
+<text x="680" y="185" class="cmp" fill="#c0392b" style="animation:sl0 4s infinite">Pairs tried: (9,20),(9,15),(9,7)...</text>
+<text x="680" y="205" class="cmp" fill="#c0392b" style="animation:sl1 4s infinite">15→20→7 = 42 ✓</text>
+
+<!-- Brute force box -->
+<rect x="670" y="220" width="200" height="55" fill="#ffe0e0" stroke="#E74C3C" rx="4"/>
+<text x="770" y="238" class="cmp" text-anchor="middle">All pairs: O(n²)</text>
+<text x="770" y="254" class="cmp" text-anchor="middle">Path sum: O(n) each</text>
+<text x="770" y="270" class="cmp" text-anchor="middle" font-weight="bold">Total: O(n²)</text>
+
+<!-- Evolution arrow -->
+<line x1="450" y1="316" x2="450" y2="340" stroke="#f0c040" stroke-width="2"/>
+<polygon points="450,348 444,336 456,336" fill="#f0c040"/>
+<rect x="80" y="310" width="740" height="32" fill="#fffde7" stroke="#f0c040" stroke-width="1.5" rx="6"/>
+<text x="450" y="328" class="ins" text-anchor="middle" dominant-baseline="middle">Key Insight: gain(node) = max(0, val + max(gain(left), gain(right))); max_path = left_gain + node.val + right_gain</text>
+
+<!-- Approach 2 block -->
+<rect x="16" y="348" width="868" height="214" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="348" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="362" width="868" height="14" fill="#27AE60"/>
+<text x="30" y="366" class="sec" fill="#fff">Approach 2: O(n) — DFS Gain Calculation + Global Max Tracking</text>
+
+<!-- Tree for Approach 2 -->
+<line x1="350" y1="400" x2="250" y2="455" class="edge"/>
+<line x1="350" y1="400" x2="500" y2="455" class="edge"/>
+<line x1="500" y1="455" x2="430" y2="505" class="edge" stroke="#27AE60" stroke-width="3"/>
+<line x1="500" y1="455" x2="570" y2="505" class="edge" stroke="#27AE60" stroke-width="3"/>
+<!-- Nodes -->
+<circle cx="350" cy="400" r="22" class="nd n1"/>
+<text x="350" y="400" class="lbl">-10</text>
+<circle cx="250" cy="455" r="22" class="nd n2"/>
+<text x="250" y="455" class="lbl">9</text>
+<circle cx="500" cy="455" r="22" class="nd n3 gn"/>
+<text x="500" y="455" class="lbl">20</text>
+<circle cx="430" cy="505" r="22" class="nd n4 gn"/>
+<text x="430" y="505" class="lbl">15</text>
+<circle cx="570" cy="505" r="22" class="nd n5 gn"/>
+<text x="570" y="505" class="lbl">7</text>
+
+<!-- Gain labels -->
+<text x="390" y="515" class="cmp" fill="#27AE60" font-weight="bold" style="animation:sl0 4s infinite">gain=15</text>
+<text x="590" y="515" class="cmp" fill="#27AE60" font-weight="bold" style="animation:sl1 4s infinite">gain=7</text>
+<text x="540" y="445" class="cmp" fill="#27AE60" font-weight="bold" style="animation:sl2 4s infinite">gain=20+max(15,7)=35</text>
+<text x="160" y="445" class="cmp" fill="#888" style="animation:sl3 4s infinite">gain=max(0,9)=9</text>
+
+<!-- Result box -->
+<rect x="650" y="400" width="220" height="80" fill="#e8ffe8" stroke="#27AE60" rx="6"/>
+<text x="760" y="420" class="cmp" text-anchor="middle" font-weight="bold">At node 20:</text>
+<text x="760" y="438" class="cmp" text-anchor="middle">left_gain=15, right_gain=7</text>
+<text x="760" y="456" class="cmp" text-anchor="middle">path=15+20+7=42</text>
+<text x="760" y="476" class="cmp" text-anchor="middle" font-weight="bold" fill="#c0392b" style="animation:sl4 4s infinite">global_max = 42 ✓</text>
+
+<!-- Complexity table -->
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="4"/>
+<rect x="16" y="578" width="868" height="24" fill="#f0f0f0" rx="4"/>
+<rect x="16" y="590" width="868" height="12" fill="#f0f0f0"/>
+<text x="200" y="592" class="tbl" text-anchor="middle" font-weight="bold">Approach</text>
+<text x="500" y="592" class="tbl" text-anchor="middle" font-weight="bold">Time</text>
+<text x="720" y="592" class="tbl" text-anchor="middle" font-weight="bold">Space</text>
+<rect x="16" y="602" width="868" height="24" fill="#fff5f5"/>
+<text x="200" y="616" class="tbl" text-anchor="middle">O(n²) - All Node Pairs</text>
+<text x="500" y="616" class="tbl" text-anchor="middle">O(n²)</text>
+<text x="720" y="616" class="tbl" text-anchor="middle">O(n)</text>
+<rect x="16" y="626" width="868" height="24" fill="#f0fff0"/>
+<text x="200" y="640" class="tbl" text-anchor="middle">O(n) - DFS Gain + Global Max</text>
+<text x="500" y="640" class="tbl" text-anchor="middle">O(n)</text>
+<text x="720" y="640" class="tbl" text-anchor="middle">O(h) stack</text>
+<rect x="16" y="650" width="868" height="26" fill="#fff8e1"/>
+<text x="450" y="664" class="tbl" text-anchor="middle" fill="#e65100">gain(node)=max(0, node.val+max(gain(L),gain(R))); global_max=max(global_max, L_gain+node.val+R_gain)</text>
+</svg>

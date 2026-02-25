@@ -1,5 +1,8 @@
 # Jump Game (Min Jumps to Reach End) – Detailed Explanation
 
+![](../../assets/images/dynamic_programming/jump_game.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

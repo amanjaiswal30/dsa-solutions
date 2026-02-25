@@ -1,5 +1,8 @@
 # 🔹 Min Stack
 
+![](../../assets/images/stacks/min_stack.svg)
+
+
 ---
 
 ## 📌 Problem Statement

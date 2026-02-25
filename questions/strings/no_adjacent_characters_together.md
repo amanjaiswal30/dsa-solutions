@@ -1,5 +1,8 @@
 # 🔹 Problem: No Adjacent Characters Together
 
+![](../../assets/images/strings/no_adjacent_characters_together.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

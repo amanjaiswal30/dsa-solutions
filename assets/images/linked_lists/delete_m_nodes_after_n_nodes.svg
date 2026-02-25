@@ -1,0 +1,98 @@
+<svg width="900" height="590" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="590" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="17" font-weight="bold" fill="white">Delete N Nodes After M Nodes of a Linked List</text>
+  <rect x="800" y="12" width="82" height="28" fill="#27AE60" rx="14"/>
+  <text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Easy</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">1→2→3→4→5→6→7→8→9→10, M=2, N=3</text>
+  <text x="500" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#27AE60">→  1→2→6→7</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Skip M=2 nodes (1,2), delete N=3 nodes (3,4,5), repeat: skip (6,7), delete (8,9,10)</text>
+
+  <!-- Approach 1: Iterative -->
+  <rect x="15" y="115" width="390" height="330" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="390" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="390" height="15" fill="#E74C3C"/>
+  <text x="210" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Iterative</text>
+  <text x="210" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(n) time | O(1) space</text>
+
+  <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Traverse, skip M, delete N, repeat:</text>
+  <rect x="30" y="184" width="360" height="92" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">curr = head (node 1)</text>
+  <text x="210" y="215" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Skip M=2: curr moves to node 2</text>
+  <text x="210" y="230" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Delete N=3: temp skips 3,4,5 → lands at 6</text>
+  <text x="210" y="245" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">curr.next = temp (node 2 points to node 6)</text>
+  <text x="210" y="263" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">Repeat from node 6 → skip 6,7 → delete 8,9,10</text>
+
+  <text x="30" y="300" font-family="Arial" font-size="11" fill="#555">Pointer pattern:</text>
+  <rect x="30" y="306" width="360" height="36" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="322" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">for (i=1; i&lt;M) skip; temp=curr.next;</text>
+  <text x="210" y="336" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">for (i=0; i&lt;N) delete; curr.next=temp;</text>
+
+  <text x="30" y="362" font-family="Arial" font-size="11" fill="#333">Straightforward but nested loops per group</text>
+  <text x="30" y="380" font-family="Arial" font-size="11" fill="#888">Same O(n) as recursive but uses O(1) stack</text>
+  <text x="30" y="398" font-family="Arial" font-size="11" fill="#888">Easier to debug than recursive version</text>
+  <text x="30" y="416" font-family="Arial" font-size="11" fill="#888">Handles M=0, N=0 edge cases cleanly</text>
+  <text x="30" y="434" font-family="Arial" font-size="11" fill="#888">curr=temp continues from after deleted section</text>
+
+  <!-- Evolution Arrow -->
+  <line x1="410" y1="268" x2="480" y2="268" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon points="480,263 492,268 480,273" fill="#7F8C8D"/>
+  <rect x="410" y="240" width="72" height="56" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
+  <text x="446" y="254" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Same</text>
+  <text x="446" y="266" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">logic, use</text>
+  <text x="446" y="278" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">recursion!</text>
+
+  <!-- Approach 2: Recursive -->
+  <rect x="492" y="115" width="393" height="330" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="492" y="115" width="393" height="40" fill="#27AE60" rx="7"/>
+  <rect x="492" y="140" width="393" height="15" fill="#27AE60"/>
+  <text x="688" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Recursive ⭐</text>
+  <text x="688" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(n) time | O(n/M) stack space</text>
+
+  <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Recursively skip M then delete N:</text>
+  <rect x="505" y="184" width="362" height="88" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">skip M nodes (curr advances M steps)</text>
+  <text x="686" y="215" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">if curr==null → return head</text>
+  <text x="686" y="230" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">advance temp N steps (deletes N nodes)</text>
+  <text x="686" y="245" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">curr.next = recurse(temp, M, N)</text>
+  <text x="686" y="263" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">return head ✓</text>
+
+  <text x="505" y="290" font-family="Arial" font-size="11" fill="#555">Recursion trace (M=2, N=3):</text>
+  <rect x="505" y="296" width="362" height="52" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="312" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">call(1, 2, 3) → skip to 2, delete 3,4,5 → recurse(6)</text>
+  <text x="686" y="327" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">call(6, 2, 3) → skip to 7, delete 8,9,10 → recurse(null)</text>
+  <text x="686" y="342" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">call(null) → returns null → Result: 1→2→6→7 ✓</text>
+
+  <text x="505" y="374" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">Clean and expressive code!</text>
+  <text x="505" y="392" font-family="Arial" font-size="11" fill="#888">O(n/M) stack frames — one per M-segment</text>
+  <text x="505" y="410" font-family="Arial" font-size="11" fill="#888">Base case: head==null terminates recursion</text>
+  <text x="505" y="428" font-family="Arial" font-size="11" fill="#888">Iterative preferred for very long lists</text>
+  <text x="505" y="446" font-family="Arial" font-size="11" fill="#888">Both approaches: same O(n) time</text>
+
+  <!-- Complexity Table -->
+  <rect x="15" y="457" width="870" height="120" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+  <rect x="15" y="457" width="870" height="30" fill="#2C3E50" rx="7"/>
+  <rect x="15" y="472" width="870" height="15" fill="#2C3E50"/>
+  <text x="450" y="477" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+  <line x1="15" y1="487" x2="885" y2="487" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="487" width="870" height="25" fill="#ECF0F1"/>
+  <text x="200" y="504" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+  <text x="500" y="504" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+  <text x="750" y="504" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+  <line x1="15" y1="512" x2="885" y2="512" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="512" width="870" height="24" fill="#FDEDEC"/>
+  <text x="200" y="528" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Iterative</text>
+  <text x="500" y="528" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(n)</text>
+  <text x="750" y="528" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(1)</text>
+  <line x1="15" y1="536" x2="885" y2="536" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="536" width="870" height="24" fill="#EAFAF1"/>
+  <text x="200" y="552" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Recursive ⭐</text>
+  <text x="500" y="552" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n)</text>
+  <text x="750" y="552" font-family="Arial" font-size="11" fill="#E67E22" font-weight="bold" text-anchor="middle">O(n/M) stack</text>
+  <line x1="370" y1="487" x2="370" y2="560" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="620" y1="487" x2="620" y2="560" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

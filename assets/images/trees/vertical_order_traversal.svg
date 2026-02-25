@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#1a1a2e}
+  .prob{font:13px sans-serif;fill:#444}
+  .sec{font:bold 13px sans-serif}
+  .nd{fill:#ddeeff;stroke:#6699cc;stroke-width:2}
+  .lbl{font:12px monospace;fill:#333;text-anchor:middle;dominant-baseline:middle}
+  .cmp{font:11px sans-serif;fill:#333}
+  .evol{fill:none;stroke:#888;stroke-width:1.5;stroke-dasharray:5,3}
+  .ins{font:11px sans-serif;fill:#555;font-style:italic}
+  .tbl{font:11px sans-serif;fill:#333;text-anchor:middle}
+  .edge{stroke:#999;stroke-width:1.5;fill:none}
+  .col{stroke:#9b59b6;stroke-width:1;stroke-dasharray:3,3;fill:none}
+
+  @keyframes ndVisit{0%,100%{fill:#ddeeff;stroke:#6699cc}40%,60%{fill:#ffd700;stroke:#F39C12}}
+  @keyframes ndGreen{0%,100%{fill:#ddeeff;stroke:#6699cc}40%,60%{fill:#ccffcc;stroke:#27AE60}}
+  @keyframes sl0{0%,19%{opacity:1}20%,100%{opacity:0}}
+  @keyframes sl1{0%,19%{opacity:0}20%,39%{opacity:1}40%,100%{opacity:0}}
+  @keyframes sl2{0%,39%{opacity:0}40%,59%{opacity:1}60%,100%{opacity:0}}
+  @keyframes sl3{0%,59%{opacity:0}60%,79%{opacity:1}80%,100%{opacity:0}}
+  @keyframes sl4{0%,79%{opacity:0}80%,100%{opacity:1}}
+  .sl0{animation:sl0 9s ease-in-out infinite}
+  .sl1{animation:sl1 9s ease-in-out infinite}
+  .sl2{animation:sl2 9s ease-in-out infinite}
+  .sl3{animation:sl3 9s ease-in-out infinite}
+  .sl4{animation:sl4 9s ease-in-out infinite}
+  .np0{animation:ndVisit 7s 0s ease-in-out infinite}
+  .np1{animation:ndVisit 7s 0.5s ease-in-out infinite}
+  .np2{animation:ndVisit 7s 1.0s ease-in-out infinite}
+  .np3{animation:ndVisit 7s 1.5s ease-in-out infinite}
+  .ng0{animation:ndGreen 7s 0s ease-in-out infinite}
+  .ng1{animation:ndGreen 7s 0.5s ease-in-out infinite}
+  .ng2{animation:ndGreen 7s 1.0s ease-in-out infinite}
+  .ng3{animation:ndGreen 7s 1.5s ease-in-out infinite}
+</style>
+
+<rect width="900" height="690" fill="#f8f9fa" rx="8"/>
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="32" text-anchor="middle" class="title" fill="white">Vertical Order Traversal of Binary Tree</text>
+
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="72" text-anchor="middle" class="prob">Print nodes column by column, left to right. Nodes in same column ordered top-to-bottom (by row).</text>
+
+<!-- APPROACH 1 -->
+<rect x="16" y="92" width="868" height="218" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="32" y="111" class="sec" fill="white">Approach 1: BFS with column index — store (col, val) pairs, sort by col  O(n log n) time, O(n) space</text>
+
+<!-- Tree with column markers -->
+<g transform="translate(280,126)">
+  <!-- column guide lines -->
+  <line x1="-160" y1="-10" x2="-160" y2="195" class="col"/>
+  <line x1="-80" y1="-10" x2="-80" y2="195" class="col"/>
+  <line x1="0" y1="-10" x2="0" y2="195" class="col"/>
+  <line x1="80" y1="-10" x2="80" y2="195" class="col"/>
+  <line x1="160" y1="-10" x2="160" y2="195" class="col"/>
+  <!-- column labels -->
+  <text x="-160" y="-14" text-anchor="middle" class="cmp" fill="#9b59b6" font-size="9">col-2</text>
+  <text x="-80" y="-14" text-anchor="middle" class="cmp" fill="#9b59b6" font-size="9">col-1</text>
+  <text x="0" y="-14" text-anchor="middle" class="cmp" fill="#9b59b6" font-size="9">col 0</text>
+  <text x="80" y="-14" text-anchor="middle" class="cmp" fill="#9b59b6" font-size="9">col+1</text>
+  <text x="160" y="-14" text-anchor="middle" class="cmp" fill="#9b59b6" font-size="9">col+2</text>
+  <!-- edges -->
+  <line x1="0" y1="22" x2="-80" y2="72" class="edge"/>
+  <line x1="0" y1="22" x2="80" y2="72" class="edge"/>
+  <line x1="-80" y1="94" x2="-160" y2="152" class="edge"/>
+  <line x1="-80" y1="94" x2="0" y2="152" class="edge"/>
+  <line x1="80" y1="94" x2="0" y2="152" class="edge"/>
+  <line x1="80" y1="94" x2="160" y2="152" class="edge"/>
+  <!-- nodes -->
+  <circle class="np2 nd" cx="0" cy="0" r="22"/><text x="0" y="0" class="lbl">1</text>
+  <circle class="np1 nd" cx="-80" cy="72" r="22"/><text x="-80" y="72" class="lbl">2</text>
+  <circle class="np2 nd" cx="80" cy="72" r="22"/><text x="80" y="72" class="lbl">3</text>
+  <circle class="np0 nd" cx="-160" cy="152" r="22"/><text x="-160" y="152" class="lbl">4</text>
+  <circle class="np0 nd" cx="0" cy="152" r="22"/><text x="0" y="152" class="lbl">5</text>
+  <circle class="np1 nd" cx="0" cy="152" r="22"/><text x="0" y="152" class="lbl">5</text>
+  <circle class="np1 nd" cx="160" cy="152" r="22"/><text x="160" y="152" class="lbl">6</text>
+  <!-- col annotations -->
+  <text x="-80" y="48" text-anchor="middle" class="cmp" fill="#E74C3C" font-size="9">col=-1</text>
+  <text x="80" y="48" text-anchor="middle" class="cmp" fill="#E74C3C" font-size="9">col=+1</text>
+  <text x="-160" y="178" text-anchor="middle" class="cmp" fill="#E74C3C" font-size="9">col=-2</text>
+  <text x="0" y="178" text-anchor="middle" class="cmp" fill="#E74C3C" font-size="9">col=0</text>
+  <text x="160" y="178" text-anchor="middle" class="cmp" fill="#E74C3C" font-size="9">col=+2</text>
+</g>
+
+<text x="580" y="140" class="cmp" font-weight="bold">bfs_vertical(root):</text>
+<text x="580" y="157" class="cmp">  from collections import defaultdict</text>
+<text x="580" y="174" class="cmp">  q = deque([(root, 0)])  # (node, col)</text>
+<text x="580" y="191" class="cmp">  col_map = defaultdict(list)</text>
+<text x="580" y="208" class="cmp">  while q:</text>
+<text x="580" y="225" class="cmp">    node, col = q.popleft()</text>
+<text x="580" y="242" class="cmp">    col_map[col].append(node.val)</text>
+<text x="580" y="259" class="cmp">    if node.left:  q.append((node.left,  col-1))</text>
+<text x="580" y="276" class="cmp">    if node.right: q.append((node.right, col+1))</text>
+<text x="580" y="293" class="cmp">  return [col_map[c] for c in sorted(col_map)]</text>
+
+<text x="24" y="295" class="cmp sl0">① BFS: track (node, column). Root=col 0.</text>
+<text x="24" y="295" class="cmp sl1">② Left child: col-1, Right child: col+1</text>
+<text x="24" y="295" class="cmp sl2">③ col_map: {-2:[4], -1:[2], 0:[1,5], 1:[3], 2:[6]}</text>
+<text x="24" y="295" class="cmp sl3">④ Sort by key → iterate columns left to right</text>
+<text x="24" y="295" class="cmp sl4" fill="#E74C3C">⑤ Output: [[4],[2],[1,5],[3],[6]]</text>
+
+<!-- Arrow -->
+<line x1="450" y1="312" x2="450" y2="330" class="evol"/>
+<polygon points="450,332 444,320 456,320" fill="#888"/>
+<rect x="250" y="315" width="400" height="24" fill="#fffde7" stroke="#f0c040" stroke-width="1" rx="4"/>
+<text x="450" y="331" text-anchor="middle" class="ins">DFS: track (col, row) coords, sort all nodes then group by column</text>
+
+<!-- APPROACH 2 -->
+<rect x="16" y="348" width="868" height="214" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="348" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="362" width="868" height="14" fill="#27AE60"/>
+<text x="32" y="367" class="sec" fill="white">Approach 2: DFS with (col, row) coordinates — sort nodes, then group by column  O(n log n) time, O(n) space</text>
+
+<text x="24" y="398" class="cmp" font-weight="bold">dfs_vertical(root):</text>
+<text x="24" y="415" class="cmp">  nodes = []  # collect (col, row, val)</text>
+<text x="24" y="432" class="cmp">  def dfs(node, col, row):</text>
+<text x="24" y="449" class="cmp">    if not node: return</text>
+<text x="24" y="466" class="cmp">    nodes.append((col, row, node.val))</text>
+<text x="24" y="483" class="cmp">    dfs(node.left,  col-1, row+1)</text>
+<text x="24" y="500" class="cmp">    dfs(node.right, col+1, row+1)</text>
+<text x="24" y="517" class="cmp">  dfs(root, 0, 0)</text>
+<text x="24" y="534" class="cmp">  nodes.sort()  # sort by col, then row, then val</text>
+<text x="24" y="551" class="cmp">  # group by column...</text>
+
+<!-- result boxes -->
+<text x="440" y="398" class="cmp" font-weight="bold" fill="#27AE60">Sorted nodes (col, row, val):</text>
+<text x="440" y="416" class="cmp">(-2,2,4), (-1,1,2), (0,0,1), (0,2,5), (1,1,3), (2,2,6)</text>
+
+<text x="440" y="445" class="cmp" font-weight="bold" fill="#27AE60">Output columns:</text>
+<g transform="translate(440,455)">
+  <rect x="0" y="0" width="55" height="36" fill="#ccffcc" stroke="#27AE60" rx="3"/>
+  <rect x="65" y="0" width="55" height="36" fill="#ccffcc" stroke="#27AE60" rx="3"/>
+  <rect x="130" y="0" width="55" height="36" fill="#ccffcc" stroke="#27AE60" rx="3"/>
+  <rect x="195" y="0" width="55" height="36" fill="#ccffcc" stroke="#27AE60" rx="3"/>
+  <rect x="260" y="0" width="55" height="36" fill="#ccffcc" stroke="#27AE60" rx="3"/>
+  <text x="27" y="15" text-anchor="middle" class="lbl">[4]</text>
+  <text x="27" y="29" text-anchor="middle" class="cmp" font-size="9">col=-2</text>
+  <text x="92" y="15" text-anchor="middle" class="lbl">[2]</text>
+  <text x="92" y="29" text-anchor="middle" class="cmp" font-size="9">col=-1</text>
+  <text x="157" y="15" text-anchor="middle" class="lbl">[1,5]</text>
+  <text x="157" y="29" text-anchor="middle" class="cmp" font-size="9">col=0</text>
+  <text x="222" y="15" text-anchor="middle" class="lbl">[3]</text>
+  <text x="222" y="29" text-anchor="middle" class="cmp" font-size="9">col=+1</text>
+  <text x="287" y="15" text-anchor="middle" class="lbl">[6]</text>
+  <text x="287" y="29" text-anchor="middle" class="cmp" font-size="9">col=+2</text>
+</g>
+
+<text x="440" y="520" class="cmp sl0">① DFS collects: (col, row, val) tuples</text>
+<text x="440" y="520" class="cmp sl1">② Sort: primary=col, secondary=row, tertiary=val</text>
+<text x="440" y="520" class="cmp sl2">③ Nodes in same col&amp;row: sort by value (tie-break)</text>
+<text x="440" y="520" class="cmp sl3">④ Group consecutive same-col entries</text>
+<text x="440" y="520" class="cmp sl4" fill="#27AE60">⑤ Output: [[4],[2],[1,5],[3],[6]]</text>
+
+<!-- Complexity table -->
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="6"/>
+<rect x="16" y="578" width="868" height="26" fill="#f0f0f0" rx="6"/>
+<text x="180" y="595" class="tbl" font-weight="bold">Approach</text>
+<text x="400" y="595" class="tbl" font-weight="bold">Time</text>
+<text x="570" y="595" class="tbl" font-weight="bold">Space</text>
+<text x="760" y="595" class="tbl" font-weight="bold">Notes</text>
+<rect x="16" y="604" width="868" height="24" fill="#fff5f5"/>
+<text x="180" y="620" class="tbl">BFS + sort by col</text>
+<text x="400" y="620" class="tbl">O(n log n)</text>
+<text x="570" y="620" class="tbl">O(n)</text>
+<text x="760" y="620" class="tbl">BFS preserves row order naturally</text>
+<rect x="16" y="628" width="868" height="24" fill="#f0fff0"/>
+<text x="180" y="644" class="tbl">DFS with (col, row, val) sort</text>
+<text x="400" y="644" class="tbl">O(n log n)</text>
+<text x="570" y="644" class="tbl">O(n)</text>
+<text x="760" y="644" class="tbl">Handles same-position tie-breaking by value</text>
+<rect x="16" y="652" width="868" height="24" fill="#fff"/>
+<text x="180" y="668" class="tbl" fill="#555">n = nodes; sorting dominates time complexity</text>
+<text x="600" y="668" class="tbl" fill="#555">DFS approach handles collision ties more precisely</text>
+</svg>

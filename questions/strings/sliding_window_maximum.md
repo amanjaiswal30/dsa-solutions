@@ -1,5 +1,8 @@
 # 🔹 Problem: Sliding Window Maximum
 
+![](../../assets/images/strings/sliding_window_maximum.svg)
+
+
 **Difficulty:** Hard ⚡
 
 ---

@@ -1,5 +1,8 @@
 # 🔹 Detect and Remove Loop in a Linked List
 
+![](../../assets/images/linked_lists/detect_and_remove_loop.svg)
+
+
 ---
 
 ## 📌 Problem Statement

@@ -1,5 +1,8 @@
 # 0/1 Knapsack Problem – Detailed Explanation and Approaches
 
+![](../../assets/images/dynamic_programming/knapsack_0_1.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

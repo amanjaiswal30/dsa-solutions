@@ -1,5 +1,8 @@
 # Climbing Stairs Problem – Detailed Explanation and Approaches
 
+![](../../assets/images/dynamic_programming/climbing_stairs.svg)
+
+
 **Difficulty:** Easy ✅
 
 ---

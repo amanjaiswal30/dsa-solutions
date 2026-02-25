@@ -1,5 +1,8 @@
 # Longest Common Substring – Detailed Explanation and Approaches
 
+![](../../assets/images/dynamic_programming/longest_common_substring.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

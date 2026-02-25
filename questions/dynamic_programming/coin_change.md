@@ -1,5 +1,8 @@
 # Coin Change (Unbounded) – Detailed Explanation and Approaches
 
+![](../../assets/images/dynamic_programming/coin_change.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

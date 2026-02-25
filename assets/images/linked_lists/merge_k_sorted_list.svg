@@ -1,0 +1,122 @@
+<svg width="900" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="600" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Merge K Sorted Linked Lists</text>
+  <rect x="820" y="12" width="62" height="28" fill="#E74C3C" rx="14"/>
+  <text x="851" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Hard</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">k=3 lists: [1→4→5], [1→3→4], [2→6]</text>
+  <text x="430" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#27AE60">→  1→1→2→3→4→4→5→6</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Merge all K sorted lists into one sorted list. N = total nodes across all lists.</text>
+
+  <!-- Approach 1: Brute Force -->
+  <rect x="15" y="115" width="255" height="315" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="255" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="255" height="15" fill="#E74C3C"/>
+  <text x="142" y="139" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Brute Force</text>
+  <text x="142" y="152" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(N log N) | O(N) space</text>
+
+  <text x="30" y="177" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">Collect all values, sort, rebuild:</text>
+  <rect x="30" y="183" width="226" height="72" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="143" y="199" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Extract: [1,4,5,1,3,4,2,6]</text>
+  <text x="143" y="214" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Sort: [1,1,2,3,4,4,5,6]</text>
+  <text x="143" y="232" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">Build new list ✓</text>
+
+  <text x="30" y="278" font-family="Arial" font-size="10" fill="#E74C3C">⚠ Ignores sorted property!</text>
+  <text x="30" y="295" font-family="Arial" font-size="10" fill="#888">Extra O(N) array needed</text>
+  <text x="30" y="312" font-family="Arial" font-size="10" fill="#888">Sort cost O(N log N)</text>
+  <text x="30" y="329" font-family="Arial" font-size="10" fill="#888">Creates all-new nodes</text>
+  <text x="30" y="346" font-family="Arial" font-size="10" fill="#888">Sequential merge is</text>
+  <text x="30" y="363" font-family="Arial" font-size="10" fill="#888">better — O(kN) but</text>
+  <text x="30" y="380" font-family="Arial" font-size="10" fill="#888">reuses existing nodes</text>
+  <text x="30" y="397" font-family="Arial" font-size="10" fill="#888">Min-heap is optimal</text>
+  <text x="30" y="414" font-family="Arial" font-size="10" fill="#888">at O(N log k) time</text>
+
+  <!-- Arrow 1 -->
+  <line x1="274" y1="272" x2="296" y2="272" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="294,267 305,272 294,277" fill="#7F8C8D"/>
+
+  <!-- Approach 2: Sequential -->
+  <rect x="308" y="115" width="255" height="315" fill="#FFFFFF" stroke="#E67E22" stroke-width="2" rx="7"/>
+  <rect x="308" y="115" width="255" height="40" fill="#E67E22" rx="7"/>
+  <rect x="308" y="140" width="255" height="15" fill="#E67E22"/>
+  <text x="435" y="139" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Sequential</text>
+  <text x="435" y="152" font-family="Arial" font-size="10" fill="#FDEBD0" text-anchor="middle">O(kN) time | O(1) space</text>
+
+  <text x="322" y="177" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">Merge one list at a time:</text>
+  <rect x="322" y="183" width="228" height="72" fill="#FEF9E7" stroke="#E67E22" rx="3"/>
+  <text x="436" y="199" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">result = list[0] = 1→4→5</text>
+  <text x="436" y="214" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">merge with list[1]: 1→1→3→4→4→5</text>
+  <text x="436" y="232" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">merge with list[2]: 1→1→2→3→4→4→5→6 ✓</text>
+
+  <text x="322" y="278" font-family="Arial" font-size="10" fill="#E67E22">O(kN) — re-traverses merged list</text>
+  <text x="322" y="295" font-family="Arial" font-size="10" fill="#888">O(1) space — no extra structure</text>
+  <text x="322" y="312" font-family="Arial" font-size="10" fill="#888">k=3: 3 merge passes total</text>
+  <text x="322" y="329" font-family="Arial" font-size="10" fill="#888">Gets slower as k grows</text>
+  <text x="322" y="346" font-family="Arial" font-size="10" fill="#888">For large k, use min-heap</text>
+  <text x="322" y="363" font-family="Arial" font-size="10" fill="#888">or divide &amp; conquer instead</text>
+  <text x="322" y="380" font-family="Arial" font-size="10" fill="#888">Simple to understand</text>
+  <text x="322" y="397" font-family="Arial" font-size="10" fill="#888">merging two lists at a time</text>
+
+  <!-- Arrow 2 -->
+  <line x1="567" y1="272" x2="590" y2="272" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="588,267 599,272 588,277" fill="#7F8C8D"/>
+
+  <!-- Approach 3: Min Heap -->
+  <rect x="602" y="115" width="283" height="315" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="602" y="115" width="283" height="40" fill="#27AE60" rx="7"/>
+  <rect x="602" y="140" width="283" height="15" fill="#27AE60"/>
+  <text x="743" y="139" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 3: Min Heap ⭐</text>
+  <text x="743" y="152" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(N log k) time | O(k) space</text>
+
+  <text x="617" y="177" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">Use priority queue of k list heads:</text>
+  <rect x="617" y="183" width="254" height="88" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="744" y="199" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Init heap with heads: {1(L1), 1(L2), 2(L3)}</text>
+  <text x="744" y="214" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Poll min=1(L1) → push 4(L1): {1,2,4}</text>
+  <text x="744" y="229" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Poll min=1(L2) → push 3(L2): {2,3,4}</text>
+  <text x="744" y="244" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Poll 2(L3) → push 6(L3): {3,4,6}</text>
+  <text x="744" y="263" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">Continue → 1→1→2→3→4→4→5→6 ✓</text>
+
+  <text x="617" y="294" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">Heap state at each step:</text>
+  <rect x="617" y="300" width="254" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="744" y="315" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Always k elements in heap → log k per op</text>
+  <text x="744" y="327" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">N total extractions × log k = O(N log k)</text>
+
+  <text x="617" y="350" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold">Only k nodes in heap at once!</text>
+  <text x="617" y="367" font-family="Arial" font-size="10" fill="#888">Always picks global minimum efficiently</text>
+  <text x="617" y="384" font-family="Arial" font-size="10" fill="#888">O(k) space vs O(N) for brute force</text>
+  <text x="617" y="401" font-family="Arial" font-size="10" fill="#888">Divide &amp; Conquer also O(N log k)</text>
+  <text x="617" y="418" font-family="Arial" font-size="10" fill="#888">but O(1) space for lists (recursive)</text>
+  <text x="617" y="435" font-family="Arial" font-size="10" fill="#888">Heap is simpler to implement</text>
+
+  <!-- Complexity Table -->
+  <rect x="15" y="442" width="870" height="145" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+  <rect x="15" y="442" width="870" height="30" fill="#2C3E50" rx="7"/>
+  <rect x="15" y="457" width="870" height="15" fill="#2C3E50"/>
+  <text x="450" y="462" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+  <line x1="15" y1="472" x2="885" y2="472" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="472" width="870" height="25" fill="#ECF0F1"/>
+  <text x="200" y="489" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+  <text x="500" y="489" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+  <text x="750" y="489" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+  <line x1="15" y1="497" x2="885" y2="497" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="497" width="870" height="24" fill="#FDEDEC"/>
+  <text x="200" y="513" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Brute Force (Collect + Sort)</text>
+  <text x="500" y="513" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(N log N)</text>
+  <text x="750" y="513" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(N)</text>
+  <line x1="15" y1="521" x2="885" y2="521" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="521" width="870" height="24" fill="#FEF9E7"/>
+  <text x="200" y="537" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Sequential Merge</text>
+  <text x="500" y="537" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">O(kN)</text>
+  <text x="750" y="537" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(1)</text>
+  <line x1="15" y1="545" x2="885" y2="545" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="545" width="870" height="24" fill="#EAFAF1"/>
+  <text x="200" y="561" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Min Heap / Priority Queue ⭐</text>
+  <text x="500" y="561" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(N log k)</text>
+  <text x="750" y="561" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(k)</text>
+  <line x1="370" y1="472" x2="370" y2="569" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="620" y1="472" x2="620" y2="569" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

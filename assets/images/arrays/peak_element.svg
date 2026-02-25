@@ -1,0 +1,131 @@
+<svg width="900" height="690" xmlns="http://www.w3.org/2000/svg">
+<style>
+/* Approach 1: Linear - pointer sweeps, checks arr[i] vs arr[i+1] */
+@keyframes lin_ptr{0%,8%{transform:translateX(0)}25%,33%{transform:translateX(48px)}50%,58%{transform:translateX(96px)}80%,100%{transform:translateX(0)}}
+.lp{animation:lin_ptr 5s ease-in-out infinite}
+@keyframes lin_l0{0%,8%{opacity:1}25%,100%{opacity:0}}
+@keyframes lin_l1{0%,24%{opacity:0}25%,50%{opacity:1}51%,100%{opacity:0}}
+@keyframes lin_l2{0%,49%{opacity:0}50%,80%{opacity:1}81%,100%{opacity:0}}
+.ll0{animation:lin_l0 5s ease-in-out infinite}
+.ll1{animation:lin_l1 5s ease-in-out infinite}
+.ll2{animation:lin_l2 5s ease-in-out infinite}
+@keyframes peak_hl{0%,50%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}51%,80%{fill:#D5F5E3;stroke:#27AE60;stroke-width:3}81%,100%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}}
+.peakf{animation:peak_hl 5s ease-in-out infinite}
+/* Approach 2: Binary Search - mid moves */
+@keyframes mid_ptr{0%,10%{transform:translateX(0)}30%,45%{transform:translateX(96px)}65%,80%{transform:translateX(48px)}95%,100%{transform:translateX(0)}}
+.mp{animation:mid_ptr 6s ease-in-out infinite}
+@keyframes bs_l0{0%,10%{opacity:1}30%,100%{opacity:0}}
+@keyframes bs_l1{0%,29%{opacity:0}30%,65%{opacity:1}66%,100%{opacity:0}}
+@keyframes bs_l2{0%,64%{opacity:0}65%,92%{opacity:1}93%,100%{opacity:0}}
+.bl0{animation:bs_l0 6s ease-in-out infinite}
+.bl1{animation:bs_l1 6s ease-in-out infinite}
+.bl2{animation:bs_l2 6s ease-in-out infinite}
+@keyframes bs_hl{0%,65%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}66%,92%{fill:#D5F5E3;stroke:#27AE60;stroke-width:3}93%,100%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}}
+.bsf{animation:bs_hl 6s ease-in-out infinite}
+</style>
+<rect width="900" height="690" fill="#F8F9FA" rx="10"/>
+<rect width="900" height="55" fill="#2C3E50" rx="10"/>
+<rect y="45" width="900" height="10" fill="#2C3E50"/>
+<text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Find Peak Element</text>
+<rect x="820" y="12" width="62" height="28" fill="#F39C12" rx="14"/>
+<text x="851" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+<rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+<text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+<text x="105" y="81" font-family="Arial" font-size="12" fill="#555">arr=[1,2,3,1] → peak at index 2 (value 3, since 3&gt;2 and 3&gt;1)</text>
+<text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Peak: arr[i] &gt; arr[i-1] and arr[i] &gt; arr[i+1]. Boundary elements only need one neighbor. Binary search O(log n).</text>
+
+<!-- APPROACH 1: Linear -->
+<rect x="15" y="115" width="870" height="210" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+<rect x="15" y="115" width="870" height="40" fill="#E74C3C" rx="7"/>
+<rect x="15" y="140" width="870" height="15" fill="#E74C3C"/>
+<text x="450" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Linear Scan — O(n) time, O(1) space</text>
+<text x="450" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">Scan from left: stop when arr[i] &gt; arr[i+1] — that's a peak!</text>
+<!-- Array [1,2,3,1], 4 elements, start_x=357 -->
+<rect x="357" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="378" y="204" font-family="Arial" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="405" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="426" y="204" font-family="Arial" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="453" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3" class="peakf"/>
+<text x="474" y="204" font-family="Arial" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">3</text>
+<rect x="501" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="522" y="204" font-family="Arial" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<!-- Index labels -->
+<text x="378" y="232" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[0]</text>
+<text x="426" y="232" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[1]</text>
+<text x="474" y="232" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">[2]peak</text>
+<text x="522" y="232" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[3]</text>
+<!-- Pointer animation -->
+<g class="lp" transform="translate(378,178)">
+  <polygon points="-7,-14 7,-14 0,-4" fill="#E74C3C"/>
+  <text x="0" y="-16" font-family="Arial" font-size="9" fill="#E74C3C" text-anchor="middle">i</text>
+</g>
+<!-- Step labels -->
+<text class="ll0" x="630" y="200" font-family="Arial" font-size="11" fill="#555">arr[0]=1 &lt; arr[1]=2 → move right</text>
+<text class="ll1" x="630" y="200" font-family="Arial" font-size="11" fill="#555">arr[1]=2 &lt; arr[2]=3 → move right</text>
+<text class="ll2" x="630" y="200" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">arr[2]=3 &gt; arr[3]=1 → PEAK! ✓</text>
+<text x="450" y="260" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">Stop when arr[i] &gt; arr[i+1] → peak found at index 2 ✓</text>
+<text x="450" y="277" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Works because: going uphill must end at a peak (or right boundary).</text>
+<text x="450" y="294" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Worst case: strictly increasing array → O(n). Binary search is faster!</text>
+<text x="450" y="311" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Handle boundaries: treat arr[-1]=arr[n]=-∞ (virtual sentinels)</text>
+
+<!-- Arrow 1→2 -->
+<line x1="450" y1="325" x2="450" y2="362" stroke="#7F8C8D" stroke-width="2" stroke-dasharray="4,3"/>
+<polygon points="444,362 450,370 456,362" fill="#7F8C8D"/>
+<rect x="260" y="329" width="380" height="22" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+<text x="450" y="344" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">💡 A peak MUST exist on the larger-neighbor side → Binary Search!</text>
+
+<!-- APPROACH 2: Binary Search -->
+<rect x="15" y="370" width="870" height="210" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+<rect x="15" y="370" width="870" height="40" fill="#27AE60" rx="7"/>
+<rect x="15" y="395" width="870" height="15" fill="#27AE60"/>
+<text x="450" y="395" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Binary Search — O(log n) time, O(1) space ⭐</text>
+<text x="450" y="408" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">mid: if arr[mid] &lt; arr[mid+1] → peak in right half; else peak in left half</text>
+<!-- Array [1,2,3,1] for binary search -->
+<rect x="357" y="428" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="378" y="454" font-family="Arial" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="405" y="428" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="426" y="454" font-family="Arial" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="453" y="428" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3" class="bsf"/>
+<text x="474" y="454" font-family="Arial" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">3</text>
+<rect x="501" y="428" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="522" y="454" font-family="Arial" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<!-- Binary search mid pointer -->
+<g class="mp" transform="translate(378,428)">
+  <polygon points="-7,-14 7,-14 0,-4" fill="#27AE60"/>
+  <text x="0" y="-16" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">mid</text>
+</g>
+<!-- L and R boundary markers -->
+<text x="357" y="483" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">L=0</text>
+<text x="522" y="483" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">R=3</text>
+<!-- Step labels -->
+<text class="bl0" x="620" y="450" font-family="Arial" font-size="11" fill="#555">mid=1: arr[1]=2 &lt; arr[2]=3 → L=2</text>
+<text class="bl1" x="620" y="450" font-family="Arial" font-size="11" fill="#555">mid=2: arr[2]=3 &gt; arr[3]=1 → R=2</text>
+<text class="bl2" x="620" y="450" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">L==R==2 → peak at index 2 ✓</text>
+<text x="450" y="510" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">Binary search halves search space each step → O(log n) ✓</text>
+<text x="450" y="527" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Key insight: if arr[mid] &lt; arr[mid+1], a peak must exist in right half (right side is going up).</text>
+<text x="450" y="544" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Similarly if arr[mid] &lt; arr[mid-1], peak exists in left half. L==R → peak found!</text>
+<text x="450" y="561" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Works even with multiple peaks — finds any one of them.</text>
+
+<!-- Complexity Table -->
+<rect x="15" y="592" width="870" height="93" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+<rect x="15" y="592" width="870" height="30" fill="#2C3E50" rx="7"/>
+<rect x="15" y="607" width="870" height="15" fill="#2C3E50"/>
+<text x="450" y="612" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+<line x1="15" y1="622" x2="885" y2="622" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="622" width="870" height="23" fill="#ECF0F1"/>
+<text x="200" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+<text x="500" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+<text x="750" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+<line x1="15" y1="645" x2="885" y2="645" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="645" width="870" height="22" fill="#FDEDEC"/>
+<text x="200" y="660" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Linear Scan</text>
+<text x="500" y="660" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n)</text>
+<text x="750" y="660" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(1)</text>
+<line x1="15" y1="667" x2="885" y2="667" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="667" width="870" height="23" fill="#EAFAF1"/>
+<text x="200" y="683" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Binary Search ⭐</text>
+<text x="500" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(log n)</text>
+<text x="750" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(1)</text>
+<line x1="370" y1="622" x2="370" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+<line x1="620" y1="622" x2="620" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

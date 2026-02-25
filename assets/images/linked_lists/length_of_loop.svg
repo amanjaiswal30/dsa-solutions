@@ -1,0 +1,107 @@
+<svg width="900" height="560" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="560" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Find the Length of Loop in a Linked List</text>
+  <rect x="790" y="12" width="92" height="28" fill="#F39C12" rx="14"/>
+  <text x="836" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">1→2→3→4→5→(back to 3)</text>
+  <text x="380" y="81" font-family="Arial" font-size="12" fill="#555">→</text>
+  <text x="400" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#27AE60">Loop length = 3 (nodes 3→4→5→3)</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Use Floyd's to detect loop, then count nodes in the loop</text>
+
+  <!-- === APPROACH 1: HashSet === -->
+  <rect x="15" y="115" width="390" height="310" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="390" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="390" height="15" fill="#E74C3C"/>
+  <text x="210" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: HashSet Detect + Count</text>
+  <text x="210" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(n) time | O(n) space</text>
+
+  <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Store nodes until repeat found:</text>
+
+  <rect x="30" y="186" width="360" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="202" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Visit 1,2,3,4,5 — add to HashSet</text>
+
+  <rect x="30" y="214" width="360" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="230" font-family="Arial" font-size="10" fill="#E74C3C" text-anchor="middle">Visit 3 again → found loop start at index 3</text>
+
+  <text x="30" y="258" font-family="Arial" font-size="11" fill="#555">Count from loop start to loop start:</text>
+  <rect x="30" y="264" width="360" height="28" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="278" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">count=1 (node 3), move to 4</text>
+  <text x="210" y="288" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">count=2 (node 4), move to 5, count=3 (node 5) → at 3 again</text>
+
+  <rect x="30" y="296" width="360" height="24" fill="#D5F5E3" stroke="#27AE60" rx="3"/>
+  <text x="210" y="312" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">Loop length = 3 ✓</text>
+
+  <text x="30" y="346" font-family="Arial" font-size="11" fill="#E74C3C">⚠ O(n) HashSet to track all nodes</text>
+  <text x="30" y="364" font-family="Arial" font-size="11" fill="#888">Then count loop separately</text>
+  <text x="30" y="382" font-family="Arial" font-size="11" fill="#888">Memory wasteful for large lists</text>
+  <text x="30" y="400" font-family="Arial" font-size="11" fill="#888">Floyd's can do this with O(1) space!</text>
+
+  <!-- Evolution Arrow -->
+  <line x1="410" y1="270" x2="480" y2="270" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon points="480,265 492,270 480,275" fill="#7F8C8D"/>
+  <rect x="410" y="242" width="72" height="56" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
+  <text x="446" y="256" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Floyd's</text>
+  <text x="446" y="268" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">detect then</text>
+  <text x="446" y="280" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">count loop!</text>
+
+  <!-- === APPROACH 2: Floyd's === -->
+  <rect x="492" y="115" width="393" height="310" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="492" y="115" width="393" height="40" fill="#27AE60" rx="7"/>
+  <rect x="492" y="140" width="393" height="15" fill="#27AE60"/>
+  <text x="688" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Floyd's + Count ⭐</text>
+  <text x="688" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(n) time | O(1) space</text>
+
+  <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Phase 1: Detect meeting point in loop:</text>
+
+  <rect x="505" y="186" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="201" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">slow(1step)+fast(2steps) → meet inside loop</text>
+  <text x="686" y="213" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">slow=fast=node(4) (meeting point)</text>
+
+  <text x="505" y="232" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Phase 2: Count loop length from meeting:</text>
+
+  <rect x="505" y="238" width="362" height="56" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="253" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Keep slow fixed, move count pointer</text>
+  <text x="686" y="265" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">count=1: count.next=5</text>
+  <text x="686" y="277" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">count=2: count.next=3</text>
+  <text x="686" y="289" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">count=3: count.next=4==slow → STOP</text>
+
+  <rect x="505" y="298" width="362" height="24" fill="#D5F5E3" stroke="#27AE60" rx="3"/>
+  <text x="686" y="314" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">Loop length = 3 ✓ (nodes 3,4,5)</text>
+
+  <text x="505" y="352" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">Only 2 pointer variables → O(1) space!</text>
+  <text x="505" y="370" font-family="Arial" font-size="11" fill="#888">Step 1: Detect with slow/fast O(n)</text>
+  <text x="505" y="388" font-family="Arial" font-size="11" fill="#888">Step 2: Count inside loop O(k) where k=loop size</text>
+  <text x="505" y="406" font-family="Arial" font-size="11" fill="#888">Returns 0 if no loop</text>
+
+  <!-- Complexity Table -->
+  <rect x="15" y="437" width="870" height="112" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+  <rect x="15" y="437" width="870" height="30" fill="#2C3E50" rx="7"/>
+  <rect x="15" y="452" width="870" height="15" fill="#2C3E50"/>
+  <text x="450" y="457" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+
+  <line x1="15" y1="467" x2="885" y2="467" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="467" width="870" height="25" fill="#ECF0F1"/>
+  <text x="200" y="484" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+  <text x="500" y="484" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+  <text x="750" y="484" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+
+  <line x1="15" y1="492" x2="885" y2="492" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="492" width="870" height="24" fill="#FDEDEC"/>
+  <text x="200" y="508" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">HashSet Detect + Count</text>
+  <text x="500" y="508" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(n)</text>
+  <text x="750" y="508" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n)</text>
+
+  <line x1="15" y1="516" x2="885" y2="516" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="516" width="870" height="24" fill="#EAFAF1"/>
+  <text x="200" y="532" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Floyd's Algorithm + Count ⭐</text>
+  <text x="500" y="532" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n)</text>
+  <text x="750" y="532" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(1)</text>
+
+  <line x1="370" y1="467" x2="370" y2="540" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="620" y1="467" x2="620" y2="540" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

@@ -1,5 +1,8 @@
 # Reverse a Linked List
 
+![](../../assets/images/linked_lists/reverse_linked_list.svg)
+
+
 **Difficulty:** Easy ✅
 
 ---

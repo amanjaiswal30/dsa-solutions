@@ -1,5 +1,8 @@
 # 🔹 Problem: Find First and Last Position of Element in Sorted Array
 
+![](../../assets/images/arrays/first_and_last_position_in_sorted_array.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

@@ -1,0 +1,175 @@
+<svg width="900" height="610" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="610" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect x="0" y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="430" y="35" font-family="Arial" font-size="20" font-weight="bold" fill="white" text-anchor="middle">Min Stack</text>
+  <rect x="790" y="13" width="100" height="28" fill="#F39C12" rx="14"/>
+  <text x="840" y="32" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Medium ⚡</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="25" y="80" font-family="Arial" font-size="12" fill="#7F8C8D">Operations: push(x), pop(), top(), getMin()</text>
+  <text x="340" y="80" font-family="Arial" font-size="12" fill="#7F8C8D">|</text>
+  <text x="355" y="80" font-family="Arial" font-size="12" fill="#2C3E50">All operations must run in</text>
+  <text x="555" y="80" font-family="Arial" font-size="13" fill="#E74C3C" font-weight="bold">O(1)</text>
+  <text x="578" y="80" font-family="Arial" font-size="12" fill="#2C3E50">time including getMin()</text>
+  <text x="25" y="99" font-family="Arial" font-size="11" fill="#7F8C8D">Example: push(5), push(3), push(7), push(2) → getMin()=2, pop(), getMin()=3</text>
+
+  <!-- ===== APPROACH 1: BRUTE FORCE ===== -->
+  <rect x="15" y="115" width="258" height="370" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="258" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="258" height="15" fill="#E74C3C"/>
+  <text x="144" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">① Brute Force — Linear Scan</text>
+  <text x="144" y="167" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle" font-weight="bold">push/pop/top: O(1) · getMin: O(n)</text>
+  <text x="25" y="187" font-family="Arial" font-size="11" fill="#555">Use a single stack. To getMin(), scan</text>
+  <text x="25" y="201" font-family="Arial" font-size="11" fill="#555">through all elements each time.</text>
+
+  <!-- Stack visual -->
+  <text x="25" y="222" font-family="Arial" font-size="10" fill="#7F8C8D" font-weight="bold">After push(5,3,7,2):</text>
+  <!-- Stack box -->
+  <rect x="50" y="228" width="60" height="115" fill="none" stroke="#2C3E50" stroke-width="2"/>
+  <rect x="50" y="228" width="60" height="28" fill="#FADBD8" stroke="#E74C3C"/>
+  <text x="80" y="247" font-family="Arial" font-size="14" font-weight="bold" fill="#E74C3C" text-anchor="middle">2</text>
+  <text x="116" y="247" font-family="Arial" font-size="10" fill="#7F8C8D">← top</text>
+  <rect x="50" y="256" width="60" height="28" fill="#EBF5FB" stroke="#3498DB"/>
+  <text x="80" y="275" font-family="Arial" font-size="14" font-weight="bold" fill="#3498DB" text-anchor="middle">7</text>
+  <rect x="50" y="284" width="60" height="28" fill="#EBF5FB" stroke="#3498DB"/>
+  <text x="80" y="303" font-family="Arial" font-size="14" font-weight="bold" fill="#3498DB" text-anchor="middle">3</text>
+  <rect x="50" y="312" width="60" height="28" fill="#EBF5FB" stroke="#3498DB"/>
+  <text x="80" y="331" font-family="Arial" font-size="14" font-weight="bold" fill="#3498DB" text-anchor="middle">5</text>
+
+  <text x="145" y="260" font-family="Arial" font-size="10" fill="#E74C3C">getMin() must scan</text>
+  <text x="145" y="274" font-family="Arial" font-size="10" fill="#E74C3C">all 4 elements: O(n)</text>
+  <!-- Scan arrows -->
+  <line x1="116" y1="242" x2="138" y2="242" stroke="#E74C3C" stroke-width="1.5"/>
+  <line x1="116" y1="270" x2="138" y2="270" stroke="#E74C3C" stroke-width="1.5"/>
+  <line x1="116" y1="298" x2="138" y2="298" stroke="#E74C3C" stroke-width="1.5"/>
+  <line x1="116" y1="326" x2="138" y2="326" stroke="#E74C3C" stroke-width="1.5"/>
+
+  <rect x="25" y="360" width="238" height="60" fill="#FDEDEC" stroke="#FFCCCC" rx="4"/>
+  <text x="35" y="376" font-family="Arial" font-size="10" fill="#E74C3C" font-weight="bold">⚠ Problem: getMin() is O(n)</text>
+  <text x="35" y="390" font-family="Arial" font-size="10" fill="#E74C3C">n getMin() calls = O(n²) total</text>
+  <text x="35" y="404" font-family="Arial" font-size="10" fill="#E74C3C">Fails requirement of O(1) getMin</text>
+  <text x="35" y="418" font-family="Arial" font-size="10" fill="#E67E22">Fix: maintain a parallel min-tracking stack</text>
+
+  <!-- Arrow 1 -->
+  <line x1="275" y1="295" x2="313" y2="295" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="313,290 323,295 313,300" fill="#7F8C8D"/>
+  <rect x="265" y="268" width="68" height="22" fill="#FFF8E1" stroke="#F39C12" rx="3"/>
+  <text x="299" y="281" font-family="Arial" font-size="9" fill="#D35400" text-anchor="middle">💡 Track</text>
+  <text x="299" y="291" font-family="Arial" font-size="9" fill="#D35400" text-anchor="middle">min live!</text>
+
+  <!-- ===== APPROACH 2: TWO STACKS ===== -->
+  <rect x="323" y="115" width="258" height="370" fill="#FFFFFF" stroke="#E67E22" stroke-width="2" rx="7"/>
+  <rect x="323" y="115" width="258" height="40" fill="#E67E22" rx="7"/>
+  <rect x="323" y="140" width="258" height="15" fill="#E67E22"/>
+  <text x="452" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">② Two Stacks</text>
+  <text x="452" y="167" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle" font-weight="bold">All ops O(1) time · O(n) space</text>
+  <text x="333" y="187" font-family="Arial" font-size="11" fill="#555">Maintain a second "minStack" that</text>
+  <text x="333" y="201" font-family="Arial" font-size="11" fill="#555">tracks current min at every level.</text>
+
+  <text x="333" y="220" font-family="Arial" font-size="10" fill="#7F8C8D" font-weight="bold">push(5,3,7,2) — two stacks in sync:</text>
+
+  <!-- Two stacks side by side -->
+  <text x="370" y="238" font-family="Arial" font-size="10" fill="#2980B9" text-anchor="middle" font-weight="bold">stack</text>
+  <text x="500" y="238" font-family="Arial" font-size="10" fill="#8E44AD" text-anchor="middle" font-weight="bold">minStack</text>
+
+  <rect x="340" y="242" width="55" height="25" fill="#D5E8D4" stroke="#27AE60"/><text x="368" y="258" font-family="Arial" font-size="12" font-weight="bold" fill="#1E8449" text-anchor="middle">2</text>
+  <rect x="465" y="242" width="55" height="25" fill="#D5E8D4" stroke="#27AE60"/><text x="493" y="258" font-family="Arial" font-size="12" font-weight="bold" fill="#1E8449" text-anchor="middle">2</text>
+  <text x="430" y="258" font-family="Arial" font-size="10" fill="#7F8C8D" text-anchor="middle">→ min=2</text>
+
+  <rect x="340" y="267" width="55" height="25" fill="#EBF5FB" stroke="#3498DB"/><text x="368" y="283" font-family="Arial" font-size="12" font-weight="bold" fill="#3498DB" text-anchor="middle">7</text>
+  <text x="430" y="283" font-family="Arial" font-size="10" fill="#7F8C8D" text-anchor="middle">7 &gt; min=3</text>
+  <text x="430" y="294" font-family="Arial" font-size="10" fill="#7F8C8D" text-anchor="middle">skip push</text>
+
+  <rect x="340" y="292" width="55" height="25" fill="#EBF5FB" stroke="#3498DB"/><text x="368" y="308" font-family="Arial" font-size="12" font-weight="bold" fill="#3498DB" text-anchor="middle">3</text>
+  <rect x="465" y="292" width="55" height="25" fill="#E8DAEF" stroke="#8E44AD"/><text x="493" y="308" font-family="Arial" font-size="12" font-weight="bold" fill="#6C3483" text-anchor="middle">3</text>
+  <text x="430" y="308" font-family="Arial" font-size="10" fill="#7F8C8D" text-anchor="middle">→ min=3</text>
+
+  <rect x="340" y="317" width="55" height="25" fill="#EBF5FB" stroke="#3498DB"/><text x="368" y="333" font-family="Arial" font-size="12" font-weight="bold" fill="#3498DB" text-anchor="middle">5</text>
+  <rect x="465" y="317" width="55" height="25" fill="#E8DAEF" stroke="#8E44AD"/><text x="493" y="333" font-family="Arial" font-size="12" font-weight="bold" fill="#6C3483" text-anchor="middle">5</text>
+  <text x="430" y="333" font-family="Arial" font-size="10" fill="#7F8C8D" text-anchor="middle">→ min=5</text>
+
+  <rect x="333" y="350" width="238" height="50" fill="#FEF9EF" stroke="#FAD7A0" rx="3"/>
+  <text x="343" y="366" font-family="Arial" font-size="10" fill="#E67E22" font-weight="bold">getMin() = minStack.top() = 2  ← O(1)!</text>
+  <text x="343" y="380" font-family="Arial" font-size="10" fill="#E67E22">pop(2): val == minStack.top() → also pop minStack</text>
+  <text x="343" y="394" font-family="Arial" font-size="10" fill="#27AE60">getMin() now = minStack.top() = 3  ✓</text>
+
+  <rect x="333" y="407" width="238" height="42" fill="#FEF9EF" stroke="#FAD7A0" rx="4"/>
+  <text x="343" y="422" font-family="Arial" font-size="10" fill="#E67E22" font-weight="bold">⚠ Extra O(n) space for minStack</text>
+  <text x="343" y="436" font-family="Arial" font-size="10" fill="#E67E22">Can we encode min in single stack?</text>
+  <text x="343" y="448" font-family="Arial" font-size="10" fill="#27AE60">→ Yes! Store diffs (encoded values)</text>
+
+  <!-- Arrow 2 -->
+  <line x1="583" y1="295" x2="621" y2="295" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="621,290 631,295 621,300" fill="#7F8C8D"/>
+  <rect x="573" y="268" width="68" height="22" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="607" y="281" font-family="Arial" font-size="9" fill="#1E8449" text-anchor="middle">Encode</text>
+  <text x="607" y="291" font-family="Arial" font-size="9" fill="#1E8449" text-anchor="middle">as diffs!</text>
+
+  <!-- ===== APPROACH 3: ENCODED SINGLE STACK ===== -->
+  <rect x="631" y="115" width="254" height="370" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="631" y="115" width="254" height="40" fill="#27AE60" rx="7"/>
+  <rect x="631" y="140" width="254" height="15" fill="#27AE60"/>
+  <text x="758" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">③ Encoded Single Stack ⭐</text>
+  <text x="758" y="167" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle" font-weight="bold">All ops O(1) time · O(n) space</text>
+  <text x="641" y="187" font-family="Arial" font-size="11" fill="#555">Store (val - min) instead of val. Negative</text>
+  <text x="641" y="201" font-family="Arial" font-size="11" fill="#555">value signals: "min changed here".</text>
+
+  <text x="641" y="220" font-family="Arial" font-size="10" fill="#7F8C8D" font-weight="bold">push(5,3,7,2) — encoded diffs:</text>
+
+  <!-- Encoded stack diagram -->
+  <text x="693" y="238" font-family="Arial" font-size="10" fill="#2C3E50" text-anchor="middle" font-weight="bold">stack (encoded)</text>
+  <text x="800" y="238" font-family="Arial" font-size="10" fill="#8E44AD" text-anchor="middle" font-weight="bold">min variable</text>
+  <rect x="651" y="243" width="75" height="25" fill="#FADBD8" stroke="#E74C3C"/><text x="689" y="259" font-family="Arial" font-size="11" font-weight="bold" fill="#C0392B" text-anchor="middle">-1 (=2-3)</text>
+  <text x="790" y="259" font-family="Arial" font-size="11" fill="#8E44AD" text-anchor="middle" font-weight="bold">min=2</text>
+  <text x="745" y="259" font-family="Arial" font-size="9" fill="#E74C3C" text-anchor="middle">neg→min↓</text>
+
+  <rect x="651" y="268" width="75" height="25" fill="#D5E8D4" stroke="#27AE60"/><text x="689" y="284" font-family="Arial" font-size="11" font-weight="bold" fill="#1E8449" text-anchor="middle">+4 (=7-3)</text>
+  <text x="790" y="284" font-family="Arial" font-size="11" fill="#8E44AD" text-anchor="middle" font-weight="bold">min=3</text>
+
+  <rect x="651" y="293" width="75" height="25" fill="#FADBD8" stroke="#E74C3C"/><text x="689" y="309" font-family="Arial" font-size="11" font-weight="bold" fill="#C0392B" text-anchor="middle">-2 (=3-5)</text>
+  <text x="790" y="309" font-family="Arial" font-size="11" fill="#8E44AD" text-anchor="middle" font-weight="bold">min=3</text>
+  <text x="745" y="309" font-family="Arial" font-size="9" fill="#E74C3C" text-anchor="middle">neg→min↓</text>
+
+  <rect x="651" y="318" width="75" height="25" fill="#D5E8D4" stroke="#27AE60"/><text x="689" y="334" font-family="Arial" font-size="11" font-weight="bold" fill="#1E8449" text-anchor="middle">0 (=5-5)</text>
+  <text x="790" y="334" font-family="Arial" font-size="11" fill="#8E44AD" text-anchor="middle" font-weight="bold">min=5</text>
+
+  <rect x="641" y="352" width="234" height="65" fill="#EBF5FB" stroke="#3498DB" rx="3"/>
+  <text x="651" y="368" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">getMin() → return min  (O(1) ✓)</text>
+  <text x="651" y="382" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">top(): top ≥ 0 → return top+min</text>
+  <text x="651" y="396" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">     top &lt; 0 → return min</text>
+  <text x="651" y="410" font-family="Arial" font-size="10" fill="#2C3E50">pop(): top &lt; 0 → min = min - top</text>
+
+  <rect x="641" y="424" width="234" height="42" fill="#EAFAF1" stroke="#A9DFBF" rx="4"/>
+  <text x="651" y="440" font-family="Arial" font-size="10" fill="#1E8449" font-weight="bold">✓ No extra array — min encoded in stack!</text>
+  <text x="651" y="454" font-family="Arial" font-size="10" fill="#27AE60">Uses Long to avoid int overflow edge cases</text>
+  <text x="651" y="466" font-family="Arial" font-size="10" fill="#7F8C8D">Most elegant solution but complex to grok</text>
+
+  <!-- ===== COMPLEXITY TABLE ===== -->
+  <rect x="15" y="495" width="870" height="108" fill="#FFFFFF" stroke="#DEE2E6" stroke-width="1.5" rx="7"/>
+  <text x="450" y="514" font-family="Arial" font-size="13" font-weight="bold" fill="#2C3E50" text-anchor="middle">Complexity Comparison</text>
+  <rect x="25" y="520" width="850" height="24" fill="#2C3E50" rx="3"/>
+  <text x="140" y="536" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Approach</text>
+  <text x="360" y="536" font-family="Arial" font-size="11" fill="white" text-anchor="middle">push/pop/top</text>
+  <text x="510" y="536" font-family="Arial" font-size="11" fill="white" text-anchor="middle">getMin</text>
+  <text x="650" y="536" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Space</text>
+  <text x="800" y="536" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Notes</text>
+  <rect x="25" y="544" width="850" height="22" fill="#FDEDEC"/>
+  <text x="140" y="559" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">① Brute Force</text>
+  <text x="360" y="559" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(1)</text>
+  <text x="510" y="559" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n) ✗</text>
+  <text x="650" y="559" font-family="Arial" font-size="11" fill="#7F8C8D" text-anchor="middle">O(n)</text>
+  <text x="800" y="559" font-family="Arial" font-size="11" fill="#7F8C8D" text-anchor="middle">Fails O(1) getMin requirement</text>
+  <rect x="25" y="566" width="850" height="22" fill="#FEF9EF"/>
+  <text x="140" y="581" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">② Two Stacks</text>
+  <text x="360" y="581" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(1)</text>
+  <text x="510" y="581" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(1) ✓</text>
+  <text x="650" y="581" font-family="Arial" font-size="11" fill="#7F8C8D" text-anchor="middle">O(n)×2</text>
+  <text x="800" y="581" font-family="Arial" font-size="11" fill="#7F8C8D" text-anchor="middle">Simple, recommended in interviews</text>
+  <rect x="25" y="588" width="850" height="22" fill="#EAFAF1"/>
+  <text x="140" y="603" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle" font-weight="bold">③ Encoded Single Stack ⭐</text>
+  <text x="360" y="603" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(1)</text>
+  <text x="510" y="603" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(1) ✓</text>
+  <text x="650" y="603" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(n)</text>
+  <text x="800" y="603" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">No extra array — elegant diff encoding</text>
+</svg>

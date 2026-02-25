@@ -1,5 +1,8 @@
 # 🔹 Problem: 3-Sum
 
+![](../../assets/images/arrays/3-sum.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

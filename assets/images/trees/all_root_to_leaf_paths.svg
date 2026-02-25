@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#1a1a2e}
+  .prob{font:13px sans-serif;fill:#444}
+  .sec{font:bold 13px sans-serif}
+  .nd{fill:#ddeeff;stroke:#6699cc;stroke-width:2}
+  .lbl{font:12px monospace;fill:#333;text-anchor:middle;dominant-baseline:middle}
+  .cmp{font:11px sans-serif;fill:#333}
+  .evol{fill:none;stroke:#888;stroke-width:1.5;stroke-dasharray:5,3}
+  .ins{font:11px sans-serif;fill:#555;font-style:italic}
+  .tbl{font:11px sans-serif;fill:#333;text-anchor:middle}
+  .edge{stroke:#999;stroke-width:1.5;fill:none}
+
+  @keyframes ndVisit{0%,100%{fill:#ddeeff;stroke:#6699cc}40%,60%{fill:#ffd700;stroke:#F39C12}}
+  @keyframes ndGreen{0%,100%{fill:#ddeeff;stroke:#6699cc}40%,60%{fill:#ccffcc;stroke:#27AE60}}
+  @keyframes path1{0%,24%{opacity:0}25%,49%{opacity:1}50%,100%{opacity:0}}
+  @keyframes path2{0%,49%{opacity:0}50%,74%{opacity:1}75%,100%{opacity:0}}
+  @keyframes path3{0%,74%{opacity:0}75%,100%{opacity:1}}
+  @keyframes sl0{0%,19%{opacity:1}20%,100%{opacity:0}}
+  @keyframes sl1{0%,19%{opacity:0}20%,39%{opacity:1}40%,100%{opacity:0}}
+  @keyframes sl2{0%,39%{opacity:0}40%,59%{opacity:1}60%,100%{opacity:0}}
+  @keyframes sl3{0%,59%{opacity:0}60%,79%{opacity:1}80%,100%{opacity:0}}
+  @keyframes sl4{0%,79%{opacity:0}80%,100%{opacity:1}}
+  .sl0{animation:sl0 9s ease-in-out infinite}
+  .sl1{animation:sl1 9s ease-in-out infinite}
+  .sl2{animation:sl2 9s ease-in-out infinite}
+  .sl3{animation:sl3 9s ease-in-out infinite}
+  .sl4{animation:sl4 9s ease-in-out infinite}
+  .p1{animation:path1 9s ease-in-out infinite}
+  .p2{animation:path2 9s ease-in-out infinite}
+  .p3{animation:path3 9s ease-in-out infinite}
+  .np0{animation:ndVisit 7s 0s ease-in-out infinite}
+  .np1{animation:ndVisit 7s 0.6s ease-in-out infinite}
+  .np2{animation:ndVisit 7s 1.2s ease-in-out infinite}
+  .np3{animation:ndVisit 7s 1.8s ease-in-out infinite}
+  .ng0{animation:ndGreen 7s 0s ease-in-out infinite}
+  .ng1{animation:ndGreen 7s 0.6s ease-in-out infinite}
+  .ng2{animation:ndGreen 7s 1.2s ease-in-out infinite}
+  .ng3{animation:ndGreen 7s 1.8s ease-in-out infinite}
+</style>
+
+<rect width="900" height="690" fill="#f8f9fa" rx="8"/>
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="32" text-anchor="middle" class="title" fill="white">All Root-to-Leaf Paths</text>
+
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="72" text-anchor="middle" class="prob">Print all paths from root to every leaf node. Tree: 1→{2→{4,5}, 3}  →  Paths: [1,2,4], [1,2,5], [1,3]</text>
+
+<!-- APPROACH 1 -->
+<rect x="16" y="92" width="868" height="218" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="32" y="111" class="sec" fill="white">Approach 1: DFS with Backtracking — add node to path, recurse, then remove (backtrack)  O(n·h) time</text>
+
+<!-- Tree with animated paths -->
+<g transform="translate(220,126)">
+  <!-- all edges -->
+  <line x1="0" y1="22" x2="-100" y2="72" class="edge"/>
+  <line x1="0" y1="22" x2="100" y2="72" class="edge"/>
+  <line x1="-100" y1="94" x2="-140" y2="152" class="edge"/>
+  <line x1="-100" y1="94" x2="-60" y2="152" class="edge"/>
+  <!-- animated path highlights -->
+  <!-- Path 1: 1→2→4 -->
+  <line x1="0" y1="22" x2="-100" y2="72" class="p1" style="stroke:#E74C3C;stroke-width:3;fill:none"/>
+  <line x1="-100" y1="94" x2="-140" y2="152" class="p1" style="stroke:#E74C3C;stroke-width:3;fill:none"/>
+  <!-- Path 2: 1→2→5 -->
+  <line x1="0" y1="22" x2="-100" y2="72" class="p2" style="stroke:#3498db;stroke-width:3;fill:none"/>
+  <line x1="-100" y1="94" x2="-60" y2="152" class="p2" style="stroke:#3498db;stroke-width:3;fill:none"/>
+  <!-- Path 3: 1→3 -->
+  <line x1="0" y1="22" x2="100" y2="72" class="p3" style="stroke:#27AE60;stroke-width:3;fill:none"/>
+  <!-- nodes -->
+  <circle class="np3 nd" cx="0" cy="0" r="22"/><text x="0" y="0" class="lbl">1</text>
+  <circle class="np2 nd" cx="-100" cy="72" r="22"/><text x="-100" y="72" class="lbl">2</text>
+  <circle class="np2 nd" cx="100" cy="72" r="22"/><text x="100" y="72" class="lbl">3</text>
+  <circle class="np0 nd" cx="-140" cy="152" r="22"/><text x="-140" y="152" class="lbl">4</text>
+  <circle class="np1 nd" cx="-60" cy="152" r="22"/><text x="-60" y="152" class="lbl">5</text>
+  <!-- path result labels -->
+  <text x="-160" y="195" class="p1" fill="#E74C3C" font-weight="bold" font-size="11">[1→2→4]</text>
+  <text x="-80" y="195" class="p2" fill="#3498db" font-weight="bold" font-size="11">[1→2→5]</text>
+  <text x="80" y="110" class="p3" fill="#27AE60" font-weight="bold" font-size="11">[1→3]</text>
+</g>
+
+<text x="450" y="138" class="cmp" font-weight="bold">def dfs(node, path, result):</text>
+<text x="450" y="155" class="cmp">  if not node: return</text>
+<text x="450" y="172" class="cmp">  path.append(node.val)       # add to path</text>
+<text x="450" y="189" class="cmp">  if not node.left and not node.right:</text>
+<text x="450" y="206" class="cmp">    result.append(list(path)) # leaf: save path</text>
+<text x="450" y="223" class="cmp">  else:</text>
+<text x="450" y="240" class="cmp">    dfs(node.left,  path, result)</text>
+<text x="450" y="257" class="cmp">    dfs(node.right, path, result)</text>
+<text x="450" y="274" class="cmp">  path.pop()  # BACKTRACK</text>
+
+<text x="24" y="295" class="cmp sl0">① Push 1: path=[1]. Not leaf → recurse left</text>
+<text x="24" y="295" class="cmp sl1">② Push 2: path=[1,2]. Not leaf → recurse left</text>
+<text x="24" y="295" class="cmp sl2">③ Push 4: path=[1,2,4]. Leaf! → save [1,2,4]. Pop 4 → path=[1,2]</text>
+<text x="24" y="295" class="cmp sl3">④ Recurse right: push 5, path=[1,2,5]. Leaf! → save. Pop 5,2 → path=[1]</text>
+<text x="24" y="295" class="cmp sl4" fill="#E74C3C">⑤ Recurse right of 1: push 3. Leaf! → save [1,3]. Done!</text>
+
+<!-- Arrow -->
+<line x1="450" y1="312" x2="450" y2="330" class="evol"/>
+<polygon points="450,332 444,320 456,320" fill="#888"/>
+<rect x="260" y="315" width="380" height="24" fill="#fffde7" stroke="#f0c040" stroke-width="1" rx="4"/>
+<text x="450" y="331" text-anchor="middle" class="ins">Iterative: explicit stack stores (node, path_so_far) — no mutation</text>
+
+<!-- APPROACH 2 -->
+<rect x="16" y="348" width="868" height="214" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="348" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="362" width="868" height="14" fill="#27AE60"/>
+<text x="32" y="367" class="sec" fill="white">Approach 2: Iterative DFS with Stack — stack stores (node, path) tuples, build path immutably  O(n·h)</text>
+
+<text x="24" y="398" class="cmp" font-weight="bold">all_paths_iterative(root):</text>
+<text x="24" y="415" class="cmp">  if not root: return []</text>
+<text x="24" y="432" class="cmp">  result = []</text>
+<text x="24" y="449" class="cmp">  stack = [(root, [root.val])]  # (node, path)</text>
+<text x="24" y="466" class="cmp">  while stack:</text>
+<text x="24" y="483" class="cmp">    node, path = stack.pop()</text>
+<text x="24" y="500" class="cmp">    if not node.left and not node.right:</text>
+<text x="24" y="517" class="cmp">      result.append(path)  # leaf: save</text>
+<text x="24" y="534" class="cmp">    if node.right: stack.append((node.right, path+[node.right.val]))</text>
+<text x="24" y="551" class="cmp">    if node.left:  stack.append((node.left,  path+[node.left.val]))</text>
+
+<!-- Stack states + result -->
+<text x="470" y="398" class="cmp" font-weight="bold" fill="#27AE60">Stack + result trace:</text>
+<rect x="468" y="406" width="408" height="22" fill="#e8f5e9" stroke="#27AE60" rx="3"/>
+<text x="474" y="421" class="cmp sl0">Init stack: [(1,[1])]</text>
+<text x="474" y="421" class="cmp sl1">Pop(1,[1]): push (3,[1,3]), (2,[1,2])</text>
+<text x="474" y="421" class="cmp sl2">Pop(2,[1,2]): push (5,[1,2,5]), (4,[1,2,4])</text>
+<text x="474" y="421" class="cmp sl3">Pop(4,[1,2,4]): leaf → result=[[1,2,4]]</text>
+<text x="474" y="421" class="cmp sl4" fill="#27AE60">Pop(5), Pop(3) → result=[[1,2,4],[1,2,5],[1,3]]</text>
+
+<!-- Result output boxes -->
+<text x="470" y="445" class="cmp" font-weight="bold" fill="#27AE60">All paths:</text>
+<g transform="translate(470,455)">
+  <rect x="0" y="0" width="115" height="30" fill="#ccffcc" stroke="#27AE60" rx="3"/>
+  <rect x="125" y="0" width="115" height="30" fill="#ccffcc" stroke="#27AE60" rx="3"/>
+  <rect x="250" y="0" width="90" height="30" fill="#ccffcc" stroke="#27AE60" rx="3"/>
+  <text x="57" y="19" text-anchor="middle" class="lbl" font-size="13">[1, 2, 4]</text>
+  <text x="182" y="19" text-anchor="middle" class="lbl" font-size="13">[1, 2, 5]</text>
+  <text x="295" y="19" text-anchor="middle" class="lbl" font-size="13">[1, 3]</text>
+</g>
+
+<text x="24" y="558" class="cmp" fill="#555">Key difference: path+[child.val] creates new list each time — no backtracking needed</text>
+<text x="24" y="572" class="cmp" fill="#555">Trade-off: O(n·h) extra memory for path copies vs O(h) for recursive backtracking approach</text>
+
+<!-- Complexity table -->
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="6"/>
+<rect x="16" y="578" width="868" height="26" fill="#f0f0f0" rx="6"/>
+<text x="180" y="595" class="tbl" font-weight="bold">Approach</text>
+<text x="400" y="595" class="tbl" font-weight="bold">Time</text>
+<text x="570" y="595" class="tbl" font-weight="bold">Space</text>
+<text x="760" y="595" class="tbl" font-weight="bold">Notes</text>
+<rect x="16" y="604" width="868" height="24" fill="#fff5f5"/>
+<text x="180" y="620" class="tbl">DFS Backtracking</text>
+<text x="400" y="620" class="tbl">O(n·h)</text>
+<text x="570" y="620" class="tbl">O(h)</text>
+<text x="760" y="620" class="tbl">Single path list mutated; backtrack on return</text>
+<rect x="16" y="628" width="868" height="24" fill="#f0fff0"/>
+<text x="180" y="644" class="tbl">Iterative with (node,path) stack</text>
+<text x="400" y="644" class="tbl">O(n·h)</text>
+<text x="570" y="644" class="tbl">O(n·h)</text>
+<text x="760" y="644" class="tbl">Immutable path copies; no backtracking logic</text>
+<rect x="16" y="652" width="868" height="24" fill="#fff"/>
+<text x="180" y="668" class="tbl" fill="#555">n = nodes, h = height; paths output = O(n·h)</text>
+<text x="600" y="668" class="tbl" fill="#555">Both produce same result; recursive is more elegant</text>
+</svg>

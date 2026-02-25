@@ -1,5 +1,8 @@
 # Detect Cycle in Undirected Graph
 
+![](../../assets/images/graphs/cycle_in_undirected_graph.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

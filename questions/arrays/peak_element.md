@@ -1,5 +1,8 @@
 # 🔹 Problem: Peak Element
 
+![](../../assets/images/arrays/peak_element.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

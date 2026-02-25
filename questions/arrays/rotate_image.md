@@ -1,5 +1,8 @@
 # Rotate Image
 
+![](../../assets/images/arrays/rotate_image.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

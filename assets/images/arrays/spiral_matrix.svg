@@ -1,0 +1,132 @@
+<svg width="900" height="690" xmlns="http://www.w3.org/2000/svg">
+<style>
+/* Approach 1: Direction + Visited - cells light up in spiral order */
+@keyframes sp0{0%,5%{fill:#FDEBD0;stroke:#E67E22;stroke-width:2.5}6%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes sp1{0%,14%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}15%,19%{fill:#FDEBD0;stroke:#E67E22;stroke-width:2.5}20%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes sp2{0%,24%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}25%,29%{fill:#FDEBD0;stroke:#E67E22;stroke-width:2.5}30%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes sp3{0%,34%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}35%,39%{fill:#FDEBD0;stroke:#E67E22;stroke-width:2.5}40%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes sp4{0%,44%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}45%,49%{fill:#FDEBD0;stroke:#E67E22;stroke-width:2.5}50%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes sp5{0%,54%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}55%,59%{fill:#FDEBD0;stroke:#E67E22;stroke-width:2.5}60%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes sp6{0%,64%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}65%,69%{fill:#FDEBD0;stroke:#E67E22;stroke-width:2.5}70%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes sp7{0%,74%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}75%,79%{fill:#FDEBD0;stroke:#E67E22;stroke-width:2.5}80%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes sp8{0%,84%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}85%,90%{fill:#FDEBD0;stroke:#E67E22;stroke-width:2.5}91%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+.sp0{animation:sp0 9s ease-in-out infinite}.sp1{animation:sp1 9s ease-in-out infinite}
+.sp2{animation:sp2 9s ease-in-out infinite}.sp3{animation:sp3 9s ease-in-out infinite}
+.sp4{animation:sp4 9s ease-in-out infinite}.sp5{animation:sp5 9s ease-in-out infinite}
+.sp6{animation:sp6 9s ease-in-out infinite}.sp7{animation:sp7 9s ease-in-out infinite}
+.sp8{animation:sp8 9s ease-in-out infinite}
+@keyframes dir_lbl{0%,8%{opacity:1}9%,30%{opacity:0}31%,49%{opacity:1}50%,65%{opacity:0}66%,80%{opacity:1}81%,100%{opacity:0}}
+.dl{animation:dir_lbl 9s ease-in-out infinite}
+/* Approach 2: Boundary tracking */
+@keyframes top_bnd{0%,30%{y:425}31%,100%{y:469}}
+@keyframes btm_bnd{0%,60%{y:557}61%,100%{y:513}}
+@keyframes lft_bnd{0%,75%{x:350}76%,100%{x:394}}
+@keyframes rgt_bnd{0%,45%{x:482}46%,100%{x:438}}
+@keyframes bsl0{0%,15%{opacity:1}16%,100%{opacity:0}}
+@keyframes bsl1{0%,15%{opacity:0}16%,35%{opacity:1}36%,100%{opacity:0}}
+@keyframes bsl2{0%,35%{opacity:0}36%,55%{opacity:1}56%,100%{opacity:0}}
+@keyframes bsl3{0%,55%{opacity:0}56%,75%{opacity:1}76%,100%{opacity:0}}
+@keyframes bsl4{0%,75%{opacity:0}76%,88%{opacity:1}89%,100%{opacity:0}}
+.bsl0{animation:bsl0 9s ease-in-out infinite}.bsl1{animation:bsl1 9s ease-in-out infinite}
+.bsl2{animation:bsl2 9s ease-in-out infinite}.bsl3{animation:bsl3 9s ease-in-out infinite}
+.bsl4{animation:bsl4 9s ease-in-out infinite}
+</style>
+<rect width="900" height="690" fill="#F8F9FA" rx="10"/>
+<rect width="900" height="55" fill="#2C3E50" rx="10"/>
+<rect y="45" width="900" height="10" fill="#2C3E50"/>
+<text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Spiral Matrix Traversal</text>
+<rect x="800" y="12" width="82" height="28" fill="#F39C12" rx="14"/>
+<text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+<rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+<text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+<text x="105" y="81" font-family="Arial" font-size="12" fill="#555">[[1,2,3],[4,5,6],[7,8,9]] → [1,2,3,6,9,8,7,4,5] (spiral order)</text>
+<text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Traverse matrix in layers: right→down→left→up, shrinking boundaries. Two clean approaches.</text>
+
+<!-- APPROACH 1: Direction + Visited -->
+<rect x="15" y="115" width="870" height="210" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+<rect x="15" y="115" width="870" height="40" fill="#E74C3C" rx="7"/>
+<rect x="15" y="140" width="870" height="15" fill="#E74C3C"/>
+<text x="450" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Direction Array + Visited — O(n²) time, O(n²) space</text>
+<text x="450" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">Move in direction (right/down/left/up). If blocked by wall or visited → rotate direction.</text>
+<!-- 3×3 matrix: cells 40×40, gap=4, pitch=44. start_x=296, start_y=170. Center at ~450 -->
+<!-- row0: y=170. row1: y=214. row2: y=258. col0: x=296. col1: x=340. col2: x=384. -->
+<rect x="296" y="170" width="40" height="40" class="sp0" rx="3"/><text x="316" y="195" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="340" y="170" width="40" height="40" class="sp1" rx="3"/><text x="360" y="195" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="384" y="170" width="40" height="40" class="sp2" rx="3"/><text x="404" y="195" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">3</text>
+<rect x="296" y="214" width="40" height="40" class="sp7" rx="3"/><text x="316" y="239" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">4</text>
+<rect x="340" y="214" width="40" height="40" class="sp8" rx="3"/><text x="360" y="239" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">5</text>
+<rect x="384" y="214" width="40" height="40" class="sp3" rx="3"/><text x="404" y="239" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">6</text>
+<rect x="296" y="258" width="40" height="40" class="sp6" rx="3"/><text x="316" y="283" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">7</text>
+<rect x="340" y="258" width="40" height="40" class="sp5" rx="3"/><text x="360" y="283" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">8</text>
+<rect x="384" y="258" width="40" height="40" class="sp4" rx="3"/><text x="404" y="283" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">9</text>
+<!-- Direction and spiral path annotations -->
+<text class="dl" x="295" y="308" font-family="Arial" font-size="10" fill="#E74C3C">→ right →</text>
+<!-- Result sequence building -->
+<text x="460" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#555">Spiral order:</text>
+<text x="460" y="198" font-family="Arial" font-size="12" fill="#27AE60">[1, 2, 3, 6, 9, 8, 7, 4, 5]</text>
+<text x="460" y="220" font-family="Arial" font-size="11" fill="#555">Directions array:</text>
+<text x="460" y="237" font-family="Arial" font-size="11" fill="#555">dr=[0,1,0,-1] (row delta)</text>
+<text x="460" y="254" font-family="Arial" font-size="11" fill="#555">dc=[1,0,-1,0] (col delta)</text>
+<text x="460" y="271" font-family="Arial" font-size="11" fill="#555">Rotate when hit wall/visited</text>
+<text x="460" y="288" font-family="Arial" font-size="11" fill="#888">visited[][]=true marks cells</text>
+<text x="450" y="308" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Orange = current, Green = visited. Uses O(n²) visited array.</text>
+
+<!-- Arrow 1→2 -->
+<line x1="450" y1="325" x2="450" y2="362" stroke="#7F8C8D" stroke-width="2" stroke-dasharray="4,3"/>
+<polygon points="444,362 450,370 456,362" fill="#7F8C8D"/>
+<rect x="200" y="329" width="500" height="22" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+<text x="450" y="344" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">💡 Track boundaries (top/right/bottom/left) instead of visited array → O(1) extra space</text>
+
+<!-- APPROACH 2: Boundary Tracking -->
+<rect x="15" y="370" width="870" height="210" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+<rect x="15" y="370" width="870" height="40" fill="#27AE60" rx="7"/>
+<rect x="15" y="395" width="870" height="15" fill="#27AE60"/>
+<text x="450" y="395" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Boundary Tracking — O(n²) time, O(1) space ⭐</text>
+<text x="450" y="408" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">top/right/bottom/left pointers shrink inward after each directional pass.</text>
+<!-- 3×3 matrix for approach 2: start_x=296, start_y=425 -->
+<rect x="296" y="425" width="40" height="40" fill="#D5F5E3" stroke="#27AE60" stroke-width="2" rx="3"/><text x="316" y="450" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="340" y="425" width="40" height="40" fill="#D5F5E3" stroke="#27AE60" stroke-width="2" rx="3"/><text x="360" y="450" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="384" y="425" width="40" height="40" fill="#D5F5E3" stroke="#27AE60" stroke-width="2" rx="3"/><text x="404" y="450" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">3</text>
+<rect x="296" y="469" width="40" height="40" fill="#D5F5E3" stroke="#27AE60" stroke-width="2" rx="3"/><text x="316" y="494" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">4</text>
+<rect x="340" y="469" width="40" height="40" fill="#D5F5E3" stroke="#27AE60" stroke-width="2" rx="3"/><text x="360" y="494" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">5</text>
+<rect x="384" y="469" width="40" height="40" fill="#D5F5E3" stroke="#27AE60" stroke-width="2" rx="3"/><text x="404" y="494" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">6</text>
+<rect x="296" y="513" width="40" height="40" fill="#D5F5E3" stroke="#27AE60" stroke-width="2" rx="3"/><text x="316" y="538" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">7</text>
+<rect x="340" y="513" width="40" height="40" fill="#D5F5E3" stroke="#27AE60" stroke-width="2" rx="3"/><text x="360" y="538" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">8</text>
+<rect x="384" y="513" width="40" height="40" fill="#D5F5E3" stroke="#27AE60" stroke-width="2" rx="3"/><text x="404" y="538" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">9</text>
+<!-- Boundary labels -->
+<text x="340" y="416" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">top=0</text>
+<text x="340" y="566" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">bottom=2</text>
+<text x="283" y="487" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">left=0</text>
+<text x="439" y="487" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">right=2</text>
+<!-- Step labels -->
+<text class="bsl0" x="620" y="450" font-family="Arial" font-size="11" fill="#555">→ row top (0): 1,2,3 → top++</text>
+<text class="bsl1" x="620" y="450" font-family="Arial" font-size="11" fill="#555">↓ col right (2): 6,9 → right--</text>
+<text class="bsl2" x="620" y="450" font-family="Arial" font-size="11" fill="#555">← row bottom (2): 8,7 → bottom--</text>
+<text class="bsl3" x="620" y="450" font-family="Arial" font-size="11" fill="#555">↑ col left (0): 4 → left++</text>
+<text class="bsl4" x="620" y="450" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">⭕ center: 5. Done! [1,2,3,6,9,8,7,4,5] ✓</text>
+<text x="450" y="555" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Loop: while(top≤bottom &amp;&amp; left≤right). After each pass, shrink corresponding boundary.</text>
+<text x="450" y="570" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">No extra space needed. Works for any m×n matrix!</text>
+
+<!-- Complexity Table -->
+<rect x="15" y="592" width="870" height="93" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+<rect x="15" y="592" width="870" height="30" fill="#2C3E50" rx="7"/>
+<rect x="15" y="607" width="870" height="15" fill="#2C3E50"/>
+<text x="450" y="612" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+<line x1="15" y1="622" x2="885" y2="622" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="622" width="870" height="23" fill="#ECF0F1"/>
+<text x="200" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+<text x="500" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+<text x="750" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+<line x1="15" y1="645" x2="885" y2="645" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="645" width="870" height="22" fill="#FDEDEC"/>
+<text x="200" y="660" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Direction + Visited</text>
+<text x="500" y="660" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(m·n)</text>
+<text x="750" y="660" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(m·n)</text>
+<line x1="15" y1="667" x2="885" y2="667" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="667" width="870" height="23" fill="#EAFAF1"/>
+<text x="200" y="683" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Boundary Tracking ⭐</text>
+<text x="500" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(m·n)</text>
+<text x="750" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(1)</text>
+<line x1="370" y1="622" x2="370" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+<line x1="620" y1="622" x2="620" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

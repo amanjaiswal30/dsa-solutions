@@ -1,0 +1,196 @@
+<svg width="900" height="900" xmlns="http://www.w3.org/2000/svg">
+<style>
+/* Approach 1: Sort - show sorted array with mid highlighted */
+@keyframes mid_flash{0%,60%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}61%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:3}}
+.midf{animation:mid_flash 3s ease-in-out infinite}
+/* Approach 2: HashMap - pointer scans, count builds */
+@keyframes hm_scan{0%,5%{transform:translateX(0)}12%,15%{transform:translateX(48px)}22%,25%{transform:translateX(96px)}32%,35%{transform:translateX(144px)}42%,45%{transform:translateX(192px)}52%,55%{transform:translateX(240px)}62%,65%{transform:translateX(288px)}80%,100%{transform:translateX(0)}}
+.hms{animation:hm_scan 7s ease-in-out infinite}
+@keyframes hml0{0%,5%{opacity:1}12%,100%{opacity:0}}
+@keyframes hml1{0%,11%{opacity:0}12%,22%{opacity:1}23%,100%{opacity:0}}
+@keyframes hml2{0%,21%{opacity:0}22%,32%{opacity:1}33%,100%{opacity:0}}
+@keyframes hml3{0%,31%{opacity:0}32%,42%{opacity:1}43%,100%{opacity:0}}
+@keyframes hml4{0%,41%{opacity:0}42%,52%{opacity:1}53%,100%{opacity:0}}
+@keyframes hml5{0%,51%{opacity:0}52%,62%{opacity:1}63%,100%{opacity:0}}
+@keyframes hml6{0%,61%{opacity:0}62%,80%{opacity:1}81%,100%{opacity:0}}
+.hml0{animation:hml0 7s ease-in-out infinite}
+.hml1{animation:hml1 7s ease-in-out infinite}
+.hml2{animation:hml2 7s ease-in-out infinite}
+.hml3{animation:hml3 7s ease-in-out infinite}
+.hml4{animation:hml4 7s ease-in-out infinite}
+.hml5{animation:hml5 7s ease-in-out infinite}
+.hml6{animation:hml6 7s ease-in-out infinite}
+/* Approach 3: Boyer-Moore voting */
+@keyframes bm_scan{0%,5%{transform:translateX(0)}12%,15%{transform:translateX(48px)}22%,25%{transform:translateX(96px)}32%,35%{transform:translateX(144px)}42%,45%{transform:translateX(192px)}52%,55%{transform:translateX(240px)}62%,65%{transform:translateX(288px)}80%,100%{transform:translateX(0)}}
+.bms{animation:bm_scan 7s ease-in-out infinite}
+@keyframes bml0{0%,5%{opacity:1}12%,100%{opacity:0}}
+@keyframes bml1{0%,11%{opacity:0}12%,22%{opacity:1}23%,100%{opacity:0}}
+@keyframes bml2{0%,21%{opacity:0}22%,32%{opacity:1}33%,100%{opacity:0}}
+@keyframes bml3{0%,31%{opacity:0}32%,42%{opacity:1}43%,100%{opacity:0}}
+@keyframes bml4{0%,41%{opacity:0}42%,52%{opacity:1}53%,100%{opacity:0}}
+@keyframes bml5{0%,51%{opacity:0}52%,62%{opacity:1}63%,100%{opacity:0}}
+@keyframes bml6{0%,61%{opacity:0}62%,80%{opacity:1}81%,100%{opacity:0}}
+.bml0{animation:bml0 7s ease-in-out infinite}
+.bml1{animation:bml1 7s ease-in-out infinite}
+.bml2{animation:bml2 7s ease-in-out infinite}
+.bml3{animation:bml3 7s ease-in-out infinite}
+.bml4{animation:bml4 7s ease-in-out infinite}
+.bml5{animation:bml5 7s ease-in-out infinite}
+.bml6{animation:bml6 7s ease-in-out infinite}
+</style>
+<rect width="900" height="900" fill="#F8F9FA" rx="10"/>
+<rect width="900" height="55" fill="#2C3E50" rx="10"/>
+<rect y="45" width="900" height="10" fill="#2C3E50"/>
+<text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Majority Element</text>
+<rect x="820" y="12" width="62" height="28" fill="#27AE60" rx="14"/>
+<text x="851" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Easy</text>
+<rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+<text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+<text x="105" y="81" font-family="Arial" font-size="12" fill="#555">arr=[2,2,1,1,1,2,2] → Majority = 2 (appears 4 times &gt; n/2=3.5)</text>
+<text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Element appearing more than n/2 times. Guaranteed to exist. Boyer-Moore Voting is O(1) space optimal.</text>
+
+<!-- APPROACH 1: Sort -->
+<rect x="15" y="115" width="870" height="185" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+<rect x="15" y="115" width="870" height="40" fill="#E74C3C" rx="7"/>
+<rect x="15" y="140" width="870" height="15" fill="#E74C3C"/>
+<text x="450" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Sort — O(n log n) time, O(1) space</text>
+<text x="450" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">Sort array → middle element arr[n/2] is always the majority</text>
+<!-- Sorted [1,1,1,2,2,2,2], 7 elements, start_x=285 -->
+<text x="150" y="200" font-family="Arial" font-size="11" fill="#555">Sorted:</text>
+<rect x="285" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="306" y="204" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="333" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="354" y="204" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="381" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="402" y="204" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="429" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3" class="midf"/>
+<text x="450" y="204" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="477" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="498" y="204" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="525" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="546" y="204" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="573" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="594" y="204" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<!-- Arrow pointing to mid index -->
+<line x1="450" y1="165" x2="450" y2="175" stroke="#27AE60" stroke-width="2"/>
+<polygon points="445,175 450,178 455,175" fill="#27AE60"/>
+<text x="450" y="160" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">n/2=3</text>
+<text x="450" y="250" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">arr[n/2] = arr[3] = 2 → majority = 2 ✓</text>
+<text x="450" y="267" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Majority element must occupy the middle position when sorted. Always correct!</text>
+<text x="450" y="284" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Drawback: O(n log n) sort. Can we do O(n) with HashMap?</text>
+
+<!-- Arrow 1→2 -->
+<line x1="450" y1="300" x2="450" y2="337" stroke="#7F8C8D" stroke-width="2" stroke-dasharray="4,3"/>
+<polygon points="444,337 450,345 456,337" fill="#7F8C8D"/>
+<rect x="270" y="304" width="360" height="22" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+<text x="450" y="319" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">💡 Count occurrences without sorting — use HashMap!</text>
+
+<!-- APPROACH 2: HashMap -->
+<rect x="15" y="345" width="870" height="185" fill="#FFFFFF" stroke="#F39C12" stroke-width="2" rx="7"/>
+<rect x="15" y="345" width="870" height="40" fill="#F39C12" rx="7"/>
+<rect x="15" y="370" width="870" height="15" fill="#F39C12"/>
+<text x="450" y="370" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: HashMap — O(n) time, O(n) space</text>
+<text x="450" y="383" font-family="Arial" font-size="10" fill="#FEF9E7" text-anchor="middle">Count occurrences → find element with count &gt; n/2</text>
+<!-- Array [2,2,1,1,1,2,2], 7 elements, start_x=285 -->
+<rect x="285" y="403" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="306" y="429" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="333" y="403" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="354" y="429" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="381" y="403" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="402" y="429" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="429" y="403" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="450" y="429" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="477" y="403" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="498" y="429" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="525" y="403" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="546" y="429" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="573" y="403" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="594" y="429" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<g class="hms" transform="translate(306,403)">
+  <polygon points="-7,-14 7,-14 0,-4" fill="#F39C12"/>
+  <text x="0" y="-16" font-family="Arial" font-size="9" fill="#F39C12" text-anchor="middle">i</text>
+</g>
+<!-- HashMap state labels -->
+<text class="hml0" x="670" y="423" font-family="Arial" font-size="11" fill="#555">{2:1}</text>
+<text class="hml1" x="670" y="423" font-family="Arial" font-size="11" fill="#555">{2:2}</text>
+<text class="hml2" x="670" y="423" font-family="Arial" font-size="11" fill="#555">{2:2, 1:1}</text>
+<text class="hml3" x="670" y="423" font-family="Arial" font-size="11" fill="#555">{2:2, 1:2}</text>
+<text class="hml4" x="670" y="423" font-family="Arial" font-size="11" fill="#555">{2:2, 1:3}</text>
+<text class="hml5" x="670" y="423" font-family="Arial" font-size="11" fill="#555">{2:3, 1:3}</text>
+<text class="hml6" x="670" y="423" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">{2:4, 1:3} → 2! ✓</text>
+<text x="450" y="468" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">count[2]=4 &gt; 7/2=3.5 → majority = 2 ✓</text>
+<text x="450" y="485" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">O(n) time but O(n) extra space for the map. Can we avoid the HashMap?</text>
+<text x="450" y="502" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Boyer-Moore Voting uses O(1) space with the same O(n) time!</text>
+
+<!-- Arrow 2→3 -->
+<line x1="450" y1="530" x2="450" y2="567" stroke="#7F8C8D" stroke-width="2" stroke-dasharray="4,3"/>
+<polygon points="444,567 450,575 456,567" fill="#7F8C8D"/>
+<rect x="240" y="534" width="420" height="22" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+<text x="450" y="549" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">💡 Boyer-Moore: majority always survives vote cancellation!</text>
+
+<!-- APPROACH 3: Boyer-Moore Voting -->
+<rect x="15" y="575" width="870" height="185" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+<rect x="15" y="575" width="870" height="40" fill="#27AE60" rx="7"/>
+<rect x="15" y="600" width="870" height="15" fill="#27AE60"/>
+<text x="450" y="600" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 3: Boyer-Moore Voting — O(n) time, O(1) space ⭐</text>
+<text x="450" y="613" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">candidate=first; count=1; if match count++, else count--; when 0 switch candidate</text>
+<!-- Array [2,2,1,1,1,2,2] -->
+<rect x="285" y="628" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="306" y="654" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="333" y="628" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="354" y="654" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="381" y="628" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="402" y="654" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="429" y="628" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="450" y="654" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="477" y="628" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="498" y="654" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="525" y="628" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="546" y="654" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="573" y="628" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="594" y="654" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<g class="bms" transform="translate(306,628)">
+  <polygon points="-7,-14 7,-14 0,-4" fill="#27AE60"/>
+  <text x="0" y="-16" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">i</text>
+</g>
+<!-- Candidate/count state labels -->
+<text class="bml0" x="660" y="648" font-family="Arial" font-size="11" fill="#555">cand=2, cnt=1</text>
+<text class="bml1" x="660" y="648" font-family="Arial" font-size="11" fill="#555">cand=2, cnt=2</text>
+<text class="bml2" x="660" y="648" font-family="Arial" font-size="11" fill="#555">cand=2, cnt=1</text>
+<text class="bml3" x="660" y="648" font-family="Arial" font-size="11" fill="#555">cand=2, cnt=0</text>
+<text class="bml4" x="660" y="648" font-family="Arial" font-size="11" fill="#F39C12">cand=1→2, cnt=1</text>
+<text class="bml5" x="660" y="648" font-family="Arial" font-size="11" fill="#555">cand=2, cnt=2</text>
+<text class="bml6" x="660" y="648" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">cand=2, cnt=3 ✓</text>
+<text x="450" y="690" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">Candidate = 2 survives! Majority always wins the "vote". ✓</text>
+<text x="450" y="707" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">if(arr[i]==cand) count++ else if(--count==0) cand=arr[i+1]; count=1</text>
+<text x="450" y="722" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Phase 2 (verify): optional scan to confirm count &gt; n/2 (problem guarantees it exists)</text>
+<text x="450" y="737" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">O(1) space — best possible! Majority element always survives cancellation.</text>
+
+<!-- Complexity Table -->
+<rect x="15" y="772" width="870" height="123" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+<rect x="15" y="772" width="870" height="30" fill="#2C3E50" rx="7"/>
+<rect x="15" y="787" width="870" height="15" fill="#2C3E50"/>
+<text x="450" y="792" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+<line x1="15" y1="802" x2="885" y2="802" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="802" width="870" height="23" fill="#ECF0F1"/>
+<text x="200" y="818" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+<text x="500" y="818" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+<text x="750" y="818" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+<line x1="15" y1="825" x2="885" y2="825" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="825" width="870" height="22" fill="#FDEDEC"/>
+<text x="200" y="840" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Sort</text>
+<text x="500" y="840" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n log n)</text>
+<text x="750" y="840" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(1)</text>
+<line x1="15" y1="847" x2="885" y2="847" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="847" width="870" height="22" fill="#FEF9E7"/>
+<text x="200" y="862" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">HashMap</text>
+<text x="500" y="862" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(n)</text>
+<text x="750" y="862" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n)</text>
+<line x1="15" y1="869" x2="885" y2="869" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="869" width="870" height="26" fill="#EAFAF1"/>
+<text x="200" y="886" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Boyer-Moore Voting ⭐</text>
+<text x="500" y="886" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n)</text>
+<text x="750" y="886" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(1)</text>
+<line x1="370" y1="802" x2="370" y2="895" stroke="#DEE2E6" stroke-width="1"/>
+<line x1="620" y1="802" x2="620" y2="895" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

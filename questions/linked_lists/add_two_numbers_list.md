@@ -1,5 +1,8 @@
 # 🔹 Add Two Numbers Represented by Linked Lists
 
+![](../../assets/images/linked_lists/add_two_numbers_list.svg)
+
+
 ---
 
 ## 📌 Problem Statement

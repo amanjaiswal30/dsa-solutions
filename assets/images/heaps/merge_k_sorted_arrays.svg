@@ -1,0 +1,179 @@
+<svg width="900" height="640" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="900" height="640" fill="#F8F9FA" rx="10"/>
+  <!-- Title Bar -->
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="19" font-weight="bold" fill="white">Merge K Sorted Arrays</text>
+  <!-- Difficulty Badge -->
+  <rect x="790" y="12" width="92" height="28" fill="#E74C3C" rx="14"/>
+  <text x="836" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Hard</text>
+
+  <!-- Example Row -->
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">arrays=[[1,4,5],[1,3,4],[2,6]]</text>
+  <text x="370" y="81" font-family="Arial" font-size="12" fill="#555">→</text>
+  <text x="388" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#27AE60">[1,1,2,3,4,4,5,6]</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">N=8 total elements, k=3 arrays — merge while maintaining sorted order</text>
+
+  <!-- === APPROACH 1: Flatten + Sort === -->
+  <rect x="15" y="115" width="258" height="360" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="258" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="258" height="15" fill="#E74C3C"/>
+  <text x="144" y="140" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Flatten + Sort</text>
+  <text x="144" y="153" font-family="Arial" font-size="9" fill="#FADBD8" text-anchor="middle">O(N log N) time | O(N) space</text>
+
+  <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Combine all, then sort:</text>
+
+  <!-- Arrays visualization -->
+  <text x="30" y="198" font-family="Arial" font-size="10" fill="#555">[1,4,5] + [1,3,4] + [2,6]</text>
+  <text x="144" y="214" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">↓ flatten</text>
+
+  <rect x="30" y="222" width="220" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="140" y="238" font-family="Arial" font-size="10" fill="#E74C3C" text-anchor="middle">[1,4,5,1,3,4,2,6] (unsorted)</text>
+
+  <text x="144" y="258" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">↓ Arrays.sort()</text>
+
+  <rect x="30" y="265" width="220" height="24" fill="#D5F5E3" stroke="#27AE60" rx="3"/>
+  <text x="140" y="281" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">[1,1,2,3,4,4,5,6] ✓</text>
+
+  <text x="30" y="312" font-family="Arial" font-size="11" fill="#E74C3C">⚠ Wastes sorted structure</text>
+  <text x="30" y="330" font-family="Arial" font-size="11" fill="#888">Arrays were already sorted!</text>
+  <text x="30" y="348" font-family="Arial" font-size="11" fill="#888">Re-sorting: O(N log N)</text>
+  <text x="30" y="366" font-family="Arial" font-size="11" fill="#888">Simple but inefficient</text>
+  <text x="30" y="384" font-family="Arial" font-size="11" fill="#888">Ignores sorted property</text>
+  <text x="30" y="402" font-family="Arial" font-size="11" fill="#888">Best for small k/N</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="278" y1="285" x2="316" y2="285" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="316,280 326,285 316,290" fill="#7F8C8D"/>
+  <rect x="278" y="258" width="38" height="54" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+  <text x="297" y="272" font-family="Arial" font-size="8" fill="#555" text-anchor="middle" font-weight="bold">💡 Min</text>
+  <text x="297" y="284" font-family="Arial" font-size="8" fill="#555" text-anchor="middle">Heap</text>
+  <text x="297" y="296" font-family="Arial" font-size="8" fill="#555" text-anchor="middle">merge!</text>
+
+  <!-- === APPROACH 2: Min-Heap === -->
+  <rect x="326" y="115" width="258" height="360" fill="#FFFFFF" stroke="#E67E22" stroke-width="2" rx="7"/>
+  <rect x="326" y="115" width="258" height="40" fill="#E67E22" rx="7"/>
+  <rect x="326" y="140" width="258" height="15" fill="#E67E22"/>
+  <text x="455" y="140" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Min-Heap ⭐</text>
+  <text x="455" y="153" font-family="Arial" font-size="9" fill="#FAD7A0" text-anchor="middle">O(N log k) time | O(k) space</text>
+
+  <text x="340" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Push first elem of each array:</text>
+
+  <!-- Heap state trace -->
+  <rect x="340" y="186" width="230" height="22" fill="#FEF9E7" stroke="#F39C12" rx="3"/>
+  <text x="455" y="201" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Init heap: [(1,0,0),(1,1,0),(2,2,0)]</text>
+
+  <rect x="340" y="212" width="230" height="22" fill="#FEF9E7" stroke="#F39C12" rx="3"/>
+  <text x="455" y="227" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Pop (1,arr0): result=[1], push (4,arr0)</text>
+
+  <rect x="340" y="238" width="230" height="22" fill="#FEF9E7" stroke="#F39C12" rx="3"/>
+  <text x="455" y="253" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Pop (1,arr1): result=[1,1], push (3,arr1)</text>
+
+  <rect x="340" y="264" width="230" height="22" fill="#FEF9E7" stroke="#F39C12" rx="3"/>
+  <text x="455" y="279" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Pop (2,arr2): result=[1,1,2], push (6,arr2)</text>
+
+  <rect x="340" y="290" width="230" height="22" fill="#FEF9E7" stroke="#F39C12" rx="3"/>
+  <text x="455" y="305" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Pop (3,arr1): result=[1,1,2,3], push (4,arr1)</text>
+
+  <rect x="340" y="316" width="230" height="22" fill="#FEF9E7" stroke="#F39C12" rx="3"/>
+  <text x="455" y="331" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Pop (4,arr0): result=[...4], push (5,arr0)</text>
+
+  <rect x="340" y="342" width="230" height="22" fill="#D5F5E3" stroke="#27AE60" rx="3"/>
+  <text x="455" y="357" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">Continue... [1,1,2,3,4,4,5,6] ✓</text>
+
+  <text x="340" y="387" font-family="Arial" font-size="11" fill="#888">Heap size = k at all times</text>
+  <text x="340" y="405" font-family="Arial" font-size="11" fill="#888">log k ops per element</text>
+  <text x="340" y="423" font-family="Arial" font-size="11" fill="#888">Stores (val, arrayIdx, elemIdx)</text>
+  <text x="340" y="441" font-family="Arial" font-size="11" fill="#888">Classic k-way merge!</text>
+  <text x="340" y="459" font-family="Arial" font-size="11" fill="#888">O(k) space — very efficient</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="589" y1="285" x2="627" y2="285" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="627,280 637,285 627,290" fill="#7F8C8D"/>
+  <rect x="589" y="258" width="38" height="54" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+  <text x="608" y="272" font-family="Arial" font-size="8" fill="#555" text-anchor="middle" font-weight="bold">💡 D&amp;C</text>
+  <text x="608" y="284" font-family="Arial" font-size="8" fill="#555" text-anchor="middle">Divide</text>
+  <text x="608" y="296" font-family="Arial" font-size="8" fill="#555" text-anchor="middle">pairs!</text>
+
+  <!-- === APPROACH 3: Divide & Conquer === -->
+  <rect x="637" y="115" width="248" height="360" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="637" y="115" width="248" height="40" fill="#27AE60" rx="7"/>
+  <rect x="637" y="140" width="248" height="15" fill="#27AE60"/>
+  <text x="761" y="140" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 3: Divide &amp; Conquer</text>
+  <text x="761" y="153" font-family="Arial" font-size="9" fill="#D5F5E3" text-anchor="middle">O(N log k) time | O(N) space</text>
+
+  <text x="650" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Pairwise merge like merge sort:</text>
+
+  <!-- Tree diagram -->
+  <!-- Level 0: 3 arrays -->
+  <rect x="650" y="188" width="40" height="22" fill="#82E0AA" stroke="#27AE60" rx="3"/>
+  <text x="670" y="203" font-family="Arial" font-size="9" fill="#1E5631" text-anchor="middle">A0</text>
+
+  <rect x="710" y="188" width="40" height="22" fill="#82E0AA" stroke="#27AE60" rx="3"/>
+  <text x="730" y="203" font-family="Arial" font-size="9" fill="#1E5631" text-anchor="middle">A1</text>
+
+  <rect x="770" y="188" width="40" height="22" fill="#82E0AA" stroke="#27AE60" rx="3"/>
+  <text x="790" y="203" font-family="Arial" font-size="9" fill="#1E5631" text-anchor="middle">A2</text>
+
+  <!-- Merge A0+A1 -->
+  <line x1="670" y1="210" x2="700" y2="238" stroke="#27AE60" stroke-width="1.5"/>
+  <line x1="730" y1="210" x2="700" y2="238" stroke="#27AE60" stroke-width="1.5"/>
+
+  <rect x="674" y="238" width="52" height="22" fill="#27AE60" rx="3"/>
+  <text x="700" y="253" font-family="Arial" font-size="9" fill="white" text-anchor="middle">A0+A1</text>
+
+  <!-- Then merge with A2 -->
+  <line x1="700" y1="260" x2="740" y2="285" stroke="#27AE60" stroke-width="1.5"/>
+  <line x1="790" y1="210" x2="750" y2="285" stroke="#27AE60" stroke-width="1.5"/>
+
+  <rect x="714" y="285" width="60" height="22" fill="#1E8449" rx="3"/>
+  <text x="744" y="300" font-family="Arial" font-size="9" fill="white" text-anchor="middle">merged</text>
+
+  <text x="650" y="330" font-family="Arial" font-size="10" fill="#333">For k arrays:</text>
+  <text x="650" y="348" font-family="Arial" font-size="10" fill="#333">Round 1: merge pairs (k/2 merges)</text>
+  <text x="650" y="366" font-family="Arial" font-size="10" fill="#333">Round 2: merge resulting pairs</text>
+  <text x="650" y="384" font-family="Arial" font-size="10" fill="#333">... log k rounds total</text>
+
+  <rect x="650" y="392" width="212" height="22" fill="#D5F5E3" stroke="#27AE60" rx="3"/>
+  <text x="756" y="407" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">Each round: O(N) → O(N log k) total ✓</text>
+
+  <text x="650" y="436" font-family="Arial" font-size="11" fill="#888">Same complexity as min-heap</text>
+  <text x="650" y="454" font-family="Arial" font-size="11" fill="#888">More memory: O(N) per merge</text>
+  <text x="650" y="472" font-family="Arial" font-size="11" fill="#888">Elegant recursive structure</text>
+
+  <!-- Complexity Table -->
+  <rect x="15" y="487" width="870" height="142" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+  <rect x="15" y="487" width="870" height="30" fill="#2C3E50" rx="7"/>
+  <rect x="15" y="502" width="870" height="15" fill="#2C3E50"/>
+  <text x="450" y="507" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+
+  <line x1="15" y1="517" x2="885" y2="517" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="517" width="870" height="25" fill="#ECF0F1"/>
+  <text x="200" y="534" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+  <text x="500" y="534" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+  <text x="750" y="534" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+
+  <line x1="15" y1="542" x2="885" y2="542" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="542" width="870" height="28" fill="#FDEDEC"/>
+  <text x="200" y="561" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Flatten + Sort</text>
+  <text x="500" y="561" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(N log N)</text>
+  <text x="750" y="561" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">O(N)</text>
+
+  <line x1="15" y1="570" x2="885" y2="570" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="570" width="870" height="28" fill="#FEF9E7"/>
+  <text x="200" y="589" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Min-Heap ⭐ (low memory)</text>
+  <text x="500" y="589" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">O(N log k)</text>
+  <text x="750" y="589" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">O(k)</text>
+
+  <line x1="15" y1="598" x2="885" y2="598" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="598" width="870" height="30" fill="#EAFAF1"/>
+  <text x="200" y="618" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Divide &amp; Conquer</text>
+  <text x="500" y="618" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(N log k)</text>
+  <text x="750" y="618" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">O(N)</text>
+
+  <line x1="370" y1="517" x2="370" y2="628" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="620" y1="517" x2="620" y2="628" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

@@ -1,5 +1,8 @@
 # 🔹 Problem: Group Anagrams
 
+![](../../assets/images/strings/group_anagrams.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

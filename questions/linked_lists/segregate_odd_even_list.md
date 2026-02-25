@@ -1,5 +1,8 @@
 # 🔹 Segregate Even and Odd Valued Nodes in a Linked List
 
+![](../../assets/images/linked_lists/segregate_odd_even_list.svg)
+
+
 ---
 
 ## 📌 Problem Statement

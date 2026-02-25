@@ -1,5 +1,8 @@
 # Largest Number Formed from an Array
 
+![](../../assets/images/arrays/largest_number.svg)
+
+
 **Difficulty:** Medium-Hard 🔥
 
 ---

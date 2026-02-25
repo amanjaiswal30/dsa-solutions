@@ -1,5 +1,8 @@
 # 🔹 Problem: Find Median from Data Stream
 
+![](../../assets/images/heaps/median_from_data_stream.svg)
+
+
 **Difficulty:** Hard ⚡
 
 ---

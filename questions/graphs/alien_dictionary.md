@@ -1,5 +1,8 @@
 # Alien Dictionary
 
+![](../../assets/images/graphs/alien_dictionary.svg)
+
+
 **Difficulty:** Hard 🔥
 
 ---

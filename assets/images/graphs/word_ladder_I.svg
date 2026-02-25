@@ -1,0 +1,102 @@
+<svg width="900" height="580" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="580" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Word Ladder I — Shortest Transformation Sequence</text>
+  <rect x="820" y="12" width="62" height="28" fill="#E74C3C" rx="14"/>
+  <text x="851" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Hard</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">beginWord="hit", endWord="cog", wordList=["hot","dot","dog","lot","log","cog"]</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#555">→ 5: hit→hot→dot→dog→cog</text>
+
+  <!-- Approach 1: BFS -->
+  <rect x="15" y="115" width="390" height="340" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="390" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="390" height="15" fill="#E74C3C"/>
+  <text x="210" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: BFS (Standard)</text>
+  <text x="210" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(M²×N) time | O(M²×N) space  (M=word len, N=wordlist size)</text>
+
+  <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">BFS level = transformation length:</text>
+  <rect x="30" y="184" width="360" height="88" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">wordSet = {hot,dot,dog,lot,log,cog}</text>
+  <text x="210" y="215" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Queue:["hit"], level=1</text>
+  <text x="210" y="230" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Poll "hit": try a-z for each position</text>
+  <text x="210" y="245" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">  h_t: try aat→bit→...→hot! in set!</text>
+  <text x="210" y="260" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">  remove "hot" from set, add to queue</text>
+  <text x="210" y="275" font-family="Arial" font-size="10" fill="#E74C3C" font-weight="bold" text-anchor="middle">Continue BFS... reach "cog" at level 5 ✓</text>
+
+  <text x="30" y="290" font-family="Arial" font-size="11" fill="#555">Word generation trick:</text>
+  <rect x="30" y="296" width="360" height="28" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="311" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">for each pos: replace with 'a' to 'z' → check in wordSet</text>
+  <text x="210" y="323" font-family="Arial" font-size="10" fill="#E74C3C" font-weight="bold" text-anchor="middle">remove from set when visited (prevents revisit)</text>
+
+  <text x="30" y="348" font-family="Arial" font-size="11" fill="#E74C3C">⚠ O(M) to try 26 letters per position</text>
+  <text x="30" y="366" font-family="Arial" font-size="11" fill="#888">Remove from wordSet = visited tracking</text>
+  <text x="30" y="384" font-family="Arial" font-size="11" fill="#888">Return level when endWord found</text>
+  <text x="30" y="402" font-family="Arial" font-size="11" fill="#888">Return 0 if endWord not reachable</text>
+  <text x="30" y="420" font-family="Arial" font-size="11" fill="#888">Bidirectional BFS: 2x faster!</text>
+  <text x="30" y="438" font-family="Arial" font-size="11" fill="#888">Expand smaller frontier each time</text>
+  <text x="30" y="456" font-family="Arial" font-size="11" fill="#888">Still guarantees shortest path</text>
+
+  <!-- Evolution Arrow -->
+  <line x1="410" y1="290" x2="480" y2="290" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon points="480,285 492,290 480,295" fill="#7F8C8D"/>
+  <rect x="410" y="262" width="72" height="56" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
+  <text x="446" y="276" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Bidir</text>
+  <text x="446" y="288" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">BFS from</text>
+  <text x="446" y="300" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">both ends!</text>
+
+  <!-- Approach 2: Bidirectional BFS -->
+  <rect x="492" y="115" width="393" height="340" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="492" y="115" width="393" height="40" fill="#27AE60" rx="7"/>
+  <rect x="492" y="140" width="393" height="15" fill="#27AE60"/>
+  <text x="688" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Bidirectional BFS ⭐</text>
+  <text x="688" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(M²×√N) time | O(M²×N) space (much faster!)</text>
+
+  <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Expand from BOTH ends simultaneously:</text>
+  <rect x="505" y="184" width="362" height="88" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">beginSet={"hit"}, endSet={"cog"}</text>
+  <text x="686" y="215" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Expand beginSet: generate neighbors</text>
+  <text x="686" y="230" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">  if any neighbor in endSet → FOUND!</text>
+  <text x="686" y="245" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">  else: new beginSet = valid neighbors</text>
+  <text x="686" y="260" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Always expand SMALLER frontier</text>
+  <text x="686" y="275" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">Frontiers meet in middle → path found! ✓</text>
+
+  <text x="505" y="290" font-family="Arial" font-size="11" fill="#555">Expansion strategy:</text>
+  <rect x="505" y="296" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="311" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">if beginSet.size &gt; endSet.size: swap them</text>
+  <text x="686" y="323" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">always expand smaller set → minimum work!</text>
+
+  <text x="505" y="348" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">~2x faster than unidirectional BFS!</text>
+  <text x="505" y="366" font-family="Arial" font-size="11" fill="#888">Frontier size grows much slower</text>
+  <text x="505" y="384" font-family="Arial" font-size="11" fill="#888">O(b^(d/2)) vs O(b^d) nodes explored</text>
+  <text x="505" y="402" font-family="Arial" font-size="11" fill="#888">Use sets instead of queues</text>
+  <text x="505" y="420" font-family="Arial" font-size="11" fill="#888">Level increments with each expansion</text>
+  <text x="505" y="438" font-family="Arial" font-size="11" fill="#888">Remove from wordSet to avoid revisits</text>
+  <text x="505" y="456" font-family="Arial" font-size="11" fill="#888">Both: BFS guarantees shortest path!</text>
+
+  <!-- Complexity Table -->
+  <rect x="15" y="468" width="870" height="104" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+  <rect x="15" y="468" width="870" height="30" fill="#2C3E50" rx="7"/>
+  <rect x="15" y="483" width="870" height="15" fill="#2C3E50"/>
+  <text x="450" y="488" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+  <line x1="15" y1="498" x2="885" y2="498" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="498" width="870" height="25" fill="#ECF0F1"/>
+  <text x="200" y="515" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+  <text x="500" y="515" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+  <text x="750" y="515" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+  <line x1="15" y1="523" x2="885" y2="523" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="523" width="870" height="24" fill="#FDEDEC"/>
+  <text x="200" y="539" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">BFS (Unidirectional)</text>
+  <text x="500" y="539" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(M²×N)</text>
+  <text x="750" y="539" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(M×N)</text>
+  <line x1="15" y1="547" x2="885" y2="547" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="547" width="870" height="24" fill="#EAFAF1"/>
+  <text x="200" y="563" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Bidirectional BFS ⭐</text>
+  <text x="500" y="563" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(M²×√N)</text>
+  <text x="750" y="563" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(M×N)</text>
+  <line x1="370" y1="498" x2="370" y2="571" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="620" y1="498" x2="620" y2="571" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

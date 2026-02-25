@@ -1,5 +1,8 @@
 # Longest Palindromic Subsequence – Detailed Explanation and Approaches
 
+![](../../assets/images/dynamic_programming/longest_palindromic_subsequence.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

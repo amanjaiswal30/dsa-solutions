@@ -1,0 +1,94 @@
+<svg width="900" height="560" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="560" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="17" font-weight="bold" fill="white">Add Two Numbers Represented by Linked Lists</text>
+  <rect x="800" y="12" width="82" height="28" fill="#F39C12" rx="14"/>
+  <text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">L1: 2→4→3 (=342), L2: 5→6→4 (=465)</text>
+  <text x="430" y="81" font-family="Arial" font-size="12" fill="#555">→</text>
+  <text x="448" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#27AE60">Result: 7→0→8 (=807)</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Digits stored in reverse order. Add digit by digit with carry propagation.</text>
+
+  <!-- Approach 1: Brute Force -->
+  <rect x="15" y="115" width="390" height="305" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="390" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="390" height="15" fill="#E74C3C"/>
+  <text x="210" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Convert to Integer</text>
+  <text x="210" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(m+n) time | O(m+n) space | ⚠ Overflow Risk</text>
+
+  <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Step 1: Traverse each list, build integer:</text>
+  <rect x="30" y="184" width="360" height="28" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="197" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">L1: 2 + 4×10 + 3×100 = 342</text>
+  <text x="210" y="209" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">L2: 5 + 6×10 + 4×100 = 465</text>
+
+  <text x="30" y="232" font-family="Arial" font-size="11" fill="#555">Step 2: Add integers:</text>
+  <rect x="30" y="238" width="360" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="254" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">sum = 342 + 465 = 807</text>
+
+  <text x="30" y="279" font-family="Arial" font-size="11" fill="#555">Step 3: Convert sum back to linked list:</text>
+  <rect x="30" y="285" width="360" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="301" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">807 → 807%10=7 → 80%10=0 → 8 → Result: 7→0→8</text>
+
+  <text x="30" y="332" font-family="Arial" font-size="11" fill="#E74C3C" font-weight="bold">⚠ Integer overflow for large inputs!</text>
+  <text x="30" y="350" font-family="Arial" font-size="11" fill="#888">Long/BigInteger workaround exists</text>
+  <text x="30" y="368" font-family="Arial" font-size="11" fill="#888">But loses purpose of digit-level arithmetic</text>
+  <text x="30" y="386" font-family="Arial" font-size="11" fill="#888">→ Digit-by-digit avoids overflow entirely</text>
+
+  <!-- Evolution Arrow -->
+  <line x1="410" y1="268" x2="480" y2="268" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon points="480,263 492,268 480,273" fill="#7F8C8D"/>
+  <rect x="410" y="240" width="72" height="56" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
+  <text x="446" y="254" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Direct</text>
+  <text x="446" y="266" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">digit add +</text>
+  <text x="446" y="278" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">carry!</text>
+
+  <!-- Approach 2: Optimal -->
+  <rect x="492" y="115" width="393" height="305" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="492" y="115" width="393" height="40" fill="#27AE60" rx="7"/>
+  <rect x="492" y="140" width="393" height="15" fill="#27AE60"/>
+  <text x="688" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Digit-by-Digit ⭐</text>
+  <text x="688" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(max(m,n)) time | O(max(m,n)) space</text>
+
+  <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Add column by column with carry:</text>
+  <rect x="505" y="184" width="362" height="88" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="199" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Pos 1: 2+5+carry(0) = 7 → digit=7, carry=0 → node(7)</text>
+  <text x="686" y="214" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Pos 2: 4+6+carry(0) = 10 → digit=0, carry=1 → node(0)</text>
+  <text x="686" y="229" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Pos 3: 3+4+carry(1) = 8 → digit=8, carry=0 → node(8)</text>
+  <text x="686" y="248" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">Both done, carry=0 → STOP → Result: 7→0→8 ✓</text>
+
+  <text x="505" y="290" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Loop condition handles unequal lengths:</text>
+  <rect x="505" y="296" width="362" height="48" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="312" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">while (l1 != null || l2 != null || carry != 0)</text>
+  <text x="686" y="327" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">sum = (l1 ? l1.val : 0) + (l2 ? l2.val : 0) + carry</text>
+  <text x="686" y="342" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">carry = sum/10; create node(sum%10)</text>
+
+  <text x="505" y="374" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">No overflow — works for any list length!</text>
+  <text x="505" y="392" font-family="Arial" font-size="11" fill="#888">Final carry creates extra node if needed (e.g. 9+9=18)</text>
+
+  <!-- Complexity Table -->
+  <rect x="15" y="432" width="870" height="114" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+  <rect x="15" y="432" width="870" height="30" fill="#2C3E50" rx="7"/>
+  <rect x="15" y="447" width="870" height="15" fill="#2C3E50"/>
+  <text x="450" y="452" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+  <line x1="15" y1="462" x2="885" y2="462" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="462" width="870" height="25" fill="#ECF0F1"/>
+  <text x="200" y="479" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+  <text x="500" y="479" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+  <text x="750" y="479" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+  <line x1="15" y1="487" x2="885" y2="487" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="487" width="870" height="24" fill="#FDEDEC"/>
+  <text x="200" y="503" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Convert to Integer (Brute)</text>
+  <text x="500" y="503" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(m+n)</text>
+  <text x="750" y="503" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(m+n) + overflow risk</text>
+  <line x1="15" y1="511" x2="885" y2="511" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="511" width="870" height="24" fill="#EAFAF1"/>
+  <text x="200" y="527" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Digit-by-Digit with Carry ⭐</text>
+  <text x="500" y="527" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(max(m,n))</text>
+  <text x="750" y="527" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(max(m,n))</text>
+  <line x1="370" y1="462" x2="370" y2="535" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="620" y1="462" x2="620" y2="535" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

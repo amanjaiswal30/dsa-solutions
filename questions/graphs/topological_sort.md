@@ -1,5 +1,8 @@
 # Topological Sort
 
+![](../../assets/images/graphs/topological_sort.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

@@ -1,0 +1,201 @@
+<svg width="900" height="665" xmlns="http://www.w3.org/2000/svg">
+<style>
+  /* Approach 1: nested i,j scan */
+  @keyframes ifix { 0%,100%{transform:translateX(0)} }
+  @keyframes jsweep {
+    0%,5%  {transform:translateX(0)}
+    18%,22%{transform:translateX(44px)}
+    35%,39%{transform:translateX(88px)}
+    52%,56%{transform:translateX(132px)}
+    70%,74%{transform:translateX(176px)}
+    88%,100%{transform:translateX(220px)}
+  }
+  .jsw{animation:jsweep 6s ease-in-out infinite}
+  @keyframes hl_brute {
+    0%,5%  {fill:#FDEBD0;stroke:#E67E22;stroke-width:3}
+    6%,17% {fill:#D5F5E3;stroke:#27AE60;stroke-width:3}
+    18%,22%{fill:#FDEBD0;stroke:#E67E22;stroke-width:3}
+    23%,34%{fill:#D5F5E3;stroke:#27AE60;stroke-width:3}
+    35%,39%{fill:#FDF2F8;stroke:#E74C3C;stroke-width:2}
+    40%,51%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}
+    52%,56%{fill:#FDEBD0;stroke:#E67E22;stroke-width:3}
+    57%,69%{fill:#D5F5E3;stroke:#27AE60;stroke-width:3}
+    70%,74%{fill:#FDEBD0;stroke:#E67E22;stroke-width:3}
+    75%,87%{fill:#D5F5E3;stroke:#27AE60;stroke-width:3}
+    88%,100%{fill:#FDEBD0;stroke:#E67E22;stroke-width:3}
+  }
+  .b1r{animation:hl_brute 6s ease-in-out infinite}
+
+  /* Approach 2: one-pass counter */
+  @keyframes scan {
+    0%,5%  {transform:translateX(0)}
+    16%,20%{transform:translateX(44px)}
+    32%,36%{transform:translateX(88px)}
+    48%,52%{transform:translateX(132px)}
+    64%,68%{transform:translateX(176px)}
+    80%,84%{transform:translateX(220px)}
+    95%,100%{transform:translateX(0)}
+  }
+  .sc2{animation:scan 6s ease-in-out infinite}
+
+  /* Element highlight on visit */
+  @keyframes v0 {0%,8%{fill:#FDEBD0;stroke:#E67E22;stroke-width:3} 9%,100%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}}
+  @keyframes v1 {14%,25%{fill:#FDEBD0;stroke:#E67E22;stroke-width:3} 0%,13%,26%,100%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}}
+  @keyframes v2 {30%,41%{fill:#FDF2F8;stroke:#E74C3C;stroke-width:3} 0%,29%,42%,100%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}}
+  @keyframes v3 {46%,57%{fill:#FDEBD0;stroke:#E67E22;stroke-width:3} 0%,45%,58%,100%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}}
+  @keyframes v4 {62%,73%{fill:#FDEBD0;stroke:#E67E22;stroke-width:3} 0%,61%,74%,100%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}}
+  @keyframes v5 {78%,91%{fill:#D5F5E3;stroke:#27AE60;stroke-width:3} 0%,77%,92%,100%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}}
+  .v0{animation:v0 6s linear infinite} .v1{animation:v1 6s linear infinite}
+  .v2{animation:v2 6s linear infinite} .v3{animation:v3 6s linear infinite}
+  .v4{animation:v4 6s linear infinite} .v5{animation:v5 6s linear infinite}
+
+  @keyframes ctr {
+    0%,8%  {opacity:1} 9%,100%{opacity:0}
+  }
+  @keyframes ctr2 {14%,25%{opacity:1} 0%,13%,26%,100%{opacity:0}}
+  @keyframes ctr3 {30%,41%{opacity:1} 0%,29%,42%,100%{opacity:0}}
+  @keyframes ctr4 {46%,57%{opacity:1} 0%,45%,58%,100%{opacity:0}}
+  @keyframes ctr5 {62%,73%{opacity:1} 0%,61%,74%,100%{opacity:0}}
+  @keyframes ctr6 {78%,100%{opacity:1} 0%,77%{opacity:0}}
+  .ct1{animation:ctr 6s linear infinite}
+  .ct2{animation:ctr2 6s linear infinite}
+  .ct3{animation:ctr3 6s linear infinite}
+  .ct4{animation:ctr4 6s linear infinite}
+  .ct5{animation:ctr5 6s linear infinite}
+  .ct6{animation:ctr6 6s linear infinite;fill:#27AE60;font-weight:bold}
+</style>
+
+<rect width="900" height="665" fill="#F8F9FA" rx="10"/>
+<rect width="900" height="55" fill="#2C3E50" rx="10"/>
+<rect y="45" width="900" height="10" fill="#2C3E50"/>
+<text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Max Consecutive Ones</text>
+<rect x="800" y="12" width="82" height="28" fill="#27AE60" rx="14"/>
+<text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Easy</text>
+
+<rect x="15" y="63" width="870" height="44" fill="white" stroke="#DEE2E6" rx="5"/>
+<text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Problem:</text>
+<text x="108" y="81" font-family="Arial" font-size="12" fill="#555">Find the maximum number of consecutive 1s in a binary array.</text>
+<text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Example: nums=[1,1,0,1,1,1] → 3  (last three 1s form the longest run)</text>
+
+<!-- ═══ APPROACH 1: BRUTE FORCE ═══ -->
+<rect x="15" y="115" width="870" height="215" fill="white" stroke="#E74C3C" stroke-width="2" rx="8"/>
+<rect x="15" y="115" width="870" height="40" fill="#E74C3C" rx="8"/>
+<rect x="15" y="140" width="870" height="15" fill="#E74C3C"/>
+<text x="30" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white">① Brute Force — Check Every Subarray</text>
+<text x="875" y="140" font-family="Arial" font-size="11" fill="#FADBD8" text-anchor="end">O(n²) time  ·  O(1) space</text>
+
+<rect x="16" y="155" width="868" height="118" fill="#FEF8F8" rx="0"/>
+<text x="45" y="173" font-family="Arial" font-size="10" fill="#888" font-weight="bold">LIVE: i fixed at 0, j scans right counting consecutive 1s</text>
+<!-- Array: [1,1,0,1,1,1] -->
+<rect x="85"  y="162" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="6"/>
+<text x="106" y="188" font-family="Arial" font-size="20" font-weight="bold" fill="#27AE60" text-anchor="middle">1</text>
+<rect x="131" y="162" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="6"/>
+<text x="152" y="188" font-family="Arial" font-size="20" font-weight="bold" fill="#27AE60" text-anchor="middle">1</text>
+<rect x="177" y="162" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="6"/>
+<text x="198" y="188" font-family="Arial" font-size="20" font-weight="bold" fill="#E74C3C" text-anchor="middle">0</text>
+<rect x="223" y="162" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="6"/>
+<text x="244" y="188" font-family="Arial" font-size="20" font-weight="bold" fill="#27AE60" text-anchor="middle">1</text>
+<rect x="269" y="162" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="6"/>
+<text x="290" y="188" font-family="Arial" font-size="20" font-weight="bold" fill="#27AE60" text-anchor="middle">1</text>
+<rect x="315" y="162" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="6"/>
+<text x="336" y="188" font-family="Arial" font-size="20" font-weight="bold" fill="#27AE60" text-anchor="middle">1</text>
+<!-- i fixed -->
+<polygon points="106,158 100,150 112,150" fill="#E74C3C"/>
+<text x="106" y="148" font-family="Arial" font-size="9" fill="#E74C3C" text-anchor="middle" font-weight="bold">i=0</text>
+<!-- j sweeps -->
+<g class="jsw">
+  <polygon points="106,215 100,223 112,223" fill="#3498DB"/>
+  <text x="106" y="232" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle" font-weight="bold">j</text>
+</g>
+<!-- Labels -->
+<rect x="420" y="162" width="440" height="110" fill="#FDEDEC" stroke="#E74C3C" stroke-width="1" rx="5"/>
+<text x="435" y="180" font-family="Arial" font-size="11" font-weight="bold" fill="#E74C3C">For each start i, count run:</text>
+<text x="435" y="198" font-family="monospace" font-size="10" fill="#333">for i in range(n):</text>
+<text x="435" y="213" font-family="monospace" font-size="10" fill="#333">  cur = 0</text>
+<text x="435" y="228" font-family="monospace" font-size="10" fill="#333">  for j in range(i,n):</text>
+<text x="435" y="243" font-family="monospace" font-size="10" fill="#333">    if nums[j]==1: cur++</text>
+<text x="435" y="258" font-family="monospace" font-size="10" fill="#333">    else: break</text>
+<text x="435" y="273" font-family="monospace" font-size="10" fill="#27AE60">  maxCount = max(maxCount, cur)</text>
+
+<rect x="16" y="273" width="868" height="57" fill="#FFF0F0" rx="0"/>
+<text x="30" y="291" font-family="Arial" font-size="11" fill="#E74C3C" font-weight="bold">⚠  O(n²) — redundant work!</text>
+<text x="195" y="291" font-family="Arial" font-size="11" fill="#555">Every subarray starting at i recounts elements already counted. We restart the counter every time.</text>
+<text x="30" y="310" font-family="Arial" font-size="11" fill="#888">💡 Insight: we don't need two loops. A single scan with a running counter that resets on 0 does the job in one pass!</text>
+<text x="30" y="326" font-family="Arial" font-size="11" fill="#888">The running counter already tracks the current run length — just update max at each step.</text>
+
+<line x1="450" y1="333" x2="450" y2="363" stroke="#95A5A6" stroke-width="2" stroke-dasharray="5,3"/>
+<polygon points="444,361 450,372 456,361" fill="#95A5A6"/>
+<rect x="310" y="339" width="280" height="22" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+<text x="450" y="354" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="middle">💡 One pass: reset counter on 0, track max!</text>
+
+<!-- ═══ APPROACH 2: ONE-PASS ═══ -->
+<rect x="15" y="372" width="870" height="215" fill="white" stroke="#27AE60" stroke-width="2.5" rx="8"/>
+<rect x="15" y="372" width="870" height="40" fill="#27AE60" rx="8"/>
+<rect x="15" y="397" width="870" height="15" fill="#27AE60"/>
+<text x="30" y="397" font-family="Arial" font-size="13" font-weight="bold" fill="white">② One-Pass Scan — Track Running Count ⭐</text>
+<text x="875" y="397" font-family="Arial" font-size="11" fill="#D5F5E3" text-anchor="end">O(n) time  ·  O(1) space</text>
+
+<rect x="16" y="412" width="868" height="118" fill="#F4FEF7" rx="0"/>
+<text x="45" y="430" font-family="Arial" font-size="10" fill="#888" font-weight="bold">LIVE: single pointer, counter resets on 0</text>
+<!-- Array elements with color animation -->
+<rect class="v0" x="85"  y="419" width="42" height="42" rx="6"/>
+<text x="106" y="445" font-family="Arial" font-size="20" font-weight="bold" fill="#27AE60" text-anchor="middle">1</text>
+<rect class="v1" x="131" y="419" width="42" height="42" rx="6"/>
+<text x="152" y="445" font-family="Arial" font-size="20" font-weight="bold" fill="#27AE60" text-anchor="middle">1</text>
+<rect class="v2" x="177" y="419" width="42" height="42" rx="6"/>
+<text x="198" y="445" font-family="Arial" font-size="20" font-weight="bold" fill="#E74C3C" text-anchor="middle">0</text>
+<rect class="v3" x="223" y="419" width="42" height="42" rx="6"/>
+<text x="244" y="445" font-family="Arial" font-size="20" font-weight="bold" fill="#27AE60" text-anchor="middle">1</text>
+<rect class="v4" x="269" y="419" width="42" height="42" rx="6"/>
+<text x="290" y="445" font-family="Arial" font-size="20" font-weight="bold" fill="#27AE60" text-anchor="middle">1</text>
+<rect class="v5" x="315" y="419" width="42" height="42" rx="6"/>
+<text x="336" y="445" font-family="Arial" font-size="20" font-weight="bold" fill="#27AE60" text-anchor="middle">1</text>
+<text x="106" y="470" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[0]</text>
+<text x="152" y="470" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[1]</text>
+<text x="198" y="470" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[2]</text>
+<text x="244" y="470" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[3]</text>
+<text x="290" y="470" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[4]</text>
+<text x="336" y="470" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[5]</text>
+<!-- Scanning pointer -->
+<g class="sc2">
+  <polygon points="106,415 100,407 112,407" fill="#27AE60"/>
+  <text x="106" y="405" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle" font-weight="bold">→</text>
+</g>
+<!-- Animated counter display -->
+<text class="ct1" x="430" y="445" font-family="Arial" font-size="12" fill="#555">cur=1, max=1   (1 is 1)</text>
+<text class="ct2" x="430" y="445" font-family="Arial" font-size="12" fill="#555">cur=2, max=2   (1 is 1)</text>
+<text class="ct3" x="430" y="445" font-family="Arial" font-size="12" fill="#E74C3C">cur=0, max=2   (0 → RESET!)</text>
+<text class="ct4" x="430" y="445" font-family="Arial" font-size="12" fill="#555">cur=1, max=2   (1 is 1)</text>
+<text class="ct5" x="430" y="445" font-family="Arial" font-size="12" fill="#555">cur=2, max=2   (1 is 1)</text>
+<text class="ct6" x="430" y="445" font-family="Arial" font-size="12">cur=3, max=3 ✓  (1 is 1, NEW MAX!)</text>
+
+<rect x="430" y="458" width="450" height="60" fill="#EAFAF1" stroke="#27AE60" stroke-width="1" rx="5"/>
+<text x="445" y="475" font-family="monospace" font-size="10" fill="#333">cur, maxCount = 0, 0</text>
+<text x="445" y="490" font-family="monospace" font-size="10" fill="#333">for num in nums:</text>
+<text x="445" y="505" font-family="monospace" font-size="10" fill="#333">  cur = cur+1 if num==1 else 0</text>
+<text x="445" y="520" font-family="monospace" font-size="10" fill="#27AE60">  maxCount = max(maxCount, cur)</text>
+
+<rect x="16" y="530" width="868" height="57" fill="#F0FEF5" rx="0"/>
+<text x="30" y="548" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">✓ Single pass, 2 variables!</text>
+<text x="200" y="548" font-family="Arial" font-size="11" fill="#555">cur tracks the current run. When we hit 0, cur resets to 0 (breaking the chain).</text>
+<text x="30" y="567" font-family="Arial" font-size="11" fill="#888">maxCount = max at every step. Result = largest cur seen. O(1) space — just two counters.</text>
+<text x="30" y="583" font-family="Arial" font-size="11" fill="#888">One-liner: max(len(s) for s in ''.join(map(str,nums)).split('0'))  😎</text>
+
+<!-- Complexity Table -->
+<rect x="15" y="595" width="870" height="60" fill="white" stroke="#DEE2E6" rx="7"/>
+<rect x="15" y="595" width="870" height="22" fill="#2C3E50" rx="7"/>
+<rect x="15" y="606" width="870" height="11" fill="#2C3E50"/>
+<text x="450" y="611" font-family="Arial" font-size="11" font-weight="bold" fill="white" text-anchor="middle">Complexity Summary</text>
+<line x1="15" y1="617" x2="885" y2="617" stroke="#DEE2E6"/>
+<rect x="15" y="617" width="870" height="17" fill="#FDEDEC"/>
+<text x="200" y="629" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Brute Force (nested loops)</text>
+<text x="500" y="629" font-family="Arial" font-size="10" fill="#E74C3C" text-anchor="middle">O(n²)</text>
+<text x="700" y="629" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">O(1)</text>
+<line x1="15" y1="634" x2="885" y2="634" stroke="#DEE2E6"/>
+<rect x="15" y="634" width="870" height="17" fill="#EAFAF1"/>
+<text x="200" y="646" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">One-Pass Scan ⭐</text>
+<text x="500" y="646" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n)</text>
+<text x="700" y="646" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">O(1)</text>
+<line x1="370" y1="617" x2="370" y2="651" stroke="#DEE2E6"/>
+<line x1="600" y1="617" x2="600" y2="651" stroke="#DEE2E6"/>
+</svg>

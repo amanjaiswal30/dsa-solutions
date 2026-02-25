@@ -1,5 +1,8 @@
 # Merge Overlapping Intervals
 
+![](../../assets/images/arrays/merge_intervals.svg)
+
+
 **Difficulty:** Medium-Hard 🔥
 
 ---

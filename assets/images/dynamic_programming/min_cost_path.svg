@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#1a1a2e}
+  .prob{font:13px sans-serif;fill:#444}
+  .sec{font:bold 13px sans-serif}
+  .lbl{font:12px monospace;fill:#333;text-anchor:middle}
+  .idx{font:10px sans-serif;fill:#888;text-anchor:middle}
+  .evol{fill:none;stroke:#888;stroke-width:1.5;stroke-dasharray:5,3}
+  .ins{font:11px sans-serif;fill:#555;font-style:italic}
+  .cmp{font:11px sans-serif;fill:#333}
+  .tbl{font:11px sans-serif;fill:#333;text-anchor:middle}
+  .cell{stroke-width:1.5}
+
+  @keyframes path_hl{
+    0%,10%{fill:#ddeeff}
+    11%,30%{fill:#ffcccc}
+    31%,100%{fill:#ddeeff}
+  }
+  @keyframes opt_hl{
+    0%,30%{fill:#ddeeff}
+    31%,100%{fill:#ccffcc}
+  }
+  @keyframes dp_fill{
+    0%,20%{fill:#fff}
+    21%,100%{fill:#e8f5e9}
+  }
+
+  @keyframes sl0{0%,18%{opacity:1}19%,100%{opacity:0}}
+  @keyframes sl1{0%,18%{opacity:0}19%,36%{opacity:1}37%,100%{opacity:0}}
+  @keyframes sl2{0%,36%{opacity:0}37%,54%{opacity:1}55%,100%{opacity:0}}
+  @keyframes sl3{0%,54%{opacity:0}55%,72%{opacity:1}73%,100%{opacity:0}}
+  @keyframes sl4{0%,72%{opacity:0}73%,100%{opacity:1}}
+  .sl0{animation:sl0 8s ease-in-out infinite}
+  .sl1{animation:sl1 8s ease-in-out infinite}
+  .sl2{animation:sl2 8s ease-in-out infinite}
+  .sl3{animation:sl3 8s ease-in-out infinite}
+  .sl4{animation:sl4 8s ease-in-out infinite}
+
+  /* Grid cell animations for approach 1 (recursive path) */
+  .ph0{animation:path_hl 9s ease-in-out infinite}
+  .ph1{animation:path_hl 9s 0.3s ease-in-out infinite}
+  .ph2{animation:path_hl 9s 0.6s ease-in-out infinite}
+  .ph3{animation:path_hl 9s 0.9s ease-in-out infinite}
+  .ph4{animation:path_hl 9s 1.2s ease-in-out infinite}
+
+  /* Grid cell animations for approach 2 (DP) */
+  .oh0{fill:#ccffcc;stroke:#27AE60}
+  .oh1{animation:opt_hl 9s 0.5s ease-in-out infinite}
+  .oh2{animation:opt_hl 9s 1.0s ease-in-out infinite}
+  .oh3{animation:opt_hl 9s 1.5s ease-in-out infinite}
+  .oh4{animation:opt_hl 9s 2.0s ease-in-out infinite}
+</style>
+
+<rect width="900" height="690" fill="#f8f9fa" rx="8"/>
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="32" text-anchor="middle" class="title" fill="white">Min Cost Path (Grid)</text>
+
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="72" text-anchor="middle" class="prob">grid = [[1,3,1],[1,5,1],[4,2,1]]  →  min path cost = 7  (1→3→1→1→1)</text>
+
+<!-- APPROACH 1: RECURSION -->
+<rect x="16" y="92" width="868" height="218" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="32" y="111" class="sec" fill="white">Approach 1: Recursive — O(2^(m+n))</text>
+
+<!-- Grid 3×3 approach 1 -->
+<text x="40" y="145" class="cmp">Grid (move: right or down only):</text>
+<g transform="translate(40,155)">
+  <!-- Row 0 -->
+  <rect class="ph0 cell" x="0" y="0" width="52" height="48" fill="#ddeeff" stroke="#6699cc"/><text x="26" y="29" class="lbl">1</text>
+  <rect class="ph1 cell" x="58" y="0" width="52" height="48" fill="#ddeeff" stroke="#6699cc"/><text x="84" y="29" class="lbl">3</text>
+  <rect x="116" y="0" width="52" height="48" fill="#ddeeff" stroke="#6699cc" class="cell"/><text x="142" y="29" class="lbl">1</text>
+  <!-- Row 1 -->
+  <rect x="0" y="54" width="52" height="48" fill="#ddeeff" stroke="#6699cc" class="cell"/><text x="26" y="83" class="lbl">1</text>
+  <rect x="58" y="54" width="52" height="48" fill="#ddeeff" stroke="#6699cc" class="cell"/><text x="84" y="83" class="lbl">5</text>
+  <rect class="ph2 cell" x="116" y="54" width="52" height="48" fill="#ddeeff" stroke="#6699cc"/><text x="142" y="83" class="lbl">1</text>
+  <!-- Row 2 -->
+  <rect x="0" y="108" width="52" height="48" fill="#ddeeff" stroke="#6699cc" class="cell"/><text x="26" y="137" class="lbl">4</text>
+  <rect x="58" y="108" width="52" height="48" fill="#ddeeff" stroke="#6699cc" class="cell"/><text x="84" y="137" class="lbl">2</text>
+  <rect class="ph3 cell" x="116" y="108" width="52" height="48" fill="#ddeeff" stroke="#6699cc"/><text x="142" y="137" class="lbl">1</text>
+  <!-- Path arrows -->
+  <line x1="26" y1="48" x2="84" y2="0" stroke="none"/>
+  <line x1="26" y1="0" x2="84" y2="0" stroke="#E74C3C" stroke-width="2" marker-end="url(#rarr)"/>
+  <line x1="84" y1="48" x2="84" y2="54" stroke="none"/>
+  <line x1="84" y1="0" x2="142" y2="0" stroke="#E74C3C" stroke-width="2"/>
+  <line x1="142" y1="48" x2="142" y2="54" stroke="#E74C3C" stroke-width="2"/>
+  <line x1="142" y1="102" x2="142" y2="108" stroke="#E74C3C" stroke-width="2"/>
+</g>
+<defs>
+  <marker id="rarr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+    <path d="M0,0 L0,6 L8,3 z" fill="#E74C3C"/>
+  </marker>
+</defs>
+
+<!-- Recursion info -->
+<text x="250" y="145" class="cmp">Recurrence:</text>
+<text x="250" y="163" class="cmp">minPath(i,j) =</text>
+<text x="250" y="179" class="cmp">  grid[i][j] + min(</text>
+<text x="250" y="195" class="cmp">    minPath(i-1,j),   // from top</text>
+<text x="250" y="211" class="cmp">    minPath(i,j-1))   // from left</text>
+<text x="250" y="231" class="cmp">Base: minPath(0,0)=grid[0][0]=1</text>
+
+<text x="250" y="258" class="cmp sl0">① Call minPath(2,2): try (1,2) and (2,1)</text>
+<text x="250" y="258" class="cmp sl1">② Subproblems overlap — many recomputed</text>
+<text x="250" y="258" class="cmp sl2">③ 2^(m+n) states without memo</text>
+<text x="250" y="258" class="cmp sl3">④ With memo: O(m×n) time, O(m×n) space</text>
+
+<!-- APPROACH 2: 2D DP Tabulation -->
+<rect x="16" y="328" width="868" height="234" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="328" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="342" width="868" height="14" fill="#27AE60"/>
+<text x="32" y="347" class="sec" fill="white">Approach 2: 2D DP Tabulation — O(m×n) time, O(m×n) space</text>
+
+<!-- DP Table -->
+<text x="40" y="380" class="cmp">DP table (dp[i][j] = min cost to reach cell):</text>
+<g transform="translate(40,390)">
+  <!-- Row 0 -->
+  <rect class="oh0 cell" x="0" y="0" width="62" height="48" stroke="#27AE60"/><text x="31" y="22" class="lbl">dp=1</text><text x="31" y="38" class="lbl" font-size="9">grid=1</text>
+  <rect class="oh1 cell" x="68" y="0" width="62" height="48" fill="#ddeeff" stroke="#6699cc"/><text x="99" y="22" class="lbl">dp=4</text><text x="99" y="38" class="lbl" font-size="9">1+3=4</text>
+  <rect class="oh2 cell" x="136" y="0" width="62" height="48" fill="#ddeeff" stroke="#6699cc"/><text x="167" y="22" class="lbl">dp=5</text><text x="167" y="38" class="lbl" font-size="9">4+1=5</text>
+  <!-- Row 1 -->
+  <rect class="oh1 cell" x="0" y="54" width="62" height="48" fill="#ddeeff" stroke="#6699cc"/><text x="31" y="76" class="lbl">dp=2</text><text x="31" y="92" class="lbl" font-size="9">1+1=2</text>
+  <rect class="oh2 cell" x="68" y="54" width="62" height="48" fill="#ddeeff" stroke="#6699cc"/><text x="99" y="76" class="lbl">dp=7</text><text x="99" y="92" class="lbl" font-size="9">min(4,2)+5=7</text>
+  <rect class="oh3 cell" x="136" y="54" width="62" height="48" fill="#ddeeff" stroke="#6699cc"/><text x="167" y="76" class="lbl">dp=6</text><text x="167" y="92" class="lbl" font-size="9">min(5,7)+1=6</text>
+  <!-- Row 2 -->
+  <rect class="oh2 cell" x="0" y="108" width="62" height="48" fill="#ddeeff" stroke="#6699cc"/><text x="31" y="130" class="lbl">dp=6</text><text x="31" y="146" class="lbl" font-size="9">2+4=6</text>
+  <rect class="oh3 cell" x="68" y="108" width="62" height="48" fill="#ddeeff" stroke="#6699cc"/><text x="99" y="130" class="lbl">dp=8</text><text x="99" y="146" class="lbl" font-size="9">min(7,6)+2=8</text>
+  <rect class="oh4 cell" x="136" y="108" width="62" height="48" fill="#ddeeff" stroke="#6699cc"/><text x="167" y="130" class="lbl" fill="#27AE60" font-weight="bold">dp=7</text><text x="167" y="146" class="lbl" font-size="9" fill="#27AE60">min(6,8)+1=7</text>
+</g>
+
+<!-- Steps right side -->
+<text x="340" y="380" class="cmp sl0">① dp[0][0] = grid[0][0] = 1</text>
+<text x="340" y="380" class="cmp sl1">② Fill first row: dp[0][j]=dp[0][j-1]+grid[0][j]</text>
+<text x="340" y="395" class="cmp sl1">   dp[0][1]=4, dp[0][2]=5</text>
+<text x="340" y="380" class="cmp sl2">③ Fill first col: dp[i][0]=dp[i-1][0]+grid[i][0]</text>
+<text x="340" y="395" class="cmp sl2">   dp[1][0]=2, dp[2][0]=6</text>
+<text x="340" y="380" class="cmp sl3">④ Fill rest: dp[i][j] = grid[i][j] +</text>
+<text x="340" y="395" class="cmp sl3">   min(dp[i-1][j], dp[i][j-1])</text>
+<text x="340" y="380" class="cmp sl4" fill="#27AE60">⑤ Answer = dp[m-1][n-1] = dp[2][2] = 7 ✓</text>
+
+<!-- Space optimization note -->
+<rect x="340" y="430" width="528" height="110" fill="#fff9e6" stroke="#F39C12" stroke-width="1.5" rx="5"/>
+<text x="356" y="447" class="cmp" font-weight="bold" fill="#F39C12">Space Optimization:</text>
+<text x="356" y="463" class="cmp">Use single 1D array (rolling row):</text>
+<text x="356" y="479" class="cmp">dp = [1, 4, 5]  ← init with row 0</text>
+<text x="356" y="495" class="cmp">row 1: dp[0]+=1→2, dp[1]=min(4,2)+5=7, dp[2]=min(5,7)+1=6</text>
+<text x="356" y="511" class="cmp">row 2: dp[0]+=4→6, dp[1]=min(7,6)+2=8, dp[2]=min(6,8)+1=7</text>
+<text x="356" y="527" class="cmp" fill="#27AE60">Answer = dp[n-1] = 7 ✓  (O(n) space)</text>
+
+<!-- Evolution arrow -->
+<line x1="450" y1="310" x2="450" y2="326" class="evol"/>
+<polygon points="450,327 444,315 456,315" fill="#888"/>
+<rect x="330" y="313" width="240" height="26" fill="#fffde7" stroke="#f0c040" stroke-width="1" rx="4"/>
+<text x="450" y="330" text-anchor="middle" class="ins">Fill table row by row → no repeated work</text>
+
+<!-- Complexity table -->
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="6"/>
+<rect x="16" y="578" width="868" height="26" fill="#f0f0f0" stroke="#ddd" stroke-width="1" rx="6"/>
+<text x="182" y="595" class="tbl" font-weight="bold">Approach</text>
+<text x="430" y="595" class="tbl" font-weight="bold">Time</text>
+<text x="610" y="595" class="tbl" font-weight="bold">Space</text>
+<text x="790" y="595" class="tbl" font-weight="bold">Recommended</text>
+<rect x="16" y="604" width="868" height="24" fill="#fff5f5"/>
+<text x="182" y="620" class="tbl">Recursion (no memo)</text>
+<text x="430" y="620" class="tbl">O(2^(m+n))</text>
+<text x="610" y="620" class="tbl">O(m+n)</text>
+<text x="790" y="620" class="tbl">✗ TLE</text>
+<rect x="16" y="628" width="868" height="24" fill="#f0fff0"/>
+<text x="182" y="644" class="tbl">2D DP / 1D rolling</text>
+<text x="430" y="644" class="tbl">O(m×n)</text>
+<text x="610" y="644" class="tbl">O(n)</text>
+<text x="790" y="644" class="tbl">✓ Optimal</text>
+<line x1="16" y1="652" x2="884" y2="652" stroke="#ddd" stroke-width="1"/>
+<text x="182" y="666" class="tbl" fill="#27AE60" font-weight="bold">▶ dp[i][j] = grid[i][j] + min(up, left)</text>
+</svg>

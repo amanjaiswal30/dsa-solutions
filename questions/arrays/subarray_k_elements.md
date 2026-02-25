@@ -1,5 +1,8 @@
 # 🔹 Problem: Subarray with At Most K Distinct Elements
 
+![](../../assets/images/arrays/subarray_k_elements.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

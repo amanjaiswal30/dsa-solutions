@@ -1,5 +1,8 @@
 # 🔹 Clone a Linked List with Next and Random Pointer
 
+![](../../assets/images/linked_lists/clone_linked_list.svg)
+
+
 ---
 
 ## 📌 Problem Statement

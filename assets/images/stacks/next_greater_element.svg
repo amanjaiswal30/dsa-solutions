@@ -1,0 +1,177 @@
+<svg width="900" height="610" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="610" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect x="0" y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="430" y="35" font-family="Arial" font-size="20" font-weight="bold" fill="white" text-anchor="middle">Next Greater Element</text>
+  <rect x="790" y="13" width="100" height="28" fill="#F39C12" rx="14"/>
+  <text x="840" y="32" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Medium ⚡</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="25" y="84" font-family="Arial" font-size="12" fill="#7F8C8D">Input:</text>
+  <text x="72" y="84" font-family="Arial" font-size="13" fill="#2C3E50" font-weight="bold">[4, 5, 2, 25]</text>
+  <text x="195" y="84" font-family="Arial" font-size="13" fill="#7F8C8D">→</text>
+  <text x="212" y="84" font-family="Arial" font-size="13" fill="#27AE60" font-weight="bold">[5, 25, 25, -1]</text>
+  <text x="380" y="84" font-family="Arial" font-size="12" fill="#7F8C8D">|</text>
+  <text x="395" y="84" font-family="Arial" font-size="13" fill="#2C3E50" font-weight="bold">[13, 7, 6, 12]</text>
+  <text x="530" y="84" font-family="Arial" font-size="13" fill="#7F8C8D">→</text>
+  <text x="547" y="84" font-family="Arial" font-size="13" fill="#27AE60" font-weight="bold">[-1, 12, 12, -1]</text>
+  <text x="700" y="84" font-family="Arial" font-size="12" fill="#7F8C8D">For each element: first larger to its right</text>
+
+  <!-- ===== APPROACH 1: BRUTE FORCE ===== -->
+  <rect x="15" y="115" width="258" height="365" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="258" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="258" height="15" fill="#E74C3C"/>
+  <text x="144" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">① Brute Force — Nested Loops</text>
+  <text x="144" y="167" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle" font-weight="bold">O(n²) time · O(n) space</text>
+
+  <text x="25" y="187" font-family="Arial" font-size="11" fill="#555">For each element, scan every</text>
+  <text x="25" y="201" font-family="Arial" font-size="11" fill="#555">element to its right until larger found.</text>
+
+  <!-- Array [4,5,2,25] -->
+  <text x="25" y="220" font-family="Arial" font-size="10" fill="#7F8C8D" font-weight="bold">Array:  [4,  5,  2,  25]</text>
+  <g transform="translate(25,224)">
+    <rect x="0" y="0" width="40" height="32" fill="#FADBD8" stroke="#E74C3C" rx="3"/>
+    <text x="20" y="21" font-family="Arial" font-size="14" font-weight="bold" fill="#E74C3C" text-anchor="middle">4</text>
+    <rect x="44" y="0" width="40" height="32" fill="#E8F8F5" stroke="#27AE60" rx="3"/>
+    <text x="64" y="21" font-family="Arial" font-size="14" font-weight="bold" fill="#27AE60" text-anchor="middle">5</text>
+    <rect x="88" y="0" width="40" height="32" fill="#EBF5FB" stroke="#3498DB" rx="3"/>
+    <text x="108" y="21" font-family="Arial" font-size="14" font-weight="bold" fill="#3498DB" text-anchor="middle">2</text>
+    <rect x="132" y="0" width="40" height="32" fill="#EBF5FB" stroke="#3498DB" rx="3"/>
+    <text x="152" y="21" font-family="Arial" font-size="14" font-weight="bold" fill="#3498DB" text-anchor="middle">25</text>
+  </g>
+
+  <!-- For i=0 (4): scan → finds 5 -->
+  <text x="25" y="272" font-family="Arial" font-size="10" fill="#2C3E50">i=0 (val=4): scan right →</text>
+  <text x="25" y="285" font-family="Arial" font-size="10" fill="#27AE60">  j=1: 5 &gt; 4 ✓ → result[0]=5. Stop.</text>
+  <!-- For i=1 (5): scan → finds 25 -->
+  <text x="25" y="302" font-family="Arial" font-size="10" fill="#2C3E50">i=1 (val=5): scan right →</text>
+  <text x="25" y="315" font-family="Arial" font-size="10" fill="#7F8C8D">  j=2: 2 &lt; 5 ✗</text>
+  <text x="25" y="328" font-family="Arial" font-size="10" fill="#27AE60">  j=3: 25 &gt; 5 ✓ → result[1]=25. Stop.</text>
+  <!-- For i=2 (2): scan → finds 25 -->
+  <text x="25" y="345" font-family="Arial" font-size="10" fill="#2C3E50">i=2 (val=2): scan right →</text>
+  <text x="25" y="358" font-family="Arial" font-size="10" fill="#27AE60">  j=3: 25 &gt; 2 ✓ → result[2]=25.</text>
+  <!-- For i=3 (25): no right -->
+  <text x="25" y="375" font-family="Arial" font-size="10" fill="#7F8C8D">i=3 (val=25): no elements right → -1</text>
+
+  <rect x="25" y="388" width="238" height="55" fill="#FDEDEC" stroke="#FFCCCC" rx="4"/>
+  <text x="35" y="404" font-family="Arial" font-size="10" fill="#E74C3C" font-weight="bold">Result: [5, 25, 25, -1] ✓</text>
+  <text x="35" y="418" font-family="Arial" font-size="10" fill="#E74C3C">⚠ Each element scanned O(n) times</text>
+  <text x="35" y="432" font-family="Arial" font-size="10" fill="#E74C3C">worst case: O(n²) for descending array</text>
+  <text x="35" y="446" font-family="Arial" font-size="10" fill="#E67E22">Idea: process RIGHT→LEFT with a stack</text>
+
+  <!-- Arrow 1 -->
+  <line x1="275" y1="295" x2="313" y2="295" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="313,290 323,295 313,300" fill="#7F8C8D"/>
+  <rect x="265" y="268" width="68" height="22" fill="#FFF8E1" stroke="#F39C12" rx="3"/>
+  <text x="299" y="281" font-family="Arial" font-size="9" fill="#D35400" text-anchor="middle">💡 Use</text>
+  <text x="299" y="291" font-family="Arial" font-size="9" fill="#D35400" text-anchor="middle">Stack!</text>
+
+  <!-- ===== APPROACH 2: MONOTONIC STACK ===== -->
+  <rect x="323" y="115" width="258" height="365" fill="#FFFFFF" stroke="#E67E22" stroke-width="2" rx="7"/>
+  <rect x="323" y="115" width="258" height="40" fill="#E67E22" rx="7"/>
+  <rect x="323" y="140" width="258" height="15" fill="#E67E22"/>
+  <text x="452" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">② Monotonic Stack (R→L)</text>
+  <text x="452" y="167" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle" font-weight="bold">O(n) time · O(n) space</text>
+
+  <text x="333" y="187" font-family="Arial" font-size="11" fill="#555">Traverse R→L. Stack keeps decreasing</text>
+  <text x="333" y="201" font-family="Arial" font-size="11" fill="#555">candidates. Pop smaller ones greedily.</text>
+
+  <!-- Steps for [4,5,2,25] traversed R→L -->
+  <text x="333" y="220" font-family="Arial" font-size="10" fill="#7F8C8D" font-weight="bold">Traverse [4, 5, 2, 25] right to left:</text>
+
+  <!-- i=3: stack empty, result=-1, push 25 -->
+  <rect x="333" y="225" width="238" height="32" fill="#F8F9FA" stroke="#DEE2E6" rx="3"/>
+  <text x="343" y="237" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">i=3 (25): stack empty → result[3]=-1</text>
+  <text x="343" y="250" font-family="Arial" font-size="10" fill="#7F8C8D">push 25. Stack: [25]</text>
+
+  <!-- i=2: stack top 25>2, result=25 -->
+  <rect x="333" y="260" width="238" height="32" fill="#F8F9FA" stroke="#DEE2E6" rx="3"/>
+  <text x="343" y="272" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">i=2 (2): top=25 &gt; 2 → result[2]=25</text>
+  <text x="343" y="285" font-family="Arial" font-size="10" fill="#7F8C8D">push 2. Stack: [25, 2]</text>
+
+  <!-- i=1: pop 2 (≤5), top=25>5, result=25 -->
+  <rect x="333" y="295" width="238" height="40" fill="#FEF9EF" stroke="#E67E22" rx="3"/>
+  <text x="343" y="308" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">i=1 (5): top=2 ≤ 5 → pop 2</text>
+  <text x="343" y="322" font-family="Arial" font-size="10" fill="#27AE60">top=25 &gt; 5 → result[1]=25</text>
+  <text x="343" y="335" font-family="Arial" font-size="10" fill="#7F8C8D">push 5. Stack: [25, 5]</text>
+
+  <!-- i=0: pop 5 (≤4? No! 5>4), result=5 -->
+  <rect x="333" y="338" width="238" height="40" fill="#D5E8D4" stroke="#27AE60" rx="3"/>
+  <text x="343" y="351" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">i=0 (4): top=5 &gt; 4 → result[0]=5</text>
+  <text x="343" y="365" font-family="Arial" font-size="10" fill="#27AE60">push 4. Stack: [25, 5, 4]</text>
+  <text x="343" y="378" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold">Result: [5, 25, 25, -1] ✓</text>
+
+  <rect x="333" y="385" width="238" height="55" fill="#FEF9EF" stroke="#FAD7A0" rx="4"/>
+  <text x="343" y="401" font-family="Arial" font-size="10" fill="#E67E22" font-weight="bold">Why O(n)? Each element pushed/popped at most once!</text>
+  <text x="343" y="415" font-family="Arial" font-size="10" fill="#E67E22">Total operations = 2n at most → O(n)</text>
+  <text x="343" y="429" font-family="Arial" font-size="10" fill="#555">Stack stores candidates for future queries</text>
+  <text x="343" y="443" font-family="Arial" font-size="10" fill="#27AE60">Works for circular arrays too (Approach 3)</text>
+
+  <!-- Arrow 2 -->
+  <line x1="583" y1="295" x2="621" y2="295" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="621,290 631,295 621,300" fill="#7F8C8D"/>
+  <rect x="573" y="268" width="68" height="22" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="607" y="281" font-family="Arial" font-size="9" fill="#1E8449" text-anchor="middle">Circular</text>
+  <text x="607" y="291" font-family="Arial" font-size="9" fill="#1E8449" text-anchor="middle">variant!</text>
+
+  <!-- ===== APPROACH 3: CIRCULAR ARRAY ===== -->
+  <rect x="631" y="115" width="254" height="365" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="631" y="115" width="254" height="40" fill="#27AE60" rx="7"/>
+  <rect x="631" y="140" width="254" height="15" fill="#27AE60"/>
+  <text x="758" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">③ Circular Array ⭐</text>
+  <text x="758" y="167" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle" font-weight="bold">O(n) time · O(n) space</text>
+
+  <text x="641" y="187" font-family="Arial" font-size="11" fill="#555">Loop 2n→0 using i%n. Array wraps</text>
+  <text x="641" y="201" font-family="Arial" font-size="11" fill="#555">around — every element sees all others.</text>
+
+  <text x="641" y="220" font-family="Arial" font-size="10" fill="#7F8C8D" font-weight="bold">Circular [3, 1, 2, 4]  →  [4, 2, 4, -1]</text>
+
+  <!-- Circular concept -->
+  <circle cx="758" cy="280" r="50" fill="none" stroke="#DEE2E6" stroke-width="1.5" stroke-dasharray="5"/>
+  <!-- Elements around circle -->
+  <circle cx="758" cy="232" r="16" fill="#FADBD8" stroke="#E74C3C"/>
+  <text x="758" y="237" font-family="Arial" font-size="12" font-weight="bold" fill="#E74C3C" text-anchor="middle">3</text>
+  <circle cx="805" cy="278" r="16" fill="#D6EAF8" stroke="#2980B9"/>
+  <text x="805" y="283" font-family="Arial" font-size="12" font-weight="bold" fill="#2980B9" text-anchor="middle">1</text>
+  <circle cx="758" cy="325" r="16" fill="#D5E8D4" stroke="#27AE60"/>
+  <text x="758" y="330" font-family="Arial" font-size="12" font-weight="bold" fill="#27AE60" text-anchor="middle">2</text>
+  <circle cx="711" cy="278" r="16" fill="#FAD7A0" stroke="#E67E22"/>
+  <text x="711" y="283" font-family="Arial" font-size="12" font-weight="bold" fill="#E67E22" text-anchor="middle">4</text>
+  <!-- Arrows -->
+  <path d="M 770 244 A 50 50 0 0 1 798 267" stroke="#7F8C8D" stroke-width="1.5" fill="none" marker-end="url(#a)"/>
+  <path d="M 800 292 A 50 50 0 0 1 773 318" stroke="#7F8C8D" stroke-width="1.5" fill="none" marker-end="url(#a)"/>
+
+  <text x="758" y="358" font-family="Arial" font-size="10" fill="#2C3E50" text-anchor="middle">Traverse i from 2n-1 to 0</text>
+  <text x="758" y="372" font-family="Arial" font-size="10" fill="#2C3E50" text-anchor="middle">Use i%n for circular indexing</text>
+
+  <rect x="641" y="382" width="234" height="55" fill="#EAFAF1" stroke="#27AE60" rx="4"/>
+  <text x="651" y="398" font-family="Arial" font-size="10" fill="#1E8449" font-weight="bold">Key difference from Approach 2:</text>
+  <text x="651" y="412" font-family="Arial" font-size="10" fill="#27AE60">Double the loop (2n), only fill</text>
+  <text x="651" y="426" font-family="Arial" font-size="10" fill="#27AE60">result[] for i &lt; n</text>
+  <text x="651" y="440" font-family="Arial" font-size="10" fill="#27AE60">Stack handles wrap-around naturally</text>
+
+  <!-- ===== COMPLEXITY TABLE ===== -->
+  <rect x="15" y="490" width="870" height="110" fill="#FFFFFF" stroke="#DEE2E6" stroke-width="1.5" rx="7"/>
+  <text x="450" y="510" font-family="Arial" font-size="13" font-weight="bold" fill="#2C3E50" text-anchor="middle">Complexity Comparison</text>
+  <rect x="25" y="516" width="850" height="24" fill="#2C3E50" rx="3"/>
+  <text x="180" y="532" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Approach</text>
+  <text x="430" y="532" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Time</text>
+  <text x="560" y="532" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Space</text>
+  <text x="750" y="532" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Key Insight</text>
+  <rect x="25" y="540" width="850" height="22" fill="#FDEDEC"/>
+  <text x="180" y="555" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">① Brute Force (nested loops)</text>
+  <text x="430" y="555" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n²)</text>
+  <text x="560" y="555" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n)</text>
+  <text x="750" y="555" font-family="Arial" font-size="11" fill="#7F8C8D" text-anchor="middle">Scan right for every element</text>
+  <rect x="25" y="562" width="850" height="22" fill="#FEF9EF"/>
+  <text x="180" y="577" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">② Monotonic Stack (R→L)</text>
+  <text x="430" y="577" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">O(n)</text>
+  <text x="560" y="577" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">O(n)</text>
+  <text x="750" y="577" font-family="Arial" font-size="11" fill="#7F8C8D" text-anchor="middle">Pop smaller elements — each pushed/popped once</text>
+  <rect x="25" y="584" width="850" height="22" fill="#EAFAF1"/>
+  <text x="180" y="599" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle" font-weight="bold">③ Circular Array Variant ⭐</text>
+  <text x="430" y="599" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(n)</text>
+  <text x="560" y="599" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(n)</text>
+  <text x="750" y="599" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">Double loop + i%n handles wrap-around</text>
+  <text x="450" y="600" font-family="Arial" font-size="10" fill="#7F8C8D" text-anchor="middle"/>
+</svg>

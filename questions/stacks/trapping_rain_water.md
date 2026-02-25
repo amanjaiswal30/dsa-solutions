@@ -1,5 +1,8 @@
 # 🔹 Trapping Rain Water
 
+![](../../assets/images/stacks/trapping_rain_water.svg)
+
+
 ---
 
 ## 📌 Problem Statement

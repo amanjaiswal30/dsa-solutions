@@ -1,5 +1,8 @@
 # Word Break – Detailed Explanation
 
+![](../../assets/images/dynamic_programming/word_break.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

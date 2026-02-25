@@ -1,5 +1,8 @@
 # 🔹 Problem: Word Ladder II
 
+![](../../assets/images/graphs/word_ladder_II.svg)
+
+
 **Difficulty:** Hard 🌵
 
 ---

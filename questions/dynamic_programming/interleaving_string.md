@@ -1,5 +1,8 @@
 # Interleaving String – Detailed Explanation
 
+![](../../assets/images/dynamic_programming/interleaving_string.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

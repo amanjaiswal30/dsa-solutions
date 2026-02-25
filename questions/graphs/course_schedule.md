@@ -1,5 +1,8 @@
 # Course Schedule
 
+![](../../assets/images/graphs/course_schedule.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---
@@ -172,8 +175,5 @@ public class CourseSchedule {
 2. How to detect **all cycles** in the graph instead of just existence?
 3. Can you optimize memory for sparse dependency graphs?
 4. What if some courses have **multiple independent paths** — how would that affect the solution?
-
-
-
 
 

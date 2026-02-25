@@ -1,5 +1,8 @@
 # Minimum Number of Meeting Rooms
 
+![](../../assets/images/arrays/number_of_meeting_rooms.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

@@ -1,5 +1,8 @@
 # 🔹 Problem: Tic Tac Toe Winner Detection
 
+![](../../assets/images/arrays/tic_tac_toe.svg)
+
+
 **Difficulty:** Easy ⚡
 
 ---

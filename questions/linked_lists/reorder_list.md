@@ -1,5 +1,8 @@
 # 🔹 Reorder List
 
+![](../../assets/images/linked_lists/reorder_list.svg)
+
+
 ---
 
 ## 📌 Problem Statement

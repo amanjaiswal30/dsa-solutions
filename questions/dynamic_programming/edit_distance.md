@@ -1,5 +1,8 @@
 # Edit Distance (Levenshtein Distance) – Detailed Explanation and Approaches
 
+![](../../assets/images/dynamic_programming/edit_distance.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

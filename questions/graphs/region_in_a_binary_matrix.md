@@ -1,5 +1,8 @@
 # 🔹 Problem: Region in a Binary Matrix
 
+![](../../assets/images/graphs/region_in_a_binary_matrix.svg)
+
+
 **Difficulty:** Medium 🌿
 
 ---

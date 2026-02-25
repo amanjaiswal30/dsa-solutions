@@ -1,5 +1,8 @@
 # Find the Duplicate Number
 
+![](../../assets/images/arrays/duplicate_number.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

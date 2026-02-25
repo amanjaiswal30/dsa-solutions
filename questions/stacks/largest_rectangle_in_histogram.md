@@ -1,5 +1,8 @@
 # 🔹 Largest Rectangle in Histogram
 
+![](../../assets/images/stacks/largest_rectangle_in_histogram.svg)
+
+
 ---
 
 ## 📌 Problem Statement

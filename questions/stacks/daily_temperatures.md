@@ -1,5 +1,8 @@
 # 🔹 Daily Temperatures
 
+![](../../assets/images/stacks/daily_temperatures.svg)
+
+
 ---
 
 ## 📌 Problem Statement

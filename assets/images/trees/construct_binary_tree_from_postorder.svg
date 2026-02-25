@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#fff}
+  .prob{font:13px sans-serif;fill:#333;text-anchor:middle;dominant-baseline:middle}
+  .sec{font:bold 13px sans-serif;fill:#333}
+  .nd{fill:#ddeeff;stroke:#6699cc;stroke-width:2}
+  .edge{stroke:#999;stroke-width:2;fill:none}
+  .lbl{font:12px monospace;text-anchor:middle;dominant-baseline:middle}
+  .cmp{font:12px sans-serif;fill:#555}
+  .ins{font:12px sans-serif;fill:#666;font-style:italic}
+  .tbl{font:12px sans-serif;fill:#333}
+  @keyframes ndVisit0{0%,10%{fill:#ddeeff}20%,40%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit1{0%,20%{fill:#ddeeff}30%,50%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit2{0%,30%{fill:#ddeeff}40%,60%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit3{0%,40%{fill:#ddeeff}50%,70%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit4{0%,50%{fill:#ddeeff}60%,80%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes sl0{0%,15%{opacity:0}20%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl1{0%,25%{opacity:0}30%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl2{0%,35%{opacity:0}40%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl3{0%,45%{opacity:0}50%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl4{0%,55%{opacity:0}60%,90%{opacity:1}100%{opacity:0}}
+  @keyframes scanRight{0%{transform:translateX(0)}20%{transform:translateX(-44px)}40%{transform:translateX(-88px)}60%{transform:translateX(-132px)}80%,100%{transform:translateX(-176px)}}
+  .n0{animation:ndVisit0 5s infinite}
+  .n1{animation:ndVisit1 5s infinite}
+  .n2{animation:ndVisit2 5s infinite}
+  .n3{animation:ndVisit3 5s infinite}
+  .n4{animation:ndVisit4 5s infinite}
+</style>
+<rect width="900" height="690" fill="#f8f9fa"/>
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="30" class="title" text-anchor="middle" dominant-baseline="middle">Construct Binary Tree from Inorder + Postorder Traversal</text>
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="68" class="prob">inorder=[9,3,15,20,7], postorder=[9,15,7,20,3] → Reconstruct the binary tree</text>
+
+<!-- Approach 1 block -->
+<rect x="16" y="92" width="868" height="218" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="30" y="110" class="sec" fill="#fff">Approach 1: O(n²) — Root is last of postorder, find in inorder by linear scan</text>
+
+<!-- postorder array scanned right to left -->
+<text x="30" y="138" class="cmp" fill="#c0392b" font-weight="bold">postorder (scan ←):</text>
+<rect x="200" y="126" width="44" height="24" fill="#fff5f5" stroke="#ccc" rx="3"/>
+<text x="222" y="139" class="lbl">9</text>
+<rect x="246" y="126" width="44" height="24" fill="#fff5f5" stroke="#ccc" rx="3"/>
+<text x="268" y="139" class="lbl">15</text>
+<rect x="292" y="126" width="44" height="24" fill="#fff5f5" stroke="#ccc" rx="3"/>
+<text x="314" y="139" class="lbl">7</text>
+<rect x="338" y="126" width="44" height="24" fill="#fff5f5" stroke="#ccc" rx="3"/>
+<text x="360" y="139" class="lbl">20</text>
+<rect x="384" y="126" width="44" height="24" fill="#ffd700" stroke="#cc8800" rx="3"/>
+<text x="406" y="139" class="lbl">3</text>
+<text x="438" y="139" class="cmp" fill="#c0392b">← root first</text>
+
+<text x="30" y="168" class="cmp" fill="#c0392b" font-weight="bold">inorder:       </text>
+<rect x="200" y="156" width="44" height="24" fill="#fff5f5" stroke="#ccc" rx="3"/>
+<text x="222" y="169" class="lbl">9</text>
+<rect x="246" y="156" width="44" height="24" fill="#ffe0e0" stroke="#E74C3C" rx="3"/>
+<text x="268" y="169" class="lbl">3</text>
+<rect x="292" y="156" width="44" height="24" fill="#fff5f5" stroke="#ccc" rx="3"/>
+<text x="314" y="169" class="lbl">15</text>
+<rect x="338" y="156" width="44" height="24" fill="#fff5f5" stroke="#ccc" rx="3"/>
+<text x="360" y="169" class="lbl">20</text>
+<rect x="384" y="156" width="44" height="24" fill="#fff5f5" stroke="#ccc" rx="3"/>
+<text x="406" y="169" class="lbl">7</text>
+
+<text x="38" y="198" class="cmp" fill="#c0392b" style="animation:sl0 5s infinite">root=3, scan→found at idx=1; left[0..0], right[2..4]</text>
+<text x="38" y="218" class="cmp" fill="#c0392b" style="animation:sl1 5s infinite">next root=20(post[3]), in right portion; left=15, right=7</text>
+<text x="38" y="238" class="cmp" fill="#c0392b" style="animation:sl2 5s infinite">O(n) per level → O(n²) worst case (skewed tree)</text>
+
+<!-- Tree result A1 -->
+<line x1="760" y1="155" x2="730" y2="200" class="edge"/>
+<line x1="760" y1="155" x2="810" y2="200" class="edge"/>
+<line x1="810" y1="200" x2="790" y2="240" class="edge"/>
+<line x1="810" y1="200" x2="830" y2="240" class="edge"/>
+<circle cx="760" cy="155" r="18" class="nd n0"/>
+<text x="760" y="155" class="lbl">3</text>
+<circle cx="730" cy="200" r="18" class="nd n1"/>
+<text x="730" y="200" class="lbl">9</text>
+<circle cx="810" cy="200" r="18" class="nd n2"/>
+<text x="810" y="200" class="lbl">20</text>
+<circle cx="790" cy="240" r="18" class="nd n3"/>
+<text x="790" y="240" class="lbl">15</text>
+<circle cx="830" cy="240" r="18" class="nd n4"/>
+<text x="830" y="240" class="lbl">7</text>
+
+<!-- Evolution arrow -->
+<line x1="450" y1="316" x2="450" y2="340" stroke="#f0c040" stroke-width="2"/>
+<polygon points="450,348 444,336 456,336" fill="#f0c040"/>
+<rect x="80" y="310" width="740" height="32" fill="#fffde7" stroke="#f0c040" stroke-width="1.5" rx="6"/>
+<text x="450" y="328" class="ins" text-anchor="middle" dominant-baseline="middle">Key Insight: HashMap for O(1) lookup; scan postorder right→left; build RIGHT subtree BEFORE left (reversed postorder)</text>
+
+<!-- Approach 2 block -->
+<rect x="16" y="348" width="868" height="214" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="348" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="362" width="868" height="14" fill="#27AE60"/>
+<text x="30" y="366" class="sec" fill="#fff">Approach 2: O(n) — HashMap + build right subtree before left (reversed postorder)</text>
+
+<text x="30" y="395" class="cmp" fill="#27AE60" font-weight="bold">HashMap: {9:0, 3:1, 15:2, 20:3, 7:4}</text>
+<text x="30" y="415" class="cmp">postIdx starts at end (n-1=4), decrements toward 0</text>
+<text x="30" y="433" class="cmp" fill="#888">CRITICAL: build right subtree FIRST (reversed postorder gives root,right,left)</text>
+
+<text x="30" y="460" class="cmp" fill="#27AE60" style="animation:sl0 5s infinite">1. root=post[4]=3, in_idx=map[3]=1</text>
+<text x="30" y="478" class="cmp" fill="#27AE60" style="animation:sl1 5s infinite">2. RIGHT first: root=post[3]=20, in_idx=3; right=[7]</text>
+<text x="30" y="496" class="cmp" fill="#27AE60" style="animation:sl2 5s infinite">3. 20's right: root=post[2]=7</text>
+<text x="30" y="514" class="cmp" fill="#27AE60" style="animation:sl3 5s infinite">4. 20's left: root=post[1]=15</text>
+<text x="30" y="532" class="cmp" fill="#27AE60" style="animation:sl4 5s infinite">5. 3's left: root=post[0]=9</text>
+
+<!-- Tree for Approach 2 -->
+<line x1="760" y1="390" x2="730" y2="430" class="edge"/>
+<line x1="760" y1="390" x2="810" y2="430" class="edge"/>
+<line x1="810" y1="430" x2="790" y2="468" class="edge"/>
+<line x1="810" y1="430" x2="830" y2="468" class="edge"/>
+<circle cx="760" cy="390" r="18" class="nd n0"/>
+<text x="760" y="390" class="lbl">3</text>
+<circle cx="730" cy="430" r="18" class="nd n1"/>
+<text x="730" y="430" class="lbl">9</text>
+<circle cx="810" cy="430" r="18" class="nd n2"/>
+<text x="810" y="430" class="lbl">20</text>
+<circle cx="790" cy="468" r="18" class="nd n3"/>
+<text x="790" y="468" class="lbl">15</text>
+<circle cx="830" cy="468" r="18" class="nd n4"/>
+<text x="830" y="468" class="lbl">7</text>
+
+<!-- postIdx pointer -->
+<text x="680" y="510" class="cmp" text-anchor="middle" fill="#27AE60" font-weight="bold" style="animation:sl4 5s infinite">postIdx: 4→3→2→1→0</text>
+
+<!-- Complexity table -->
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="4"/>
+<rect x="16" y="578" width="868" height="24" fill="#f0f0f0" rx="4"/>
+<rect x="16" y="590" width="868" height="12" fill="#f0f0f0"/>
+<text x="200" y="592" class="tbl" text-anchor="middle" font-weight="bold">Approach</text>
+<text x="500" y="592" class="tbl" text-anchor="middle" font-weight="bold">Time</text>
+<text x="720" y="592" class="tbl" text-anchor="middle" font-weight="bold">Space</text>
+<rect x="16" y="602" width="868" height="24" fill="#fff5f5"/>
+<text x="200" y="616" class="tbl" text-anchor="middle">Linear scan in inorder</text>
+<text x="500" y="616" class="tbl" text-anchor="middle">O(n²)</text>
+<text x="720" y="616" class="tbl" text-anchor="middle">O(n) stack</text>
+<rect x="16" y="626" width="868" height="24" fill="#f0fff0"/>
+<text x="200" y="640" class="tbl" text-anchor="middle">HashMap + reversed postorder</text>
+<text x="500" y="640" class="tbl" text-anchor="middle">O(n)</text>
+<text x="720" y="640" class="tbl" text-anchor="middle">O(n) map + stack</text>
+<rect x="16" y="650" width="868" height="26" fill="#fff8e1"/>
+<text x="450" y="664" class="tbl" text-anchor="middle" fill="#e65100">build(inStart,inEnd): root=post[postIdx--]; idx=map[root]; root.right=build(idx+1,inEnd); root.left=build(inStart,idx-1)</text>
+</svg>

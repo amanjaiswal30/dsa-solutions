@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#1a1a2e}
+  .prob{font:13px sans-serif;fill:#444}
+  .sec{font:bold 13px sans-serif}
+  .arr{fill:#ddeeff;stroke:#6699cc;stroke-width:1.5}
+  .lbl{font:11px monospace;fill:#333;text-anchor:middle}
+  .idx{font:10px sans-serif;fill:#888;text-anchor:middle}
+  .evol{fill:none;stroke:#888;stroke-width:1.5;stroke-dasharray:5,3}
+  .ins{font:11px sans-serif;fill:#555;font-style:italic}
+  .cmp{font:11px sans-serif;fill:#333}
+  .tbl{font:11px sans-serif;fill:#333;text-anchor:middle}
+  .cell{stroke-width:1.2}
+
+  @keyframes sl0{0%,18%{opacity:1}19%,100%{opacity:0}}
+  @keyframes sl1{0%,18%{opacity:0}19%,36%{opacity:1}37%,100%{opacity:0}}
+  @keyframes sl2{0%,36%{opacity:0}37%,54%{opacity:1}55%,100%{opacity:0}}
+  @keyframes sl3{0%,54%{opacity:0}55%,72%{opacity:1}73%,100%{opacity:0}}
+  @keyframes sl4{0%,72%{opacity:0}73%,100%{opacity:1}}
+  .sl0{animation:sl0 8s ease-in-out infinite}
+  .sl1{animation:sl1 8s ease-in-out infinite}
+  .sl2{animation:sl2 8s ease-in-out infinite}
+  .sl3{animation:sl3 8s ease-in-out infinite}
+  .sl4{animation:sl4 8s ease-in-out infinite}
+
+  @keyframes row_scan{0%{transform:translateY(0)}25%{transform:translateY(34px)}50%{transform:translateY(68px)}75%{transform:translateY(102px)}100%{transform:translateY(0)}}
+  .rscan{animation:row_scan 8s ease-in-out infinite}
+
+  @keyframes hl_rect{0%,50%{fill:rgba(39,174,96,0)}51%,100%{fill:rgba(39,174,96,0.25)}}
+  .hlit{animation:hl_rect 8s ease-in-out infinite}
+
+  @keyframes bar_grow{0%{opacity:0.4}50%{opacity:1}100%{opacity:0.4}}
+  .bar1{animation:bar_grow 8s 0s ease-in-out infinite}
+  .bar2{animation:bar_grow 8s 0.5s ease-in-out infinite}
+  .bar3{animation:bar_grow 8s 1.0s ease-in-out infinite}
+  .bar4{animation:bar_grow 8s 1.5s ease-in-out infinite}
+  .bar5{animation:bar_grow 8s 2.0s ease-in-out infinite}
+</style>
+
+<rect width="900" height="690" fill="#f8f9fa" rx="8"/>
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="32" text-anchor="middle" class="title" fill="white">Maximal Rectangle</text>
+
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="72" text-anchor="middle" class="prob">matrix=["10100","10111","11111","10010"] → max rectangle area = 6</text>
+
+<!-- APPROACH 1 -->
+<rect x="16" y="92" width="868" height="218" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="32" y="111" class="sec" fill="white">Approach 1: Brute Force — O(n²m²)</text>
+
+<!-- Matrix grid 4x5 -->
+<text x="32" y="144" class="cmp">Binary matrix (1=filled, 0=empty):</text>
+<g transform="translate(32,152)">
+  <!-- Row 0: 1 0 1 0 0 -->
+  <rect x="0" y="0" width="28" height="28" fill="#ffcccc" stroke="#E74C3C" stroke-width="1.2"/><text x="14" y="19" class="lbl">1</text>
+  <rect x="34" y="0" width="28" height="28" fill="#f5f5f5" stroke="#ccc" stroke-width="1.2"/><text x="48" y="19" class="lbl">0</text>
+  <rect x="68" y="0" width="28" height="28" fill="#ffcccc" stroke="#E74C3C" stroke-width="1.2"/><text x="82" y="19" class="lbl">1</text>
+  <rect x="102" y="0" width="28" height="28" fill="#f5f5f5" stroke="#ccc" stroke-width="1.2"/><text x="116" y="19" class="lbl">0</text>
+  <rect x="136" y="0" width="28" height="28" fill="#f5f5f5" stroke="#ccc" stroke-width="1.2"/><text x="150" y="19" class="lbl">0</text>
+  <!-- Row 1: 1 0 1 1 1 -->
+  <rect x="0" y="34" width="28" height="28" fill="#ffcccc" stroke="#E74C3C" stroke-width="1.2"/><text x="14" y="53" class="lbl">1</text>
+  <rect x="34" y="34" width="28" height="28" fill="#f5f5f5" stroke="#ccc" stroke-width="1.2"/><text x="48" y="53" class="lbl">0</text>
+  <rect x="68" y="34" width="28" height="28" fill="#ffcccc" stroke="#E74C3C" stroke-width="1.2"/><text x="82" y="53" class="lbl">1</text>
+  <rect x="102" y="34" width="28" height="28" fill="#ffcccc" stroke="#E74C3C" stroke-width="1.2"/><text x="116" y="53" class="lbl">1</text>
+  <rect x="136" y="34" width="28" height="28" fill="#ffcccc" stroke="#E74C3C" stroke-width="1.2"/><text x="150" y="53" class="lbl">1</text>
+  <!-- Row 2: 1 1 1 1 1 -->
+  <rect x="0" y="68" width="28" height="28" fill="#ffcccc" stroke="#E74C3C" stroke-width="1.2"/><text x="14" y="87" class="lbl">1</text>
+  <rect x="34" y="68" width="28" height="28" fill="#ffcccc" stroke="#E74C3C" stroke-width="1.2"/><text x="48" y="87" class="lbl">1</text>
+  <rect x="68" y="68" width="28" height="28" fill="#ffcccc" stroke="#E74C3C" stroke-width="1.2"/><text x="82" y="87" class="lbl">1</text>
+  <rect x="102" y="68" width="28" height="28" fill="#ffcccc" stroke="#E74C3C" stroke-width="1.2"/><text x="116" y="87" class="lbl">1</text>
+  <rect x="136" y="68" width="28" height="28" fill="#ffcccc" stroke="#E74C3C" stroke-width="1.2"/><text x="150" y="87" class="lbl">1</text>
+  <!-- Row 3: 1 0 0 1 0 -->
+  <rect x="0" y="102" width="28" height="28" fill="#ffcccc" stroke="#E74C3C" stroke-width="1.2"/><text x="14" y="121" class="lbl">1</text>
+  <rect x="34" y="102" width="28" height="28" fill="#f5f5f5" stroke="#ccc" stroke-width="1.2"/><text x="48" y="121" class="lbl">0</text>
+  <rect x="68" y="102" width="28" height="28" fill="#f5f5f5" stroke="#ccc" stroke-width="1.2"/><text x="82" y="121" class="lbl">0</text>
+  <rect x="102" y="102" width="28" height="28" fill="#ffcccc" stroke="#E74C3C" stroke-width="1.2"/><text x="116" y="121" class="lbl">1</text>
+  <rect x="136" y="102" width="28" height="28" fill="#f5f5f5" stroke="#ccc" stroke-width="1.2"/><text x="150" y="121" class="lbl">0</text>
+  <!-- scan row indicator -->
+  <g class="rscan">
+    <rect x="-4" y="0" width="4" height="28" fill="#E74C3C" rx="2"/>
+  </g>
+  <!-- max rectangle highlight (rows 1-2, cols 2-4) -->
+  <rect class="hlit" x="64" y="30" width="104" height="70" fill="none" stroke="#27AE60" stroke-width="2.5" rx="2"/>
+</g>
+
+<text x="230" y="150" class="cmp sl0">① Brute: try all pairs of (row1,col1)-(row2,col2)</text>
+<text x="230" y="165" class="cmp sl0">   Check if all cells are 1 → O(n²m²) total</text>
+<text x="230" y="150" class="cmp sl1">② Max rectangle at rows 1-2, cols 2-4:</text>
+<text x="230" y="165" class="cmp sl1">   width=3, height=2, area=6</text>
+<text x="230" y="150" class="cmp sl2">③ Key insight: row-by-row histogram!</text>
+<text x="230" y="165" class="cmp sl2">   For each row, compute height of 1s above</text>
+<text x="230" y="150" class="cmp sl3">④ Then: maxRect in histogram (monotonic stack)</text>
+<text x="230" y="150" class="cmp sl4">⑤ Reduces to O(n×m) — one histogram pass per row</text>
+
+<!-- Evolution arrow -->
+<line x1="450" y1="310" x2="450" y2="328" class="evol"/>
+<polygon points="450,329 444,317 456,317" fill="#888"/>
+<rect x="250" y="313" width="400" height="28" fill="#fffde7" stroke="#f0c040" stroke-width="1" rx="4"/>
+<text x="450" y="331" text-anchor="middle" class="ins">Build heights[] per row → max histogram rectangle (monotonic stack)</text>
+
+<!-- APPROACH 2: Heights + Monotonic Stack -->
+<rect x="16" y="346" width="868" height="216" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="346" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="360" width="868" height="14" fill="#27AE60"/>
+<text x="32" y="365" class="sec" fill="white">Approach 2: Heights + Monotonic Stack — O(n×m) time, O(m) space</text>
+
+<text x="32" y="395" class="cmp">heights[] = consecutive 1s from top for each cell:</text>
+<!-- Heights array evolution per row -->
+<g transform="translate(32,405)">
+  <text x="0" y="18" class="cmp">row 0:</text>
+  <rect class="arr bar1" x="60" y="0" width="34" height="26"/><text x="77" y="17" class="lbl">1</text>
+  <rect x="100" y="0" width="34" height="26" fill="#f5f5f5" stroke="#ccc" stroke-width="1.2"/><text x="117" y="17" class="lbl">0</text>
+  <rect class="arr bar1" x="140" y="0" width="34" height="26"/><text x="157" y="17" class="lbl">1</text>
+  <rect x="180" y="0" width="34" height="26" fill="#f5f5f5" stroke="#ccc" stroke-width="1.2"/><text x="197" y="17" class="lbl">0</text>
+  <rect x="220" y="0" width="34" height="26" fill="#f5f5f5" stroke="#ccc" stroke-width="1.2"/><text x="237" y="17" class="lbl">0</text>
+  <text x="270" y="18" class="cmp">→ max=1</text>
+
+  <text x="0" y="50" class="cmp">row 1:</text>
+  <rect class="arr bar2" x="60" y="32" width="34" height="26"/><text x="77" y="49" class="lbl">2</text>
+  <rect x="100" y="32" width="34" height="26" fill="#f5f5f5" stroke="#ccc" stroke-width="1.2"/><text x="117" y="49" class="lbl">0</text>
+  <rect class="arr bar2" x="140" y="32" width="34" height="26"/><text x="157" y="49" class="lbl">2</text>
+  <rect class="arr bar2" x="180" y="32" width="34" height="26"/><text x="197" y="49" class="lbl">1</text>
+  <rect class="arr bar2" x="220" y="32" width="34" height="26"/><text x="237" y="49" class="lbl">1</text>
+  <text x="270" y="50" class="cmp">→ max=3</text>
+
+  <text x="0" y="82" class="cmp">row 2:</text>
+  <rect class="arr bar3" x="60" y="64" width="34" height="26"/><text x="77" y="81" class="lbl">3</text>
+  <rect class="arr bar3" x="100" y="64" width="34" height="26"/><text x="117" y="81" class="lbl">1</text>
+  <rect class="arr bar3" x="140" y="64" width="34" height="26"/><text x="157" y="81" class="lbl">3</text>
+  <rect class="arr bar3" x="180" y="64" width="34" height="26"/><text x="197" y="81" class="lbl">2</text>
+  <rect class="arr bar3" x="220" y="64" width="34" height="26"/><text x="237" y="81" class="lbl">2</text>
+  <text x="270" y="82" class="cmp" fill="#27AE60">→ max=<tspan font-weight="bold">6</tspan> ← Answer!</text>
+
+  <text x="0" y="114" class="cmp">row 3:</text>
+  <rect class="arr bar4" x="60" y="96" width="34" height="26"/><text x="77" y="113" class="lbl">4</text>
+  <rect x="100" y="96" width="34" height="26" fill="#f5f5f5" stroke="#ccc" stroke-width="1.2"/><text x="117" y="113" class="lbl">0</text>
+  <rect x="140" y="96" width="34" height="26" fill="#f5f5f5" stroke="#ccc" stroke-width="1.2"/><text x="157" y="113" class="lbl">0</text>
+  <rect class="arr bar4" x="180" y="96" width="34" height="26"/><text x="197" y="113" class="lbl">3</text>
+  <rect x="220" y="96" width="34" height="26" fill="#f5f5f5" stroke="#ccc" stroke-width="1.2"/><text x="237" y="113" class="lbl">0</text>
+  <text x="270" y="114" class="cmp">→ max=4</text>
+</g>
+
+<!-- Stack explanation -->
+<text x="410" y="415" class="cmp sl0">① For each row: build heights[]</text>
+<text x="410" y="430" class="cmp sl0">   h[j] += 1 if mat[i][j]=='1' else h[j]=0</text>
+<text x="410" y="415" class="cmp sl1">② Largest rectangle in histogram:</text>
+<text x="410" y="430" class="cmp sl1">   Use monotonic stack (increasing)</text>
+<text x="410" y="415" class="cmp sl2">③ Row 2 heights=[3,1,3,2,2]:</text>
+<text x="410" y="430" class="cmp sl2">   stack pops h=3 when h=1 encountered</text>
+<text x="410" y="445" class="cmp sl2">   area=3×1=3; then h=1,width=2→2</text>
+<text x="410" y="415" class="cmp sl3">④ After row 2, all heights pop:</text>
+<text x="410" y="430" class="cmp sl3">   h[2]=3 with width=2 → area=6 ✓</text>
+<text x="410" y="415" class="cmp sl4" fill="#27AE60">⑤ Global max = 6 ✓</text>
+
+<!-- Stack visual -->
+<rect x="410" y="460" width="442" height="80" fill="#fff9e6" stroke="#F39C12" stroke-width="1.5" rx="5"/>
+<text x="426" y="477" class="cmp" font-weight="bold" fill="#F39C12">Monotonic Stack for row 2 heights=[3,1,3,2,2]:</text>
+<text x="426" y="493" class="cmp">push 3(i=0) → [3]; push? 1&lt;3: pop 3→area=3×1=3</text>
+<text x="426" y="507" class="cmp">push 1 → [1]; push 3(i=2) → [1,3]; push? 2&lt;3: pop 3→area=3×1=3</text>
+<text x="426" y="521" class="cmp">push 2 → [1,2]; push 2 → [1,2,2]; end: pop 2→2×1=2, pop 2→2×2=4</text>
+<text x="426" y="535" class="cmp" fill="#27AE60">pop 1→1×5=5; max so far=6 (3 width=2 in earlier rows) ✓</text>
+
+<!-- Complexity table -->
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="6"/>
+<rect x="16" y="578" width="868" height="26" fill="#f0f0f0" stroke="#ddd" stroke-width="1" rx="6"/>
+<text x="182" y="595" class="tbl" font-weight="bold">Approach</text>
+<text x="430" y="595" class="tbl" font-weight="bold">Time</text>
+<text x="610" y="595" class="tbl" font-weight="bold">Space</text>
+<text x="790" y="595" class="tbl" font-weight="bold">Recommended</text>
+<rect x="16" y="604" width="868" height="24" fill="#fff5f5"/>
+<text x="182" y="620" class="tbl">Brute Force</text>
+<text x="430" y="620" class="tbl">O(n²m²)</text>
+<text x="610" y="620" class="tbl">O(1)</text>
+<text x="790" y="620" class="tbl">✗ TLE</text>
+<rect x="16" y="628" width="868" height="24" fill="#f0fff0"/>
+<text x="182" y="644" class="tbl">Heights + Monotonic Stack</text>
+<text x="430" y="644" class="tbl">O(n×m)</text>
+<text x="610" y="644" class="tbl">O(m)</text>
+<text x="790" y="644" class="tbl">✓ Optimal</text>
+<line x1="16" y1="652" x2="884" y2="652" stroke="#ddd" stroke-width="1"/>
+<text x="182" y="668" class="tbl" fill="#27AE60" font-weight="bold">▶ Per row: update heights[], run largest-rectangle-in-histogram</text>
+</svg>

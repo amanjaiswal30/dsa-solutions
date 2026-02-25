@@ -1,0 +1,123 @@
+<svg width="900" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="600" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="17" font-weight="bold" fill="white">Intersection Point in Y-Shaped Linked List</text>
+  <rect x="800" y="12" width="82" height="28" fill="#F39C12" rx="14"/>
+  <text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">L1: a→b→c→d (shared tail: c→d), L2: e→f→c→d</text>
+  <text x="540" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#27AE60">→  Intersection at node c</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Find node where lists merge. Nodes after intersection are physically the same objects.</text>
+
+  <!-- Approach 1: Brute -->
+  <rect x="15" y="115" width="255" height="315" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="255" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="255" height="15" fill="#E74C3C"/>
+  <text x="142" y="139" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Brute</text>
+  <text x="142" y="152" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(m×n) | O(1) space</text>
+
+  <text x="30" y="177" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">For each node in L1, scan all L2:</text>
+  <rect x="30" y="183" width="226" height="64" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="143" y="199" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">for a: check e,f,c,d → no match</text>
+  <text x="143" y="213" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">for b: check e,f,c,d → no match</text>
+  <text x="143" y="230" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">for c: check e,f,c → MATCH! ✓</text>
+
+  <text x="30" y="268" font-family="Arial" font-size="10" fill="#E74C3C" font-weight="bold">⚠ O(m×n) — very slow!</text>
+  <text x="30" y="285" font-family="Arial" font-size="10" fill="#888">Nested loop comparison</text>
+  <text x="30" y="302" font-family="Arial" font-size="10" fill="#888">O(1) space but impractical</text>
+  <text x="30" y="319" font-family="Arial" font-size="10" fill="#888">Checks reference equality</text>
+  <text x="30" y="336" font-family="Arial" font-size="10" fill="#888">TLE on large inputs</text>
+  <text x="30" y="353" font-family="Arial" font-size="10" fill="#888">Need smarter alignment</text>
+  <text x="30" y="370" font-family="Arial" font-size="10" fill="#888">or hashing approach</text>
+  <text x="30" y="387" font-family="Arial" font-size="10" fill="#888">to avoid nested loops</text>
+  <text x="30" y="410" font-family="Arial" font-size="10" fill="#888">Both approaches below</text>
+  <text x="30" y="425" font-family="Arial" font-size="10" fill="#888">achieve O(m+n) time</text>
+
+  <!-- Arrow 1 -->
+  <line x1="274" y1="272" x2="296" y2="272" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="294,267 305,272 294,277" fill="#7F8C8D"/>
+
+  <!-- Approach 2: Hashing -->
+  <rect x="308" y="115" width="255" height="315" fill="#FFFFFF" stroke="#E67E22" stroke-width="2" rx="7"/>
+  <rect x="308" y="115" width="255" height="40" fill="#E67E22" rx="7"/>
+  <rect x="308" y="140" width="255" height="15" fill="#E67E22"/>
+  <text x="435" y="139" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Hashing</text>
+  <text x="435" y="152" font-family="Arial" font-size="10" fill="#FDEBD0" text-anchor="middle">O(m+n) time | O(m) space</text>
+
+  <text x="322" y="177" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">Store L1 in HashSet, scan L2:</text>
+  <rect x="322" y="183" width="228" height="64" fill="#FEF9E7" stroke="#E67E22" rx="3"/>
+  <text x="436" y="199" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Pass 1: Add a,b,c,d to HashSet</text>
+  <text x="436" y="214" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Pass 2: check e → no; f → no</text>
+  <text x="436" y="232" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">check c → IN SET! Return c ✓</text>
+
+  <text x="322" y="268" font-family="Arial" font-size="10" fill="#E67E22" font-weight="bold">O(m) HashSet stores L1 nodes</text>
+  <text x="322" y="285" font-family="Arial" font-size="10" fill="#888">One pass to build set</text>
+  <text x="322" y="302" font-family="Arial" font-size="10" fill="#888">One pass to scan L2</text>
+  <text x="322" y="319" font-family="Arial" font-size="10" fill="#888">Linear time but O(m) space</text>
+  <text x="322" y="336" font-family="Arial" font-size="10" fill="#888">Can we avoid the HashSet?</text>
+  <text x="322" y="353" font-family="Arial" font-size="10" fill="#888">Yes! Two-pointer approach</text>
+  <text x="322" y="370" font-family="Arial" font-size="10" fill="#888">uses O(1) space elegantly</text>
+  <text x="322" y="387" font-family="Arial" font-size="10" fill="#888">by switching list heads</text>
+  <text x="322" y="410" font-family="Arial" font-size="10" fill="#888">when pointer reaches end</text>
+
+  <!-- Arrow 2 -->
+  <line x1="567" y1="272" x2="590" y2="272" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="588,267 599,272 588,277" fill="#7F8C8D"/>
+
+  <!-- Approach 3: Two Pointer -->
+  <rect x="602" y="115" width="283" height="315" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="602" y="115" width="283" height="40" fill="#27AE60" rx="7"/>
+  <rect x="602" y="140" width="283" height="15" fill="#27AE60"/>
+  <text x="743" y="139" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 3: Two Pointer ⭐</text>
+  <text x="743" y="152" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(m+n) time | O(1) space</text>
+
+  <text x="617" y="177" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">Switch to other list's head at end:</text>
+  <rect x="617" y="183" width="254" height="76" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="744" y="199" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">a=headA, b=headB</text>
+  <text x="744" y="214" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">while (a != b):</text>
+  <text x="744" y="229" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">  a = (a==null) ? headB : a.next</text>
+  <text x="744" y="248" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">a==b at intersection! ✓</text>
+
+  <text x="617" y="280" font-family="Arial" font-size="10" fill="#555">Why it works:</text>
+  <rect x="617" y="286" width="254" height="40" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="744" y="301" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">a travels: m + (n-k) + k = m+n</text>
+  <text x="744" y="316" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">b travels: n + (m-k) + k = m+n</text>
+
+  <text x="617" y="348" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold">Both travel same total distance!</text>
+  <text x="617" y="364" font-family="Arial" font-size="10" fill="#888">Switch lists = aligns starting points</text>
+  <text x="617" y="381" font-family="Arial" font-size="10" fill="#888">No extra space at all</text>
+  <text x="617" y="398" font-family="Arial" font-size="10" fill="#888">If no intersection: both become null</text>
+  <text x="617" y="415" font-family="Arial" font-size="10" fill="#888">while(a!=b) terminates correctly</text>
+  <text x="617" y="432" font-family="Arial" font-size="10" fill="#888">Elegant 4-line solution</text>
+
+  <!-- Complexity Table -->
+  <rect x="15" y="442" width="870" height="145" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+  <rect x="15" y="442" width="870" height="30" fill="#2C3E50" rx="7"/>
+  <rect x="15" y="457" width="870" height="15" fill="#2C3E50"/>
+  <text x="450" y="462" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+  <line x1="15" y1="472" x2="885" y2="472" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="472" width="870" height="25" fill="#ECF0F1"/>
+  <text x="200" y="489" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+  <text x="500" y="489" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+  <text x="750" y="489" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+  <line x1="15" y1="497" x2="885" y2="497" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="497" width="870" height="24" fill="#FDEDEC"/>
+  <text x="200" y="513" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Brute Force</text>
+  <text x="500" y="513" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(m×n)</text>
+  <text x="750" y="513" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(1)</text>
+  <line x1="15" y1="521" x2="885" y2="521" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="521" width="870" height="24" fill="#FEF9E7"/>
+  <text x="200" y="537" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Hashing</text>
+  <text x="500" y="537" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(m+n)</text>
+  <text x="750" y="537" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(m)</text>
+  <line x1="15" y1="545" x2="885" y2="545" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="545" width="870" height="24" fill="#EAFAF1"/>
+  <text x="200" y="561" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Two Pointer Traversal ⭐</text>
+  <text x="500" y="561" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(m+n)</text>
+  <text x="750" y="561" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(1)</text>
+  <line x1="370" y1="472" x2="370" y2="569" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="620" y1="472" x2="620" y2="569" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

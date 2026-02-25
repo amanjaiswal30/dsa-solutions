@@ -1,0 +1,122 @@
+<svg width="900" height="610" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="610" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="17" font-weight="bold" fill="white">Detect and Remove Loop in a Linked List</text>
+  <rect x="790" y="12" width="92" height="28" fill="#F39C12" rx="14"/>
+  <text x="836" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">1→2→3→4→5→(back to 3)</text>
+  <text x="380" y="81" font-family="Arial" font-size="12" fill="#555">→ Remove loop → 1→2→3→4→5→null</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Loop: node 5's next points back to node 3. Must detect and break this cycle.</text>
+
+  <!-- === APPROACH 1: Brute HashSet === -->
+  <rect x="15" y="115" width="390" height="360" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="390" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="390" height="15" fill="#E74C3C"/>
+  <text x="210" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: HashSet Detection</text>
+  <text x="210" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(n) time | O(n) space</text>
+
+  <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Store visited nodes, detect first repeat:</text>
+
+  <rect x="30" y="186" width="360" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="202" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Visit 1 → set={1}, prev=null</text>
+
+  <rect x="30" y="214" width="360" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="230" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Visit 2 → set={1,2}, prev=1</text>
+
+  <rect x="30" y="242" width="360" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="258" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Visit 3 → set={1,2,3}, prev=2</text>
+
+  <rect x="30" y="270" width="360" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="286" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Visit 4 → set={1,2,3,4}, prev=3</text>
+
+  <rect x="30" y="298" width="360" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="314" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Visit 5 → set={1,2,3,4,5}, prev=4</text>
+
+  <rect x="30" y="326" width="360" height="28" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="340" font-family="Arial" font-size="10" fill="#E74C3C" text-anchor="middle">Visit 3 → 3 already in set!</text>
+  <text x="210" y="352" font-family="Arial" font-size="10" fill="#E74C3C" text-anchor="middle">prev(5).next = null → loop removed ✓</text>
+
+  <text x="30" y="382" font-family="Arial" font-size="11" fill="#E74C3C">⚠ O(n) extra memory for HashSet</text>
+  <text x="30" y="400" font-family="Arial" font-size="11" fill="#888">prev pointer tracks node before loop start</text>
+  <text x="30" y="418" font-family="Arial" font-size="11" fill="#888">Simple but wastes memory</text>
+  <text x="30" y="436" font-family="Arial" font-size="11" fill="#888">Cannot be used in memory-constrained systems</text>
+  <text x="30" y="454" font-family="Arial" font-size="11" fill="#888">set.add(node)? set.contains(node)?</text>
+  <text x="30" y="472" font-family="Arial" font-size="11" fill="#888">Traversal: O(n), HashSet lookup: O(1)</text>
+
+  <!-- Evolution Arrow -->
+  <line x1="410" y1="300" x2="480" y2="300" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon points="480,295 492,300 480,305" fill="#7F8C8D"/>
+  <rect x="410" y="268" width="72" height="64" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
+  <text x="446" y="283" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Floyd's</text>
+  <text x="446" y="295" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">slow/fast</text>
+  <text x="446" y="307" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">O(1) space!</text>
+
+  <!-- === APPROACH 2: Floyd's Algorithm === -->
+  <rect x="492" y="115" width="393" height="360" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="492" y="115" width="393" height="40" fill="#27AE60" rx="7"/>
+  <rect x="492" y="140" width="393" height="15" fill="#27AE60"/>
+  <text x="688" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Floyd's Algorithm ⭐</text>
+  <text x="688" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(n) time | O(1) space</text>
+
+  <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Phase 1: Detect. Phase 2: Find Start. Phase 3: Remove:</text>
+
+  <!-- Phase 1 -->
+  <text x="505" y="198" font-family="Arial" font-size="11" font-weight="bold" fill="#27AE60">Phase 1: Slow(1 step) + Fast(2 steps)</text>
+  <rect x="505" y="204" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="217" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">1→2→3→4→5→(3) loop</text>
+  <text x="686" y="229" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">slow=3, fast=3 → they meet! Loop detected ✓</text>
+
+  <!-- Phase 2 -->
+  <text x="505" y="248" font-family="Arial" font-size="11" font-weight="bold" fill="#27AE60">Phase 2: Find loop start</text>
+  <rect x="505" y="254" width="362" height="36" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="268" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">ptr=head(1), slow stays at meeting point(3)</text>
+  <text x="686" y="282" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Move both 1 step at a time until ptr==slow</text>
+
+  <rect x="505" y="294" width="362" height="24" fill="#D5F5E3" stroke="#27AE60" rx="3"/>
+  <text x="686" y="310" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">ptr(1)→ptr(2)→ptr(3)==slow(3) → loop start=3 ✓</text>
+
+  <!-- Phase 3 -->
+  <text x="505" y="336" font-family="Arial" font-size="11" font-weight="bold" fill="#27AE60">Phase 3: Remove loop</text>
+  <rect x="505" y="342" width="362" height="36" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="357" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">From loop start(3), traverse until node.next==start</text>
+  <text x="686" y="369" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">That node's next = null → loop removed ✓</text>
+
+  <rect x="505" y="382" width="362" height="24" fill="#D5F5E3" stroke="#27AE60" rx="3"/>
+  <text x="686" y="396" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">Result: 1→2→3→4→5→null ✓</text>
+
+  <text x="505" y="425" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">Floyd's math: dist(head→start) = dist(meet→start)</text>
+  <text x="505" y="443" font-family="Arial" font-size="11" fill="#888">All O(n) phases → O(n) total</text>
+  <text x="505" y="461" font-family="Arial" font-size="11" fill="#888">Only 2-3 pointer variables needed → O(1)</text>
+  <text x="505" y="479" font-family="Arial" font-size="11" fill="#888">Industry-standard cycle detection algorithm</text>
+
+  <!-- Complexity Table -->
+  <rect x="15" y="487" width="870" height="112" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+  <rect x="15" y="487" width="870" height="30" fill="#2C3E50" rx="7"/>
+  <rect x="15" y="502" width="870" height="15" fill="#2C3E50"/>
+  <text x="450" y="507" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+
+  <line x1="15" y1="517" x2="885" y2="517" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="517" width="870" height="25" fill="#ECF0F1"/>
+  <text x="200" y="534" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+  <text x="500" y="534" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+  <text x="750" y="534" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+
+  <line x1="15" y1="542" x2="885" y2="542" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="542" width="870" height="24" fill="#FDEDEC"/>
+  <text x="200" y="558" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">HashSet Detection</text>
+  <text x="500" y="558" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(n)</text>
+  <text x="750" y="558" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n)</text>
+
+  <line x1="15" y1="566" x2="885" y2="566" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="566" width="870" height="24" fill="#EAFAF1"/>
+  <text x="200" y="582" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Floyd's Algorithm ⭐</text>
+  <text x="500" y="582" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n)</text>
+  <text x="750" y="582" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(1)</text>
+
+  <line x1="370" y1="517" x2="370" y2="590" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="620" y1="517" x2="620" y2="590" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

@@ -1,0 +1,143 @@
+<svg width="900" height="690" xmlns="http://www.w3.org/2000/svg">
+<style>
+@keyframes sl0{0%,15%{opacity:1}16%,100%{opacity:0}}
+@keyframes sl1{0%,15%{opacity:0}16%,40%{opacity:1}41%,100%{opacity:0}}
+@keyframes sl2{0%,40%{opacity:0}41%,65%{opacity:1}66%,100%{opacity:0}}
+@keyframes sl3{0%,65%{opacity:0}66%,85%{opacity:1}86%,100%{opacity:0}}
+.sl0{animation:sl0 6s ease-in-out infinite}.sl1{animation:sl1 6s ease-in-out infinite}
+.sl2{animation:sl2 6s ease-in-out infinite}.sl3{animation:sl3 6s ease-in-out infinite}
+@keyframes scan_hl{0%,40%{fill:#EBF5FB;stroke:#3498DB}41%,75%{fill:#FDEBD0;stroke:#E67E22;stroke-width:2}76%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+.sh{animation:scan_hl 6s ease-in-out infinite}
+</style>
+<rect width="900" height="690" fill="#F8F9FA" rx="10"/>
+<rect width="900" height="55" fill="#2C3E50" rx="10"/>
+<rect y="45" width="900" height="10" fill="#2C3E50"/>
+<text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">0/1 Knapsack Problem</text>
+<rect x="800" y="12" width="82" height="28" fill="#F39C12" rx="14"/>
+<text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+<rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+<text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+<text x="105" y="81" font-family="Arial" font-size="12" fill="#555">items=[(w=1,v=1),(w=3,v=4),(w=4,v=5)], W=6 → max value=6 (items 0+2 or item 1+0)</text>
+<text x="30" y="98" font-family="Arial" font-size="11" fill="#777">dp[i][w]=max value using first i items with capacity w. Each item: include or exclude.</text>
+
+<!-- APPROACH 1: Recursion -->
+<rect x="15" y="115" width="870" height="210" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+<rect x="15" y="115" width="870" height="40" fill="#E74C3C" rx="7"/>
+<rect x="15" y="140" width="870" height="15" fill="#E74C3C"/>
+<text x="450" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Recursion — O(2ⁿ) time, O(n) stack space</text>
+<text x="450" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">knap(i,w)=max(knap(i-1,w) skip, v[i]+knap(i-1,w-w[i]) take). Binary tree per item!</text>
+<!-- Items table -->
+<text x="200" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#555" text-anchor="middle">Items:</text>
+<rect x="230" y="168" width="380" height="28" fill="#ECF0F1" stroke="#BDC3C7" rx="3"/>
+<text x="300" y="186" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">Item 0: w=1, v=1</text>
+<text x="420" y="186" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">Item 1: w=3, v=4</text>
+<text x="560" y="186" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">Item 2: w=4, v=5</text>
+<!-- Recursion tree for item 2, capacity 6 -->
+<rect x="374" y="200" width="152" height="24" fill="#FDEBD0" stroke="#E67E22" stroke-width="1.5" rx="3"/>
+<text x="450" y="217" font-family="Arial" font-size="11" font-weight="bold" fill="#333" text-anchor="middle">knap(2, w=6)</text>
+<line x1="420" y1="224" x2="320" y2="242" stroke="#AAA" stroke-width="1.5"/>
+<line x1="480" y1="224" x2="570" y2="242" stroke="#AAA" stroke-width="1.5"/>
+<rect x="248" y="242" width="144" height="24" fill="#EBF5FB" stroke="#3498DB" stroke-width="1" rx="3"/>
+<text x="320" y="259" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">skip: knap(1, 6)</text>
+<rect x="498" y="242" width="144" height="24" fill="#EBF5FB" stroke="#3498DB" stroke-width="1" rx="3"/>
+<text x="570" y="259" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">take: 5+knap(1,2)</text>
+<!-- Step labels -->
+<text class="sl0" x="450" y="285" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">knap(2,6): skip item2 → knap(1,6) | take item2 → 5+knap(1,2)</text>
+<text class="sl1" x="450" y="285" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">knap(1,6): skip item1→knap(0,6) | take item1→4+knap(0,3)</text>
+<text class="sl2" x="450" y="285" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">knap(0,3) and knap(0,6) computed multiple times! ⚠</text>
+<text class="sl3" x="450" y="285" font-family="Arial" font-size="11" fill="#888" text-anchor="middle">2ⁿ leaves! With n=30 items: over 1 billion calls without DP!</text>
+<text x="450" y="310" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">State: (item, capacity). Total unique states = n × W. Cache them → O(n×W).</text>
+
+<!-- Arrow 1→2 -->
+<line x1="450" y1="325" x2="450" y2="362" stroke="#7F8C8D" stroke-width="2" stroke-dasharray="4,3"/>
+<polygon points="444,362 450,370 456,362" fill="#7F8C8D"/>
+<rect x="200" y="329" width="500" height="22" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+<text x="450" y="344" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">💡 2D dp[i][w] table: n×W subproblems, each O(1) → total O(n×W)</text>
+
+<!-- APPROACH 2: 2D DP -->
+<rect x="15" y="370" width="870" height="210" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+<rect x="15" y="370" width="870" height="40" fill="#27AE60" rx="7"/>
+<rect x="15" y="395" width="870" height="15" fill="#27AE60"/>
+<text x="450" y="395" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Bottom-Up 2D DP — O(n·W) time, O(W) space ⭐</text>
+<text x="450" y="408" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">dp[i][w]: if w[i]≤w: max(dp[i-1][w], v[i]+dp[i-1][w-w[i]]), else dp[i-1][w]</text>
+<!-- 4×7 DP table (rows: i=0..3, cols: w=0..6) -->
+<!-- Headers -->
+<text x="188" y="425" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="middle">w→</text>
+<text x="188" y="440" font-family="Arial" font-size="10" font-weight="bold" fill="#3498DB" text-anchor="middle">item</text>
+<text x="220" y="425" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="middle">0</text>
+<text x="252" y="425" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="middle">1</text>
+<text x="284" y="425" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="middle">2</text>
+<text x="316" y="425" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="middle">3</text>
+<text x="348" y="425" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="middle">4</text>
+<text x="380" y="425" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="middle">5</text>
+<text x="412" y="425" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="middle">6</text>
+<!-- Row 0 (no items): [0,0,0,0,0,0,0] -->
+<text x="188" y="453" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">none</text>
+<rect x="204" y="428" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="220" y="443" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">0</text>
+<rect x="236" y="428" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="252" y="443" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">0</text>
+<rect x="268" y="428" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="284" y="443" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">0</text>
+<rect x="300" y="428" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="316" y="443" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">0</text>
+<rect x="332" y="428" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="348" y="443" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">0</text>
+<rect x="364" y="428" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="380" y="443" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">0</text>
+<rect x="396" y="428" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="412" y="443" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">0</text>
+<!-- Row 1 (item0: w=1,v=1): [0,1,1,1,1,1,1] -->
+<text x="188" y="475" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">w=1,v=1</text>
+<rect x="204" y="450" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="220" y="465" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">0</text>
+<rect x="236" y="450" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" stroke-width="2" rx="2"/><text x="252" y="465" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">1</text>
+<rect x="268" y="450" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="284" y="465" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">1</text>
+<rect x="300" y="450" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="316" y="465" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">1</text>
+<rect x="332" y="450" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="348" y="465" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">1</text>
+<rect x="364" y="450" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="380" y="465" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">1</text>
+<rect x="396" y="450" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="412" y="465" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">1</text>
+<!-- Row 2 (item1: w=3,v=4): [0,1,1,4,5,5,5] -->
+<text x="188" y="497" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">w=3,v=4</text>
+<rect x="204" y="472" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="220" y="487" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">0</text>
+<rect x="236" y="472" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="252" y="487" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">1</text>
+<rect x="268" y="472" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="284" y="487" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">1</text>
+<rect x="300" y="472" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" stroke-width="2" rx="2"/><text x="316" y="487" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">4</text>
+<rect x="332" y="472" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" stroke-width="2" rx="2"/><text x="348" y="487" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">5</text>
+<rect x="364" y="472" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="380" y="487" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">5</text>
+<rect x="396" y="472" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="412" y="487" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">5</text>
+<!-- Row 3 (item2: w=4,v=5): [0,1,1,4,5,6,6] -->
+<text x="188" y="519" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">w=4,v=5</text>
+<rect x="204" y="494" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="220" y="509" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">0</text>
+<rect x="236" y="494" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="252" y="509" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">1</text>
+<rect x="268" y="494" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="284" y="509" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">1</text>
+<rect x="300" y="494" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="316" y="509" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">4</text>
+<rect x="332" y="494" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="348" y="509" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">5</text>
+<rect x="364" y="494" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" stroke-width="2" rx="2"/><text x="380" y="509" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">6</text>
+<rect x="396" y="494" width="32" height="22" fill="#D5F5E3" stroke="#27AE60" stroke-width="3" rx="2"/><text x="412" y="509" font-family="Arial" font-size="13" font-weight="bold" fill="#27AE60" text-anchor="middle">6</text>
+<!-- Annotations -->
+<rect x="460" y="430" width="400" height="100" fill="#F8F9FA" stroke="#DEE2E6" rx="5"/>
+<text x="660" y="447" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Recurrence:</text>
+<text x="470" y="467" font-family="Arial" font-size="11" fill="#555">if w[i] &gt; w: dp[i][w] = dp[i-1][w]</text>
+<text x="470" y="484" font-family="Arial" font-size="11" fill="#555">else: dp[i][w] = max(</text>
+<text x="470" y="501" font-family="Arial" font-size="11" fill="#555">  dp[i-1][w],  v[i]+dp[i-1][w-w[i]])</text>
+<text x="470" y="518" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">Answer: dp[3][6] = 6 ✓</text>
+<text x="450" y="542" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">dp[5]: item1(4)+item0(1)=5, dp[4]: item2(5)+item0(1)=6. Max value=6 ✓</text>
+<text x="450" y="558" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Space: O(W) using 1D rolling array (iterate capacity right-to-left per item).</text>
+<text x="450" y="574" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Unbounded knapsack: items can be reused → iterate capacity left-to-right.</text>
+
+<!-- Complexity Table -->
+<rect x="15" y="592" width="870" height="93" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+<rect x="15" y="592" width="870" height="30" fill="#2C3E50" rx="7"/>
+<rect x="15" y="607" width="870" height="15" fill="#2C3E50"/>
+<text x="450" y="612" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+<line x1="15" y1="622" x2="885" y2="622" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="622" width="870" height="23" fill="#ECF0F1"/>
+<text x="200" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+<text x="500" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+<text x="750" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+<line x1="15" y1="645" x2="885" y2="645" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="645" width="870" height="22" fill="#FDEDEC"/>
+<text x="200" y="660" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Recursion (no memo)</text>
+<text x="500" y="660" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(2ⁿ)</text>
+<text x="750" y="660" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">O(n)</text>
+<line x1="15" y1="667" x2="885" y2="667" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="667" width="870" height="23" fill="#EAFAF1"/>
+<text x="200" y="683" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">2D DP ⭐</text>
+<text x="500" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n·W)</text>
+<text x="750" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(W)</text>
+<line x1="370" y1="622" x2="370" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+<line x1="620" y1="622" x2="620" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

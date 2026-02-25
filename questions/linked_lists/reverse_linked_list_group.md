@@ -1,5 +1,8 @@
 # 🔹 Reverse Linked List in Groups of Size K
 
+![](../../assets/images/linked_lists/reverse_linked_list_group.svg)
+
+
 ---
 
 ## 📌 Problem Statement

@@ -1,5 +1,8 @@
 # 🔹 Problem: First Non-Repeating Character in a Stream
 
+![](../../assets/images/strings/first_non_repeating_character_in_a_stream.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

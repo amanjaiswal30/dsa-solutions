@@ -1,5 +1,8 @@
 # 🔹 Problem: Search in a 2D Matrix
 
+![](../../assets/images/arrays/search_in_2d_matrix.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

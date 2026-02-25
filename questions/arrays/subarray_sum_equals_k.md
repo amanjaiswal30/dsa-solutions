@@ -1,5 +1,8 @@
 # Subarray Sum Equals K
 
+![](../../assets/images/arrays/subarray_sum_equals_k.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

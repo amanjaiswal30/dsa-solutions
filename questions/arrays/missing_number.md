@@ -1,5 +1,8 @@
 # Missing Number in an Array
 
+![](../../assets/images/arrays/missing_number.svg)
+
+
 **Difficulty:** Easy ✅
 
 ---

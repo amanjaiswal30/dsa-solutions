@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#1a1a2e}
+  .prob{font:13px sans-serif;fill:#444}
+  .sec{font:bold 13px sans-serif}
+  .app1{fill:#E74C3C}.app2{fill:#27AE60}
+  .box{fill:#fff;stroke:#ccc;stroke-width:1.5;rx:6}
+  .arr{fill:#ddeeff;stroke:#6699cc;stroke-width:1.5}
+  .hlA{fill:#ffcccc;stroke:#E74C3C;stroke-width:2}
+  .lbl{font:11px monospace;fill:#333;text-anchor:middle}
+  .idx{font:10px sans-serif;fill:#888;text-anchor:middle}
+  .evol{fill:none;stroke:#888;stroke-width:1.5;stroke-dasharray:5,3}
+  .ins{font:11px sans-serif;fill:#555;font-style:italic}
+  .cmp{font:11px sans-serif;fill:#333}
+
+  @keyframes win_slide{0%{transform:translateX(0)}20%{transform:translateX(48px)}40%{transform:translateX(96px)}60%{transform:translateX(144px)}80%{transform:translateX(192px)}100%{transform:translateX(0)}}
+  .wslide{animation:win_slide 6s ease-in-out infinite}
+
+  @keyframes kp_mv{0%{transform:translateX(0)}15%{transform:translateX(48px)}30%{transform:translateX(96px)}45%{transform:translateX(144px)}60%{transform:translateX(192px)}75%{transform:translateX(240px)}90%,100%{transform:translateX(288px)}}
+  .kpmv{animation:kp_mv 8s ease-in-out infinite}
+
+  @keyframes sl0{0%,14%{opacity:1}15%,100%{opacity:0}}
+  @keyframes sl1{0%,14%{opacity:0}15%,28%{opacity:1}29%,100%{opacity:0}}
+  @keyframes sl2{0%,28%{opacity:0}29%,42%{opacity:1}43%,100%{opacity:0}}
+  @keyframes sl3{0%,42%{opacity:0}43%,56%{opacity:1}57%,100%{opacity:0}}
+  @keyframes sl4{0%,56%{opacity:0}57%,70%{opacity:1}71%,100%{opacity:0}}
+  @keyframes sl5{0%,70%{opacity:0}71%,84%{opacity:1}85%,100%{opacity:0}}
+  .sl0{animation:sl0 8s ease-in-out infinite}
+  .sl1{animation:sl1 8s ease-in-out infinite}
+  .sl2{animation:sl2 8s ease-in-out infinite}
+  .sl3{animation:sl3 8s ease-in-out infinite}
+  .sl4{animation:sl4 8s ease-in-out infinite}
+  .sl5{animation:sl5 8s ease-in-out infinite}
+
+  @keyframes state_anim{0%,15%{opacity:1}16%,100%{opacity:0}}
+  @keyframes state1{0%,15%{opacity:0}16%,30%{opacity:1}31%,100%{opacity:0}}
+  @keyframes state2{0%,30%{opacity:0}31%,45%{opacity:1}46%,100%{opacity:0}}
+  @keyframes state3{0%,45%{opacity:0}46%,60%{opacity:1}61%,100%{opacity:0}}
+  @keyframes state4{0%,60%{opacity:0}61%,75%{opacity:1}76%,100%{opacity:0}}
+  @keyframes state5{0%,75%{opacity:0}76%,100%{opacity:1}}
+  .st0{animation:state_anim 8s ease-in-out infinite}
+  .st1{animation:state1 8s ease-in-out infinite}
+  .st2{animation:state2 8s ease-in-out infinite}
+  .st3{animation:state3 8s ease-in-out infinite}
+  .st4{animation:state4 8s ease-in-out infinite}
+  .st5{animation:state5 8s ease-in-out infinite}
+</style>
+
+<rect width="900" height="690" fill="#f8f9fa" rx="8"/>
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="32" text-anchor="middle" class="title" fill="white">Maximum Product Subarray</text>
+
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="72" text-anchor="middle" class="prob">nums = [2, 3, -2, 4]  →  max product = 6  (subarray [2, 3])</text>
+
+<!-- APPROACH 1: BRUTE FORCE -->
+<rect x="16" y="92" width="868" height="215" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="32" y="111" class="sec" fill="white">Approach 1: Brute Force — O(n²)</text>
+
+<!-- Array -->
+<text x="32" y="144" class="cmp">Array:</text>
+<g transform="translate(90,128)">
+  <rect class="arr" x="0" y="0" width="42" height="36"/><text x="21" y="23" class="lbl">2</text><text x="21" y="46" class="idx">0</text>
+  <rect class="arr" x="48" y="0" width="42" height="36"/><text x="69" y="23" class="lbl">3</text><text x="69" y="46" class="idx">1</text>
+  <rect class="arr" x="96" y="0" width="42" height="36"/><text x="117" y="23" class="lbl">-2</text><text x="117" y="46" class="idx">2</text>
+  <rect class="arr" x="144" y="0" width="42" height="36"/><text x="165" y="23" class="lbl">4</text><text x="165" y="46" class="idx">3</text>
+  <!-- sliding window bracket -->
+  <g class="wslide">
+    <rect x="0" y="-4" width="90" height="44" fill="none" stroke="#E74C3C" stroke-width="2.5" rx="3"/>
+  </g>
+</g>
+
+<!-- Subarray products listed -->
+<text x="360" y="142" class="cmp">All subarray products:</text>
+<text x="360" y="158" class="cmp">[2]=2, [3]=3, [-2]=-2, [4]=4</text>
+<text x="360" y="172" class="cmp">[2,3]=6, [3,-2]=-6, [-2,4]=-8</text>
+<text x="360" y="186" class="cmp">[2,3,-2]=-12, [3,-2,4]=-24</text>
+<text x="360" y="200" class="cmp">[2,3,-2,4]=-48</text>
+<text x="360" y="216" class="cmp" fill="#E74C3C" font-weight="bold">Max = 6</text>
+
+<text x="32" y="172" class="cmp sl0">① Fix start i=0: try all end j≥i</text>
+<text x="32" y="187" class="cmp sl0">   compute product, track max</text>
+<text x="32" y="172" class="cmp sl1">② i=0,j=0: prod=2, max=2</text>
+<text x="32" y="187" class="cmp sl1">   i=0,j=1: prod=6, max=6</text>
+<text x="32" y="172" class="cmp sl2">③ i=0,j=2: prod=-12, max=6</text>
+<text x="32" y="187" class="cmp sl2">   i=1,j=1: prod=3, max=6</text>
+<text x="32" y="172" class="cmp sl3">④ Nested loops O(n²) — TLE for large n</text>
+<text x="32" y="172" class="cmp sl4">⑤ Every pair (i,j) tried — no early exit</text>
+
+<!-- Evolution arrow -->
+<line x1="450" y1="307" x2="450" y2="326" class="evol"/>
+<polygon points="450,327 444,315 456,315" fill="#888"/>
+<rect x="330" y="310" width="240" height="32" fill="#fffde7" stroke="#f0c040" stroke-width="1" rx="4"/>
+<text x="450" y="325" text-anchor="middle" class="ins">Track curMax AND curMin (for negatives)</text>
+<text x="450" y="339" text-anchor="middle" class="ins">Swap on negative element → O(n)</text>
+
+<!-- APPROACH 2: Kadane's variant with max/min tracking -->
+<rect x="16" y="344" width="868" height="218" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="344" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="358" width="868" height="14" fill="#27AE60"/>
+<text x="32" y="363" class="sec" fill="white">Approach 2: DP (Kadane's Variant) — O(n) time, O(1) space</text>
+
+<!-- Array row 2 -->
+<text x="32" y="396" class="cmp">nums:</text>
+<g transform="translate(90,380)">
+  <rect class="arr" x="0" y="0" width="42" height="36"/><text x="21" y="23" class="lbl">2</text><text x="21" y="46" class="idx">0</text>
+  <rect class="arr" x="48" y="0" width="42" height="36"/><text x="69" y="23" class="lbl">3</text><text x="69" y="46" class="idx">1</text>
+  <rect class="arr" x="96" y="0" width="42" height="36"/><text x="117" y="23" class="lbl">-2</text><text x="117" y="46" class="idx">2</text>
+  <rect class="arr" x="144" y="0" width="42" height="36"/><text x="165" y="23" class="lbl">4</text><text x="165" y="46" class="idx">3</text>
+  <g class="kpmv">
+    <polygon points="21,46 15,58 27,58" fill="#27AE60"/>
+  </g>
+</g>
+
+<!-- State table -->
+<rect x="90" y="434" width="440" height="114" fill="#e8f5e9" stroke="#27AE60" stroke-width="1" rx="4"/>
+<text x="100" y="450" class="cmp" font-weight="bold">Step-by-step state (curMax, curMin, ans):</text>
+<g class="st0"><text x="100" y="468" class="cmp">start:   curMax=2,  curMin=2,  ans=2</text></g>
+<g class="st1"><text x="100" y="468" class="cmp">i=1(×3): curMax=6,  curMin=6,  ans=6</text></g>
+<g class="st2"><text x="100" y="468" class="cmp">i=2(×-2):curMax=-12,curMin=-12 → swap!</text>
+             <text x="100" y="482" class="cmp">         curMax=-4, curMin=-12, ans=6</text></g>
+<g class="st3"><text x="100" y="468" class="cmp">i=3(×4): curMax=-16,curMin=-48</text>
+             <text x="100" y="482" class="cmp">         curMax=max(4,-16,-48)=4, ans=6</text></g>
+<g class="st4"><text x="100" y="468" class="cmp">Key: at each step</text>
+             <text x="100" y="482" class="cmp">  curMax=max(num, curMax*num, curMin*num)</text>
+             <text x="100" y="496" class="cmp">  curMin=min(num, curMax*num, curMin*num)</text></g>
+<g class="st5"><text x="100" y="468" class="cmp" fill="#27AE60" font-weight="bold">Answer = 6 ✓</text>
+             <text x="100" y="482" class="cmp">Negative×Negative can become maximum!</text></g>
+
+<!-- Insight box -->
+<rect x="560" y="380" width="310" height="150" fill="#fff9e6" stroke="#F39C12" stroke-width="1.5" rx="5"/>
+<text x="575" y="397" class="cmp" font-weight="bold" fill="#F39C12">Key Insight:</text>
+<text x="575" y="413" class="cmp">• Negative number flips max↔min</text>
+<text x="575" y="427" class="cmp">• Track BOTH max &amp; min ending here</text>
+<text x="575" y="441" class="cmp">• At negative: swap curMax &amp; curMin</text>
+<text x="575" y="455" class="cmp">  before multiplying</text>
+<text x="575" y="475" class="cmp" fill="#27AE60">if num &lt; 0:</text>
+<text x="575" y="489" class="cmp" fill="#27AE60">  swap(curMax, curMin)</text>
+<text x="575" y="503" class="cmp" fill="#27AE60">curMax = max(num, curMax*num)</text>
+<text x="575" y="517" class="cmp" fill="#27AE60">curMin = min(num, curMin*num)</text>
+
+<!-- Complexity table -->
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="6"/>
+<rect x="16" y="578" width="868" height="26" fill="#f0f0f0" stroke="#ddd" stroke-width="1" rx="6"/>
+<text x="182" y="595" class="tbl" font-weight="bold">Approach</text>
+<text x="430" y="595" class="tbl" font-weight="bold">Time</text>
+<text x="610" y="595" class="tbl" font-weight="bold">Space</text>
+<text x="790" y="595" class="tbl" font-weight="bold">Recommended</text>
+<rect x="16" y="604" width="868" height="24" fill="#fff5f5"/>
+<text x="182" y="620" class="tbl">Brute Force</text>
+<text x="430" y="620" class="tbl">O(n²)</text>
+<text x="610" y="620" class="tbl">O(1)</text>
+<text x="790" y="620" class="tbl">✗ TLE</text>
+<rect x="16" y="628" width="868" height="24" fill="#f0fff0"/>
+<text x="182" y="644" class="tbl">Kadane's Variant (max+min track)</text>
+<text x="430" y="644" class="tbl">O(n)</text>
+<text x="610" y="644" class="tbl">O(1)</text>
+<text x="790" y="644" class="tbl">✓ Optimal</text>
+<line x1="16" y1="652" x2="884" y2="652" stroke="#ddd" stroke-width="1"/>
+<text x="182" y="666" class="tbl" fill="#27AE60" font-weight="bold">▶ Track curMax AND curMin — swap on negative</text>
+</svg>

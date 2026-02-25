@@ -1,0 +1,187 @@
+<svg width="900" height="620" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="620" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect x="0" y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="430" y="35" font-family="Arial" font-size="20" font-weight="bold" fill="white" text-anchor="middle">Longest Valid Parentheses Substring</text>
+  <rect x="790" y="13" width="98" height="28" fill="#E74C3C" rx="14"/>
+  <text x="839" y="32" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Hard 🔥</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="25" y="80" font-family="Arial" font-size="12" fill="#7F8C8D">Examples:</text>
+  <text x="98" y="80" font-family="Arial" font-size="13" fill="#2C3E50" font-weight="bold">"(()("</text>
+  <text x="168" y="80" font-family="Arial" font-size="13" fill="#7F8C8D">→</text>
+  <text x="183" y="80" font-family="Arial" font-size="13" fill="#27AE60" font-weight="bold">2</text>
+  <text x="210" y="80" font-family="Arial" font-size="12" fill="#7F8C8D">|</text>
+  <text x="225" y="80" font-family="Arial" font-size="13" fill="#2C3E50" font-weight="bold">")()())"</text>
+  <text x="315" y="80" font-family="Arial" font-size="13" fill="#7F8C8D">→</text>
+  <text x="330" y="80" font-family="Arial" font-size="13" fill="#27AE60" font-weight="bold">4</text>
+  <text x="360" y="80" font-family="Arial" font-size="12" fill="#7F8C8D">|</text>
+  <text x="375" y="80" font-family="Arial" font-size="13" fill="#2C3E50" font-weight="bold">"((())())"</text>
+  <text x="495" y="80" font-family="Arial" font-size="13" fill="#7F8C8D">→</text>
+  <text x="510" y="80" font-family="Arial" font-size="13" fill="#27AE60" font-weight="bold">8</text>
+  <text x="545" y="80" font-family="Arial" font-size="11" fill="#7F8C8D">Find the length of the longest contiguous valid parentheses substring</text>
+
+  <!-- ===== APPROACH 1: BRUTE FORCE ===== -->
+  <rect x="15" y="115" width="258" height="370" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="258" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="258" height="15" fill="#E74C3C"/>
+  <text x="144" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">① Brute Force</text>
+  <text x="144" y="167" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle" font-weight="bold">O(n³) time · O(n) space</text>
+
+  <text x="25" y="188" font-family="Arial" font-size="11" fill="#555">Generate all even-length substrings.</text>
+  <text x="25" y="202" font-family="Arial" font-size="11" fill="#555">Check each with isValid(). Track max.</text>
+
+  <text x="25" y="222" font-family="Arial" font-size="10" fill="#7F8C8D" font-weight="bold">For ")()())" — all even substrings:</text>
+  <text x="25" y="240" font-family="Arial" font-size="10" fill="#7F8C8D">Check all pairs (i, j) where j−i is even:</text>
+
+  <!-- Show some substrings being checked -->
+  <rect x="25" y="248" width="238" height="17" fill="#F0F0F0" rx="2"/>
+  <text x="35" y="260" font-family="Arial" font-size="9" font-weight="bold" fill="#555">Substring       Valid?   Length</text>
+
+  <rect x="25" y="265" width="238" height="17" fill="#FDEDEC"/>
+  <text x="35" y="277" font-family="Arial" font-size="9" fill="#2C3E50">")(":  i=0,j=1     ✗        2</text>
+  <rect x="25" y="282" width="238" height="17" fill="#D5E8D4"/>
+  <text x="35" y="294" font-family="Arial" font-size="9" fill="#1E8449">"()":  i=1,j=2     ✓        2</text>
+  <rect x="25" y="299" width="238" height="17" fill="#FDEDEC"/>
+  <text x="35" y="311" font-family="Arial" font-size="9" fill="#2C3E50">")(": i=2,j=3      ✗        2</text>
+  <rect x="25" y="316" width="238" height="17" fill="#D5E8D4"/>
+  <text x="35" y="328" font-family="Arial" font-size="9" fill="#1E8449">"()()": i=1,j=4   ✓        4 ← MAX</text>
+  <rect x="25" y="333" width="238" height="17" fill="#FDEDEC"/>
+  <text x="35" y="345" font-family="Arial" font-size="9" fill="#2C3E50">")()()": i=0,j=4  ✗        5</text>
+  <text x="35" y="360" font-family="Arial" font-size="9" fill="#7F8C8D">... (total O(n²) substrings × O(n) isValid)</text>
+
+  <rect x="25" y="368" width="238" height="26" fill="#D5E8D4" stroke="#27AE60" rx="3"/>
+  <text x="144" y="385" font-family="Arial" font-size="12" fill="#1E8449" font-weight="bold" text-anchor="middle">Answer: 4 ✓</text>
+
+  <rect x="25" y="402" width="238" height="60" fill="#FDEDEC" stroke="#FFCCCC" rx="4"/>
+  <text x="35" y="418" font-family="Arial" font-size="10" fill="#E74C3C" font-weight="bold">⚠ O(n³): n² substrings × O(n) each</text>
+  <text x="35" y="432" font-family="Arial" font-size="10" fill="#E74C3C">Each isValid() scan = O(n)</text>
+  <text x="35" y="446" font-family="Arial" font-size="10" fill="#E74C3C">Way too slow for large inputs</text>
+  <text x="35" y="460" font-family="Arial" font-size="10" fill="#E67E22">Idea: track unmatched indices with stack</text>
+
+  <!-- Arrow 1 -->
+  <line x1="275" y1="295" x2="313" y2="295" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="313,290 323,295 313,300" fill="#7F8C8D"/>
+  <rect x="265" y="268" width="58" height="24" fill="#FFF8E1" stroke="#F39C12" rx="3"/>
+  <text x="294" y="283" font-family="Arial" font-size="9" fill="#D35400" text-anchor="middle">💡 Track</text>
+  <text x="294" y="293" font-family="Arial" font-size="9" fill="#D35400" text-anchor="middle">indices!</text>
+
+  <!-- ===== APPROACH 2: STACK ===== -->
+  <rect x="323" y="115" width="258" height="370" fill="#FFFFFF" stroke="#E67E22" stroke-width="2" rx="7"/>
+  <rect x="323" y="115" width="258" height="40" fill="#E67E22" rx="7"/>
+  <rect x="323" y="140" width="258" height="15" fill="#E67E22"/>
+  <text x="452" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">② Stack of Indices</text>
+  <text x="452" y="167" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle" font-weight="bold">O(n) time · O(n) space</text>
+
+  <text x="333" y="188" font-family="Arial" font-size="11" fill="#555">Stack tracks indices of unmatched chars.</text>
+  <text x="333" y="202" font-family="Arial" font-size="11" fill="#555">Seed with -1 as base. Length = i − peek.</text>
+
+  <text x="333" y="222" font-family="Arial" font-size="10" fill="#7F8C8D" font-weight="bold">")()())"  → trace with stack:</text>
+
+  <rect x="333" y="228" width="238" height="18" fill="#F0F0F0" rx="2"/>
+  <text x="343" y="240" font-family="Arial" font-size="9" font-weight="bold" fill="#555">i   s[i]   Action                Stack</text>
+
+  <text x="343" y="255" font-family="Arial" font-size="9" fill="#7F8C8D">Init:                          [-1]</text>
+
+  <rect x="333" y="259" width="238" height="18" fill="#FADBD8"/>
+  <text x="343" y="271" font-family="Arial" font-size="9" fill="#C0392B">0    )    pop(-1). empty→push 0    [0]</text>
+
+  <rect x="333" y="277" width="238" height="18" fill="#EBF5FB"/>
+  <text x="343" y="289" font-family="Arial" font-size="9" fill="#2C3E50">1    (    push 1                  [0,1]</text>
+
+  <rect x="333" y="295" width="238" height="18" fill="#D5E8D4"/>
+  <text x="343" y="307" font-family="Arial" font-size="9" fill="#1E8449">2    )    pop 1. len=2-peek(0)=2   [0]  max=2</text>
+
+  <rect x="333" y="313" width="238" height="18" fill="#EBF5FB"/>
+  <text x="343" y="325" font-family="Arial" font-size="9" fill="#2C3E50">3    (    push 3                  [0,3]</text>
+
+  <rect x="333" y="331" width="238" height="18" fill="#D5E8D4"/>
+  <text x="343" y="343" font-family="Arial" font-size="9" fill="#1E8449">4    )    pop 3. len=4-peek(0)=4   [0]  max=4</text>
+
+  <rect x="333" y="349" width="238" height="18" fill="#FADBD8"/>
+  <text x="343" y="361" font-family="Arial" font-size="9" fill="#C0392B">5    )    pop 0. empty→push 5      [5]  max=4</text>
+
+  <rect x="333" y="374" width="238" height="26" fill="#D5E8D4" stroke="#27AE60" rx="3"/>
+  <text x="452" y="391" font-family="Arial" font-size="12" fill="#1E8449" font-weight="bold" text-anchor="middle">Answer: 4  ✓</text>
+
+  <rect x="333" y="406" width="238" height="55" fill="#FEF9EF" stroke="#FAD7A0" rx="4"/>
+  <text x="343" y="422" font-family="Arial" font-size="10" fill="#E67E22" font-weight="bold">Key: stack top = last unmatched index</text>
+  <text x="343" y="436" font-family="Arial" font-size="10" fill="#E67E22">length of valid substring = i - stack.peek()</text>
+  <text x="343" y="450" font-family="Arial" font-size="10" fill="#555">⚠ Uses O(n) extra space for stack</text>
+  <text x="343" y="464" font-family="Arial" font-size="10" fill="#27AE60">→ Can we do O(1) space? Yes — counters!</text>
+
+  <!-- Arrow 2 -->
+  <line x1="583" y1="295" x2="621" y2="295" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="621,290 631,295 621,300" fill="#7F8C8D"/>
+  <rect x="573" y="268" width="58" height="24" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="602" y="283" font-family="Arial" font-size="9" fill="#1E8449" text-anchor="middle">💡 Two</text>
+  <text x="602" y="293" font-family="Arial" font-size="9" fill="#1E8449" text-anchor="middle">counters!</text>
+
+  <!-- ===== APPROACH 3: TWO-PASS ===== -->
+  <rect x="631" y="115" width="254" height="370" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="631" y="115" width="254" height="40" fill="#27AE60" rx="7"/>
+  <rect x="631" y="140" width="254" height="15" fill="#27AE60"/>
+  <text x="758" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">③ Two-Pass Scan ⭐</text>
+  <text x="758" y="167" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle" font-weight="bold">O(n) time · O(1) space</text>
+
+  <text x="641" y="188" font-family="Arial" font-size="11" fill="#555">Count L and R. Equal → valid length.</text>
+  <text x="641" y="202" font-family="Arial" font-size="11" fill="#555">Scan twice: L→R then R→L to catch all.</text>
+
+  <text x="641" y="222" font-family="Arial" font-size="10" fill="#7F8C8D" font-weight="bold">For ")()())":</text>
+
+  <!-- Pass 1: L to R -->
+  <rect x="641" y="228" width="234" height="18" fill="#EBF5FB" rx="2"/>
+  <text x="651" y="240" font-family="Arial" font-size="9" font-weight="bold" fill="#2980B9">Pass 1: Left → Right</text>
+  <rect x="641" y="246" width="234" height="18" fill="#F0F0F0" rx="2"/>
+  <text x="651" y="258" font-family="Arial" font-size="9" font-weight="bold" fill="#555">Char   L    R     Action</text>
+  <rect x="641" y="264" width="234" height="16" fill="#FDEDEC"/>
+  <text x="651" y="274" font-family="Arial" font-size="9" fill="#2C3E50">')':   0    1     R&gt;L → reset L=R=0</text>
+  <rect x="641" y="280" width="234" height="16" fill="#EBF5FB"/>
+  <text x="651" y="290" font-family="Arial" font-size="9" fill="#2C3E50">'(':   1    0</text>
+  <rect x="641" y="296" width="234" height="16" fill="#D5E8D4"/>
+  <text x="651" y="306" font-family="Arial" font-size="9" fill="#1E8449">')':   1    1  L==R → max=2</text>
+  <rect x="641" y="312" width="234" height="16" fill="#EBF5FB"/>
+  <text x="651" y="322" font-family="Arial" font-size="9" fill="#2C3E50">'(':   2    1</text>
+  <rect x="641" y="328" width="234" height="16" fill="#D5E8D4"/>
+  <text x="651" y="338" font-family="Arial" font-size="9" fill="#1E8449">')':   2    2  L==R → max=4</text>
+  <rect x="641" y="344" width="234" height="16" fill="#FADBD8"/>
+  <text x="651" y="354" font-family="Arial" font-size="9" fill="#C0392B">')':   2    3  R&gt;L → reset L=R=0</text>
+
+  <!-- Pass 2: R to L -->
+  <rect x="641" y="364" width="234" height="18" fill="#E8DAEF" rx="2"/>
+  <text x="651" y="376" font-family="Arial" font-size="9" font-weight="bold" fill="#8E44AD">Pass 2: Right → Left (catches leading '(')</text>
+  <text x="651" y="392" font-family="Arial" font-size="9" fill="#7F8C8D">Mirror logic: count R then L, reset if L&gt;R</text>
+  <text x="651" y="406" font-family="Arial" font-size="9" fill="#7F8C8D">Handles cases like "(()" that pass 1 misses</text>
+
+  <rect x="641" y="414" width="234" height="26" fill="#D5E8D4" stroke="#27AE60" rx="3"/>
+  <text x="758" y="431" font-family="Arial" font-size="12" fill="#1E8449" font-weight="bold" text-anchor="middle">Answer: max(pass1, pass2) = 4 ✓</text>
+
+  <rect x="641" y="447" width="234" height="32" fill="#EAFAF1" stroke="#A9DFBF" rx="4"/>
+  <text x="651" y="462" font-family="Arial" font-size="10" fill="#1E8449" font-weight="bold">✓ O(1) space — no stack needed!</text>
+  <text x="651" y="476" font-family="Arial" font-size="10" fill="#27AE60">Two passes = handle all edge cases</text>
+
+  <!-- ===== COMPLEXITY TABLE ===== -->
+  <rect x="15" y="493" width="870" height="120" fill="#FFFFFF" stroke="#DEE2E6" stroke-width="1.5" rx="7"/>
+  <text x="450" y="512" font-family="Arial" font-size="13" font-weight="bold" fill="#2C3E50" text-anchor="middle">Complexity Comparison &amp; Evolution</text>
+  <rect x="25" y="518" width="850" height="24" fill="#2C3E50" rx="3"/>
+  <text x="180" y="534" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Approach</text>
+  <text x="430" y="534" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Time</text>
+  <text x="560" y="534" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Space</text>
+  <text x="740" y="534" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Key Insight</text>
+  <rect x="25" y="542" width="850" height="22" fill="#FDEDEC"/>
+  <text x="180" y="557" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">① Brute Force (all substrings)</text>
+  <text x="430" y="557" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n³)</text>
+  <text x="560" y="557" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n)</text>
+  <text x="740" y="557" font-family="Arial" font-size="11" fill="#7F8C8D" text-anchor="middle">Check every even-length substring</text>
+  <rect x="25" y="564" width="850" height="22" fill="#FEF9EF"/>
+  <text x="180" y="579" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">② Stack of Indices</text>
+  <text x="430" y="579" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">O(n)</text>
+  <text x="560" y="579" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">O(n)</text>
+  <text x="740" y="579" font-family="Arial" font-size="11" fill="#7F8C8D" text-anchor="middle">Track last unmatched index as base</text>
+  <rect x="25" y="586" width="850" height="22" fill="#EAFAF1"/>
+  <text x="180" y="601" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle" font-weight="bold">③ Two-Pass Counters ⭐ OPTIMAL</text>
+  <text x="430" y="601" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(n)</text>
+  <text x="560" y="601" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(1)</text>
+  <text x="740" y="601" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">L==R → matched pair. Two scans cover all</text>
+  <text x="450" y="614" font-family="Arial" font-size="10" fill="#7F8C8D" text-anchor="middle">Evolution: O(n³) all substrings → O(n)/O(n) stack tracking → O(n)/O(1) two-pass counters</text>
+</svg>

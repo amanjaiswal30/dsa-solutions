@@ -1,0 +1,197 @@
+<svg width="900" height="640" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="640" fill="#F8F9FA" rx="10"/>
+  <!-- Title Bar -->
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect x="0" y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="430" y="35" font-family="Arial" font-size="20" font-weight="bold" fill="white" text-anchor="middle">Trapping Rain Water</text>
+  <rect x="790" y="13" width="98" height="28" fill="#E74C3C" rx="14"/>
+  <text x="839" y="32" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Hard 🔥</text>
+
+  <!-- Example row -->
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="25" y="84" font-family="Arial" font-size="12" fill="#7F8C8D">Input:</text>
+  <text x="75" y="84" font-family="Arial" font-size="13" fill="#2C3E50" font-weight="bold">[0,1,0,2,1,0,1,3,2,1,2,1]</text>
+  <text x="385" y="84" font-family="Arial" font-size="13" fill="#7F8C8D">→</text>
+  <text x="403" y="84" font-family="Arial" font-size="13" fill="#27AE60" font-weight="bold">Output: 6 units</text>
+  <text x="560" y="84" font-family="Arial" font-size="12" fill="#7F8C8D">Key: water[i] = min(maxL, maxR) − height[i]</text>
+
+  <!-- ===== APPROACH 1: BRUTE FORCE ===== -->
+  <rect x="15" y="115" width="258" height="375" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="258" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="258" height="15" fill="#E74C3C"/>
+  <text x="144" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">① Brute Force</text>
+  <text x="144" y="167" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle" font-weight="bold">O(n²) time · O(1) space</text>
+
+  <text x="25" y="188" font-family="Arial" font-size="11" fill="#555">For each index i, scan all left and</text>
+  <text x="25" y="202" font-family="Arial" font-size="11" fill="#555">right to find maxLeft and maxRight.</text>
+
+  <!-- Simplified bar chart for [0,1,0,2] showing idea -->
+  <text x="25" y="222" font-family="Arial" font-size="10" fill="#7F8C8D" font-weight="bold">For i=2 in [0,1,0,2,1...]:</text>
+
+  <!-- Mini bars -->
+  <rect x="30" y="280" width="28" height="0" fill="#8FBC8F" stroke="#2ECC71" rx="2"/>
+  <rect x="62" y="252" width="28" height="28" fill="#8FBC8F" stroke="#2ECC71" rx="2"/>
+  <rect x="94" y="280" width="28" height="0" fill="#8FBC8F" stroke="#2ECC71" rx="2"/>
+  <rect x="126" y="224" width="28" height="56" fill="#8FBC8F" stroke="#2ECC71" rx="2"/>
+  <!-- Ground -->
+  <line x1="25" y1="280" x2="230" y2="280" stroke="#2C3E50" stroke-width="2"/>
+  <!-- Scan arrows -->
+  <line x1="108" y1="265" x2="70" y2="265" stroke="#8E44AD" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="108" y1="270" x2="150" y2="270" stroke="#2980B9" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="40" y="258" font-family="Arial" font-size="9" fill="#8E44AD">maxL=1</text>
+  <text x="155" y="258" font-family="Arial" font-size="9" fill="#2980B9">maxR=2</text>
+  <text x="144" y="295" font-family="Arial" font-size="10" fill="#27AE60">water = min(1,2) − 0 = 1</text>
+
+  <text x="25" y="318" font-family="Arial" font-size="10" fill="#2C3E50">For each of n bars:</text>
+  <text x="25" y="332" font-family="Arial" font-size="10" fill="#2C3E50">  scan left  → O(n)</text>
+  <text x="25" y="346" font-family="Arial" font-size="10" fill="#2C3E50">  scan right → O(n)</text>
+  <text x="25" y="360" font-family="Arial" font-size="10" fill="#E74C3C" font-weight="bold">Total: O(n) × O(n) = O(n²) ❌</text>
+
+  <rect x="25" y="372" width="238" height="55" fill="#FEF9F9" stroke="#FFCCCC" rx="4"/>
+  <text x="35" y="389" font-family="Arial" font-size="10" fill="#E74C3C" font-weight="bold">⚠ Problem:</text>
+  <text x="35" y="403" font-family="Arial" font-size="10" fill="#E74C3C">Recalculates maxL &amp; maxR</text>
+  <text x="35" y="416" font-family="Arial" font-size="10" fill="#E74C3C">from scratch for every bar!</text>
+  <text x="35" y="429" font-family="Arial" font-size="10" fill="#E67E22">Fix: precompute these arrays once</text>
+
+  <!-- Arrow 1 -->
+  <line x1="275" y1="300" x2="313" y2="300" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="313,295 323,300 313,305" fill="#7F8C8D"/>
+  <rect x="265" y="272" width="68" height="22" fill="#FFF8E1" stroke="#F39C12" rx="3"/>
+  <text x="299" y="285" font-family="Arial" font-size="9" fill="#D35400" text-anchor="middle">💡 Cache</text>
+  <text x="299" y="295" font-family="Arial" font-size="9" fill="#D35400" text-anchor="middle">max arrays!</text>
+
+  <!-- ===== APPROACH 2: PREFIX/SUFFIX ARRAYS ===== -->
+  <rect x="323" y="115" width="258" height="375" fill="#FFFFFF" stroke="#E67E22" stroke-width="2" rx="7"/>
+  <rect x="323" y="115" width="258" height="40" fill="#E67E22" rx="7"/>
+  <rect x="323" y="140" width="258" height="15" fill="#E67E22"/>
+  <text x="452" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">② Prefix + Suffix Arrays</text>
+  <text x="452" y="167" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle" font-weight="bold">O(n) time · O(n) space</text>
+
+  <text x="333" y="188" font-family="Arial" font-size="11" fill="#555">Precompute maxLeft[] and maxRight[]</text>
+  <text x="333" y="202" font-family="Arial" font-size="11" fill="#555">arrays in one pass each, then combine.</text>
+
+  <!-- For short array [0,1,0,2] -->
+  <text x="333" y="220" font-family="Arial" font-size="10" fill="#7F8C8D" font-weight="bold">For [0, 1, 0, 2, 1, 0, 1, 3]:</text>
+
+  <!-- maxLeft array -->
+  <text x="333" y="238" font-family="Arial" font-size="10" fill="#8E44AD" font-weight="bold">maxLeft → scan L to R:</text>
+  <g transform="translate(333,242)">
+    <rect x="0" y="0" width="28" height="22" fill="#E8DAEF" stroke="#8E44AD" rx="2"/><text x="14" y="15" font-family="Arial" font-size="10" fill="#6C3483" text-anchor="middle">0</text>
+    <rect x="30" y="0" width="28" height="22" fill="#E8DAEF" stroke="#8E44AD" rx="2"/><text x="44" y="15" font-family="Arial" font-size="10" fill="#6C3483" text-anchor="middle">1</text>
+    <rect x="60" y="0" width="28" height="22" fill="#E8DAEF" stroke="#8E44AD" rx="2"/><text x="74" y="15" font-family="Arial" font-size="10" fill="#6C3483" text-anchor="middle">1</text>
+    <rect x="90" y="0" width="28" height="22" fill="#E8DAEF" stroke="#8E44AD" rx="2"/><text x="104" y="15" font-family="Arial" font-size="10" fill="#6C3483" text-anchor="middle">2</text>
+    <rect x="120" y="0" width="28" height="22" fill="#E8DAEF" stroke="#8E44AD" rx="2"/><text x="134" y="15" font-family="Arial" font-size="10" fill="#6C3483" text-anchor="middle">2</text>
+    <rect x="150" y="0" width="28" height="22" fill="#E8DAEF" stroke="#8E44AD" rx="2"/><text x="164" y="15" font-family="Arial" font-size="10" fill="#6C3483" text-anchor="middle">2</text>
+    <rect x="180" y="0" width="28" height="22" fill="#E8DAEF" stroke="#8E44AD" rx="2"/><text x="194" y="15" font-family="Arial" font-size="10" fill="#6C3483" text-anchor="middle">2</text>
+    <rect x="210" y="0" width="28" height="22" fill="#E8DAEF" stroke="#8E44AD" rx="2"/><text x="224" y="15" font-family="Arial" font-size="10" fill="#6C3483" text-anchor="middle">3</text>
+  </g>
+  <!-- maxRight array -->
+  <text x="333" y="278" font-family="Arial" font-size="10" fill="#2980B9" font-weight="bold">maxRight → scan R to L:</text>
+  <g transform="translate(333,282)">
+    <rect x="0" y="0" width="28" height="22" fill="#D6EAF8" stroke="#2980B9" rx="2"/><text x="14" y="15" font-family="Arial" font-size="10" fill="#1A5276" text-anchor="middle">3</text>
+    <rect x="30" y="0" width="28" height="22" fill="#D6EAF8" stroke="#2980B9" rx="2"/><text x="44" y="15" font-family="Arial" font-size="10" fill="#1A5276" text-anchor="middle">3</text>
+    <rect x="60" y="0" width="28" height="22" fill="#D6EAF8" stroke="#2980B9" rx="2"/><text x="74" y="15" font-family="Arial" font-size="10" fill="#1A5276" text-anchor="middle">3</text>
+    <rect x="90" y="0" width="28" height="22" fill="#D6EAF8" stroke="#2980B9" rx="2"/><text x="104" y="15" font-family="Arial" font-size="10" fill="#1A5276" text-anchor="middle">3</text>
+    <rect x="120" y="0" width="28" height="22" fill="#D6EAF8" stroke="#2980B9" rx="2"/><text x="134" y="15" font-family="Arial" font-size="10" fill="#1A5276" text-anchor="middle">3</text>
+    <rect x="150" y="0" width="28" height="22" fill="#D6EAF8" stroke="#2980B9" rx="2"/><text x="164" y="15" font-family="Arial" font-size="10" fill="#1A5276" text-anchor="middle">3</text>
+    <rect x="180" y="0" width="28" height="22" fill="#D6EAF8" stroke="#2980B9" rx="2"/><text x="194" y="15" font-family="Arial" font-size="10" fill="#1A5276" text-anchor="middle">3</text>
+    <rect x="210" y="0" width="28" height="22" fill="#D6EAF8" stroke="#2980B9" rx="2"/><text x="224" y="15" font-family="Arial" font-size="10" fill="#1A5276" text-anchor="middle">3</text>
+  </g>
+  <!-- water calculation -->
+  <text x="333" y="322" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold">water[i] = min(maxL[i], maxR[i]) − h[i]:</text>
+  <g transform="translate(333,326)">
+    <rect x="0" y="0" width="28" height="22" fill="#D5E8D4" stroke="#27AE60" rx="2"/><text x="14" y="15" font-family="Arial" font-size="10" fill="#1E8449" text-anchor="middle">0</text>
+    <rect x="30" y="0" width="28" height="22" fill="#D5E8D4" stroke="#27AE60" rx="2"/><text x="44" y="15" font-family="Arial" font-size="10" fill="#1E8449" text-anchor="middle">0</text>
+    <rect x="60" y="0" width="28" height="22" fill="#D5E8D4" stroke="#27AE60" rx="2"/><text x="74" y="15" font-family="Arial" font-size="10" fill="#1E8449" text-anchor="middle">1</text>
+    <rect x="90" y="0" width="28" height="22" fill="#D5E8D4" stroke="#27AE60" rx="2"/><text x="104" y="15" font-family="Arial" font-size="10" fill="#1E8449" text-anchor="middle">0</text>
+    <rect x="120" y="0" width="28" height="22" fill="#D5E8D4" stroke="#27AE60" rx="2"/><text x="134" y="15" font-family="Arial" font-size="10" fill="#1E8449" text-anchor="middle">1</text>
+    <rect x="150" y="0" width="28" height="22" fill="#D5E8D4" stroke="#27AE60" rx="2"/><text x="164" y="15" font-family="Arial" font-size="10" fill="#1E8449" text-anchor="middle">2</text>
+    <rect x="180" y="0" width="28" height="22" fill="#D5E8D4" stroke="#27AE60" rx="2"/><text x="194" y="15" font-family="Arial" font-size="10" fill="#1E8449" text-anchor="middle">1</text>
+    <rect x="210" y="0" width="28" height="22" fill="#D5E8D4" stroke="#27AE60" rx="2"/><text x="224" y="15" font-family="Arial" font-size="10" fill="#1E8449" text-anchor="middle">0</text>
+  </g>
+  <text x="452" y="366" font-family="Arial" font-size="12" fill="#1E8449" text-anchor="middle" font-weight="bold">Sum = 0+0+1+0+1+2+1+0 = 5...</text>
+
+  <rect x="333" y="372" width="238" height="55" fill="#FEF9EF" stroke="#FAD7A0" rx="4"/>
+  <text x="343" y="389" font-family="Arial" font-size="10" fill="#E67E22" font-weight="bold">⚠ Uses 2 extra O(n) arrays.</text>
+  <text x="343" y="403" font-family="Arial" font-size="10" fill="#E67E22">maxLeft[] and maxRight[] stored in mem.</text>
+  <text x="343" y="417" font-family="Arial" font-size="10" fill="#555">Can we avoid extra arrays?</text>
+  <text x="343" y="430" font-family="Arial" font-size="10" fill="#27AE60">→ Yes! Use two pointers instead</text>
+
+  <!-- Arrow 2 -->
+  <line x1="583" y1="300" x2="621" y2="300" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="621,295 631,300 621,305" fill="#7F8C8D"/>
+  <rect x="573" y="272" width="68" height="22" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="607" y="285" font-family="Arial" font-size="9" fill="#1E8449" text-anchor="middle">💡 Two</text>
+  <text x="607" y="295" font-family="Arial" font-size="9" fill="#1E8449" text-anchor="middle">Pointers!</text>
+
+  <!-- ===== APPROACH 3: TWO POINTERS ===== -->
+  <rect x="631" y="115" width="254" height="375" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="631" y="115" width="254" height="40" fill="#27AE60" rx="7"/>
+  <rect x="631" y="140" width="254" height="15" fill="#27AE60"/>
+  <text x="758" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">③ Two Pointers ⭐</text>
+  <text x="758" y="167" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle" font-weight="bold">O(n) time · O(1) space</text>
+
+  <text x="641" y="188" font-family="Arial" font-size="11" fill="#555">Move L/R inward. Process side where</text>
+  <text x="641" y="202" font-family="Arial" font-size="11" fill="#555">height is smaller (it's the bottleneck).</text>
+
+  <!-- Show L and R pointers -->
+  <text x="641" y="220" font-family="Arial" font-size="10" fill="#7F8C8D" font-weight="bold">heights = [0,1,0,2,1,0,1,3,2,1,2,1]</text>
+
+  <!-- Step 1 -->
+  <rect x="641" y="226" width="234" height="36" fill="#EBF5FB" stroke="#3498DB" rx="3"/>
+  <text x="651" y="240" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">Step 1: L=0(h=0)  R=11(h=1)</text>
+  <text x="651" y="254" font-family="Arial" font-size="10" fill="#2C3E50">h[L]≤h[R] → process LEFT side</text>
+
+  <!-- Step 2 -->
+  <rect x="641" y="265" width="234" height="50" fill="#EBF5FB" stroke="#3498DB" rx="3"/>
+  <text x="651" y="279" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">Step 2: h[L]=0 &lt; leftMax=0 → update leftMax</text>
+  <text x="651" y="293" font-family="Arial" font-size="10" fill="#27AE60">h[L]=0 ≥ leftMax=0 → leftMax=0</text>
+  <text x="651" y="307" font-family="Arial" font-size="10" fill="#27AE60">No water (bar = max so far). L++</text>
+
+  <!-- Step 3 -->
+  <rect x="641" y="318" width="234" height="50" fill="#D5E8D4" stroke="#27AE60" rx="3"/>
+  <text x="651" y="332" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">Step 3: L=1(h=1), leftMax=0</text>
+  <text x="651" y="346" font-family="Arial" font-size="10" fill="#27AE60">h[L]=1 ≥ leftMax → leftMax=1, L++</text>
+  <text x="651" y="360" font-family="Arial" font-size="10" fill="#2C3E50">L=2(h=0), leftMax=1</text>
+
+  <!-- Step 4 -->
+  <rect x="641" y="371" width="234" height="36" fill="#D5E8D4" stroke="#27AE60" rx="3"/>
+  <text x="651" y="385" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold">h[L]=0 &lt; leftMax=1 →</text>
+  <text x="651" y="399" font-family="Arial" font-size="10" fill="#27AE60">water += 1−0 = 1 💧  L++</text>
+
+  <!-- Key insight -->
+  <rect x="641" y="412" width="234" height="55" fill="#EAFAF1" stroke="#27AE60" rx="4"/>
+  <text x="651" y="428" font-family="Arial" font-size="10" fill="#1E8449" font-weight="bold">Why it works:</text>
+  <text x="651" y="442" font-family="Arial" font-size="10" fill="#27AE60">Smaller side determines water level.</text>
+  <text x="651" y="456" font-family="Arial" font-size="10" fill="#27AE60">No need to store arrays — track max</text>
+  <text x="651" y="468" font-family="Arial" font-size="10" fill="#27AE60">on the fly. O(1) space! ⭐</text>
+
+  <!-- ===== COMPLEXITY TABLE ===== -->
+  <rect x="15" y="498" width="870" height="130" fill="#FFFFFF" stroke="#DEE2E6" stroke-width="1.5" rx="7"/>
+  <text x="450" y="518" font-family="Arial" font-size="13" font-weight="bold" fill="#2C3E50" text-anchor="middle">Complexity Comparison &amp; Evolution</text>
+  <rect x="25" y="524" width="850" height="24" fill="#2C3E50" rx="3"/>
+  <text x="180" y="540" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Approach</text>
+  <text x="430" y="540" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Time</text>
+  <text x="560" y="540" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Space</text>
+  <text x="750" y="540" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Key Insight</text>
+
+  <rect x="25" y="548" width="850" height="24" fill="#FDEDEC"/>
+  <text x="180" y="564" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">① Brute Force</text>
+  <text x="430" y="564" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n²)</text>
+  <text x="560" y="564" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(1)</text>
+  <text x="750" y="564" font-family="Arial" font-size="11" fill="#7F8C8D" text-anchor="middle">Naive — scan left &amp; right for every bar</text>
+
+  <rect x="25" y="572" width="850" height="24" fill="#FEF9EF"/>
+  <text x="180" y="588" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">② Prefix + Suffix Arrays</text>
+  <text x="430" y="588" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">O(n)</text>
+  <text x="560" y="588" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">O(n)</text>
+  <text x="750" y="588" font-family="Arial" font-size="11" fill="#7F8C8D" text-anchor="middle">Cache maxL/maxR to avoid recomputation</text>
+
+  <rect x="25" y="596" width="850" height="24" fill="#EAFAF1"/>
+  <text x="180" y="612" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle" font-weight="bold">③ Two Pointers ⭐ OPTIMAL</text>
+  <text x="430" y="612" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(n)</text>
+  <text x="560" y="612" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(1)</text>
+  <text x="750" y="612" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">Track max on the fly — no extra arrays!</text>
+
+  <text x="450" y="633" font-family="Arial" font-size="10" fill="#7F8C8D" text-anchor="middle">Evolution: O(n²) nested loops → O(n) arrays → O(1) two pointers</text>
+</svg>

@@ -1,0 +1,136 @@
+<svg width="900" height="690" xmlns="http://www.w3.org/2000/svg">
+<style>
+/* Approach 1: Brute - window rectangle scans */
+@keyframes brut_i{0%,10%{transform:translateX(0)}22%,30%{transform:translateX(60px)}42%,50%{transform:translateX(120px)}62%,70%{transform:translateX(180px)}82%,90%{transform:translateX(0)}}
+.bi{animation:brut_i 8s ease-in-out infinite}
+@keyframes bsl0{0%,10%{opacity:1}22%,100%{opacity:0}}
+@keyframes bsl1{0%,21%{opacity:0}22%,42%{opacity:1}43%,100%{opacity:0}}
+@keyframes bsl2{0%,41%{opacity:0}42%,62%{opacity:1}63%,100%{opacity:0}}
+@keyframes bsl3{0%,61%{opacity:0}62%,70%{opacity:1}71%,100%{opacity:0}}
+@keyframes bsl4{0%,81%{opacity:0}82%,90%{opacity:1}91%,100%{opacity:0}}
+.bsl0{animation:bsl0 8s ease-in-out infinite}.bsl1{animation:bsl1 8s ease-in-out infinite}
+.bsl2{animation:bsl2 8s ease-in-out infinite}.bsl3{animation:bsl3 8s ease-in-out infinite}
+.bsl4{animation:bsl4 8s ease-in-out infinite}
+/* Approach 2: Kadane's - current/max tracking */
+@keyframes kad_ptr{0%,8%{transform:translateX(0)}18%,25%{transform:translateX(60px)}35%,42%{transform:translateX(120px)}52%,58%{transform:translateX(180px)}68%,75%{transform:translateX(240px)}85%,92%{transform:translateX(300px)}98%,100%{transform:translateX(0)}}
+.kp{animation:kad_ptr 8s ease-in-out infinite}
+@keyframes kl0{0%,8%{opacity:1}18%,100%{opacity:0}}
+@keyframes kl1{0%,17%{opacity:0}18%,35%{opacity:1}36%,100%{opacity:0}}
+@keyframes kl2{0%,34%{opacity:0}35%,52%{opacity:1}53%,100%{opacity:0}}
+@keyframes kl3{0%,51%{opacity:0}52%,68%{opacity:1}69%,100%{opacity:0}}
+@keyframes kl4{0%,67%{opacity:0}68%,85%{opacity:1}86%,100%{opacity:0}}
+@keyframes kl5{0%,84%{opacity:0}85%,92%{opacity:1}93%,100%{opacity:0}}
+.kl0{animation:kl0 8s ease-in-out infinite}.kl1{animation:kl1 8s ease-in-out infinite}
+.kl2{animation:kl2 8s ease-in-out infinite}.kl3{animation:kl3 8s ease-in-out infinite}
+.kl4{animation:kl4 8s ease-in-out infinite}.kl5{animation:kl5 8s ease-in-out infinite}
+@keyframes max_hl{0%,67%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}68%,92%{fill:#D5F5E3;stroke:#27AE60;stroke-width:3}93%,100%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}}
+.mhl{animation:max_hl 8s ease-in-out infinite}
+</style>
+<rect width="900" height="690" fill="#F8F9FA" rx="10"/>
+<rect width="900" height="55" fill="#2C3E50" rx="10"/>
+<rect y="45" width="900" height="10" fill="#2C3E50"/>
+<text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Maximum Subarray Sum (Kadane's Algorithm)</text>
+<rect x="800" y="12" width="82" height="28" fill="#F39C12" rx="14"/>
+<text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+<rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+<text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+<text x="105" y="81" font-family="Arial" font-size="12" fill="#555">arr=[-2,1,-3,4,-1,2] → max sum = 5 (subarray [4,-1,2])</text>
+<text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Kadane's: track currentSum. If currentSum&lt;0, reset to 0 (start fresh subarray). O(n).</text>
+
+<!-- APPROACH 1: Brute Force -->
+<rect x="15" y="115" width="870" height="210" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+<rect x="15" y="115" width="870" height="40" fill="#E74C3C" rx="7"/>
+<rect x="15" y="140" width="870" height="15" fill="#E74C3C"/>
+<text x="450" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Brute Force — O(n²) time, O(1) space</text>
+<text x="450" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">For each starting index i, try all ending indices j. Sum arr[i..j]. Track maximum.</text>
+<!-- Array: [-2,1,-3,4,-1,2] at x: 279,339,399,459,519,579 (60px pitch) -->
+<rect x="279" y="175" width="54" height="42" fill="#FDF2F8" stroke="#E74C3C" stroke-width="2" rx="3"/>
+<text x="306" y="201" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">-2</text>
+<rect x="339" y="175" width="54" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="366" y="201" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="399" y="175" width="54" height="42" fill="#FDF2F8" stroke="#E74C3C" stroke-width="2" rx="3"/>
+<text x="426" y="201" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">-3</text>
+<rect x="459" y="175" width="54" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="486" y="201" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">4</text>
+<rect x="519" y="175" width="54" height="42" fill="#FDF2F8" stroke="#E74C3C" stroke-width="2" rx="3"/>
+<text x="546" y="201" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">-1</text>
+<rect x="579" y="175" width="54" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="606" y="201" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<!-- i pointer (moves by 60px each phase) -->
+<g class="bi" transform="translate(306,175)">
+  <polygon points="-7,-14 7,-14 0,-4" fill="#E74C3C"/>
+  <text x="0" y="-16" font-family="Arial" font-size="9" fill="#E74C3C" text-anchor="middle">i</text>
+</g>
+<!-- Step labels -->
+<text class="bsl0" x="450" y="246" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">i=0: sums from -2: -2, -1, -4, 0, -1, 1. max=1</text>
+<text class="bsl1" x="450" y="246" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">i=1: sums from 1: 1, -2, 2, 1, 3. max=3</text>
+<text class="bsl2" x="450" y="246" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">i=2: sums from -3: -3, 1, 0, 2. max still 3</text>
+<text class="bsl3" x="450" y="246" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">i=3: sums from 4: 4, 3, 5. max=5! (arr[3..5]=[4,-1,2])</text>
+<text class="bsl4" x="450" y="246" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">i=4,5 don't beat max=5. Answer: 5 ✓</text>
+<text x="450" y="277" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">n*(n+1)/2 subarrays checked → O(n²). For n=10⁵: 5×10⁹ operations. Too slow!</text>
+<text x="450" y="294" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Key insight: if currentSum is negative, discard it and start fresh. New max is just arr[i].</text>
+
+<!-- Arrow 1→2 -->
+<line x1="450" y1="325" x2="450" y2="362" stroke="#7F8C8D" stroke-width="2" stroke-dasharray="4,3"/>
+<polygon points="444,362 450,370 456,362" fill="#7F8C8D"/>
+<rect x="200" y="329" width="500" height="22" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+<text x="450" y="344" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">💡 Kadane: if currentSum &lt; 0, reset to 0 (never extend a negative prefix) → O(n)</text>
+
+<!-- APPROACH 2: Kadane's -->
+<rect x="15" y="370" width="870" height="210" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+<rect x="15" y="370" width="870" height="40" fill="#27AE60" rx="7"/>
+<rect x="15" y="395" width="870" height="15" fill="#27AE60"/>
+<text x="450" y="395" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Kadane's Algorithm — O(n) time, O(1) space ⭐</text>
+<text x="450" y="408" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">curSum = max(arr[i], curSum+arr[i]). maxSum = max(maxSum, curSum). One pass!</text>
+<!-- Same array -->
+<rect x="279" y="425" width="54" height="42" fill="#FDF2F8" stroke="#E74C3C" stroke-width="2" rx="3"/>
+<text x="306" y="451" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">-2</text>
+<rect x="339" y="425" width="54" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="366" y="451" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="399" y="425" width="54" height="42" fill="#FDF2F8" stroke="#E74C3C" stroke-width="2" rx="3"/>
+<text x="426" y="451" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">-3</text>
+<rect x="459" y="425" width="54" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="486" y="451" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">4</text>
+<rect x="519" y="425" width="54" height="42" class="mhl" rx="3"/>
+<text x="546" y="451" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">-1</text>
+<rect x="579" y="425" width="54" height="42" class="mhl" rx="3"/>
+<text x="606" y="451" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<!-- Scanning pointer -->
+<g class="kp" transform="translate(306,425)">
+  <polygon points="-7,-14 7,-14 0,-4" fill="#27AE60"/>
+  <text x="0" y="-16" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">i</text>
+</g>
+<!-- Step labels -->
+<text class="kl0" x="450" y="500" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">i=0: cur=max(-2,0+-2)=-2. cur&lt;0→reset cur=0. max=0</text>
+<text class="kl1" x="450" y="500" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">i=1: cur=max(1,0+1)=1. max=1</text>
+<text class="kl2" x="450" y="500" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">i=2: cur=max(-3,1-3)=-2. cur&lt;0→reset cur=0. max=1</text>
+<text class="kl3" x="450" y="500" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">i=3: cur=max(4,0+4)=4. max=4</text>
+<text class="kl4" x="450" y="500" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">i=4: cur=max(-1,4-1)=3. max=4</text>
+<text class="kl5" x="450" y="500" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">i=5: cur=max(2,3+2)=5. max=5 ✓ (subarray [4,-1,2])</text>
+<text x="450" y="540" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Kadane's insight: if curSum drops below 0, starting fresh is always better.</text>
+<text x="450" y="556" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">DP formulation: dp[i] = max(arr[i], dp[i-1]+arr[i]). Answer = max(dp[0..n]).</text>
+<text x="450" y="572" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Edge: all negative → answer is the least negative element (use max=-∞, cur starts at arr[0]).</text>
+
+<!-- Complexity Table -->
+<rect x="15" y="592" width="870" height="93" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+<rect x="15" y="592" width="870" height="30" fill="#2C3E50" rx="7"/>
+<rect x="15" y="607" width="870" height="15" fill="#2C3E50"/>
+<text x="450" y="612" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+<line x1="15" y1="622" x2="885" y2="622" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="622" width="870" height="23" fill="#ECF0F1"/>
+<text x="200" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+<text x="500" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+<text x="750" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+<line x1="15" y1="645" x2="885" y2="645" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="645" width="870" height="22" fill="#FDEDEC"/>
+<text x="200" y="660" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Brute Force</text>
+<text x="500" y="660" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n²)</text>
+<text x="750" y="660" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(1)</text>
+<line x1="15" y1="667" x2="885" y2="667" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="667" width="870" height="23" fill="#EAFAF1"/>
+<text x="200" y="683" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Kadane's Algorithm ⭐</text>
+<text x="500" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n)</text>
+<text x="750" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(1)</text>
+<line x1="370" y1="622" x2="370" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+<line x1="620" y1="622" x2="620" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

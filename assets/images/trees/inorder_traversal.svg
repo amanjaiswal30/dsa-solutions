@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#1a1a2e}
+  .prob{font:13px sans-serif;fill:#444}
+  .sec{font:bold 13px sans-serif}
+  .nd{fill:#ddeeff;stroke:#6699cc;stroke-width:2}
+  .edge{stroke:#999;stroke-width:1.5;fill:none}
+  .lbl{font:12px monospace;fill:#333;text-anchor:middle;dominant-baseline:middle}
+  .cmp{font:11px sans-serif;fill:#333}
+  .evol{fill:none;stroke:#888;stroke-width:1.5;stroke-dasharray:5,3}
+  .ins{font:11px sans-serif;fill:#555;font-style:italic}
+  .tbl{font:11px sans-serif;fill:#333;text-anchor:middle}
+  .arr{fill:#ddeeff;stroke:#6699cc;stroke-width:1.5}
+
+  /* Sequential node visits: Left-Root-Right */
+  @keyframes v4{0%,5%{fill:#ffd700;stroke:#F39C12}5.1%,100%{fill:#ddeeff;stroke:#6699cc}}
+  @keyframes v2{0%,14%{fill:#ddeeff;stroke:#6699cc}15%,20%{fill:#ffd700;stroke:#F39C12}20.1%,100%{fill:#ddeeff;stroke:#6699cc}}
+  @keyframes v5{0%,24%{fill:#ddeeff;stroke:#6699cc}25%,30%{fill:#ffd700;stroke:#F39C12}30.1%,100%{fill:#ddeeff;stroke:#6699cc}}
+  @keyframes v1{0%,34%{fill:#ddeeff;stroke:#6699cc}35%,40%{fill:#ffd700;stroke:#F39C12}40.1%,100%{fill:#ddeeff;stroke:#6699cc}}
+  @keyframes v3{0%,44%{fill:#ddeeff;stroke:#6699cc}45%,50%{fill:#ffd700;stroke:#F39C12}50.1%,100%{fill:#ddeeff;stroke:#6699cc}}
+  @keyframes v6{0%,54%{fill:#ddeeff;stroke:#6699cc}55%,60%{fill:#ffd700;stroke:#F39C12}60.1%,100%{fill:#ddeeff;stroke:#6699cc}}
+  @keyframes v7{0%,64%{fill:#ddeeff;stroke:#6699cc}65%,70%{fill:#ffd700;stroke:#F39C12}70.1%,100%{fill:#ddeeff;stroke:#6699cc}}
+  .va4{animation:v4 8s ease-in-out infinite}
+  .va2{animation:v2 8s ease-in-out infinite}
+  .va5{animation:v5 8s ease-in-out infinite}
+  .va1{animation:v1 8s ease-in-out infinite}
+  .va3{animation:v3 8s ease-in-out infinite}
+  .va6{animation:v6 8s ease-in-out infinite}
+  .va7{animation:v7 8s ease-in-out infinite}
+
+  /* Result array */
+  @keyframes ar0{0%,5%{fill:#ddeeff}5.1%,100%{fill:#ccffcc}}
+  @keyframes ar1{0%,14%{fill:#ddeeff}15%,100%{fill:#ccffcc}}
+  @keyframes ar2{0%,24%{fill:#ddeeff}25%,100%{fill:#ccffcc}}
+  @keyframes ar3{0%,34%{fill:#ddeeff}35%,100%{fill:#ccffcc}}
+  @keyframes ar4{0%,44%{fill:#ddeeff}45%,100%{fill:#ccffcc}}
+  @keyframes ar5{0%,54%{fill:#ddeeff}55%,100%{fill:#ccffcc}}
+  @keyframes ar6{0%,64%{fill:#ddeeff}65%,100%{fill:#ccffcc}}
+  .ar0{animation:ar0 8s ease-in-out infinite}
+  .ar1{animation:ar1 8s ease-in-out infinite}
+  .ar2{animation:ar2 8s ease-in-out infinite}
+  .ar3{animation:ar3 8s ease-in-out infinite}
+  .ar4{animation:ar4 8s ease-in-out infinite}
+  .ar5{animation:ar5 8s ease-in-out infinite}
+  .ar6{animation:ar6 8s ease-in-out infinite}
+
+  @keyframes sl0{0%,18%{opacity:1}19%,100%{opacity:0}}
+  @keyframes sl1{0%,18%{opacity:0}19%,36%{opacity:1}37%,100%{opacity:0}}
+  @keyframes sl2{0%,36%{opacity:0}37%,54%{opacity:1}55%,100%{opacity:0}}
+  @keyframes sl3{0%,54%{opacity:0}55%,72%{opacity:1}73%,100%{opacity:0}}
+  @keyframes sl4{0%,72%{opacity:0}73%,100%{opacity:1}}
+  .sl0{animation:sl0 8s ease-in-out infinite}
+  .sl1{animation:sl1 8s ease-in-out infinite}
+  .sl2{animation:sl2 8s ease-in-out infinite}
+  .sl3{animation:sl3 8s ease-in-out infinite}
+  .sl4{animation:sl4 8s ease-in-out infinite}
+</style>
+
+<rect width="900" height="690" fill="#f8f9fa" rx="8"/>
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="32" text-anchor="middle" class="title" fill="white">Inorder Traversal (Left → Root → Right)</text>
+
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="72" text-anchor="middle" class="prob">Tree: 1→{2→{4,5}, 3→{6,7}}  →  Inorder: [4,2,5,1,6,3,7]</text>
+
+<!-- APPROACH 1: Recursive -->
+<rect x="16" y="92" width="868" height="218" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="32" y="111" class="sec" fill="white">Approach 1: Recursive — O(n) time, O(h) space</text>
+
+<!-- Tree nodes with inorder animation -->
+<g transform="translate(200,118)">
+  <line x1="0" y1="22" x2="-90" y2="72" class="edge"/>
+  <line x1="0" y1="22" x2="90" y2="72" class="edge"/>
+  <line x1="-90" y1="92" x2="-135" y2="152" class="edge"/>
+  <line x1="-90" y1="92" x2="-45" y2="152" class="edge"/>
+  <line x1="90" y1="92" x2="45" y2="152" class="edge"/>
+  <line x1="90" y1="92" x2="135" y2="152" class="edge"/>
+  <circle class="va1 nd" cx="0" cy="0" r="22"/><text x="0" y="0" class="lbl">1</text>
+  <circle class="va2 nd" cx="-90" cy="70" r="22"/><text x="-90" y="70" class="lbl">2</text>
+  <circle class="va3 nd" cx="90" cy="70" r="22"/><text x="90" y="70" class="lbl">3</text>
+  <circle class="va4 nd" cx="-135" cy="150" r="22"/><text x="-135" y="150" class="lbl">4</text>
+  <circle class="va5 nd" cx="-45" cy="150" r="22"/><text x="-45" y="150" class="lbl">5</text>
+  <circle class="va6 nd" cx="45" cy="150" r="22"/><text x="45" y="150" class="lbl">6</text>
+  <circle class="va7 nd" cx="135" cy="150" r="22"/><text x="135" y="150" class="lbl">7</text>
+  <!-- visit order labels -->
+  <text x="-163" y="143" class="cmp" fill="#E74C3C" font-size="9">①</text>
+  <text x="-118" y="63" class="cmp" fill="#E74C3C" font-size="9">②</text>
+  <text x="-73" y="143" class="cmp" fill="#E74C3C" font-size="9">③</text>
+  <text x="-28" y="-7" class="cmp" fill="#E74C3C" font-size="9">④</text>
+  <text x="62" y="63" class="cmp" fill="#E74C3C" font-size="9">⑤</text>
+  <text x="17" y="143" class="cmp" fill="#E74C3C" font-size="9">⑥</text>
+  <text x="107" y="143" class="cmp" fill="#E74C3C" font-size="9">⑦</text>
+</g>
+
+<!-- Result array -->
+<text x="460" y="132" class="cmp">Result array (filled sequentially):</text>
+<g transform="translate(460,140)">
+  <rect class="ar0" x="0" y="0" width="34" height="34" stroke="#6699cc" stroke-width="1.5"/><text x="17" y="21" class="lbl">4</text>
+  <rect class="ar1" x="40" y="0" width="34" height="34" stroke="#6699cc" stroke-width="1.5"/><text x="57" y="21" class="lbl">2</text>
+  <rect class="ar2" x="80" y="0" width="34" height="34" stroke="#6699cc" stroke-width="1.5"/><text x="97" y="21" class="lbl">5</text>
+  <rect class="ar3" x="120" y="0" width="34" height="34" stroke="#6699cc" stroke-width="1.5"/><text x="137" y="21" class="lbl">1</text>
+  <rect class="ar4" x="160" y="0" width="34" height="34" stroke="#6699cc" stroke-width="1.5"/><text x="177" y="21" class="lbl">6</text>
+  <rect class="ar5" x="200" y="0" width="34" height="34" stroke="#6699cc" stroke-width="1.5"/><text x="217" y="21" class="lbl">3</text>
+  <rect class="ar6" x="240" y="0" width="34" height="34" stroke="#6699cc" stroke-width="1.5"/><text x="257" y="21" class="lbl">7</text>
+</g>
+
+<text x="460" y="200" class="cmp">def inorder(node, result):</text>
+<text x="460" y="216" class="cmp">  if not node: return</text>
+<text x="460" y="232" class="cmp">  inorder(node.left, result)   # Left</text>
+<text x="460" y="248" class="cmp">  result.append(node.val)      # Root</text>
+<text x="460" y="264" class="cmp">  inorder(node.right, result)  # Right</text>
+
+<text x="460" y="284" class="cmp sl0">① Go left as far as possible → visit 4</text>
+<text x="460" y="284" class="cmp sl1">② Backtrack → visit 2, then right child 5</text>
+<text x="460" y="284" class="cmp sl2">③ Back to root → visit 1</text>
+<text x="460" y="284" class="cmp sl3">④ Go right subtree: 6, 3, 7</text>
+<text x="460" y="284" class="cmp sl4" fill="#E74C3C">⑤ Result: [4,2,5,1,6,3,7] ← sorted for BST!</text>
+
+<!-- Evolution arrow -->
+<line x1="450" y1="312" x2="450" y2="330" class="evol"/>
+<polygon points="450,331 444,319 456,319" fill="#888"/>
+<rect x="280" y="315" width="340" height="28" fill="#fffde7" stroke="#f0c040" stroke-width="1" rx="4"/>
+<text x="450" y="333" text-anchor="middle" class="ins">Iterative: use explicit stack (avoids recursion limit)</text>
+
+<!-- APPROACH 2: Iterative with stack -->
+<rect x="16" y="348" width="868" height="214" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="348" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="362" width="868" height="14" fill="#27AE60"/>
+<text x="32" y="367" class="sec" fill="white">Approach 2: Iterative (Explicit Stack) — O(n) time, O(h) space</text>
+
+<text x="32" y="400" class="cmp">stack=[], curr=root</text>
+<text x="32" y="416" class="cmp">while stack or curr:</text>
+<text x="32" y="432" class="cmp">  while curr:              # go left</text>
+<text x="32" y="448" class="cmp">    stack.append(curr)</text>
+<text x="32" y="464" class="cmp">    curr = curr.left</text>
+<text x="32" y="480" class="cmp">  curr = stack.pop()       # visit</text>
+<text x="32" y="496" class="cmp">  result.append(curr.val)</text>
+<text x="32" y="512" class="cmp">  curr = curr.right        # go right</text>
+
+<!-- Stack states -->
+<rect x="300" y="390" width="566" height="166" fill="#e8f5e9" stroke="#27AE60" stroke-width="1" rx="4"/>
+<text x="316" y="407" class="cmp" font-weight="bold" fill="#27AE60">Stack trace:</text>
+<text x="316" y="423" class="cmp">push 1→push 2→push 4→pop 4 (visit 4)</text>
+<text x="316" y="439" class="cmp">curr=null → pop 2 (visit 2) → curr=5</text>
+<text x="316" y="455" class="cmp">push 5 → pop 5 (visit 5) → curr=null</text>
+<text x="316" y="471" class="cmp">pop 1 (visit 1) → curr=3</text>
+<text x="316" y="487" class="cmp">push 3→push 6→pop 6 (visit 6)</text>
+<text x="316" y="503" class="cmp">pop 3 (visit 3) → curr=7 → pop 7 (visit 7)</text>
+<text x="316" y="523" class="cmp" fill="#27AE60" font-weight="bold">Result: [4,2,5,1,6,3,7] ✓</text>
+
+<!-- Complexity table -->
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="6"/>
+<rect x="16" y="578" width="868" height="26" fill="#f0f0f0" stroke="#ddd" rx="6"/>
+<text x="182" y="595" class="tbl" font-weight="bold">Approach</text>
+<text x="430" y="595" class="tbl" font-weight="bold">Time</text>
+<text x="610" y="595" class="tbl" font-weight="bold">Space</text>
+<text x="790" y="595" class="tbl" font-weight="bold">Notes</text>
+<rect x="16" y="604" width="868" height="24" fill="#fff5f5"/>
+<text x="182" y="620" class="tbl">Recursive</text>
+<text x="430" y="620" class="tbl">O(n)</text>
+<text x="610" y="620" class="tbl">O(h)</text>
+<text x="790" y="620" class="tbl">Simple code, stack overflow on skewed</text>
+<rect x="16" y="628" width="868" height="24" fill="#f0fff0"/>
+<text x="182" y="644" class="tbl">Iterative (stack)</text>
+<text x="430" y="644" class="tbl">O(n)</text>
+<text x="610" y="644" class="tbl">O(h)</text>
+<text x="790" y="644" class="tbl">✓ No recursion limit issues</text>
+<line x1="16" y1="652" x2="884" y2="652" stroke="#ddd" stroke-width="1"/>
+<text x="182" y="668" class="tbl" fill="#27AE60" font-weight="bold">▶ Inorder of BST gives sorted array</text>
+</svg>

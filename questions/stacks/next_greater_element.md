@@ -1,5 +1,8 @@
 # 🔹 Next Greater Element
 
+![](../../assets/images/stacks/next_greater_element.svg)
+
+
 ---
 
 ## 📌 Problem Statement

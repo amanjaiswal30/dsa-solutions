@@ -1,5 +1,8 @@
 # 🔹 Problem: Find Minimum in Rotated Sorted Array
 
+![](../../assets/images/arrays/minimum_in_rotated_sorted_array.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

@@ -1,5 +1,8 @@
 # Second-Largest Number in an Array
 
+![](../../assets/images/arrays/second_largest.svg)
+
+
 **Difficulty:** Easy ✅
 
 ---

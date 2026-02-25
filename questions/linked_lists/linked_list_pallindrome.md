@@ -1,5 +1,8 @@
 # 🔹 Check if a Linked List is a Palindrome
 
+![](../../assets/images/linked_lists/linked_list_pallindrome.svg)
+
+
 ---
 
 ## 📌 Problem Statement

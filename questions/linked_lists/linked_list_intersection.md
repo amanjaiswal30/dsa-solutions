@@ -1,5 +1,8 @@
 # 🔹 Intersection Point in Y-Shaped Linked List
 
+![](../../assets/images/linked_lists/linked_list_intersection.svg)
+
+
 ---
 
 ## 📌 Problem Statement

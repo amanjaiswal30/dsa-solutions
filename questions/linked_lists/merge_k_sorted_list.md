@@ -1,5 +1,8 @@
 # 🔹 Merge K Sorted Linked Lists
 
+![](../../assets/images/linked_lists/merge_k_sorted_list.svg)
+
+
 ---
 
 ## 📌 Problem Statement

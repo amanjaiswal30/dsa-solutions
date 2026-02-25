@@ -1,5 +1,8 @@
 # 🔹 Rotate a Linked List
 
+![](../../assets/images/linked_lists/rotate_linked_list.svg)
+
+
 ---
 
 ## 📌 Problem Statement

@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#1a1a2e}
+  .prob{font:13px sans-serif;fill:#444}
+  .sec{font:bold 13px sans-serif}
+  .arr{fill:#ddeeff;stroke:#6699cc;stroke-width:1.5}
+  .lbl{font:11px monospace;fill:#333;text-anchor:middle}
+  .idx{font:10px sans-serif;fill:#888;text-anchor:middle}
+  .evol{fill:none;stroke:#888;stroke-width:1.5;stroke-dasharray:5,3}
+  .ins{font:11px sans-serif;fill:#555;font-style:italic}
+  .cmp{font:11px sans-serif;fill:#333}
+  .tbl{font:11px sans-serif;fill:#333;text-anchor:middle}
+
+  @keyframes dp0{0%,10%{fill:#ddeeff}10.1%,100%{fill:#ccffcc}}
+  @keyframes dp1{0%,20%{fill:#ddeeff}20.1%,100%{fill:#ccffcc}}
+  @keyframes dp2{0%,30%{fill:#ddeeff}30.1%,100%{fill:#ccffcc}}
+  @keyframes dp3{0%,40%{fill:#ddeeff}40.1%,100%{fill:#ccffcc}}
+  @keyframes dp4{0%,50%{fill:#ddeeff}50.1%,100%{fill:#ccffcc}}
+  @keyframes dp5{0%,60%{fill:#ddeeff}60.1%,100%{fill:#ccffcc}}
+  @keyframes dp6{0%,70%{fill:#ddeeff}70.1%,100%{fill:#ccffcc}}
+  @keyframes dp7{0%,80%{fill:#ddeeff}80.1%,100%{fill:#ccffcc}}
+  .d0{animation:dp0 9s ease-in-out infinite}
+  .d1{animation:dp1 9s ease-in-out infinite}
+  .d2{animation:dp2 9s ease-in-out infinite}
+  .d3{animation:dp3 9s ease-in-out infinite}
+  .d4{animation:dp4 9s ease-in-out infinite}
+  .d5{animation:dp5 9s ease-in-out infinite}
+  .d6{animation:dp6 9s ease-in-out infinite}
+  .d7{animation:dp7 9s ease-in-out infinite}
+
+  @keyframes ptr_mv{0%{transform:translateX(0)}14%{transform:translateX(42px)}28%{transform:translateX(84px)}42%{transform:translateX(126px)}56%{transform:translateX(168px)}70%{transform:translateX(210px)}84%{transform:translateX(252px)}100%{transform:translateX(294px)}}
+  .ptmv{animation:ptr_mv 9s ease-in-out infinite}
+
+  @keyframes sl0{0%,15%{opacity:1}16%,100%{opacity:0}}
+  @keyframes sl1{0%,15%{opacity:0}16%,30%{opacity:1}31%,100%{opacity:0}}
+  @keyframes sl2{0%,30%{opacity:0}31%,46%{opacity:1}47%,100%{opacity:0}}
+  @keyframes sl3{0%,46%{opacity:0}47%,62%{opacity:1}63%,100%{opacity:0}}
+  @keyframes sl4{0%,62%{opacity:0}63%,78%{opacity:1}79%,100%{opacity:0}}
+  @keyframes sl5{0%,78%{opacity:0}79%,100%{opacity:1}}
+  .sl0{animation:sl0 9s ease-in-out infinite}
+  .sl1{animation:sl1 9s ease-in-out infinite}
+  .sl2{animation:sl2 9s ease-in-out infinite}
+  .sl3{animation:sl3 9s ease-in-out infinite}
+  .sl4{animation:sl4 9s ease-in-out infinite}
+  .sl5{animation:sl5 9s ease-in-out infinite}
+</style>
+
+<rect width="900" height="690" fill="#f8f9fa" rx="8"/>
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="32" text-anchor="middle" class="title" fill="white">Word Break</text>
+
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="72" text-anchor="middle" class="prob">s="leetcode", wordDict=["leet","code"] → true  ("leet"+"code")</text>
+
+<!-- APPROACH 1 -->
+<rect x="16" y="92" width="868" height="218" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="32" y="111" class="sec" fill="white">Approach 1: Recursion + Memoization — O(n³)</text>
+
+<text x="32" y="144" class="cmp">String: "l e e t c o d e"</text>
+<g transform="translate(32,152)">
+  <rect class="arr" x="0" y="0" width="36" height="36"/><text x="18" y="23" class="lbl">l</text><text x="18" y="47" class="idx">0</text>
+  <rect class="arr" x="42" y="0" width="36" height="36"/><text x="60" y="23" class="lbl">e</text><text x="60" y="47" class="idx">1</text>
+  <rect class="arr" x="84" y="0" width="36" height="36"/><text x="102" y="23" class="lbl">e</text><text x="102" y="47" class="idx">2</text>
+  <rect class="arr" x="126" y="0" width="36" height="36"/><text x="144" y="23" class="lbl">t</text><text x="144" y="47" class="idx">3</text>
+  <rect class="arr" x="168" y="0" width="36" height="36"/><text x="186" y="23" class="lbl">c</text><text x="186" y="47" class="idx">4</text>
+  <rect class="arr" x="210" y="0" width="36" height="36"/><text x="228" y="23" class="lbl">o</text><text x="228" y="47" class="idx">5</text>
+  <rect class="arr" x="252" y="0" width="36" height="36"/><text x="270" y="23" class="lbl">d</text><text x="270" y="47" class="idx">6</text>
+  <rect class="arr" x="294" y="0" width="36" height="36"/><text x="312" y="23" class="lbl">e</text><text x="312" y="47" class="idx">7</text>
+</g>
+
+<text x="400" y="144" class="cmp">Recursion tree (from index 0):</text>
+<text x="400" y="162" class="cmp" fill="#E74C3C">wordBreak(0)</text>
+<text x="400" y="178" class="cmp" fill="#888">├─ "l" ∉ dict → skip</text>
+<text x="400" y="194" class="cmp" fill="#888">├─ "le" ∉ dict → skip</text>
+<text x="400" y="210" class="cmp" fill="#888">├─ "lee" ∉ dict → skip</text>
+<text x="400" y="226" class="cmp" fill="#27AE60">└─ "leet" ✓ → wordBreak(4)</text>
+<text x="400" y="242" class="cmp" fill="#27AE60">   └─ "code" ✓ → wordBreak(8)=TRUE</text>
+<text x="400" y="260" class="cmp" fill="#888" font-size="10">memo[i]=result for starting at index i</text>
+
+<text x="32" y="220" class="cmp sl0">① Try all prefixes from current position</text>
+<text x="32" y="235" class="cmp sl0">   If prefix in dict, recurse on rest</text>
+<text x="32" y="220" class="cmp sl1">② wordBreak(0): "leet" found → go to 4</text>
+<text x="32" y="220" class="cmp sl2">③ wordBreak(4): "code" found → go to 8</text>
+<text x="32" y="220" class="cmp sl3">④ wordBreak(8): end of string → TRUE!</text>
+<text x="32" y="220" class="cmp sl4">⑤ Cache memo[i] to avoid re-checking</text>
+
+<!-- Evolution arrow -->
+<line x1="450" y1="310" x2="450" y2="328" class="evol"/>
+<polygon points="450,329 444,317 456,317" fill="#888"/>
+<rect x="310" y="313" width="280" height="28" fill="#fffde7" stroke="#f0c040" stroke-width="1" rx="4"/>
+<text x="450" y="331" text-anchor="middle" class="ins">Bottom-up DP: dp[i] = can string[0..i] be segmented?</text>
+
+<!-- APPROACH 2: DP -->
+<rect x="16" y="346" width="868" height="216" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="346" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="360" width="868" height="14" fill="#27AE60"/>
+<text x="32" y="365" class="sec" fill="white">Approach 2: Bottom-Up DP — O(n³) time, O(n) space</text>
+
+<text x="32" y="397" class="cmp">dp[i] = True if s[0..i-1] can be segmented:</text>
+<g transform="translate(32,407)">
+  <rect class="arr d0" x="0" y="0" width="36" height="36"/><text x="18" y="16" class="lbl" font-size="9">dp=T</text><text x="18" y="28" class="lbl">""</text><text x="18" y="46" class="idx">0</text>
+  <rect class="arr d1" x="42" y="0" width="36" height="36"/><text x="60" y="16" class="lbl" font-size="9">dp=F</text><text x="60" y="28" class="lbl">l</text><text x="60" y="46" class="idx">1</text>
+  <rect class="arr d1" x="84" y="0" width="36" height="36"/><text x="102" y="16" class="lbl" font-size="9">dp=F</text><text x="102" y="28" class="lbl">le</text><text x="102" y="46" class="idx">2</text>
+  <rect class="arr d1" x="126" y="0" width="36" height="36"/><text x="144" y="16" class="lbl" font-size="9">dp=F</text><text x="144" y="28" class="lbl">lee</text><text x="144" y="46" class="idx">3</text>
+  <rect class="arr d2" x="168" y="0" width="36" height="36"/><text x="186" y="16" class="lbl" font-size="9">dp=T</text><text x="186" y="28" class="lbl">leet</text><text x="186" y="46" class="idx">4</text>
+  <rect class="arr d3" x="210" y="0" width="36" height="36"/><text x="228" y="16" class="lbl" font-size="9">dp=F</text><text x="228" y="28" class="lbl">leetc</text><text x="228" y="46" class="idx">5</text>
+  <rect class="arr d4" x="252" y="0" width="36" height="36"/><text x="270" y="16" class="lbl" font-size="9">dp=F</text><text x="270" y="28" class="lbl">leetco</text><text x="270" y="46" class="idx">6</text>
+  <rect class="arr d5" x="294" y="0" width="36" height="36"/><text x="312" y="16" class="lbl" font-size="9">dp=F</text><text x="312" y="28" class="lbl">leetcod</text><text x="312" y="46" class="idx">7</text>
+  <rect class="arr d6" x="336" y="0" width="36" height="36"/><text x="354" y="16" class="lbl" font-size="9" fill="#27AE60">dp=T</text><text x="354" y="28" class="lbl" fill="#27AE60">leetcode</text><text x="354" y="46" class="idx">8</text>
+  <g class="ptmv">
+    <polygon points="18,46 12,58 24,58" fill="#27AE60"/>
+  </g>
+</g>
+
+<text x="32" y="480" class="cmp sl0">① dp[0]=True (empty string always valid)</text>
+<text x="32" y="480" class="cmp sl1">② For i=1..n: check all j&lt;i where dp[j]=True</text>
+<text x="32" y="495" class="cmp sl1">   if s[j:i] in wordDict → dp[i]=True</text>
+<text x="32" y="480" class="cmp sl2">③ dp[4]: j=0, dp[0]=T, s[0:4]="leet"∈dict → T</text>
+<text x="32" y="480" class="cmp sl3">④ dp[8]: j=4, dp[4]=T, s[4:8]="code"∈dict → T</text>
+<text x="32" y="480" class="cmp sl4" fill="#27AE60">⑤ Answer = dp[n] = dp[8] = True ✓</text>
+
+<!-- Insight box -->
+<rect x="480" y="395" width="388" height="148" fill="#fff9e6" stroke="#F39C12" stroke-width="1.5" rx="5"/>
+<text x="496" y="412" class="cmp" font-weight="bold" fill="#F39C12">DP Transition:</text>
+<text x="496" y="428" class="cmp">for i in range(1, n+1):</text>
+<text x="496" y="442" class="cmp">  for j in range(i):</text>
+<text x="496" y="456" class="cmp">    if dp[j] and s[j:i] in wordSet:</text>
+<text x="496" y="470" class="cmp">      dp[i] = True</text>
+<text x="496" y="484" class="cmp">      break</text>
+<text x="496" y="504" class="cmp">Optimization: use Trie for O(n²) word lookup</text>
+<text x="496" y="520" class="cmp" fill="#27AE60" font-weight="bold">return dp[n]</text>
+<text x="496" y="534" class="cmp" fill="#27AE60">→ True ✓</text>
+
+<!-- Complexity table -->
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="6"/>
+<rect x="16" y="578" width="868" height="26" fill="#f0f0f0" stroke="#ddd" stroke-width="1" rx="6"/>
+<text x="182" y="595" class="tbl" font-weight="bold">Approach</text>
+<text x="430" y="595" class="tbl" font-weight="bold">Time</text>
+<text x="610" y="595" class="tbl" font-weight="bold">Space</text>
+<text x="790" y="595" class="tbl" font-weight="bold">Recommended</text>
+<rect x="16" y="604" width="868" height="24" fill="#fff5f5"/>
+<text x="182" y="620" class="tbl">Recursion + Memo</text>
+<text x="430" y="620" class="tbl">O(n³)</text>
+<text x="610" y="620" class="tbl">O(n)</text>
+<text x="790" y="620" class="tbl">✓ Good</text>
+<rect x="16" y="628" width="868" height="24" fill="#f0fff0"/>
+<text x="182" y="644" class="tbl">Bottom-Up DP</text>
+<text x="430" y="644" class="tbl">O(n³)</text>
+<text x="610" y="644" class="tbl">O(n)</text>
+<text x="790" y="644" class="tbl">✓ Optimal</text>
+<line x1="16" y1="652" x2="884" y2="652" stroke="#ddd" stroke-width="1"/>
+<text x="182" y="668" class="tbl" fill="#27AE60" font-weight="bold">▶ dp[i] = True if any split (j,i) where dp[j]=True and s[j:i] in dict</text>
+</svg>

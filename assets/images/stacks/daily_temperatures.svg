@@ -1,0 +1,164 @@
+<svg width="900" height="610" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="610" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect x="0" y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="430" y="35" font-family="Arial" font-size="20" font-weight="bold" fill="white" text-anchor="middle">Daily Temperatures</text>
+  <rect x="790" y="13" width="100" height="28" fill="#F39C12" rx="14"/>
+  <text x="840" y="32" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Medium ⚡</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="25" y="84" font-family="Arial" font-size="12" fill="#7F8C8D">Input:</text>
+  <text x="72" y="84" font-family="Arial" font-size="13" fill="#2C3E50" font-weight="bold">[73, 74, 75, 71, 69, 72, 76, 73]</text>
+  <text x="375" y="84" font-family="Arial" font-size="13" fill="#7F8C8D">→</text>
+  <text x="392" y="84" font-family="Arial" font-size="13" fill="#27AE60" font-weight="bold">[1, 1, 4, 2, 1, 1, 0, 0]</text>
+  <text x="610" y="84" font-family="Arial" font-size="11" fill="#7F8C8D">answer[i] = days until warmer temperature</text>
+
+  <!-- ===== APPROACH 1: BRUTE FORCE ===== -->
+  <rect x="15" y="115" width="258" height="365" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="258" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="258" height="15" fill="#E74C3C"/>
+  <text x="144" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">① Brute Force</text>
+  <text x="144" y="167" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle" font-weight="bold">O(n²) time · O(n) space</text>
+  <text x="25" y="188" font-family="Arial" font-size="11" fill="#555">For each day i, scan forward until a</text>
+  <text x="25" y="202" font-family="Arial" font-size="11" fill="#555">warmer day j is found. answer[i]=j-i.</text>
+
+  <!-- Mini array visualization -->
+  <text x="25" y="222" font-family="Arial" font-size="10" fill="#7F8C8D">For T=[73, 74, 75, 71, 69, 72, 76, 73]:</text>
+  <g transform="translate(25,228)">
+    <rect x="0" y="0" width="28" height="24" fill="#FADBD8" stroke="#E74C3C" rx="2"/><text x="14" y="17" font-family="Arial" font-size="9" fill="#C0392B" text-anchor="middle">73</text>
+    <rect x="30" y="0" width="28" height="24" fill="#EBF5FB" stroke="#3498DB" rx="2"/><text x="44" y="17" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">74</text>
+    <rect x="60" y="0" width="28" height="24" fill="#EBF5FB" stroke="#3498DB" rx="2"/><text x="74" y="17" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">75</text>
+    <rect x="90" y="0" width="28" height="24" fill="#FADBD8" stroke="#E74C3C" rx="2"/><text x="104" y="17" font-family="Arial" font-size="9" fill="#C0392B" text-anchor="middle">71</text>
+    <rect x="120" y="0" width="28" height="24" fill="#FADBD8" stroke="#E74C3C" rx="2"/><text x="134" y="17" font-family="Arial" font-size="9" fill="#C0392B" text-anchor="middle">69</text>
+    <rect x="150" y="0" width="28" height="24" fill="#EBF5FB" stroke="#3498DB" rx="2"/><text x="164" y="17" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">72</text>
+    <rect x="180" y="0" width="28" height="24" fill="#D5E8D4" stroke="#27AE60" rx="2"/><text x="194" y="17" font-family="Arial" font-size="9" fill="#1E8449" text-anchor="middle">76</text>
+    <rect x="210" y="0" width="28" height="24" fill="#EBF5FB" stroke="#3498DB" rx="2"/><text x="224" y="17" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">73</text>
+  </g>
+  <text x="25" y="265" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">i=0 (73): scan j=1→ 74 &gt; 73 ✓</text>
+  <text x="25" y="279" font-family="Arial" font-size="10" fill="#27AE60">  answer[0] = 1-0 = 1</text>
+  <text x="25" y="296" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">i=2 (75): scan j=3,4,5,6 → 76 &gt; 75 ✓</text>
+  <text x="25" y="310" font-family="Arial" font-size="10" fill="#27AE60">  answer[2] = 6-2 = 4</text>
+  <text x="25" y="327" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">i=7 (73): no warmer day ahead</text>
+  <text x="25" y="341" font-family="Arial" font-size="10" fill="#7F8C8D">  answer[7] = 0</text>
+
+  <rect x="25" y="356" width="238" height="60" fill="#FDEDEC" stroke="#FFCCCC" rx="4"/>
+  <text x="35" y="373" font-family="Arial" font-size="10" fill="#E74C3C" font-weight="bold">⚠ Problem: Each of n days scans up</text>
+  <text x="35" y="387" font-family="Arial" font-size="10" fill="#E74C3C">to n future days → O(n²) total</text>
+  <text x="35" y="401" font-family="Arial" font-size="10" fill="#E74C3C">Worst case: descending temps [90,80,70...]</text>
+  <text x="35" y="415" font-family="Arial" font-size="10" fill="#E67E22">Idea: track "waiting" days with a stack</text>
+
+  <!-- Arrow 1 -->
+  <line x1="275" y1="295" x2="313" y2="295" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="313,290 323,295 313,300" fill="#7F8C8D"/>
+  <rect x="265" y="268" width="68" height="22" fill="#FFF8E1" stroke="#F39C12" rx="3"/>
+  <text x="299" y="281" font-family="Arial" font-size="9" fill="#D35400" text-anchor="middle">💡 Stack</text>
+  <text x="299" y="291" font-family="Arial" font-size="9" fill="#D35400" text-anchor="middle">indices!</text>
+
+  <!-- ===== APPROACH 2: MONOTONIC STACK ===== -->
+  <rect x="323" y="115" width="258" height="365" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="323" y="115" width="258" height="40" fill="#27AE60" rx="7"/>
+  <rect x="323" y="140" width="258" height="15" fill="#27AE60"/>
+  <text x="452" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">② Monotonic Stack ⭐</text>
+  <text x="452" y="167" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle" font-weight="bold">O(n) time · O(n) space</text>
+  <text x="333" y="188" font-family="Arial" font-size="11" fill="#555">Stack stores indices of days still "waiting"</text>
+  <text x="333" y="202" font-family="Arial" font-size="11" fill="#555">for a warmer day. Pop when warmer found.</text>
+
+  <text x="333" y="220" font-family="Arial" font-size="10" fill="#7F8C8D" font-weight="bold">T=[73,74,75,71,69,72,76,73]  step by step:</text>
+  <!-- Step-by-step table -->
+  <rect x="333" y="225" width="238" height="18" fill="#F0F0F0" rx="2"/>
+  <text x="345" y="237" font-family="Arial" font-size="9" font-weight="bold" fill="#555">i  T[i]  Action                  Stack(idx)</text>
+
+  <rect x="333" y="243" width="238" height="18" fill="#EBF5FB"/>
+  <text x="345" y="255" font-family="Arial" font-size="9" fill="#2C3E50">0   73   push 0                   [0]</text>
+
+  <rect x="333" y="261" width="238" height="18" fill="#D5E8D4"/>
+  <text x="345" y="273" font-family="Arial" font-size="9" fill="#27AE60">1   74   74&gt;T[0]=73 → pop0, ans[0]=1  [1]</text>
+
+  <rect x="333" y="279" width="238" height="18" fill="#D5E8D4"/>
+  <text x="345" y="291" font-family="Arial" font-size="9" fill="#27AE60">2   75   75&gt;T[1]=74 → pop1, ans[1]=1  [2]</text>
+
+  <rect x="333" y="297" width="238" height="18" fill="#EBF5FB"/>
+  <text x="345" y="309" font-family="Arial" font-size="9" fill="#2C3E50">3   71   71&lt;75 → push 3              [2,3]</text>
+
+  <rect x="333" y="315" width="238" height="18" fill="#EBF5FB"/>
+  <text x="345" y="327" font-family="Arial" font-size="9" fill="#2C3E50">4   69   69&lt;71 → push 4              [2,3,4]</text>
+
+  <rect x="333" y="333" width="238" height="18" fill="#D5E8D4"/>
+  <text x="345" y="345" font-family="Arial" font-size="9" fill="#27AE60">5   72   72&gt;69→pop4,ans[4]=1; 72&gt;71→pop3,ans[3]=2  [2,5]</text>
+
+  <rect x="333" y="351" width="238" height="18" fill="#D5E8D4"/>
+  <text x="345" y="363" font-family="Arial" font-size="9" fill="#27AE60">6   76   76&gt;72→pop5,ans[5]=1; 76&gt;75→pop2,ans[2]=4  [6]</text>
+
+  <rect x="333" y="369" width="238" height="18" fill="#EBF5FB"/>
+  <text x="345" y="381" font-family="Arial" font-size="9" fill="#2C3E50">7   73   73&lt;76 → push 7              [6,7]</text>
+
+  <rect x="333" y="390" width="238" height="24" fill="#D5E8D4" stroke="#27AE60" rx="3"/>
+  <text x="452" y="406" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">Result: [1,1,4,2,1,1,0,0] ✓</text>
+
+  <rect x="333" y="422" width="238" height="42" fill="#EAFAF1" stroke="#A9DFBF" rx="4"/>
+  <text x="343" y="437" font-family="Arial" font-size="10" fill="#1E8449" font-weight="bold">✓ Each index pushed/popped once → O(n)</text>
+  <text x="343" y="451" font-family="Arial" font-size="10" fill="#27AE60">Stack = monotonically decreasing temps</text>
+  <text x="343" y="462" font-family="Arial" font-size="10" fill="#27AE60">Remaining stack → no warmer day → ans=0</text>
+
+  <!-- Arrow 2 -->
+  <line x1="583" y1="295" x2="621" y2="295" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="621,290 631,295 621,300" fill="#7F8C8D"/>
+  <rect x="573" y="268" width="68" height="22" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="607" y="281" font-family="Arial" font-size="9" fill="#1E8449" text-anchor="middle">DP back-</text>
+  <text x="607" y="291" font-family="Arial" font-size="9" fill="#1E8449" text-anchor="middle">track alt!</text>
+
+  <!-- ===== APPROACH 3: DP BACKWARD ===== -->
+  <rect x="631" y="115" width="254" height="365" fill="#FFFFFF" stroke="#E67E22" stroke-width="2" rx="7"/>
+  <rect x="631" y="115" width="254" height="40" fill="#E67E22" rx="7"/>
+  <rect x="631" y="140" width="254" height="15" fill="#E67E22"/>
+  <text x="758" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">③ DP — Backward Traversal</text>
+  <text x="758" y="167" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle" font-weight="bold">O(n) time · O(n) space</text>
+  <text x="641" y="188" font-family="Arial" font-size="11" fill="#555">Traverse R→L. Use already-computed</text>
+  <text x="641" y="202" font-family="Arial" font-size="11" fill="#555">answer[j] to skip ahead quickly.</text>
+
+  <text x="641" y="222" font-family="Arial" font-size="10" fill="#7F8C8D" font-weight="bold">Process T=[73,74,75,71,69,72,76,73] R→L:</text>
+  <text x="641" y="240" font-family="Arial" font-size="11" fill="#2C3E50">i=7 (73): last day → ans[7]=0</text>
+  <text x="641" y="258" font-family="Arial" font-size="11" fill="#2C3E50">i=6 (76): last day → ans[6]=0</text>
+
+  <rect x="641" y="265" width="234" height="60" fill="#FEF9EF" stroke="#FAD7A0" rx="3"/>
+  <text x="651" y="280" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">i=5 (72): j=6, T[6]=76 &gt; 72 → ans[5]=1</text>
+  <text x="651" y="295" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">i=4 (69): j=5, T[5]=72 &gt; 69 → ans[4]=1</text>
+  <text x="651" y="310" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">i=3 (71): j=5, T[5]=72 &gt; 71 → ans[3]=2</text>
+  <text x="651" y="322" font-family="Arial" font-size="10" fill="#7F8C8D">(skip from j=4 since T[4]=69 &lt; 71, use ans[4]=1 to jump)</text>
+
+  <rect x="641" y="330" width="234" height="55" fill="#FFF3CD" stroke="#F39C12" rx="3"/>
+  <text x="651" y="346" font-family="Arial" font-size="10" fill="#E67E22" font-weight="bold">i=2 (75): j=3, T[3]=71 &lt; 75</text>
+  <text x="651" y="360" font-family="Arial" font-size="10" fill="#E67E22">jump: j += ans[3]=2 → j=5</text>
+  <text x="651" y="374" font-family="Arial" font-size="10" fill="#E67E22">T[5]=72 &lt; 75, j += ans[5]=1 → j=6</text>
+  <text x="651" y="385" font-family="Arial" font-size="10" fill="#27AE60">T[6]=76 &gt; 75 → ans[2] = 6-2 = 4 ✓</text>
+
+  <rect x="641" y="390" width="234" height="55" fill="#EAFAF1" stroke="#A9DFBF" rx="4"/>
+  <text x="651" y="406" font-family="Arial" font-size="10" fill="#1E8449" font-weight="bold">Key idea: "hop" using previously</text>
+  <text x="651" y="420" font-family="Arial" font-size="10" fill="#27AE60">computed answers to skip cold streaks</text>
+  <text x="651" y="434" font-family="Arial" font-size="10" fill="#27AE60">Amortized O(n) — each element visited</text>
+  <text x="651" y="448" font-family="Arial" font-size="10" fill="#27AE60">at most O(1) amortized times</text>
+
+  <!-- ===== COMPLEXITY TABLE ===== -->
+  <rect x="15" y="490" width="870" height="110" fill="#FFFFFF" stroke="#DEE2E6" stroke-width="1.5" rx="7"/>
+  <text x="450" y="510" font-family="Arial" font-size="13" font-weight="bold" fill="#2C3E50" text-anchor="middle">Complexity Comparison</text>
+  <rect x="25" y="516" width="850" height="24" fill="#2C3E50" rx="3"/>
+  <text x="180" y="532" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Approach</text>
+  <text x="430" y="532" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Time</text>
+  <text x="560" y="532" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Space</text>
+  <text x="750" y="532" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Key Insight</text>
+  <rect x="25" y="540" width="850" height="22" fill="#FDEDEC"/>
+  <text x="180" y="555" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">① Brute Force</text>
+  <text x="430" y="555" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n²)</text>
+  <text x="560" y="555" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n)</text>
+  <text x="750" y="555" font-family="Arial" font-size="11" fill="#7F8C8D" text-anchor="middle">Scan every future day for each day</text>
+  <rect x="25" y="562" width="850" height="22" fill="#EAFAF1"/>
+  <text x="180" y="577" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle" font-weight="bold">② Monotonic Stack ⭐</text>
+  <text x="430" y="577" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(n)</text>
+  <text x="560" y="577" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(n)</text>
+  <text x="750" y="577" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">Store waiting indices; pop on warmer day</text>
+  <rect x="25" y="584" width="850" height="22" fill="#FEF9EF"/>
+  <text x="180" y="599" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">③ DP Backward Traversal</text>
+  <text x="430" y="599" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">O(n)</text>
+  <text x="560" y="599" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">O(n)</text>
+  <text x="750" y="599" font-family="Arial" font-size="11" fill="#7F8C8D" text-anchor="middle">Hop using precomputed answers to skip</text>
+</svg>

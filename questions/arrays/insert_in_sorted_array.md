@@ -1,5 +1,8 @@
 # Insert an Element in a Sorted Array
 
+![](../../assets/images/arrays/insert_in_sorted_array.svg)
+
+
 **Difficulty:** Easy ✅
 
 ---

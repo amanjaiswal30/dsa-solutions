@@ -1,5 +1,8 @@
 # Maximal Rectangle – Detailed Explanation
 
+![](../../assets/images/dynamic_programming/maximal_rectangle.svg)
+
+
 **Difficulty:** Hard 🔥
 
 ---

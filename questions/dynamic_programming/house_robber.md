@@ -1,5 +1,8 @@
 # House Robber (Max Sum Without Adjacent) – Detailed Explanation
 
+![](../../assets/images/dynamic_programming/house_robber.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

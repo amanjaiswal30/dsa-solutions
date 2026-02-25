@@ -1,5 +1,8 @@
 # Find If Path Exists in Graph
 
+![](../../assets/images/graphs/find_if_path_exists.svg)
+
+
 **Difficulty:** Easy ✅
 
 ---

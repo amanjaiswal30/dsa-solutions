@@ -1,0 +1,117 @@
+<svg width="900" height="560" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="560" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Rotting Oranges — Multi-Source BFS</text>
+  <rect x="800" y="12" width="82" height="28" fill="#F39C12" rx="14"/>
+  <text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">[[2,1,1],[1,1,0],[0,1,1]] → 4 minutes | [[2,1,1],[0,1,1],[1,0,1]] → -1</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">0=empty, 1=fresh, 2=rotten. All rotten spread simultaneously each minute. Return -1 if fresh remains.</text>
+
+  <!-- Step 1 Panel -->
+  <rect x="15" y="115" width="268" height="320" fill="#FFFFFF" stroke="#27AE60" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="268" height="40" fill="#27AE60" rx="7"/>
+  <rect x="15" y="140" width="268" height="15" fill="#27AE60"/>
+  <text x="149" y="140" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Step 1: Initialize Queue</text>
+  <text x="149" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">Add ALL rotten to queue at once</text>
+
+  <rect x="25" y="164" width="248" height="104" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="149" y="180" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Grid: [[2,1,1],[1,1,0],[0,1,1]]</text>
+  <text x="149" y="196" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Scan all cells:</text>
+  <text x="149" y="211" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">  cell(0,0)=2 → queue.add((0,0,0))</text>
+  <text x="149" y="226" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">  count fresh=1s: fresh=6</text>
+  <text x="149" y="244" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">Queue:[(0,0,t=0)], fresh=6 ✓</text>
+
+  <text x="25" y="283" font-family="Arial" font-size="11" fill="#555">Key insight:</text>
+  <rect x="25" y="289" width="248" height="36" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="149" y="304" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Start BFS from ALL rotten cells</text>
+  <text x="149" y="318" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">simultaneously (multi-source BFS!)</text>
+
+  <text x="25" y="347" font-family="Arial" font-size="11" fill="#888">Store (row, col, time) in queue</text>
+  <text x="25" y="363" font-family="Arial" font-size="11" fill="#888">Or track levels with separate counter</text>
+  <text x="25" y="379" font-family="Arial" font-size="11" fill="#888">time = max BFS level reached</text>
+  <text x="25" y="397" font-family="Arial" font-size="11" fill="#888">Multiple sources expand in sync</text>
+  <text x="25" y="415" font-family="Arial" font-size="11" fill="#888">This simulates minutes passing</text>
+
+  <!-- Arrow 1 to 2 -->
+  <line x1="283" y1="278" x2="314" y2="278" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon points="314,273 326,278 314,283" fill="#7F8C8D"/>
+
+  <!-- Step 2 Panel -->
+  <rect x="326" y="115" width="268" height="320" fill="#FFFFFF" stroke="#27AE60" stroke-width="2" rx="7"/>
+  <rect x="326" y="115" width="268" height="40" fill="#27AE60" rx="7"/>
+  <rect x="326" y="140" width="268" height="15" fill="#27AE60"/>
+  <text x="460" y="140" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Step 2: BFS Propagation</text>
+  <text x="460" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">Spread rotten, decrement fresh count</text>
+
+  <rect x="336" y="164" width="248" height="104" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="460" y="180" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Poll(0,0,t=0): check 4 neighbors</text>
+  <text x="460" y="195" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">  (0,1)=1 fresh → set 2, fresh--, add(0,1,t=1)</text>
+  <text x="460" y="210" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">  (1,0)=1 fresh → set 2, fresh--, add(1,0,t=1)</text>
+  <text x="460" y="226" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Poll(0,1,t=1): spread to (0,2),(1,1)→t=2</text>
+  <text x="460" y="244" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">Continue spreading... time tracks max ✓</text>
+
+  <text x="336" y="283" font-family="Arial" font-size="11" fill="#555">BFS spread logic:</text>
+  <rect x="336" y="289" width="248" height="36" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="460" y="304" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">if neighbor==1 (fresh):</text>
+  <text x="460" y="318" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">  mark 2, fresh--, add(r,c,t+1)</text>
+
+  <text x="336" y="347" font-family="Arial" font-size="11" fill="#888">time = max t seen while processing</text>
+  <text x="336" y="363" font-family="Arial" font-size="11" fill="#888">Only spread to fresh cells (=1)</text>
+  <text x="336" y="379" font-family="Arial" font-size="11" fill="#888">Mark rotten before adding to queue</text>
+  <text x="336" y="397" font-family="Arial" font-size="11" fill="#888">Prevents re-adding same cell</text>
+  <text x="336" y="415" font-family="Arial" font-size="11" fill="#888">4 directions: up/down/left/right</text>
+
+  <!-- Arrow 2 to 3 -->
+  <line x1="594" y1="278" x2="625" y2="278" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon points="625,273 637,278 625,283" fill="#7F8C8D"/>
+
+  <!-- Step 3 Panel -->
+  <rect x="637" y="115" width="248" height="320" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="637" y="115" width="248" height="40" fill="#27AE60" rx="7"/>
+  <rect x="637" y="140" width="248" height="15" fill="#27AE60"/>
+  <text x="761" y="140" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Step 3: Check Result ⭐</text>
+  <text x="761" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">fresh==0 ? time : -1</text>
+
+  <rect x="647" y="164" width="228" height="104" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="761" y="180" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">After BFS completes:</text>
+  <text x="761" y="196" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Case 1: fresh==0</text>
+  <text x="761" y="211" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">  return time (=4 minutes) ✓</text>
+  <text x="761" y="226" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Case 2: fresh&gt;0 (isolated cell)</text>
+  <text x="761" y="244" font-family="Arial" font-size="10" fill="#E74C3C" font-weight="bold" text-anchor="middle">  return -1 (impossible!) ✓</text>
+
+  <text x="647" y="283" font-family="Arial" font-size="11" fill="#555">Edge cases:</text>
+  <rect x="647" y="289" width="228" height="36" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="761" y="304" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">No fresh oranges: return 0</text>
+  <text x="761" y="318" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">No rotten &amp; fresh exist: return -1</text>
+
+  <text x="647" y="347" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">Multi-source BFS is the key!</text>
+  <text x="647" y="363" font-family="Arial" font-size="11" fill="#888">Single-source won't work here</text>
+  <text x="647" y="379" font-family="Arial" font-size="11" fill="#888">Time = max BFS depth = O(M×N)</text>
+  <text x="647" y="397" font-family="Arial" font-size="11" fill="#888">If no path to fresh: -1</text>
+  <text x="647" y="415" font-family="Arial" font-size="11" fill="#888">Total complexity: O(M×N) time</text>
+
+  <!-- Complexity Table -->
+  <rect x="15" y="448" width="870" height="100" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+  <rect x="15" y="448" width="870" height="30" fill="#2C3E50" rx="7"/>
+  <rect x="15" y="463" width="870" height="15" fill="#2C3E50"/>
+  <text x="450" y="468" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Algorithm Summary</text>
+  <line x1="15" y1="478" x2="885" y2="478" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="478" width="870" height="25" fill="#ECF0F1"/>
+  <text x="200" y="495" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+  <text x="500" y="495" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+  <text x="750" y="495" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+  <line x1="15" y1="503" x2="885" y2="503" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="503" width="870" height="24" fill="#EAFAF1"/>
+  <text x="200" y="519" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Multi-Source BFS ⭐ (only approach)</text>
+  <text x="500" y="519" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(M×N)</text>
+  <text x="750" y="519" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(M×N)</text>
+  <line x1="15" y1="527" x2="885" y2="527" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="527" width="870" height="21" fill="#F8F9FA"/>
+  <text x="450" y="542" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">Why BFS? DFS can't track simultaneous spread from multiple sources. BFS level = time elapsed.</text>
+  <line x1="370" y1="478" x2="370" y2="548" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="620" y1="478" x2="620" y2="548" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

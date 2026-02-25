@@ -1,0 +1,100 @@
+<svg width="900" height="575" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="575" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Check if a Linked List is a Palindrome</text>
+  <rect x="800" y="12" width="82" height="28" fill="#F39C12" rx="14"/>
+  <text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">1→2→3→2→1 → true (palindrome)</text>
+  <text x="370" y="81" font-family="Arial" font-size="12" fill="#555">|</text>
+  <text x="385" y="81" font-family="Arial" font-size="12" fill="#555">1→2→3→4 → false (not palindrome)</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">List reads the same forwards and backwards. Key insight: compare first half with reversed second half.</text>
+
+  <!-- Approach 1: ArrayList -->
+  <rect x="15" y="115" width="390" height="330" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="390" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="390" height="15" fill="#E74C3C"/>
+  <text x="210" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: ArrayList (Brute Force)</text>
+  <text x="210" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(n) time | O(n) space</text>
+
+  <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Copy values to array, check palindrome:</text>
+  <rect x="30" y="184" width="360" height="72" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Traverse list → ArrayList [1, 2, 3, 2, 1]</text>
+  <text x="210" y="215" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Two pointer: left=0, right=4</text>
+  <text x="210" y="230" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">1==1 ✓, 2==2 ✓, mid → palindrome!</text>
+  <text x="210" y="248" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">Return true ✓</text>
+
+  <text x="30" y="278" font-family="Arial" font-size="11" fill="#E74C3C">⚠ O(n) extra ArrayList for all values</text>
+  <text x="30" y="296" font-family="Arial" font-size="11" fill="#888">Simple and intuitive approach</text>
+  <text x="30" y="314" font-family="Arial" font-size="11" fill="#888">Linear space scales with list size</text>
+  <text x="30" y="332" font-family="Arial" font-size="11" fill="#888">Can we check in-place with O(1) space?</text>
+  <text x="30" y="350" font-family="Arial" font-size="11" fill="#888">Yes — reverse only the second half!</text>
+  <text x="30" y="368" font-family="Arial" font-size="11" fill="#888">Then compare both halves node by node</text>
+  <text x="30" y="386" font-family="Arial" font-size="11" fill="#888">Fast/slow pointer finds exact midpoint</text>
+  <text x="30" y="404" font-family="Arial" font-size="11" fill="#888">Optional: restore list after checking</text>
+  <text x="30" y="422" font-family="Arial" font-size="11" fill="#888">Saves n-/2 nodes of extra memory</text>
+
+  <!-- Evolution Arrow -->
+  <line x1="410" y1="268" x2="480" y2="268" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon points="480,263 492,268 480,273" fill="#7F8C8D"/>
+  <rect x="410" y="240" width="72" height="56" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
+  <text x="446" y="254" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Reverse</text>
+  <text x="446" y="266" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">2nd half</text>
+  <text x="446" y="278" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">in-place!</text>
+
+  <!-- Approach 2: Optimal -->
+  <rect x="492" y="115" width="393" height="330" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="492" y="115" width="393" height="40" fill="#27AE60" rx="7"/>
+  <rect x="492" y="140" width="393" height="15" fill="#27AE60"/>
+  <text x="688" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Reverse Second Half ⭐</text>
+  <text x="688" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(n) time | O(1) space</text>
+
+  <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">3-step in-place approach (1→2→3→2→1):</text>
+
+  <text x="505" y="198" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">Step 1 — Find middle (slow/fast):</text>
+  <rect x="505" y="204" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="219" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">slow=1step, fast=2steps → slow stops at node(3) (middle)</text>
+  <text x="686" y="231" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">while (fast.next != null &amp;&amp; fast.next.next != null)</text>
+
+  <text x="505" y="252" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">Step 2 — Reverse second half:</text>
+  <rect x="505" y="258" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="273" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">second = reverse(slow.next) → 1←2 (from 3's right)</text>
+  <text x="686" y="285" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">slow.next = null splits list: [1,2,3] | [2,1]→[1,2]</text>
+
+  <text x="505" y="306" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">Step 3 — Compare halves:</text>
+  <rect x="505" y="312" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="327" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">1==1 ✓, 2==2 ✓, secondHalf ends</text>
+  <text x="686" y="339" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">Return true — is a palindrome! ✓</text>
+
+  <text x="505" y="366" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">Only 3 pointer variables — O(1) space!</text>
+  <text x="505" y="384" font-family="Arial" font-size="11" fill="#888">slow/fast for middle, prev/curr for reverse</text>
+  <text x="505" y="402" font-family="Arial" font-size="11" fill="#888">Can restore original list by re-reversing</text>
+  <text x="505" y="420" font-family="Arial" font-size="11" fill="#888">Handles both odd and even length lists</text>
+  <text x="505" y="438" font-family="Arial" font-size="11" fill="#888">2 passes total: find middle + compare</text>
+
+  <!-- Complexity Table -->
+  <rect x="15" y="457" width="870" height="105" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+  <rect x="15" y="457" width="870" height="30" fill="#2C3E50" rx="7"/>
+  <rect x="15" y="472" width="870" height="15" fill="#2C3E50"/>
+  <text x="450" y="477" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+  <line x1="15" y1="487" x2="885" y2="487" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="487" width="870" height="25" fill="#ECF0F1"/>
+  <text x="200" y="504" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+  <text x="500" y="504" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+  <text x="750" y="504" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+  <line x1="15" y1="512" x2="885" y2="512" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="512" width="870" height="24" fill="#FDEDEC"/>
+  <text x="200" y="528" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">ArrayList (Brute Force)</text>
+  <text x="500" y="528" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(n)</text>
+  <text x="750" y="528" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n)</text>
+  <line x1="15" y1="536" x2="885" y2="536" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="536" width="870" height="24" fill="#EAFAF1"/>
+  <text x="200" y="552" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Reverse Second Half ⭐</text>
+  <text x="500" y="552" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n)</text>
+  <text x="750" y="552" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(1)</text>
+  <line x1="370" y1="487" x2="370" y2="560" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="620" y1="487" x2="620" y2="560" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

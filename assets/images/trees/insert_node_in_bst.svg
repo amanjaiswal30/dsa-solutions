@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#fff}
+  .prob{font:13px sans-serif;fill:#333;text-anchor:middle;dominant-baseline:middle}
+  .sec{font:bold 13px sans-serif;fill:#333}
+  .nd{fill:#ddeeff;stroke:#6699cc;stroke-width:2}
+  .edge{stroke:#999;stroke-width:2;fill:none}
+  .lbl{font:12px monospace;text-anchor:middle;dominant-baseline:middle}
+  .cmp{font:12px sans-serif;fill:#555}
+  .ins{font:12px sans-serif;fill:#666;font-style:italic}
+  .tbl{font:12px sans-serif;fill:#333}
+  @keyframes ndVisit0{0%,10%{fill:#ddeeff}20%,40%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit1{0%,20%{fill:#ddeeff}30%,50%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit2{0%,30%{fill:#ddeeff}40%,60%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit3{0%,40%{fill:#ddeeff}50%,70%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit4{0%,50%{fill:#ddeeff}60%,80%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes newNode{0%,70%{fill:#ddeeff;opacity:0}80%,100%{fill:#90ee90;stroke:#27AE60;opacity:1}}
+  @keyframes sl0{0%,15%{opacity:0}20%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl1{0%,25%{opacity:0}30%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl2{0%,35%{opacity:0}40%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl3{0%,45%{opacity:0}50%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl4{0%,55%{opacity:0}60%,90%{opacity:1}100%{opacity:0}}
+  .n0{animation:ndVisit0 5s infinite}
+  .n1{animation:ndVisit1 5s infinite}
+  .n2{animation:ndVisit2 5s infinite}
+  .n3{animation:ndVisit3 5s infinite}
+  .n4{animation:ndVisit4 5s infinite}
+  .newNd{animation:newNode 5s infinite}
+</style>
+<rect width="900" height="690" fill="#f8f9fa"/>
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="30" class="title" text-anchor="middle" dominant-baseline="middle">Insert Node into Binary Search Tree (BST)</text>
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="68" class="prob">BST: 4→{2→{1,3},7→{6,9}} | Insert 5 → 5 becomes left child of 6? No: 5 &lt; 7 go left, 5 &gt; 6 go right → 6.left? Wait: 5&lt;6 so 6.left=5</text>
+
+<!-- Approach 1 block -->
+<rect x="16" y="92" width="868" height="218" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="30" y="110" class="sec" fill="#fff">Approach 1: O(h) — Recursive BST Insert</text>
+<text x="38" y="138" class="cmp" fill="#c0392b">• if root==null: return new Node(val)</text>
+<text x="38" y="156" class="cmp" fill="#c0392b">• if val &lt; root.val: root.left = insert(root.left, val)</text>
+<text x="38" y="174" class="cmp" fill="#c0392b">• if val &gt; root.val: root.right = insert(root.right, val)</text>
+<text x="38" y="192" class="cmp" fill="#c0392b">• return root</text>
+
+<!-- BST before insert -->
+<text x="360" y="126" class="cmp" fill="#c0392b" font-weight="bold">Insert 5:</text>
+<!-- Edges -->
+<line x1="540" y1="155" x2="480" y2="200" class="edge"/>
+<line x1="540" y1="155" x2="600" y2="200" class="edge"/>
+<line x1="480" y1="200" x2="455" y2="245" class="edge"/>
+<line x1="480" y1="200" x2="505" y2="245" class="edge"/>
+<line x1="600" y1="200" x2="570" y2="245" class="edge"/>
+<line x1="600" y1="200" x2="630" y2="245" class="edge"/>
+<!-- Compare path for inserting 5 -->
+<line x1="540" y1="155" x2="600" y2="200" stroke="#E74C3C" stroke-width="3" stroke-dasharray="5,3"/>
+<line x1="600" y1="200" x2="570" y2="245" stroke="#E74C3C" stroke-width="3" stroke-dasharray="5,3"/>
+<!-- Nodes -->
+<circle cx="540" cy="155" r="22" class="nd n0"/>
+<text x="540" y="155" class="lbl">4</text>
+<circle cx="480" cy="200" r="22" class="nd"/>
+<text x="480" y="200" class="lbl">2</text>
+<circle cx="600" cy="200" r="22" class="nd n1"/>
+<text x="600" y="200" class="lbl">7</text>
+<circle cx="455" cy="245" r="22" class="nd"/>
+<text x="455" y="245" class="lbl">1</text>
+<circle cx="505" cy="245" r="22" class="nd"/>
+<text x="505" y="245" class="lbl">3</text>
+<circle cx="570" cy="245" r="22" class="nd n2"/>
+<text x="570" y="245" class="lbl">6</text>
+<circle cx="630" cy="245" r="22" class="nd"/>
+<text x="630" y="245" class="lbl">9</text>
+
+<!-- Decision labels -->
+<text x="360" y="158" class="cmp" fill="#c0392b" style="animation:sl0 5s infinite">5&gt;4 → go right</text>
+<text x="360" y="178" class="cmp" fill="#c0392b" style="animation:sl1 5s infinite">5&lt;7 → go left</text>
+<text x="360" y="198" class="cmp" fill="#c0392b" style="animation:sl2 5s infinite">5&lt;6 → go left</text>
+<text x="360" y="218" class="cmp" fill="#27AE60" font-weight="bold" style="animation:sl3 5s infinite">6.left==null → insert 5!</text>
+
+<!-- New node -->
+<line x1="570" y1="245" x2="545" y2="285" class="edge" style="animation:newNode 5s infinite"/>
+<circle cx="545" cy="285" r="22" class="newNd"/>
+<text x="545" y="285" class="lbl" style="animation:newNode 5s infinite">5</text>
+
+<!-- Evolution arrow -->
+<line x1="450" y1="316" x2="450" y2="340" stroke="#f0c040" stroke-width="2"/>
+<polygon points="450,348 444,336 456,336" fill="#f0c040"/>
+<rect x="80" y="310" width="740" height="32" fill="#fffde7" stroke="#f0c040" stroke-width="1.5" rx="6"/>
+<text x="450" y="328" class="ins" text-anchor="middle" dominant-baseline="middle">Key Insight: Both O(h); iterative avoids stack overhead for very deep trees; same logic with explicit while loop</text>
+
+<!-- Approach 2 block -->
+<rect x="16" y="348" width="868" height="214" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="348" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="362" width="868" height="14" fill="#27AE60"/>
+<text x="30" y="366" class="sec" fill="#fff">Approach 2: O(h) — Iterative Insert with Parent Pointer Tracking</text>
+
+<!-- Iterative pseudocode -->
+<rect x="30" y="380" width="380" height="115" fill="#e8ffe8" stroke="#27AE60" rx="4"/>
+<text x="40" y="398" class="cmp" font-family="monospace" fill="#27AE60">curr = root, parent = null</text>
+<text x="40" y="416" class="cmp" font-family="monospace">while (curr != null):</text>
+<text x="50" y="434" class="cmp" font-family="monospace">  parent = curr</text>
+<text x="50" y="452" class="cmp" font-family="monospace">  if val &lt; curr.val: curr=curr.left</text>
+<text x="50" y="470" class="cmp" font-family="monospace">  else: curr = curr.right</text>
+<text x="40" y="488" class="cmp" font-family="monospace" fill="#27AE60">attach new node to parent</text>
+
+<!-- BST with iterative path -->
+<line x1="680" y1="390" x2="630" y2="430" class="edge"/>
+<line x1="680" y1="390" x2="750" y2="430" class="edge"/>
+<line x1="630" y1="430" x2="608" y2="468" class="edge"/>
+<line x1="630" y1="430" x2="652" y2="468" class="edge"/>
+<line x1="750" y1="430" x2="726" y2="468" class="edge"/>
+<line x1="750" y1="430" x2="774" y2="468" class="edge"/>
+<line x1="680" y1="390" x2="750" y2="430" stroke="#27AE60" stroke-width="3" stroke-dasharray="4,2"/>
+<line x1="750" y1="430" x2="726" y2="468" stroke="#27AE60" stroke-width="3" stroke-dasharray="4,2"/>
+<circle cx="680" cy="390" r="22" class="nd n0"/>
+<text x="680" y="390" class="lbl">4</text>
+<circle cx="630" cy="430" r="22" class="nd"/>
+<text x="630" y="430" class="lbl">2</text>
+<circle cx="750" cy="430" r="22" class="nd n1"/>
+<text x="750" y="430" class="lbl">7</text>
+<circle cx="608" cy="468" r="22" class="nd"/>
+<text x="608" y="468" class="lbl">1</text>
+<circle cx="652" cy="468" r="22" class="nd"/>
+<text x="652" y="468" class="lbl">3</text>
+<circle cx="726" cy="468" r="22" class="nd n2"/>
+<text x="726" y="468" class="lbl">6</text>
+<circle cx="774" cy="468" r="22" class="nd"/>
+<text x="774" y="468" class="lbl">9</text>
+<line x1="726" y1="468" x2="706" y2="505" class="edge" style="animation:newNode 5s infinite"/>
+<circle cx="706" cy="505" r="22" class="newNd"/>
+<text x="706" y="505" class="lbl" style="animation:newNode 5s infinite">5</text>
+
+<!-- Complexity table -->
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="4"/>
+<rect x="16" y="578" width="868" height="24" fill="#f0f0f0" rx="4"/>
+<rect x="16" y="590" width="868" height="12" fill="#f0f0f0"/>
+<text x="200" y="592" class="tbl" text-anchor="middle" font-weight="bold">Approach</text>
+<text x="500" y="592" class="tbl" text-anchor="middle" font-weight="bold">Time</text>
+<text x="720" y="592" class="tbl" text-anchor="middle" font-weight="bold">Space</text>
+<rect x="16" y="602" width="868" height="24" fill="#fff5f5"/>
+<text x="200" y="616" class="tbl" text-anchor="middle">Recursive BST insert</text>
+<text x="500" y="616" class="tbl" text-anchor="middle">O(h)</text>
+<text x="720" y="616" class="tbl" text-anchor="middle">O(h) call stack</text>
+<rect x="16" y="626" width="868" height="24" fill="#f0fff0"/>
+<text x="200" y="640" class="tbl" text-anchor="middle">Iterative with parent ptr</text>
+<text x="500" y="640" class="tbl" text-anchor="middle">O(h)</text>
+<text x="720" y="640" class="tbl" text-anchor="middle">O(1) space</text>
+<rect x="16" y="650" width="868" height="26" fill="#fff8e1"/>
+<text x="450" y="664" class="tbl" text-anchor="middle" fill="#e65100">h=O(log n) for balanced BST, O(n) worst case; always insert as a new LEAF node</text>
+</svg>

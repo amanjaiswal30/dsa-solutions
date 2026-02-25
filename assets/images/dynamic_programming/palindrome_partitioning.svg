@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#1a1a2e}
+  .prob{font:13px sans-serif;fill:#444}
+  .sec{font:bold 13px sans-serif}
+  .arr{fill:#ddeeff;stroke:#6699cc;stroke-width:1.5}
+  .lbl{font:11px monospace;fill:#333;text-anchor:middle}
+  .idx{font:10px sans-serif;fill:#888;text-anchor:middle}
+  .evol{fill:none;stroke:#888;stroke-width:1.5;stroke-dasharray:5,3}
+  .ins{font:11px sans-serif;fill:#555;font-style:italic}
+  .cmp{font:11px sans-serif;fill:#333}
+  .tbl{font:11px sans-serif;fill:#333;text-anchor:middle}
+  .cell{stroke-width:1.2}
+
+  @keyframes sl0{0%,18%{opacity:1}19%,100%{opacity:0}}
+  @keyframes sl1{0%,18%{opacity:0}19%,36%{opacity:1}37%,100%{opacity:0}}
+  @keyframes sl2{0%,36%{opacity:0}37%,54%{opacity:1}55%,100%{opacity:0}}
+  @keyframes sl3{0%,54%{opacity:0}55%,72%{opacity:1}73%,100%{opacity:0}}
+  @keyframes sl4{0%,72%{opacity:0}73%,100%{opacity:1}}
+  .sl0{animation:sl0 8s ease-in-out infinite}
+  .sl1{animation:sl1 8s ease-in-out infinite}
+  .sl2{animation:sl2 8s ease-in-out infinite}
+  .sl3{animation:sl3 8s ease-in-out infinite}
+  .sl4{animation:sl4 8s ease-in-out infinite}
+
+  @keyframes pal_hl{0%,30%{fill:#ddeeff}31%,100%{fill:#ccffcc}}
+  .phl{animation:pal_hl 8s ease-in-out infinite}
+  @keyframes dp_hl{0%,55%{fill:#fff}56%,100%{fill:#ccffcc}}
+  .dhl{animation:dp_hl 8s ease-in-out infinite}
+</style>
+
+<rect width="900" height="690" fill="#f8f9fa" rx="8"/>
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="32" text-anchor="middle" class="title" fill="white">Palindrome Partitioning (Min Cuts)</text>
+
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="72" text-anchor="middle" class="prob">s="aab" → min cuts=1  (split "aa"|"b" = 1 cut)</text>
+
+<!-- APPROACH 1 -->
+<rect x="16" y="92" width="868" height="218" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="32" y="111" class="sec" fill="white">Approach 1: Recursion — O(n·2ⁿ)</text>
+
+<text x="32" y="144" class="cmp">s = "a a b"</text>
+<g transform="translate(32,152)">
+  <rect class="arr phl" x="0" y="0" width="42" height="36"/><text x="21" y="23" class="lbl">a</text><text x="21" y="47" class="idx">0</text>
+  <rect class="arr phl" x="48" y="0" width="42" height="36"/><text x="69" y="23" class="lbl">a</text><text x="69" y="47" class="idx">1</text>
+  <rect class="arr" x="96" y="0" width="42" height="36"/><text x="117" y="23" class="lbl">b</text><text x="117" y="47" class="idx">2</text>
+</g>
+
+<text x="220" y="155" class="cmp">Recursion tree:</text>
+<text x="220" y="173" class="cmp" fill="#E74C3C">minCut("aab")</text>
+<text x="220" y="189" class="cmp">├─ "a" pal → 1+minCut("ab")</text>
+<text x="220" y="205" class="cmp">│  ├─ "a" pal → 1+minCut("b") = 1+0=1</text>
+<text x="220" y="221" class="cmp">│  └─ "ab" not pal → skip</text>
+<text x="220" y="237" class="cmp" fill="#27AE60">└─ "aa" pal → 1+minCut("b") = 1+0=1</text>
+<text x="220" y="253" class="cmp">└─ "aab" not pal</text>
+
+<text x="32" y="215" class="cmp sl0">① Try every prefix of remaining string</text>
+<text x="32" y="230" class="cmp sl0">   If palindrome, recurse on suffix</text>
+<text x="32" y="215" class="cmp sl1">② minCut("") = 0 (base case)</text>
+<text x="32" y="215" class="cmp sl2">③ "aa" is palindrome: 1+minCut("b")=1</text>
+<text x="32" y="215" class="cmp sl3">④ Checking all splits: O(n) per level</text>
+<text x="32" y="215" class="cmp sl4">⑤ Total O(n·2ⁿ) without memoization</text>
+
+<!-- Evolution arrow -->
+<line x1="450" y1="310" x2="450" y2="328" class="evol"/>
+<polygon points="450,329 444,317 456,317" fill="#888"/>
+<rect x="270" y="313" width="360" height="28" fill="#fffde7" stroke="#f0c040" stroke-width="1" rx="4"/>
+<text x="450" y="331" text-anchor="middle" class="ins">Precompute isPal[i][j] + dp[i] in O(n²)</text>
+
+<!-- APPROACH 2: DP -->
+<rect x="16" y="346" width="868" height="216" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="346" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="360" width="868" height="14" fill="#27AE60"/>
+<text x="32" y="365" class="sec" fill="white">Approach 2: 2D Palindrome Check + 1D DP — O(n²) time, O(n²) space</text>
+
+<text x="32" y="396" class="cmp">Step 1: Precompute isPal[i][j] for all substrings:</text>
+<!-- isPal table 3x3 for "aab" -->
+<g transform="translate(32,408)">
+  <text x="25" y="14" class="cmp" text-anchor="middle"></text>
+  <text x="55" y="14" class="cmp" text-anchor="middle">a(0)</text>
+  <text x="85" y="14" class="cmp" text-anchor="middle">a(1)</text>
+  <text x="115" y="14" class="cmp" text-anchor="middle">b(2)</text>
+  <text x="10" y="38" class="cmp" text-anchor="middle">a(0)</text>
+  <text x="10" y="68" class="cmp" text-anchor="middle">a(1)</text>
+  <text x="10" y="98" class="cmp" text-anchor="middle">b(2)</text>
+
+  <!-- isPal values -->
+  <rect class="dhl cell" x="40" y="20" width="28" height="28" fill="#fff" stroke="#aaa"/>
+  <text x="54" y="38" class="lbl" fill="#27AE60">T</text><!-- 0,0 -->
+  <rect class="dhl cell" x="70" y="20" width="28" height="28" fill="#fff" stroke="#aaa"/>
+  <text x="84" y="38" class="lbl" fill="#27AE60">T</text><!-- 0,1 "aa" -->
+  <rect x="100" y="20" width="28" height="28" fill="#fff" stroke="#aaa" class="cell"/>
+  <text x="114" y="38" class="lbl">F</text><!-- 0,2 "aab" -->
+
+  <rect x="40" y="50" width="28" height="28" fill="#fff" stroke="#aaa" class="cell"/>
+  <text x="54" y="68" class="lbl">-</text>
+  <rect class="dhl cell" x="70" y="50" width="28" height="28" fill="#fff" stroke="#aaa"/>
+  <text x="84" y="68" class="lbl" fill="#27AE60">T</text><!-- 1,1 -->
+  <rect x="100" y="50" width="28" height="28" fill="#fff" stroke="#aaa" class="cell"/>
+  <text x="114" y="68" class="lbl">F</text><!-- 1,2 "ab" -->
+
+  <rect x="40" y="80" width="28" height="28" fill="#fff" stroke="#aaa" class="cell"/>
+  <text x="54" y="98" class="lbl">-</text>
+  <rect x="70" y="80" width="28" height="28" fill="#fff" stroke="#aaa" class="cell"/>
+  <text x="84" y="98" class="lbl">-</text>
+  <rect class="dhl cell" x="100" y="80" width="28" height="28" fill="#fff" stroke="#aaa"/>
+  <text x="114" y="98" class="lbl" fill="#27AE60">T</text><!-- 2,2 -->
+</g>
+
+<!-- dp array -->
+<text x="200" y="396" class="cmp">Step 2: dp[i] = min cuts for s[0..i]:</text>
+<g transform="translate(200,408)">
+  <text x="27" y="14" class="cmp" text-anchor="middle">i:</text>
+  <text x="60" y="14" class="cmp" text-anchor="middle">0</text>
+  <text x="100" y="14" class="cmp" text-anchor="middle">1</text>
+  <text x="140" y="14" class="cmp" text-anchor="middle">2</text>
+
+  <rect class="dhl cell" x="42" y="20" width="36" height="42" fill="#fff" stroke="#aaa"/>
+  <text x="60" y="38" class="lbl">dp=0</text>
+  <text x="60" y="54" class="lbl" font-size="9">"a" pal</text>
+
+  <rect class="dhl cell" x="82" y="20" width="36" height="42" fill="#fff" stroke="#aaa"/>
+  <text x="100" y="38" class="lbl">dp=0</text>
+  <text x="100" y="54" class="lbl" font-size="9">"aa" pal</text>
+
+  <rect class="dhl cell" x="122" y="20" width="36" height="42" fill="#fff" stroke="#27AE60" stroke-width="2"/>
+  <text x="140" y="38" class="lbl" fill="#27AE60" font-weight="bold">dp=1</text>
+  <text x="140" y="54" class="lbl" font-size="9">min cut=1</text>
+</g>
+
+<!-- Steps right -->
+<text x="370" y="418" class="cmp sl0">① isPal[i][j]: single char=T, expand from center</text>
+<text x="370" y="433" class="cmp sl0">   isPal[i][j] = (s[i]==s[j]) &amp;&amp; isPal[i+1][j-1]</text>
+<text x="370" y="418" class="cmp sl1">② dp[i] = 0 if s[0..i] is palindrome</text>
+<text x="370" y="433" class="cmp sl1">   else min over j where isPal[j][i]: dp[j-1]+1</text>
+<text x="370" y="418" class="cmp sl2">③ dp[0]='a' palindrome → 0 cuts</text>
+<text x="370" y="418" class="cmp sl3">④ dp[1]='aa' palindrome → 0 cuts</text>
+<text x="370" y="418" class="cmp sl4" fill="#27AE60">⑤ dp[2]: s[0..2]="aab" not pal</text>
+<text x="370" y="433" class="cmp sl4" fill="#27AE60">   min(dp[0]+1,dp[1]+1)=min(1,1)=1 ✓</text>
+
+<!-- Insight box -->
+<rect x="370" y="460" width="490" height="96" fill="#fff9e6" stroke="#F39C12" stroke-width="1.5" rx="5"/>
+<text x="386" y="477" class="cmp" font-weight="bold" fill="#F39C12">O(n) Space Optimization (Expand Around Center):</text>
+<text x="386" y="493" class="cmp">Instead of isPal table, use center expansion:</text>
+<text x="386" y="509" class="cmp">For each center (c): expand while s[l]==s[r]</text>
+<text x="386" y="525" class="cmp">dp[r] = min(dp[r], dp[l-1]+1)  during expansion</text>
+<text x="386" y="545" class="cmp" fill="#27AE60">O(n²) time, O(n) space — only dp[] needed</text>
+
+<!-- Complexity table -->
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="6"/>
+<rect x="16" y="578" width="868" height="26" fill="#f0f0f0" stroke="#ddd" stroke-width="1" rx="6"/>
+<text x="182" y="595" class="tbl" font-weight="bold">Approach</text>
+<text x="430" y="595" class="tbl" font-weight="bold">Time</text>
+<text x="610" y="595" class="tbl" font-weight="bold">Space</text>
+<text x="790" y="595" class="tbl" font-weight="bold">Recommended</text>
+<rect x="16" y="604" width="868" height="24" fill="#fff5f5"/>
+<text x="182" y="620" class="tbl">Recursion</text>
+<text x="430" y="620" class="tbl">O(n·2ⁿ)</text>
+<text x="610" y="620" class="tbl">O(n)</text>
+<text x="790" y="620" class="tbl">✗ TLE</text>
+<rect x="16" y="628" width="868" height="24" fill="#f0fff0"/>
+<text x="182" y="644" class="tbl">isPal + 1D DP</text>
+<text x="430" y="644" class="tbl">O(n²)</text>
+<text x="610" y="644" class="tbl">O(n)</text>
+<text x="790" y="644" class="tbl">✓ Optimal</text>
+<line x1="16" y1="652" x2="884" y2="652" stroke="#ddd" stroke-width="1"/>
+<text x="182" y="668" class="tbl" fill="#27AE60" font-weight="bold">▶ dp[i]=0 if s[0..i] palindrome, else min(dp[j-1]+1) where s[j..i] palindrome</text>
+</svg>

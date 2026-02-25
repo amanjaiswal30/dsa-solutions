@@ -1,5 +1,8 @@
 # Partition Equal Subset Sum – Detailed Explanation
 
+![](../../assets/images/dynamic_programming/partition_equal_subset_sum.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

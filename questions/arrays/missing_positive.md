@@ -1,5 +1,8 @@
 # First Missing Positive
 
+![](../../assets/images/arrays/missing_positive.svg)
+
+
 **Difficulty:** Hard 🔥
 
 ---

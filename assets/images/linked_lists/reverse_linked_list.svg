@@ -1,0 +1,126 @@
+<svg width="900" height="590" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="590" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="19" font-weight="bold" fill="white">Reverse a Linked List</text>
+  <rect x="790" y="12" width="92" height="28" fill="#27AE60" rx="14"/>
+  <text x="836" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Easy</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">head = 1→2→3→4→5</text>
+  <text x="300" y="81" font-family="Arial" font-size="12" fill="#555">→</text>
+  <text x="320" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#27AE60">Output: 5→4→3→2→1</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Reverse all pointer directions: each node.next points to previous node instead of next</text>
+
+  <!-- === APPROACH 1: Iterative === -->
+  <rect x="15" y="115" width="390" height="350" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="390" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="390" height="15" fill="#E74C3C"/>
+  <text x="210" y="140" font-family="Arial" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Iterative (3 Pointers)</text>
+  <text x="210" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(n) time | O(1) space</text>
+
+  <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">prev, curr, next — step by step:</text>
+
+  <!-- Step diagrams -->
+  <!-- Initial state -->
+  <text x="30" y="198" font-family="Arial" font-size="11" fill="#666">Initial: prev=null, curr=1</text>
+  <!-- Node boxes -->
+  <rect x="30" y="203" width="30" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="45" y="219" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">1</text>
+  <line x1="60" y1="215" x2="78" y2="215" stroke="#E74C3C" stroke-width="1.5"/>
+  <polygon points="78,211 86,215 78,219" fill="#E74C3C"/>
+  <rect x="87" y="203" width="30" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="102" y="219" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">2</text>
+  <text x="140" y="219" font-family="Arial" font-size="10" fill="#888">→ 3 → 4 → 5 → null</text>
+  <text x="30" y="236" font-family="Arial" font-size="9" fill="#888">↑ curr  ↑ next</text>
+
+  <!-- Step 1 -->
+  <text x="30" y="258" font-family="Arial" font-size="11" fill="#555">Step 1: next=curr.next=2, curr.next=prev=null, prev=curr=1, curr=next=2</text>
+  <rect x="30" y="264" width="30" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="45" y="280" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">1</text>
+  <line x1="42" y1="288" x2="42" y2="298" stroke="#888" stroke-width="1.5"/>
+  <text x="45" y="308" font-family="Arial" font-size="9" fill="#888" text-anchor="middle">→null</text>
+  <text x="100" y="280" font-family="Arial" font-size="10" fill="#888">prev=1, curr=2</text>
+
+  <!-- Step 2 -->
+  <text x="30" y="326" font-family="Arial" font-size="11" fill="#555">Step 2: next=3, curr(2).next=prev(1), prev=2, curr=3</text>
+  <rect x="30" y="332" width="30" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="45" y="348" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">2</text>
+  <line x1="60" y1="344" x2="78" y2="344" stroke="#27AE60" stroke-width="1.5"/>
+  <polygon points="62,340 54,344 62,348" fill="#27AE60"/>
+  <rect x="30" y="332" width="30" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <rect x="30" y="360" width="30" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="45" y="376" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">1</text>
+  <text x="100" y="348" font-family="Arial" font-size="10" fill="#888">2→1, prev=2, curr=3</text>
+
+  <text x="30" y="406" font-family="Arial" font-size="11" fill="#888">... continue until curr=null</text>
+  <text x="30" y="424" font-family="Arial" font-size="11" fill="#27AE60">Return prev (new head = 5)</text>
+  <text x="30" y="444" font-family="Arial" font-size="11" fill="#888">5→4→3→2→1→null ✓</text>
+
+  <!-- Evolution Arrow -->
+  <line x1="410" y1="290" x2="480" y2="290" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon points="480,285 492,290 480,295" fill="#7F8C8D"/>
+  <rect x="410" y="262" width="72" height="56" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
+  <text x="446" y="277" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Trust</text>
+  <text x="446" y="289" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">recursive</text>
+  <text x="446" y="301" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">faith!</text>
+
+  <!-- === APPROACH 2: Recursive === -->
+  <rect x="492" y="115" width="393" height="350" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="492" y="115" width="393" height="40" fill="#27AE60" rx="7"/>
+  <rect x="492" y="140" width="393" height="15" fill="#27AE60"/>
+  <text x="688" y="140" font-family="Arial" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Recursive</text>
+  <text x="688" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(n) time | O(n) space (call stack)</text>
+
+  <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Recurse to end, reverse on way back:</text>
+
+  <text x="505" y="198" font-family="Arial" font-size="11" fill="#555">Call stack builds up:</text>
+  <rect x="505" y="204" width="362" height="22" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="219" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">reverse(1) → calls reverse(2)</text>
+  <rect x="525" y="230" width="340" height="22" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="695" y="245" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">reverse(2) → calls reverse(3)</text>
+  <rect x="545" y="256" width="320" height="22" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="705" y="271" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">reverse(3) → calls reverse(4)</text>
+  <rect x="565" y="282" width="300" height="22" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="715" y="297" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">reverse(4) → calls reverse(5)</text>
+  <rect x="585" y="308" width="280" height="22" fill="#82E0AA" stroke="#27AE60" rx="3"/>
+  <text x="725" y="323" font-family="Arial" font-size="10" fill="#1E5631" text-anchor="middle">reverse(5): base case! return 5 (newHead)</text>
+
+  <text x="505" y="352" font-family="Arial" font-size="11" fill="#555">On return, each level executes:</text>
+  <rect x="505" y="358" width="362" height="48" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="374" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">head.next.next = head  (4.next.next = 4 → 5's next = 4)</text>
+  <text x="686" y="390" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">head.next = null       (4.next = null)</text>
+  <text x="686" y="403" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">return newHead (propagate 5 upward)</text>
+
+  <text x="505" y="438" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">Final: 5→4→3→2→1→null ✓</text>
+  <text x="505" y="455" font-family="Arial" font-size="11" fill="#888">O(n) call stack depth</text>
+  <text x="505" y="473" font-family="Arial" font-size="11" fill="#888">Elegant but uses O(n) space</text>
+
+  <!-- Complexity Table -->
+  <rect x="15" y="478" width="870" height="102" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+  <rect x="15" y="478" width="870" height="30" fill="#2C3E50" rx="7"/>
+  <rect x="15" y="493" width="870" height="15" fill="#2C3E50"/>
+  <text x="450" y="498" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+
+  <line x1="15" y1="508" x2="885" y2="508" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="508" width="870" height="23" fill="#ECF0F1"/>
+  <text x="200" y="524" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+  <text x="500" y="524" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+  <text x="750" y="524" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+
+  <line x1="15" y1="531" x2="885" y2="531" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="531" width="870" height="24" fill="#FDEDEC"/>
+  <text x="200" y="547" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Iterative (3-pointer) ⭐</text>
+  <text x="500" y="547" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(n)</text>
+  <text x="750" y="547" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(1)</text>
+
+  <line x1="15" y1="555" x2="885" y2="555" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="555" width="870" height="24" fill="#EAFAF1"/>
+  <text x="200" y="571" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Recursive</text>
+  <text x="500" y="571" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(n)</text>
+  <text x="750" y="571" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n) stack</text>
+
+  <line x1="370" y1="508" x2="370" y2="579" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="620" y1="508" x2="620" y2="579" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

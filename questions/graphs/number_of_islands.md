@@ -1,5 +1,8 @@
 # Number of Islands
 
+![](../../assets/images/graphs/number_of_islands.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

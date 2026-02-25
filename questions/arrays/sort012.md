@@ -1,5 +1,8 @@
 # Sort an Array of 0s, 1s, and 2s
 
+![](../../assets/images/arrays/sort012.svg)
+
+
 **Difficulty:** Easy-Medium ⚡
 
 ---

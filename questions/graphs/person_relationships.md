@@ -1,5 +1,8 @@
 # 🔹 Problem: Person Relationship – Count Number of Groups
 
+![](../../assets/images/graphs/person_relationships.svg)
+
+
 **Difficulty:** Medium 🌿
 
 ---

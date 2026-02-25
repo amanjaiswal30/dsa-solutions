@@ -1,5 +1,8 @@
 # Next Permutation
 
+![](../../assets/images/arrays/next_permutation.svg)
+
+
 **Difficulty:** Medium-Hard 🔥
 
 ---

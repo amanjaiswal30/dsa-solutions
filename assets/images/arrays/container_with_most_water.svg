@@ -1,0 +1,137 @@
+<svg width="900" height="690" xmlns="http://www.w3.org/2000/svg">
+<style>
+/* Approach 1: Brute - i fixed, j sweeps */
+@keyframes brute_i{0%,40%{transform:translateX(0)}45%,100%{transform:translateX(48px)}}
+.bi{animation:brute_i 6s ease-in-out infinite}
+@keyframes brute_j{0%,8%{transform:translateX(48px)}18%,25%{transform:translateX(96px)}35%,42%{transform:translateX(144px)}52%,60%{transform:translateX(192px)}70%,78%{transform:translateX(240px)}88%,100%{transform:translateX(48px)}}
+.bj{animation:brute_j 6s ease-in-out infinite}
+/* Approach 2: Two Pointer */
+@keyframes left_ptr{0%,8%{transform:translateX(0)}25%,33%{transform:translateX(48px)}50%,58%{transform:translateX(96px)}75%,100%{transform:translateX(0)}}
+.lptr{animation:left_ptr 7s ease-in-out infinite}
+@keyframes right_ptr{0%,8%{transform:translateX(240px)}25%,33%{transform:translateX(192px)}50%,58%{transform:translateX(144px)}75%,100%{transform:translateX(240px)}}
+.rptr{animation:right_ptr 7s ease-in-out infinite}
+@keyframes tp_l0{0%,8%{opacity:1}25%,100%{opacity:0}}
+@keyframes tp_l1{0%,24%{opacity:0}25%,50%{opacity:1}51%,100%{opacity:0}}
+@keyframes tp_l2{0%,49%{opacity:0}50%,75%{opacity:1}76%,100%{opacity:0}}
+@keyframes tp_l3{0%,74%{opacity:0}75%,98%{opacity:1}99%,100%{opacity:0}}
+.tl0{animation:tp_l0 7s ease-in-out infinite}
+.tl1{animation:tp_l1 7s ease-in-out infinite}
+.tl2{animation:tp_l2 7s ease-in-out infinite}
+.tl3{animation:tp_l3 7s ease-in-out infinite}
+</style>
+<rect width="900" height="690" fill="#F8F9FA" rx="10"/>
+<rect width="900" height="55" fill="#2C3E50" rx="10"/>
+<rect y="45" width="900" height="10" fill="#2C3E50"/>
+<text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Container With Most Water</text>
+<rect x="820" y="12" width="62" height="28" fill="#F39C12" rx="14"/>
+<text x="851" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+<rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+<text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+<text x="105" y="81" font-family="Arial" font-size="12" fill="#555">height=[1,8,6,2,5,4] → max water = 16 (between index 1 and 5: min(8,4)×4=16)</text>
+<text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Water = min(height[L],height[R]) × (R-L). Two pointers inward: always move the shorter line.</text>
+
+<!-- APPROACH 1: Brute -->
+<rect x="15" y="115" width="870" height="210" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+<rect x="15" y="115" width="870" height="40" fill="#E74C3C" rx="7"/>
+<rect x="15" y="140" width="870" height="15" fill="#E74C3C"/>
+<text x="450" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Brute Force — O(n²) time, O(1) space</text>
+<text x="450" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">Check every pair (i,j): area = min(h[i],h[j]) × (j-i), track maximum</text>
+<!-- Height bars [1,8,6,2,5,4], 6 elements, start_x=309 -->
+<!-- Visual height bars below boxes -->
+<text x="170" y="200" font-family="Arial" font-size="11" fill="#555">Heights:</text>
+<!-- Height boxes showing values -->
+<rect x="309" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="330" y="204" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="357" y="178" width="42" height="42" fill="#FDEBD0" stroke="#E67E22" stroke-width="3" rx="3"/>
+<text x="378" y="204" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">8</text>
+<rect x="405" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="426" y="204" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">6</text>
+<rect x="453" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="474" y="204" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="501" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="522" y="204" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">5</text>
+<rect x="549" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="570" y="204" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">4</text>
+<!-- i pointer (fixed, then moves) -->
+<g class="bi" transform="translate(309,178)">
+  <polygon points="-7,-14 7,-14 0,-4" fill="#E67E22"/>
+  <text x="0" y="-16" font-family="Arial" font-size="9" fill="#E67E22" text-anchor="middle">i</text>
+</g>
+<!-- j pointer sweeps right of i -->
+<g class="bj" transform="translate(309,178)">
+  <polygon points="-7,55 7,55 0,46" fill="#9B59B6"/>
+  <text x="0" y="70" font-family="Arial" font-size="9" fill="#9B59B6" text-anchor="middle">j</text>
+</g>
+<text x="450" y="270" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">area = min(h[i],h[j]) × (j-i). Try all n²/2 pairs.</text>
+<text x="450" y="287" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Example: i=1(h=8), j=5(h=4): area=min(8,4)×4=16 → max so far.</text>
+<text x="450" y="304" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">O(n²) — TLE for large inputs. Can two pointers reduce to O(n)?</text>
+<text x="450" y="318" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Key insight: moving the taller pointer can never increase water — move shorter!</text>
+
+<!-- Arrow 1→2 -->
+<line x1="450" y1="325" x2="450" y2="362" stroke="#7F8C8D" stroke-width="2" stroke-dasharray="4,3"/>
+<polygon points="444,362 450,370 456,362" fill="#7F8C8D"/>
+<rect x="230" y="329" width="440" height="22" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+<text x="450" y="344" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">💡 Move shorter pointer inward → can only increase area!</text>
+
+<!-- APPROACH 2: Two Pointer -->
+<rect x="15" y="370" width="870" height="210" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+<rect x="15" y="370" width="870" height="40" fill="#27AE60" rx="7"/>
+<rect x="15" y="395" width="870" height="15" fill="#27AE60"/>
+<text x="450" y="395" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Two Pointers — O(n) time, O(1) space ⭐</text>
+<text x="450" y="408" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">L=0, R=n-1. Each step compute area; move pointer with smaller height inward.</text>
+<!-- Same array for two-pointer -->
+<rect x="309" y="428" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="330" y="454" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="357" y="428" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="378" y="454" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">8</text>
+<rect x="405" y="428" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="426" y="454" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">6</text>
+<rect x="453" y="428" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="474" y="454" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="501" y="428" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="522" y="454" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">5</text>
+<rect x="549" y="428" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="570" y="454" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">4</text>
+<!-- L pointer -->
+<g class="lptr" transform="translate(309,428)">
+  <polygon points="-7,-14 7,-14 0,-4" fill="#3498DB"/>
+  <text x="0" y="-16" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">L</text>
+</g>
+<!-- R pointer -->
+<g class="rptr" transform="translate(309,428)">
+  <polygon points="-7,55 7,55 0,46" fill="#9B59B6"/>
+  <text x="0" y="70" font-family="Arial" font-size="9" fill="#9B59B6" text-anchor="middle">R</text>
+</g>
+<!-- Step labels -->
+<text class="tl0" x="660" y="448" font-family="Arial" font-size="10" fill="#555">L=0,R=5: min(1,4)×5=5</text>
+<text class="tl1" x="660" y="448" font-family="Arial" font-size="10" fill="#555">L=1,R=5: min(8,4)×4=16!</text>
+<text class="tl2" x="660" y="448" font-family="Arial" font-size="10" fill="#555">L=1,R=4: min(8,5)×3=15</text>
+<text class="tl3" x="660" y="448" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold">max=16 at (1,5) ✓</text>
+<text x="450" y="510" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">Move L++ if h[L]≤h[R], else R--. One pass = O(n). Max water = 16 ✓</text>
+<text x="450" y="527" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Why move shorter? Moving taller can't help: water already bounded by shorter side.</text>
+<text x="450" y="544" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Moving shorter pointer may find a taller bar → potentially larger area.</text>
+<text x="450" y="561" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">O(1) extra space — optimal greedy approach!</text>
+
+<!-- Complexity Table -->
+<rect x="15" y="592" width="870" height="93" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+<rect x="15" y="592" width="870" height="30" fill="#2C3E50" rx="7"/>
+<rect x="15" y="607" width="870" height="15" fill="#2C3E50"/>
+<text x="450" y="612" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+<line x1="15" y1="622" x2="885" y2="622" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="622" width="870" height="23" fill="#ECF0F1"/>
+<text x="200" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+<text x="500" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+<text x="750" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+<line x1="15" y1="645" x2="885" y2="645" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="645" width="870" height="22" fill="#FDEDEC"/>
+<text x="200" y="660" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Brute Force</text>
+<text x="500" y="660" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n²)</text>
+<text x="750" y="660" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(1)</text>
+<line x1="15" y1="667" x2="885" y2="667" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="667" width="870" height="23" fill="#EAFAF1"/>
+<text x="200" y="683" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Two Pointers ⭐</text>
+<text x="500" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n)</text>
+<text x="750" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(1)</text>
+<line x1="370" y1="622" x2="370" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+<line x1="620" y1="622" x2="620" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

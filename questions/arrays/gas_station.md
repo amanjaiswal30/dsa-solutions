@@ -1,5 +1,8 @@
 # Gas Station Problem
 
+![](../../assets/images/arrays/gas_station.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

@@ -1,0 +1,81 @@
+<svg width="900" height="510" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="510" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="17" font-weight="bold" fill="white">Segregate Even and Odd Positioned Nodes in a Linked List</text>
+  <rect x="800" y="12" width="82" height="28" fill="#F39C12" rx="14"/>
+  <text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">1→2→3→4→5  (positions: 1,2,3,4,5)</text>
+  <text x="360" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#27AE60">→  1→3→5→2→4</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Group by POSITION (1-indexed). Odd positions first (1,3,5,...) then even positions (2,4,...). Preserve relative order.</text>
+
+  <!-- Single Optimal Approach -->
+  <rect x="15" y="115" width="870" height="280" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="15" y="115" width="870" height="40" fill="#27AE60" rx="7"/>
+  <rect x="15" y="140" width="870" height="15" fill="#27AE60"/>
+  <text x="450" y="140" font-family="Arial" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Optimal: Iterative Odd/Even Pointers ⭐</text>
+  <text x="450" y="153" font-family="Arial" font-size="11" fill="#D5F5E3" text-anchor="middle">O(n) time | O(1) space — rearrange pointers in-place, one traversal</text>
+
+  <!-- Left column: Steps -->
+  <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Initialize pointers:</text>
+  <rect x="30" y="184" width="400" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="230" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">odd = head (node 1, position 1)</text>
+  <text x="230" y="212" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">even = head.next (node 2); evenHead = even</text>
+
+  <text x="30" y="232" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Traverse (weave pointers alternately):</text>
+  <rect x="30" y="238" width="400" height="96" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="230" y="254" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Iter 1: odd.next=even.next(3); odd=3</text>
+  <text x="230" y="269" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">         even.next=odd.next(4);  even=4</text>
+  <text x="230" y="284" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">State: 1→3,  2→4,  5 alone → odd=3,even=4</text>
+  <text x="230" y="299" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Iter 2: odd.next=even.next(5); odd=5</text>
+  <text x="230" y="314" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">         even.next=odd.next(null); even=null</text>
+  <text x="230" y="329" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">even==null → STOP. odd chain: 1→3→5, even: 2→4</text>
+
+  <text x="30" y="354" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Connect: odd.next = evenHead:</text>
+  <rect x="30" y="360" width="400" height="20" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="230" y="374" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">odd.next = evenHead (node 2) → Result: 1→3→5→2→4 ✓</text>
+
+  <!-- Right column: Visual representation -->
+  <line x1="450" y1="165" x2="450" y2="385" stroke="#DEE2E6" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <text x="465" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Pointer evolution visual:</text>
+  <rect x="465" y="184" width="420" height="96" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="675" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Initial: [1]→[2]→[3]→[4]→[5]</text>
+  <text x="675" y="215" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">         odd↑   even↑</text>
+  <text x="675" y="232" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">After iter1: 1→3→?, 2→4→?</text>
+  <text x="675" y="247" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">              odd=3   even=4</text>
+  <text x="675" y="264" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">After iter2: 1→3→5, 2→4→null</text>
+  <text x="675" y="279" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">Connect: 1→3→5→2→4 ✓</text>
+
+  <text x="465" y="302" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Loop condition:</text>
+  <rect x="465" y="308" width="420" height="40" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="675" y="324" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">while (even != null &amp;&amp; even.next != null)</text>
+  <text x="675" y="339" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">Handles both odd and even length lists</text>
+
+  <text x="465" y="368" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">No extra nodes — rearranges pointers only!</text>
+  <text x="465" y="384" font-family="Arial" font-size="10" fill="#888">Compare to value segregation which uses dummy nodes</text>
+
+  <!-- Complexity Table -->
+  <rect x="15" y="407" width="870" height="93" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+  <rect x="15" y="407" width="870" height="30" fill="#2C3E50" rx="7"/>
+  <rect x="15" y="422" width="870" height="15" fill="#2C3E50"/>
+  <text x="450" y="427" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Analysis</text>
+  <line x1="15" y1="437" x2="885" y2="437" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="437" width="870" height="25" fill="#ECF0F1"/>
+  <text x="200" y="454" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+  <text x="500" y="454" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+  <text x="750" y="454" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+  <line x1="15" y1="462" x2="885" y2="462" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="462" width="870" height="24" fill="#EAFAF1"/>
+  <text x="200" y="478" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Iterative Odd/Even Pointers ⭐</text>
+  <text x="500" y="478" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n)</text>
+  <text x="750" y="478" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(1)</text>
+  <line x1="15" y1="486" x2="885" y2="486" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="486" width="870" height="18" fill="#F8F9FA"/>
+  <text x="450" y="499" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">Note: Segregates by POSITION (1-indexed). See "Segregate Odd/Even Value" for value-based segregation.</text>
+  <line x1="370" y1="437" x2="370" y2="504" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="620" y1="437" x2="620" y2="504" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

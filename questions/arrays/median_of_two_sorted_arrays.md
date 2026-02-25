@@ -1,5 +1,8 @@
 # 🔹 Problem: Median of Two Sorted Arrays
 
+![](../../assets/images/arrays/median_of_two_sorted_arrays.svg)
+
+
 **Difficulty:** Hard ⚡⚡
 
 ---

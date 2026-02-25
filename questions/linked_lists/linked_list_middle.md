@@ -1,5 +1,8 @@
 # 🔹 Find the Middle Element of a Linked List
 
+![](../../assets/images/linked_lists/linked_list_middle.svg)
+
+
 ---
 
 ## 📌 Problem Statement

@@ -1,0 +1,150 @@
+<svg width="900" height="690" xmlns="http://www.w3.org/2000/svg">
+<style>
+/* Approach 1: Recursion - redundant calls flash red */
+@keyframes dup_hl{0%,40%{opacity:0}41%,80%{opacity:1}81%,100%{opacity:0}}
+.dup{animation:dup_hl 5s ease-in-out infinite}
+@keyframes rl0{0%,15%{opacity:1}16%,100%{opacity:0}}
+@keyframes rl1{0%,15%{opacity:0}16%,40%{opacity:1}41%,100%{opacity:0}}
+@keyframes rl2{0%,40%{opacity:0}41%,60%{opacity:1}61%,100%{opacity:0}}
+@keyframes rl3{0%,60%{opacity:0}61%,80%{opacity:1}81%,100%{opacity:0}}
+.rl0{animation:rl0 5s ease-in-out infinite}.rl1{animation:rl1 5s ease-in-out infinite}
+.rl2{animation:rl2 5s ease-in-out infinite}.rl3{animation:rl3 5s ease-in-out infinite}
+/* Approach 2: DP table - cells fill left to right */
+@keyframes dp0{0%,8%{fill:#EBF5FB;stroke:#3498DB}9%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes dp1{0%,16%{fill:#EBF5FB;stroke:#3498DB}17%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes dp2{0%,24%{fill:#EBF5FB;stroke:#3498DB}25%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes dp3{0%,32%{fill:#EBF5FB;stroke:#3498DB}33%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes dp4{0%,40%{fill:#EBF5FB;stroke:#3498DB}41%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes dp5{0%,48%{fill:#EBF5FB;stroke:#3498DB}49%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes dp6{0%,56%{fill:#EBF5FB;stroke:#3498DB}57%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+.dp0{animation:dp0 7s ease-in-out infinite}.dp1{animation:dp1 7s ease-in-out infinite}
+.dp2{animation:dp2 7s ease-in-out infinite}.dp3{animation:dp3 7s ease-in-out infinite}
+.dp4{animation:dp4 7s ease-in-out infinite}.dp5{animation:dp5 7s ease-in-out infinite}
+.dp6{animation:dp6 7s ease-in-out infinite}
+@keyframes dp_ptr{0%,8%{transform:translateX(0)}16%,24%{transform:translateX(48px)}32%,40%{transform:translateX(96px)}48%,56%{transform:translateX(144px)}64%,72%{transform:translateX(192px)}80%,88%{transform:translateX(240px)}96%,100%{transform:translateX(288px)}}
+.dpp{animation:dp_ptr 7s ease-in-out infinite}
+@keyframes tl0{0%,8%{opacity:1}16%,100%{opacity:0}}
+@keyframes tl1{0%,15%{opacity:0}16%,32%{opacity:1}33%,100%{opacity:0}}
+@keyframes tl2{0%,31%{opacity:0}32%,56%{opacity:1}57%,100%{opacity:0}}
+@keyframes tl3{0%,56%{opacity:0}57%,70%{opacity:1}71%,100%{opacity:0}}
+@keyframes tl4{0%,70%{opacity:0}71%,88%{opacity:1}89%,100%{opacity:0}}
+.tl0{animation:tl0 7s ease-in-out infinite}.tl1{animation:tl1 7s ease-in-out infinite}
+.tl2{animation:tl2 7s ease-in-out infinite}.tl3{animation:tl3 7s ease-in-out infinite}
+.tl4{animation:tl4 7s ease-in-out infinite}
+</style>
+<rect width="900" height="690" fill="#F8F9FA" rx="10"/>
+<rect width="900" height="55" fill="#2C3E50" rx="10"/>
+<rect y="45" width="900" height="10" fill="#2C3E50"/>
+<text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Fibonacci Number</text>
+<rect x="800" y="12" width="82" height="28" fill="#2ECC71" rx="14"/>
+<text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Easy</text>
+<rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+<text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+<text x="105" y="81" font-family="Arial" font-size="12" fill="#555">n=6 → fib(6)=8  [0,1,1,2,3,5,8]. fib(n) = fib(n-1) + fib(n-2), fib(0)=0, fib(1)=1</text>
+<text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Classic DP intro: recursion has O(2ⁿ) due to repeated subproblems. DP solves each once → O(n).</text>
+
+<!-- APPROACH 1: Naive Recursion -->
+<rect x="15" y="115" width="870" height="210" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+<rect x="15" y="115" width="870" height="40" fill="#E74C3C" rx="7"/>
+<rect x="15" y="140" width="870" height="15" fill="#E74C3C"/>
+<text x="450" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Naive Recursion — O(2ⁿ) time, O(n) stack space</text>
+<text x="450" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">fib(n) = fib(n-1) + fib(n-2). Problem: same subproblems computed many times!</text>
+<!-- Recursion tree for fib(5) - simplified -->
+<!-- Root: fib(5) -->
+<rect x="412" y="162" width="76" height="24" fill="#FDEBD0" stroke="#E67E22" stroke-width="1.5" rx="3"/>
+<text x="450" y="179" font-family="Arial" font-size="11" font-weight="bold" fill="#333" text-anchor="middle">fib(5)</text>
+<!-- Level 1: fib(4), fib(3) -->
+<line x1="430" y1="186" x2="330" y2="205" stroke="#AAA" stroke-width="1.5"/>
+<line x1="470" y1="186" x2="560" y2="205" stroke="#AAA" stroke-width="1.5"/>
+<rect x="292" y="205" width="76" height="24" fill="#FDEBD0" stroke="#E67E22" stroke-width="1.5" rx="3"/>
+<text x="330" y="222" font-family="Arial" font-size="11" font-weight="bold" fill="#333" text-anchor="middle">fib(4)</text>
+<rect x="522" y="205" width="76" height="24" fill="#EBF5FB" stroke="#3498DB" stroke-width="1.5" rx="3"/>
+<text x="560" y="222" font-family="Arial" font-size="11" font-weight="bold" fill="#333" text-anchor="middle">fib(3)</text>
+<!-- Level 2 from fib(4): fib(3), fib(2) -->
+<line x1="310" y1="229" x2="250" y2="248" stroke="#AAA" stroke-width="1.5"/>
+<line x1="350" y1="229" x2="400" y2="248" stroke="#AAA" stroke-width="1.5"/>
+<rect x="212" y="248" width="76" height="24" class="dup" rx="3" fill="#FDF2F8" stroke="#E74C3C" stroke-width="1.5"/>
+<text x="250" y="265" font-family="Arial" font-size="11" font-weight="bold" fill="#E74C3C" text-anchor="middle">fib(3) ⚠</text>
+<rect x="362" y="248" width="76" height="24" fill="#EBF5FB" stroke="#3498DB" stroke-width="1.5" rx="3"/>
+<text x="400" y="265" font-family="Arial" font-size="11" font-weight="bold" fill="#333" text-anchor="middle">fib(2)</text>
+<!-- Duplicate annotation -->
+<line x1="522" y1="229" x2="250" y2="248" stroke="#E74C3C" stroke-width="2" stroke-dasharray="4,3"/>
+<!-- Step labels explaining the problem -->
+<text class="rl0" x="700" y="200" font-family="Arial" font-size="11" fill="#555">fib(5) calls fib(4)+fib(3)</text>
+<text class="rl1" x="700" y="200" font-family="Arial" font-size="11" fill="#555">fib(4) calls fib(3)+fib(2)</text>
+<text class="rl2" x="700" y="200" font-family="Arial" font-size="11" fill="#E74C3C" font-weight="bold">fib(3) computed TWICE! ⚠</text>
+<text class="rl3" x="700" y="200" font-family="Arial" font-size="11" fill="#E74C3C">For fib(n): 2ⁿ total calls!</text>
+<text x="450" y="295" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">fib(3) computed 2×, fib(2) computed 3×... Exponential blowup! O(2ⁿ).</text>
+<text x="450" y="312" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Solution: store results to avoid recomputation. Memoization (top-down) or Tabulation (bottom-up).</text>
+
+<!-- Arrow 1→2 -->
+<line x1="450" y1="325" x2="450" y2="362" stroke="#7F8C8D" stroke-width="2" stroke-dasharray="4,3"/>
+<polygon points="444,362 450,370 456,362" fill="#7F8C8D"/>
+<rect x="200" y="329" width="500" height="22" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+<text x="450" y="344" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">💡 Build bottom-up: fib[i] = fib[i-1] + fib[i-2]. Each cell computed exactly once → O(n)</text>
+
+<!-- APPROACH 2: Tabulation (Bottom-Up DP) -->
+<rect x="15" y="370" width="870" height="210" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+<rect x="15" y="370" width="870" height="40" fill="#27AE60" rx="7"/>
+<rect x="15" y="395" width="870" height="15" fill="#27AE60"/>
+<text x="450" y="395" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Bottom-Up Tabulation — O(n) time, O(n) space (→ O(1) optimized) ⭐</text>
+<text x="450" y="408" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">Fill dp[0..n] left to right. dp[i] = dp[i-1] + dp[i-2]. Base: dp[0]=0, dp[1]=1.</text>
+<!-- DP table: 7 cells for fib(0..6) at x: 237,285,333,381,429,477,525 -->
+<rect x="237" y="425" width="42" height="42" class="dp0" rx="3"/>
+<text x="258" y="441" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">dp[0]</text>
+<text x="258" y="457" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">0</text>
+<rect x="285" y="425" width="42" height="42" class="dp1" rx="3"/>
+<text x="306" y="441" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">dp[1]</text>
+<text x="306" y="457" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="333" y="425" width="42" height="42" class="dp2" rx="3"/>
+<text x="354" y="441" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">dp[2]</text>
+<text x="354" y="457" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="381" y="425" width="42" height="42" class="dp3" rx="3"/>
+<text x="402" y="441" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">dp[3]</text>
+<text x="402" y="457" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="429" y="425" width="42" height="42" class="dp4" rx="3"/>
+<text x="450" y="441" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">dp[4]</text>
+<text x="450" y="457" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">3</text>
+<rect x="477" y="425" width="42" height="42" class="dp5" rx="3"/>
+<text x="498" y="441" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">dp[5]</text>
+<text x="498" y="457" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">5</text>
+<rect x="525" y="425" width="42" height="42" class="dp6" rx="3"/>
+<text x="546" y="441" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">dp[6]</text>
+<text x="546" y="457" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">8</text>
+<!-- Filling pointer -->
+<g class="dpp" transform="translate(258,425)">
+  <polygon points="-7,-14 7,-14 0,-4" fill="#27AE60"/>
+</g>
+<!-- Step labels -->
+<text class="tl0" x="450" y="495" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">Base cases: dp[0]=0, dp[1]=1</text>
+<text class="tl1" x="450" y="495" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">dp[2] = dp[1]+dp[0] = 1+0 = 1</text>
+<text class="tl2" x="450" y="495" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">dp[3]=1+1=2, dp[4]=2+1=3, dp[5]=3+2=5</text>
+<text class="tl3" x="450" y="495" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">dp[6] = dp[5]+dp[4] = 5+3 = 8 ✓</text>
+<text class="tl4" x="450" y="495" font-family="Arial" font-size="11" fill="#888" text-anchor="middle">Optimization: only need prev two → O(1) space!</text>
+<text x="450" y="530" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Each subproblem solved exactly once and stored. No redundant computation!</text>
+<text x="450" y="547" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Space optimization: keep only dp[i-1] and dp[i-2] → O(1) space with a=0,b=1,c=a+b.</text>
+<text x="450" y="564" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Top-down (memoization): add cache to recursive function. Same O(n) time but O(n) space.</text>
+
+<!-- Complexity Table -->
+<rect x="15" y="592" width="870" height="93" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+<rect x="15" y="592" width="870" height="30" fill="#2C3E50" rx="7"/>
+<rect x="15" y="607" width="870" height="15" fill="#2C3E50"/>
+<text x="450" y="612" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+<line x1="15" y1="622" x2="885" y2="622" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="622" width="870" height="23" fill="#ECF0F1"/>
+<text x="200" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+<text x="500" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+<text x="750" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+<line x1="15" y1="645" x2="885" y2="645" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="645" width="870" height="22" fill="#FDEDEC"/>
+<text x="200" y="660" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Naive Recursion</text>
+<text x="500" y="660" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(2ⁿ)</text>
+<text x="750" y="660" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">O(n) stack</text>
+<line x1="15" y1="667" x2="885" y2="667" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="667" width="870" height="23" fill="#EAFAF1"/>
+<text x="200" y="683" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Bottom-Up DP ⭐ (O(1) optimized)</text>
+<text x="500" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n)</text>
+<text x="750" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n) → O(1)</text>
+<line x1="370" y1="622" x2="370" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+<line x1="620" y1="622" x2="620" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

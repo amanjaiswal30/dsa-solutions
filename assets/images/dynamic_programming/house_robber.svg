@@ -1,0 +1,142 @@
+<svg width="900" height="690" xmlns="http://www.w3.org/2000/svg">
+<style>
+/* Approach 1: Recursion with choice visualization */
+@keyframes ch_hl{0%,30%{opacity:0}31%,70%{opacity:1}71%,100%{opacity:0}}
+.chh{animation:ch_hl 6s ease-in-out infinite}
+/* Approach 2: DP table filling */
+@keyframes d0{0%,10%{fill:#EBF5FB;stroke:#3498DB}11%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes d1{0%,20%{fill:#EBF5FB;stroke:#3498DB}21%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes d2{0%,32%{fill:#EBF5FB;stroke:#3498DB}33%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes d3{0%,44%{fill:#EBF5FB;stroke:#3498DB}45%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes d4{0%,56%{fill:#EBF5FB;stroke:#3498DB}57%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+.d0{animation:d0 7s ease-in-out infinite}.d1{animation:d1 7s ease-in-out infinite}
+.d2{animation:d2 7s ease-in-out infinite}.d3{animation:d3 7s ease-in-out infinite}
+.d4{animation:d4 7s ease-in-out infinite}
+@keyframes dpp{0%,10%{transform:translateX(0)}20%,32%{transform:translateX(48px)}44%,56%{transform:translateX(96px)}68%,80%{transform:translateX(144px)}90%,100%{transform:translateX(192px)}}
+.dp{animation:dpp 7s ease-in-out infinite}
+@keyframes sl0{0%,10%{opacity:1}20%,100%{opacity:0}}
+@keyframes sl1{0%,19%{opacity:0}20%,44%{opacity:1}45%,100%{opacity:0}}
+@keyframes sl2{0%,43%{opacity:0}44%,56%{opacity:1}57%,100%{opacity:0}}
+@keyframes sl3{0%,55%{opacity:0}56%,80%{opacity:1}81%,100%{opacity:0}}
+@keyframes sl4{0%,79%{opacity:0}80%,90%{opacity:1}91%,100%{opacity:0}}
+.sl0{animation:sl0 7s ease-in-out infinite}.sl1{animation:sl1 7s ease-in-out infinite}
+.sl2{animation:sl2 7s ease-in-out infinite}.sl3{animation:sl3 7s ease-in-out infinite}
+.sl4{animation:sl4 7s ease-in-out infinite}
+</style>
+<rect width="900" height="690" fill="#F8F9FA" rx="10"/>
+<rect width="900" height="55" fill="#2C3E50" rx="10"/>
+<rect y="45" width="900" height="10" fill="#2C3E50"/>
+<text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">House Robber</text>
+<rect x="800" y="12" width="82" height="28" fill="#F39C12" rx="14"/>
+<text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+<rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+<text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+<text x="105" y="81" font-family="Arial" font-size="12" fill="#555">nums=[2,7,9,3,1] → max rob = 12 (rob houses 0,2,4: 2+9+1=12)</text>
+<text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Cannot rob adjacent houses. dp[i] = max(dp[i-1], dp[i-2]+nums[i]). Classic 1D DP.</text>
+
+<!-- APPROACH 1: Recursion -->
+<rect x="15" y="115" width="870" height="210" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+<rect x="15" y="115" width="870" height="40" fill="#E74C3C" rx="7"/>
+<rect x="15" y="140" width="870" height="15" fill="#E74C3C"/>
+<text x="450" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Recursion (Overlapping Subproblems) — O(2ⁿ) time</text>
+<text x="450" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">rob(i) = max(rob(i-1), rob(i-2)+nums[i]). Two choices per house → exponential!</text>
+<!-- Houses visualization: 5 houses [2,7,9,3,1] -->
+<!-- House icons as rectangles with money labels -->
+<rect x="160" y="175" width="54" height="44" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="187" y="193" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">🏠</text>
+<text x="187" y="209" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">$2</text>
+<rect x="230" y="175" width="54" height="44" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="257" y="193" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">🏠</text>
+<text x="257" y="209" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">$7</text>
+<rect x="300" y="175" width="54" height="44" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="327" y="193" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">🏠</text>
+<text x="327" y="209" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">$9</text>
+<rect x="370" y="175" width="54" height="44" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="397" y="193" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">🏠</text>
+<text x="397" y="209" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">$3</text>
+<rect x="440" y="175" width="54" height="44" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="467" y="193" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">🏠</text>
+<text x="467" y="209" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">$1</text>
+<!-- "NO" indicators between houses 0-1, 1-2, 2-3, 3-4 -->
+<text x="214" y="202" font-family="Arial" font-size="12" fill="#E74C3C" font-weight="bold" text-anchor="middle">✗</text>
+<text x="284" y="202" font-family="Arial" font-size="12" fill="#E74C3C" font-weight="bold" text-anchor="middle">✗</text>
+<text x="354" y="202" font-family="Arial" font-size="12" fill="#E74C3C" font-weight="bold" text-anchor="middle">✗</text>
+<text x="424" y="202" font-family="Arial" font-size="12" fill="#E74C3C" font-weight="bold" text-anchor="middle">✗</text>
+<!-- Choices shown with arrows -->
+<g class="chh">
+<rect x="550" y="165" width="310" height="112" fill="#FDF2F8" stroke="#E74C3C" stroke-width="1.5" rx="5"/>
+<text x="705" y="183" font-family="Arial" font-size="11" font-weight="bold" fill="#E74C3C" text-anchor="middle">rob(4): 2 choices at each house</text>
+<text x="705" y="201" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">ROB house 4: nums[4]+rob(2)</text>
+<text x="705" y="218" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">SKIP house 4: rob(3)</text>
+<text x="705" y="236" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">→ rob(2) computed multiple times!</text>
+<text x="705" y="253" font-family="Arial" font-size="11" fill="#888" text-anchor="middle">2ⁿ total calls without memoization</text>
+</g>
+<text x="450" y="295" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">rob(i) = max(skip: rob(i-1), rob: nums[i]+rob(i-2)). Overlapping subproblems → DP!</text>
+<text x="450" y="312" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Memoization (top-down) or Tabulation (bottom-up) both reduce to O(n).</text>
+
+<!-- Arrow 1→2 -->
+<line x1="450" y1="325" x2="450" y2="362" stroke="#7F8C8D" stroke-width="2" stroke-dasharray="4,3"/>
+<polygon points="444,362 450,370 456,362" fill="#7F8C8D"/>
+<rect x="200" y="329" width="500" height="22" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+<text x="450" y="344" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">💡 dp[i] = max(dp[i-1], dp[i-2]+nums[i]). Each cell computed once → O(n)</text>
+
+<!-- APPROACH 2: Bottom-Up DP -->
+<rect x="15" y="370" width="870" height="210" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+<rect x="15" y="370" width="870" height="40" fill="#27AE60" rx="7"/>
+<rect x="15" y="395" width="870" height="15" fill="#27AE60"/>
+<text x="450" y="395" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Bottom-Up DP — O(n) time, O(1) space ⭐</text>
+<text x="450" y="408" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">dp[i] = max(dp[i-1] skip, dp[i-2]+nums[i] rob). Fill left to right.</text>
+<!-- Houses row with money labels -->
+<text x="450" y="424" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">nums: [2, 7, 9, 3, 1]</text>
+<!-- dp array: 5 cells for houses 0..4 at x: 333,381,429,477,525 -->
+<rect x="333" y="430" width="42" height="42" class="d0" rx="3"/>
+<text x="354" y="446" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">dp[0]</text>
+<text x="354" y="462" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="381" y="430" width="42" height="42" class="d1" rx="3"/>
+<text x="402" y="446" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">dp[1]</text>
+<text x="402" y="462" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">7</text>
+<rect x="429" y="430" width="42" height="42" class="d2" rx="3"/>
+<text x="450" y="446" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">dp[2]</text>
+<text x="450" y="462" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">11</text>
+<rect x="477" y="430" width="42" height="42" class="d3" rx="3"/>
+<text x="498" y="446" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">dp[3]</text>
+<text x="498" y="462" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">11</text>
+<rect x="525" y="430" width="42" height="42" class="d4" rx="3"/>
+<text x="546" y="446" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">dp[4]</text>
+<text x="546" y="462" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">12</text>
+<!-- Pointer -->
+<g class="dp" transform="translate(354,430)">
+  <polygon points="-7,-14 7,-14 0,-4" fill="#27AE60"/>
+</g>
+<!-- Step labels -->
+<text class="sl0" x="450" y="498" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">dp[0]=2, dp[1]=max(2,7)=7 (can't rob both h0 and h1)</text>
+<text class="sl1" x="450" y="498" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">dp[2]=max(dp[1],dp[0]+nums[2])=max(7,2+9)=11</text>
+<text class="sl2" x="450" y="498" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">dp[3]=max(dp[2],dp[1]+nums[3])=max(11,7+3)=11</text>
+<text class="sl3" x="450" y="498" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">dp[4]=max(dp[3],dp[2]+nums[4])=max(11,11+1)=12 ✓</text>
+<text class="sl4" x="450" y="498" font-family="Arial" font-size="11" fill="#888" text-anchor="middle">O(1): keep only prev1=dp[i-1], prev2=dp[i-2]. No array needed!</text>
+<text x="450" y="541" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">dp[i] = max(dp[i-1], dp[i-2]+nums[i]). Skip or rob current house.</text>
+<text x="450" y="557" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Space optimization: only need prev1 and prev2. Update: cur=max(prev1, prev2+nums[i]).</text>
+
+<!-- Complexity Table -->
+<rect x="15" y="592" width="870" height="93" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+<rect x="15" y="592" width="870" height="30" fill="#2C3E50" rx="7"/>
+<rect x="15" y="607" width="870" height="15" fill="#2C3E50"/>
+<text x="450" y="612" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+<line x1="15" y1="622" x2="885" y2="622" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="622" width="870" height="23" fill="#ECF0F1"/>
+<text x="200" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+<text x="500" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+<text x="750" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+<line x1="15" y1="645" x2="885" y2="645" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="645" width="870" height="22" fill="#FDEDEC"/>
+<text x="200" y="660" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Recursion (no memo)</text>
+<text x="500" y="660" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(2ⁿ)</text>
+<text x="750" y="660" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">O(n)</text>
+<line x1="15" y1="667" x2="885" y2="667" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="667" width="870" height="23" fill="#EAFAF1"/>
+<text x="200" y="683" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Bottom-Up DP ⭐</text>
+<text x="500" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n)</text>
+<text x="750" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(1)</text>
+<line x1="370" y1="622" x2="370" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+<line x1="620" y1="622" x2="620" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#1a1a2e}
+  .prob{font:13px sans-serif;fill:#444}
+  .sec{font:bold 13px sans-serif}
+  .nd{fill:#ddeeff;stroke:#6699cc;stroke-width:2}
+  .ndTop{fill:#ffd700;stroke:#F39C12;stroke-width:2.5}
+  .lbl{font:12px monospace;fill:#333;text-anchor:middle;dominant-baseline:middle}
+  .cmp{font:11px sans-serif;fill:#333}
+  .evol{fill:none;stroke:#888;stroke-width:1.5;stroke-dasharray:5,3}
+  .ins{font:11px sans-serif;fill:#555;font-style:italic}
+  .tbl{font:11px sans-serif;fill:#333;text-anchor:middle}
+  .edge{stroke:#999;stroke-width:1.5;fill:none}
+
+  @keyframes ndVisit{0%,100%{fill:#ddeeff;stroke:#6699cc}40%,60%{fill:#ffd700;stroke:#F39C12}}
+  @keyframes ndGreen{0%,100%{fill:#ddeeff;stroke:#6699cc}40%,60%{fill:#ccffcc;stroke:#27AE60}}
+  @keyframes sl0{0%,19%{opacity:1}20%,100%{opacity:0}}
+  @keyframes sl1{0%,19%{opacity:0}20%,39%{opacity:1}40%,100%{opacity:0}}
+  @keyframes sl2{0%,39%{opacity:0}40%,59%{opacity:1}60%,100%{opacity:0}}
+  @keyframes sl3{0%,59%{opacity:0}60%,79%{opacity:1}80%,100%{opacity:0}}
+  @keyframes sl4{0%,79%{opacity:0}80%,100%{opacity:1}}
+  .sl0{animation:sl0 9s ease-in-out infinite}
+  .sl1{animation:sl1 9s ease-in-out infinite}
+  .sl2{animation:sl2 9s ease-in-out infinite}
+  .sl3{animation:sl3 9s ease-in-out infinite}
+  .sl4{animation:sl4 9s ease-in-out infinite}
+  .np0{animation:ndVisit 7s 0s ease-in-out infinite}
+  .np1{animation:ndVisit 7s 0.5s ease-in-out infinite}
+  .np2{animation:ndVisit 7s 1.0s ease-in-out infinite}
+  .np3{animation:ndVisit 7s 1.5s ease-in-out infinite}
+  .ng0{animation:ndGreen 7s 0s ease-in-out infinite}
+  .ng1{animation:ndGreen 7s 0.5s ease-in-out infinite}
+  .ng2{animation:ndGreen 7s 1.0s ease-in-out infinite}
+  .ng3{animation:ndGreen 7s 1.5s ease-in-out infinite}
+</style>
+
+<rect width="900" height="690" fill="#f8f9fa" rx="8"/>
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="32" text-anchor="middle" class="title" fill="white">Top View of Binary Tree</text>
+
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="72" text-anchor="middle" class="prob">Print nodes visible from top: for each horizontal distance (HD), print the first (topmost) node seen</text>
+
+<!-- APPROACH 1 -->
+<rect x="16" y="92" width="868" height="218" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="32" y="111" class="sec" fill="white">Approach 1: BFS with Horizontal Distance — store (node, hd) in queue, record first occurrence  O(n log n)</text>
+
+<!-- Tree with HD labels -->
+<g transform="translate(280,128)">
+  <line x1="0" y1="22" x2="-100" y2="70" class="edge"/>
+  <line x1="0" y1="22" x2="100" y2="70" class="edge"/>
+  <line x1="-100" y1="92" x2="-140" y2="150" class="edge"/>
+  <line x1="-100" y1="92" x2="-60" y2="150" class="edge"/>
+  <line x1="100" y1="92" x2="60" y2="150" class="edge"/>
+  <line x1="100" y1="92" x2="140" y2="150" class="edge"/>
+  <!-- top-view visible nodes (gold) -->
+  <circle class="ndTop" cx="-140" cy="150" r="22"/><text x="-140" y="150" class="lbl">4</text>
+  <circle class="ndTop" cx="-100" cy="70" r="22"/><text x="-100" y="70" class="lbl">2</text>
+  <circle class="ndTop" cx="0" cy="0" r="22"/><text x="0" y="0" class="lbl">1</text>
+  <circle class="ndTop" cx="100" cy="70" r="22"/><text x="100" y="70" class="lbl">3</text>
+  <circle class="ndTop" cx="140" cy="150" r="22"/><text x="140" y="150" class="lbl">7</text>
+  <!-- hidden from top (regular) -->
+  <circle class="np0 nd" cx="-60" cy="150" r="22"/><text x="-60" y="150" class="lbl">5</text>
+  <circle class="np1 nd" cx="60" cy="150" r="22"/><text x="60" y="150" class="lbl">6</text>
+  <!-- HD labels -->
+  <text x="-140" y="126" text-anchor="middle" class="cmp" fill="#E74C3C" font-size="9">HD=-2</text>
+  <text x="-100" y="46" text-anchor="middle" class="cmp" fill="#E74C3C" font-size="9">HD=-1</text>
+  <text x="0" y="-24" text-anchor="middle" class="cmp" fill="#E74C3C" font-size="9">HD=0</text>
+  <text x="100" y="46" text-anchor="middle" class="cmp" fill="#E74C3C" font-size="9">HD=+1</text>
+  <text x="140" y="126" text-anchor="middle" class="cmp" fill="#E74C3C" font-size="9">HD=+2</text>
+  <text x="-60" y="126" text-anchor="middle" class="cmp" fill="#999" font-size="9">HD=-1</text>
+  <text x="60" y="126" text-anchor="middle" class="cmp" fill="#999" font-size="9">HD=+1</text>
+  <!-- hidden labels -->
+  <text x="-60" y="168" text-anchor="middle" class="cmp" fill="#999" font-size="9">hidden</text>
+  <text x="60" y="168" text-anchor="middle" class="cmp" fill="#999" font-size="9">hidden</text>
+</g>
+
+<text x="550" y="140" class="cmp" font-weight="bold">top_view_bfs(root):</text>
+<text x="550" y="157" class="cmp">  seen = {}  # hd → first node val</text>
+<text x="550" y="174" class="cmp">  q = deque([(root, 0)])  # (node, hd)</text>
+<text x="550" y="191" class="cmp">  while q:</text>
+<text x="550" y="208" class="cmp">    node, hd = q.popleft()</text>
+<text x="550" y="225" class="cmp">    if hd not in seen:</text>
+<text x="550" y="242" class="cmp">      seen[hd] = node.val  # first = top</text>
+<text x="550" y="259" class="cmp">    if node.left:  q.append((node.left,  hd-1))</text>
+<text x="550" y="276" class="cmp">    if node.right: q.append((node.right, hd+1))</text>
+<text x="550" y="293" class="cmp">  return [seen[h] for h in sorted(seen)]</text>
+
+<text x="24" y="294" class="cmp sl0">① BFS ensures top-level nodes seen first</text>
+<text x="24" y="294" class="cmp sl1">② hd=0:1, hd=-1:2, hd=1:3 (first occurrence wins)</text>
+<text x="24" y="294" class="cmp sl2">③ hd=-2:4, hd=-1 already seen → 5 skipped</text>
+<text x="24" y="294" class="cmp sl3">④ hd=1 already seen → 6 skipped; hd=2:7</text>
+<text x="24" y="294" class="cmp sl4" fill="#E74C3C">⑤ Output: [4, 2, 1, 3, 7] (sorted by HD)</text>
+
+<!-- Arrow -->
+<line x1="450" y1="312" x2="450" y2="330" class="evol"/>
+<polygon points="450,332 444,320 456,320" fill="#888"/>
+<rect x="250" y="315" width="400" height="24" fill="#fffde7" stroke="#f0c040" stroke-width="1" rx="4"/>
+<text x="450" y="331" text-anchor="middle" class="ins">DFS approach: track level, only record if HD not seen yet</text>
+
+<!-- APPROACH 2 -->
+<rect x="16" y="348" width="868" height="214" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="348" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="362" width="868" height="14" fill="#27AE60"/>
+<text x="32" y="367" class="sec" fill="white">Approach 2: DFS with level tracking — record node only if (hd, level) pair is the topmost  O(n log n)</text>
+
+<text x="24" y="398" class="cmp" font-weight="bold">top_view_dfs(root):</text>
+<text x="24" y="415" class="cmp">  hd_level = {}  # hd → (level, val) for min level</text>
+<text x="24" y="432" class="cmp">  def dfs(node, hd, level):</text>
+<text x="24" y="449" class="cmp">    if not node: return</text>
+<text x="24" y="466" class="cmp">    if hd not in hd_level or level &lt; hd_level[hd][0]:</text>
+<text x="24" y="483" class="cmp">      hd_level[hd] = (level, node.val)</text>
+<text x="24" y="500" class="cmp">    dfs(node.left,  hd-1, level+1)</text>
+<text x="24" y="517" class="cmp">    dfs(node.right, hd+1, level+1)</text>
+<text x="24" y="534" class="cmp">  dfs(root, 0, 0)</text>
+<text x="24" y="551" class="cmp">  return [hd_level[h][1] for h in sorted(hd_level)]</text>
+
+<!-- result visualization -->
+<text x="480" y="398" class="cmp" font-weight="bold" fill="#27AE60">Top view result boxes:</text>
+<g transform="translate(480,408)">
+  <rect x="0" y="0" width="48" height="36" fill="#ccffcc" stroke="#27AE60" rx="3"/>
+  <rect x="56" y="0" width="48" height="36" fill="#ccffcc" stroke="#27AE60" rx="3"/>
+  <rect x="112" y="0" width="48" height="36" fill="#ccffcc" stroke="#27AE60" rx="3"/>
+  <rect x="168" y="0" width="48" height="36" fill="#ccffcc" stroke="#27AE60" rx="3"/>
+  <rect x="224" y="0" width="48" height="36" fill="#ccffcc" stroke="#27AE60" rx="3"/>
+  <text x="24" y="15" text-anchor="middle" class="lbl" font-size="14">4</text>
+  <text x="80" y="15" text-anchor="middle" class="lbl" font-size="14">2</text>
+  <text x="136" y="15" text-anchor="middle" class="lbl" font-size="14">1</text>
+  <text x="192" y="15" text-anchor="middle" class="lbl" font-size="14">3</text>
+  <text x="248" y="15" text-anchor="middle" class="lbl" font-size="14">7</text>
+  <text x="24" y="30" text-anchor="middle" class="cmp" font-size="9">HD=-2</text>
+  <text x="80" y="30" text-anchor="middle" class="cmp" font-size="9">HD=-1</text>
+  <text x="136" y="30" text-anchor="middle" class="cmp" font-size="9">HD=0</text>
+  <text x="192" y="30" text-anchor="middle" class="cmp" font-size="9">HD=+1</text>
+  <text x="248" y="30" text-anchor="middle" class="cmp" font-size="9">HD=+2</text>
+</g>
+
+<text x="480" y="465" class="cmp sl0">① DFS: node 1 (hd=0, level=0): first at HD=0</text>
+<text x="480" y="465" class="cmp sl1">② Node 2 (hd=-1, lv=1): first at HD=-1; node 5 (hd=-1, lv=2): level 2 > 1, skip</text>
+<text x="480" y="465" class="cmp sl2">③ Node 4 (hd=-2, lv=2): first at HD=-2</text>
+<text x="480" y="465" class="cmp sl3">④ Node 3 (hd=+1, lv=1); node 6 (hd=+1, lv=2): skip</text>
+<text x="480" y="465" class="cmp sl4" fill="#27AE60">⑤ Node 7 (hd=+2, lv=2) → Output: [4,2,1,3,7]</text>
+
+<!-- Complexity table -->
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="6"/>
+<rect x="16" y="578" width="868" height="26" fill="#f0f0f0" rx="6"/>
+<text x="180" y="595" class="tbl" font-weight="bold">Approach</text>
+<text x="400" y="595" class="tbl" font-weight="bold">Time</text>
+<text x="570" y="595" class="tbl" font-weight="bold">Space</text>
+<text x="760" y="595" class="tbl" font-weight="bold">Notes</text>
+<rect x="16" y="604" width="868" height="24" fill="#fff5f5"/>
+<text x="180" y="620" class="tbl">BFS + first HD seen</text>
+<text x="400" y="620" class="tbl">O(n log n)</text>
+<text x="570" y="620" class="tbl">O(n)</text>
+<text x="760" y="620" class="tbl">BFS naturally gives topmost node first</text>
+<rect x="16" y="628" width="868" height="24" fill="#f0fff0"/>
+<text x="180" y="644" class="tbl">DFS with level tracking</text>
+<text x="400" y="644" class="tbl">O(n log n)</text>
+<text x="570" y="644" class="tbl">O(n)</text>
+<text x="760" y="644" class="tbl">DFS needs level to determine topmost node</text>
+<rect x="16" y="652" width="868" height="24" fill="#fff"/>
+<text x="180" y="668" class="tbl" fill="#555">n = nodes; sorting HDs dominates: O(n log n)</text>
+<text x="600" y="668" class="tbl" fill="#555">BFS preferred: simpler, no level tracking needed</text>
+</svg>

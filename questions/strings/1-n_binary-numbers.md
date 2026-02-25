@@ -1,5 +1,7 @@
 # 🔹 Problem: Generate Binary Numbers from 1 to N
 
+![](../../assets/images/strings/1-n_binary_numbers.svg)
+
 **Difficulty:** Easy ⚡
 
 ---

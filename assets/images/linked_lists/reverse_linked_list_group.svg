@@ -1,0 +1,104 @@
+<svg width="900" height="580" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="580" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Reverse Linked List in Groups of Size K</text>
+  <rect x="800" y="12" width="82" height="28" fill="#F39C12" rx="14"/>
+  <text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">1→2→3→4→5→6→7, k=3</text>
+  <text x="330" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#27AE60">→  3→2→1→6→5→4→7</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Reverse every k nodes. If remaining nodes &lt; k, leave them as-is (7 stays in place above).</text>
+
+  <!-- Approach 1: Recursive -->
+  <rect x="15" y="115" width="390" height="345" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="390" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="390" height="15" fill="#E74C3C"/>
+  <text x="210" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Recursive</text>
+  <text x="210" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(n) time | O(n/k) recursive stack space</text>
+
+  <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Step 1: Check if k nodes exist:</text>
+  <rect x="30" y="184" width="360" height="24" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">count nodes → if count &lt; k, return head as-is</text>
+
+  <text x="30" y="228" font-family="Arial" font-size="11" fill="#555">Step 2: Reverse first k nodes:</text>
+  <rect x="30" y="234" width="360" height="36" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="249" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">prev=null, curr=1,2,3 → 3→2→1 (prev=3, curr=4)</text>
+  <text x="210" y="264" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">head(1) is now tail of reversed group</text>
+
+  <text x="30" y="292" font-family="Arial" font-size="11" fill="#555">Step 3: Connect to recursive result:</text>
+  <rect x="30" y="298" width="360" height="28" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="313" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">head.next = recurse(curr=4, k) → recurse(4→5→6→7)</text>
+  <text x="210" y="325" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">return prev (=3, new head) ✓</text>
+
+  <text x="30" y="354" font-family="Arial" font-size="11" fill="#555">Recursion trace:</text>
+  <rect x="30" y="360" width="360" height="44" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="375" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">call(1,k=3): reverse 1,2,3 → 3→2→1; connect to call(4)</text>
+  <text x="210" y="389" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">call(4,k=3): reverse 4,5,6 → 6→5→4; connect to call(7)</text>
+  <text x="210" y="403" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">call(7,k=3): count=1 &lt; k=3 → return 7 as-is ✓</text>
+
+  <text x="30" y="432" font-family="Arial" font-size="11" fill="#E74C3C">⚠ O(n/k) stack frames — one per group</text>
+  <text x="30" y="450" font-family="Arial" font-size="11" fill="#888">Clean, elegant code with recursion</text>
+
+  <!-- Evolution Arrow -->
+  <line x1="410" y1="290" x2="480" y2="290" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon points="480,285 492,290 480,295" fill="#7F8C8D"/>
+  <rect x="410" y="262" width="72" height="56" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
+  <text x="446" y="276" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Avoid</text>
+  <text x="446" y="288" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">recursion</text>
+  <text x="446" y="300" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">stack!</text>
+
+  <!-- Approach 2: Iterative -->
+  <rect x="492" y="115" width="393" height="345" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="492" y="115" width="393" height="40" fill="#27AE60" rx="7"/>
+  <rect x="492" y="140" width="393" height="15" fill="#27AE60"/>
+  <text x="688" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Iterative ⭐</text>
+  <text x="688" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(n) time | O(1) space</text>
+
+  <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Use dummy node + count total nodes:</text>
+  <rect x="505" y="184" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="199" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">dummy→1→2→3→4→5→6→7; count=7, prev=dummy</text>
+  <text x="686" y="211" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">while (count &gt;= k): reverse next k nodes</text>
+
+  <text x="505" y="230" font-family="Arial" font-size="11" fill="#555">Group 1 (count=7 ≥ k=3):</text>
+  <rect x="505" y="236" width="362" height="52" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="251" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">curr=1, next=2; rotate: push next to front of group</text>
+  <text x="686" y="266" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">After k-1=2 rotations: dummy→3→2→1→4→5→6→7</text>
+  <text x="686" y="281" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">prev=curr(1), count-=k → count=4</text>
+
+  <text x="505" y="307" font-family="Arial" font-size="11" fill="#555">Group 2 (count=4 ≥ k=3):</text>
+  <rect x="505" y="313" width="362" height="36" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="328" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Same process: 4→5→6 becomes 6→5→4</text>
+  <text x="686" y="343" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">count=1 &lt; k=3 → STOP, 7 stays ✓</text>
+
+  <text x="505" y="372" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">O(1) space — no recursion stack!</text>
+  <text x="505" y="390" font-family="Arial" font-size="11" fill="#888">Uses insertion-style reversal per group</text>
+  <text x="505" y="408" font-family="Arial" font-size="11" fill="#888">Count total nodes upfront to stop early</text>
+  <text x="505" y="426" font-family="Arial" font-size="11" fill="#888">Remaining group &lt; k is left unchanged</text>
+  <text x="505" y="444" font-family="Arial" font-size="11" fill="#888">Preferred for large lists (no stack risk)</text>
+
+  <!-- Complexity Table -->
+  <rect x="15" y="472" width="870" height="98" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+  <rect x="15" y="472" width="870" height="30" fill="#2C3E50" rx="7"/>
+  <rect x="15" y="487" width="870" height="15" fill="#2C3E50"/>
+  <text x="450" y="492" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+  <line x1="15" y1="502" x2="885" y2="502" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="502" width="870" height="25" fill="#ECF0F1"/>
+  <text x="200" y="519" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+  <text x="500" y="519" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+  <text x="750" y="519" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+  <line x1="15" y1="527" x2="885" y2="527" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="527" width="870" height="21" fill="#FDEDEC"/>
+  <text x="200" y="541" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Recursive</text>
+  <text x="500" y="541" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(n)</text>
+  <text x="750" y="541" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n/k) stack</text>
+  <line x1="15" y1="548" x2="885" y2="548" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="548" width="870" height="21" fill="#EAFAF1"/>
+  <text x="200" y="562" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Iterative ⭐</text>
+  <text x="500" y="562" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n)</text>
+  <text x="750" y="562" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(1)</text>
+  <line x1="370" y1="502" x2="370" y2="569" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="620" y1="502" x2="620" y2="569" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

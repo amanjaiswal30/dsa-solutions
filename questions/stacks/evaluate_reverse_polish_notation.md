@@ -1,5 +1,8 @@
 # 🔹 Evaluate Reverse Polish Notation
 
+![](../../assets/images/stacks/evaluate_reverse_polish_notation.svg)
+
+
 ---
 
 ## 📌 Problem Statement

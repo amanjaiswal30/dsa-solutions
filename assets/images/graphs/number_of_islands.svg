@@ -1,0 +1,141 @@
+<svg width="900" height="595" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="595" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Number of Islands</text>
+  <rect x="800" y="12" width="82" height="28" fill="#F39C12" rx="14"/>
+  <text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">[[1,1,0,0],[1,0,0,1],[0,0,0,1],[0,0,0,0]] → 2 islands</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Grid of '1' (land) and '0' (water). Islands = connected groups of 1s (4-directional). Flood-fill to count.</text>
+
+  <!-- Approach 1: DFS -->
+  <rect x="15" y="115" width="250" height="340" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="250" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="250" height="15" fill="#E74C3C"/>
+  <text x="140" y="140" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 1: DFS Flood-Fill</text>
+  <text x="140" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(M×N) time | O(M×N) space</text>
+
+  <text x="25" y="175" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">Sink land cells while traversing:</text>
+  <rect x="25" y="181" width="230" height="80" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="140" y="197" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">Scan grid: find '1' at (0,0) → count++</text>
+  <text x="140" y="210" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">dfs(0,0): mark '1'→'0' (sink it)</text>
+  <text x="140" y="223" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">  explore up/down/left/right</text>
+  <text x="140" y="236" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">  sink (0,1), (1,0) → no more '1' nbrs</text>
+  <text x="140" y="251" font-family="Arial" font-size="9" fill="#27AE60" font-weight="bold" text-anchor="middle">Continue scan → find (1,3) → count++ ✓</text>
+
+  <text x="25" y="278" font-family="Arial" font-size="10" fill="#555">DFS sink pattern:</text>
+  <rect x="25" y="284" width="230" height="36" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="140" y="299" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">if out-of-bounds or grid[r][c]!='1': return</text>
+  <text x="140" y="313" font-family="Arial" font-size="9" fill="#E74C3C" font-weight="bold" text-anchor="middle">grid[r][c]='0'; dfs all 4 directions</text>
+
+  <text x="25" y="338" font-family="Arial" font-size="10" fill="#E74C3C">⚠ Modifies input grid (in-place sink)</text>
+  <text x="25" y="356" font-family="Arial" font-size="10" fill="#888">Use visited[][] if can't modify input</text>
+  <text x="25" y="374" font-family="Arial" font-size="10" fill="#888">Stack space O(M×N) recursion</text>
+  <text x="25" y="392" font-family="Arial" font-size="10" fill="#888">BFS: iterative queue, no overflow</text>
+  <text x="25" y="410" font-family="Arial" font-size="10" fill="#888">Union-Find: connects adjacent land</text>
+  <text x="25" y="428" font-family="Arial" font-size="10" fill="#888">All three: O(M×N) time complexity</text>
+  <text x="25" y="446" font-family="Arial" font-size="10" fill="#888">DFS/BFS simpler code in interview</text>
+
+  <!-- Evolution Arrow 1 -->
+  <line x1="265" y1="293" x2="317" y2="293" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="317,289 325,293 317,297" fill="#7F8C8D"/>
+  <rect x="265" y="269" width="52" height="48" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+  <text x="291" y="283" font-family="Arial" font-size="8" fill="#555" text-anchor="middle" font-weight="bold">💡 BFS</text>
+  <text x="291" y="295" font-family="Arial" font-size="8" fill="#555" text-anchor="middle">queue</text>
+  <text x="291" y="307" font-family="Arial" font-size="8" fill="#555" text-anchor="middle">based!</text>
+
+  <!-- Approach 2: BFS -->
+  <rect x="320" y="115" width="250" height="340" fill="#FFFFFF" stroke="#E67E22" stroke-width="2" rx="7"/>
+  <rect x="320" y="115" width="250" height="40" fill="#E67E22" rx="7"/>
+  <rect x="320" y="140" width="250" height="15" fill="#E67E22"/>
+  <text x="445" y="140" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 2: BFS Flood-Fill</text>
+  <text x="445" y="153" font-family="Arial" font-size="10" fill="#FAD7A0" text-anchor="middle">O(M×N) time | O(min(M,N)) space</text>
+
+  <text x="330" y="175" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">Queue-based island exploration:</text>
+  <rect x="330" y="181" width="230" height="80" fill="#FEF9E7" stroke="#E67E22" rx="3"/>
+  <text x="445" y="197" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">Find '1' at (0,0) → count++</text>
+  <text x="445" y="210" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">Queue:[(0,0)]; sink (0,0)='0'</text>
+  <text x="445" y="223" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">Poll(0,0): add valid land nbrs</text>
+  <text x="445" y="236" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">  add (0,1),(1,0); sink both</text>
+  <text x="445" y="251" font-family="Arial" font-size="9" fill="#27AE60" font-weight="bold" text-anchor="middle">Process until queue empty → 1 island ✓</text>
+
+  <text x="330" y="278" font-family="Arial" font-size="10" fill="#555">BFS sink pattern:</text>
+  <rect x="330" y="284" width="230" height="36" fill="#FEF9E7" stroke="#E67E22" rx="3"/>
+  <text x="445" y="299" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">sink before adding to queue</text>
+  <text x="445" y="313" font-family="Arial" font-size="9" fill="#E67E22" font-weight="bold" text-anchor="middle">grid[r][c]='0'; queue.add((r,c))</text>
+
+  <text x="330" y="338" font-family="Arial" font-size="10" fill="#888">No recursion stack overflow</text>
+  <text x="330" y="356" font-family="Arial" font-size="10" fill="#888">Queue max size: min(M,N) diagonal</text>
+  <text x="330" y="374" font-family="Arial" font-size="10" fill="#888">Iterative, safe for large grids</text>
+  <text x="330" y="392" font-family="Arial" font-size="10" fill="#888">Sink before queuing (not after)</text>
+  <text x="330" y="410" font-family="Arial" font-size="10" fill="#888">DFS: simpler code, recursive</text>
+  <text x="330" y="428" font-family="Arial" font-size="10" fill="#888">Union-Find: no need to sink grid!</text>
+  <text x="330" y="446" font-family="Arial" font-size="10" fill="#888">All three scan all M×N cells once</text>
+
+  <!-- Evolution Arrow 2 -->
+  <line x1="570" y1="293" x2="622" y2="293" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="622,289 630,293 622,297" fill="#7F8C8D"/>
+  <rect x="570" y="269" width="52" height="48" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+  <text x="596" y="283" font-family="Arial" font-size="8" fill="#555" text-anchor="middle" font-weight="bold">💡 Union</text>
+  <text x="596" y="295" font-family="Arial" font-size="8" fill="#555" text-anchor="middle">Find!</text>
+  <text x="596" y="307" font-family="Arial" font-size="8" fill="#555" text-anchor="middle">No sink!</text>
+
+  <!-- Approach 3: Union-Find -->
+  <rect x="628" y="115" width="257" height="340" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="628" y="115" width="257" height="40" fill="#27AE60" rx="7"/>
+  <rect x="628" y="140" width="257" height="15" fill="#27AE60"/>
+  <text x="756" y="140" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 3: Union-Find ⭐</text>
+  <text x="756" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(M×N·α) time | O(M×N) space</text>
+
+  <text x="638" y="175" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">Connect adjacent land, count roots:</text>
+  <rect x="638" y="181" width="237" height="80" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="756" y="197" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">Initialize: each land cell is own component</text>
+  <text x="756" y="210" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">count = number of '1' cells</text>
+  <text x="756" y="223" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">For each '1': union with right and down</text>
+  <text x="756" y="236" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">  if union succeeds: count--</text>
+  <text x="756" y="251" font-family="Arial" font-size="9" fill="#27AE60" font-weight="bold" text-anchor="middle">Final count = number of islands ✓</text>
+
+  <text x="638" y="278" font-family="Arial" font-size="10" fill="#555">ID mapping:</text>
+  <rect x="638" y="284" width="237" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="756" y="299" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">cell(r,c) → id = r * cols + c</text>
+  <text x="756" y="311" font-family="Arial" font-size="9" fill="#27AE60" font-weight="bold" text-anchor="middle">if find(u)!=find(v): union, count--</text>
+
+  <text x="638" y="338" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold">Doesn't modify original grid!</text>
+  <text x="638" y="356" font-family="Arial" font-size="10" fill="#888">Only need to check right + down</text>
+  <text x="638" y="374" font-family="Arial" font-size="10" fill="#888">(avoids double-counting edges)</text>
+  <text x="638" y="392" font-family="Arial" font-size="10" fill="#888">Path compression makes α ≈ O(1)</text>
+  <text x="638" y="410" font-family="Arial" font-size="10" fill="#888">More complex code than DFS/BFS</text>
+  <text x="638" y="428" font-family="Arial" font-size="10" fill="#888">DFS/BFS simpler for this problem</text>
+  <text x="638" y="446" font-family="Arial" font-size="10" fill="#888">UF shines for dynamic connectivity!</text>
+
+  <!-- Complexity Table -->
+  <rect x="15" y="468" width="870" height="118" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+  <rect x="15" y="468" width="870" height="30" fill="#2C3E50" rx="7"/>
+  <rect x="15" y="483" width="870" height="15" fill="#2C3E50"/>
+  <text x="450" y="488" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+  <line x1="15" y1="498" x2="885" y2="498" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="498" width="870" height="25" fill="#ECF0F1"/>
+  <text x="200" y="515" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+  <text x="500" y="515" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+  <text x="750" y="515" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+  <line x1="15" y1="523" x2="885" y2="523" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="523" width="870" height="21" fill="#FDEDEC"/>
+  <text x="200" y="537" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">DFS Flood-Fill</text>
+  <text x="500" y="537" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(M×N)</text>
+  <text x="750" y="537" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(M×N) recursion</text>
+  <line x1="15" y1="544" x2="885" y2="544" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="544" width="870" height="21" fill="#FEF9E7"/>
+  <text x="200" y="558" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">BFS Flood-Fill</text>
+  <text x="500" y="558" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(M×N)</text>
+  <text x="750" y="558" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(min(M,N))</text>
+  <line x1="15" y1="565" x2="885" y2="565" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="565" width="870" height="21" fill="#EAFAF1"/>
+  <text x="200" y="579" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Union-Find ⭐</text>
+  <text x="500" y="579" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(M×N·α)</text>
+  <text x="750" y="579" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(M×N)</text>
+  <line x1="370" y1="498" x2="370" y2="586" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="620" y1="498" x2="620" y2="586" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

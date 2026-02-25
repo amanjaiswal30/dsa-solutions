@@ -1,5 +1,8 @@
 # 🔹 Problem: Merge K Sorted Arrays
 
+![](../../assets/images/heaps/merge_k_sorted_arrays.svg)
+
+
 **Difficulty:** Hard ⚡
 
 ---

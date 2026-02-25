@@ -1,5 +1,8 @@
 # Majority Element
 
+![](../../assets/images/arrays/majority_element.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

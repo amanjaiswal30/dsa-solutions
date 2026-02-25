@@ -1,5 +1,8 @@
 # 🔹 Remove N-th Node from End of a Linked List
 
+![](../../assets/images/linked_lists/remove_nth_node_from_end.svg)
+
+
 ---
 
 ## 📌 Problem Statement

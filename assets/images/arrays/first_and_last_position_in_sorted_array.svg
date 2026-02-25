@@ -1,0 +1,131 @@
+<svg width="900" height="690" xmlns="http://www.w3.org/2000/svg">
+<style>
+/* Approach 1: Linear scan */
+@keyframes lin_ptr{0%,5%{transform:translateX(0)}14%,18%{transform:translateX(48px)}27%,31%{transform:translateX(96px)}40%,44%{transform:translateX(144px)}53%,57%{transform:translateX(192px)}66%,70%{transform:translateX(240px)}80%,100%{transform:translateX(0)}}
+.lp{animation:lin_ptr 6s ease-in-out infinite}
+@keyframes fl_hl{0%,44%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}45%,80%{fill:#D5F5E3;stroke:#27AE60;stroke-width:3}81%,100%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}}
+.flhl{animation:fl_hl 6s ease-in-out infinite}
+/* Approach 2: Two Binary Searches */
+@keyframes bs1_mid{0%,10%{transform:translateX(144px)}25%,35%{transform:translateX(48px)}50%,60%{transform:translateX(96px)}75%,85%{transform:translateX(144px)}95%,100%{transform:translateX(144px)}}
+.bm1{animation:bs1_mid 7s ease-in-out infinite}
+@keyframes bl0{0%,10%{opacity:1}25%,100%{opacity:0}}
+@keyframes bl1{0%,24%{opacity:0}25%,50%{opacity:1}51%,100%{opacity:0}}
+@keyframes bl2{0%,49%{opacity:0}50%,75%{opacity:1}76%,100%{opacity:0}}
+@keyframes bl3{0%,74%{opacity:0}75%,95%{opacity:1}96%,100%{opacity:0}}
+.bl0{animation:bl0 7s ease-in-out infinite}
+.bl1{animation:bl1 7s ease-in-out infinite}
+.bl2{animation:bl2 7s ease-in-out infinite}
+.bl3{animation:bl3 7s ease-in-out infinite}
+</style>
+<rect width="900" height="690" fill="#F8F9FA" rx="10"/>
+<rect width="900" height="55" fill="#2C3E50" rx="10"/>
+<rect y="45" width="900" height="10" fill="#2C3E50"/>
+<text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">First and Last Position in Sorted Array</text>
+<rect x="820" y="12" width="62" height="28" fill="#F39C12" rx="14"/>
+<text x="851" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+<rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+<text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+<text x="105" y="81" font-family="Arial" font-size="12" fill="#555">arr=[5,7,7,8,8,10], target=8 → [3,4] (first at idx 3, last at idx 4)</text>
+<text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Two binary searches: one finds leftmost occurrence (first), other finds rightmost (last). O(log n).</text>
+
+<!-- APPROACH 1: Linear -->
+<rect x="15" y="115" width="870" height="210" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+<rect x="15" y="115" width="870" height="40" fill="#E74C3C" rx="7"/>
+<rect x="15" y="140" width="870" height="15" fill="#E74C3C"/>
+<text x="450" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Linear Scan — O(n) time, O(1) space</text>
+<text x="450" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">Scan once: record first index where target found, update last each time seen</text>
+<!-- Array [5,7,7,8,8,10], 6 elements, start_x=309 -->
+<rect x="309" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="330" y="204" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">5</text>
+<rect x="357" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="378" y="204" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">7</text>
+<rect x="405" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="426" y="204" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">7</text>
+<rect x="453" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3" class="flhl"/>
+<text x="474" y="204" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">8</text>
+<rect x="501" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3" class="flhl"/>
+<text x="522" y="204" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">8</text>
+<rect x="549" y="178" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="570" y="204" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">10</text>
+<!-- Index labels -->
+<text x="330" y="232" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[0]</text>
+<text x="378" y="232" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[1]</text>
+<text x="426" y="232" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[2]</text>
+<text x="474" y="232" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">[3]first</text>
+<text x="522" y="232" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">[4]last</text>
+<text x="570" y="232" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[5]</text>
+<g class="lp" transform="translate(330,178)">
+  <polygon points="-7,-14 7,-14 0,-4" fill="#E74C3C"/>
+  <text x="0" y="-16" font-family="Arial" font-size="9" fill="#E74C3C" text-anchor="middle">i</text>
+</g>
+<text x="450" y="262" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">Find target=8: first=3, last=4 → return [3,4] ✓</text>
+<text x="450" y="279" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">O(n) — scans all elements. With sorted structure, binary search does O(log n).</text>
+<text x="450" y="296" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Two binary searches: first finds leftmost 8, second finds rightmost 8.</text>
+<text x="450" y="310" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Leftmost: when arr[mid]==target → hi=mid (keep searching left). Rightmost: lo=mid+1.</text>
+
+<!-- Arrow 1→2 -->
+<line x1="450" y1="325" x2="450" y2="362" stroke="#7F8C8D" stroke-width="2" stroke-dasharray="4,3"/>
+<polygon points="444,362 450,370 456,362" fill="#7F8C8D"/>
+<rect x="210" y="329" width="480" height="22" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+<text x="450" y="344" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">💡 Binary search twice: once biased left (first), once biased right (last)!</text>
+
+<!-- APPROACH 2: Binary Search x2 -->
+<rect x="15" y="370" width="870" height="210" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+<rect x="15" y="370" width="870" height="40" fill="#27AE60" rx="7"/>
+<rect x="15" y="395" width="870" height="15" fill="#27AE60"/>
+<text x="450" y="395" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Two Binary Searches — O(log n) time, O(1) space ⭐</text>
+<text x="450" y="408" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">findFirst: on match, hi=mid (keep left). findLast: on match, lo=mid+1 (keep right).</text>
+<!-- Same array for binary search -->
+<rect x="309" y="428" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="330" y="454" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">5</text>
+<rect x="357" y="428" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="378" y="454" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">7</text>
+<rect x="405" y="428" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="426" y="454" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">7</text>
+<rect x="453" y="428" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3" class="flhl"/>
+<text x="474" y="454" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">8</text>
+<rect x="501" y="428" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3" class="flhl"/>
+<text x="522" y="454" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">8</text>
+<rect x="549" y="428" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+<text x="570" y="454" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">10</text>
+<!-- mid pointer animated -->
+<g class="bm1" transform="translate(309,428)">
+  <polygon points="-7,-14 7,-14 0,-4" fill="#27AE60"/>
+  <text x="0" y="-16" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">mid</text>
+</g>
+<!-- lo/hi markers -->
+<text x="330" y="482" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">lo=0</text>
+<text x="570" y="482" font-family="Arial" font-size="9" fill="#3498DB" text-anchor="middle">hi=5</text>
+<!-- Step labels -->
+<text class="bl0" x="650" y="450" font-family="Arial" font-size="10" fill="#555">findFirst: mid=2(7)&lt;8 → lo=3</text>
+<text class="bl1" x="650" y="450" font-family="Arial" font-size="10" fill="#555">findFirst: mid=4(8)==8 → hi=4</text>
+<text class="bl2" x="650" y="450" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold">findFirst: lo=hi=3 → first=3 ✓</text>
+<text class="bl3" x="650" y="450" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold">findLast → last=4 ✓ → [3,4]</text>
+<text x="450" y="512" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">Two binary searches give [3,4] in O(log n)! ✓</text>
+<text x="450" y="529" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">findFirst: arr[mid]==target → hi=mid (could be leftmost, look left). arr[mid]&lt;target → lo=mid+1.</text>
+<text x="450" y="546" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">findLast: arr[mid]==target → lo=mid+1 (look right for more). arr[mid]&gt;target → hi=mid-1.</text>
+<text x="450" y="563" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Return [-1,-1] if target not found. Run both searches independently on same array.</text>
+
+<!-- Complexity Table -->
+<rect x="15" y="592" width="870" height="93" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+<rect x="15" y="592" width="870" height="30" fill="#2C3E50" rx="7"/>
+<rect x="15" y="607" width="870" height="15" fill="#2C3E50"/>
+<text x="450" y="612" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+<line x1="15" y1="622" x2="885" y2="622" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="622" width="870" height="23" fill="#ECF0F1"/>
+<text x="200" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+<text x="500" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+<text x="750" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+<line x1="15" y1="645" x2="885" y2="645" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="645" width="870" height="22" fill="#FDEDEC"/>
+<text x="200" y="660" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Linear Scan</text>
+<text x="500" y="660" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n)</text>
+<text x="750" y="660" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(1)</text>
+<line x1="15" y1="667" x2="885" y2="667" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="667" width="870" height="23" fill="#EAFAF1"/>
+<text x="200" y="683" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Two Binary Searches ⭐</text>
+<text x="500" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(log n)</text>
+<text x="750" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(1)</text>
+<line x1="370" y1="622" x2="370" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+<line x1="620" y1="622" x2="620" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

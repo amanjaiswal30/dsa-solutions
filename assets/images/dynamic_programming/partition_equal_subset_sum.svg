@@ -1,0 +1,232 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#1a1a2e}
+  .prob{font:13px sans-serif;fill:#444}
+  .sec{font:bold 13px sans-serif}
+  .arr{fill:#ddeeff;stroke:#6699cc;stroke-width:1.5}
+  .lbl{font:11px monospace;fill:#333;text-anchor:middle}
+  .idx{font:10px sans-serif;fill:#888;text-anchor:middle}
+  .evol{fill:none;stroke:#888;stroke-width:1.5;stroke-dasharray:5,3}
+  .ins{font:11px sans-serif;fill:#555;font-style:italic}
+  .cmp{font:11px sans-serif;fill:#333}
+  .tbl{font:11px sans-serif;fill:#333;text-anchor:middle}
+  .cell{stroke-width:1.2}
+
+  @keyframes sl0{0%,18%{opacity:1}19%,100%{opacity:0}}
+  @keyframes sl1{0%,18%{opacity:0}19%,36%{opacity:1}37%,100%{opacity:0}}
+  @keyframes sl2{0%,36%{opacity:0}37%,54%{opacity:1}55%,100%{opacity:0}}
+  @keyframes sl3{0%,54%{opacity:0}55%,72%{opacity:1}73%,100%{opacity:0}}
+  @keyframes sl4{0%,72%{opacity:0}73%,100%{opacity:1}}
+  .sl0{animation:sl0 8s ease-in-out infinite}
+  .sl1{animation:sl1 8s ease-in-out infinite}
+  .sl2{animation:sl2 8s ease-in-out infinite}
+  .sl3{animation:sl3 8s ease-in-out infinite}
+  .sl4{animation:sl4 8s ease-in-out infinite}
+
+  /* DP table cell highlights */
+  @keyframes cell_hl{0%,30%{fill:#fff}30.1%,100%{fill:#ccffcc}}
+  .ch0{animation:cell_hl 8s 0s ease-in-out infinite}
+  .ch1{animation:cell_hl 8s 0.4s ease-in-out infinite}
+  .ch2{animation:cell_hl 8s 0.8s ease-in-out infinite}
+  .ch3{animation:cell_hl 8s 1.2s ease-in-out infinite}
+  .ch4{animation:cell_hl 8s 1.6s ease-in-out infinite}
+  .ch5{animation:cell_hl 8s 2.0s ease-in-out infinite}
+</style>
+
+<rect width="900" height="690" fill="#f8f9fa" rx="8"/>
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="32" text-anchor="middle" class="title" fill="white">Partition Equal Subset Sum</text>
+
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="72" text-anchor="middle" class="prob">nums=[1,5,11,5] → true  ({1,5,5} and {11}, sum=11 each)</text>
+
+<!-- APPROACH 1 -->
+<rect x="16" y="92" width="868" height="218" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="32" y="111" class="sec" fill="white">Approach 1: Recursion — O(2ⁿ)</text>
+
+<text x="32" y="144" class="cmp">nums = [1, 5, 11, 5],   total = 22,   target = 11</text>
+<g transform="translate(32,152)">
+  <rect class="arr" x="0" y="0" width="46" height="36"/><text x="23" y="23" class="lbl">1</text><text x="23" y="46" class="idx">0</text>
+  <rect class="arr" x="52" y="0" width="46" height="36"/><text x="75" y="23" class="lbl">5</text><text x="75" y="46" class="idx">1</text>
+  <rect class="arr" x="104" y="0" width="46" height="36"/><text x="127" y="23" class="lbl">11</text><text x="127" y="46" class="idx">2</text>
+  <rect class="arr" x="156" y="0" width="46" height="36"/><text x="179" y="23" class="lbl">5</text><text x="179" y="46" class="idx">3</text>
+</g>
+
+<text x="280" y="144" class="cmp">Recursion: canPartition(idx, remaining):</text>
+<text x="280" y="162" class="cmp" fill="#E74C3C">canPartition(0, 11)</text>
+<text x="280" y="178" class="cmp">├─ include 1 → canPartition(1, 10)</text>
+<text x="280" y="194" class="cmp">│  ├─ include 5 → canPartition(2, 5)</text>
+<text x="280" y="210" class="cmp">│  │  ├─ include 11 → 5-11&lt;0 ✗</text>
+<text x="280" y="226" class="cmp">│  │  └─ skip 11 → canPartition(3, 5)</text>
+<text x="280" y="242" class="cmp">│  │     └─ include 5 → rem=0 ✓ TRUE</text>
+<text x="280" y="260" class="cmp" fill="#888" font-size="10">└─ skip 1 → canPartition(1, 11) → ...</text>
+
+<text x="32" y="215" class="cmp sl0">① total=22, target=22/2=11</text>
+<text x="32" y="230" class="cmp sl0">   If total odd → return False</text>
+<text x="32" y="215" class="cmp sl1">② At each element: include or skip</text>
+<text x="32" y="230" class="cmp sl1">   If remaining==0 → True</text>
+<text x="32" y="215" class="cmp sl2">③ 1+5+5=11 → True partition found</text>
+<text x="32" y="215" class="cmp sl3">④ Many subproblems overlap → memoize</text>
+<text x="32" y="215" class="cmp sl4">⑤ Reduce to 0/1 Knapsack on target</text>
+
+<!-- Evolution arrow -->
+<line x1="450" y1="310" x2="450" y2="328" class="evol"/>
+<polygon points="450,329 444,317 456,317" fill="#888"/>
+<rect x="290" y="313" width="320" height="28" fill="#fffde7" stroke="#f0c040" stroke-width="1" rx="4"/>
+<text x="450" y="331" text-anchor="middle" class="ins">0/1 Knapsack DP: dp[j] = can sum j be formed?</text>
+
+<!-- APPROACH 2: DP -->
+<rect x="16" y="346" width="868" height="216" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="346" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="360" width="868" height="14" fill="#27AE60"/>
+<text x="32" y="365" class="sec" fill="white">Approach 2: 1D DP (0/1 Knapsack) — O(n×target) time, O(target) space</text>
+
+<text x="32" y="397" class="cmp">dp[j] = True if subset with sum j exists. dp[0]=True. Process each num:</text>
+
+<!-- DP table rows for each num processed -->
+<g transform="translate(32,408)">
+  <!-- header: sums 0..11 -->
+  <text x="0" y="12" class="cmp" font-weight="bold">sum:</text>
+  <text x="55" y="12" class="cmp" text-anchor="middle">0</text><text x="75" y="12" class="cmp" text-anchor="middle">1</text>
+  <text x="95" y="12" class="cmp" text-anchor="middle">2</text><text x="115" y="12" class="cmp" text-anchor="middle">3</text>
+  <text x="135" y="12" class="cmp" text-anchor="middle">4</text><text x="155" y="12" class="cmp" text-anchor="middle">5</text>
+  <text x="175" y="12" class="cmp" text-anchor="middle">6</text><text x="195" y="12" class="cmp" text-anchor="middle">7</text>
+  <text x="215" y="12" class="cmp" text-anchor="middle">8</text><text x="235" y="12" class="cmp" text-anchor="middle">9</text>
+  <text x="255" y="12" class="cmp" text-anchor="middle">10</text><text x="275" y="12" class="cmp" text-anchor="middle">11</text>
+
+  <!-- Row: init -->
+  <text x="0" y="36" class="cmp">init:</text>
+  <rect class="ch0 cell" x="45" y="20" width="18" height="18" fill="#ccffcc" stroke="#27AE60"/>
+  <text x="54" y="32" class="lbl" font-size="9" fill="#27AE60">T</text>
+  <rect x="65" y="20" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="74" y="32" class="lbl" font-size="9">F</text>
+  <rect x="85" y="20" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="94" y="32" class="lbl" font-size="9">F</text>
+  <rect x="105" y="20" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="114" y="32" class="lbl" font-size="9">F</text>
+  <rect x="125" y="20" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="134" y="32" class="lbl" font-size="9">F</text>
+  <rect x="145" y="20" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="154" y="32" class="lbl" font-size="9">F</text>
+  <rect x="165" y="20" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="174" y="32" class="lbl" font-size="9">F</text>
+  <rect x="185" y="20" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="194" y="32" class="lbl" font-size="9">F</text>
+  <rect x="205" y="20" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="214" y="32" class="lbl" font-size="9">F</text>
+  <rect x="225" y="20" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="234" y="32" class="lbl" font-size="9">F</text>
+  <rect x="245" y="20" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="254" y="32" class="lbl" font-size="9">F</text>
+  <rect x="265" y="20" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="274" y="32" class="lbl" font-size="9">F</text>
+
+  <!-- Row: after num=1 -->
+  <text x="0" y="58" class="cmp">+1:</text>
+  <rect class="ch1 cell" x="45" y="42" width="18" height="18" fill="#ddeeff" stroke="#6699cc"/>
+  <text x="54" y="54" class="lbl" font-size="9" fill="#27AE60">T</text>
+  <rect class="ch1 cell" x="65" y="42" width="18" height="18" fill="#ddeeff" stroke="#6699cc"/>
+  <text x="74" y="54" class="lbl" font-size="9" fill="#27AE60">T</text>
+  <rect x="85" y="42" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="94" y="54" class="lbl" font-size="9">F</text>
+  <rect x="105" y="42" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="114" y="54" class="lbl" font-size="9">F</text>
+  <rect x="125" y="42" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="134" y="54" class="lbl" font-size="9">F</text>
+  <rect x="145" y="42" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="154" y="54" class="lbl" font-size="9">F</text>
+  <rect x="165" y="42" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="174" y="54" class="lbl" font-size="9">F</text>
+  <rect x="185" y="42" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="194" y="54" class="lbl" font-size="9">F</text>
+  <rect x="205" y="42" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="214" y="54" class="lbl" font-size="9">F</text>
+  <rect x="225" y="42" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="234" y="54" class="lbl" font-size="9">F</text>
+  <rect x="245" y="42" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="254" y="54" class="lbl" font-size="9">F</text>
+  <rect x="265" y="42" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="274" y="54" class="lbl" font-size="9">F</text>
+
+  <!-- Row: after num=5 -->
+  <text x="0" y="80" class="cmp">+5:</text>
+  <rect class="ch2 cell" x="45" y="64" width="18" height="18" fill="#ddeeff" stroke="#6699cc"/>
+  <text x="54" y="76" class="lbl" font-size="9" fill="#27AE60">T</text>
+  <rect class="ch2 cell" x="65" y="64" width="18" height="18" fill="#ddeeff" stroke="#6699cc"/>
+  <text x="74" y="76" class="lbl" font-size="9" fill="#27AE60">T</text>
+  <rect x="85" y="64" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="94" y="76" class="lbl" font-size="9">F</text>
+  <rect x="105" y="64" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="114" y="76" class="lbl" font-size="9">F</text>
+  <rect x="125" y="64" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="134" y="76" class="lbl" font-size="9">F</text>
+  <rect class="ch2 cell" x="145" y="64" width="18" height="18" fill="#ddeeff" stroke="#6699cc"/>
+  <text x="154" y="76" class="lbl" font-size="9" fill="#27AE60">T</text>
+  <rect class="ch2 cell" x="165" y="64" width="18" height="18" fill="#ddeeff" stroke="#6699cc"/>
+  <text x="174" y="76" class="lbl" font-size="9" fill="#27AE60">T</text>
+  <rect x="185" y="64" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="194" y="76" class="lbl" font-size="9">F</text>
+  <rect x="205" y="64" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="214" y="76" class="lbl" font-size="9">F</text>
+  <rect x="225" y="64" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="234" y="76" class="lbl" font-size="9">F</text>
+  <rect x="245" y="64" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="254" y="76" class="lbl" font-size="9">F</text>
+  <rect x="265" y="64" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="274" y="76" class="lbl" font-size="9">F</text>
+
+  <!-- Row: after num=11 -->
+  <text x="0" y="102" class="cmp">+11:</text>
+  <rect class="ch3 cell" x="45" y="86" width="18" height="18" fill="#ddeeff" stroke="#6699cc"/>
+  <text x="54" y="98" class="lbl" font-size="9" fill="#27AE60">T</text>
+  <rect class="ch3 cell" x="65" y="86" width="18" height="18" fill="#ddeeff" stroke="#6699cc"/>
+  <text x="74" y="98" class="lbl" font-size="9" fill="#27AE60">T</text>
+  <rect x="85" y="86" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="94" y="98" class="lbl" font-size="9">F</text>
+  <rect x="105" y="86" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="114" y="98" class="lbl" font-size="9">F</text>
+  <rect x="125" y="86" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="134" y="98" class="lbl" font-size="9">F</text>
+  <rect class="ch3 cell" x="145" y="86" width="18" height="18" fill="#ddeeff" stroke="#6699cc"/>
+  <text x="154" y="98" class="lbl" font-size="9" fill="#27AE60">T</text>
+  <rect class="ch3 cell" x="165" y="86" width="18" height="18" fill="#ddeeff" stroke="#6699cc"/>
+  <text x="174" y="98" class="lbl" font-size="9" fill="#27AE60">T</text>
+  <rect x="185" y="86" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="194" y="98" class="lbl" font-size="9">F</text>
+  <rect x="205" y="86" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="214" y="98" class="lbl" font-size="9">F</text>
+  <rect x="225" y="86" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="234" y="98" class="lbl" font-size="9">F</text>
+  <rect x="245" y="86" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/><text x="254" y="98" class="lbl" font-size="9">F</text>
+  <rect class="ch3 cell" x="265" y="86" width="18" height="18" fill="#ddeeff" stroke="#6699cc"/>
+  <text x="274" y="98" class="lbl" font-size="9" fill="#27AE60">T</text>
+
+  <!-- Row: after num=5 (second) -->
+  <text x="0" y="124" class="cmp">+5:</text>
+  <rect class="ch4 cell" x="45" y="108" width="18" height="18" fill="#ddeeff" stroke="#6699cc"/>
+  <text x="54" y="120" class="lbl" font-size="9" fill="#27AE60">T</text>
+  <rect class="ch4 cell" x="65" y="108" width="18" height="18" fill="#ddeeff" stroke="#6699cc"/>
+  <text x="74" y="120" class="lbl" font-size="9" fill="#27AE60">T</text>
+  <rect x="85" y="108" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/>
+  <rect x="105" y="108" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/>
+  <rect x="125" y="108" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/>
+  <rect class="ch4 cell" x="145" y="108" width="18" height="18" fill="#ddeeff" stroke="#6699cc"/>
+  <text x="154" y="120" class="lbl" font-size="9" fill="#27AE60">T</text>
+  <rect class="ch4 cell" x="165" y="108" width="18" height="18" fill="#ddeeff" stroke="#6699cc"/>
+  <text x="174" y="120" class="lbl" font-size="9" fill="#27AE60">T</text>
+  <rect x="185" y="108" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/>
+  <rect x="205" y="108" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/>
+  <rect x="225" y="108" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/>
+  <rect x="245" y="108" width="18" height="18" fill="#fff" stroke="#aaa" class="cell"/>
+  <rect class="ch5 cell" x="265" y="108" width="18" height="18" fill="#ddeeff" stroke="#27AE60" stroke-width="2"/>
+  <text x="274" y="120" class="lbl" font-size="9" fill="#27AE60" font-weight="bold">T</text>
+</g>
+
+<!-- Step labels right side -->
+<text x="360" y="430" class="cmp sl0">① Compute target=sum/2=11</text>
+<text x="360" y="445" class="cmp sl0">   If odd sum → impossible</text>
+<text x="360" y="430" class="cmp sl1">② dp[0]=True; process num=1</text>
+<text x="360" y="445" class="cmp sl1">   dp[1]=True (0+1=1)</text>
+<text x="360" y="430" class="cmp sl2">③ Process num=5: update RIGHT to LEFT</text>
+<text x="360" y="445" class="cmp sl2">   dp[5]=T, dp[6]=T (from dp[1]+5)</text>
+<text x="360" y="430" class="cmp sl3">④ Process num=11: dp[11]=True (0+11)</text>
+<text x="360" y="430" class="cmp sl4" fill="#27AE60">⑤ Process num=5: dp[11] still True ✓</text>
+<text x="360" y="445" class="cmp sl4" fill="#27AE60">   Answer = dp[11] = True</text>
+
+<!-- Key insight box -->
+<rect x="560" y="426" width="322" height="112" fill="#fff9e6" stroke="#F39C12" stroke-width="1.5" rx="5"/>
+<text x="576" y="443" class="cmp" font-weight="bold" fill="#F39C12">Key: Iterate RIGHT to LEFT!</text>
+<text x="576" y="459" class="cmp">for num in nums:           # 0/1 knapsack</text>
+<text x="576" y="473" class="cmp">  for j in range(target, num-1, -1):</text>
+<text x="576" y="487" class="cmp">    dp[j] |= dp[j - num]</text>
+<text x="576" y="503" class="cmp">                           # right→left</text>
+<text x="576" y="519" class="cmp" fill="#27AE60">return dp[target]  → True ✓</text>
+
+<!-- Complexity table -->
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="6"/>
+<rect x="16" y="578" width="868" height="26" fill="#f0f0f0" stroke="#ddd" stroke-width="1" rx="6"/>
+<text x="182" y="595" class="tbl" font-weight="bold">Approach</text>
+<text x="430" y="595" class="tbl" font-weight="bold">Time</text>
+<text x="610" y="595" class="tbl" font-weight="bold">Space</text>
+<text x="790" y="595" class="tbl" font-weight="bold">Recommended</text>
+<rect x="16" y="604" width="868" height="24" fill="#fff5f5"/>
+<text x="182" y="620" class="tbl">Recursion</text>
+<text x="430" y="620" class="tbl">O(2ⁿ)</text>
+<text x="610" y="620" class="tbl">O(n)</text>
+<text x="790" y="620" class="tbl">✗ TLE</text>
+<rect x="16" y="628" width="868" height="24" fill="#f0fff0"/>
+<text x="182" y="644" class="tbl">0/1 Knapsack DP</text>
+<text x="430" y="644" class="tbl">O(n×target)</text>
+<text x="610" y="644" class="tbl">O(target)</text>
+<text x="790" y="644" class="tbl">✓ Optimal</text>
+<line x1="16" y1="652" x2="884" y2="652" stroke="#ddd" stroke-width="1"/>
+<text x="182" y="668" class="tbl" fill="#27AE60" font-weight="bold">▶ Iterate RIGHT to LEFT to ensure each num used at most once</text>
+</svg>

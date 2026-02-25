@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#1a1a2e}
+  .prob{font:13px sans-serif;fill:#444}
+  .sec{font:bold 13px sans-serif}
+  .arr{fill:#ddeeff;stroke:#6699cc;stroke-width:1.5}
+  .lbl{font:11px monospace;fill:#333;text-anchor:middle}
+  .idx{font:10px sans-serif;fill:#888;text-anchor:middle}
+  .evol{fill:none;stroke:#888;stroke-width:1.5;stroke-dasharray:5,3}
+  .ins{font:11px sans-serif;fill:#555;font-style:italic}
+  .cmp{font:11px sans-serif;fill:#333}
+  .tbl{font:11px sans-serif;fill:#333;text-anchor:middle}
+
+  @keyframes dp0{0%,10%{fill:#ddeeff}10.1%,100%{fill:#ccffcc}}
+  @keyframes dp1{0%,18%{fill:#ddeeff}18.1%,100%{fill:#ccffcc}}
+  @keyframes dp2{0%,28%{fill:#ddeeff}28.1%,100%{fill:#ccffcc}}
+  @keyframes dp3{0%,38%{fill:#ddeeff}38.1%,100%{fill:#ccffcc}}
+  @keyframes dp4{0%,48%{fill:#ddeeff}48.1%,100%{fill:#ccffcc}}
+  .d0{animation:dp0 8s ease-in-out infinite}
+  .d1{animation:dp1 8s ease-in-out infinite}
+  .d2{animation:dp2 8s ease-in-out infinite}
+  .d3{animation:dp3 8s ease-in-out infinite}
+  .d4{animation:dp4 8s ease-in-out infinite}
+
+  @keyframes ptr_mv{0%{transform:translateX(0)}25%{transform:translateX(58px)}50%{transform:translateX(116px)}75%{transform:translateX(174px)}100%{transform:translateX(232px)}}
+  .ptmv{animation:ptr_mv 8s ease-in-out infinite}
+
+  @keyframes sl0{0%,18%{opacity:1}19%,100%{opacity:0}}
+  @keyframes sl1{0%,18%{opacity:0}19%,36%{opacity:1}37%,100%{opacity:0}}
+  @keyframes sl2{0%,36%{opacity:0}37%,54%{opacity:1}55%,100%{opacity:0}}
+  @keyframes sl3{0%,54%{opacity:0}55%,72%{opacity:1}73%,100%{opacity:0}}
+  @keyframes sl4{0%,72%{opacity:0}73%,100%{opacity:1}}
+  .sl0{animation:sl0 8s ease-in-out infinite}
+  .sl1{animation:sl1 8s ease-in-out infinite}
+  .sl2{animation:sl2 8s ease-in-out infinite}
+  .sl3{animation:sl3 8s ease-in-out infinite}
+  .sl4{animation:sl4 8s ease-in-out infinite}
+</style>
+
+<rect width="900" height="690" fill="#f8f9fa" rx="8"/>
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="32" text-anchor="middle" class="title" fill="white">Rod Cutting</text>
+
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="72" text-anchor="middle" class="prob">prices=[1,5,8,9,10], n=4 → max revenue=10  (cut into 2+2 → 5+5=10)</text>
+
+<!-- APPROACH 1: RECURSION -->
+<rect x="16" y="92" width="868" height="218" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="32" y="111" class="sec" fill="white">Approach 1: Recursion — O(2ⁿ)</text>
+
+<!-- Rod visualization -->
+<text x="32" y="145" class="cmp">Rod of length 4 (prices: len→price):</text>
+<g transform="translate(32,155)">
+  <rect x="0" y="0" width="232" height="32" fill="#ffcccc" stroke="#E74C3C" stroke-width="2"/>
+  <line x1="58" y1="0" x2="58" y2="32" stroke="#E74C3C" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="116" y1="0" x2="116" y2="32" stroke="#E74C3C" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="174" y1="0" x2="174" y2="32" stroke="#E74C3C" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="29" y="20" class="lbl" font-size="10">1→$1</text>
+  <text x="87" y="20" class="lbl" font-size="10">2→$5</text>
+  <text x="145" y="20" class="lbl" font-size="10">3→$8</text>
+  <text x="203" y="20" class="lbl" font-size="10">4→$9</text>
+</g>
+
+<!-- Price table -->
+<text x="400" y="145" class="cmp">Price table (length → price):</text>
+<g transform="translate(400,155)">
+  <rect class="arr" x="0" y="0" width="42" height="36"/><text x="21" y="14" class="lbl" font-size="9">len=1</text><text x="21" y="28" class="lbl">$1</text>
+  <rect class="arr" x="48" y="0" width="42" height="36"/><text x="69" y="14" class="lbl" font-size="9">len=2</text><text x="69" y="28" class="lbl">$5</text>
+  <rect class="arr" x="96" y="0" width="42" height="36"/><text x="117" y="14" class="lbl" font-size="9">len=3</text><text x="117" y="28" class="lbl">$8</text>
+  <rect class="arr" x="144" y="0" width="42" height="36"/><text x="165" y="14" class="lbl" font-size="9">len=4</text><text x="165" y="28" class="lbl">$9</text>
+</g>
+
+<text x="32" y="208" class="cmp">Recurrence: cut(n) = max over i in [1..n] of</text>
+<text x="32" y="222" class="cmp">  price[i] + cut(n-i)</text>
+<text x="32" y="240" class="cmp sl0">① cut(4): try i=1: $1+cut(3), i=2: $5+cut(2), ...</text>
+<text x="32" y="240" class="cmp sl1">② cut(3): $1+cut(2), $5+cut(1), $8+cut(0)</text>
+<text x="32" y="255" class="cmp sl1">   cut(3) = max(1+5, 5+1, 8+0) = 8</text>
+<text x="32" y="240" class="cmp sl2">③ cut(2): $1+cut(1), $5+cut(0) = max(2,5) = 5</text>
+<text x="32" y="240" class="cmp sl3">④ cut(4): max(1+8, 5+5, 8+1, 9+0) = 10</text>
+<text x="32" y="255" class="cmp sl3">   2+2 gives $5+$5 = $10 ✓</text>
+<text x="32" y="240" class="cmp sl4" fill="#E74C3C">⑤ Without memo: O(2ⁿ) — many overlapping calls</text>
+
+<!-- Evolution arrow -->
+<line x1="450" y1="310" x2="450" y2="328" class="evol"/>
+<polygon points="450,329 444,317 456,317" fill="#888"/>
+<rect x="310" y="313" width="280" height="28" fill="#fffde7" stroke="#f0c040" stroke-width="1" rx="4"/>
+<text x="450" y="331" text-anchor="middle" class="ins">Bottom-up tabulation: fill dp[1..n] iteratively</text>
+
+<!-- APPROACH 2: DP TABULATION -->
+<rect x="16" y="346" width="868" height="216" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="346" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="360" width="868" height="14" fill="#27AE60"/>
+<text x="32" y="365" class="sec" fill="white">Approach 2: Bottom-Up DP — O(n²) time, O(n) space</text>
+
+<text x="32" y="395" class="cmp">dp[j] = max revenue from rod of length j:</text>
+<g transform="translate(32,405)">
+  <rect class="arr d0" x="0" y="0" width="52" height="40"/><text x="26" y="17" class="lbl">dp=0</text><text x="26" y="32" class="lbl" font-size="9">len=0</text>
+  <rect class="arr d1" x="58" y="0" width="52" height="40"/><text x="84" y="17" class="lbl">dp=1</text><text x="84" y="32" class="lbl" font-size="9">len=1</text>
+  <rect class="arr d2" x="116" y="0" width="52" height="40"/><text x="142" y="17" class="lbl">dp=5</text><text x="142" y="32" class="lbl" font-size="9">len=2</text>
+  <rect class="arr d3" x="174" y="0" width="52" height="40"/><text x="200" y="17" class="lbl">dp=8</text><text x="200" y="32" class="lbl" font-size="9">len=3</text>
+  <rect class="arr d4" x="232" y="0" width="52" height="40"/><text x="258" y="17" class="lbl" fill="#27AE60" font-weight="bold">dp=10</text><text x="258" y="32" class="lbl" font-size="9">len=4</text>
+  <g class="ptmv">
+    <polygon points="26,46 20,58 32,58" fill="#27AE60"/>
+  </g>
+</g>
+
+<text x="32" y="475" class="cmp sl0">① dp[0]=0 (no rod, no revenue)</text>
+<text x="32" y="475" class="cmp sl1">② dp[1]=max(price[1]+dp[0])=$1+$0=1</text>
+<text x="32" y="475" class="cmp sl2">③ dp[2]=max(price[1]+dp[1], price[2]+dp[0])=max(2,5)=5</text>
+<text x="32" y="475" class="cmp sl3">④ dp[3]=max(p[1]+dp[2], p[2]+dp[1], p[3]+dp[0])</text>
+<text x="32" y="490" class="cmp sl3">         =max(1+5, 5+1, 8+0) = 8</text>
+<text x="32" y="475" class="cmp sl4" fill="#27AE60">⑤ dp[4]=max(p[1]+dp[3],p[2]+dp[2],p[3]+dp[1],p[4]+dp[0])</text>
+<text x="32" y="490" class="cmp sl4" fill="#27AE60">         =max(1+8, 5+5, 8+1, 9+0) = 10 ✓</text>
+
+<!-- Key pattern box -->
+<rect x="480" y="390" width="390" height="148" fill="#fff9e6" stroke="#F39C12" stroke-width="1.5" rx="5"/>
+<text x="496" y="407" class="cmp" font-weight="bold" fill="#F39C12">Inner Loop Pattern (Unbounded Knapsack):</text>
+<text x="496" y="423" class="cmp">for j in range(1, n+1):      # rod length</text>
+<text x="496" y="437" class="cmp">  for i in range(1, j+1):    # cut position</text>
+<text x="496" y="451" class="cmp">    dp[j] = max(dp[j],</text>
+<text x="496" y="465" class="cmp">               price[i] + dp[j-i])</text>
+<text x="496" y="485" class="cmp" fill="#888">Similar to unbounded knapsack:</text>
+<text x="496" y="499" class="cmp" fill="#888">each cut piece can be reused!</text>
+<text x="496" y="519" class="cmp" fill="#27AE60" font-weight="bold">dp[4] = 10 → cut 2+2 → $5+$5 = $10</text>
+
+<!-- Complexity table -->
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="6"/>
+<rect x="16" y="578" width="868" height="26" fill="#f0f0f0" stroke="#ddd" stroke-width="1" rx="6"/>
+<text x="182" y="595" class="tbl" font-weight="bold">Approach</text>
+<text x="430" y="595" class="tbl" font-weight="bold">Time</text>
+<text x="610" y="595" class="tbl" font-weight="bold">Space</text>
+<text x="790" y="595" class="tbl" font-weight="bold">Recommended</text>
+<rect x="16" y="604" width="868" height="24" fill="#fff5f5"/>
+<text x="182" y="620" class="tbl">Recursion (no memo)</text>
+<text x="430" y="620" class="tbl">O(2ⁿ)</text>
+<text x="610" y="620" class="tbl">O(n)</text>
+<text x="790" y="620" class="tbl">✗ TLE</text>
+<rect x="16" y="628" width="868" height="24" fill="#f0fff0"/>
+<text x="182" y="644" class="tbl">Bottom-Up DP</text>
+<text x="430" y="644" class="tbl">O(n²)</text>
+<text x="610" y="644" class="tbl">O(n)</text>
+<text x="790" y="644" class="tbl">✓ Optimal</text>
+<line x1="16" y1="652" x2="884" y2="652" stroke="#ddd" stroke-width="1"/>
+<text x="182" y="668" class="tbl" fill="#27AE60" font-weight="bold">▶ Unbounded Knapsack variant — cut can repeat</text>
+</svg>

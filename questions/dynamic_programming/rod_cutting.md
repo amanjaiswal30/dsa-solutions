@@ -1,5 +1,8 @@
 # Rod Cutting Problem – Detailed Explanation
 
+![](../../assets/images/dynamic_programming/rod_cutting.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

@@ -1,5 +1,8 @@
 # Minimum Cost Path in Grid – Detailed Explanation
 
+![](../../assets/images/dynamic_programming/min_cost_path.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---
@@ -238,7 +241,6 @@ public class MinCostPath {
 
 **Problem:** Can move in all 4 directions (up, down, left, right).
 
-{% raw %}
 ```java
 public class MinCostPathVariations {
     
@@ -285,7 +287,6 @@ public class MinCostPathVariations {
     }
 }
 ```
-{% endraw %}
 
 ### Variation 2: Path with Maximum Gold
 

@@ -1,0 +1,100 @@
+<svg width="900" height="560" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="560" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Rotate a Linked List to the Right by K Places</text>
+  <rect x="800" y="12" width="82" height="28" fill="#F39C12" rx="14"/>
+  <text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">1→2→3→4→5, k=2</text>
+  <text x="280" y="81" font-family="Arial" font-size="12" fill="#555">→ move last 2 to front</text>
+  <text x="480" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#27AE60">→ 4→5→1→2→3</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Rotate right by k = move last k nodes to front. Key: k % len eliminates full rotations.</text>
+
+  <!-- Approach 1: Brute Force -->
+  <rect x="15" y="115" width="390" height="315" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="390" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="390" height="15" fill="#E74C3C"/>
+  <text x="210" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Brute Force</text>
+  <text x="210" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(k×n) time | O(1) space</text>
+
+  <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Rotate one node at a time, k times:</text>
+  <rect x="30" y="184" width="360" height="80" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Rotation 1: traverse to 2nd last, move 5 to front</text>
+  <text x="210" y="215" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">1→2→3→4→5 → 5→1→2→3→4</text>
+  <text x="210" y="230" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Rotation 2: traverse to 2nd last, move 4 to front</text>
+  <text x="210" y="248" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">5→1→2→3→4 → 4→5→1→2→3 ✓</text>
+
+  <text x="30" y="286" font-family="Arial" font-size="11" fill="#E74C3C">⚠ O(n) per rotation × k rotations!</text>
+  <text x="30" y="304" font-family="Arial" font-size="11" fill="#888">k=100, n=5 → 100×5=500 ops (vs 5)</text>
+  <text x="30" y="322" font-family="Arial" font-size="11" fill="#888">k % len reduces waste (k=7,len=5 → 2)</text>
+  <text x="30" y="340" font-family="Arial" font-size="11" fill="#888">Circular approach traverses list once</text>
+  <text x="30" y="358" font-family="Arial" font-size="11" fill="#888">Find new tail → break link → new head</text>
+  <text x="30" y="376" font-family="Arial" font-size="11" fill="#888">Makes the list circular temporarily</text>
+  <text x="30" y="394" font-family="Arial" font-size="11" fill="#888">Then breaks at correct position</text>
+  <text x="30" y="412" font-family="Arial" font-size="11" fill="#888">Total: only 2 list traversals O(n)</text>
+
+  <!-- Evolution Arrow -->
+  <line x1="410" y1="270" x2="480" y2="270" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon points="480,265 492,270 480,275" fill="#7F8C8D"/>
+  <rect x="410" y="242" width="72" height="56" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
+  <text x="446" y="256" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Make</text>
+  <text x="446" y="268" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">circular!</text>
+  <text x="446" y="280" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">O(n) total</text>
+
+  <!-- Approach 2: Optimal -->
+  <rect x="492" y="115" width="393" height="315" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="492" y="115" width="393" height="40" fill="#27AE60" rx="7"/>
+  <rect x="492" y="140" width="393" height="15" fill="#27AE60"/>
+  <text x="688" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Circular List ⭐</text>
+  <text x="688" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(n) time | O(1) space</text>
+
+  <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">4-step O(n) approach (n=5, k=2):</text>
+
+  <text x="505" y="198" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">Step 1: Find tail, count length:</text>
+  <rect x="505" y="204" width="362" height="20" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="218" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">tail=5, len=5; k = k%len = 2%5 = 2</text>
+
+  <text x="505" y="237" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">Step 2: Make list circular:</text>
+  <rect x="505" y="243" width="362" height="20" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="257" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">tail.next = head → 1→2→3→4→5→(back to 1)</text>
+
+  <text x="505" y="276" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">Step 3: Find new tail at (len-k-1)th node:</text>
+  <rect x="505" y="282" width="362" height="20" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="296" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">stepsToNewTail = 5-2 = 3 → advance 3-1=2 steps → node(3)</text>
+
+  <text x="505" y="315" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">Step 4: Set new head, break circle:</text>
+  <rect x="505" y="321" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="336" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">newHead = newTail.next = node(4)</text>
+  <text x="686" y="348" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">newTail.next = null → Result: 4→5→1→2→3 ✓</text>
+
+  <text x="505" y="372" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">Single traversal to find tail + length!</text>
+  <text x="505" y="390" font-family="Arial" font-size="11" fill="#888">k%len handles k &gt; len correctly</text>
+  <text x="505" y="408" font-family="Arial" font-size="11" fill="#888">If k%len==0: same list, return head early</text>
+  <text x="505" y="426" font-family="Arial" font-size="11" fill="#888">Circular → find split point → disconnect</text>
+
+  <!-- Complexity Table -->
+  <rect x="15" y="443" width="870" height="107" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+  <rect x="15" y="443" width="870" height="30" fill="#2C3E50" rx="7"/>
+  <rect x="15" y="458" width="870" height="15" fill="#2C3E50"/>
+  <text x="450" y="463" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+  <line x1="15" y1="473" x2="885" y2="473" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="473" width="870" height="25" fill="#ECF0F1"/>
+  <text x="200" y="490" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+  <text x="500" y="490" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+  <text x="750" y="490" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+  <line x1="15" y1="498" x2="885" y2="498" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="498" width="870" height="24" fill="#FDEDEC"/>
+  <text x="200" y="514" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Brute Force (rotate k times)</text>
+  <text x="500" y="514" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(k×n)</text>
+  <text x="750" y="514" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(1)</text>
+  <line x1="15" y1="522" x2="885" y2="522" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="522" width="870" height="24" fill="#EAFAF1"/>
+  <text x="200" y="538" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Circular List Approach ⭐</text>
+  <text x="500" y="538" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n)</text>
+  <text x="750" y="538" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(1)</text>
+  <line x1="370" y1="473" x2="370" y2="546" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="620" y1="473" x2="620" y2="546" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

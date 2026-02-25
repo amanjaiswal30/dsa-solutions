@@ -1,0 +1,97 @@
+<svg width="900" height="560" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="560" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Remove N-th Node from End of a Linked List</text>
+  <rect x="800" y="12" width="82" height="28" fill="#F39C12" rx="14"/>
+  <text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">1→2→3→4→5, n=2</text>
+  <text x="280" y="81" font-family="Arial" font-size="12" fill="#555">→ remove 4th node (2nd from end)</text>
+  <text x="550" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#27AE60">→ 1→2→3→5</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Remove the n-th node from the end in one or two passes. Dummy node handles head deletion.</text>
+
+  <!-- Approach 1: Two Pass -->
+  <rect x="15" y="115" width="390" height="310" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="390" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="390" height="15" fill="#E74C3C"/>
+  <text x="210" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Two Pass (Brute)</text>
+  <text x="210" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(n) time | O(1) space | 2 traversals</text>
+
+  <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Pass 1: Count length = 5. Pass 2: delete:</text>
+  <rect x="30" y="184" width="360" height="72" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">length=5, n=2 → delete at pos = 5-2 = 3rd node</text>
+  <text x="210" y="215" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">traverse to (length-n-1 = 2)th node → node(3)</text>
+  <text x="210" y="230" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">node(3).next = node(3).next.next</text>
+  <text x="210" y="248" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">Result: 1→2→3→5 ✓</text>
+
+  <text x="30" y="280" font-family="Arial" font-size="11" fill="#555">Edge case: n == length → remove head</text>
+  <rect x="30" y="286" width="360" height="20" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="300" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">if (n == length) return head.next;</text>
+
+  <text x="30" y="326" font-family="Arial" font-size="11" fill="#E74C3C">⚠ Requires 2 full traversals</text>
+  <text x="30" y="344" font-family="Arial" font-size="11" fill="#888">Simple but can we do it in one pass?</text>
+  <text x="30" y="362" font-family="Arial" font-size="11" fill="#888">Yes — use two pointers n steps apart!</text>
+  <text x="30" y="380" font-family="Arial" font-size="11" fill="#888">Dummy node cleanly handles head removal</text>
+  <text x="30" y="398" font-family="Arial" font-size="11" fill="#888">When fast reaches end, slow is at target</text>
+  <text x="30" y="416" font-family="Arial" font-size="11" fill="#888">Saves one full list traversal!</text>
+
+  <!-- Evolution Arrow -->
+  <line x1="410" y1="268" x2="480" y2="268" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon points="480,263 492,268 480,273" fill="#7F8C8D"/>
+  <rect x="410" y="240" width="72" height="56" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
+  <text x="446" y="254" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Two</text>
+  <text x="446" y="266" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">pointers n</text>
+  <text x="446" y="278" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">apart!</text>
+
+  <!-- Approach 2: One Pass -->
+  <rect x="492" y="115" width="393" height="310" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="492" y="115" width="393" height="40" fill="#27AE60" rx="7"/>
+  <rect x="492" y="140" width="393" height="15" fill="#27AE60"/>
+  <text x="688" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: One Pass + Dummy ⭐</text>
+  <text x="688" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(n) time | O(1) space | 1 traversal</text>
+
+  <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Dummy→1→2→3→4→5, n=2:</text>
+  <rect x="505" y="184" width="362" height="88" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">fast=second=dummy; move fast n+1=3 steps ahead</text>
+  <text x="686" y="215" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">fast=node(2) (3 steps from dummy)</text>
+  <text x="686" y="230" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Move both until fast=null: second stops at node(3)</text>
+  <text x="686" y="245" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">second.next = second.next.next → skips node(4)</text>
+  <text x="686" y="263" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">Return dummy.next → 1→2→3→5 ✓</text>
+
+  <text x="505" y="294" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Why n+1 steps for fast?</text>
+  <rect x="505" y="300" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="315" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">We want slow one node BEFORE target</text>
+  <text x="686" y="327" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">Dummy node ensures head deletion works too</text>
+
+  <text x="505" y="356" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">Single pass — no length counting!</text>
+  <text x="505" y="374" font-family="Arial" font-size="11" fill="#888">Dummy handles n==length (remove head)</text>
+  <text x="505" y="392" font-family="Arial" font-size="11" fill="#888">Gap of n+1 between pointers is the key</text>
+  <text x="505" y="410" font-family="Arial" font-size="11" fill="#888">When fast=null, slow is before target</text>
+  <text x="505" y="428" font-family="Arial" font-size="11" fill="#888">Works for any valid n (1 to length)</text>
+
+  <!-- Complexity Table -->
+  <rect x="15" y="437" width="870" height="112" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+  <rect x="15" y="437" width="870" height="30" fill="#2C3E50" rx="7"/>
+  <rect x="15" y="452" width="870" height="15" fill="#2C3E50"/>
+  <text x="450" y="457" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+  <line x1="15" y1="467" x2="885" y2="467" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="467" width="870" height="25" fill="#ECF0F1"/>
+  <text x="200" y="484" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+  <text x="500" y="484" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+  <text x="750" y="484" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Passes</text>
+  <line x1="15" y1="492" x2="885" y2="492" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="492" width="870" height="24" fill="#FDEDEC"/>
+  <text x="200" y="508" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Two Pass (Count + Delete)</text>
+  <text x="500" y="508" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(n)</text>
+  <text x="750" y="508" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">2 traversals</text>
+  <line x1="15" y1="516" x2="885" y2="516" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="516" width="870" height="24" fill="#EAFAF1"/>
+  <text x="200" y="532" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">One Pass + Two Pointers + Dummy ⭐</text>
+  <text x="500" y="532" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n)</text>
+  <text x="750" y="532" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">1 traversal</text>
+  <line x1="370" y1="467" x2="370" y2="540" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="620" y1="467" x2="620" y2="540" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

@@ -1,5 +1,8 @@
 # 🔹 Problem: Longest Duplicate Substring
 
+![](../../assets/images/strings/longest_duplicate_substring.svg)
+
+
 **Difficulty:** Hard ⚡
 
 ---

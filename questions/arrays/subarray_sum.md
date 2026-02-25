@@ -1,5 +1,8 @@
 # Subarray with Given Sum
 
+![](../../assets/images/arrays/subarray_sum.svg)
+
+
 **Difficulty:** Easy ✅
 
 ---

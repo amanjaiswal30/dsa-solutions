@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#1a1a2e}
+  .prob{font:13px sans-serif;fill:#444}
+  .sec{font:bold 13px sans-serif}
+  .nd{fill:#ddeeff;stroke:#6699cc;stroke-width:2}
+  .lbl{font:12px monospace;fill:#333;text-anchor:middle;dominant-baseline:middle}
+  .cmp{font:11px sans-serif;fill:#333}
+  .evol{fill:none;stroke:#888;stroke-width:1.5;stroke-dasharray:5,3}
+  .ins{font:11px sans-serif;fill:#555;font-style:italic}
+  .tbl{font:11px sans-serif;fill:#333;text-anchor:middle}
+  .edge{stroke:#999;stroke-width:1.5;fill:none}
+  .diam{stroke:#E74C3C;stroke-width:2.5;stroke-dasharray:6,3;fill:none}
+
+  @keyframes ndVisit{0%,100%{fill:#ddeeff;stroke:#6699cc}40%,60%{fill:#ffd700;stroke:#F39C12}}
+  @keyframes ndGreen{0%,100%{fill:#ddeeff;stroke:#6699cc}40%,60%{fill:#ccffcc;stroke:#27AE60}}
+  @keyframes sl0{0%,19%{opacity:1}20%,100%{opacity:0}}
+  @keyframes sl1{0%,19%{opacity:0}20%,39%{opacity:1}40%,100%{opacity:0}}
+  @keyframes sl2{0%,39%{opacity:0}40%,59%{opacity:1}60%,100%{opacity:0}}
+  @keyframes sl3{0%,59%{opacity:0}60%,79%{opacity:1}80%,100%{opacity:0}}
+  @keyframes sl4{0%,79%{opacity:0}80%,100%{opacity:1}}
+  .sl0{animation:sl0 9s ease-in-out infinite}
+  .sl1{animation:sl1 9s ease-in-out infinite}
+  .sl2{animation:sl2 9s ease-in-out infinite}
+  .sl3{animation:sl3 9s ease-in-out infinite}
+  .sl4{animation:sl4 9s ease-in-out infinite}
+  .np0{animation:ndVisit 7s 0s ease-in-out infinite}
+  .np1{animation:ndVisit 7s 0.6s ease-in-out infinite}
+  .np2{animation:ndVisit 7s 1.2s ease-in-out infinite}
+  .np3{animation:ndVisit 7s 1.8s ease-in-out infinite}
+  .ng0{animation:ndGreen 7s 0s ease-in-out infinite}
+  .ng1{animation:ndGreen 7s 0.6s ease-in-out infinite}
+  .ng2{animation:ndGreen 7s 1.2s ease-in-out infinite}
+  .ng3{animation:ndGreen 7s 1.8s ease-in-out infinite}
+</style>
+
+<rect width="900" height="690" fill="#f8f9fa" rx="8"/>
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="32" text-anchor="middle" class="title" fill="white">Diameter of Binary Tree</text>
+
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="72" text-anchor="middle" class="prob">Tree: 1→{2→{4,5},3}  →  Diameter = 3 (path: 4-2-1-3 or 5-2-1-3)</text>
+
+<!-- APPROACH 1 -->
+<rect x="16" y="92" width="868" height="218" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="32" y="111" class="sec" fill="white">Approach 1: Recursive DFS — compute left+right height at each node, track max  O(n) time, O(h) space</text>
+
+<g transform="translate(175,128)">
+  <line x1="0" y1="22" x2="-90" y2="74" class="edge"/>
+  <line x1="0" y1="22" x2="90" y2="74" class="edge"/>
+  <line x1="-90" y1="96" x2="-140" y2="152" class="edge"/>
+  <line x1="-90" y1="96" x2="-40" y2="152" class="edge"/>
+  <!-- diameter path highlight -->
+  <line x1="-140" y1="152" x2="-90" y2="96" class="diam"/>
+  <line x1="-90" y1="96" x2="0" y2="22" class="diam"/>
+  <line x1="0" y1="22" x2="90" y2="74" class="diam"/>
+  <circle class="np2 nd" cx="0" cy="0" r="22"/><text x="0" y="0" class="lbl">1</text>
+  <circle class="np1 nd" cx="-90" cy="74" r="22"/><text x="-90" y="74" class="lbl">2</text>
+  <circle class="np2 nd" cx="90" cy="74" r="22"/><text x="90" y="74" class="lbl">3</text>
+  <circle class="np0 nd" cx="-140" cy="152" r="22"/><text x="-140" y="152" class="lbl">4</text>
+  <circle class="np0 nd" cx="-40" cy="152" r="22"/><text x="-40" y="152" class="lbl">5</text>
+  <text x="-168" y="158" class="cmp" fill="#E74C3C" font-size="10">h=1</text>
+  <text x="-62" y="158" class="cmp" fill="#E74C3C" font-size="10">h=1</text>
+  <text x="-118" y="78" class="cmp" fill="#E74C3C" font-size="10">L+R=2</text>
+  <text x="62" y="78" class="cmp" fill="#E74C3C" font-size="10">h=1</text>
+  <text x="-26" y="4" class="cmp" fill="#E74C3C" font-size="10">L+R=3</text>
+</g>
+
+<text x="460" y="140" class="cmp" font-weight="bold">dfs(node) → height:</text>
+<text x="460" y="157" class="cmp">  if not node: return 0</text>
+<text x="460" y="174" class="cmp">  left  = dfs(node.left)</text>
+<text x="460" y="191" class="cmp">  right = dfs(node.right)</text>
+<text x="460" y="208" class="cmp">  diameter = max(diameter, left + right)</text>
+<text x="460" y="225" class="cmp">  return 1 + max(left, right)</text>
+
+<text x="460" y="250" class="cmp sl0">① Leaves 4,5 → h=1 each; diameter candidate = 2</text>
+<text x="460" y="250" class="cmp sl1">② Node 2: left=1, right=1 → diameter candidate=2, h(2)=2</text>
+<text x="460" y="250" class="cmp sl2">③ Node 3: leaf → h(3)=1, diameter unchanged</text>
+<text x="460" y="250" class="cmp sl3">④ Node 1: left=2, right=1 → diameter candidate=3</text>
+<text x="460" y="250" class="cmp sl4" fill="#E74C3C">⑤ Final diameter = 3  (path 4→2→1→3)</text>
+
+<!-- Arrow -->
+<line x1="450" y1="312" x2="450" y2="330" class="evol"/>
+<polygon points="450,332 444,320 456,320" fill="#888"/>
+<rect x="280" y="315" width="340" height="24" fill="#fffde7" stroke="#f0c040" stroke-width="1" rx="4"/>
+<text x="450" y="331" text-anchor="middle" class="ins">Optimization: return (height, diameter) in single pass</text>
+
+<!-- APPROACH 2 -->
+<rect x="16" y="348" width="868" height="214" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="348" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="362" width="868" height="14" fill="#27AE60"/>
+<text x="32" y="367" class="sec" fill="white">Approach 2: Single-pass DFS returning (height, diameter) tuple — O(n) time, O(h) space</text>
+
+<g transform="translate(175,384)">
+  <line x1="0" y1="22" x2="-90" y2="74" class="edge"/>
+  <line x1="0" y1="22" x2="90" y2="74" class="edge"/>
+  <line x1="-90" y1="96" x2="-140" y2="152" class="edge"/>
+  <line x1="-90" y1="96" x2="-40" y2="152" class="edge"/>
+  <circle class="ng2 nd" cx="0" cy="0" r="22"/><text x="0" y="0" class="lbl">1</text>
+  <circle class="ng1 nd" cx="-90" cy="74" r="22"/><text x="-90" y="74" class="lbl">2</text>
+  <circle class="ng2 nd" cx="90" cy="74" r="22"/><text x="90" y="74" class="lbl">3</text>
+  <circle class="ng0 nd" cx="-140" cy="152" r="22"/><text x="-140" y="152" class="lbl">4</text>
+  <circle class="ng0 nd" cx="-40" cy="152" r="22"/><text x="-40" y="152" class="lbl">5</text>
+  <text x="-180" y="158" class="cmp" fill="#27AE60" font-size="10">(1,0)</text>
+  <text x="-52" y="158" class="cmp" fill="#27AE60" font-size="10">(1,0)</text>
+  <text x="-128" y="78" class="cmp" fill="#27AE60" font-size="10">(2,2)</text>
+  <text x="62" y="78" class="cmp" fill="#27AE60" font-size="10">(1,0)</text>
+  <text x="-28" y="4" class="cmp" fill="#27AE60" font-size="10">(3,3)</text>
+</g>
+
+<text x="460" y="400" class="cmp" font-weight="bold">dfs(node) → (height, diameter):</text>
+<text x="460" y="417" class="cmp">  if not node: return (0, 0)</text>
+<text x="460" y="434" class="cmp">  lh, ld = dfs(node.left)</text>
+<text x="460" y="451" class="cmp">  rh, rd = dfs(node.right)</text>
+<text x="460" y="468" class="cmp">  h = 1 + max(lh, rh)</text>
+<text x="460" y="485" class="cmp">  d = max(lh+rh, ld, rd)</text>
+<text x="460" y="502" class="cmp">  return (h, d)</text>
+
+<text x="460" y="530" class="cmp sl0">① Leaf 4: returns (1,0), Leaf 5: returns (1,0)</text>
+<text x="460" y="530" class="cmp sl1">② Node 2: h=2, d=max(1+1,0,0)=2 → (2,2)</text>
+<text x="460" y="530" class="cmp sl2">③ Node 3: returns (1,0)</text>
+<text x="460" y="530" class="cmp sl3">④ Node 1: h=3, d=max(2+1,2,0)=3 → (3,3)</text>
+<text x="460" y="530" class="cmp sl4" fill="#27AE60">⑤ Answer = dfs(root)[1] = 3  No global variable needed!</text>
+
+<!-- Complexity table -->
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="6"/>
+<rect x="16" y="578" width="868" height="26" fill="#f0f0f0" rx="6"/>
+<text x="180" y="595" class="tbl" font-weight="bold">Approach</text>
+<text x="420" y="595" class="tbl" font-weight="bold">Time</text>
+<text x="580" y="595" class="tbl" font-weight="bold">Space</text>
+<text x="760" y="595" class="tbl" font-weight="bold">Notes</text>
+<rect x="16" y="604" width="868" height="24" fill="#fff5f5"/>
+<text x="180" y="620" class="tbl">Recursive DFS + global var</text>
+<text x="420" y="620" class="tbl">O(n)</text>
+<text x="580" y="620" class="tbl">O(h)</text>
+<text x="760" y="620" class="tbl">Simple, but uses global state</text>
+<rect x="16" y="628" width="868" height="24" fill="#f0fff0"/>
+<text x="180" y="644" class="tbl">Single-pass tuple return</text>
+<text x="420" y="644" class="tbl">O(n)</text>
+<text x="580" y="644" class="tbl">O(h)</text>
+<text x="760" y="644" class="tbl">Functional, no side effects</text>
+<rect x="16" y="652" width="868" height="24" fill="#fff"/>
+<text x="180" y="668" class="tbl" fill="#555">h = tree height, n = node count</text>
+<text x="580" y="668" class="tbl" fill="#555">Both visit each node exactly once</text>
+</svg>

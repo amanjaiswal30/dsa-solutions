@@ -1,5 +1,8 @@
 # Spiral Matrix
 
+![](../../assets/images/arrays/spiral_matrix.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

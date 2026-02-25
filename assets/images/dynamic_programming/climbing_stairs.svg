@@ -1,0 +1,137 @@
+<svg width="900" height="690" xmlns="http://www.w3.org/2000/svg">
+<style>
+/* Approach 1: Recursion tree */
+@keyframes rec_hl{0%,30%{opacity:0}31%,75%{opacity:1}76%,100%{opacity:0}}
+.rh{animation:rec_hl 5s ease-in-out infinite}
+/* Approach 2: DP table fills */
+@keyframes d0{0%,10%{fill:#EBF5FB;stroke:#3498DB}11%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes d1{0%,18%{fill:#EBF5FB;stroke:#3498DB}19%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes d2{0%,28%{fill:#EBF5FB;stroke:#3498DB}29%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes d3{0%,38%{fill:#EBF5FB;stroke:#3498DB}39%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes d4{0%,48%{fill:#EBF5FB;stroke:#3498DB}49%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+@keyframes d5{0%,58%{fill:#EBF5FB;stroke:#3498DB}59%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+.d0{animation:d0 7s ease-in-out infinite}.d1{animation:d1 7s ease-in-out infinite}
+.d2{animation:d2 7s ease-in-out infinite}.d3{animation:d3 7s ease-in-out infinite}
+.d4{animation:d4 7s ease-in-out infinite}.d5{animation:d5 7s ease-in-out infinite}
+@keyframes dp_ptr{0%,10%{transform:translateX(0)}18%,28%{transform:translateX(48px)}38%,48%{transform:translateX(96px)}58%,68%{transform:translateX(144px)}78%,88%{transform:translateX(192px)}96%,100%{transform:translateX(240px)}}
+.dpp{animation:dp_ptr 7s ease-in-out infinite}
+@keyframes sl0{0%,10%{opacity:1}18%,100%{opacity:0}}
+@keyframes sl1{0%,17%{opacity:0}18%,38%{opacity:1}39%,100%{opacity:0}}
+@keyframes sl2{0%,37%{opacity:0}38%,58%{opacity:1}59%,100%{opacity:0}}
+@keyframes sl3{0%,57%{opacity:0}58%,68%{opacity:1}69%,100%{opacity:0}}
+@keyframes sl4{0%,67%{opacity:0}68%,88%{opacity:1}89%,100%{opacity:0}}
+.sl0{animation:sl0 7s ease-in-out infinite}.sl1{animation:sl1 7s ease-in-out infinite}
+.sl2{animation:sl2 7s ease-in-out infinite}.sl3{animation:sl3 7s ease-in-out infinite}
+.sl4{animation:sl4 7s ease-in-out infinite}
+</style>
+<rect width="900" height="690" fill="#F8F9FA" rx="10"/>
+<rect width="900" height="55" fill="#2C3E50" rx="10"/>
+<rect y="45" width="900" height="10" fill="#2C3E50"/>
+<text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Climbing Stairs</text>
+<rect x="800" y="12" width="82" height="28" fill="#2ECC71" rx="14"/>
+<text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Easy</text>
+<rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+<text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+<text x="105" y="81" font-family="Arial" font-size="12" fill="#555">n=5 → 8 ways (can take 1 or 2 steps). ways(n) = ways(n-1) + ways(n-2)</text>
+<text x="30" y="98" font-family="Arial" font-size="11" fill="#777">At each step: climb 1 or 2 stairs. ways(n-1) = from step below by 1; ways(n-2) = skip one stair.</text>
+
+<!-- APPROACH 1: Recursion (Naive) -->
+<rect x="15" y="115" width="870" height="210" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+<rect x="15" y="115" width="870" height="40" fill="#E74C3C" rx="7"/>
+<rect x="15" y="140" width="870" height="15" fill="#E74C3C"/>
+<text x="450" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Naive Recursion — O(2ⁿ) time, O(n) space</text>
+<text x="450" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">ways(n) = ways(n-1) + ways(n-2). Base: ways(1)=1, ways(2)=2. Exponential recursion tree.</text>
+<!-- Staircase visualization -->
+<!-- n=5: stairs at x=160..560, each stair 80px wide, 20px tall -->
+<rect x="480" y="250" width="80" height="25" fill="#FDEBD0" stroke="#E67E22" stroke-width="2" rx="3"/>
+<text x="520" y="267" font-family="Arial" font-size="10" font-weight="bold" fill="#E67E22" text-anchor="middle">Step 5 🏁</text>
+<rect x="400" y="225" width="80" height="50" fill="#EBF5FB" stroke="#3498DB" stroke-width="1.5" rx="3"/>
+<text x="440" y="256" font-family="Arial" font-size="10" fill="#3498DB" text-anchor="middle">Step 4</text>
+<rect x="320" y="200" width="80" height="75" fill="#EBF5FB" stroke="#3498DB" stroke-width="1.5" rx="3"/>
+<text x="360" y="243" font-family="Arial" font-size="10" fill="#3498DB" text-anchor="middle">Step 3</text>
+<rect x="240" y="175" width="80" height="100" fill="#EBF5FB" stroke="#3498DB" stroke-width="1.5" rx="3"/>
+<text x="280" y="230" font-family="Arial" font-size="10" fill="#3498DB" text-anchor="middle">Step 2</text>
+<rect x="160" y="150" width="80" height="125" fill="#EBF5FB" stroke="#3498DB" stroke-width="1.5" rx="3"/>
+<text x="200" y="218" font-family="Arial" font-size="10" fill="#3498DB" text-anchor="middle">Step 1</text>
+<!-- ways labels -->
+<text x="200" y="162" font-family="Arial" font-size="9" fill="#E74C3C" text-anchor="middle">ways=1</text>
+<text x="280" y="186" font-family="Arial" font-size="9" fill="#E74C3C" text-anchor="middle">ways=2</text>
+<text x="360" y="211" font-family="Arial" font-size="9" fill="#E74C3C" text-anchor="middle">ways=3</text>
+<text x="440" y="237" font-family="Arial" font-size="9" fill="#E74C3C" text-anchor="middle">ways=5</text>
+<text x="520" y="262" font-family="Arial" font-size="9" fill="#27AE60" font-weight="bold" text-anchor="middle">ways=8 ✓</text>
+<!-- Recursion issue annotation -->
+<rect class="rh" x="600" y="165" width="260" height="100" fill="#FDF2F8" stroke="#E74C3C" stroke-width="1.5" rx="5"/>
+<text class="rh" x="730" y="185" font-family="Arial" font-size="11" font-weight="bold" fill="#E74C3C" text-anchor="middle">Recursion problem:</text>
+<text class="rh" x="730" y="205" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">ways(5) calls ways(4)+ways(3)</text>
+<text class="rh" x="730" y="222" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">ways(4) calls ways(3)+ways(2)</text>
+<text class="rh" x="730" y="239" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">ways(3) computed TWICE! ⚠</text>
+<text x="450" y="296" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Identical to Fibonacci! ways(n) = fib(n+1). Same exponential time issue.</text>
+<text x="450" y="313" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Memoization: add cache → O(n) time. But tabulation is simpler.</text>
+
+<!-- Arrow 1→2 -->
+<line x1="450" y1="325" x2="450" y2="362" stroke="#7F8C8D" stroke-width="2" stroke-dasharray="4,3"/>
+<polygon points="444,362 450,370 456,362" fill="#7F8C8D"/>
+<rect x="210" y="329" width="480" height="22" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+<text x="450" y="344" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">💡 Build dp[0..n]: dp[i] = dp[i-1] + dp[i-2]. Each cell computed once → O(n)</text>
+
+<!-- APPROACH 2: Bottom-Up DP -->
+<rect x="15" y="370" width="870" height="210" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+<rect x="15" y="370" width="870" height="40" fill="#27AE60" rx="7"/>
+<rect x="15" y="395" width="870" height="15" fill="#27AE60"/>
+<text x="450" y="395" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Bottom-Up DP — O(n) time, O(1) space ⭐</text>
+<text x="450" y="408" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">dp[i] = ways to reach step i. Fill i=1 to n. Only need prev 2 values.</text>
+<!-- 6 cells dp[0..5] at x: 261,309,357,405,453,501 -->
+<rect x="261" y="425" width="42" height="42" class="d0" rx="3"/>
+<text x="282" y="441" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">dp[0]</text>
+<text x="282" y="457" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="309" y="425" width="42" height="42" class="d1" rx="3"/>
+<text x="330" y="441" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">dp[1]</text>
+<text x="330" y="457" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="357" y="425" width="42" height="42" class="d2" rx="3"/>
+<text x="378" y="441" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">dp[2]</text>
+<text x="378" y="457" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="405" y="425" width="42" height="42" class="d3" rx="3"/>
+<text x="426" y="441" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">dp[3]</text>
+<text x="426" y="457" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">3</text>
+<rect x="453" y="425" width="42" height="42" class="d4" rx="3"/>
+<text x="474" y="441" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">dp[4]</text>
+<text x="474" y="457" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">5</text>
+<rect x="501" y="425" width="42" height="42" class="d5" rx="3"/>
+<text x="522" y="441" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">dp[5]</text>
+<text x="522" y="457" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">8</text>
+<!-- Pointer -->
+<g class="dpp" transform="translate(282,425)">
+  <polygon points="-7,-14 7,-14 0,-4" fill="#27AE60"/>
+</g>
+<!-- Step labels -->
+<text class="sl0" x="450" y="495" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">Base: dp[0]=1 (1 way to stay), dp[1]=1 (only: step 1)</text>
+<text class="sl1" x="450" y="495" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">dp[2] = dp[1]+dp[0] = 1+1 = 2 (1+1 or 2 in one step)</text>
+<text class="sl2" x="450" y="495" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">dp[3]=dp[2]+dp[1]=2+1=3, dp[4]=dp[3]+dp[2]=3+2=5</text>
+<text class="sl3" x="450" y="495" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">dp[5] = dp[4]+dp[3] = 5+3 = 8 ways ✓</text>
+<text class="sl4" x="450" y="495" font-family="Arial" font-size="11" fill="#888" text-anchor="middle">O(1) space: just keep a=dp[i-2], b=dp[i-1], update c=a+b</text>
+<text x="450" y="540" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">dp[i] = dp[i-1]+dp[i-2] — exactly Fibonacci recurrence! ways(n) = fib(n+1).</text>
+<text x="450" y="556" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Staircase DP pattern applies to many problems: house robber, min cost stairs, etc.</text>
+
+<!-- Complexity Table -->
+<rect x="15" y="592" width="870" height="93" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+<rect x="15" y="592" width="870" height="30" fill="#2C3E50" rx="7"/>
+<rect x="15" y="607" width="870" height="15" fill="#2C3E50"/>
+<text x="450" y="612" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+<line x1="15" y1="622" x2="885" y2="622" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="622" width="870" height="23" fill="#ECF0F1"/>
+<text x="200" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+<text x="500" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+<text x="750" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+<line x1="15" y1="645" x2="885" y2="645" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="645" width="870" height="22" fill="#FDEDEC"/>
+<text x="200" y="660" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Naive Recursion</text>
+<text x="500" y="660" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(2ⁿ)</text>
+<text x="750" y="660" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">O(n) stack</text>
+<line x1="15" y1="667" x2="885" y2="667" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="667" width="870" height="23" fill="#EAFAF1"/>
+<text x="200" y="683" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Bottom-Up DP ⭐</text>
+<text x="500" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n)</text>
+<text x="750" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(1)</text>
+<line x1="370" y1="622" x2="370" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+<line x1="620" y1="622" x2="620" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

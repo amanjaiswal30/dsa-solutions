@@ -1,5 +1,8 @@
 # Longest Bitonic Subsequence – Detailed Explanation
 
+![](../../assets/images/dynamic_programming/longest_bitonic_subsequence.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

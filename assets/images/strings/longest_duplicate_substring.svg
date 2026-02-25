@@ -1,0 +1,123 @@
+<svg width="900" height="610" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="900" height="610" fill="#F8F9FA" rx="10"/>
+  <!-- Title Bar -->
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Longest Duplicate Substring</text>
+  <!-- Difficulty Badge -->
+  <rect x="790" y="12" width="92" height="28" fill="#E74C3C" rx="14"/>
+  <text x="836" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Hard</text>
+
+  <!-- Example Row -->
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">s = "banana"</text>
+  <text x="280" y="81" font-family="Arial" font-size="12" fill="#555">→</text>
+  <text x="300" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#27AE60">Output: "ana"</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">"ana" appears at positions 1 and 3: b[ana]na and ban[ana]</text>
+
+  <!-- === APPROACH 1: Brute Force === -->
+  <rect x="15" y="115" width="390" height="360" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="390" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="390" height="15" fill="#E74C3C"/>
+  <text x="210" y="140" font-family="Arial" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Brute Force</text>
+  <text x="210" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(n³) time | O(n²) space</text>
+
+  <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Generate ALL substrings, check duplicates:</text>
+
+  <!-- Substring grid for "banana" -->
+  <text x="30" y="198" font-family="Arial" font-size="11" fill="#666">s = "banana" → all substrings:</text>
+
+  <!-- Length 1 -->
+  <text x="30" y="218" font-family="Arial" font-size="10" fill="#888">len=1: b, a, n, a, n, a → "a" duplicated</text>
+  <!-- Length 2 -->
+  <text x="30" y="234" font-family="Arial" font-size="10" fill="#888">len=2: ba, an, na, an, na → "an","na" duplicated</text>
+  <!-- Length 3 -->
+  <text x="30" y="250" font-family="Arial" font-size="10" fill="#E74C3C">len=3: ban, ana, nan, ana → "ana" duplicated ←longest!</text>
+  <!-- Length 4 -->
+  <text x="30" y="266" font-family="Arial" font-size="10" fill="#888">len=4: bana, anan, nana → no duplicates</text>
+  <!-- Length 5 -->
+  <text x="30" y="282" font-family="Arial" font-size="10" fill="#888">len=5: banan, anana → no duplicates</text>
+
+  <text x="30" y="305" font-family="Arial" font-size="11" fill="#555">For each pair of starting positions i,j:</text>
+  <rect x="30" y="312" width="360" height="60" fill="#FDEDEC" stroke="#E74C3C" rx="4"/>
+  <text x="210" y="330" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">for i in 0..n: for j in i+1..n:</text>
+  <text x="210" y="346" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">  for len in 1..n-max(i,j):</text>
+  <text x="210" y="362" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">    if s[i..i+len] == s[j..j+len]: update max</text>
+
+  <text x="30" y="394" font-family="Arial" font-size="11" fill="#E74C3C">⚠ O(n²) pairs × O(n) compare = O(n³)</text>
+  <text x="30" y="412" font-family="Arial" font-size="11" fill="#888">O(n²) space to store all substrings</text>
+  <text x="30" y="430" font-family="Arial" font-size="11" fill="#888">TLE for n > 1000 — not feasible</text>
+  <text x="30" y="450" font-family="Arial" font-size="11" fill="#888">No smart search — checks everything blindly</text>
+
+  <!-- Evolution Arrow -->
+  <line x1="410" y1="290" x2="480" y2="290" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon points="480,285 492,290 480,295" fill="#7F8C8D"/>
+  <rect x="410" y="255" width="72" height="70" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
+  <text x="446" y="269" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Binary</text>
+  <text x="446" y="281" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">Search on</text>
+  <text x="446" y="293" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">length +</text>
+  <text x="446" y="305" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">Rolling Hash!</text>
+
+  <!-- === APPROACH 2: Binary Search + Rolling Hash === -->
+  <rect x="492" y="115" width="393" height="360" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="492" y="115" width="393" height="40" fill="#27AE60" rx="7"/>
+  <rect x="492" y="140" width="393" height="15" fill="#27AE60"/>
+  <text x="688" y="140" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Binary Search + Rolling Hash ⭐</text>
+  <text x="688" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(n log n) time | O(n) space</text>
+
+  <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Binary Search on answer length L:</text>
+
+  <!-- Binary search visualization -->
+  <rect x="505" y="186" width="362" height="56" fill="#EAFAF1" stroke="#27AE60" rx="4"/>
+  <text x="686" y="202" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">lo=1, hi=n → mid=(lo+hi)/2</text>
+  <text x="686" y="218" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">if duplicate of len=mid exists → lo=mid+1</text>
+  <text x="686" y="234" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">else → hi=mid-1</text>
+
+  <text x="505" y="262" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Rabin-Karp Rolling Hash to check duplicates:</text>
+
+  <rect x="505" y="270" width="362" height="80" fill="#EAFAF1" stroke="#27AE60" rx="4"/>
+  <text x="686" y="288" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">hash(s[i..i+L]) = s[i]·base^L + ... + s[i+L-1]</text>
+  <text x="686" y="304" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Roll: remove s[i], add s[i+L]</text>
+  <text x="686" y="320" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">new_hash = (old_hash · base - s[i]·base^L + s[i+L])</text>
+  <text x="686" y="336" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">O(1) per window slide! → O(n) total per length</text>
+
+  <text x="505" y="365" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">For "banana", binary search trace:</text>
+
+  <rect x="505" y="373" width="362" height="72" fill="#EAFAF1" stroke="#27AE60" rx="4"/>
+  <text x="686" y="390" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">lo=1,hi=6 → mid=3: check len=3</text>
+  <text x="686" y="406" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">"ana" found! → lo=4, result="ana"</text>
+  <text x="686" y="422" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">mid=5: check len=5 → no dup → hi=4</text>
+  <text x="686" y="438" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">mid=4: check len=4 → no dup → hi=3</text>
+
+  <text x="505" y="462" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">O(log n) iterations × O(n) hash = O(n log n)</text>
+  <text x="505" y="478" font-family="Arial" font-size="11" fill="#888">Hash set detects duplicates in O(1) avg</text>
+
+  <!-- Complexity Table -->
+  <rect x="15" y="487" width="870" height="112" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+  <rect x="15" y="487" width="870" height="30" fill="#2C3E50" rx="7"/>
+  <rect x="15" y="502" width="870" height="15" fill="#2C3E50"/>
+  <text x="450" y="507" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+
+  <line x1="15" y1="517" x2="885" y2="517" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="517" width="870" height="25" fill="#ECF0F1"/>
+  <text x="200" y="534" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+  <text x="500" y="534" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time Complexity</text>
+  <text x="750" y="534" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space Complexity</text>
+
+  <line x1="15" y1="542" x2="885" y2="542" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="542" width="870" height="27" fill="#FDEDEC"/>
+  <text x="200" y="560" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Brute Force</text>
+  <text x="500" y="560" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n³)</text>
+  <text x="750" y="560" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">O(n²)</text>
+
+  <line x1="15" y1="569" x2="885" y2="569" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="569" width="870" height="30" fill="#EAFAF1"/>
+  <text x="200" y="589" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Binary Search + Rolling Hash ⭐</text>
+  <text x="500" y="589" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n log n)</text>
+  <text x="750" y="589" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">O(n)</text>
+
+  <line x1="370" y1="517" x2="370" y2="599" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="620" y1="517" x2="620" y2="599" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

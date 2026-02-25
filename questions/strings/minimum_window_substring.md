@@ -1,5 +1,8 @@
 # 🔹 Problem: Minimum Window Substring
 
+![](../../assets/images/strings/minimum_window_substring.svg)
+
+
 **Difficulty:** Hard ⚡
 
 ---

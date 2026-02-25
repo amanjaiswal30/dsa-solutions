@@ -1,0 +1,138 @@
+<svg width="900" height="610" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="900" height="610" fill="#F8F9FA" rx="10"/>
+  <!-- Title Bar -->
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="19" font-weight="bold" fill="white">Find Median from Data Stream</text>
+  <!-- Difficulty Badge -->
+  <rect x="790" y="12" width="92" height="28" fill="#E74C3C" rx="14"/>
+  <text x="836" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Hard</text>
+
+  <!-- Example Row -->
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">add(1), add(2) → findMedian()=1.5</text>
+  <text x="400" y="81" font-family="Arial" font-size="12" fill="#555">|</text>
+  <text x="420" y="81" font-family="Arial" font-size="12" fill="#555">add(3) → findMedian()=2.0</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Median = middle element (odd) or avg of two middle (even)</text>
+
+  <!-- === APPROACH 1: Brute Force === -->
+  <rect x="15" y="115" width="390" height="370" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="390" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="390" height="15" fill="#E74C3C"/>
+  <text x="210" y="140" font-family="Arial" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Sort on Each Query</text>
+  <text x="210" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(n log n) per findMedian | O(n) space</text>
+
+  <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Keep list, sort when median needed:</text>
+
+  <rect x="30" y="186" width="360" height="26" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="203" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">addNum(1): list=[1]</text>
+
+  <rect x="30" y="216" width="360" height="26" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="233" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">addNum(2): list=[1,2]</text>
+
+  <rect x="30" y="246" width="360" height="30" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="261" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">findMedian(): sort [1,2] → (1+2)/2 = 1.5 ✓</text>
+  <text x="210" y="271" font-family="Arial" font-size="9" fill="#E74C3C" text-anchor="middle">⚠ Sort O(n log n) each time!</text>
+
+  <rect x="30" y="280" width="360" height="26" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="297" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">addNum(3): list=[1,2,3]</text>
+
+  <rect x="30" y="310" width="360" height="30" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="325" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">findMedian(): sort [1,2,3] → middle=2 ✓</text>
+  <text x="210" y="335" font-family="Arial" font-size="9" fill="#E74C3C" text-anchor="middle">⚠ Sorting again — wasted O(n log n)!</text>
+
+  <text x="30" y="366" font-family="Arial" font-size="11" fill="#E74C3C">⚠ n queries × O(n log n) = O(n² log n) total</text>
+  <text x="30" y="384" font-family="Arial" font-size="11" fill="#888">Repeated sorts waste previous work</text>
+  <text x="30" y="402" font-family="Arial" font-size="11" fill="#888">addNum is O(1) but findMedian is O(n log n)</text>
+  <text x="30" y="420" font-family="Arial" font-size="11" fill="#888">Cannot handle real-time streaming</text>
+  <text x="30" y="438" font-family="Arial" font-size="11" fill="#888">Need a structure that maintains sorted order</text>
+  <text x="30" y="468" font-family="Arial" font-size="10" fill="#888">list.add(num); Collections.sort(list);</text>
+  <text x="30" y="484" font-family="Arial" font-size="10" fill="#888">return list.get(n/2) or avg(n/2-1, n/2)</text>
+
+  <!-- Evolution Arrow -->
+  <line x1="410" y1="295" x2="480" y2="295" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon points="480,290 492,295 480,300" fill="#7F8C8D"/>
+  <rect x="410" y="260" width="72" height="70" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
+  <text x="446" y="274" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Two</text>
+  <text x="446" y="286" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">heaps =</text>
+  <text x="446" y="298" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">maintain</text>
+  <text x="446" y="310" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">sorted!</text>
+
+  <!-- === APPROACH 2: Two Heaps === -->
+  <rect x="492" y="115" width="393" height="370" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="492" y="115" width="393" height="40" fill="#27AE60" rx="7"/>
+  <rect x="492" y="140" width="393" height="15" fill="#27AE60"/>
+  <text x="688" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Two Heaps ⭐</text>
+  <text x="688" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(log n) addNum | O(1) findMedian</text>
+
+  <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Max-heap (low) | Min-heap (high):</text>
+
+  <!-- Two heap visualization -->
+  <rect x="505" y="186" width="172" height="60" fill="#EAFAF1" stroke="#27AE60" rx="4"/>
+  <text x="591" y="203" font-family="Arial" font-size="11" font-weight="bold" fill="#27AE60" text-anchor="middle">MAX-HEAP (low)</text>
+  <text x="591" y="220" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">smaller half</text>
+  <text x="591" y="237" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">top = max of lower</text>
+
+  <rect x="715" y="186" width="162" height="60" fill="#EBF5FB" stroke="#2980B9" rx="4"/>
+  <text x="796" y="203" font-family="Arial" font-size="11" font-weight="bold" fill="#2980B9" text-anchor="middle">MIN-HEAP (high)</text>
+  <text x="796" y="220" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">larger half</text>
+  <text x="796" y="237" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">top = min of upper</text>
+
+  <!-- Step by step trace -->
+  <text x="505" y="262" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">addNum trace:</text>
+
+  <rect x="505" y="269" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="282" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">add(1): low=[1] high=[], low.size&gt;=high.size ✓</text>
+  <text x="686" y="292" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">findMedian: low.size&gt;high → return low.peek()=1</text>
+
+  <rect x="505" y="301" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="314" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">add(2): add to low, move top(2) to high</text>
+  <text x="686" y="324" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">low=[1], high=[2], sizes equal → median=(1+2)/2=1.5 ✓</text>
+
+  <rect x="505" y="333" width="362" height="28" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="346" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">add(3): add to low=[3,1], move top(3) to high=[2,3]</text>
+  <text x="686" y="356" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">low.size &lt; high.size → move high.top(2) to low</text>
+
+  <rect x="505" y="365" width="362" height="28" fill="#D5F5E3" stroke="#27AE60" rx="3"/>
+  <text x="686" y="378" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">low=[2,1], high=[3], low.size&gt;high.size</text>
+  <text x="686" y="388" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">findMedian: return low.peek()=2.0 ✓</text>
+
+  <text x="505" y="415" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Rule: |low.size - high.size| ≤ 1</text>
+  <text x="505" y="433" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">Median = low.peek() or (low+high)/2</text>
+  <text x="505" y="451" font-family="Arial" font-size="11" fill="#888">addNum: always add to low first, balance</text>
+  <text x="505" y="469" font-family="Arial" font-size="11" fill="#888">findMedian: O(1) — just peek tops</text>
+  <text x="505" y="487" font-family="Arial" font-size="11" fill="#888">Elegant invariant: low ≤ all high elements</text>
+
+  <!-- Complexity Table -->
+  <rect x="15" y="497" width="870" height="103" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+  <rect x="15" y="497" width="870" height="30" fill="#2C3E50" rx="7"/>
+  <rect x="15" y="512" width="870" height="15" fill="#2C3E50"/>
+  <text x="450" y="517" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+
+  <line x1="15" y1="527" x2="885" y2="527" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="527" width="870" height="25" fill="#ECF0F1"/>
+  <text x="160" y="544" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+  <text x="430" y="544" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">addNum</text>
+  <text x="640" y="544" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">findMedian</text>
+  <text x="810" y="544" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+
+  <line x1="15" y1="552" x2="885" y2="552" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="552" width="870" height="24" fill="#FDEDEC"/>
+  <text x="160" y="568" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Sort on Query</text>
+  <text x="430" y="568" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">O(1)</text>
+  <text x="640" y="568" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n log n)</text>
+  <text x="810" y="568" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">O(n)</text>
+
+  <line x1="15" y1="576" x2="885" y2="576" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="576" width="870" height="24" fill="#EAFAF1"/>
+  <text x="160" y="592" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Two Heaps ⭐</text>
+  <text x="430" y="592" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(log n)</text>
+  <text x="640" y="592" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(1)</text>
+  <text x="810" y="592" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">O(n)</text>
+
+  <line x1="290" y1="527" x2="290" y2="600" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="545" y1="527" x2="545" y2="600" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="730" y1="527" x2="730" y2="600" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

@@ -1,5 +1,8 @@
 # 🔹 Find the Length of Loop in a Linked List
 
+![](../../assets/images/linked_lists/length_of_loop.svg)
+
+
 ---
 
 ## 📌 Problem Statement

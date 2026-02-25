@@ -1,5 +1,8 @@
 # Longest Common Subsequence (LCS) – Detailed Explanation and Approaches
 
+![](../../assets/images/dynamic_programming/longest_common_subsequence.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

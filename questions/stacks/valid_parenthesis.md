@@ -1,5 +1,8 @@
 # Valid Parentheses
 
+![](../../assets/images/stacks/valid_parenthesis.svg)
+
+
 **Difficulty:** Easy ✅
 
 ---

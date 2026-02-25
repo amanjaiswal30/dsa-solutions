@@ -1,0 +1,122 @@
+<svg width="900" height="580" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="580" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Find Middle Element of Linked List</text>
+  <rect x="790" y="12" width="92" height="28" fill="#27AE60" rx="14"/>
+  <text x="836" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Easy</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">list = 1→2→3→4→5</text>
+  <text x="285" y="81" font-family="Arial" font-size="12" fill="#555">→ middle node = 3</text>
+  <text x="500" y="81" font-family="Arial" font-size="12" fill="#555">| 1→2→3→4→5→6 → 4</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Even length: return 2nd middle. Odd: return center node</text>
+
+  <!-- === APPROACH 1: Two Pass === -->
+  <rect x="15" y="115" width="390" height="330" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="390" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="390" height="15" fill="#E74C3C"/>
+  <text x="210" y="140" font-family="Arial" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Two Pass (Count)</text>
+  <text x="210" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(n) time | O(1) space — 2 traversals</text>
+
+  <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Pass 1: Count n. Pass 2: Go to n/2:</text>
+
+  <text x="30" y="200" font-family="Arial" font-size="11" fill="#555">list = 1→2→3→4→5 (n=5)</text>
+
+  <rect x="30" y="207" width="360" height="26" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="224" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Pass 1: count nodes → n=5</text>
+
+  <rect x="30" y="237" width="360" height="26" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="254" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">mid = n/2 = 2 (0-indexed)</text>
+
+  <rect x="30" y="267" width="360" height="26" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="284" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Pass 2: traverse 2 steps → reach node 3</text>
+
+  <rect x="30" y="297" width="360" height="26" fill="#D5F5E3" stroke="#27AE60" rx="3"/>
+  <text x="210" y="314" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">return node(3) ✓</text>
+
+  <text x="30" y="348" font-family="Arial" font-size="11" fill="#E74C3C">⚠ Requires 2 full traversals</text>
+  <text x="30" y="366" font-family="Arial" font-size="11" fill="#888">First pass: count</text>
+  <text x="30" y="384" font-family="Arial" font-size="11" fill="#888">Second pass: navigate to mid</text>
+  <text x="30" y="402" font-family="Arial" font-size="11" fill="#888">Works but redundant traversal</text>
+  <text x="30" y="420" font-family="Arial" font-size="11" fill="#888">Can we do it in one pass?</text>
+
+  <!-- Evolution Arrow -->
+  <line x1="410" y1="280" x2="480" y2="280" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon points="480,275 492,280 480,285" fill="#7F8C8D"/>
+  <rect x="410" y="252" width="72" height="56" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
+  <text x="446" y="267" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Fast</text>
+  <text x="446" y="279" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">moves 2x</text>
+  <text x="446" y="291" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">slow=mid!</text>
+
+  <!-- === APPROACH 2: Slow-Fast Pointer === -->
+  <rect x="492" y="115" width="393" height="330" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="492" y="115" width="393" height="40" fill="#27AE60" rx="7"/>
+  <rect x="492" y="140" width="393" height="15" fill="#27AE60"/>
+  <text x="688" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Slow &amp; Fast Pointer ⭐</text>
+  <text x="688" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(n) time | O(1) space — 1 traversal</text>
+
+  <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Fast = 2x speed → slow = middle:</text>
+  <text x="505" y="196" font-family="Arial" font-size="11" fill="#555">list = 1→2→3→4→5</text>
+
+  <rect x="505" y="203" width="362" height="24" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="219" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Start: slow=1, fast=1</text>
+
+  <rect x="505" y="231" width="362" height="24" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="247" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Step 1: slow=2, fast=3</text>
+
+  <rect x="505" y="259" width="362" height="24" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="275" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Step 2: slow=3, fast=5</text>
+
+  <rect x="505" y="287" width="362" height="24" fill="#D5F5E3" stroke="#27AE60" rx="3"/>
+  <text x="686" y="303" font-family="Arial" font-size="10" fill="#27AE60" text-anchor="middle">fast.next=null → STOP → slow=3 is middle ✓</text>
+
+  <!-- Visual representation of pointer races -->
+  <text x="505" y="332" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Visual: race to end</text>
+  <!-- Nodes row -->
+  <rect x="505" y="340" width="26" height="26" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="518" y="357" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">1</text>
+  <rect x="545" y="340" width="26" height="26" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="558" y="357" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">2</text>
+  <rect x="585" y="340" width="26" height="26" fill="#27AE60" stroke="#1E8449" rx="3"/>
+  <text x="598" y="357" font-family="Arial" font-size="11" font-weight="bold" fill="white" text-anchor="middle">3</text>
+  <rect x="625" y="340" width="26" height="26" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="638" y="357" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">4</text>
+  <rect x="665" y="340" width="26" height="26" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="678" y="357" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">5</text>
+
+  <text x="598" y="378" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">slow↑</text>
+  <text x="678" y="378" font-family="Arial" font-size="9" fill="#2980B9" text-anchor="middle">fast↑</text>
+
+  <text x="505" y="405" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">Single pass! No pre-count needed</text>
+  <text x="505" y="423" font-family="Arial" font-size="11" fill="#888">When fast=null: slow=middle (odd)</text>
+  <text x="505" y="441" font-family="Arial" font-size="11" fill="#888">When fast.next=null: slow=2nd mid (even)</text>
+
+  <!-- Complexity Table -->
+  <rect x="15" y="458" width="870" height="112" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+  <rect x="15" y="458" width="870" height="30" fill="#2C3E50" rx="7"/>
+  <rect x="15" y="473" width="870" height="15" fill="#2C3E50"/>
+  <text x="450" y="478" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+
+  <line x1="15" y1="488" x2="885" y2="488" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="488" width="870" height="25" fill="#ECF0F1"/>
+  <text x="200" y="505" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+  <text x="500" y="505" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+  <text x="750" y="505" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Passes</text>
+
+  <line x1="15" y1="513" x2="885" y2="513" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="513" width="870" height="24" fill="#FDEDEC"/>
+  <text x="200" y="529" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Two Pass (Count)</text>
+  <text x="500" y="529" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n)</text>
+  <text x="750" y="529" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">2 traversals</text>
+
+  <line x1="15" y1="537" x2="885" y2="537" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="537" width="870" height="24" fill="#EAFAF1"/>
+  <text x="200" y="553" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Slow &amp; Fast Pointer ⭐</text>
+  <text x="500" y="553" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n)</text>
+  <text x="750" y="553" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">1 traversal</text>
+
+  <line x1="370" y1="488" x2="370" y2="561" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="620" y1="488" x2="620" y2="561" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

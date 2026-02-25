@@ -1,5 +1,8 @@
 # 🔹 Problem: Top K Frequent Elements
 
+![](../../assets/images/heaps/top_k_frequent_elements.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

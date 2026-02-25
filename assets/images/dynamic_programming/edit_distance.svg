@@ -1,0 +1,128 @@
+<svg width="900" height="690" xmlns="http://www.w3.org/2000/svg">
+<style>
+@keyframes sl0{0%,15%{opacity:1}16%,100%{opacity:0}}
+@keyframes sl1{0%,15%{opacity:0}16%,40%{opacity:1}41%,100%{opacity:0}}
+@keyframes sl2{0%,40%{opacity:0}41%,65%{opacity:1}66%,100%{opacity:0}}
+@keyframes sl3{0%,65%{opacity:0}66%,85%{opacity:1}86%,100%{opacity:0}}
+.sl0{animation:sl0 6s ease-in-out infinite}.sl1{animation:sl1 6s ease-in-out infinite}
+.sl2{animation:sl2 6s ease-in-out infinite}.sl3{animation:sl3 6s ease-in-out infinite}
+@keyframes scan_hl{0%,40%{fill:#EBF5FB;stroke:#3498DB;stroke-width:1}41%,75%{fill:#FDEBD0;stroke:#E67E22;stroke-width:2}76%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+.sh{animation:scan_hl 6s ease-in-out infinite}
+</style>
+<rect width="900" height="690" fill="#F8F9FA" rx="10"/>
+<rect width="900" height="55" fill="#2C3E50" rx="10"/>
+<rect y="45" width="900" height="10" fill="#2C3E50"/>
+<text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Edit Distance (Levenshtein)</text>
+<rect x="800" y="12" width="82" height="28" fill="#E74C3C" rx="14"/>
+<text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Hard</text>
+<rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+<text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+<text x="105" y="81" font-family="Arial" font-size="12" fill="#555">word1="horse", word2="ros" → 3 edits (delete h, replace r, delete e)</text>
+<text x="30" y="98" font-family="Arial" font-size="11" fill="#777">3 operations: insert, delete, replace. dp[i][j]=min edits to convert word1[0..i-1] to word2[0..j-1].</text>
+
+<!-- APPROACH 1: Recursion -->
+<rect x="15" y="115" width="870" height="210" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+<rect x="15" y="115" width="870" height="40" fill="#E74C3C" rx="7"/>
+<rect x="15" y="140" width="870" height="15" fill="#E74C3C"/>
+<text x="450" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Recursion — O(3^(m+n)) time exponential</text>
+<text x="450" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">if s1[i]==s2[j]: ed(i-1,j-1), else 1+min(ed(i-1,j) del, ed(i,j-1) ins, ed(i-1,j-1) rep)</text>
+<!-- Recursion formula display -->
+<rect x="150" y="165" width="600" height="90" fill="#FEF9E7" stroke="#E67E22" stroke-width="1.5" rx="5"/>
+<text x="450" y="185" font-family="Arial" font-size="12" font-weight="bold" fill="#E67E22" text-anchor="middle">Recurrence (for s1="horse", s2="ros"):</text>
+<text x="170" y="207" font-family="Arial" font-size="11" fill="#555">• s1[i]==s2[j]: ed(i,j) = ed(i-1,j-1)  [chars match, no operation needed]</text>
+<text x="170" y="225" font-family="Arial" font-size="11" fill="#555">• s1[i]≠s2[j]: ed(i,j) = 1 + min(</text>
+<text x="250" y="243" font-family="Arial" font-size="11" fill="#555">ed(i-1,j) [delete from s1],  ed(i,j-1) [insert into s1],  ed(i-1,j-1) [replace])</text>
+<!-- Step labels cycling -->
+<text class="sl0" x="450" y="285" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">ed("horse","ros"): h≠r → 1+min(del,ins,rep)</text>
+<text class="sl1" x="450" y="285" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">Each call spawns up to 3 recursive calls → O(3^n) without memo!</text>
+<text class="sl2" x="450" y="285" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">ed(i,j) called from ed(i+1,j), ed(i,j+1), ed(i+1,j+1) → overlapping subproblems</text>
+<text class="sl3" x="450" y="285" font-family="Arial" font-size="11" fill="#888" text-anchor="middle">With memoization: O(m·n) time. 2D table is cleaner.</text>
+<text x="450" y="310" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">All 3 operations (insert/delete/replace) map to adjacent cells in the DP table.</text>
+
+<!-- Arrow 1→2 -->
+<line x1="450" y1="325" x2="450" y2="362" stroke="#7F8C8D" stroke-width="2" stroke-dasharray="4,3"/>
+<polygon points="444,362 450,370 456,362" fill="#7F8C8D"/>
+<rect x="200" y="329" width="500" height="22" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+<text x="450" y="344" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">💡 Build 2D dp[m+1][n+1] table. Base: dp[i][0]=i, dp[0][j]=j → O(m·n)</text>
+
+<!-- APPROACH 2: 2D DP Table -->
+<rect x="15" y="370" width="870" height="210" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+<rect x="15" y="370" width="870" height="40" fill="#27AE60" rx="7"/>
+<rect x="15" y="395" width="870" height="15" fill="#27AE60"/>
+<text x="450" y="395" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Bottom-Up 2D DP — O(m·n) time, O(m·n) space ⭐</text>
+<text x="450" y="408" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">dp[i][j]=min edits. Base: dp[i][0]=i, dp[0][j]=j. Fill row by row.</text>
+<!-- DP table for "horse"(5) vs "ros"(3). Rows: "",r,o,s. Cols: "",h,o,r,s,e -->
+<!-- Cell size 32×24, start x=200, y=425 -->
+<!-- Headers -->
+<text x="216" y="424" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="middle">""</text>
+<text x="248" y="424" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="middle">h</text>
+<text x="280" y="424" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="middle">o</text>
+<text x="312" y="424" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="middle">r</text>
+<text x="344" y="424" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="middle">s</text>
+<text x="376" y="424" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="middle">e</text>
+<text x="192" y="439" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="end">""</text>
+<text x="192" y="463" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="end">r</text>
+<text x="192" y="487" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="end">o</text>
+<text x="192" y="511" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="end">s</text>
+<!-- Row 0: [0,1,2,3,4,5] -->
+<rect x="200" y="427" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="216" y="443" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">0</text>
+<rect x="232" y="427" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="248" y="443" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">1</text>
+<rect x="264" y="427" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="280" y="443" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">2</text>
+<rect x="296" y="427" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="312" y="443" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">3</text>
+<rect x="328" y="427" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="344" y="443" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">4</text>
+<rect x="360" y="427" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="376" y="443" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">5</text>
+<!-- Row 1 (r): [1,1,2,2,3,4] -->
+<rect x="200" y="451" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="216" y="467" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">1</text>
+<rect x="232" y="451" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="248" y="467" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">1</text>
+<rect x="264" y="451" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="280" y="467" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">2</text>
+<rect x="296" y="451" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" stroke-width="2" rx="2"/><text x="312" y="467" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">2</text>
+<rect x="328" y="451" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="344" y="467" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">3</text>
+<rect x="360" y="451" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="376" y="467" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">4</text>
+<!-- Row 2 (o): [2,2,1,2,3,4] -->
+<rect x="200" y="475" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="216" y="491" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">2</text>
+<rect x="232" y="475" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="248" y="491" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">2</text>
+<rect x="264" y="475" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" stroke-width="2" rx="2"/><text x="280" y="491" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">1</text>
+<rect x="296" y="475" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="312" y="491" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">2</text>
+<rect x="328" y="475" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="344" y="491" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">3</text>
+<rect x="360" y="475" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="376" y="491" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">4</text>
+<!-- Row 3 (s): [3,3,2,2,2,3] -->
+<rect x="200" y="499" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="216" y="515" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">3</text>
+<rect x="232" y="499" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="248" y="515" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">3</text>
+<rect x="264" y="499" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="280" y="515" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">2</text>
+<rect x="296" y="499" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" rx="2"/><text x="312" y="515" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">2</text>
+<rect x="328" y="499" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" stroke-width="2" rx="2"/><text x="344" y="515" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">2</text>
+<rect x="360" y="499" width="32" height="24" fill="#D5F5E3" stroke="#27AE60" stroke-width="3" rx="2"/><text x="376" y="515" font-family="Arial" font-size="13" font-weight="bold" fill="#27AE60" text-anchor="middle">3</text>
+<!-- Annotations -->
+<rect x="430" y="428" width="420" height="100" fill="#F8F9FA" stroke="#DEE2E6" stroke-width="1" rx="5"/>
+<text x="640" y="446" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Recurrence:</text>
+<text x="440" y="466" font-family="Arial" font-size="11" fill="#555">if s1[i-1]==s2[j-1]:</text>
+<text x="440" y="483" font-family="Arial" font-size="11" fill="#555">  dp[i][j] = dp[i-1][j-1]</text>
+<text x="440" y="500" font-family="Arial" font-size="11" fill="#555">else: dp[i][j] = 1 + min(</text>
+<text x="440" y="517" font-family="Arial" font-size="11" fill="#555">  dp[i-1][j], dp[i][j-1], dp[i-1][j-1])</text>
+<text x="450" y="545" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Answer: dp[m][n] = dp[3][5] = 3 edits ✓</text>
+<text x="450" y="561" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Operations: dp[i-1][j]=delete, dp[i][j-1]=insert, dp[i-1][j-1]=replace.</text>
+<text x="450" y="577" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Space: O(n) with rolling array (only need previous row).</text>
+
+<!-- Complexity Table -->
+<rect x="15" y="592" width="870" height="93" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+<rect x="15" y="592" width="870" height="30" fill="#2C3E50" rx="7"/>
+<rect x="15" y="607" width="870" height="15" fill="#2C3E50"/>
+<text x="450" y="612" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+<line x1="15" y1="622" x2="885" y2="622" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="622" width="870" height="23" fill="#ECF0F1"/>
+<text x="200" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+<text x="500" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+<text x="750" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+<line x1="15" y1="645" x2="885" y2="645" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="645" width="870" height="22" fill="#FDEDEC"/>
+<text x="200" y="660" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Recursion (no memo)</text>
+<text x="500" y="660" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(3^(m+n))</text>
+<text x="750" y="660" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">O(m+n)</text>
+<line x1="15" y1="667" x2="885" y2="667" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="667" width="870" height="23" fill="#EAFAF1"/>
+<text x="200" y="683" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">2D DP ⭐</text>
+<text x="500" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(m·n)</text>
+<text x="750" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n) rolling</text>
+<line x1="370" y1="622" x2="370" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+<line x1="620" y1="622" x2="620" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

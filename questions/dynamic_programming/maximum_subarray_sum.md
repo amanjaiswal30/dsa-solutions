@@ -1,5 +1,8 @@
 # Maximum Subarray Sum (Kadane's Algorithm) – Detailed Explanation
 
+![](../../assets/images/dynamic_programming/maximum_subarray_sum.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

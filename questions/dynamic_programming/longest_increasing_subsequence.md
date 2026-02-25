@@ -1,5 +1,8 @@
 # Longest Increasing Subsequence (LIS) – Detailed Explanation and Approaches
 
+![](../../assets/images/dynamic_programming/longest_increasing_subsequence.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---
@@ -447,7 +450,6 @@ public class LISVariations {
 
 #### Code (Java)
 
-{% raw %}
 ```java
 public class LISVariations {
     
@@ -491,7 +493,6 @@ public class LISVariations {
     }
 }
 ```
-{% endraw %}
 
 ---
 

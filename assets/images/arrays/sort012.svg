@@ -1,0 +1,220 @@
+<svg width="900" height="875" xmlns="http://www.w3.org/2000/svg">
+<style>
+  /* Approach 3: Dutch National Flag — mid pointer moves, swaps happen */
+  @keyframes mid_move {
+    0%,5%  {transform:translateX(0)}
+    12%,17%{transform:translateX(48px)}
+    24%,29%{transform:translateX(96px)}
+    36%,41%{transform:translateX(144px)}
+    48%,53%{transform:translateX(192px)}
+    60%,65%{transform:translateX(240px)}
+    72%,77%{transform:translateX(288px)}
+    88%,100%{transform:translateX(0)}
+  }
+  .mid{animation:mid_move 8s ease-in-out infinite}
+
+  /* Color each box as algorithm places them */
+  @keyframes box0 {0%,50%{fill:#FDEDEC;stroke:#E74C3C} 51%,100%{fill:#FDEDEC;stroke:#E74C3C}}
+  @keyframes box1 {0%,15%{fill:#EBF5FB;stroke:#3498DB} 16%,55%{fill:#FDEDEC;stroke:#E74C3C} 56%,100%{fill:#FDEDEC;stroke:#E74C3C}}
+  @keyframes box2 {0%,30%{fill:#EBF5FB;stroke:#3498DB} 31%,100%{fill:#ECF0F1;stroke:#7F8C8D}}
+  @keyframes box3 {0%,43%{fill:#EBF5FB;stroke:#3498DB} 44%,70%{fill:#ECF0F1;stroke:#7F8C8D} 71%,100%{fill:#ECF0F1;stroke:#7F8C8D}}
+  @keyframes box4 {0%,55%{fill:#EBF5FB;stroke:#3498DB} 56%,80%{fill:#ECF0F1;stroke:#7F8C8D} 81%,100%{fill:#EAFAF1;stroke:#27AE60}}
+  @keyframes box5 {0%,70%{fill:#EBF5FB;stroke:#3498DB} 71%,88%{fill:#EAFAF1;stroke:#27AE60} 89%,100%{fill:#EAFAF1;stroke:#27AE60}}
+  @keyframes box6 {0%,85%{fill:#EBF5FB;stroke:#3498DB} 86%,100%{fill:#EAFAF1;stroke:#27AE60}}
+  .d0{animation:box0 8s linear infinite} .d1{animation:box1 8s linear infinite}
+  .d2{animation:box2 8s linear infinite} .d3{animation:box3 8s linear infinite}
+  .d4{animation:box4 8s linear infinite} .d5{animation:box5 8s linear infinite}
+  .d6{animation:box6 8s linear infinite}
+
+  /* low pointer moves right as 0s are placed */
+  @keyframes low_move {
+    0%,5%  {transform:translateX(0)}
+    30%,100%{transform:translateX(48px)}
+  }
+  .lowp{animation:low_move 8s ease-in-out infinite}
+
+  /* high pointer moves left as 2s are placed */
+  @keyframes high_move {
+    0%,65% {transform:translateX(0)}
+    85%,100%{transform:translateX(-48px)}
+  }
+  .highp{animation:high_move 8s ease-in-out infinite}
+
+  /* Counting sort step label */
+  @keyframes cnt1 {0%,15%{opacity:1} 18%,100%{opacity:0}}
+  @keyframes cnt2 {18%,33%{opacity:1} 0%,17%,34%,100%{opacity:0}}
+  @keyframes cnt3 {34%,50%{opacity:1} 0%,33%,51%,100%{opacity:0}}
+  @keyframes cnt4 {51%,100%{opacity:1} 0%,50%{opacity:0}}
+  .c1{animation:cnt1 5s ease-in-out infinite}
+  .c2{animation:cnt2 5s ease-in-out infinite}
+  .c3{animation:cnt3 5s ease-in-out infinite}
+  .c4{animation:cnt4 5s ease-in-out infinite;fill:#27AE60;font-weight:bold}
+</style>
+
+<rect width="900" height="875" fill="#F8F9FA" rx="10"/>
+<rect width="900" height="55" fill="#2C3E50" rx="10"/>
+<rect y="45" width="900" height="10" fill="#2C3E50"/>
+<text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Sort 0s, 1s and 2s  (Dutch National Flag)</text>
+<rect x="790" y="12" width="92" height="28" fill="#27AE60" rx="14"/>
+<text x="836" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Easy-Med</text>
+
+<rect x="15" y="63" width="870" height="44" fill="white" stroke="#DEE2E6" rx="5"/>
+<text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Problem:</text>
+<text x="108" y="81" font-family="Arial" font-size="12" fill="#555">Sort array of only 0s, 1s and 2s in-place without using sort().</text>
+<text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Example: [2,0,2,1,1,0] → [0,0,1,1,2,2]  |  All 0s first, then 1s, then 2s.</text>
+
+<!-- ═══ APPROACH 1: SORT ═══ -->
+<rect x="15" y="115" width="870" height="195" fill="white" stroke="#E74C3C" stroke-width="2" rx="8"/>
+<rect x="15" y="115" width="870" height="40" fill="#E74C3C" rx="8"/>
+<rect x="15" y="140" width="870" height="15" fill="#E74C3C"/>
+<text x="30" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white">① Brute Force — Arrays.sort()</text>
+<text x="875" y="140" font-family="Arial" font-size="11" fill="#FADBD8" text-anchor="end">O(n log n) time  ·  O(1) space</text>
+
+<rect x="16" y="155" width="868" height="100" fill="#FEF8F8" rx="0"/>
+<text x="45" y="173" font-family="Arial" font-size="10" fill="#888" font-weight="bold">LIVE: just call sort — easy but uses comparison sort</text>
+<!-- Unsorted then sorted arrow -->
+<text x="80" y="200" font-family="Arial" font-size="12" fill="#555">Before: [</text>
+<text x="145" y="200" font-family="Arial" font-size="13" font-weight="bold" fill="#3498DB">2</text>
+<text x="158" y="200" font-family="Arial" font-size="13" font-weight="bold" fill="#555">, </text>
+<text x="168" y="200" font-family="Arial" font-size="13" font-weight="bold" fill="#E74C3C">0</text>
+<text x="181" y="200" font-family="Arial" font-size="13" font-weight="bold" fill="#555">, </text>
+<text x="191" y="200" font-family="Arial" font-size="13" font-weight="bold" fill="#3498DB">2</text>
+<text x="204" y="200" font-family="Arial" font-size="13" font-weight="bold" fill="#555">, </text>
+<text x="214" y="200" font-family="Arial" font-size="13" font-weight="bold" fill="#7F8C8D">1</text>
+<text x="227" y="200" font-family="Arial" font-size="13" font-weight="bold" fill="#555">, </text>
+<text x="237" y="200" font-family="Arial" font-size="13" font-weight="bold" fill="#7F8C8D">1</text>
+<text x="250" y="200" font-family="Arial" font-size="13" font-weight="bold" fill="#555">, </text>
+<text x="260" y="200" font-family="Arial" font-size="13" font-weight="bold" fill="#E74C3C">0</text>
+<text x="273" y="200" font-family="Arial" font-size="12" fill="#555">]</text>
+<text x="310" y="200" font-family="Arial" font-size="18" fill="#95A5A6">→</text>
+<text x="340" y="200" font-family="Arial" font-size="12" fill="#555">After: [</text>
+<text x="400" y="200" font-family="Arial" font-size="13" font-weight="bold" fill="#E74C3C">0</text>
+<text x="415" y="200" font-family="Arial" font-size="13" fill="#555">, </text>
+<text x="425" y="200" font-family="Arial" font-size="13" font-weight="bold" fill="#E74C3C">0</text>
+<text x="440" y="200" font-family="Arial" font-size="13" fill="#555">, </text>
+<text x="450" y="200" font-family="Arial" font-size="13" font-weight="bold" fill="#7F8C8D">1</text>
+<text x="465" y="200" font-family="Arial" font-size="13" fill="#555">, </text>
+<text x="475" y="200" font-family="Arial" font-size="13" font-weight="bold" fill="#7F8C8D">1</text>
+<text x="490" y="200" font-family="Arial" font-size="13" fill="#555">, </text>
+<text x="500" y="200" font-family="Arial" font-size="13" font-weight="bold" fill="#3498DB">2</text>
+<text x="515" y="200" font-family="Arial" font-size="13" fill="#555">, </text>
+<text x="525" y="200" font-family="Arial" font-size="13" font-weight="bold" fill="#3498DB">2</text>
+<text x="540" y="200" font-family="Arial" font-size="12" fill="#555">]  ✓</text>
+
+<rect x="16" y="255" width="868" height="55" fill="#FFF0F0" rx="0"/>
+<text x="30" y="273" font-family="Arial" font-size="11" fill="#E74C3C" font-weight="bold">⚠  Overkill!</text>
+<text x="100" y="273" font-family="Arial" font-size="11" fill="#555">We know only 3 values exist. General sorting is O(n log n) — too slow for this special case.</text>
+<text x="30" y="292" font-family="Arial" font-size="11" fill="#888">💡 Insight: Since only 3 distinct values, count each type then overwrite in 2 passes — O(n)!</text>
+<text x="30" y="307" font-family="Arial" font-size="11" fill="#888">Even better: do it in ONE pass with 3 pointers (Dutch National Flag Algorithm).</text>
+
+<line x1="450" y1="314" x2="450" y2="344" stroke="#95A5A6" stroke-width="2" stroke-dasharray="5,3"/>
+<polygon points="444,342 450,353 456,342" fill="#95A5A6"/>
+<rect x="305" y="320" width="290" height="22" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+<text x="450" y="335" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="middle">💡 Count 0s,1s,2s → rewrite in 2 passes!</text>
+
+<!-- ═══ APPROACH 2: COUNTING SORT ═══ -->
+<rect x="15" y="353" width="870" height="195" fill="white" stroke="#E67E22" stroke-width="2" rx="8"/>
+<rect x="15" y="353" width="870" height="40" fill="#E67E22" rx="8"/>
+<rect x="15" y="378" width="870" height="15" fill="#E67E22"/>
+<text x="30" y="378" font-family="Arial" font-size="13" font-weight="bold" fill="white">② Counting Sort — 2 Passes</text>
+<text x="875" y="378" font-family="Arial" font-size="11" fill="#FAD7A0" text-anchor="end">O(n) time  ·  O(1) space</text>
+
+<rect x="16" y="393" width="868" height="100" fill="#FFFBF5" rx="0"/>
+<text x="45" y="411" font-family="Arial" font-size="10" fill="#888" font-weight="bold">LIVE: count each digit, then fill array [2,0,2,1,1,0]</text>
+<!-- Animated count labels -->
+<text class="c1" x="80" y="445" font-family="Arial" font-size="12" fill="#555">Pass 1: count0=2, count1=2, count2=2</text>
+<text class="c2" x="80" y="445" font-family="Arial" font-size="12" fill="#555">Pass 2: fill 2 zeros →  [0,0,_,_,_,_]</text>
+<text class="c3" x="80" y="445" font-family="Arial" font-size="12" fill="#555">Pass 2: fill 2 ones  →  [0,0,1,1,_,_]</text>
+<text class="c4" x="80" y="445" font-family="Arial" font-size="12">Pass 2: fill 2 twos  →  [0,0,1,1,2,2] ✓</text>
+<rect x="560" y="398" width="310" height="85" fill="#FEF9E7" stroke="#E67E22" stroke-width="1" rx="5"/>
+<text x="575" y="415" font-family="monospace" font-size="10" fill="#333">count = [0, 0, 0]</text>
+<text x="575" y="430" font-family="monospace" font-size="10" fill="#333">for x in nums: count[x]++  // pass 1</text>
+<text x="575" y="445" font-family="monospace" font-size="10" fill="#333">i = 0</text>
+<text x="575" y="460" font-family="monospace" font-size="10" fill="#333">for val in [0,1,2]:        // pass 2</text>
+<text x="575" y="475" font-family="monospace" font-size="10" fill="#27AE60">  repeat count[val] times: nums[i++] = val</text>
+
+<rect x="16" y="493" width="868" height="55" fill="#FFF8F0" rx="0"/>
+<text x="30" y="511" font-family="Arial" font-size="11" fill="#E67E22" font-weight="bold">✓ Better — O(n) two-pass!</text>
+<text x="195" y="511" font-family="Arial" font-size="11" fill="#555">Count frequencies in pass 1, rewrite array in pass 2. Simple and fast.</text>
+<text x="30" y="530" font-family="Arial" font-size="11" fill="#888">But: modifies values, needs 2 passes. Can we do it in ONE pass in-place with O(1) space? Yes! 3 pointers!</text>
+<text x="30" y="546" font-family="Arial" font-size="11" fill="#888">💡 Dutch National Flag: partition around pivot 1 using low/mid/high pointers simultaneously.</text>
+
+<line x1="450" y1="553" x2="450" y2="583" stroke="#95A5A6" stroke-width="2" stroke-dasharray="5,3"/>
+<polygon points="444,581 450,592 456,581" fill="#95A5A6"/>
+<rect x="290" y="559" width="320" height="22" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+<text x="450" y="574" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="middle">💡 3 pointers: low=0s zone, high=2s zone, mid scans!</text>
+
+<!-- ═══ APPROACH 3: DUTCH NATIONAL FLAG ═══ -->
+<rect x="15" y="592" width="870" height="250" fill="white" stroke="#27AE60" stroke-width="2.5" rx="8"/>
+<rect x="15" y="592" width="870" height="40" fill="#27AE60" rx="8"/>
+<rect x="15" y="617" width="870" height="15" fill="#27AE60"/>
+<text x="30" y="617" font-family="Arial" font-size="13" font-weight="bold" fill="white">③ Dutch National Flag — 3 Pointers, 1 Pass ⭐</text>
+<text x="875" y="617" font-family="Arial" font-size="11" fill="#D5F5E3" text-anchor="end">O(n) time  ·  O(1) space</text>
+
+<rect x="16" y="632" width="868" height="150" fill="#F4FEF7" rx="0"/>
+<text x="45" y="650" font-family="Arial" font-size="10" fill="#888" font-weight="bold">LIVE: low, mid, high pointers partitioning [2,0,2,1,1,0] → [0,0,1,1,2,2]</text>
+
+<!-- 7 element array: [2,0,2,1,1,0,_] showing transformation -->
+<rect class="d0" x="68"  y="657" width="40" height="40" rx="5"/>
+<text x="88"  y="682" font-family="Arial" font-size="16" font-weight="bold" fill="#2C3E50" text-anchor="middle">2</text>
+<rect class="d1" x="116" y="657" width="40" height="40" rx="5"/>
+<text x="136" y="682" font-family="Arial" font-size="16" font-weight="bold" fill="#2C3E50" text-anchor="middle">0</text>
+<rect class="d2" x="164" y="657" width="40" height="40" rx="5"/>
+<text x="184" y="682" font-family="Arial" font-size="16" font-weight="bold" fill="#2C3E50" text-anchor="middle">2</text>
+<rect class="d3" x="212" y="657" width="40" height="40" rx="5"/>
+<text x="232" y="682" font-family="Arial" font-size="16" font-weight="bold" fill="#2C3E50" text-anchor="middle">1</text>
+<rect class="d4" x="260" y="657" width="40" height="40" rx="5"/>
+<text x="280" y="682" font-family="Arial" font-size="16" font-weight="bold" fill="#2C3E50" text-anchor="middle">1</text>
+<rect class="d5" x="308" y="657" width="40" height="40" rx="5"/>
+<text x="328" y="682" font-family="Arial" font-size="16" font-weight="bold" fill="#2C3E50" text-anchor="middle">0</text>
+<rect class="d6" x="356" y="657" width="40" height="40" rx="5"/>
+<text x="376" y="682" font-family="Arial" font-size="16" font-weight="bold" fill="#2C3E50" text-anchor="middle">—</text>
+
+<!-- Zone legend -->
+<rect x="68"  y="705" width="48" height="14" fill="#FDEDEC" stroke="#E74C3C" stroke-width="1" rx="2"/>
+<text x="92"  y="715" font-family="Arial" font-size="8" fill="#E74C3C" text-anchor="middle" font-weight="bold">0s zone</text>
+<rect x="164" y="705" width="95" height="14" fill="#ECF0F1" stroke="#7F8C8D" stroke-width="1" rx="2"/>
+<text x="211" y="715" font-family="Arial" font-size="8" fill="#7F8C8D" text-anchor="middle" font-weight="bold">1s zone (sorted)</text>
+<rect x="308" y="705" width="90" height="14" fill="#EAFAF1" stroke="#27AE60" stroke-width="1" rx="2"/>
+<text x="353" y="715" font-family="Arial" font-size="8" fill="#27AE60" text-anchor="middle" font-weight="bold">2s zone</text>
+
+<!-- low pointer (animates right as 0s placed) -->
+<g class="lowp">
+  <polygon points="68,703 62,711 74,711" fill="#E74C3C"/>
+  <text x="68" y="722" font-family="Arial" font-size="8" fill="#E74C3C" text-anchor="middle" font-weight="bold">low</text>
+</g>
+<!-- mid pointer (animates right) -->
+<g class="mid">
+  <polygon points="68,653 62,645 74,645" fill="#27AE60"/>
+  <text x="68" y="643" font-family="Arial" font-size="8" fill="#27AE60" text-anchor="middle" font-weight="bold">mid</text>
+</g>
+<!-- high pointer (fixed at right, animates left as 2s placed) -->
+<g class="highp">
+  <polygon points="396,703 390,711 402,711" fill="#3498DB"/>
+  <text x="396" y="722" font-family="Arial" font-size="8" fill="#3498DB" text-anchor="middle" font-weight="bold">high</text>
+</g>
+
+<!-- Algorithm pseudocode -->
+<rect x="440" y="640" width="435" height="130" fill="#EAFAF1" stroke="#27AE60" stroke-width="1" rx="5"/>
+<text x="455" y="658" font-family="Arial" font-size="11" font-weight="bold" fill="#27AE60">Dutch National Flag:</text>
+<text x="455" y="674" font-family="monospace" font-size="10" fill="#333">low=0, mid=0, high=n-1</text>
+<text x="455" y="689" font-family="monospace" font-size="10" fill="#333">while mid &lt;= high:</text>
+<text x="455" y="704" font-family="monospace" font-size="10" fill="#E74C3C">  if nums[mid]==0: swap(low,mid); low++; mid++</text>
+<text x="455" y="719" font-family="monospace" font-size="10" fill="#7F8C8D">  elif nums[mid]==1: mid++  // already in place</text>
+<text x="455" y="734" font-family="monospace" font-size="10" fill="#3498DB">  else (==2):       swap(mid,high); high--</text>
+<text x="455" y="751" font-family="monospace" font-size="10" fill="#888">  // NOTE: don't mid++ after swap with high!</text>
+<text x="455" y="766" font-family="monospace" font-size="10" fill="#27AE60">// Regions: [0..low-1]=0s, [low..mid-1]=1s, [high+1..n]=2s</text>
+
+<rect x="16" y="782" width="868" height="60" fill="#F0FEF5" rx="0"/>
+<text x="30" y="800" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">✓ One pass, in-place, O(1) extra space!</text>
+<text x="270" y="800" font-family="Arial" font-size="11" fill="#555">3 regions grow simultaneously: left=0s, middle=1s, right=2s.</text>
+<text x="30" y="819" font-family="Arial" font-size="11" fill="#888">Key: when swapping with high, DO NOT advance mid (swapped value from high is unknown).</text>
+<text x="30" y="835" font-family="Arial" font-size="11" fill="#888">When swapping with low, DO advance mid (swapped value was 1, already processed).</text>
+
+<!-- Complexity Table -->
+<rect x="15" y="847" width="870" height="22" fill="#2C3E50" rx="5"/>
+<text x="200" y="861" font-family="Arial" font-size="10" font-weight="bold" fill="white" text-anchor="middle">Approach</text>
+<text x="480" y="861" font-family="Arial" font-size="10" font-weight="bold" fill="white" text-anchor="middle">Time</text>
+<text x="640" y="861" font-family="Arial" font-size="10" font-weight="bold" fill="white" text-anchor="middle">Space</text>
+<text x="800" y="861" font-family="Arial" font-size="10" font-weight="bold" fill="white" text-anchor="middle">Passes</text>
+</svg>

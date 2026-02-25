@@ -1,5 +1,8 @@
 # Matrix Chain Multiplication – Detailed Explanation
 
+![](../../assets/images/dynamic_programming/matrix_chain_multiplication.svg)
+
+
 **Difficulty:** Hard 🔥
 
 ---

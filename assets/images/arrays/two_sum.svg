@@ -1,0 +1,239 @@
+<svg width="900" height="875" xmlns="http://www.w3.org/2000/svg">
+<style>
+  /* === APPROACH 1: Brute Force — j pointer sweeps === */
+  @keyframes j_sweep {
+    0%,6%   {transform:translateX(0)}
+    22%,28% {transform:translateX(44px)}
+    44%,50% {transform:translateX(88px)}
+    66%,72% {transform:translateX(132px)}
+    88%,100%{transform:translateX(0)}
+  }
+  .j1{animation:j_sweep 6s ease-in-out infinite}
+
+  @keyframes hit1  {66%,78%{fill:#D5F5E3;stroke:#27AE60;stroke-width:3} 0%,65%,79%,100%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}}
+  @keyframes hit2  {66%,78%{fill:#D5F5E3;stroke:#27AE60;stroke-width:3} 0%,65%,79%,100%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}}
+  .b0{animation:hit1 6s ease-in-out infinite}
+  .b1{animation:hit2 6s ease-in-out infinite}
+
+  @keyframes sum_a {0%,6%{opacity:1}  10%,100%{opacity:0}}
+  @keyframes sum_b {18%,28%{opacity:1} 0%,17%,29%,100%{opacity:0}}
+  @keyframes sum_c {40%,50%{opacity:1} 0%,39%,51%,100%{opacity:0}}
+  @keyframes sum_d {62%,80%{opacity:1} 0%,61%,81%,100%{opacity:0}}
+  .sa{animation:sum_a 6s ease-in-out infinite}
+  .sb{animation:sum_b 6s ease-in-out infinite}
+  .sc{animation:sum_c 6s ease-in-out infinite}
+  .sd{animation:sum_d 6s ease-in-out infinite;fill:#27AE60;font-weight:bold}
+
+  /* === APPROACH 2: Two-Pointer — R moves left === */
+  @keyframes r_left {
+    0%,8%   {transform:translateX(0)}
+    30%,38% {transform:translateX(-44px)}
+    55%,65% {transform:translateX(-88px)}
+    85%,100%{transform:translateX(0)}
+  }
+  .rp{animation:r_left 6s ease-in-out infinite}
+
+  @keyframes rl0  {55%,70%{fill:#D5F5E3;stroke:#27AE60;stroke-width:3} 0%,54%,71%,100%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}}
+  @keyframes rl1  {55%,70%{fill:#D5F5E3;stroke:#27AE60;stroke-width:3} 0%,54%,71%,100%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}}
+  .c0{animation:rl0 6s ease-in-out infinite} .c1{animation:rl1 6s ease-in-out infinite}
+
+  @keyframes tpa {0%,8%{opacity:1}   12%,100%{opacity:0}}
+  @keyframes tpb {26%,38%{opacity:1} 0%,25%,39%,100%{opacity:0}}
+  @keyframes tpc {52%,75%{opacity:1} 0%,51%,76%,100%{opacity:0}}
+  .ta{animation:tpa 6s ease-in-out infinite}
+  .tb{animation:tpb 6s ease-in-out infinite}
+  .tc{animation:tpc 6s ease-in-out infinite;fill:#27AE60;font-weight:bold}
+
+  /* === APPROACH 3: HashMap — pointer scans, map grows === */
+  @keyframes h_scan {
+    0%,10%  {transform:translateX(0)}
+    45%,55% {transform:translateX(44px)}
+    80%,100%{transform:translateX(0)}
+  }
+  .hp{animation:h_scan 6s ease-in-out infinite}
+
+  @keyframes he0 {0%,6%{fill:#FDEBD0;stroke:#E67E22;stroke-width:3} 10%,100%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}}
+  @keyframes he1 {42%,58%{fill:#D5F5E3;stroke:#27AE60;stroke-width:3} 0%,41%,59%,100%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}}
+  .h0{animation:he0 6s ease-in-out infinite} .h1{animation:he1 6s ease-in-out infinite}
+
+  @keyframes me1 {0%,15%{opacity:0} 22%,100%{opacity:1}}
+  @keyframes me2 {0%,48%{opacity:0} 55%,100%{opacity:1}}
+  .me1{animation:me1 6s ease-in-out infinite}
+  .me2{animation:me2 6s ease-in-out infinite;fill:#27AE60;font-weight:bold}
+</style>
+
+<rect width="900" height="875" fill="#F8F9FA" rx="10"/>
+<rect width="900" height="55" fill="#2C3E50" rx="10"/>
+<rect y="45" width="900" height="10" fill="#2C3E50"/>
+<text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Two Sum</text>
+<rect x="800" y="12" width="82" height="28" fill="#27AE60" rx="14"/>
+<text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Easy</text>
+
+<!-- Problem strip -->
+<rect x="15" y="63" width="870" height="44" fill="white" stroke="#DEE2E6" rx="5"/>
+<text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Problem:</text>
+<text x="108" y="81" font-family="Arial" font-size="12" fill="#555">Given array and target, return indices [i, j] where nums[i] + nums[j] = target.</text>
+<text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Example: nums=[2,7,11,15], target=9 → [0,1] because 2+7=9</text>
+
+<!-- ═══ APPROACH 1: BRUTE FORCE ═══ -->
+<rect x="15" y="115" width="870" height="215" fill="white" stroke="#E74C3C" stroke-width="2" rx="8"/>
+<rect x="15" y="115" width="870" height="40" fill="#E74C3C" rx="8"/>
+<rect x="15" y="140" width="870" height="15" fill="#E74C3C"/>
+<text x="30" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white">① Brute Force — Check All Pairs</text>
+<text x="875" y="140" font-family="Arial" font-size="11" fill="#FADBD8" text-anchor="end">O(n²) time  ·  O(1) space</text>
+
+<!-- Animation area -->
+<rect x="16" y="155" width="868" height="118" fill="#FEF8F8" rx="0"/>
+<text x="45" y="173" font-family="Arial" font-size="10" fill="#888" font-weight="bold">LIVE:</text>
+<!-- Array boxes -->
+<rect class="b0" x="85"  y="160" width="42" height="42" rx="6"/>
+<text x="106" y="186" font-family="Arial" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">2</text>
+<rect class="b1" x="131" y="160" width="42" height="42" rx="6"/>
+<text x="152" y="186" font-family="Arial" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">7</text>
+<rect x="177" y="160" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="6"/>
+<text x="198" y="186" font-family="Arial" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">11</text>
+<rect x="223" y="160" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="6"/>
+<text x="244" y="186" font-family="Arial" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">15</text>
+<!-- Index labels -->
+<text x="106" y="210" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[0]</text>
+<text x="152" y="210" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[1]</text>
+<text x="198" y="210" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[2]</text>
+<text x="244" y="210" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[3]</text>
+<!-- i pointer (fixed at 0) -->
+<polygon points="106,156 100,148 112,148" fill="#E74C3C"/>
+<text x="106" y="146" font-family="Arial" font-size="9" font-weight="bold" fill="#E74C3C" text-anchor="middle">i=0</text>
+<!-- j pointer (animated) — base at box[1] x=152 -->
+<g class="j1">
+  <polygon points="152,215 146,223 158,223" fill="#3498DB"/>
+  <text x="152" y="232" font-family="Arial" font-size="9" font-weight="bold" fill="#3498DB" text-anchor="middle">j</text>
+</g>
+<!-- Animated sum labels -->
+<text class="sa" x="310" y="178" font-family="Arial" font-size="11" fill="#555">i=0,j=1: 2+7 = 9 ✓ Found!</text>
+<text class="sb" x="310" y="178" font-family="Arial" font-size="11" fill="#888">i=0,j=2: 2+11 = 13 ≠ 9</text>
+<text class="sc" x="310" y="178" font-family="Arial" font-size="11" fill="#888">i=0,j=3: 2+15 = 17 ≠ 9</text>
+<text class="sd" x="310" y="178" font-family="Arial" font-size="11">i=0,j=1: 2+7=9 → return [0,1] ✓</text>
+<!-- Pseudocode box -->
+<rect x="310" y="190" width="560" height="72" fill="#FDEDEC" stroke="#E74C3C" stroke-width="1" rx="5"/>
+<text x="325" y="207" font-family="monospace" font-size="10" fill="#333">for i = 0 to n-1:</text>
+<text x="325" y="222" font-family="monospace" font-size="10" fill="#333">  for j = i+1 to n-1:</text>
+<text x="325" y="237" font-family="monospace" font-size="10" fill="#333">    if nums[i] + nums[j] == target:</text>
+<text x="325" y="252" font-family="monospace" font-size="10" fill="#27AE60">      return [i, j]</text>
+<!-- Insight text -->
+<rect x="16" y="273" width="868" height="57" fill="#FFF0F0" rx="0"/>
+<text x="30" y="291" font-family="Arial" font-size="11" fill="#E74C3C" font-weight="bold">⚠  Slow!</text>
+<text x="85" y="291" font-family="Arial" font-size="11" fill="#555">Checks every pair — n×(n-1)/2 comparisons. For n=10⁴ that's 50 million checks → TLE.</text>
+<text x="30" y="310" font-family="Arial" font-size="11" fill="#888">💡 Insight: for each number, we're searching for its complement (target-num). Searching is O(n) — can we make it O(1)?</text>
+<text x="30" y="326" font-family="Arial" font-size="11" fill="#888">→ Yes! HashMap gives O(1) lookup. Store what we've seen as we go.</text>
+
+<!-- Arrow down -->
+<line x1="450" y1="333" x2="450" y2="363" stroke="#95A5A6" stroke-width="2" stroke-dasharray="5,3"/>
+<polygon points="444,361 450,372 456,361" fill="#95A5A6"/>
+<rect x="320" y="339" width="260" height="22" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+<text x="450" y="354" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="middle">💡 Sort first → use two pointers from both ends</text>
+
+<!-- ═══ APPROACH 2: SORT + TWO POINTERS ═══ -->
+<rect x="15" y="372" width="870" height="215" fill="white" stroke="#E67E22" stroke-width="2" rx="8"/>
+<rect x="15" y="372" width="870" height="40" fill="#E67E22" rx="8"/>
+<rect x="15" y="397" width="870" height="15" fill="#E67E22"/>
+<text x="30" y="397" font-family="Arial" font-size="13" font-weight="bold" fill="white">② Sort + Two Pointers  (⚠ loses original indices)</text>
+<text x="875" y="397" font-family="Arial" font-size="11" fill="#FAD7A0" text-anchor="end">O(n log n) time  ·  O(1) space</text>
+
+<rect x="16" y="412" width="868" height="118" fill="#FFFBF5" rx="0"/>
+<text x="45" y="430" font-family="Arial" font-size="10" fill="#888" font-weight="bold">LIVE:</text>
+<!-- Sorted array boxes -->
+<rect class="c0" x="85"  y="417" width="42" height="42" rx="6"/>
+<text x="106" y="443" font-family="Arial" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">2</text>
+<rect class="c1" x="131" y="417" width="42" height="42" rx="6"/>
+<text x="152" y="443" font-family="Arial" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">7</text>
+<rect x="177" y="417" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="6"/>
+<text x="198" y="443" font-family="Arial" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">11</text>
+<rect x="223" y="417" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="6"/>
+<text x="244" y="443" font-family="Arial" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">15</text>
+<text x="106" y="467" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[0]</text>
+<text x="152" y="467" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[1]</text>
+<text x="198" y="467" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[2]</text>
+<text x="244" y="467" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[3]</text>
+<!-- L pointer (fixed left) -->
+<polygon points="106,413 100,405 112,405" fill="#E74C3C"/>
+<text x="106" y="403" font-family="Arial" font-size="9" font-weight="bold" fill="#E74C3C" text-anchor="middle">L</text>
+<!-- R pointer (animated, starts at box[3] x=244, moves left) -->
+<g class="rp">
+  <polygon points="244,472 238,480 250,480" fill="#3498DB"/>
+  <text x="244" y="489" font-family="Arial" font-size="9" font-weight="bold" fill="#3498DB" text-anchor="middle">R</text>
+</g>
+<!-- Step labels -->
+<text class="ta" x="310" y="435" font-family="Arial" font-size="11" fill="#555">L=0,R=3: 2+15=17 &gt; 9 → R moves left</text>
+<text class="tb" x="310" y="435" font-family="Arial" font-size="11" fill="#555">L=0,R=2: 2+11=13 &gt; 9 → R moves left</text>
+<text class="tc" x="310" y="435" font-family="Arial" font-size="11">L=0,R=1: 2+7=9 ✓ Found!</text>
+<!-- Pseudocode -->
+<rect x="310" y="447" width="560" height="72" fill="#FEF9E7" stroke="#E67E22" stroke-width="1" rx="5"/>
+<text x="325" y="464" font-family="monospace" font-size="10" fill="#333">nums.sort()   // ← WARNING: loses original indices!</text>
+<text x="325" y="479" font-family="monospace" font-size="10" fill="#333">L=0, R=len(nums)-1</text>
+<text x="325" y="494" font-family="monospace" font-size="10" fill="#333">while L &lt; R:  if sum&gt;t: R--  elif sum&lt;t: L++</text>
+<text x="325" y="509" font-family="monospace" font-size="10" fill="#27AE60">             else: return [L, R]  // values, not indices!</text>
+<!-- Insight -->
+<rect x="16" y="530" width="868" height="57" fill="#FFFBF0" rx="0"/>
+<text x="30" y="548" font-family="Arial" font-size="11" fill="#E67E22" font-weight="bold">⚠  Better but limited!</text>
+<text x="175" y="548" font-family="Arial" font-size="11" fill="#555">O(n log n) for sort. The two-pointer trick works because sorted array has monotone property.</text>
+<text x="30" y="567" font-family="Arial" font-size="11" fill="#888">⚠  Sorting destroys original indices — problem asks for indices, not values. Use HashMap instead for this problem.</text>
+<text x="30" y="583" font-family="Arial" font-size="11" fill="#888">💡 Insight: what if we don't sort at all? Build a lookup table as we go → HashMap O(1) per element.</text>
+
+<!-- Arrow down -->
+<line x1="450" y1="590" x2="450" y2="620" stroke="#95A5A6" stroke-width="2" stroke-dasharray="5,3"/>
+<polygon points="444,618 450,629 456,618" fill="#95A5A6"/>
+<rect x="320" y="596" width="260" height="22" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+<text x="450" y="611" font-family="Arial" font-size="10" font-weight="bold" fill="#555" text-anchor="middle">💡 HashMap: O(1) lookup, preserves indices!</text>
+
+<!-- ═══ APPROACH 3: HASHMAP ═══ -->
+<rect x="15" y="629" width="870" height="215" fill="white" stroke="#27AE60" stroke-width="2.5" rx="8"/>
+<rect x="15" y="629" width="870" height="40" fill="#27AE60" rx="8"/>
+<rect x="15" y="654" width="870" height="15" fill="#27AE60"/>
+<text x="30" y="654" font-family="Arial" font-size="13" font-weight="bold" fill="white">③ HashMap — One Pass ⭐ Best</text>
+<text x="875" y="654" font-family="Arial" font-size="11" fill="#D5F5E3" text-anchor="end">O(n) time  ·  O(n) space</text>
+
+<rect x="16" y="669" width="868" height="118" fill="#F4FEF7" rx="0"/>
+<text x="45" y="687" font-family="Arial" font-size="10" fill="#888" font-weight="bold">LIVE:</text>
+<!-- Array boxes -->
+<rect class="h0" x="85"  y="674" width="42" height="42" rx="6"/>
+<text x="106" y="700" font-family="Arial" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">2</text>
+<rect class="h1" x="131" y="674" width="42" height="42" rx="6"/>
+<text x="152" y="700" font-family="Arial" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">7</text>
+<rect x="177" y="674" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="6"/>
+<text x="198" y="700" font-family="Arial" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">11</text>
+<rect x="223" y="674" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="6"/>
+<text x="244" y="700" font-family="Arial" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">15</text>
+<text x="106" y="724" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[0]</text>
+<text x="152" y="724" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">[1]</text>
+<!-- Scanning pointer -->
+<g class="hp">
+  <polygon points="106,670 100,662 112,662" fill="#27AE60"/>
+  <text x="106" y="660" font-family="Arial" font-size="9" font-weight="bold" fill="#27AE60" text-anchor="middle">i</text>
+</g>
+<!-- HashMap grow panel -->
+<rect x="310" y="672" width="230" height="106" fill="#EAFAF1" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<text x="425" y="690" font-family="Arial" font-size="11" font-weight="bold" fill="#27AE60" text-anchor="middle">HashMap {val → index}</text>
+<line x1="310" y1="695" x2="540" y2="695" stroke="#27AE60" stroke-width="1"/>
+<text class="me1" x="320" y="714" font-family="Arial" font-size="10" fill="#555">2 → 0   (need 9−2=7, not in map)</text>
+<text class="me2" x="320" y="735" font-family="Arial" font-size="11">✓ 9−7=2 found at idx 0 → [0,1]</text>
+<!-- Pseudocode -->
+<rect x="550" y="672" width="320" height="106" fill="#EAFAF1" stroke="#27AE60" stroke-width="1" rx="5"/>
+<text x="565" y="690" font-family="monospace" font-size="10" font-weight="bold" fill="#27AE60">map = {}</text>
+<text x="565" y="705" font-family="monospace" font-size="10" fill="#333">for i, num in nums:</text>
+<text x="565" y="720" font-family="monospace" font-size="10" fill="#333">  comp = target − num</text>
+<text x="565" y="735" font-family="monospace" font-size="10" fill="#333">  if comp in map:</text>
+<text x="565" y="750" font-family="monospace" font-size="10" fill="#27AE60">    return [map[comp], i]</text>
+<text x="565" y="765" font-family="monospace" font-size="10" fill="#333">  map[num] = i</text>
+<!-- Insight -->
+<rect x="16" y="787" width="868" height="57" fill="#F0FEF5" rx="0"/>
+<text x="30" y="805" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">✓ Single pass!</text>
+<text x="127" y="805" font-family="Arial" font-size="11" fill="#555">For each element, check if complement already in map — O(1). Store element for future checks.</text>
+<text x="30" y="824" font-family="Arial" font-size="11" fill="#888">Preserves original indices. Works on unsorted arrays. O(n) space for the map. Best approach for this problem!</text>
+<text x="30" y="840" font-family="Arial" font-size="11" fill="#888">Note: check complement BEFORE storing current element (avoids using same element twice).</text>
+
+<!-- Complexity Table -->
+<rect x="15" y="852" width="870" height="18" fill="#2C3E50" rx="5"/>
+<text x="160" y="864" font-family="Arial" font-size="10" font-weight="bold" fill="white" text-anchor="middle">Approach</text>
+<text x="480" y="864" font-family="Arial" font-size="10" font-weight="bold" fill="white" text-anchor="middle">Time</text>
+<text x="650" y="864" font-family="Arial" font-size="10" font-weight="bold" fill="white" text-anchor="middle">Space</text>
+<text x="810" y="864" font-family="Arial" font-size="10" font-weight="bold" fill="white" text-anchor="middle">Note</text>
+</svg>

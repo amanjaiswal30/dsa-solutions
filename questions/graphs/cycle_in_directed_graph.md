@@ -1,5 +1,8 @@
 # Detect Cycle in Directed Graph
 
+![](../../assets/images/graphs/cycle_in_directed_graph.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

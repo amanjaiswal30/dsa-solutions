@@ -1,5 +1,8 @@
 # Palindrome Partitioning II (Min Cuts) – Detailed Explanation
 
+![](../../assets/images/dynamic_programming/palindrome_partitioning.svg)
+
+
 **Difficulty:** Hard 🔥
 
 ---

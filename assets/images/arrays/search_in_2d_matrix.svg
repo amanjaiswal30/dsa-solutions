@@ -1,0 +1,144 @@
+<svg width="900" height="690" xmlns="http://www.w3.org/2000/svg">
+<style>
+/* Approach 1: Flatten to 1D binary search - highlight cells */
+@keyframes bs_mid{0%,10%{opacity:1;fill:#FDEBD0;stroke:#E67E22}30%,40%{opacity:1;fill:#EBF5FB;stroke:#3498DB}55%,65%{opacity:1;fill:#D5F5E3;stroke:#27AE60}90%,100%{opacity:1;fill:#FDEBD0;stroke:#E67E22}}
+.bsm{animation:bs_mid 4s ease-in-out infinite}
+@keyframes bs_l0{0%,10%{opacity:1}30%,100%{opacity:0}}
+@keyframes bs_l1{0%,29%{opacity:0}30%,55%{opacity:1}56%,100%{opacity:0}}
+@keyframes bs_l2{0%,54%{opacity:0}55%,88%{opacity:1}89%,100%{opacity:0}}
+.bl0{animation:bs_l0 4s ease-in-out infinite}
+.bl1{animation:bs_l1 4s ease-in-out infinite}
+.bl2{animation:bs_l2 4s ease-in-out infinite}
+/* Approach 2: Top-right staircase */
+@keyframes tr_ptr{0%,10%{transform:translate(0,0)}25%,35%{transform:translate(-48px,0)}50%,60%{transform:translate(-48px,48px)}75%,85%{transform:translate(-96px,48px)}95%,100%{transform:translate(0,0)}}
+.trp{animation:tr_ptr 7s ease-in-out infinite}
+@keyframes trl0{0%,10%{opacity:1}25%,100%{opacity:0}}
+@keyframes trl1{0%,24%{opacity:0}25%,50%{opacity:1}51%,100%{opacity:0}}
+@keyframes trl2{0%,49%{opacity:0}50%,75%{opacity:1}76%,100%{opacity:0}}
+@keyframes trl3{0%,74%{opacity:0}75%,95%{opacity:1}96%,100%{opacity:0}}
+.trl0{animation:trl0 7s ease-in-out infinite}
+.trl1{animation:trl1 7s ease-in-out infinite}
+.trl2{animation:trl2 7s ease-in-out infinite}
+.trl3{animation:trl3 7s ease-in-out infinite}
+@keyframes cell_found{0%,50%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}51%,80%{fill:#D5F5E3;stroke:#27AE60;stroke-width:3}81%,100%{fill:#EBF5FB;stroke:#3498DB;stroke-width:2}}
+.cf{animation:cell_found 7s ease-in-out infinite}
+</style>
+<rect width="900" height="690" fill="#F8F9FA" rx="10"/>
+<rect width="900" height="55" fill="#2C3E50" rx="10"/>
+<rect y="45" width="900" height="10" fill="#2C3E50"/>
+<text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Search in 2D Matrix</text>
+<rect x="820" y="12" width="62" height="28" fill="#F39C12" rx="14"/>
+<text x="851" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+<rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+<text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+<text x="105" y="81" font-family="Arial" font-size="12" fill="#555">[[1,4,7],[2,5,8],[3,6,9]], target=5 → true (sorted: rows &amp; cols increasing)</text>
+<text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Matrix: each row sorted, each col sorted. Top-right corner: go left if too big, go down if too small.</text>
+
+<!-- APPROACH 1: Flatten + Binary Search -->
+<rect x="15" y="115" width="870" height="210" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+<rect x="15" y="115" width="870" height="40" fill="#E74C3C" rx="7"/>
+<rect x="15" y="140" width="870" height="15" fill="#E74C3C"/>
+<text x="450" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Flatten + Binary Search — O(m×n) time / O(log(m×n))</text>
+<text x="450" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">If rows are fully sorted (each row continues from prev): treat as 1D. map(mid) = (mid/n, mid%n)</text>
+<!-- 3x3 matrix visualization -->
+<!-- Each cell: 48x48px. Matrix at x=180, y=168 -->
+<!-- Row 0: [1,4,7] -->
+<rect x="220" y="168" width="48" height="48" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="2"/>
+<text x="244" y="198" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="268" y="168" width="48" height="48" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="2"/>
+<text x="292" y="198" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">4</text>
+<rect x="316" y="168" width="48" height="48" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="2" class="bsm"/>
+<text x="340" y="198" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">7</text>
+<!-- Row 1: [2,5,8] -->
+<rect x="220" y="216" width="48" height="48" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="2"/>
+<text x="244" y="246" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="268" y="216" width="48" height="48" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="2" class="cf"/>
+<text x="292" y="246" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">5</text>
+<rect x="316" y="216" width="48" height="48" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="2"/>
+<text x="340" y="246" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">8</text>
+<!-- Row 2: [3,6,9] -->
+<rect x="220" y="264" width="48" height="48" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="2"/>
+<text x="244" y="294" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">3</text>
+<rect x="268" y="264" width="48" height="48" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="2"/>
+<text x="292" y="294" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">6</text>
+<rect x="316" y="264" width="48" height="48" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="2"/>
+<text x="340" y="294" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">9</text>
+<!-- Flat indices -->
+<text x="244" y="162" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">idx0</text>
+<text x="292" y="162" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">idx1</text>
+<text x="340" y="162" font-family="Arial" font-size="9" fill="#999" text-anchor="middle">idx2</text>
+<!-- Info text -->
+<text x="450" y="180" font-family="Arial" font-size="11" fill="#555">Binary search on flattened indices:</text>
+<text class="bl0" x="450" y="210" font-family="Arial" font-size="11" fill="#555">lo=0,hi=8: mid=4 → (4/3,4%3)=(1,1): arr[1][1]=5 == target ✓</text>
+<text class="bl1" x="450" y="210" font-family="Arial" font-size="11" fill="#555">mid = lo+(hi-lo)/2; row=mid/n; col=mid%n</text>
+<text class="bl2" x="450" y="210" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">Found 5 at (1,1)! O(log(m×n)) ✓</text>
+<text x="450" y="280" font-family="Arial" font-size="10" fill="#888">Note: works only when rows are fully sorted AND each row's last &lt; next row's first.</text>
+<text x="450" y="297" font-family="Arial" font-size="10" fill="#888">For only row/col sorted matrix (not globally), use Top-Right staircase approach.</text>
+<text x="450" y="311" font-family="Arial" font-size="10" fill="#888">Can work for this problem too since columns are sorted — but less efficient path.</text>
+
+<!-- Arrow 1→2 -->
+<line x1="450" y1="325" x2="450" y2="362" stroke="#7F8C8D" stroke-width="2" stroke-dasharray="4,3"/>
+<polygon points="444,362 450,370 456,362" fill="#7F8C8D"/>
+<rect x="220" y="329" width="460" height="22" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+<text x="450" y="344" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">💡 Top-right corner: larger than row, smaller than column — unique path!</text>
+
+<!-- APPROACH 2: Top-Right Staircase -->
+<rect x="15" y="370" width="870" height="210" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+<rect x="15" y="370" width="870" height="40" fill="#27AE60" rx="7"/>
+<rect x="15" y="395" width="870" height="15" fill="#27AE60"/>
+<text x="450" y="395" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Top-Right Staircase — O(m+n) time, O(1) space ⭐</text>
+<text x="450" y="408" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">Start top-right: if curr &gt; target → col-- (go left). If curr &lt; target → row++ (go down).</text>
+<!-- Matrix again for approach 2 -->
+<rect x="220" y="428" width="48" height="48" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="2"/>
+<text x="244" y="458" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="268" y="428" width="48" height="48" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="2"/>
+<text x="292" y="458" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">4</text>
+<rect x="316" y="428" width="48" height="48" fill="#FDEBD0" stroke="#E67E22" stroke-width="2" rx="2"/>
+<text x="340" y="458" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">7</text>
+<rect x="220" y="476" width="48" height="48" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="2"/>
+<text x="244" y="506" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="268" y="476" width="48" height="48" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="2" class="cf"/>
+<text x="292" y="506" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">5</text>
+<rect x="316" y="476" width="48" height="48" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="2"/>
+<text x="340" y="506" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">8</text>
+<rect x="220" y="524" width="48" height="48" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="2"/>
+<text x="244" y="554" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">3</text>
+<rect x="268" y="524" width="48" height="48" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="2"/>
+<text x="292" y="554" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">6</text>
+<rect x="316" y="524" width="48" height="48" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="2"/>
+<text x="340" y="554" font-family="Arial" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">9</text>
+<!-- Animated pointer starting at top-right (7 at row=0,col=2) -->
+<g class="trp" transform="translate(340,428)">
+  <polygon points="-10,0 0,-10 10,0 0,10" fill="#E74C3C" stroke="white" stroke-width="1.5"/>
+</g>
+<!-- Step labels on right -->
+<text class="trl0" x="450" y="452" font-family="Arial" font-size="11" fill="#555">start(0,2)=7 &gt; 5 → col-- (go left)</text>
+<text class="trl1" x="450" y="452" font-family="Arial" font-size="11" fill="#555">(0,1)=4 &lt; 5 → row++ (go down)</text>
+<text class="trl2" x="450" y="452" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">(1,1)=5 == 5 → FOUND! ✓</text>
+<text class="trl3" x="450" y="452" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">Done in 3 steps!</text>
+<text x="450" y="575" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">Found 5 in 3 moves: right→left→down ✓ — works for any row+col sorted matrix!</text>
+<text x="450" y="565" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Each step eliminates a row or column → at most m+n steps total.</text>
+
+<!-- Complexity Table -->
+<rect x="15" y="592" width="870" height="93" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+<rect x="15" y="592" width="870" height="30" fill="#2C3E50" rx="7"/>
+<rect x="15" y="607" width="870" height="15" fill="#2C3E50"/>
+<text x="450" y="612" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+<line x1="15" y1="622" x2="885" y2="622" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="622" width="870" height="23" fill="#ECF0F1"/>
+<text x="200" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+<text x="500" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+<text x="750" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+<line x1="15" y1="645" x2="885" y2="645" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="645" width="870" height="22" fill="#FDEDEC"/>
+<text x="200" y="660" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Flatten + Binary Search</text>
+<text x="500" y="660" font-family="Arial" font-size="11" fill="#F39C12" text-anchor="middle">O(log(m×n))</text>
+<text x="750" y="660" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(1)</text>
+<line x1="15" y1="667" x2="885" y2="667" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="667" width="870" height="23" fill="#EAFAF1"/>
+<text x="200" y="683" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Top-Right Staircase ⭐</text>
+<text x="500" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(m+n)</text>
+<text x="750" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(1)</text>
+<line x1="370" y1="622" x2="370" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+<line x1="620" y1="622" x2="620" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

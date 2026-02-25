@@ -1,5 +1,8 @@
 # Min Cost Climbing Stairs – Detailed Explanation
 
+![](../../assets/images/dynamic_programming/min_cost_climbing_stairs.svg)
+
+
 **Difficulty:** Easy ✅
 
 ---

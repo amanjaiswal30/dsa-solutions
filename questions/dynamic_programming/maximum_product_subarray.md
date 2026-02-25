@@ -1,5 +1,8 @@
 # Maximum Product Subarray – Detailed Explanation
 
+![](../../assets/images/dynamic_programming/maximum_product_subarray.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

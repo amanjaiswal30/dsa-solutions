@@ -1,5 +1,8 @@
 # 🔹 Problem: Longest Substring Without Repeating Characters
 
+![](../../assets/images/strings/longest_substring_without_repeating_characters.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

@@ -1,5 +1,8 @@
 # 🔹 Length of Longest Valid Parentheses
 
+![](../../assets/images/stacks/longest_valid_parenthesis.svg)
+
+
 ---
 
 ## 📌 Problem Statement

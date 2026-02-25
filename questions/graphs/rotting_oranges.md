@@ -1,5 +1,8 @@
 # 🔹 Problem: Rotting Oranges
 
+![](../../assets/images/graphs/rotting_oranges.svg)
+
+
 **Difficulty:** Medium 🌿
 
 ---

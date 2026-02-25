@@ -1,5 +1,8 @@
 # Clone Graph
 
+![](../../assets/images/graphs/clone_graph.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

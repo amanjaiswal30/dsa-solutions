@@ -1,0 +1,156 @@
+<svg width="900" height="590" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="590" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect x="0" y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="430" y="35" font-family="Arial" font-size="20" font-weight="bold" fill="white" text-anchor="middle">Nearest Smaller Element (to Left)</text>
+  <rect x="790" y="13" width="100" height="28" fill="#F39C12" rx="14"/>
+  <text x="840" y="32" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Medium ⚡</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="25" y="84" font-family="Arial" font-size="12" fill="#7F8C8D">Input:</text>
+  <text x="72" y="84" font-family="Arial" font-size="13" fill="#2C3E50" font-weight="bold">[1, 3, 0, 2, 5]</text>
+  <text x="215" y="84" font-family="Arial" font-size="13" fill="#7F8C8D">→</text>
+  <text x="232" y="84" font-family="Arial" font-size="13" fill="#27AE60" font-weight="bold">[-1, 1, -1, 0, 2]</text>
+  <text x="400" y="84" font-family="Arial" font-size="12" fill="#7F8C8D">|</text>
+  <text x="418" y="84" font-family="Arial" font-size="13" fill="#2C3E50" font-weight="bold">[4, 5, 2, 10, 8]</text>
+  <text x="570" y="84" font-family="Arial" font-size="13" fill="#7F8C8D">→</text>
+  <text x="587" y="84" font-family="Arial" font-size="13" fill="#27AE60" font-weight="bold">[-1, 4, -1, 2, 2]</text>
+  <text x="720" y="84" font-family="Arial" font-size="11" fill="#7F8C8D">For each element: nearest smaller to its left</text>
+
+  <!-- ===== APPROACH 1: BRUTE FORCE ===== -->
+  <rect x="15" y="115" width="415" height="365" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="415" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="415" height="15" fill="#E74C3C"/>
+  <text x="223" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">① Brute Force — Scan Left for Each Element</text>
+  <text x="223" y="167" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle" font-weight="bold">O(n²) time · O(n) space</text>
+
+  <text x="25" y="187" font-family="Arial" font-size="11" fill="#555">For each element i, scan j = i-1 down to 0</text>
+  <text x="25" y="201" font-family="Arial" font-size="11" fill="#555">until nums[j] &lt; nums[i] is found. Store or -1.</text>
+
+  <!-- Array [1,3,0,2,5] -->
+  <text x="25" y="220" font-family="Arial" font-size="10" fill="#7F8C8D" font-weight="bold">Array: [1, 3, 0, 2, 5]</text>
+  <g transform="translate(25, 225)">
+    <rect x="0"   y="0" width="48" height="32" fill="#D5E8D4" stroke="#27AE60" rx="3"/>
+    <text x="24"  y="21" font-family="Arial" font-size="14" font-weight="bold" fill="#1E8449" text-anchor="middle">1</text>
+    <rect x="52"  y="0" width="48" height="32" fill="#FADBD8" stroke="#E74C3C" rx="3"/>
+    <text x="76"  y="21" font-family="Arial" font-size="14" font-weight="bold" fill="#C0392B" text-anchor="middle">3</text>
+    <rect x="104" y="0" width="48" height="32" fill="#D5E8D4" stroke="#27AE60" rx="3"/>
+    <text x="128" y="21" font-family="Arial" font-size="14" font-weight="bold" fill="#1E8449" text-anchor="middle">0</text>
+    <rect x="156" y="0" width="48" height="32" fill="#FADBD8" stroke="#E74C3C" rx="3"/>
+    <text x="180" y="21" font-family="Arial" font-size="14" font-weight="bold" fill="#C0392B" text-anchor="middle">2</text>
+    <rect x="208" y="0" width="48" height="32" fill="#FADBD8" stroke="#E74C3C" rx="3"/>
+    <text x="232" y="21" font-family="Arial" font-size="14" font-weight="bold" fill="#C0392B" text-anchor="middle">5</text>
+    <!-- Index labels -->
+    <text x="24"  y="44" font-family="Arial" font-size="10" fill="#7F8C8D" text-anchor="middle">0</text>
+    <text x="76"  y="44" font-family="Arial" font-size="10" fill="#7F8C8D" text-anchor="middle">1</text>
+    <text x="128" y="44" font-family="Arial" font-size="10" fill="#7F8C8D" text-anchor="middle">2</text>
+    <text x="180" y="44" font-family="Arial" font-size="10" fill="#7F8C8D" text-anchor="middle">3</text>
+    <text x="232" y="44" font-family="Arial" font-size="10" fill="#7F8C8D" text-anchor="middle">4</text>
+  </g>
+
+  <!-- Step table -->
+  <text x="25" y="296" font-family="Arial" font-size="10" fill="#7F8C8D" font-weight="bold">For each element, scan leftward:</text>
+  <rect x="25" y="302" width="395" height="18" fill="#F0F0F0" rx="2"/>
+  <text x="35" y="315" font-family="Arial" font-size="9" font-weight="bold" fill="#555">i   nums[i]   Scan Left                    Result</text>
+
+  <rect x="25" y="320" width="395" height="18" fill="#EBF5FB"/>
+  <text x="35" y="332" font-family="Arial" font-size="9" fill="#2C3E50">0      1       no elements to left          -1</text>
+
+  <rect x="25" y="338" width="395" height="18" fill="#D5E8D4"/>
+  <text x="35" y="350" font-family="Arial" font-size="9" fill="#1E8449">1      3       j=0: nums[0]=1 &lt; 3 ✓         1</text>
+
+  <rect x="25" y="356" width="395" height="18" fill="#EBF5FB"/>
+  <text x="35" y="368" font-family="Arial" font-size="9" fill="#2C3E50">2      0       j=1: 3≥0, j=0: 1≥0. None found   -1</text>
+
+  <rect x="25" y="374" width="395" height="18" fill="#D5E8D4"/>
+  <text x="35" y="386" font-family="Arial" font-size="9" fill="#1E8449">3      2       j=2: nums[2]=0 &lt; 2 ✓         0</text>
+
+  <rect x="25" y="392" width="395" height="18" fill="#D5E8D4"/>
+  <text x="35" y="404" font-family="Arial" font-size="9" fill="#1E8449">4      5       j=3: nums[3]=2 &lt; 5 ✓         2</text>
+
+  <rect x="25" y="416" width="395" height="26" fill="#D5E8D4" stroke="#27AE60" rx="3"/>
+  <text x="223" y="433" font-family="Arial" font-size="12" fill="#1E8449" font-weight="bold" text-anchor="middle">Result: [-1, 1, -1, 0, 2] ✓</text>
+
+  <rect x="25" y="450" width="395" height="26" fill="#FDEDEC" stroke="#FFCCCC" rx="4"/>
+  <text x="35" y="462" font-family="Arial" font-size="10" fill="#E74C3C" font-weight="bold">⚠ Worst case (descending): each element scans all left → O(n²)</text>
+  <text x="35" y="475" font-family="Arial" font-size="10" fill="#E67E22">Idea: stack maintains the "candidates" in order</text>
+
+  <!-- Arrow -->
+  <line x1="432" y1="300" x2="458" y2="300" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="458,295 468,300 458,305" fill="#7F8C8D"/>
+  <rect x="428" y="274" width="50" height="24" fill="#FFF8E1" stroke="#F39C12" rx="3"/>
+  <text x="453" y="287" font-family="Arial" font-size="9" fill="#D35400" text-anchor="middle">💡 Stack</text>
+  <text x="453" y="297" font-family="Arial" font-size="9" fill="#D35400" text-anchor="middle">keeps order</text>
+
+  <!-- ===== APPROACH 2: MONOTONIC STACK ===== -->
+  <rect x="468" y="115" width="417" height="365" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="468" y="115" width="417" height="40" fill="#27AE60" rx="7"/>
+  <rect x="468" y="140" width="417" height="15" fill="#27AE60"/>
+  <text x="677" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">② Monotonic Stack (Increasing) ⭐</text>
+  <text x="677" y="167" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle" font-weight="bold">O(n) time · O(n) space</text>
+
+  <text x="478" y="187" font-family="Arial" font-size="11" fill="#555">Traverse L→R. Maintain increasing stack.</text>
+  <text x="478" y="201" font-family="Arial" font-size="11" fill="#555">Pop all ≥ current. Stack top = nearest smaller.</text>
+
+  <!-- Stack state visualization -->
+  <text x="478" y="220" font-family="Arial" font-size="10" fill="#7F8C8D" font-weight="bold">Process [1, 3, 0, 2, 5] left to right:</text>
+
+  <rect x="478" y="226" width="397" height="18" fill="#F0F0F0" rx="2"/>
+  <text x="490" y="238" font-family="Arial" font-size="9" font-weight="bold" fill="#555">i   nums[i]   Stack before       Action                    Result[i]</text>
+
+  <rect x="478" y="244" width="397" height="20" fill="#EBF5FB"/>
+  <text x="490" y="257" font-family="Arial" font-size="9" fill="#2C3E50">0      1        []                stack empty → -1. push 1    -1</text>
+
+  <rect x="478" y="264" width="397" height="20" fill="#D5E8D4"/>
+  <text x="490" y="277" font-family="Arial" font-size="9" fill="#1E8449">1      3        [1]               top=1 &lt; 3 → result=1. push 3   1</text>
+
+  <rect x="478" y="284" width="397" height="28" fill="#FADBD8"/>
+  <text x="490" y="296" font-family="Arial" font-size="9" fill="#C0392B">2      0        [1,3]             top=3 ≥ 0 → pop 3</text>
+  <text x="490" y="308" font-family="Arial" font-size="9" fill="#C0392B">                                  top=1 ≥ 0 → pop 1. Stack empty → -1. push 0   -1</text>
+
+  <rect x="478" y="312" width="397" height="20" fill="#D5E8D4"/>
+  <text x="490" y="325" font-family="Arial" font-size="9" fill="#1E8449">3      2        [0]               top=0 &lt; 2 → result=0. push 2   0</text>
+
+  <rect x="478" y="332" width="397" height="20" fill="#D5E8D4"/>
+  <text x="490" y="345" font-family="Arial" font-size="9" fill="#1E8449">4      5        [0,2]             top=2 &lt; 5 → result=2. push 5   2</text>
+
+  <rect x="478" y="358" width="397" height="24" fill="#D5E8D4" stroke="#27AE60" rx="3"/>
+  <text x="677" y="374" font-family="Arial" font-size="12" fill="#1E8449" font-weight="bold" text-anchor="middle">Result: [-1, 1, -1, 0, 2] ✓</text>
+
+  <!-- Stack property diagram -->
+  <text x="478" y="402" font-family="Arial" font-size="10" fill="#2C3E50" font-weight="bold">Stack invariant: always increasing bottom→top</text>
+  <g transform="translate(478, 408)">
+    <rect x="0"  y="0" width="35" height="24" fill="#D5E8D4" stroke="#27AE60" rx="2"/>
+    <text x="18" y="16" font-family="Arial" font-size="11" fill="#1E8449" text-anchor="middle" font-weight="bold">0</text>
+    <rect x="38" y="0" width="35" height="24" fill="#D5E8D4" stroke="#27AE60" rx="2"/>
+    <text x="56" y="16" font-family="Arial" font-size="11" fill="#1E8449" text-anchor="middle" font-weight="bold">2</text>
+    <rect x="76" y="0" width="35" height="24" fill="#D5E8D4" stroke="#27AE60" rx="2"/>
+    <text x="94" y="16" font-family="Arial" font-size="11" fill="#1E8449" text-anchor="middle" font-weight="bold">5</text>
+    <text x="120" y="16" font-family="Arial" font-size="11" fill="#7F8C8D">← top (largest)</text>
+    <text x="18" y="38" font-family="Arial" font-size="9" fill="#7F8C8D" text-anchor="middle">bottom</text>
+  </g>
+
+  <rect x="478" y="445" width="397" height="26" fill="#EAFAF1" stroke="#A9DFBF" rx="4"/>
+  <text x="488" y="460" font-family="Arial" font-size="10" fill="#1E8449" font-weight="bold">✓ Each element pushed/popped at most once → O(n) total</text>
+  <text x="488" y="473" font-family="Arial" font-size="10" fill="#27AE60">Pop ≥ current → removes candidates that can never be "nearest smaller"</text>
+
+  <!-- ===== COMPLEXITY TABLE ===== -->
+  <rect x="15" y="488" width="870" height="92" fill="#FFFFFF" stroke="#DEE2E6" stroke-width="1.5" rx="7"/>
+  <text x="450" y="507" font-family="Arial" font-size="13" font-weight="bold" fill="#2C3E50" text-anchor="middle">Complexity Comparison</text>
+  <rect x="25" y="513" width="850" height="24" fill="#2C3E50" rx="3"/>
+  <text x="200" y="529" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Approach</text>
+  <text x="450" y="529" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Time</text>
+  <text x="580" y="529" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Space</text>
+  <text x="750" y="529" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Key Insight</text>
+  <rect x="25" y="537" width="850" height="22" fill="#FDEDEC"/>
+  <text x="200" y="552" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">① Brute Force (scan left)</text>
+  <text x="450" y="552" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n²)</text>
+  <text x="580" y="552" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n)</text>
+  <text x="750" y="552" font-family="Arial" font-size="11" fill="#7F8C8D" text-anchor="middle">Linear scan leftward for every element</text>
+  <rect x="25" y="559" width="850" height="22" fill="#EAFAF1"/>
+  <text x="200" y="574" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle" font-weight="bold">② Monotonic Stack ⭐</text>
+  <text x="450" y="574" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(n)</text>
+  <text x="580" y="574" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(n)</text>
+  <text x="750" y="574" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">Stack top = nearest smaller — pop ≥ elements</text>
+  <text x="450" y="587" font-family="Arial" font-size="10" fill="#7F8C8D" text-anchor="middle">Same pattern used in: Largest Rectangle, Daily Temperatures, Next Greater Element</text>
+</svg>

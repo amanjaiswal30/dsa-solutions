@@ -1,0 +1,157 @@
+<svg width="900" height="690" xmlns="http://www.w3.org/2000/svg">
+<style>
+/* Approach 1: Brute - show all permutations */
+@keyframes perm_cycle{0%,18%{opacity:1}20%,100%{opacity:0}}
+@keyframes perm1{0%,18%{opacity:0}19%,38%{opacity:1}40%,100%{opacity:0}}
+@keyframes perm2{0%,38%{opacity:0}39%,58%{opacity:1}60%,100%{opacity:0}}
+@keyframes perm3{0%,58%{opacity:0}59%,78%{opacity:1}80%,100%{opacity:0}}
+@keyframes perm4{0%,78%{opacity:0}79%,98%{opacity:1}99%,100%{opacity:0}}
+.pm0{animation:perm_cycle 5s ease-in-out infinite}
+.pm1{animation:perm1 5s ease-in-out infinite}
+.pm2{animation:perm2 5s ease-in-out infinite}
+.pm3{animation:perm3 5s ease-in-out infinite}
+.pm4{animation:perm4 5s ease-in-out infinite}
+/* Approach 2: In-place - step by step animation */
+@keyframes step_l0{0%,10%{opacity:1}25%,100%{opacity:0}}
+@keyframes step_l1{0%,24%{opacity:0}25%,50%{opacity:1}51%,100%{opacity:0}}
+@keyframes step_l2{0%,49%{opacity:0}50%,75%{opacity:1}76%,100%{opacity:0}}
+@keyframes step_l3{0%,74%{opacity:0}75%,95%{opacity:1}96%,100%{opacity:0}}
+.sl0{animation:step_l0 7s ease-in-out infinite}
+.sl1{animation:step_l1 7s ease-in-out infinite}
+.sl2{animation:step_l2 7s ease-in-out infinite}
+.sl3{animation:step_l3 7s ease-in-out infinite}
+@keyframes arr_state0{0%,10%{opacity:1}25%,100%{opacity:0}}
+@keyframes arr_state1{0%,24%{opacity:0}25%,50%{opacity:1}51%,100%{opacity:0}}
+@keyframes arr_state2{0%,49%{opacity:0}50%,75%{opacity:1}76%,100%{opacity:0}}
+@keyframes arr_state3{0%,74%{opacity:0}75%,95%{opacity:1}96%,100%{opacity:0}}
+.as0{animation:arr_state0 7s ease-in-out infinite}
+.as1{animation:arr_state1 7s ease-in-out infinite}
+.as2{animation:arr_state2 7s ease-in-out infinite}
+.as3{animation:arr_state3 7s ease-in-out infinite}
+</style>
+<rect width="900" height="690" fill="#F8F9FA" rx="10"/>
+<rect width="900" height="55" fill="#2C3E50" rx="10"/>
+<rect y="45" width="900" height="10" fill="#2C3E50"/>
+<text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Next Permutation</text>
+<rect x="820" y="12" width="62" height="28" fill="#F39C12" rx="14"/>
+<text x="851" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+<rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+<text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+<text x="105" y="81" font-family="Arial" font-size="12" fill="#555">[1,2,3] → [1,3,2] | [2,3,1] → [3,1,2] | [3,2,1] → [1,2,3] (wrap around)</text>
+<text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Rearrange to next lexicographically greater permutation. In-place: find rightmost descent, swap, reverse suffix.</text>
+
+<!-- APPROACH 1: Brute Force -->
+<rect x="15" y="115" width="870" height="210" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+<rect x="15" y="115" width="870" height="40" fill="#E74C3C" rx="7"/>
+<rect x="15" y="140" width="870" height="15" fill="#E74C3C"/>
+<text x="450" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Brute Force — O(n! × n) time, O(n!) space</text>
+<text x="450" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">Generate all permutations sorted, find current, return next one in list</text>
+<!-- Permutations of [1,2,3] cycling -->
+<text x="200" y="185" font-family="Arial" font-size="11" fill="#555">All permutations:</text>
+<text class="pm0" x="200" y="210" font-family="Arial" font-size="14" font-weight="bold" fill="#E74C3C">[1,2,3] ← current</text>
+<text class="pm1" x="200" y="210" font-family="Arial" font-size="14" font-weight="bold" fill="#27AE60">[1,3,2] ← next ✓</text>
+<text class="pm2" x="200" y="210" font-family="Arial" font-size="14" font-weight="bold" fill="#333">[2,1,3]</text>
+<text class="pm3" x="200" y="210" font-family="Arial" font-size="14" font-weight="bold" fill="#333">[2,3,1]</text>
+<text class="pm4" x="200" y="210" font-family="Arial" font-size="14" font-weight="bold" fill="#333">[3,1,2]</text>
+<!-- List all perms statically on right -->
+<text x="500" y="180" font-family="Arial" font-size="11" fill="#888">All sorted perms:</text>
+<text x="500" y="197" font-family="Arial" font-size="11" fill="#555">1: [1,2,3]</text>
+<text x="500" y="213" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">2: [1,3,2] ← next after [1,2,3]</text>
+<text x="500" y="229" font-family="Arial" font-size="11" fill="#555">3: [2,1,3]</text>
+<text x="500" y="245" font-family="Arial" font-size="11" fill="#555">4: [2,3,1] ...</text>
+<text x="450" y="274" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Generate all n! perms, sort, find current, return next. Horribly slow for large n!</text>
+<text x="450" y="289" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">In-place algorithm exists: O(n) time, O(1) space. Uses a clever 3-step process.</text>
+<text x="450" y="305" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Step 1: Find rightmost i where arr[i]&lt;arr[i+1]. Step 2: Swap arr[i] with next larger. Step 3: Reverse suffix.</text>
+
+<!-- Arrow 1→2 -->
+<line x1="450" y1="325" x2="450" y2="362" stroke="#7F8C8D" stroke-width="2" stroke-dasharray="4,3"/>
+<polygon points="444,362 450,370 456,362" fill="#7F8C8D"/>
+<rect x="190" y="329" width="520" height="22" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+<text x="450" y="344" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">💡 Find rightmost descent, swap with next larger, reverse suffix — O(n)!</text>
+
+<!-- APPROACH 2: In-place -->
+<rect x="15" y="370" width="870" height="210" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+<rect x="15" y="370" width="870" height="40" fill="#27AE60" rx="7"/>
+<rect x="15" y="395" width="870" height="15" fill="#27AE60"/>
+<text x="450" y="395" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: In-place Algorithm — O(n) time, O(1) space ⭐</text>
+<text x="450" y="408" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">3 steps: find pivot i (arr[i]&lt;arr[i+1] rightmost), swap arr[i] with next-larger, reverse [i+1..]</text>
+<!-- Step 1: find descent in [2,3,1] → should get [3,1,2] -->
+<!-- Array [2,3,1] for visualization, 3 elements, start_x=381 -->
+<!-- Step labels and array states cycle through 4 phases -->
+<text class="sl0" x="40" y="450" font-family="Arial" font-size="11" fill="#555">Step 1: Find rightmost i where arr[i] &lt; arr[i+1]</text>
+<text class="sl1" x="40" y="450" font-family="Arial" font-size="11" fill="#555">Step 2: Find rightmost j &gt; i where arr[j] &gt; arr[i]</text>
+<text class="sl2" x="40" y="450" font-family="Arial" font-size="11" fill="#555">Step 3: Swap arr[i] and arr[j]</text>
+<text class="sl3" x="40" y="450" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">Step 4: Reverse suffix from i+1 → done! ✓</text>
+<!-- Array state animations: [2,3,1] → find i=0 → swap 2,3 → [3,2,1] → reverse suffix → [3,1,2] -->
+<!-- State 0: original [2,3,1], highlight arr[0]=2 (pivot candidate) -->
+<g class="as0">
+  <rect x="381" y="462" width="42" height="42" fill="#FDEBD0" stroke="#E67E22" stroke-width="3" rx="3"/>
+  <text x="402" y="488" font-family="Arial" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+  <rect x="429" y="462" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+  <text x="450" y="488" font-family="Arial" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">3</text>
+  <rect x="477" y="462" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+  <text x="498" y="488" font-family="Arial" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+  <text x="402" y="516" font-family="Arial" font-size="9" fill="#E67E22" text-anchor="middle">i=0 (2&lt;3)</text>
+</g>
+<!-- State 1: find j (rightmost arr[j]>arr[i]=2) → j=1 (arr[1]=3) -->
+<g class="as1">
+  <rect x="381" y="462" width="42" height="42" fill="#FDEBD0" stroke="#E67E22" stroke-width="3" rx="3"/>
+  <text x="402" y="488" font-family="Arial" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+  <rect x="429" y="462" width="42" height="42" fill="#FDF2F8" stroke="#9B59B6" stroke-width="3" rx="3"/>
+  <text x="450" y="488" font-family="Arial" font-size="16" font-weight="bold" fill="#9B59B6" text-anchor="middle">3</text>
+  <rect x="477" y="462" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+  <text x="498" y="488" font-family="Arial" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+  <text x="402" y="516" font-family="Arial" font-size="9" fill="#E67E22" text-anchor="middle">i=0</text>
+  <text x="450" y="516" font-family="Arial" font-size="9" fill="#9B59B6" text-anchor="middle">j=1</text>
+</g>
+<!-- State 2: after swap → [3,2,1] -->
+<g class="as2">
+  <rect x="381" y="462" width="42" height="42" fill="#D5F5E3" stroke="#27AE60" stroke-width="3" rx="3"/>
+  <text x="402" y="488" font-family="Arial" font-size="16" font-weight="bold" fill="#27AE60" text-anchor="middle">3</text>
+  <rect x="429" y="462" width="42" height="42" fill="#D5F5E3" stroke="#27AE60" stroke-width="3" rx="3"/>
+  <text x="450" y="488" font-family="Arial" font-size="16" font-weight="bold" fill="#27AE60" text-anchor="middle">2</text>
+  <rect x="477" y="462" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+  <text x="498" y="488" font-family="Arial" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+  <text x="430" y="516" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">swapped!</text>
+</g>
+<!-- State 3: after reverse suffix [i+1..] → [3,1,2] ✓ -->
+<g class="as3">
+  <rect x="381" y="462" width="42" height="42" fill="#EBF5FB" stroke="#3498DB" stroke-width="2" rx="3"/>
+  <text x="402" y="488" font-family="Arial" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">3</text>
+  <rect x="429" y="462" width="42" height="42" fill="#D5F5E3" stroke="#27AE60" stroke-width="3" rx="3"/>
+  <text x="450" y="488" font-family="Arial" font-size="16" font-weight="bold" fill="#27AE60" text-anchor="middle">1</text>
+  <rect x="477" y="462" width="42" height="42" fill="#D5F5E3" stroke="#27AE60" stroke-width="3" rx="3"/>
+  <text x="498" y="488" font-family="Arial" font-size="16" font-weight="bold" fill="#27AE60" text-anchor="middle">2</text>
+  <text x="450" y="516" font-family="Arial" font-size="9" fill="#27AE60" text-anchor="middle">reversed suffix! ✓</text>
+</g>
+<!-- Summary text below -->
+<text x="640" y="468" font-family="Arial" font-size="11" fill="#555">[2,3,1] → next perm</text>
+<text x="640" y="485" font-family="Arial" font-size="11" fill="#555">i=0: arr[0]=2 &lt; arr[1]=3</text>
+<text x="640" y="502" font-family="Arial" font-size="11" fill="#555">j=1: arr[1]=3 &gt; arr[0]=2</text>
+<text x="640" y="519" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">Result: [3,1,2] ✓</text>
+<text x="450" y="545" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Special case: [3,2,1] (fully desc) → reverse entire array → [1,2,3] (start over)</text>
+<text x="450" y="562" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Reverse is O(n) in place. Entire algorithm: 3 linear scans = O(n), O(1) space.</text>
+
+<!-- Complexity Table -->
+<rect x="15" y="592" width="870" height="93" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+<rect x="15" y="592" width="870" height="30" fill="#2C3E50" rx="7"/>
+<rect x="15" y="607" width="870" height="15" fill="#2C3E50"/>
+<text x="450" y="612" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+<line x1="15" y1="622" x2="885" y2="622" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="622" width="870" height="23" fill="#ECF0F1"/>
+<text x="200" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+<text x="500" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+<text x="750" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+<line x1="15" y1="645" x2="885" y2="645" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="645" width="870" height="22" fill="#FDEDEC"/>
+<text x="200" y="660" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Brute (all perms)</text>
+<text x="500" y="660" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n!×n)</text>
+<text x="750" y="660" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(n!)</text>
+<line x1="15" y1="667" x2="885" y2="667" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="667" width="870" height="23" fill="#EAFAF1"/>
+<text x="200" y="683" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">In-place (3-step) ⭐</text>
+<text x="500" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n)</text>
+<text x="750" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(1)</text>
+<line x1="370" y1="622" x2="370" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+<line x1="620" y1="622" x2="620" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

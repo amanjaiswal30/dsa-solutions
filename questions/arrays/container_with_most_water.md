@@ -1,5 +1,8 @@
 # 🔹 Problem: Container With Most Water
 
+![](../../assets/images/arrays/container_with_most_water.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

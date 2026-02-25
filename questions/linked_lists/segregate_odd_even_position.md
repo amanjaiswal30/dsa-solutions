@@ -1,5 +1,8 @@
 # 🔹 Segregate Even and Odd Positioned Nodes in a Linked List
 
+![](../../assets/images/linked_lists/segregate_odd_even_position.svg)
+
+
 ---
 
 ## 📌 Problem Statement

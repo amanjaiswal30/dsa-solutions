@@ -1,5 +1,8 @@
 # 🔹 Nearest Smaller Element
 
+![](../../assets/images/stacks/nearest_smallest_element.svg)
+
+
 ---
 
 ## 📌 Problem Statement

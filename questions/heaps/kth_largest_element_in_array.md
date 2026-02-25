@@ -1,5 +1,8 @@
 # Kth Largest Element in an Array
 
+![](../../assets/images/heaps/kth_largest_element_in_array.svg)
+
+
 **Difficulty:** Medium ⚡
 
 ---

@@ -1,5 +1,8 @@
 # Max Consecutive Ones
 
+![](../../assets/images/arrays/max_consecutive_ones.svg)
+
+
 **Difficulty:** Easy ✅
 
 ---

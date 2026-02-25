@@ -1,0 +1,95 @@
+<svg width="900" height="560" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="560" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Clone Graph (Deep Copy of Connected Graph)</text>
+  <rect x="800" y="12" width="82" height="28" fill="#F39C12" rx="14"/>
+  <text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">adjList = [[2,4],[1,3],[2,4],[1,3]] → 1↔2↔3↔4↔1 (square)</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Deep copy: all nodes new objects, same connectivity. HashMap tracks original→clone mapping to avoid re-creation.</text>
+
+  <!-- Approach 1: DFS -->
+  <rect x="15" y="115" width="390" height="315" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="390" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="390" height="15" fill="#E74C3C"/>
+  <text x="210" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: DFS (Recursive)</text>
+  <text x="210" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(V+E) time | O(V) space (HashMap + recursion)</text>
+
+  <text x="30" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Recursively clone each node:</text>
+  <rect x="30" y="184" width="360" height="68" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">cloneGraph(node=1): not in map → create node(1)</text>
+  <text x="210" y="215" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">map.put(orig1, clone1); for neighbor 2:</text>
+  <text x="210" y="230" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">  recurse(2) → create clone2; for nbr 1: already in map!</text>
+  <text x="210" y="248" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">return map.get(1) → no infinite loop! ✓</text>
+
+  <text x="30" y="274" font-family="Arial" font-size="11" fill="#555">Key logic:</text>
+  <rect x="30" y="280" width="360" height="36" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="210" y="295" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">if (map.containsKey(node)) return map.get(node);</text>
+  <text x="210" y="309" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">clone.neighbors.add(cloneGraph(neighbor))</text>
+
+  <text x="30" y="338" font-family="Arial" font-size="11" fill="#E74C3C">⚠ Recursion stack depth = O(V) in worst case</text>
+  <text x="30" y="356" font-family="Arial" font-size="11" fill="#888">HashMap prevents visiting same node twice</text>
+  <text x="30" y="374" font-family="Arial" font-size="11" fill="#888">Pre-add to map BEFORE recursing neighbors</text>
+  <text x="30" y="392" font-family="Arial" font-size="11" fill="#888">(prevents infinite loop on cycles!)</text>
+  <text x="30" y="410" font-family="Arial" font-size="11" fill="#888">BFS avoids recursion stack overflow</text>
+
+  <!-- Evolution Arrow -->
+  <line x1="410" y1="270" x2="480" y2="270" stroke="#7F8C8D" stroke-width="2.5"/>
+  <polygon points="480,265 492,270 480,275" fill="#7F8C8D"/>
+  <rect x="410" y="242" width="72" height="56" fill="#ECF0F1" stroke="#BDC3C7" rx="5"/>
+  <text x="446" y="256" font-family="Arial" font-size="9" fill="#555" text-anchor="middle" font-weight="bold">💡 Use</text>
+  <text x="446" y="268" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">queue for</text>
+  <text x="446" y="280" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">iteration!</text>
+
+  <!-- Approach 2: BFS -->
+  <rect x="492" y="115" width="393" height="315" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="492" y="115" width="393" height="40" fill="#27AE60" rx="7"/>
+  <rect x="492" y="140" width="393" height="15" fill="#27AE60"/>
+  <text x="688" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: BFS (Iterative) ⭐</text>
+  <text x="688" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(V+E) time | O(V) space (no recursion stack)</text>
+
+  <text x="505" y="178" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Level-by-level clone with queue:</text>
+  <rect x="505" y="184" width="362" height="80" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">Init: clone1=new Node(1), map={1→clone1}, queue=[1]</text>
+  <text x="686" y="215" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">poll(1): for neighbor 2 → not in map → clone2, queue=[2]</text>
+  <text x="686" y="230" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">          clone1.neighbors.add(clone2)</text>
+  <text x="686" y="245" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">poll(2): for nbr 1 → in map, link; for nbr 3 → clone3</text>
+  <text x="686" y="263" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold" text-anchor="middle">Continue until queue empty → full clone! ✓</text>
+
+  <text x="505" y="284" font-family="Arial" font-size="11" fill="#555">Key pattern:</text>
+  <rect x="505" y="290" width="362" height="36" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="686" y="305" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">if (!map.containsKey(neighbor)) create+queue it</text>
+  <text x="686" y="319" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">map.get(curr).neighbors.add(map.get(neighbor))</text>
+
+  <text x="505" y="350" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">No recursion stack overflow risk!</text>
+  <text x="505" y="368" font-family="Arial" font-size="11" fill="#888">Iterative BFS safer for large graphs</text>
+  <text x="505" y="386" font-family="Arial" font-size="11" fill="#888">Same HashMap trick prevents revisiting</text>
+  <text x="505" y="404" font-family="Arial" font-size="11" fill="#888">Both approaches: O(V+E) same complexity</text>
+  <text x="505" y="422" font-family="Arial" font-size="11" fill="#888">V = vertices cloned, E = edges/neighbor links</text>
+
+  <!-- Complexity Table -->
+  <rect x="15" y="442" width="870" height="107" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+  <rect x="15" y="442" width="870" height="30" fill="#2C3E50" rx="7"/>
+  <rect x="15" y="457" width="870" height="15" fill="#2C3E50"/>
+  <text x="450" y="462" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+  <line x1="15" y1="472" x2="885" y2="472" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="472" width="870" height="25" fill="#ECF0F1"/>
+  <text x="200" y="489" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+  <text x="500" y="489" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+  <text x="750" y="489" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+  <line x1="15" y1="497" x2="885" y2="497" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="497" width="870" height="24" fill="#FDEDEC"/>
+  <text x="200" y="513" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">DFS Recursive</text>
+  <text x="500" y="513" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(V+E)</text>
+  <text x="750" y="513" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(V) + recursion stack</text>
+  <line x1="15" y1="521" x2="885" y2="521" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="521" width="870" height="24" fill="#EAFAF1"/>
+  <text x="200" y="537" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">BFS Iterative ⭐</text>
+  <text x="500" y="537" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(V+E)</text>
+  <text x="750" y="537" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(V)</text>
+  <line x1="370" y1="472" x2="370" y2="545" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="620" y1="472" x2="620" y2="545" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

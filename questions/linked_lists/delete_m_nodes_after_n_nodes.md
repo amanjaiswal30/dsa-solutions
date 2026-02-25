@@ -1,5 +1,8 @@
 # 🔹 Delete N Nodes After M Nodes of a Linked List
 
+![](../../assets/images/linked_lists/delete_m_nodes_after_n_nodes.svg)
+
+
 ---
 
 ## 📌 Problem Statement

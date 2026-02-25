@@ -1,0 +1,147 @@
+<svg width="900" height="690" xmlns="http://www.w3.org/2000/svg">
+<style>
+/* Approach 1: Recursion labels */
+@keyframes rl0{0%,15%{opacity:1}16%,100%{opacity:0}}
+@keyframes rl1{0%,15%{opacity:0}16%,40%{opacity:1}41%,100%{opacity:0}}
+@keyframes rl2{0%,40%{opacity:0}41%,65%{opacity:1}66%,100%{opacity:0}}
+@keyframes rl3{0%,65%{opacity:0}66%,85%{opacity:1}86%,100%{opacity:0}}
+.rl0{animation:rl0 6s ease-in-out infinite}.rl1{animation:rl1 6s ease-in-out infinite}
+.rl2{animation:rl2 6s ease-in-out infinite}.rl3{animation:rl3 6s ease-in-out infinite}
+/* Approach 2: 2D DP table filling, row by row */
+@keyframes cell_fill{0%,10%{fill:#EBF5FB;stroke:#3498DB;stroke-width:1}11%,90%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}91%,100%{fill:#EBF5FB;stroke:#3498DB;stroke-width:1}}
+@keyframes cell_scan{0%,40%{fill:#EBF5FB;stroke:#3498DB;stroke-width:1}41%,75%{fill:#FDEBD0;stroke:#E67E22;stroke-width:2}76%,100%{fill:#D5F5E3;stroke:#27AE60;stroke-width:2}}
+.cf{animation:cell_fill 6s ease-in-out infinite}
+.cs{animation:cell_scan 6s ease-in-out infinite}
+@keyframes sl0{0%,15%{opacity:1}16%,100%{opacity:0}}
+@keyframes sl1{0%,15%{opacity:0}16%,45%{opacity:1}46%,100%{opacity:0}}
+@keyframes sl2{0%,45%{opacity:0}46%,65%{opacity:1}66%,100%{opacity:0}}
+@keyframes sl3{0%,65%{opacity:0}66%,85%{opacity:1}86%,100%{opacity:0}}
+.sl0{animation:sl0 6s ease-in-out infinite}.sl1{animation:sl1 6s ease-in-out infinite}
+.sl2{animation:sl2 6s ease-in-out infinite}.sl3{animation:sl3 6s ease-in-out infinite}
+</style>
+<rect width="900" height="690" fill="#F8F9FA" rx="10"/>
+<rect width="900" height="55" fill="#2C3E50" rx="10"/>
+<rect y="45" width="900" height="10" fill="#2C3E50"/>
+<text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Longest Common Subsequence (LCS)</text>
+<rect x="800" y="12" width="82" height="28" fill="#F39C12" rx="14"/>
+<text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+<rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+<text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+<text x="105" y="81" font-family="Arial" font-size="12" fill="#555">s1="ABCD", s2="ACBD" → LCS="ABD" or "ACD" len=3</text>
+<text x="30" y="98" font-family="Arial" font-size="11" fill="#777">LCS is not necessarily contiguous. 2D DP: dp[i][j]=LCS of s1[0..i-1] and s2[0..j-1].</text>
+
+<!-- APPROACH 1: Recursion -->
+<rect x="15" y="115" width="870" height="210" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+<rect x="15" y="115" width="870" height="40" fill="#E74C3C" rx="7"/>
+<rect x="15" y="140" width="870" height="15" fill="#E74C3C"/>
+<text x="450" y="140" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Recursion — O(2^(m+n)) time (exponential)</text>
+<text x="450" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">lcs(i,j): if s1[i]==s2[j] → 1+lcs(i+1,j+1), else max(lcs(i+1,j), lcs(i,j+1))</text>
+<!-- Recursion tree -->
+<rect x="374" y="162" width="152" height="28" fill="#FDEBD0" stroke="#E67E22" stroke-width="1.5" rx="3"/>
+<text x="450" y="181" font-family="Arial" font-size="11" font-weight="bold" fill="#333" text-anchor="middle">lcs("ABCD","ACBD")</text>
+<!-- Match at A: 1+lcs("BCD","CBD") -->
+<line x1="430" y1="190" x2="330" y2="208" stroke="#AAA" stroke-width="1.5"/>
+<line x1="470" y1="190" x2="560" y2="208" stroke="#AAA" stroke-width="1.5"/>
+<rect x="258" y="208" width="144" height="24" fill="#EBF5FB" stroke="#3498DB" stroke-width="1" rx="3"/>
+<text x="330" y="225" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">A==A: 1+lcs(BCD,CBD)</text>
+<rect x="488" y="208" width="144" height="24" fill="#EBF5FB" stroke="#3498DB" stroke-width="1" rx="3"/>
+<text x="560" y="225" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">B≠A: max(lcs(BCD),lcs(CBD))</text>
+<!-- Wait, this isnt right. Let me simplify -->
+<!-- Level 2 labels -->
+<text x="330" y="252" font-family="Arial" font-size="9" fill="#888" text-anchor="middle">→ subtree for BCD,CBD...</text>
+<text x="560" y="252" font-family="Arial" font-size="9" fill="#E74C3C" text-anchor="middle">→ overlapping subtrees ⚠</text>
+<!-- Step labels -->
+<text class="rl0" x="450" y="285" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">s1[0]='A'==s2[0]='A' → 1+lcs(s1[1:],s2[1:])</text>
+<text class="rl1" x="450" y="285" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">s1[1]='B'≠s2[1]='C' → max(lcs(s1[2:],s2[1:]), lcs(s1[1:],s2[2:]))</text>
+<text class="rl2" x="450" y="285" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">lcs("BD","BD") called multiple times! Overlapping subproblems ⚠</text>
+<text class="rl3" x="450" y="285" font-family="Arial" font-size="11" fill="#888" text-anchor="middle">2^(m+n) without memo → 2D DP table solves each (i,j) once</text>
+<text x="450" y="310" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">With memoization: O(m·n) time and space. Tabulation avoids recursion overhead.</text>
+
+<!-- Arrow 1→2 -->
+<line x1="450" y1="325" x2="450" y2="362" stroke="#7F8C8D" stroke-width="2" stroke-dasharray="4,3"/>
+<polygon points="444,362 450,370 456,362" fill="#7F8C8D"/>
+<rect x="200" y="329" width="500" height="22" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+<text x="450" y="344" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">💡 2D dp[i][j] = LCS of s1[0..i-1] and s2[0..j-1]. Fill row by row → O(m·n)</text>
+
+<!-- APPROACH 2: 2D DP Table -->
+<rect x="15" y="370" width="870" height="210" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+<rect x="15" y="370" width="870" height="40" fill="#27AE60" rx="7"/>
+<rect x="15" y="395" width="870" height="15" fill="#27AE60"/>
+<text x="450" y="395" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Bottom-Up 2D DP — O(m·n) time, O(m·n) space ⭐</text>
+<text x="450" y="408" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">dp[i][j]: if s1[i-1]==s2[j-1]: 1+dp[i-1][j-1], else max(dp[i-1][j], dp[i][j-1])</text>
+<!-- 5×5 DP table (rows: "", A, B, C, D; cols: "", A, C, B, D) -->
+<!-- Cell size: 36×28, start: x=180, y=425 -->
+<!-- Column headers: "", A, C, B, D -->
+<text x="198" y="423" font-family="Arial" font-size="11" font-weight="bold" fill="#3498DB" text-anchor="middle">""</text>
+<text x="234" y="423" font-family="Arial" font-size="11" font-weight="bold" fill="#3498DB" text-anchor="middle">A</text>
+<text x="270" y="423" font-family="Arial" font-size="11" font-weight="bold" fill="#3498DB" text-anchor="middle">C</text>
+<text x="306" y="423" font-family="Arial" font-size="11" font-weight="bold" fill="#3498DB" text-anchor="middle">B</text>
+<text x="342" y="423" font-family="Arial" font-size="11" font-weight="bold" fill="#3498DB" text-anchor="middle">D</text>
+<!-- Row headers: "", A, B, C, D -->
+<text x="170" y="442" font-family="Arial" font-size="11" font-weight="bold" fill="#3498DB" text-anchor="middle">""</text>
+<text x="170" y="470" font-family="Arial" font-size="11" font-weight="bold" fill="#3498DB" text-anchor="middle">A</text>
+<text x="170" y="498" font-family="Arial" font-size="11" font-weight="bold" fill="#3498DB" text-anchor="middle">B</text>
+<text x="170" y="526" font-family="Arial" font-size="11" font-weight="bold" fill="#3498DB" text-anchor="middle">C</text>
+<text x="170" y="554" font-family="Arial" font-size="11" font-weight="bold" fill="#3498DB" text-anchor="middle">D</text>
+<!-- DP Table cells (row 0: all 0s) -->
+<!-- Row 0: [0,0,0,0,0] -->
+<rect x="180" y="428" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="1" rx="2"/><text x="198" y="447" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">0</text>
+<rect x="216" y="428" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="1" rx="2"/><text x="234" y="447" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">0</text>
+<rect x="252" y="428" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="1" rx="2"/><text x="270" y="447" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">0</text>
+<rect x="288" y="428" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="1" rx="2"/><text x="306" y="447" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">0</text>
+<rect x="324" y="428" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="1" rx="2"/><text x="342" y="447" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">0</text>
+<!-- Row 1 (A): [0,1,1,1,1] -->
+<rect x="180" y="456" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="1" rx="2"/><text x="198" y="475" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">0</text>
+<rect x="216" y="456" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="2" rx="2"/><text x="234" y="475" font-family="Arial" font-size="12" font-weight="bold" fill="#27AE60" text-anchor="middle">1</text>
+<rect x="252" y="456" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="1" rx="2"/><text x="270" y="475" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="288" y="456" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="1" rx="2"/><text x="306" y="475" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="324" y="456" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="1" rx="2"/><text x="342" y="475" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<!-- Row 2 (B): [0,1,1,2,2] -->
+<rect x="180" y="484" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="1" rx="2"/><text x="198" y="503" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">0</text>
+<rect x="216" y="484" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="1" rx="2"/><text x="234" y="503" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="252" y="484" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="1" rx="2"/><text x="270" y="503" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="288" y="484" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="2" rx="2"/><text x="306" y="503" font-family="Arial" font-size="12" font-weight="bold" fill="#27AE60" text-anchor="middle">2</text>
+<rect x="324" y="484" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="1" rx="2"/><text x="342" y="503" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<!-- Row 3 (C): [0,1,2,2,2] -->
+<rect x="180" y="512" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="1" rx="2"/><text x="198" y="531" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">0</text>
+<rect x="216" y="512" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="1" rx="2"/><text x="234" y="531" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="252" y="512" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="2" rx="2"/><text x="270" y="531" font-family="Arial" font-size="12" font-weight="bold" fill="#27AE60" text-anchor="middle">2</text>
+<rect x="288" y="512" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="1" rx="2"/><text x="306" y="531" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="324" y="512" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="1" rx="2"/><text x="342" y="531" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<!-- Row 4 (D): [0,1,2,2,3] -->
+<rect x="180" y="540" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="1" rx="2"/><text x="198" y="559" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">0</text>
+<rect x="216" y="540" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="1" rx="2"/><text x="234" y="559" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">1</text>
+<rect x="252" y="540" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="1" rx="2"/><text x="270" y="559" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="288" y="540" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="1" rx="2"/><text x="306" y="559" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">2</text>
+<rect x="324" y="540" width="36" height="28" fill="#D5F5E3" stroke="#27AE60" stroke-width="3" rx="2"/><text x="342" y="559" font-family="Arial" font-size="14" font-weight="bold" fill="#27AE60" text-anchor="middle">3</text>
+<!-- Step labels -->
+<text class="sl0" x="650" y="460" font-family="Arial" font-size="11" fill="#555">Row 0: all 0 (base case)</text>
+<text class="sl1" x="650" y="460" font-family="Arial" font-size="11" fill="#555">A=A: dp[1][1]=1+dp[0][0]=1 ✓</text>
+<text class="sl2" x="650" y="460" font-family="Arial" font-size="11" fill="#555">B=B: dp[2][3]=1+dp[1][2]=2 ✓</text>
+<text class="sl3" x="650" y="460" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold">D=D: dp[4][4]=1+dp[3][3]=3 ✓</text>
+<text x="450" y="555" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">LCS = dp[m][n] = 3. Backtrack from dp[m][n] to find actual LCS string.</text>
+<text x="450" y="570" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">Space: O(n) with rolling array (only need previous row). Key 2D DP template!</text>
+
+<!-- Complexity Table -->
+<rect x="15" y="592" width="870" height="93" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+<rect x="15" y="592" width="870" height="30" fill="#2C3E50" rx="7"/>
+<rect x="15" y="607" width="870" height="15" fill="#2C3E50"/>
+<text x="450" y="612" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+<line x1="15" y1="622" x2="885" y2="622" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="622" width="870" height="23" fill="#ECF0F1"/>
+<text x="200" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+<text x="500" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+<text x="750" y="638" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+<line x1="15" y1="645" x2="885" y2="645" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="645" width="870" height="22" fill="#FDEDEC"/>
+<text x="200" y="660" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Recursion (no memo)</text>
+<text x="500" y="660" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(2^(m+n))</text>
+<text x="750" y="660" font-family="Arial" font-size="11" fill="#E67E22" text-anchor="middle">O(m+n) stack</text>
+<line x1="15" y1="667" x2="885" y2="667" stroke="#DEE2E6" stroke-width="1"/>
+<rect x="15" y="667" width="870" height="23" fill="#EAFAF1"/>
+<text x="200" y="683" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">2D Bottom-Up DP ⭐</text>
+<text x="500" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(m·n)</text>
+<text x="750" y="683" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(n) rolling</text>
+<line x1="370" y1="622" x2="370" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+<line x1="620" y1="622" x2="620" y2="690" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

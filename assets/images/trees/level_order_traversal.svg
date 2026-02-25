@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#1a1a2e}
+  .prob{font:13px sans-serif;fill:#444}
+  .sec{font:bold 13px sans-serif}
+  .nd{fill:#ddeeff;stroke:#6699cc;stroke-width:2}
+  .edge{stroke:#999;stroke-width:1.5;fill:none}
+  .lbl{font:12px monospace;fill:#333;text-anchor:middle;dominant-baseline:middle}
+  .cmp{font:11px sans-serif;fill:#333}
+  .evol{fill:none;stroke:#888;stroke-width:1.5;stroke-dasharray:5,3}
+  .ins{font:11px sans-serif;fill:#555;font-style:italic}
+  .tbl{font:11px sans-serif;fill:#333;text-anchor:middle}
+
+  /* Level by level animation */
+  @keyframes lv1{0%,8%{fill:#ffd700;stroke:#F39C12}8.1%,100%{fill:#ddeeff;stroke:#6699cc}}
+  @keyframes lv2a{0%,18%{fill:#ddeeff}19%,30%{fill:#ffd700;stroke:#F39C12}30.1%,100%{fill:#ddeeff;stroke:#6699cc}}
+  @keyframes lv2b{0%,18%{fill:#ddeeff}19%,30%{fill:#ffd700;stroke:#F39C12}30.1%,100%{fill:#ddeeff;stroke:#6699cc}}
+  @keyframes lv3a{0%,38%{fill:#ddeeff}39%,55%{fill:#ffd700;stroke:#F39C12}55.1%,100%{fill:#ddeeff;stroke:#6699cc}}
+  @keyframes lv3b{0%,38%{fill:#ddeeff}39%,55%{fill:#ffd700;stroke:#F39C12}55.1%,100%{fill:#ddeeff;stroke:#6699cc}}
+  @keyframes lv3c{0%,38%{fill:#ddeeff}39%,55%{fill:#ffd700;stroke:#F39C12}55.1%,100%{fill:#ddeeff;stroke:#6699cc}}
+  .vl1{animation:lv1 8s ease-in-out infinite}
+  .vl2a{animation:lv2a 8s ease-in-out infinite}
+  .vl2b{animation:lv2b 8s 0.2s ease-in-out infinite}
+  .vl3a{animation:lv3a 8s ease-in-out infinite}
+  .vl3b{animation:lv3b 8s 0.2s ease-in-out infinite}
+  .vl3c{animation:lv3c 8s 0.4s ease-in-out infinite}
+
+  /* Row results */
+  @keyframes rw1{0%,8%{fill:#ddeeff}8.1%,100%{fill:#ccffcc}}
+  @keyframes rw2{0%,30%{fill:#ddeeff}30.1%,100%{fill:#ccffcc}}
+  @keyframes rw3{0%,55%{fill:#ddeeff}55.1%,100%{fill:#ccffcc}}
+  .rw1{animation:rw1 8s ease-in-out infinite}
+  .rw2{animation:rw2 8s ease-in-out infinite}
+  .rw3{animation:rw3 8s ease-in-out infinite}
+
+  @keyframes sl0{0%,18%{opacity:1}19%,100%{opacity:0}}
+  @keyframes sl1{0%,18%{opacity:0}19%,36%{opacity:1}37%,100%{opacity:0}}
+  @keyframes sl2{0%,36%{opacity:0}37%,54%{opacity:1}55%,100%{opacity:0}}
+  @keyframes sl3{0%,54%{opacity:0}55%,72%{opacity:1}73%,100%{opacity:0}}
+  @keyframes sl4{0%,72%{opacity:0}73%,100%{opacity:1}}
+  .sl0{animation:sl0 8s ease-in-out infinite}
+  .sl1{animation:sl1 8s ease-in-out infinite}
+  .sl2{animation:sl2 8s ease-in-out infinite}
+  .sl3{animation:sl3 8s ease-in-out infinite}
+  .sl4{animation:sl4 8s ease-in-out infinite}
+</style>
+<rect width="900" height="690" fill="#f8f9fa" rx="8"/>
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="32" text-anchor="middle" class="title" fill="white">Level Order Traversal (BFS)</text>
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="72" text-anchor="middle" class="prob">Tree: 1→{2→{4,5}, 3→{null,6}}  →  [[1],[2,3],[4,5,6]]</text>
+
+<rect x="16" y="92" width="868" height="218" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="32" y="111" class="sec" fill="white">Approach 1: BFS with Queue — O(n) time, O(w) space (w=max width)</text>
+
+<g transform="translate(190,120)">
+  <line x1="0" y1="22" x2="-80" y2="72" class="edge"/>
+  <line x1="0" y1="22" x2="80" y2="72" class="edge"/>
+  <line x1="-80" y1="92" x2="-120" y2="152" class="edge"/>
+  <line x1="-80" y1="92" x2="-40" y2="152" class="edge"/>
+  <line x1="80" y1="92" x2="120" y2="152" class="edge"/>
+  <circle class="vl1 nd" cx="0" cy="0" r="22"/><text x="0" y="0" class="lbl">1</text>
+  <circle class="vl2a nd" cx="-80" cy="70" r="22"/><text x="-80" y="70" class="lbl">2</text>
+  <circle class="vl2b nd" cx="80" cy="70" r="22"/><text x="80" y="70" class="lbl">3</text>
+  <circle class="vl3a nd" cx="-120" cy="150" r="22"/><text x="-120" y="150" class="lbl">4</text>
+  <circle class="vl3b nd" cx="-40" cy="150" r="22"/><text x="-40" y="150" class="lbl">5</text>
+  <circle class="vl3c nd" cx="120" cy="150" r="22"/><text x="120" y="150" class="lbl">6</text>
+  <!-- Level brackets -->
+  <rect x="-26" y="-28" width="52" height="12" fill="none" stroke="#E74C3C" stroke-width="1" stroke-dasharray="3,2" rx="3"/>
+  <text x="42" y="-22" class="cmp" fill="#E74C3C" font-size="9">Level 1</text>
+  <rect x="-108" y="42" width="196" height="12" fill="none" stroke="#F39C12" stroke-width="1" stroke-dasharray="3,2" rx="3"/>
+  <text x="102" y="52" class="cmp" fill="#F39C12" font-size="9">Level 2</text>
+  <rect x="-148" y="122" width="276" height="12" fill="none" stroke="#27AE60" stroke-width="1" stroke-dasharray="3,2" rx="3"/>
+  <text x="142" y="132" class="cmp" fill="#27AE60" font-size="9">Level 3</text>
+</g>
+
+<!-- BFS queue states and result -->
+<text x="430" y="138" class="cmp">Result (list of lists):</text>
+<g transform="translate(430,148)">
+  <rect class="rw1" x="0" y="0" width="90" height="30" rx="4" stroke="#E74C3C" stroke-width="1.5"/><text x="45" y="19" class="lbl">[1]</text>
+  <rect class="rw2" x="0" y="38" width="90" height="30" rx="4" stroke="#F39C12" stroke-width="1.5"/><text x="45" y="57" class="lbl">[2,3]</text>
+  <rect class="rw3" x="0" y="76" width="90" height="30" rx="4" stroke="#27AE60" stroke-width="1.5"/><text x="45" y="95" class="lbl">[4,5,6]</text>
+</g>
+
+<text x="560" y="148" class="cmp">queue = deque([root])</text>
+<text x="560" y="164" class="cmp">while queue:</text>
+<text x="560" y="180" class="cmp">  level = []</text>
+<text x="560" y="196" class="cmp">  for _ in range(len(queue)):  # snapshot size</text>
+<text x="560" y="212" class="cmp">    node = queue.popleft()</text>
+<text x="560" y="228" class="cmp">    level.append(node.val)</text>
+<text x="560" y="244" class="cmp">    if node.left:  queue.append(node.left)</text>
+<text x="560" y="260" class="cmp">    if node.right: queue.append(node.right)</text>
+<text x="560" y="276" class="cmp">  result.append(level)</text>
+<text x="32" y="286" class="cmp sl0">① Enqueue root; process one level at a time</text>
+<text x="32" y="286" class="cmp sl1">② Level 1: dequeue 1, enqueue 2&amp;3; level=[1]</text>
+<text x="32" y="286" class="cmp sl2">③ Level 2: dequeue 2&amp;3, enqueue 4,5,6; level=[2,3]</text>
+<text x="32" y="286" class="cmp sl3">④ Level 3: dequeue 4,5,6; level=[4,5,6]</text>
+<text x="32" y="286" class="cmp sl4" fill="#E74C3C">⑤ Result: [[1],[2,3],[4,5,6]] ✓</text>
+
+<line x1="450" y1="312" x2="450" y2="330" class="evol"/>
+<polygon points="450,331 444,319 456,319" fill="#888"/>
+<rect x="280" y="315" width="340" height="28" fill="#fffde7" stroke="#f0c040" stroke-width="1" rx="4"/>
+<text x="450" y="333" text-anchor="middle" class="ins">DFS with level tracking (depth parameter)</text>
+
+<rect x="16" y="348" width="868" height="214" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="348" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="362" width="868" height="14" fill="#27AE60"/>
+<text x="32" y="367" class="sec" fill="white">Approach 2: DFS with Depth Tracking — O(n) time, O(h) space</text>
+<text x="32" y="395" class="cmp">result = []</text>
+<text x="32" y="411" class="cmp">def dfs(node, depth):</text>
+<text x="32" y="427" class="cmp">  if not node: return</text>
+<text x="32" y="443" class="cmp">  if depth == len(result):   # new level</text>
+<text x="32" y="459" class="cmp">    result.append([])</text>
+<text x="32" y="475" class="cmp">  result[depth].append(node.val)</text>
+<text x="32" y="491" class="cmp">  dfs(node.left,  depth+1)</text>
+<text x="32" y="507" class="cmp">  dfs(node.right, depth+1)</text>
+<rect x="350" y="380" width="518" height="162" fill="#e8f5e9" stroke="#27AE60" stroke-width="1" rx="4"/>
+<text x="366" y="397" class="cmp" font-weight="bold" fill="#27AE60">DFS Trace:</text>
+<text x="366" y="413" class="cmp">dfs(1,0): depth=0==len([]) → result=[[]], append 1 → [[1]]</text>
+<text x="366" y="429" class="cmp">dfs(2,1): depth=1==len([[1]]) → result=[[1],[]], append 2 → [[1],[2]]</text>
+<text x="366" y="445" class="cmp">dfs(4,2): depth=2 → result=[[1],[2],[]], append 4</text>
+<text x="366" y="461" class="cmp">dfs(5,2): depth=2, already exists → append 5 → [[1],[2],[4,5]]</text>
+<text x="366" y="477" class="cmp">dfs(3,1): append 3 → [[1],[2,3],[4,5]]</text>
+<text x="366" y="493" class="cmp">dfs(6,2): append 6 → [[1],[2,3],[4,5,6]]</text>
+<text x="366" y="513" class="cmp" fill="#27AE60" font-weight="bold">Result: [[1],[2,3],[4,5,6]] ✓  (O(h) stack space)</text>
+
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="6"/>
+<rect x="16" y="578" width="868" height="26" fill="#f0f0f0" stroke="#ddd" rx="6"/>
+<text x="182" y="595" class="tbl" font-weight="bold">Approach</text><text x="430" y="595" class="tbl" font-weight="bold">Time</text><text x="610" y="595" class="tbl" font-weight="bold">Space</text><text x="790" y="595" class="tbl" font-weight="bold">Notes</text>
+<rect x="16" y="604" width="868" height="24" fill="#fff5f5"/>
+<text x="182" y="620" class="tbl">BFS (Queue)</text><text x="430" y="620" class="tbl">O(n)</text><text x="610" y="620" class="tbl">O(w)</text><text x="790" y="620" class="tbl">✓ Most intuitive for levels</text>
+<rect x="16" y="628" width="868" height="24" fill="#f0fff0"/>
+<text x="182" y="644" class="tbl">DFS + depth</text><text x="430" y="644" class="tbl">O(n)</text><text x="610" y="644" class="tbl">O(h)</text><text x="790" y="644" class="tbl">✓ Better for deep/narrow trees</text>
+<line x1="16" y1="652" x2="884" y2="652" stroke="#ddd" stroke-width="1"/>
+<text x="182" y="668" class="tbl" fill="#27AE60" font-weight="bold">▶ Key: snapshot queue size before processing each level</text>
+</svg>

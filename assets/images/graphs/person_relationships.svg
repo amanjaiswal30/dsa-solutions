@@ -1,0 +1,141 @@
+<svg width="900" height="590" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="590" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Number of Provinces (Friend Circles)</text>
+  <rect x="800" y="12" width="82" height="28" fill="#F39C12" rx="14"/>
+  <text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">M=[[1,1,0],[1,1,0],[0,0,1]] → 2 provinces ({0,1} and {2})</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Adjacency matrix input. M[i][j]=1 means i and j are directly connected. Count connected components.</text>
+
+  <!-- Approach 1: DFS -->
+  <rect x="15" y="115" width="250" height="335" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="115" width="250" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="140" width="250" height="15" fill="#E74C3C"/>
+  <text x="140" y="140" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 1: DFS</text>
+  <text x="140" y="153" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(N²) time | O(N) space</text>
+
+  <text x="25" y="175" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">Count DFS starts on unvisited nodes:</text>
+  <rect x="25" y="181" width="230" height="80" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="140" y="197" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">visited=[F,F,F]; count=0</text>
+  <text x="140" y="210" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">i=0: not visited → count++, dfs(0)</text>
+  <text x="140" y="223" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">  dfs(0): mark 0 visited</text>
+  <text x="140" y="236" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">  M[0][1]=1 → dfs(1): mark 1 visited</text>
+  <text x="140" y="251" font-family="Arial" font-size="9" fill="#27AE60" font-weight="bold" text-anchor="middle">i=2: not visited → count++, dfs(2) → 2 ✓</text>
+
+  <text x="25" y="278" font-family="Arial" font-size="10" fill="#555">DFS for adjacency matrix:</text>
+  <rect x="25" y="284" width="230" height="36" fill="#FDEDEC" stroke="#E74C3C" rx="3"/>
+  <text x="140" y="299" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">for j in 0..N: if M[node][j]==1</text>
+  <text x="140" y="313" font-family="Arial" font-size="9" fill="#E74C3C" font-weight="bold" text-anchor="middle">  and !visited[j]: dfs(j)</text>
+
+  <text x="25" y="338" font-family="Arial" font-size="10" fill="#E74C3C">⚠ O(N²) scan per node (adj matrix)</text>
+  <text x="25" y="356" font-family="Arial" font-size="10" fill="#888">Mark visited on first encounter</text>
+  <text x="25" y="374" font-family="Arial" font-size="10" fill="#888">Recursion depth O(N) max</text>
+  <text x="25" y="392" font-family="Arial" font-size="10" fill="#888">BFS: same O(N²), iterative</text>
+  <text x="25" y="410" font-family="Arial" font-size="10" fill="#888">Union-Find: just loop row by row</text>
+  <text x="25" y="428" font-family="Arial" font-size="10" fill="#888">All: O(N²) due to adj matrix</text>
+  <text x="25" y="446" font-family="Arial" font-size="10" fill="#888">Same as Number of Islands pattern!</text>
+
+  <!-- Evolution Arrow 1 -->
+  <line x1="265" y1="290" x2="317" y2="290" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="317,286 325,290 317,294" fill="#7F8C8D"/>
+  <rect x="265" y="266" width="52" height="48" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+  <text x="291" y="280" font-family="Arial" font-size="8" fill="#555" text-anchor="middle" font-weight="bold">💡 BFS</text>
+  <text x="291" y="292" font-family="Arial" font-size="8" fill="#555" text-anchor="middle">iterative</text>
+  <text x="291" y="304" font-family="Arial" font-size="8" fill="#555" text-anchor="middle">queue!</text>
+
+  <!-- Approach 2: BFS -->
+  <rect x="320" y="115" width="250" height="335" fill="#FFFFFF" stroke="#E67E22" stroke-width="2" rx="7"/>
+  <rect x="320" y="115" width="250" height="40" fill="#E67E22" rx="7"/>
+  <rect x="320" y="140" width="250" height="15" fill="#E67E22"/>
+  <text x="445" y="140" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 2: BFS</text>
+  <text x="445" y="153" font-family="Arial" font-size="10" fill="#FAD7A0" text-anchor="middle">O(N²) time | O(N) space</text>
+
+  <text x="330" y="175" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">BFS from each unvisited person:</text>
+  <rect x="330" y="181" width="230" height="80" fill="#FEF9E7" stroke="#E67E22" rx="3"/>
+  <text x="445" y="197" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">visited=[F,F,F]; count=0</text>
+  <text x="445" y="210" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">i=0: not visited → count++</text>
+  <text x="445" y="223" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">  Queue:[0]; visited[0]=T</text>
+  <text x="445" y="236" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">  Poll 0: M[0][1]=1 → add 1; visited[1]=T</text>
+  <text x="445" y="251" font-family="Arial" font-size="9" fill="#27AE60" font-weight="bold" text-anchor="middle">i=2: not visited → count++ → total=2 ✓</text>
+
+  <text x="330" y="278" font-family="Arial" font-size="10" fill="#555">BFS adjacency scan:</text>
+  <rect x="330" y="284" width="230" height="36" fill="#FEF9E7" stroke="#E67E22" rx="3"/>
+  <text x="445" y="299" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">for j in 0..N: if M[curr][j]==1</text>
+  <text x="445" y="313" font-family="Arial" font-size="9" fill="#E67E22" font-weight="bold" text-anchor="middle">  and !visited[j]: queue.add(j)</text>
+
+  <text x="330" y="338" font-family="Arial" font-size="10" fill="#888">Iterative: no stack overflow</text>
+  <text x="330" y="356" font-family="Arial" font-size="10" fill="#888">Same structure as DFS version</text>
+  <text x="330" y="374" font-family="Arial" font-size="10" fill="#888">Both DFS/BFS: O(N²) adjacency scan</text>
+  <text x="330" y="392" font-family="Arial" font-size="10" fill="#888">Union-Find: no explicit traversal!</text>
+  <text x="330" y="410" font-family="Arial" font-size="10" fill="#888">UF: just union all edges once</text>
+  <text x="330" y="428" font-family="Arial" font-size="10" fill="#888">All three work for this problem</text>
+  <text x="330" y="446" font-family="Arial" font-size="10" fill="#888">DFS simplest code for adj matrix</text>
+
+  <!-- Evolution Arrow 2 -->
+  <line x1="570" y1="290" x2="622" y2="290" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="622,286 630,290 622,294" fill="#7F8C8D"/>
+  <rect x="570" y="266" width="52" height="48" fill="#ECF0F1" stroke="#BDC3C7" rx="4"/>
+  <text x="596" y="280" font-family="Arial" font-size="8" fill="#555" text-anchor="middle" font-weight="bold">💡 Union</text>
+  <text x="596" y="292" font-family="Arial" font-size="8" fill="#555" text-anchor="middle">Find!</text>
+  <text x="596" y="304" font-family="Arial" font-size="8" fill="#555" text-anchor="middle">O(α(N))</text>
+
+  <!-- Approach 3: Union-Find -->
+  <rect x="628" y="115" width="257" height="335" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="628" y="115" width="257" height="40" fill="#27AE60" rx="7"/>
+  <rect x="628" y="140" width="257" height="15" fill="#27AE60"/>
+  <text x="756" y="140" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 3: Union-Find ⭐</text>
+  <text x="756" y="153" font-family="Arial" font-size="10" fill="#D5F5E3" text-anchor="middle">O(N²·α(N)) time | O(N) space</text>
+
+  <text x="638" y="175" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">Union edges, count distinct roots:</text>
+  <rect x="638" y="181" width="237" height="80" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="756" y="197" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">parent=[0,1,2]; count=N=3</text>
+  <text x="756" y="210" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">For i=0: M[0][1]=1 → union(0,1): count--</text>
+  <text x="756" y="223" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">  count=2; M[0][2]=0, skip</text>
+  <text x="756" y="236" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">For i=1: M[1][0]=1 but already same</text>
+  <text x="756" y="251" font-family="Arial" font-size="9" fill="#27AE60" font-weight="bold" text-anchor="middle">For i=2: no connections → count=2 ✓</text>
+
+  <text x="638" y="278" font-family="Arial" font-size="10" fill="#555">Union-Find for upper triangle:</text>
+  <rect x="638" y="284" width="237" height="36" fill="#EAFAF1" stroke="#27AE60" rx="3"/>
+  <text x="756" y="299" font-family="Arial" font-size="9" fill="#333" text-anchor="middle">for i,j: if M[i][j]==1 &amp;&amp; i&lt;j</text>
+  <text x="756" y="313" font-family="Arial" font-size="9" fill="#27AE60" font-weight="bold" text-anchor="middle">  if union(i,j): count-- (new merge)</text>
+
+  <text x="638" y="338" font-family="Arial" font-size="10" fill="#27AE60" font-weight="bold">Cleanest for adjacency matrix!</text>
+  <text x="638" y="356" font-family="Arial" font-size="10" fill="#888">Only process upper triangle (i&lt;j)</text>
+  <text x="638" y="374" font-family="Arial" font-size="10" fill="#888">count starts at N, decrements on merge</text>
+  <text x="638" y="392" font-family="Arial" font-size="10" fill="#888">No explicit traversal needed</text>
+  <text x="638" y="410" font-family="Arial" font-size="10" fill="#888">Path compression: α(N) per operation</text>
+  <text x="638" y="428" font-family="Arial" font-size="10" fill="#888">DFS/BFS also clear for interviews</text>
+  <text x="638" y="446" font-family="Arial" font-size="10" fill="#888">Dynamic edges? UF is clearly best!</text>
+
+  <!-- Complexity Table -->
+  <rect x="15" y="463" width="870" height="118" fill="#FFFFFF" stroke="#DEE2E6" rx="7"/>
+  <rect x="15" y="463" width="870" height="30" fill="#2C3E50" rx="7"/>
+  <rect x="15" y="478" width="870" height="15" fill="#2C3E50"/>
+  <text x="450" y="483" font-family="Arial" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Complexity Comparison</text>
+  <line x1="15" y1="493" x2="885" y2="493" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="493" width="870" height="25" fill="#ECF0F1"/>
+  <text x="200" y="510" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Approach</text>
+  <text x="500" y="510" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Time</text>
+  <text x="750" y="510" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Space</text>
+  <line x1="15" y1="518" x2="885" y2="518" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="518" width="870" height="21" fill="#FDEDEC"/>
+  <text x="200" y="532" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">DFS (Recursive)</text>
+  <text x="500" y="532" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(N²)</text>
+  <text x="750" y="532" font-family="Arial" font-size="11" fill="#E74C3C" text-anchor="middle">O(N) + recursion stack</text>
+  <line x1="15" y1="539" x2="885" y2="539" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="539" width="870" height="21" fill="#FEF9E7"/>
+  <text x="200" y="553" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">BFS (Iterative)</text>
+  <text x="500" y="553" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(N²)</text>
+  <text x="750" y="553" font-family="Arial" font-size="11" fill="#27AE60" text-anchor="middle">O(N)</text>
+  <line x1="15" y1="560" x2="885" y2="560" stroke="#DEE2E6" stroke-width="1"/>
+  <rect x="15" y="560" width="870" height="21" fill="#EAFAF1"/>
+  <text x="200" y="574" font-family="Arial" font-size="11" fill="#333" text-anchor="middle">Union-Find ⭐</text>
+  <text x="500" y="574" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(N²·α(N))</text>
+  <text x="750" y="574" font-family="Arial" font-size="11" fill="#27AE60" font-weight="bold" text-anchor="middle">O(N)</text>
+  <line x1="370" y1="493" x2="370" y2="581" stroke="#DEE2E6" stroke-width="1"/>
+  <line x1="620" y1="493" x2="620" y2="581" stroke="#DEE2E6" stroke-width="1"/>
+</svg>

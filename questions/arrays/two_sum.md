@@ -1,5 +1,8 @@
 # Two Sum
 
+![](../../assets/images/arrays/two_sum.svg)
+
+
 **Difficulty:** Easy ✅
 
 ---

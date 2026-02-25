@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#fff}
+  .prob{font:13px sans-serif;fill:#333;text-anchor:middle;dominant-baseline:middle}
+  .sec{font:bold 13px sans-serif;fill:#333}
+  .nd{fill:#ddeeff;stroke:#6699cc;stroke-width:2}
+  .edge{stroke:#999;stroke-width:2;fill:none}
+  .lbl{font:12px monospace;text-anchor:middle;dominant-baseline:middle}
+  .cmp{font:12px sans-serif;fill:#555}
+  .ins{font:12px sans-serif;fill:#666;font-style:italic}
+  .tbl{font:12px sans-serif;fill:#333}
+  @keyframes ndVisit0{0%,10%{fill:#ddeeff}20%,40%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit1{0%,20%{fill:#ddeeff}30%,50%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit2{0%,30%{fill:#ddeeff}40%,60%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit3{0%,40%{fill:#ddeeff}50%,70%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit4{0%,50%{fill:#ddeeff}60%,80%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes sl0{0%,15%{opacity:0}20%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl1{0%,25%{opacity:0}30%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl2{0%,35%{opacity:0}40%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl3{0%,45%{opacity:0}50%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl4{0%,55%{opacity:0}60%,90%{opacity:1}100%{opacity:0}}
+  @keyframes ar0{0%,10%{fill:#fff5f5}20%,100%{fill:#ffd700}}
+  @keyframes ar1{0%,25%{fill:#fff5f5}35%,100%{fill:#ffd700}}
+  @keyframes ar2{0%,40%{fill:#fff5f5}50%,100%{fill:#ffd700}}
+  @keyframes ar3{0%,55%{fill:#fff5f5}65%,100%{fill:#ffd700}}
+  @keyframes ar4{0%,70%{fill:#fff5f5}80%,100%{fill:#ffd700}}
+  @keyframes ndAppear{0%,30%{opacity:0;transform:scale(0)}40%,100%{opacity:1;transform:scale(1)}}
+  .n0{animation:ndVisit0 5s infinite}
+  .n1{animation:ndVisit1 5s infinite}
+  .n2{animation:ndVisit2 5s infinite}
+  .n3{animation:ndVisit3 5s infinite}
+  .n4{animation:ndVisit4 5s infinite}
+  .a0{animation:ar0 5s infinite}
+  .a1{animation:ar1 5s infinite}
+  .a2{animation:ar2 5s infinite}
+  .a3{animation:ar3 5s infinite}
+  .a4{animation:ar4 5s infinite}
+</style>
+<rect width="900" height="690" fill="#f8f9fa"/>
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="30" class="title" text-anchor="middle" dominant-baseline="middle">Construct Binary Tree from Preorder + Inorder Traversal</text>
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="68" class="prob">preorder=[3,9,20,15,7], inorder=[9,3,15,20,7] → Reconstruct the binary tree</text>
+
+<!-- Approach 1 block -->
+<rect x="16" y="92" width="868" height="218" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="30" y="110" class="sec" fill="#fff">Approach 1: O(n²) — Linear scan to find root in inorder at each recursive call</text>
+
+<!-- Arrays -->
+<text x="30" y="138" class="cmp" fill="#c0392b" font-weight="bold">preorder:</text>
+<rect x="110" y="126" width="44" height="24" fill="#ffd700" stroke="#cc8800" rx="3" class="a0"/>
+<text x="132" y="139" class="lbl" style="animation:sl0 5s infinite">3</text>
+<rect x="156" y="126" width="44" height="24" fill="#fff5f5" stroke="#ccc" rx="3"/>
+<text x="178" y="139" class="lbl">9</text>
+<rect x="202" y="126" width="44" height="24" fill="#fff5f5" stroke="#ccc" rx="3" class="a2"/>
+<text x="224" y="139" class="lbl">20</text>
+<rect x="248" y="126" width="44" height="24" fill="#fff5f5" stroke="#ccc" rx="3"/>
+<text x="270" y="139" class="lbl">15</text>
+<rect x="294" y="126" width="44" height="24" fill="#fff5f5" stroke="#ccc" rx="3"/>
+<text x="316" y="139" class="lbl">7</text>
+<text x="30" y="168" class="cmp" fill="#c0392b" font-weight="bold">inorder: </text>
+<rect x="110" y="156" width="44" height="24" fill="#fff5f5" stroke="#ccc" rx="3"/>
+<text x="132" y="169" class="lbl">9</text>
+<rect x="156" y="156" width="44" height="24" fill="#ffe0e0" stroke="#E74C3C" rx="3" class="a0"/>
+<text x="178" y="169" class="lbl">3</text>
+<rect x="202" y="156" width="44" height="24" fill="#fff5f5" stroke="#ccc" rx="3"/>
+<text x="224" y="169" class="lbl">15</text>
+<rect x="248" y="156" width="44" height="24" fill="#fff5f5" stroke="#ccc" rx="3" class="a2"/>
+<text x="270" y="169" class="lbl">20</text>
+<rect x="294" y="156" width="44" height="24" fill="#fff5f5" stroke="#ccc" rx="3"/>
+<text x="316" y="169" class="lbl">7</text>
+
+<text x="370" y="138" class="cmp" fill="#c0392b" style="animation:sl0 5s infinite">root=3, scan inorder→idx=1</text>
+<text x="370" y="158" class="cmp" fill="#c0392b" style="animation:sl1 5s infinite">left: pre[1..1],in[0..0]→root=9</text>
+<text x="370" y="178" class="cmp" fill="#c0392b" style="animation:sl2 5s infinite">right: pre[2..4],in[2..4]→root=20</text>
+<text x="370" y="198" class="cmp" fill="#c0392b" style="animation:sl3 5s infinite">20's left: pre[3],in[2]→root=15</text>
+<text x="370" y="218" class="cmp" fill="#c0392b" style="animation:sl4 5s infinite">20's right: pre[4],in[4]→root=7</text>
+
+<!-- Tree result -->
+<line x1="750" y1="170" x2="710" y2="215" class="edge"/>
+<line x1="750" y1="170" x2="790" y2="215" class="edge"/>
+<line x1="790" y1="215" x2="770" y2="255" class="edge"/>
+<line x1="790" y1="215" x2="810" y2="255" class="edge"/>
+<circle cx="750" cy="170" r="18" class="nd n0"/>
+<text x="750" y="170" class="lbl">3</text>
+<circle cx="710" cy="215" r="18" class="nd n1"/>
+<text x="710" y="215" class="lbl">9</text>
+<circle cx="790" cy="215" r="18" class="nd n2"/>
+<text x="790" y="215" class="lbl">20</text>
+<circle cx="770" cy="255" r="18" class="nd n3"/>
+<text x="770" y="255" class="lbl">15</text>
+<circle cx="810" cy="255" r="18" class="nd n4"/>
+<text x="810" y="255" class="lbl">7</text>
+
+<!-- Evolution arrow -->
+<line x1="450" y1="316" x2="450" y2="340" stroke="#f0c040" stroke-width="2"/>
+<polygon points="450,348 444,336 456,336" fill="#f0c040"/>
+<rect x="80" y="310" width="740" height="32" fill="#fffde7" stroke="#f0c040" stroke-width="1.5" rx="6"/>
+<text x="450" y="328" class="ins" text-anchor="middle" dominant-baseline="middle">Key Insight: Build hashmap {val→inorder_index} once → O(1) lookup per call → reduces O(n²) to O(n)</text>
+
+<!-- Approach 2 block -->
+<rect x="16" y="348" width="868" height="214" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="348" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="362" width="868" height="14" fill="#27AE60"/>
+<text x="30" y="366" class="sec" fill="#fff">Approach 2: O(n) — HashMap for O(1) inorder index lookup</text>
+
+<!-- HashMap visualization -->
+<text x="30" y="395" class="cmp" fill="#27AE60" font-weight="bold">HashMap (inorder index):</text>
+<rect x="30" y="402" width="280" height="80" fill="#e8ffe8" stroke="#27AE60" rx="4"/>
+<text x="40" y="418" class="cmp">9→0, 3→1, 15→2, 20→3, 7→4</text>
+<text x="40" y="436" class="cmp" fill="#27AE60">preIdx=0 (global pointer)</text>
+<text x="40" y="454" class="cmp" fill="#888">left_len = inIdx - inStart</text>
+<text x="40" y="472" class="cmp" fill="#888">right starts at inIdx+1</text>
+
+<!-- Build sequence -->
+<text x="330" y="395" class="cmp" font-weight="bold" fill="#27AE60">Build sequence:</text>
+<text x="330" y="415" class="cmp" fill="#27AE60" style="animation:sl0 5s infinite">1. root=pre[0]=3, in_idx=map[3]=1</text>
+<text x="330" y="432" class="cmp" fill="#27AE60" style="animation:sl1 5s infinite">2. left tree: pre[1]=9, in_idx=0</text>
+<text x="330" y="449" class="cmp" fill="#27AE60" style="animation:sl2 5s infinite">3. right tree: pre[2]=20, in_idx=3</text>
+<text x="330" y="466" class="cmp" fill="#27AE60" style="animation:sl3 5s infinite">4. 20's left: pre[3]=15, in_idx=2</text>
+<text x="330" y="483" class="cmp" fill="#27AE60" style="animation:sl4 5s infinite">5. 20's right: pre[4]=7, in_idx=4</text>
+
+<!-- Tree for Approach 2 with animation -->
+<line x1="750" y1="390" x2="720" y2="430" class="edge"/>
+<line x1="750" y1="390" x2="800" y2="430" class="edge"/>
+<line x1="800" y1="430" x2="782" y2="468" class="edge"/>
+<line x1="800" y1="430" x2="818" y2="468" class="edge"/>
+<circle cx="750" cy="390" r="18" class="nd n0"/>
+<text x="750" y="390" class="lbl">3</text>
+<circle cx="720" cy="430" r="18" class="nd n1"/>
+<text x="720" y="430" class="lbl">9</text>
+<circle cx="800" cy="430" r="18" class="nd n2"/>
+<text x="800" y="430" class="lbl">20</text>
+<circle cx="782" cy="468" r="18" class="nd n3"/>
+<text x="782" y="468" class="lbl">15</text>
+<circle cx="818" cy="468" r="18" class="nd n4"/>
+<text x="818" y="468" class="lbl">7</text>
+
+<!-- preorder pointer animation -->
+<rect x="30" y="510" width="340" height="24" fill="#e8ffe8" stroke="#27AE60" rx="4"/>
+<text x="40" y="524" class="cmp" fill="#27AE60">preIdx advances: 0→1→2→3→4 (O(1) per node)</text>
+
+<!-- Complexity table -->
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="4"/>
+<rect x="16" y="578" width="868" height="24" fill="#f0f0f0" rx="4"/>
+<rect x="16" y="590" width="868" height="12" fill="#f0f0f0"/>
+<text x="200" y="592" class="tbl" text-anchor="middle" font-weight="bold">Approach</text>
+<text x="500" y="592" class="tbl" text-anchor="middle" font-weight="bold">Time</text>
+<text x="720" y="592" class="tbl" text-anchor="middle" font-weight="bold">Space</text>
+<rect x="16" y="602" width="868" height="24" fill="#fff5f5"/>
+<text x="200" y="616" class="tbl" text-anchor="middle">Linear scan in inorder</text>
+<text x="500" y="616" class="tbl" text-anchor="middle">O(n²)</text>
+<text x="720" y="616" class="tbl" text-anchor="middle">O(n) stack</text>
+<rect x="16" y="626" width="868" height="24" fill="#f0fff0"/>
+<text x="200" y="640" class="tbl" text-anchor="middle">HashMap O(1) lookup</text>
+<text x="500" y="640" class="tbl" text-anchor="middle">O(n)</text>
+<text x="720" y="640" class="tbl" text-anchor="middle">O(n) map + stack</text>
+<rect x="16" y="650" width="868" height="26" fill="#fff8e1"/>
+<text x="450" y="664" class="tbl" text-anchor="middle" fill="#e65100">build(preS,preE,inS,inE): root=pre[preS]; idx=map[root]; left subtree size=idx-inS; recurse on halves</text>
+</svg>

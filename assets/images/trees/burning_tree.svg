@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#fff}
+  .prob{font:13px sans-serif;fill:#333;text-anchor:middle;dominant-baseline:middle}
+  .sec{font:bold 13px sans-serif;fill:#333}
+  .nd{fill:#ddeeff;stroke:#6699cc;stroke-width:2}
+  .edge{stroke:#999;stroke-width:2;fill:none}
+  .lbl{font:12px monospace;text-anchor:middle;dominant-baseline:middle}
+  .cmp{font:12px sans-serif;fill:#555}
+  .ins{font:12px sans-serif;fill:#666;font-style:italic}
+  .tbl{font:12px sans-serif;fill:#333}
+  @keyframes fire0{0%,0%{fill:#ddeeff;stroke:#6699cc}10%,100%{fill:#ff4500;stroke:#cc2200}}
+  @keyframes fire1{0%,15%{fill:#ddeeff;stroke:#6699cc}25%,100%{fill:#ff4500;stroke:#cc2200}}
+  @keyframes fire2{0%,30%{fill:#ddeeff;stroke:#6699cc}40%,100%{fill:#ff4500;stroke:#cc2200}}
+  @keyframes fire3{0%,45%{fill:#ddeeff;stroke:#6699cc}55%,100%{fill:#ff4500;stroke:#cc2200}}
+  @keyframes fire4{0%,60%{fill:#ddeeff;stroke:#6699cc}70%,100%{fill:#ff4500;stroke:#cc2200}}
+  @keyframes fire5{0%,75%{fill:#ddeeff;stroke:#6699cc}85%,100%{fill:#ff4500;stroke:#cc2200}}
+  @keyframes sl0{0%,15%{opacity:0}20%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl1{0%,25%{opacity:0}30%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl2{0%,35%{opacity:0}40%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl3{0%,45%{opacity:0}50%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl4{0%,55%{opacity:0}60%,90%{opacity:1}100%{opacity:0}}
+  .f0{animation:fire0 6s infinite}
+  .f1{animation:fire1 6s infinite}
+  .f2{animation:fire2 6s infinite}
+  .f3{animation:fire3 6s infinite}
+  .f4{animation:fire4 6s infinite}
+  .f5{animation:fire5 6s infinite}
+</style>
+<rect width="900" height="690" fill="#f8f9fa"/>
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="30" class="title" text-anchor="middle" dominant-baseline="middle">Burning Tree — Time to Burn Entire Tree</text>
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="68" class="prob">Tree: 1→{2→{4,5→{7,8}},3→{6,null}} | Fire starts at node 8 | Time to burn all = 7</text>
+
+<!-- Approach 1 block -->
+<rect x="16" y="92" width="868" height="218" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="30" y="110" class="sec" fill="#fff">Approach 1: O(n) — Convert to undirected graph, BFS from source node</text>
+<text x="38" y="138" class="cmp" fill="#c0392b">• Build adjacency list (parent+children as neighbors)</text>
+<text x="38" y="156" class="cmp" fill="#c0392b">• BFS from node 8: each level = 1 second; count levels until all nodes visited</text>
+<text x="38" y="174" class="cmp" fill="#c0392b">• T=0:burn{8} → T=1:burn{5} → T=2:burn{7,2} → T=3:burn{4,1} → T=4:burn{3} → T=5:burn{6}</text>
+
+<!-- Tree for Approach 1 -->
+<line x1="240" y1="185" x2="170" y2="225" class="edge"/>
+<line x1="240" y1="185" x2="310" y2="225" class="edge"/>
+<line x1="170" y1="225" x2="130" y2="265" class="edge"/>
+<line x1="170" y1="225" x2="210" y2="265" class="edge"/>
+<line x1="210" y1="265" x2="190" y2="300" class="edge"/>
+<line x1="210" y1="265" x2="230" y2="300" class="edge"/>
+<line x1="310" y1="225" x2="295" y2="265" class="edge"/>
+<circle cx="240" cy="185" r="20" class="nd f3"/>
+<text x="240" y="185" class="lbl">1</text>
+<circle cx="170" cy="225" r="20" class="nd f2"/>
+<text x="170" y="225" class="lbl">2</text>
+<circle cx="310" cy="225" r="20" class="nd f4"/>
+<text x="310" y="225" class="lbl">3</text>
+<circle cx="130" cy="265" r="20" class="nd f2"/>
+<text x="130" y="265" class="lbl">4</text>
+<circle cx="210" cy="265" r="20" class="nd f1"/>
+<text x="210" y="265" class="lbl">5</text>
+<circle cx="295" cy="265" r="20" class="nd f5"/>
+<text x="295" y="265" class="lbl">6</text>
+<circle cx="190" cy="300" r="20" class="nd f2"/>
+<text x="190" y="300" class="lbl">7</text>
+<circle cx="230" cy="300" r="20" class="nd f0"/>
+<text x="230" y="300" class="lbl">8</text>
+<text x="255" y="310" class="cmp" fill="#ff4500" font-weight="bold">← fire starts here!</text>
+
+<!-- Timer labels -->
+<text x="360" y="180" class="cmp" fill="#c0392b" style="animation:sl0 6s infinite">T=0: {8}</text>
+<text x="360" y="200" class="cmp" fill="#c0392b" style="animation:sl1 6s infinite">T=1: {5}</text>
+<text x="360" y="220" class="cmp" fill="#c0392b" style="animation:sl2 6s infinite">T=2: {7,2}</text>
+<text x="360" y="240" class="cmp" fill="#c0392b" style="animation:sl3 6s infinite">T=3: {4,1}</text>
+<text x="360" y="258" class="cmp" fill="#c0392b" style="animation:sl4 6s infinite">T=4: {3}, T=5: {6}</text>
+
+<!-- Evolution arrow -->
+<line x1="450" y1="316" x2="450" y2="340" stroke="#f0c040" stroke-width="2"/>
+<polygon points="450,348 444,336 456,336" fill="#f0c040"/>
+<rect x="80" y="310" width="740" height="32" fill="#fffde7" stroke="#f0c040" stroke-width="1.5" rx="6"/>
+<text x="450" y="328" class="ins" text-anchor="middle" dominant-baseline="middle">Key Insight: Two-pass is cleaner — Pass 1: find target + build parent map (DFS); Pass 2: BFS from target using parent links</text>
+
+<!-- Approach 2 block -->
+<rect x="16" y="348" width="868" height="214" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="348" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="362" width="868" height="14" fill="#27AE60"/>
+<text x="30" y="366" class="sec" fill="#fff">Approach 2: Two-pass — DFS to find target + build parent map, then BFS</text>
+
+<text x="38" y="392" class="cmp" font-weight="bold">Pass 1 (DFS): Build parent map + locate target node</text>
+<rect x="38" y="400" width="380" height="80" fill="#e8ffe8" stroke="#27AE60" rx="4"/>
+<text x="48" y="418" class="cmp">parent[2]=1, parent[3]=1</text>
+<text x="48" y="436" class="cmp">parent[4]=2, parent[5]=2</text>
+<text x="48" y="454" class="cmp">parent[6]=3</text>
+<text x="48" y="472" class="cmp">parent[7]=5, parent[8]=5</text>
+<text x="48" y="490" class="cmp" fill="#27AE60" font-weight="bold">target=8 (node with val 8)</text>
+
+<text x="438" y="392" class="cmp" font-weight="bold">Pass 2 (BFS from node 8):</text>
+<rect x="438" y="400" width="420" height="80" fill="#e8ffe8" stroke="#27AE60" rx="4"/>
+<text x="448" y="418" class="cmp" style="animation:sl0 6s infinite">T=0: visit 8 (start)</text>
+<text x="448" y="436" class="cmp" style="animation:sl1 6s infinite">T=1: visit 5 (parent[8]=5)</text>
+<text x="448" y="454" class="cmp" style="animation:sl2 6s infinite">T=2: visit 7(child),2(parent[5])</text>
+<text x="448" y="472" class="cmp" style="animation:sl3 6s infinite">T=3: visit 4(child of 2),1(parent[2])</text>
+<text x="448" y="490" class="cmp" style="animation:sl4 6s infinite">T=4: visit 3(child of 1) → T=5: visit 6</text>
+
+<!-- Answer box -->
+<rect x="38" y="495" width="820" height="50" fill="#e8ffe8" stroke="#27AE60" rx="6"/>
+<text x="450" y="515" class="cmp" text-anchor="middle" fill="#27AE60" font-weight="bold" font-size="16">Total time to burn entire tree = 5 seconds</text>
+<text x="450" y="535" class="cmp" text-anchor="middle" fill="#888">(BFS levels counted: 0,1,2,3,4,5 → answer is max level = 5)</text>
+
+<!-- Complexity table -->
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="4"/>
+<rect x="16" y="578" width="868" height="24" fill="#f0f0f0" rx="4"/>
+<rect x="16" y="590" width="868" height="12" fill="#f0f0f0"/>
+<text x="200" y="592" class="tbl" text-anchor="middle" font-weight="bold">Approach</text>
+<text x="500" y="592" class="tbl" text-anchor="middle" font-weight="bold">Time</text>
+<text x="720" y="592" class="tbl" text-anchor="middle" font-weight="bold">Space</text>
+<rect x="16" y="602" width="868" height="24" fill="#fff5f5"/>
+<text x="200" y="616" class="tbl" text-anchor="middle">Graph conversion + BFS</text>
+<text x="500" y="616" class="tbl" text-anchor="middle">O(n)</text>
+<text x="720" y="616" class="tbl" text-anchor="middle">O(n) adjacency list</text>
+<rect x="16" y="626" width="868" height="24" fill="#f0fff0"/>
+<text x="200" y="640" class="tbl" text-anchor="middle">Two-pass: parent map + BFS</text>
+<text x="500" y="640" class="tbl" text-anchor="middle">O(n)</text>
+<text x="720" y="640" class="tbl" text-anchor="middle">O(n) parent map</text>
+<rect x="16" y="650" width="868" height="26" fill="#fff8e1"/>
+<text x="450" y="664" class="tbl" text-anchor="middle" fill="#e65100">BFS from target; neighbors = left child + right child + parent; track visited; count BFS levels</text>
+</svg>
