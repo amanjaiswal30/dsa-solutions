@@ -1,6 +1,6 @@
 # 📚 Data Structures & Algorithms Solutions
 
-Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 132 commonly asked coding interview problems.
+Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 135 commonly asked coding interview problems.
 
 ---
 
@@ -19,7 +19,7 @@ Welcome to my **comprehensive DSA Solutions Repository**! This repository contai
 
 ```
 questions/
-├── arrays/               # Array & Matrix problems (25+ problems)
+├── arrays/               # Array & Matrix problems (28 problems)
 ├── strings/              # String processing & algorithms (8+ problems)
 ├── linked_lists/         # Linked List manipulations (16+ problems)
 ├── stacks/               # Stack-based problems (9+ problems)
@@ -33,7 +33,7 @@ questions/
 
 ## 🔥 Problem Categories
 
-### 📊 Arrays & Matrix (25 Problems)
+### 📊 Arrays & Matrix (28 Problems)
 **Foundation Level** - Master fundamental array techniques, two pointers, sliding window, and matrix operations.
 
 | Problem | Difficulty | Key Concepts |
@@ -47,7 +47,7 @@ questions/
 | [First Missing Positive](questions/arrays/missing_positive.md) | Hard 🔥 | Cyclic Sort |
 
 <details>
-<summary><strong>📋 Complete Arrays List (25 problems)</strong></summary>
+<summary><strong>📋 Complete Arrays List (28 problems)</strong></summary>
 
 | # | Problem | Difficulty | 
 |---|---------|------------|
@@ -68,14 +68,17 @@ questions/
 | 15 | [Gas Station](questions/arrays/gas_station.md) | Medium ⚡ |
 | 16 | [Spiral Matrix](questions/arrays/spiral_matrix.md) | Medium ⚡ |
 | 17 | [Find Duplicate Number](questions/arrays/duplicate_number.md) | Medium ⚡ |
-| 18 | [Meeting Rooms](questions/arrays/number_of_meeting_rooms.md) | Medium ⚡ |
-| 19 | [Peak Element](questions/arrays/peak_element.md) | Medium ⚡ |
-| 20 | [Search in 2D Matrix](questions/arrays/search_in_2d_matrix.md) | Medium ⚡ |
-| 21 | [Search in Rotated Array](questions/arrays/search_in_rotated_sorted_array.md) | Medium ⚡ |
-| 22 | [First & Last Position](questions/arrays/first_and_last_position_in_sorted_array.md) | Medium ⚡ |
-| 23 | [Minimum in Rotated Array](questions/arrays/minimum_in_rotated_sorted_array.md) | Medium ⚡ |
-| 24 | [Merge Intervals](questions/arrays/merge_intervals.md) | Hard 🔥 |
-| 25 | [Next Permutation](questions/arrays/next_permutation.md) | Hard 🔥 |
+| 18 | [Largest Number](questions/arrays/largest_number.md) | Medium ⚡ |
+| 19 | [Meeting Rooms](questions/arrays/number_of_meeting_rooms.md) | Medium ⚡ |
+| 20 | [Peak Element](questions/arrays/peak_element.md) | Medium ⚡ |
+| 21 | [Search in 2D Matrix](questions/arrays/search_in_2d_matrix.md) | Medium ⚡ |
+| 22 | [Search in Rotated Array](questions/arrays/search_in_rotated_sorted_array.md) | Medium ⚡ |
+| 23 | [First & Last Position](questions/arrays/first_and_last_position_in_sorted_array.md) | Medium ⚡ |
+| 24 | [Minimum in Rotated Array](questions/arrays/minimum_in_rotated_sorted_array.md) | Medium ⚡ |
+| 25 | [Median of Two Sorted Arrays](questions/arrays/median_of_two_sorted_arrays.md) | Hard 🔥 |
+| 26 | [First Missing Positive](questions/arrays/missing_positive.md) | Hard 🔥 |
+| 27 | [Merge Intervals](questions/arrays/merge_intervals.md) | Hard 🔥 |
+| 28 | [Next Permutation](questions/arrays/next_permutation.md) | Hard 🔥 |
 
 </details>
 
@@ -112,7 +115,7 @@ questions/
 | [Reverse Linked List](questions/linked_lists/reverse_linked_list.md) | Easy ✅ | Two Pointers |
 | [Merge Two Sorted Lists](questions/linked_lists/merge_k_sorted_list.md) | Easy ✅ | Merge Algorithm |
 | [Detect Cycle](questions/linked_lists/detect_and_remove_loop.md) | Medium ⚡ | Floyd's Algorithm |
-| [LRU Cache](questions/linked_lists/clone_linked_list.md) | Medium ⚡ | HashMap + DLL |
+| [Clone Random Pointer List](questions/linked_lists/clone_linked_list.md) | Medium ⚡ | HashMap + Deep Copy |
 
 <details>
 <summary><strong>📋 Complete Linked Lists (16 problems)</strong></summary>
@@ -191,7 +194,30 @@ questions/
 | 8 | [Check Sum Tree](questions/trees/check_sum_tree.md) | Medium ⚡ |
 | 9 | [Check if Balanced](questions/trees/check_tree_balanced.md) | Easy ✅ |
 | 10 | [Construct from Postorder](questions/trees/construct_binary_tree_from_postorder.md) | Medium ⚡ |
-| ... | [34 more tree problems] | Various |
+| 11 | [Construct from Preorder](questions/trees/construct_binary_tree_from_preorder.md) | Medium ⚡ |
+| 12 | [Convert to Mirror Tree](questions/trees/convert_binary_tree_to_mirror_tree.md) | Easy ✅ |
+| 13 | [Delete Node from BST](questions/trees/delete_node_from_bst.md) | Medium ⚡ |
+| 14 | [Diameter of Tree](questions/trees/diameter_of_tree.md) | Easy ✅ |
+| 15 | [Distance Between Two Nodes](questions/trees/distance_between_two_nodes.md) | Medium ⚡ |
+| 16 | [Height of Tree](questions/trees/height_of_tree.md) | Easy ✅ |
+| 17 | [Inorder Successor in BST](questions/trees/inorder_successor_in_bst.md) | Medium ⚡ |
+| 18 | [Inorder Traversal](questions/trees/inorder_traversal.md) | Easy ✅ |
+| 19 | [Insert Node in BST](questions/trees/insert_node_in_bst.md) | Medium ⚡ |
+| 20 | [Invert Binary Tree](questions/trees/invert_binary_tree.md) | Easy ✅ |
+| 21 | [Kth Smallest Element in BST](questions/trees/kth_smallest_element_in_bst.md) | Medium ⚡ |
+| 22 | [LCA in BST](questions/trees/lca_in_bst.md) | Easy ✅ |
+| 23 | [Lowest Common Ancestor](questions/trees/least_common_ancestor.md) | Medium ⚡ |
+| 24 | [Left View of Tree](questions/trees/left_view_of_tree.md) | Easy ✅ |
+| 25 | [Level Order Traversal](questions/trees/level_order_traversal.md) | Medium ⚡ |
+| 26 | [Max Path Sum Node to Node](questions/trees/max_path_sum_from_node_to_node.md) | Hard 🔥 |
+| 27 | [Max Path Sum Leaf to Leaf](questions/trees/max_path_sum_leaf_to_leaf.md) | Medium ⚡ |
+| 28 | [Populating Next Right Pointer](questions/trees/populating_next_right_pointer.md) | Medium ⚡ |
+| 29 | [Postorder Traversal](questions/trees/postorder_traversal.md) | Easy ✅ |
+| 30 | [Preorder Traversal](questions/trees/preorder_traversal.md) | Easy ✅ |
+| 31 | [Right View of Tree](questions/trees/right_view_of_tree.md) | Easy ✅ |
+| 32 | [Serialize and Deserialize](questions/trees/serialize_deserialize_binary_tree.md) | Hard 🔥 |
+| 33 | [Top View of Binary Tree](questions/trees/top_view_of_binary_tree.md) | Medium ⚡ |
+| 34 | [Vertical Order Traversal](questions/trees/vertical_order_traversal.md) | Medium ⚡ |
 
 </details>
 
@@ -356,7 +382,7 @@ Each problem follows this format:
 
 Track your progress with our **iterative learning path**:
 
-- [ ] **Arrays & Matrix** (25/25) - Foundation
+- [ ] **Arrays & Matrix** (28/28) - Foundation
 - [ ] **Strings** (8/8) - Building on Arrays  
 - [ ] **Linked Lists** (16/16) - Introduce Pointers
 - [ ] **Stacks & Queues** (9/9) - Linear Structures
@@ -365,7 +391,7 @@ Track your progress with our **iterative learning path**:
 - [ ] **Graphs** (13/13) - Advanced Structures
 - [ ] **Dynamic Programming** (23/23) - Master Optimization
 
-**Total: 132 Problems**
+**Total: 135 Problems**
 
 ---
 
