@@ -20,12 +20,12 @@ Welcome to my **comprehensive DSA Solutions Repository**! This repository contai
 ```
 questions/
 ├── arrays/               # Array & Matrix problems (28 problems)
-├── strings/              # String processing & algorithms (8+ problems)
-├── linked_lists/         # Linked List manipulations (16+ problems)
-├── stacks/               # Stack-based problems (9+ problems)
-├── trees/                # Binary Tree & BST problems (34+ problems)
-├── heaps/                # Heap & Priority Queue problems (4+ problems)
-├── graphs/               # Graph algorithms & traversals (13+ problems)
+├── strings/              # String processing & algorithms (8 problems)
+├── linked_lists/         # Linked List manipulations (16 problems)
+├── stacks/               # Stack-based problems (9 problems)
+├── trees/                # Binary Tree & BST problems (34 problems)
+├── heaps/                # Heap & Priority Queue problems (4 problems)
+├── graphs/               # Graph algorithms & traversals (13 problems)
 └── dynamic_programming/  # DP problems with detailed explanations (23 problems)
 ```
 
