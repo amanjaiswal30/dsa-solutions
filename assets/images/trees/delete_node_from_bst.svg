@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#fff}
+  .prob{font:13px sans-serif;fill:#333;text-anchor:middle;dominant-baseline:middle}
+  .sec{font:bold 13px sans-serif;fill:#333}
+  .nd{fill:#ddeeff;stroke:#6699cc;stroke-width:2}
+  .edge{stroke:#999;stroke-width:2;fill:none}
+  .lbl{font:12px monospace;text-anchor:middle;dominant-baseline:middle}
+  .cmp{font:12px sans-serif;fill:#555}
+  .ins{font:12px sans-serif;fill:#666;font-style:italic}
+  .tbl{font:12px sans-serif;fill:#333}
+  @keyframes ndVisit0{0%,10%{fill:#ddeeff}20%,40%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit1{0%,20%{fill:#ddeeff}30%,50%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes delNode{0%,15%{fill:#ddeeff;stroke:#6699cc;stroke-width:2}25%,55%{fill:#ff6b6b;stroke:#c0392b;stroke-width:3}65%,100%{fill:#ddeeff;stroke:#6699cc;stroke-width:2}}
+  @keyframes succNode{0%,35%{fill:#ddeeff;stroke:#6699cc;stroke-width:2}50%,75%{fill:#90ee90;stroke:#27AE60;stroke-width:3}85%,100%{fill:#ddeeff;stroke:#6699cc;stroke-width:2}}
+  @keyframes sl0{0%,15%{opacity:0}20%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl1{0%,25%{opacity:0}30%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl2{0%,35%{opacity:0}40%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl3{0%,45%{opacity:0}50%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl4{0%,55%{opacity:0}60%,90%{opacity:1}100%{opacity:0}}
+  .n0{animation:ndVisit0 5s infinite}
+  .n1{animation:ndVisit1 5s infinite}
+  .delNd{animation:delNode 5s infinite}
+  .succNd{animation:succNode 5s infinite}
+</style>
+<rect width="900" height="690" fill="#f8f9fa"/>
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="30" class="title" text-anchor="middle" dominant-baseline="middle">Delete a Node from Binary Search Tree (BST)</text>
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="68" class="prob">BST: 5→{3→{1,4},7→{6,9}} | Delete 3 (two children): replace with inorder successor 4</text>
+
+<!-- Approach 1 block -->
+<rect x="16" y="92" width="868" height="218" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="30" y="110" class="sec" fill="#fff">Approach 1: O(h) — Recursive: navigate BST, handle 3 deletion cases</text>
+<text x="38" y="138" class="cmp" fill="#c0392b">• key &lt; root.val → delete from left subtree recursively</text>
+<text x="38" y="156" class="cmp" fill="#c0392b">• key &gt; root.val → delete from right subtree recursively</text>
+<text x="38" y="174" class="cmp" fill="#c0392b">• key == root.val: leaf→null; one child→return child;</text>
+<text x="38" y="192" class="cmp" fill="#c0392b">• two children → replace with inorder successor (min of right subtree)</text>
+
+<!-- Delete label -->
+<text x="410" y="126" class="cmp" fill="#c0392b" font-weight="bold">Delete key=3:</text>
+
+<!-- BST edges (Approach 1 tree) -->
+<line x1="660" y1="150" x2="610" y2="200" class="edge" stroke="#E74C3C" stroke-width="3" stroke-dasharray="5,3"/>
+<line x1="660" y1="150" x2="710" y2="200" class="edge"/>
+<line x1="610" y1="200" x2="585" y2="247" class="edge"/>
+<line x1="610" y1="200" x2="635" y2="247" class="edge"/>
+<line x1="710" y1="200" x2="685" y2="247" class="edge"/>
+<line x1="710" y1="200" x2="735" y2="247" class="edge"/>
+
+<!-- BST nodes (Approach 1) -->
+<circle cx="660" cy="150" r="22" class="nd n0"/><text x="660" y="150" class="lbl">5</text>
+<circle cx="610" cy="200" r="22" class="nd delNd"/><text x="610" y="200" class="lbl">3</text>
+<circle cx="710" cy="200" r="22" class="nd"/><text x="710" y="200" class="lbl">7</text>
+<circle cx="585" cy="247" r="22" class="nd"/><text x="585" y="247" class="lbl">1</text>
+<circle cx="635" cy="247" r="22" class="nd succNd"/><text x="635" y="247" class="lbl">4</text>
+<circle cx="685" cy="247" r="22" class="nd"/><text x="685" y="247" class="lbl">6</text>
+<circle cx="735" cy="247" r="22" class="nd"/><text x="735" y="247" class="lbl">9</text>
+
+<!-- Step labels (animated) -->
+<text x="410" y="158" class="cmp" fill="#c0392b" style="animation:sl0 5s infinite">key=3 &lt; 5 → go left</text>
+<text x="410" y="176" class="cmp" fill="#c0392b" style="animation:sl1 5s infinite">key=3 == 3 → node found!</text>
+<text x="410" y="194" class="cmp" fill="#c0392b" style="animation:sl2 5s infinite">Two children → min(right)=4 (successor)</text>
+<text x="410" y="212" class="cmp" fill="#27AE60" font-weight="bold" style="animation:sl3 5s infinite">Copy 4 → node 3, delete 4 from right ✓</text>
+
+<!-- Evolution arrow -->
+<line x1="450" y1="316" x2="450" y2="340" stroke="#f0c040" stroke-width="2"/>
+<polygon points="450,348 444,336 456,336" fill="#f0c040"/>
+<rect x="80" y="310" width="740" height="32" fill="#fffde7" stroke="#f0c040" stroke-width="1.5" rx="6"/>
+<text x="450" y="328" class="ins" text-anchor="middle" dominant-baseline="middle">Key Insight: Both O(h); iterative avoids recursion stack; inorder successor = leftmost node in right subtree</text>
+
+<!-- Approach 2 block -->
+<rect x="16" y="348" width="868" height="214" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="348" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="362" width="868" height="14" fill="#27AE60"/>
+<text x="30" y="366" class="sec" fill="#fff">Approach 2: O(h) — Iterative: parent pointer tracking, 3-case in-place reattachment</text>
+
+<!-- Iterative pseudocode -->
+<rect x="30" y="380" width="390" height="130" fill="#e8ffe8" stroke="#27AE60" rx="4"/>
+<text x="40" y="398" class="cmp" font-family="monospace" fill="#27AE60">curr=root, parent=null</text>
+<text x="40" y="416" class="cmp" font-family="monospace">while curr != null &amp;&amp; curr.val != key:</text>
+<text x="50" y="434" class="cmp" font-family="monospace">  parent = curr</text>
+<text x="50" y="452" class="cmp" font-family="monospace">  if key &lt; curr.val: curr=curr.left</text>
+<text x="50" y="470" class="cmp" font-family="monospace">  else: curr = curr.right</text>
+<text x="40" y="488" class="cmp" font-family="monospace">// reattach: parent.left/right = child</text>
+<text x="40" y="506" class="cmp" font-family="monospace" fill="#27AE60">// or find successor if two children</text>
+
+<!-- Result tree (after deleting 3, replaced by 4) -->
+<text x="490" y="385" class="cmp" fill="#27AE60" font-weight="bold">Result after delete(3):</text>
+<line x1="670" y1="405" x2="622" y2="452" class="edge"/>
+<line x1="670" y1="405" x2="718" y2="452" class="edge"/>
+<line x1="622" y1="452" x2="600" y2="498" class="edge"/>
+<line x1="718" y1="452" x2="694" y2="498" class="edge"/>
+<line x1="718" y1="452" x2="742" y2="498" class="edge"/>
+<!-- nodes -->
+<circle cx="670" cy="405" r="22" class="nd n0"/><text x="670" y="405" class="lbl">5</text>
+<circle cx="622" cy="452" r="22" class="nd" style="fill:#90ee90;stroke:#27AE60;stroke-width:2"/><text x="622" y="452" class="lbl">4</text>
+<circle cx="718" cy="452" r="22" class="nd"/><text x="718" y="452" class="lbl">7</text>
+<circle cx="600" cy="498" r="22" class="nd"/><text x="600" y="498" class="lbl">1</text>
+<circle cx="694" cy="498" r="22" class="nd"/><text x="694" y="498" class="lbl">6</text>
+<circle cx="742" cy="498" r="22" class="nd"/><text x="742" y="498" class="lbl">9</text>
+<text x="622" y="526" class="cmp" fill="#27AE60" text-anchor="middle" font-size="11">4 replaced 3 ✓</text>
+
+<!-- Complexity table -->
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="4"/>
+<rect x="16" y="578" width="868" height="24" fill="#f0f0f0" rx="4"/>
+<rect x="16" y="590" width="868" height="12" fill="#f0f0f0"/>
+<text x="200" y="592" class="tbl" text-anchor="middle" font-weight="bold">Approach</text>
+<text x="500" y="592" class="tbl" text-anchor="middle" font-weight="bold">Time</text>
+<text x="720" y="592" class="tbl" text-anchor="middle" font-weight="bold">Space</text>
+<rect x="16" y="602" width="868" height="24" fill="#fff5f5"/>
+<text x="200" y="616" class="tbl" text-anchor="middle">Recursive deletion</text>
+<text x="500" y="616" class="tbl" text-anchor="middle">O(h)</text>
+<text x="720" y="616" class="tbl" text-anchor="middle">O(h) call stack</text>
+<rect x="16" y="626" width="868" height="24" fill="#f0fff0"/>
+<text x="200" y="640" class="tbl" text-anchor="middle">Iterative with parent ptr</text>
+<text x="500" y="640" class="tbl" text-anchor="middle">O(h)</text>
+<text x="720" y="640" class="tbl" text-anchor="middle">O(1) space</text>
+<rect x="16" y="650" width="868" height="26" fill="#fff8e1"/>
+<text x="450" y="664" class="tbl" text-anchor="middle" fill="#e65100">h=O(log n) balanced, O(n) worst; inorder successor=min(right subtree); deletion always reduces to leaf or one-child case</text>
+</svg>

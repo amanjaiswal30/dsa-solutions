@@ -112,9 +112,9 @@
 <circle cx="360" cy="505" r="22" class="nd n3"/>
 <text x="360" y="505" class="lbl">2</text>
 <circle cx="335" cy="545" r="22" class="nd n4"/>
-<text x="335" cy="545" class="lbl">7</text>
+<text x="335" y="545" class="lbl">7</text>
 <circle cx="385" cy="545" r="22" class="nd n4"/>
-<text x="385" cy="545" class="lbl">4</text>
+<text x="385" y="545" class="lbl">4</text>
 <circle cx="540" cy="505" r="22" class="nd"/>
 <text x="540" y="505" class="lbl">0</text>
 <circle cx="600" cy="505" r="22" class="nd"/>

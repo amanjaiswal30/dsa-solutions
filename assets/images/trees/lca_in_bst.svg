@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#fff}
+  .prob{font:13px sans-serif;fill:#333;text-anchor:middle;dominant-baseline:middle}
+  .sec{font:bold 13px sans-serif;fill:#333}
+  .nd{fill:#ddeeff;stroke:#6699cc;stroke-width:2}
+  .edge{stroke:#999;stroke-width:2;fill:none}
+  .lbl{font:12px monospace;text-anchor:middle;dominant-baseline:middle}
+  .cmp{font:12px sans-serif;fill:#555}
+  .ins{font:12px sans-serif;fill:#666;font-style:italic}
+  .tbl{font:12px sans-serif;fill:#333}
+  @keyframes ndVisit0{0%,10%{fill:#ddeeff}20%,40%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit1{0%,20%{fill:#ddeeff}30%,50%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes lcaGlow{0%,40%{fill:#ddeeff;stroke:#6699cc;stroke-width:2}55%,80%{fill:#ffd700;stroke:#cc8800;stroke-width:3}90%,100%{fill:#ddeeff;stroke:#6699cc;stroke-width:2}}
+  @keyframes pqNode{0%,10%{fill:#ddeeff;stroke:#6699cc;stroke-width:2}20%,50%{fill:#ffcccc;stroke:#E74C3C;stroke-width:2.5}60%,100%{fill:#ddeeff;stroke:#6699cc;stroke-width:2}}
+  @keyframes sl0{0%,15%{opacity:0}20%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl1{0%,25%{opacity:0}30%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl2{0%,35%{opacity:0}40%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl3{0%,45%{opacity:0}50%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl4{0%,55%{opacity:0}60%,90%{opacity:1}100%{opacity:0}}
+  .n0{animation:ndVisit0 5s infinite}
+  .n1{animation:ndVisit1 5s infinite}
+  .lcaNd{animation:lcaGlow 5s infinite}
+  .pqNd{animation:pqNode 5s infinite}
+</style>
+<rect width="900" height="690" fill="#f8f9fa"/>
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="30" class="title" text-anchor="middle" dominant-baseline="middle">Lowest Common Ancestor (LCA) in BST</text>
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="68" class="prob">BST: 6→{2→{1,4},8→{7,9}} | LCA(1,4)=2 (split at 2), LCA(1,8)=6 (split at 6)</text>
+
+<!-- Approach 1 block -->
+<rect x="16" y="92" width="868" height="218" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="30" y="110" class="sec" fill="#fff">Approach 1: O(h) O(h) — Recursive: both &lt; root → go left; both &gt; root → go right; else root = LCA</text>
+<text x="38" y="138" class="cmp" fill="#c0392b">• If p.val &lt; root.val AND q.val &lt; root.val → LCA in left subtree</text>
+<text x="38" y="156" class="cmp" fill="#c0392b">• If p.val &gt; root.val AND q.val &gt; root.val → LCA in right subtree</text>
+<text x="38" y="174" class="cmp" fill="#c0392b">• Otherwise → current root is the split point = LCA</text>
+<text x="38" y="192" class="cmp" fill="#c0392b">• BST property eliminates need to search both subtrees</text>
+
+<!-- Find LCA(1,4) label -->
+<text x="410" y="126" class="cmp" fill="#c0392b" font-weight="bold">LCA(p=1, q=4):</text>
+
+<!-- BST edges (Approach 1) -->
+<line x1="660" y1="150" x2="610" y2="200" class="edge" stroke="#E74C3C" stroke-width="3" stroke-dasharray="5,3"/>
+<line x1="660" y1="150" x2="710" y2="200" class="edge"/>
+<line x1="610" y1="200" x2="585" y2="247" class="edge"/>
+<line x1="610" y1="200" x2="635" y2="247" class="edge"/>
+<line x1="710" y1="200" x2="685" y2="247" class="edge"/>
+<line x1="710" y1="200" x2="735" y2="247" class="edge"/>
+
+<!-- BST nodes (Approach 1) -->
+<circle cx="660" cy="150" r="22" class="nd n0"/><text x="660" y="150" class="lbl">6</text>
+<circle cx="610" cy="200" r="22" class="nd lcaNd"/><text x="610" y="200" class="lbl">2</text>
+<circle cx="710" cy="200" r="22" class="nd"/><text x="710" y="200" class="lbl">8</text>
+<circle cx="585" cy="247" r="22" class="nd pqNd"/><text x="585" y="247" class="lbl">1</text>
+<circle cx="635" cy="247" r="22" class="nd pqNd"/><text x="635" y="247" class="lbl">4</text>
+<circle cx="685" cy="247" r="22" class="nd"/><text x="685" y="247" class="lbl">7</text>
+<circle cx="735" cy="247" r="22" class="nd"/><text x="735" y="247" class="lbl">9</text>
+
+<!-- p, q labels -->
+<text x="585" y="270" class="cmp" fill="#E74C3C" text-anchor="middle" font-size="11">p</text>
+<text x="635" y="270" class="cmp" fill="#E74C3C" text-anchor="middle" font-size="11">q</text>
+
+<!-- Step labels (animated) -->
+<text x="410" y="158" class="cmp" fill="#c0392b" style="animation:sl0 5s infinite">root=6: both 1&lt;6 and 4&lt;6 → go left</text>
+<text x="410" y="176" class="cmp" fill="#c0392b" style="animation:sl1 5s infinite">root=2: 1&lt;2 but 4&gt;2 → split!</text>
+<text x="410" y="194" class="cmp" fill="#c0392b" style="animation:sl2 5s infinite">p and q on different sides</text>
+<text x="410" y="212" class="cmp" fill="#27AE60" font-weight="bold" style="animation:sl3 5s infinite">LCA(1,4) = 2 ✓</text>
+
+<!-- Evolution arrow -->
+<line x1="450" y1="316" x2="450" y2="340" stroke="#f0c040" stroke-width="2"/>
+<polygon points="450,348 444,336 456,336" fill="#f0c040"/>
+<rect x="80" y="310" width="740" height="32" fill="#fffde7" stroke="#f0c040" stroke-width="1.5" rx="6"/>
+<text x="450" y="328" class="ins" text-anchor="middle" dominant-baseline="middle">Key Insight: BST property lets us navigate directly without exploring both subtrees — O(h) with O(1) space iteratively</text>
+
+<!-- Approach 2 block -->
+<rect x="16" y="348" width="868" height="214" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="348" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="362" width="868" height="14" fill="#27AE60"/>
+<text x="30" y="366" class="sec" fill="#fff">Approach 2: O(h) O(1) — Iterative: same split-point logic without recursion stack</text>
+
+<!-- Iterative pseudocode -->
+<rect x="30" y="380" width="390" height="130" fill="#e8ffe8" stroke="#27AE60" rx="4"/>
+<text x="40" y="398" class="cmp" font-family="monospace" fill="#27AE60">lowestCommonAncestor(root, p, q):</text>
+<text x="40" y="416" class="cmp" font-family="monospace">  curr = root</text>
+<text x="40" y="434" class="cmp" font-family="monospace">  while curr != null:</text>
+<text x="50" y="452" class="cmp" font-family="monospace">    if p.val&lt;curr.val &amp;&amp; q.val&lt;curr.val:</text>
+<text x="60" y="470" class="cmp" font-family="monospace">      curr = curr.left</text>
+<text x="50" y="488" class="cmp" font-family="monospace">    elif p.val&gt;curr.val &amp;&amp; q.val&gt;curr.val:</text>
+<text x="60" y="506" class="cmp" font-family="monospace" fill="#27AE60">      curr = curr.right</text>
+<text x="50" y="524" class="cmp" font-family="monospace" fill="#27AE60">    else: return curr  ← split point</text>
+
+<!-- LCA(1,8) example tree on right -->
+<text x="490" y="385" class="cmp" fill="#27AE60" font-weight="bold">LCA(p=1, q=8) = 6:</text>
+<line x1="670" y1="410" x2="622" y2="455" class="edge"/>
+<line x1="670" y1="410" x2="718" y2="455" class="edge"/>
+<line x1="622" y1="455" x2="600" y2="500" class="edge"/>
+<line x1="622" y1="455" x2="644" y2="500" class="edge"/>
+<line x1="718" y1="455" x2="696" y2="500" class="edge"/>
+<line x1="718" y1="455" x2="740" y2="500" class="edge"/>
+<!-- nodes -->
+<circle cx="670" cy="410" r="22" class="nd lcaNd"/><text x="670" y="410" class="lbl">6</text>
+<circle cx="622" cy="455" r="22" class="nd"/><text x="622" y="455" class="lbl">2</text>
+<circle cx="718" cy="455" r="22" class="nd"/><text x="718" y="455" class="lbl">8</text>
+<circle cx="600" cy="500" r="22" class="nd pqNd"/><text x="600" y="500" class="lbl">1</text>
+<circle cx="644" cy="500" r="22" class="nd"/><text x="644" y="500" class="lbl">4</text>
+<circle cx="696" cy="500" r="22" class="nd"/><text x="696" y="500" class="lbl">7</text>
+<circle cx="740" cy="500" r="22" class="nd pqNd"/><text x="740" y="500" class="lbl">9</text>
+
+<!-- p, q labels for approach 2 -->
+<text x="600" y="523" class="cmp" fill="#27AE60" text-anchor="middle" font-size="11">p</text>
+<text x="740" y="523" class="cmp" fill="#27AE60" text-anchor="middle" font-size="11">q</text>
+<text x="670" y="435" class="cmp" fill="#27AE60" text-anchor="middle" font-size="11" font-weight="bold">LCA=6 ✓</text>
+<text x="670" y="450" class="cmp" fill="#555" text-anchor="middle" font-size="10">(1&lt;6 but 9&gt;6 → split)</text>
+
+<!-- Complexity table -->
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="4"/>
+<rect x="16" y="578" width="868" height="24" fill="#f0f0f0" rx="4"/>
+<rect x="16" y="590" width="868" height="12" fill="#f0f0f0"/>
+<text x="200" y="592" class="tbl" text-anchor="middle" font-weight="bold">Approach</text>
+<text x="500" y="592" class="tbl" text-anchor="middle" font-weight="bold">Time</text>
+<text x="720" y="592" class="tbl" text-anchor="middle" font-weight="bold">Space</text>
+<rect x="16" y="602" width="868" height="24" fill="#fff5f5"/>
+<text x="200" y="616" class="tbl" text-anchor="middle">Recursive</text>
+<text x="500" y="616" class="tbl" text-anchor="middle">O(h)</text>
+<text x="720" y="616" class="tbl" text-anchor="middle">O(h) call stack</text>
+<rect x="16" y="626" width="868" height="24" fill="#f0fff0"/>
+<text x="200" y="640" class="tbl" text-anchor="middle">Iterative (preferred)</text>
+<text x="500" y="640" class="tbl" text-anchor="middle">O(h)</text>
+<text x="720" y="640" class="tbl" text-anchor="middle">O(1) space</text>
+<rect x="16" y="650" width="868" height="26" fill="#fff8e1"/>
+<text x="450" y="664" class="tbl" text-anchor="middle" fill="#e65100">h=O(log n) balanced, O(n) worst; BST LCA is O(h) vs O(n) for general binary tree; a node is ancestor of itself</text>
+</svg>

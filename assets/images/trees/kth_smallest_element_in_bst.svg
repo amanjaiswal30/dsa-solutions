@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#fff}
+  .prob{font:13px sans-serif;fill:#333;text-anchor:middle;dominant-baseline:middle}
+  .sec{font:bold 13px sans-serif;fill:#333}
+  .nd{fill:#ddeeff;stroke:#6699cc;stroke-width:2}
+  .edge{stroke:#999;stroke-width:2;fill:none}
+  .lbl{font:12px monospace;text-anchor:middle;dominant-baseline:middle}
+  .cmp{font:12px sans-serif;fill:#555}
+  .ins{font:12px sans-serif;fill:#666;font-style:italic}
+  .tbl{font:12px sans-serif;fill:#333}
+  @keyframes ndVisit0{0%,10%{fill:#ddeeff}20%,40%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit1{0%,20%{fill:#ddeeff}30%,50%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit2{0%,30%{fill:#ddeeff}40%,60%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes kthNode{0%,45%{fill:#ddeeff;stroke:#6699cc;stroke-width:2}55%,80%{fill:#90ee90;stroke:#27AE60;stroke-width:3}90%,100%{fill:#ddeeff;stroke:#6699cc;stroke-width:2}}
+  @keyframes sl0{0%,15%{opacity:0}20%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl1{0%,25%{opacity:0}30%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl2{0%,35%{opacity:0}40%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl3{0%,45%{opacity:0}50%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl4{0%,55%{opacity:0}60%,90%{opacity:1}100%{opacity:0}}
+  .n0{animation:ndVisit0 5s infinite}
+  .n1{animation:ndVisit1 5s infinite}
+  .n2{animation:ndVisit2 5s infinite}
+  .kthNd{animation:kthNode 5s infinite}
+</style>
+<rect width="900" height="690" fill="#f8f9fa"/>
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="30" class="title" text-anchor="middle" dominant-baseline="middle">Kth Smallest Element in a Binary Search Tree</text>
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="68" class="prob">BST: 4→{2→{1,3},6→{5,7}} | k=3 | Inorder: [1,2,3,4,5,6,7] → 3rd smallest = 3</text>
+
+<!-- Approach 1 block -->
+<rect x="16" y="92" width="868" height="218" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="30" y="110" class="sec" fill="#fff">Approach 1: O(h+k) O(h) — Recursive Inorder: left → visit(count) → right, stop at k</text>
+<text x="38" y="138" class="cmp" fill="#c0392b">• Inorder traversal visits nodes in ascending order (BST property)</text>
+<text x="38" y="156" class="cmp" fill="#c0392b">• Keep a counter; increment on each visit</text>
+<text x="38" y="174" class="cmp" fill="#c0392b">• When counter == k, record result and stop traversal</text>
+<text x="38" y="192" class="cmp" fill="#c0392b">• Recurse: inorder(left) → count++ → inorder(right)</text>
+
+<!-- Inorder traversal order labels -->
+<text x="410" y="126" class="cmp" fill="#c0392b" font-weight="bold">k=3, inorder(root):</text>
+
+<!-- BST edges (Approach 1) -->
+<line x1="660" y1="150" x2="610" y2="200" class="edge"/>
+<line x1="660" y1="150" x2="710" y2="200" class="edge"/>
+<line x1="610" y1="200" x2="585" y2="247" class="edge"/>
+<line x1="610" y1="200" x2="635" y2="247" class="edge"/>
+<line x1="710" y1="200" x2="685" y2="247" class="edge"/>
+<line x1="710" y1="200" x2="735" y2="247" class="edge"/>
+
+<!-- BST nodes (Approach 1) -->
+<circle cx="660" cy="150" r="22" class="nd"/><text x="660" y="150" class="lbl">4</text>
+<circle cx="610" cy="200" r="22" class="nd n0"/><text x="610" y="200" class="lbl">2</text>
+<circle cx="710" cy="200" r="22" class="nd"/><text x="710" y="200" class="lbl">6</text>
+<circle cx="585" cy="247" r="22" class="nd n1"/><text x="585" y="247" class="lbl">1</text>
+<circle cx="635" cy="247" r="22" class="nd kthNd"/><text x="635" y="247" class="lbl">3</text>
+<circle cx="685" cy="247" r="22" class="nd"/><text x="685" y="247" class="lbl">5</text>
+<circle cx="735" cy="247" r="22" class="nd"/><text x="735" y="247" class="lbl">7</text>
+
+<!-- Order labels on nodes -->
+<text x="585" y="268" class="cmp" fill="#c0392b" text-anchor="middle" font-size="10">①</text>
+<text x="610" y="221" class="cmp" fill="#c0392b" text-anchor="middle" font-size="10">②</text>
+<text x="635" y="268" class="cmp" fill="#27AE60" text-anchor="middle" font-size="10" font-weight="bold">③=k</text>
+
+<!-- Step labels (animated) -->
+<text x="410" y="158" class="cmp" fill="#c0392b" style="animation:sl0 5s infinite">Visit 1 (count=1): 1 &lt; k=3, continue</text>
+<text x="410" y="176" class="cmp" fill="#c0392b" style="animation:sl1 5s infinite">Visit 2 (count=2): 2 &lt; k=3, continue</text>
+<text x="410" y="194" class="cmp" fill="#c0392b" style="animation:sl2 5s infinite">Visit 3 (count=3): count==k → result=3</text>
+<text x="410" y="212" class="cmp" fill="#27AE60" font-weight="bold" style="animation:sl3 5s infinite">Return 3 as kth smallest ✓</text>
+
+<!-- Evolution arrow -->
+<line x1="450" y1="316" x2="450" y2="340" stroke="#f0c040" stroke-width="2"/>
+<polygon points="450,348 444,336 456,336" fill="#f0c040"/>
+<rect x="80" y="310" width="740" height="32" fill="#fffde7" stroke="#f0c040" stroke-width="1.5" rx="6"/>
+<text x="450" y="328" class="ins" text-anchor="middle" dominant-baseline="middle">Key Insight: BST inorder = sorted order; iterative avoids recursion by using explicit stack; early exit at count==k</text>
+
+<!-- Approach 2 block -->
+<rect x="16" y="348" width="868" height="214" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="348" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="362" width="868" height="14" fill="#27AE60"/>
+<text x="30" y="366" class="sec" fill="#fff">Approach 2: O(h+k) O(h) — Iterative Inorder with explicit stack</text>
+
+<!-- Iterative pseudocode -->
+<rect x="30" y="380" width="390" height="148" fill="#e8ffe8" stroke="#27AE60" rx="4"/>
+<text x="40" y="398" class="cmp" font-family="monospace" fill="#27AE60">stack=[], curr=root, count=0</text>
+<text x="40" y="416" class="cmp" font-family="monospace">while curr != null or stack not empty:</text>
+<text x="50" y="434" class="cmp" font-family="monospace">  while curr != null:</text>
+<text x="60" y="452" class="cmp" font-family="monospace">    stack.push(curr)</text>
+<text x="60" y="470" class="cmp" font-family="monospace">    curr = curr.left</text>
+<text x="50" y="488" class="cmp" font-family="monospace">  curr = stack.pop()</text>
+<text x="50" y="506" class="cmp" font-family="monospace">  count++</text>
+<text x="50" y="524" class="cmp" font-family="monospace" fill="#27AE60">  if count==k: return curr.val</text>
+
+<!-- Stack simulation visual -->
+<text x="490" y="385" class="cmp" fill="#27AE60" font-weight="bold">Stack trace (k=3):</text>
+
+<!-- Stack boxes -->
+<text x="490" y="405" class="cmp" fill="#555">push: 4→2→1 (go left)</text>
+<text x="490" y="423" class="cmp" fill="#555">pop 1 → count=1 (1&lt;k)</text>
+<text x="490" y="441" class="cmp" fill="#555">pop 2 → count=2 (2&lt;k)</text>
+<text x="490" y="459" class="cmp" fill="#555">push 3 (right of 2), pop 3</text>
+<text x="490" y="477" class="cmp" fill="#27AE60" font-weight="bold">→ count=3 == k → return 3 ✓</text>
+
+<!-- Inorder sequence display -->
+<text x="490" y="505" class="cmp" fill="#555">Inorder sequence:</text>
+<rect x="490" y="510" width="32" height="24" fill="#ddeeff" stroke="#6699cc"/>
+<rect x="522" y="510" width="32" height="24" fill="#ddeeff" stroke="#6699cc"/>
+<rect x="554" y="510" width="32" height="24" fill="#90ee90" stroke="#27AE60" stroke-width="2"/>
+<rect x="586" y="510" width="32" height="24" fill="#ddeeff" stroke="#6699cc"/>
+<rect x="618" y="510" width="32" height="24" fill="#ddeeff" stroke="#6699cc"/>
+<rect x="650" y="510" width="32" height="24" fill="#ddeeff" stroke="#6699cc"/>
+<rect x="682" y="510" width="32" height="24" fill="#ddeeff" stroke="#6699cc"/>
+<text x="506" y="526" class="lbl">1</text>
+<text x="538" y="526" class="lbl">2</text>
+<text x="570" y="526" class="lbl" fill="#27AE60">3</text>
+<text x="602" y="526" class="lbl">4</text>
+<text x="634" y="526" class="lbl">5</text>
+<text x="666" y="526" class="lbl">6</text>
+<text x="698" y="526" class="lbl">7</text>
+<text x="570" y="548" class="cmp" fill="#27AE60" text-anchor="middle" font-size="11" font-weight="bold">↑ k=3</text>
+
+<!-- Complexity table -->
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="4"/>
+<rect x="16" y="578" width="868" height="24" fill="#f0f0f0" rx="4"/>
+<rect x="16" y="590" width="868" height="12" fill="#f0f0f0"/>
+<text x="200" y="592" class="tbl" text-anchor="middle" font-weight="bold">Approach</text>
+<text x="500" y="592" class="tbl" text-anchor="middle" font-weight="bold">Time</text>
+<text x="720" y="592" class="tbl" text-anchor="middle" font-weight="bold">Space</text>
+<rect x="16" y="602" width="868" height="24" fill="#fff5f5"/>
+<text x="200" y="616" class="tbl" text-anchor="middle">Recursive inorder</text>
+<text x="500" y="616" class="tbl" text-anchor="middle">O(h + k)</text>
+<text x="720" y="616" class="tbl" text-anchor="middle">O(h) call stack</text>
+<rect x="16" y="626" width="868" height="24" fill="#f0fff0"/>
+<text x="200" y="640" class="tbl" text-anchor="middle">Iterative with stack</text>
+<text x="500" y="640" class="tbl" text-anchor="middle">O(h + k)</text>
+<text x="720" y="640" class="tbl" text-anchor="middle">O(h) stack</text>
+<rect x="16" y="650" width="868" height="26" fill="#fff8e1"/>
+<text x="450" y="664" class="tbl" text-anchor="middle" fill="#e65100">h=O(log n) balanced, O(n) worst; early exit at count==k; augmented BST with subtree sizes → O(h) time</text>
+</svg>

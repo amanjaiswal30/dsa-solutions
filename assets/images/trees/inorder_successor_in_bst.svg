@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" width="900" height="690">
+<style>
+  .title{font:bold 18px sans-serif;fill:#fff}
+  .prob{font:13px sans-serif;fill:#333;text-anchor:middle;dominant-baseline:middle}
+  .sec{font:bold 13px sans-serif;fill:#333}
+  .nd{fill:#ddeeff;stroke:#6699cc;stroke-width:2}
+  .edge{stroke:#999;stroke-width:2;fill:none}
+  .lbl{font:12px monospace;text-anchor:middle;dominant-baseline:middle}
+  .cmp{font:12px sans-serif;fill:#555}
+  .ins{font:12px sans-serif;fill:#666;font-style:italic}
+  .tbl{font:12px sans-serif;fill:#333}
+  @keyframes ndVisit0{0%,10%{fill:#ddeeff}20%,40%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit1{0%,20%{fill:#ddeeff}30%,50%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes ndVisit2{0%,30%{fill:#ddeeff}40%,60%{fill:#ffd700}100%{fill:#ddeeff}}
+  @keyframes targetNode{0%,10%{fill:#ddeeff;stroke:#6699cc}20%,50%{fill:#ff9900;stroke:#e65100;stroke-width:3}60%,100%{fill:#ddeeff;stroke:#6699cc;stroke-width:2}}
+  @keyframes succGlow{0%,40%{fill:#ddeeff;stroke:#6699cc;stroke-width:2}55%,80%{fill:#90ee90;stroke:#27AE60;stroke-width:3}90%,100%{fill:#ddeeff;stroke:#6699cc;stroke-width:2}}
+  @keyframes sl0{0%,15%{opacity:0}20%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl1{0%,25%{opacity:0}30%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl2{0%,35%{opacity:0}40%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl3{0%,45%{opacity:0}50%,90%{opacity:1}100%{opacity:0}}
+  @keyframes sl4{0%,55%{opacity:0}60%,90%{opacity:1}100%{opacity:0}}
+  .n0{animation:ndVisit0 5s infinite}
+  .n1{animation:ndVisit1 5s infinite}
+  .n2{animation:ndVisit2 5s infinite}
+  .tgtNd{animation:targetNode 5s infinite}
+  .succNd{animation:succGlow 5s infinite}
+</style>
+<rect width="900" height="690" fill="#f8f9fa"/>
+<rect width="900" height="52" fill="#1a1a2e" rx="8"/>
+<rect y="44" width="900" height="8" fill="#1a1a2e"/>
+<text x="450" y="30" class="title" text-anchor="middle" dominant-baseline="middle">Inorder Successor in a Binary Search Tree</text>
+<rect y="52" width="900" height="32" fill="#eef2ff"/>
+<text x="450" y="68" class="prob">BST: 5→{3→{1,4},7→{6,9}} | successor(4)=5 (no right child, last left-turn ancestor)</text>
+
+<!-- Approach 1 block -->
+<rect x="16" y="92" width="868" height="218" fill="#fff5f5" stroke="#E74C3C" stroke-width="1.5" rx="6"/>
+<rect x="16" y="92" width="868" height="28" fill="#E74C3C" rx="6"/>
+<rect x="16" y="106" width="868" height="14" fill="#E74C3C"/>
+<text x="30" y="110" class="sec" fill="#fff">Approach 1: O(h) O(1) — Iterative: use BST property, track last left-turn as candidate</text>
+<text x="38" y="138" class="cmp" fill="#c0392b">• Start from root, successor = null</text>
+<text x="38" y="156" class="cmp" fill="#c0392b">• if p.val &lt; curr.val → curr could be successor, go left</text>
+<text x="38" y="174" class="cmp" fill="#c0392b">• if p.val &gt;= curr.val → successor must be to right, go right</text>
+<text x="38" y="192" class="cmp" fill="#c0392b">• Return last saved successor when curr becomes null</text>
+
+<!-- Find successor(4) label -->
+<text x="410" y="126" class="cmp" fill="#c0392b" font-weight="bold">successor(p=4):</text>
+
+<!-- BST edges (Approach 1) -->
+<line x1="660" y1="150" x2="610" y2="200" class="edge"/>
+<line x1="660" y1="150" x2="710" y2="200" class="edge"/>
+<line x1="610" y1="200" x2="585" y2="247" class="edge"/>
+<line x1="610" y1="200" x2="635" y2="247" class="edge"/>
+<line x1="710" y1="200" x2="685" y2="247" class="edge"/>
+<line x1="710" y1="200" x2="735" y2="247" class="edge"/>
+<!-- traversal path highlight -->
+<line x1="660" y1="150" x2="610" y2="200" stroke="#E74C3C" stroke-width="3" stroke-dasharray="5,3"/>
+<line x1="610" y1="200" x2="635" y2="247" stroke="#E74C3C" stroke-width="3" stroke-dasharray="5,3"/>
+
+<!-- BST nodes -->
+<circle cx="660" cy="150" r="22" class="nd n0"/><text x="660" y="150" class="lbl">5</text>
+<circle cx="610" cy="200" r="22" class="nd n1"/><text x="610" y="200" class="lbl">3</text>
+<circle cx="710" cy="200" r="22" class="nd"/><text x="710" y="200" class="lbl">7</text>
+<circle cx="585" cy="247" r="22" class="nd"/><text x="585" y="247" class="lbl">1</text>
+<circle cx="635" cy="247" r="22" class="nd tgtNd"/><text x="635" y="247" class="lbl">4</text>
+<circle cx="685" cy="247" r="22" class="nd"/><text x="685" y="247" class="lbl">6</text>
+<circle cx="735" cy="247" r="22" class="nd"/><text x="735" y="247" class="lbl">9</text>
+
+<!-- Step labels (animated) -->
+<text x="410" y="158" class="cmp" fill="#c0392b" style="animation:sl0 5s infinite">curr=5: 4&lt;5 → successor=5, go left</text>
+<text x="410" y="176" class="cmp" fill="#c0392b" style="animation:sl1 5s infinite">curr=3: 4&gt;=3 → go right (no save)</text>
+<text x="410" y="194" class="cmp" fill="#c0392b" style="animation:sl2 5s infinite">curr=4: 4&gt;=4 → go right → null</text>
+<text x="410" y="212" class="cmp" fill="#27AE60" font-weight="bold" style="animation:sl3 5s infinite">Return successor=5 ✓</text>
+
+<!-- Evolution arrow -->
+<line x1="450" y1="316" x2="450" y2="340" stroke="#f0c040" stroke-width="2"/>
+<polygon points="450,348 444,336 456,336" fill="#f0c040"/>
+<rect x="80" y="310" width="740" height="32" fill="#fffde7" stroke="#f0c040" stroke-width="1.5" rx="6"/>
+<text x="450" y="328" class="ins" text-anchor="middle" dominant-baseline="middle">Key Insight: If p has right child → successor = leftmost(right subtree). Otherwise = highest ancestor where p is in left subtree.</text>
+
+<!-- Approach 2 block -->
+<rect x="16" y="348" width="868" height="214" fill="#f0fff0" stroke="#27AE60" stroke-width="1.5" rx="6"/>
+<rect x="16" y="348" width="868" height="28" fill="#27AE60" rx="6"/>
+<rect x="16" y="362" width="868" height="14" fill="#27AE60"/>
+<text x="30" y="366" class="sec" fill="#fff">Approach 2: O(h) O(h) — Recursive: if p.val &gt;= root, go right; else left result or root</text>
+
+<!-- Recursive pseudocode -->
+<rect x="30" y="380" width="390" height="130" fill="#e8ffe8" stroke="#27AE60" rx="4"/>
+<text x="40" y="398" class="cmp" font-family="monospace" fill="#27AE60">inorderSuccessor(root, p):</text>
+<text x="40" y="416" class="cmp" font-family="monospace">  if root == null: return null</text>
+<text x="40" y="434" class="cmp" font-family="monospace">  if p.val &gt;= root.val:</text>
+<text x="50" y="452" class="cmp" font-family="monospace">    return inorderSuccessor(root.right, p)</text>
+<text x="40" y="470" class="cmp" font-family="monospace">  else:</text>
+<text x="50" y="488" class="cmp" font-family="monospace">    left = inorderSuccessor(root.left, p)</text>
+<text x="50" y="506" class="cmp" font-family="monospace" fill="#27AE60">    return left != null ? left : root</text>
+
+<!-- BST with right-child case: successor(6) = leftmost(right subtree of 6's parent? no, 6 has right child? no) -->
+<!-- Let's show successor(6) case: 6 has no right child. Successor = 7 -->
+<text x="490" y="385" class="cmp" fill="#27AE60" font-weight="bold">successor(p=6) = 7:</text>
+<line x1="670" y1="410" x2="622" y2="455" class="edge"/>
+<line x1="670" y1="410" x2="718" y2="455" class="edge"/>
+<line x1="622" y1="455" x2="600" y2="500" class="edge"/>
+<line x1="622" y1="455" x2="644" y2="500" class="edge"/>
+<line x1="718" y1="455" x2="696" y2="500" class="edge"/>
+<line x1="718" y1="455" x2="740" y2="500" class="edge"/>
+<!-- highlight path -->
+<line x1="670" y1="410" x2="718" y2="455" stroke="#27AE60" stroke-width="3" stroke-dasharray="4,2"/>
+<!-- nodes -->
+<circle cx="670" cy="410" r="22" class="nd n0"/><text x="670" y="410" class="lbl">5</text>
+<circle cx="622" cy="455" r="22" class="nd"/><text x="622" y="455" class="lbl">3</text>
+<circle cx="718" cy="455" r="22" class="nd succNd"/><text x="718" y="455" class="lbl">7</text>
+<circle cx="600" cy="500" r="22" class="nd"/><text x="600" y="500" class="lbl">1</text>
+<circle cx="644" cy="500" r="22" class="nd"/><text x="644" y="500" class="lbl">4</text>
+<circle cx="696" cy="500" r="22" class="nd tgtNd"/><text x="696" y="500" class="lbl">6</text>
+<circle cx="740" cy="500" r="22" class="nd"/><text x="740" y="500" class="lbl">9</text>
+<text x="718" y="530" class="cmp" fill="#27AE60" text-anchor="middle" font-size="11">7 is successor of 6 ✓</text>
+
+<!-- Complexity table -->
+<rect x="16" y="578" width="868" height="98" fill="#fff" stroke="#ddd" stroke-width="1" rx="4"/>
+<rect x="16" y="578" width="868" height="24" fill="#f0f0f0" rx="4"/>
+<rect x="16" y="590" width="868" height="12" fill="#f0f0f0"/>
+<text x="200" y="592" class="tbl" text-anchor="middle" font-weight="bold">Approach</text>
+<text x="500" y="592" class="tbl" text-anchor="middle" font-weight="bold">Time</text>
+<text x="720" y="592" class="tbl" text-anchor="middle" font-weight="bold">Space</text>
+<rect x="16" y="602" width="868" height="24" fill="#fff5f5"/>
+<text x="200" y="616" class="tbl" text-anchor="middle">Iterative (BST property)</text>
+<text x="500" y="616" class="tbl" text-anchor="middle">O(h)</text>
+<text x="720" y="616" class="tbl" text-anchor="middle">O(1)</text>
+<rect x="16" y="626" width="868" height="24" fill="#f0fff0"/>
+<text x="200" y="640" class="tbl" text-anchor="middle">Recursive</text>
+<text x="500" y="640" class="tbl" text-anchor="middle">O(h)</text>
+<text x="720" y="640" class="tbl" text-anchor="middle">O(h) stack</text>
+<rect x="16" y="650" width="868" height="26" fill="#fff8e1"/>
+<text x="450" y="664" class="tbl" text-anchor="middle" fill="#e65100">h=O(log n) balanced, O(n) worst; if p has right child → leftmost(right); else → highest left-ancestor</text>
+</svg>
