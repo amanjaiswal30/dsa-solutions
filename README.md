@@ -51,6 +51,7 @@ questions/
 
 | # | Problem | Difficulty | 
 |---|---------|------------|
+| **Easy Problems (7)** |||
 | 1 | [Missing Number](questions/arrays/missing_number.md) | Easy ✅ |
 | 2 | [Insert in Sorted Array](questions/arrays/insert_in_sorted_array.md) | Easy ✅ |
 | 3 | [Second Largest Element](questions/arrays/second_largest.md) | Easy ✅ |
@@ -58,6 +59,7 @@ questions/
 | 5 | [Subarray with Given Sum](questions/arrays/subarray_sum.md) | Easy ✅ |
 | 6 | [Max Consecutive Ones](questions/arrays/max_consecutive_ones.md) | Easy ✅ |
 | 7 | [Tic Tac Toe Winner](questions/arrays/tic_tac_toe.md) | Easy ✅ |
+| **Medium Problems (17)** |||
 | 8 | [Sort Array of 0s, 1s, 2s](questions/arrays/sort012.md) | Medium ⚡ |
 | 9 | [Majority Element](questions/arrays/majority_element.md) | Medium ⚡ |
 | 10 | [3Sum](questions/arrays/3-sum.md) | Medium ⚡ |
@@ -75,6 +77,7 @@ questions/
 | 22 | [Search in Rotated Array](questions/arrays/search_in_rotated_sorted_array.md) | Medium ⚡ |
 | 23 | [First & Last Position](questions/arrays/first_and_last_position_in_sorted_array.md) | Medium ⚡ |
 | 24 | [Minimum in Rotated Array](questions/arrays/minimum_in_rotated_sorted_array.md) | Medium ⚡ |
+| **Hard Problems (4)** |||
 | 25 | [Median of Two Sorted Arrays](questions/arrays/median_of_two_sorted_arrays.md) | Hard 🔥 |
 | 26 | [First Missing Positive](questions/arrays/missing_positive.md) | Hard 🔥 |
 | 27 | [Merge Intervals](questions/arrays/merge_intervals.md) | Hard 🔥 |
@@ -96,14 +99,17 @@ questions/
 
 | # | Problem | Difficulty |
 |---|---------|------------|
+| **Easy Problems (1)** |||
 | 1 | [Binary Numbers 1 to N](questions/strings/1-n_binary-numbers.md) | Easy ✅ |
+| **Medium Problems (4)** |||
 | 2 | [First Non-Repeating Character](questions/strings/first_non_repeating_character_in_a_stream.md) | Medium ⚡ |
 | 3 | [Group Anagrams](questions/strings/group_anagrams.md) | Medium ⚡ |
 | 4 | [Longest Substring Without Repeating](questions/strings/longest_substring_without_repeating_characters.md) | Medium ⚡ |
 | 5 | [No Adjacent Characters](questions/strings/no_adjacent_characters_together.md) | Medium ⚡ |
-| 6 | [Minimum Window Substring](questions/strings/minimum_window_substring.md) | Hard 🔥 |
-| 7 | [Sliding Window Maximum](questions/strings/sliding_window_maximum.md) | Hard 🔥 |
-| 8 | [Longest Duplicate Substring](questions/strings/longest_duplicate_substring.md) | Hard 🔥 |
+| **Hard Problems (3)** |||
+| 6 | [Longest Duplicate Substring](questions/strings/longest_duplicate_substring.md) | Hard 🔥 |
+| 7 | [Minimum Window Substring](questions/strings/minimum_window_substring.md) | Hard 🔥 |
+| 8 | [Sliding Window Maximum](questions/strings/sliding_window_maximum.md) | Hard 🔥 |
 
 </details>
 
@@ -122,22 +128,25 @@ questions/
 
 | # | Problem | Difficulty |
 |---|---------|------------|
+| **Easy Problems (2)** |||
 | 1 | [Middle of Linked List](questions/linked_lists/linked_list_middle.md) | Easy ✅ |
 | 2 | [Reverse Linked List](questions/linked_lists/reverse_linked_list.md) | Easy ✅ |
-| 3 | [Remove Nth Node from End](questions/linked_lists/remove_nth_node_from_end.md) | Medium ⚡ |
-| 4 | [Rotate Linked List](questions/linked_lists/rotate_linked_list.md) | Medium ⚡ |
-| 5 | [Palindrome Linked List](questions/linked_lists/linked_list_pallindrome.md) | Medium ⚡ |
-| 6 | [Intersection Point](questions/linked_lists/linked_list_intersection.md) | Medium ⚡ |
-| 7 | [Add Two Numbers](questions/linked_lists/add_two_numbers_list.md) | Medium ⚡ |
-| 8 | [Clone Random Pointer List](questions/linked_lists/clone_linked_list.md) | Medium ⚡ |
-| 9 | [Delete M after N Nodes](questions/linked_lists/delete_m_nodes_after_n_nodes.md) | Medium ⚡ |
-| 10 | [Detect and Remove Loop](questions/linked_lists/detect_and_remove_loop.md) | Medium ⚡ |
-| 11 | [Length of Loop](questions/linked_lists/length_of_loop.md) | Medium ⚡ |
-| 12 | [Merge K Sorted Lists](questions/linked_lists/merge_k_sorted_list.md) | Hard 🔥 |
-| 13 | [Reorder List](questions/linked_lists/reorder_list.md) | Medium ⚡ |
-| 14 | [Reverse in Groups of K](questions/linked_lists/reverse_linked_list_group.md) | Hard 🔥 |
-| 15 | [Segregate Odd Even Values](questions/linked_lists/segregate_odd_even_list.md) | Medium ⚡ |
-| 16 | [Segregate Odd Even Positions](questions/linked_lists/segregate_odd_even_position.md) | Medium ⚡ |
+| **Medium Problems (12)** |||
+| 3 | [Add Two Numbers](questions/linked_lists/add_two_numbers_list.md) | Medium ⚡ |
+| 4 | [Clone Random Pointer List](questions/linked_lists/clone_linked_list.md) | Medium ⚡ |
+| 5 | [Delete M after N Nodes](questions/linked_lists/delete_m_nodes_after_n_nodes.md) | Medium ⚡ |
+| 6 | [Detect and Remove Loop](questions/linked_lists/detect_and_remove_loop.md) | Medium ⚡ |
+| 7 | [Intersection Point](questions/linked_lists/linked_list_intersection.md) | Medium ⚡ |
+| 8 | [Palindrome Linked List](questions/linked_lists/linked_list_pallindrome.md) | Medium ⚡ |
+| 9 | [Length of Loop](questions/linked_lists/length_of_loop.md) | Medium ⚡ |
+| 10 | [Remove Nth Node from End](questions/linked_lists/remove_nth_node_from_end.md) | Medium ⚡ |
+| 11 | [Reorder List](questions/linked_lists/reorder_list.md) | Medium ⚡ |
+| 12 | [Rotate Linked List](questions/linked_lists/rotate_linked_list.md) | Medium ⚡ |
+| 13 | [Segregate Odd Even Values](questions/linked_lists/segregate_odd_even_list.md) | Medium ⚡ |
+| 14 | [Segregate Odd Even Positions](questions/linked_lists/segregate_odd_even_position.md) | Medium ⚡ |
+| **Hard Problems (2)** |||
+| 15 | [Merge K Sorted Lists](questions/linked_lists/merge_k_sorted_list.md) | Hard 🔥 |
+| 16 | [Reverse in Groups of K](questions/linked_lists/reverse_linked_list_group.md) | Hard 🔥 |
 
 </details>
 
@@ -156,12 +165,15 @@ questions/
 
 | # | Problem | Difficulty |
 |---|---------|------------|
+| **Easy Problems (1)** |||
 | 1 | [Valid Parentheses](questions/stacks/valid_parenthesis.md) | Easy ✅ |
+| **Medium Problems (5)** |||
 | 2 | [Min Stack](questions/stacks/min_stack.md) | Medium ⚡ |
 | 3 | [Daily Temperatures](questions/stacks/daily_temperatures.md) | Medium ⚡ |
 | 4 | [Next Greater Element](questions/stacks/next_greater_element.md) | Medium ⚡ |
 | 5 | [Nearest Smallest Element](questions/stacks/nearest_smallest_element.md) | Medium ⚡ |
 | 6 | [Evaluate RPN](questions/stacks/evaluate_reverse_polish_notation.md) | Medium ⚡ |
+| **Hard Problems (3)** |||
 | 7 | [Largest Rectangle in Histogram](questions/stacks/largest_rectangle_in_histogram.md) | Hard 🔥 |
 | 8 | [Longest Valid Parentheses](questions/stacks/longest_valid_parenthesis.md) | Hard 🔥 |
 | 9 | [Trapping Rain Water](questions/stacks/trapping_rain_water.md) | Hard 🔥 |
@@ -184,40 +196,43 @@ questions/
 
 | # | Problem | Difficulty |
 |---|---------|------------|
-| 1 | [All Root to Leaf Paths](questions/trees/all_root_to_leaf_paths.md) | Medium ⚡ |
-| 2 | [Bottom View of Binary Tree](questions/trees/bottom_view_of_binary_tree.md) | Medium ⚡ |
-| 3 | [Burning Tree](questions/trees/burning_tree.md) | Medium ⚡ |
-| 4 | [Check BST](questions/trees/check_binary_search_tree.md) | Medium ⚡ |
-| 5 | [Check if Symmetric](questions/trees/check_if_binary_tree_is_symmetric.md) | Easy ✅ |
-| 6 | [Root to Leaf Path Sum](questions/trees/check_if_root_to_leaf_path_sum_exists.md) | Easy ✅ |
-| 7 | [Mirror Images](questions/trees/check_if_trees_are_mirror_images.md) | Easy ✅ |
-| 8 | [Check Sum Tree](questions/trees/check_sum_tree.md) | Medium ⚡ |
-| 9 | [Check if Balanced](questions/trees/check_tree_balanced.md) | Easy ✅ |
-| 10 | [Construct from Postorder](questions/trees/construct_binary_tree_from_postorder.md) | Medium ⚡ |
-| 11 | [Construct from Preorder](questions/trees/construct_binary_tree_from_preorder.md) | Medium ⚡ |
-| 12 | [Convert to Mirror Tree](questions/trees/convert_binary_tree_to_mirror_tree.md) | Easy ✅ |
-| 13 | [Delete Node from BST](questions/trees/delete_node_from_bst.md) | Medium ⚡ |
-| 14 | [Diameter of Tree](questions/trees/diameter_of_tree.md) | Easy ✅ |
-| 15 | [Distance Between Two Nodes](questions/trees/distance_between_two_nodes.md) | Medium ⚡ |
-| 16 | [Height of Tree](questions/trees/height_of_tree.md) | Easy ✅ |
-| 17 | [Inorder Successor in BST](questions/trees/inorder_successor_in_bst.md) | Medium ⚡ |
-| 18 | [Inorder Traversal](questions/trees/inorder_traversal.md) | Easy ✅ |
-| 19 | [Insert Node in BST](questions/trees/insert_node_in_bst.md) | Medium ⚡ |
-| 20 | [Invert Binary Tree](questions/trees/invert_binary_tree.md) | Easy ✅ |
-| 21 | [Kth Smallest Element in BST](questions/trees/kth_smallest_element_in_bst.md) | Medium ⚡ |
-| 22 | [LCA in BST](questions/trees/lca_in_bst.md) | Easy ✅ |
-| 23 | [Lowest Common Ancestor](questions/trees/least_common_ancestor.md) | Medium ⚡ |
-| 24 | [Left View of Tree](questions/trees/left_view_of_tree.md) | Easy ✅ |
-| 25 | [Level Order Traversal](questions/trees/level_order_traversal.md) | Medium ⚡ |
-| 26 | [Max Path Sum Node to Node](questions/trees/max_path_sum_from_node_to_node.md) | Hard 🔥 |
-| 27 | [Max Path Sum Leaf to Leaf](questions/trees/max_path_sum_leaf_to_leaf.md) | Medium ⚡ |
-| 28 | [Populating Next Right Pointer](questions/trees/populating_next_right_pointer.md) | Medium ⚡ |
-| 29 | [Postorder Traversal](questions/trees/postorder_traversal.md) | Easy ✅ |
-| 30 | [Preorder Traversal](questions/trees/preorder_traversal.md) | Easy ✅ |
-| 31 | [Right View of Tree](questions/trees/right_view_of_tree.md) | Easy ✅ |
-| 32 | [Serialize and Deserialize](questions/trees/serialize_deserialize_binary_tree.md) | Hard 🔥 |
-| 33 | [Top View of Binary Tree](questions/trees/top_view_of_binary_tree.md) | Medium ⚡ |
-| 34 | [Vertical Order Traversal](questions/trees/vertical_order_traversal.md) | Medium ⚡ |
+| **Easy Problems (14)** |||
+| 1 | [Check if Symmetric](questions/trees/check_if_binary_tree_is_symmetric.md) | Easy ✅ |
+| 2 | [Check if Balanced](questions/trees/check_tree_balanced.md) | Easy ✅ |
+| 3 | [Root to Leaf Path Sum](questions/trees/check_if_root_to_leaf_path_sum_exists.md) | Easy ✅ |
+| 4 | [Mirror Images](questions/trees/check_if_trees_are_mirror_images.md) | Easy ✅ |
+| 5 | [Convert to Mirror Tree](questions/trees/convert_binary_tree_to_mirror_tree.md) | Easy ✅ |
+| 6 | [Diameter of Tree](questions/trees/diameter_of_tree.md) | Easy ✅ |
+| 7 | [Height of Tree](questions/trees/height_of_tree.md) | Easy ✅ |
+| 8 | [Inorder Traversal](questions/trees/inorder_traversal.md) | Easy ✅ |
+| 9 | [Invert Binary Tree](questions/trees/invert_binary_tree.md) | Easy ✅ |
+| 10 | [LCA in BST](questions/trees/lca_in_bst.md) | Easy ✅ |
+| 11 | [Left View of Tree](questions/trees/left_view_of_tree.md) | Easy ✅ |
+| 12 | [Postorder Traversal](questions/trees/postorder_traversal.md) | Easy ✅ |
+| 13 | [Preorder Traversal](questions/trees/preorder_traversal.md) | Easy ✅ |
+| 14 | [Right View of Tree](questions/trees/right_view_of_tree.md) | Easy ✅ |
+| **Medium Problems (18)** |||
+| 15 | [All Root to Leaf Paths](questions/trees/all_root_to_leaf_paths.md) | Medium ⚡ |
+| 16 | [Bottom View of Binary Tree](questions/trees/bottom_view_of_binary_tree.md) | Medium ⚡ |
+| 17 | [Burning Tree](questions/trees/burning_tree.md) | Medium ⚡ |
+| 18 | [Check BST](questions/trees/check_binary_search_tree.md) | Medium ⚡ |
+| 19 | [Check Sum Tree](questions/trees/check_sum_tree.md) | Medium ⚡ |
+| 20 | [Construct from Postorder](questions/trees/construct_binary_tree_from_postorder.md) | Medium ⚡ |
+| 21 | [Construct from Preorder](questions/trees/construct_binary_tree_from_preorder.md) | Medium ⚡ |
+| 22 | [Delete Node from BST](questions/trees/delete_node_from_bst.md) | Medium ⚡ |
+| 23 | [Distance Between Two Nodes](questions/trees/distance_between_two_nodes.md) | Medium ⚡ |
+| 24 | [Inorder Successor in BST](questions/trees/inorder_successor_in_bst.md) | Medium ⚡ |
+| 25 | [Insert Node in BST](questions/trees/insert_node_in_bst.md) | Medium ⚡ |
+| 26 | [Kth Smallest Element in BST](questions/trees/kth_smallest_element_in_bst.md) | Medium ⚡ |
+| 27 | [Level Order Traversal](questions/trees/level_order_traversal.md) | Medium ⚡ |
+| 28 | [Lowest Common Ancestor](questions/trees/least_common_ancestor.md) | Medium ⚡ |
+| 29 | [Max Path Sum Leaf to Leaf](questions/trees/max_path_sum_leaf_to_leaf.md) | Medium ⚡ |
+| 30 | [Populating Next Right Pointer](questions/trees/populating_next_right_pointer.md) | Medium ⚡ |
+| 31 | [Top View of Binary Tree](questions/trees/top_view_of_binary_tree.md) | Medium ⚡ |
+| 32 | [Vertical Order Traversal](questions/trees/vertical_order_traversal.md) | Medium ⚡ |
+| **Hard Problems (2)** |||
+| 33 | [Max Path Sum Node to Node](questions/trees/max_path_sum_from_node_to_node.md) | Hard 🔥 |
+| 34 | [Serialize and Deserialize](questions/trees/serialize_deserialize_binary_tree.md) | Hard 🔥 |
 
 </details>
 
@@ -252,17 +267,20 @@ questions/
 
 | # | Problem | Difficulty |
 |---|---------|------------|
+| **Easy Problems (1)** |||
 | 1 | [Find If Path Exists](questions/graphs/find_if_path_exists.md) | Easy ✅ |
-| 2 | [Cycle in Undirected Graph](questions/graphs/cycle_in_undirected_graph.md) | Medium ⚡ |
-| 3 | [Cycle in Directed Graph](questions/graphs/cycle_in_directed_graph.md) | Medium ⚡ |
-| 4 | [Topological Sort](questions/graphs/topological_sort.md) | Medium ⚡ |
-| 5 | [Number of Islands](questions/graphs/number_of_islands.md) | Medium ⚡ |
-| 6 | [Course Schedule](questions/graphs/course_schedule.md) | Medium ⚡ |
-| 7 | [Clone Graph](questions/graphs/clone_graph.md) | Medium ⚡ |
-| 8 | [Alien Dictionary](questions/graphs/alien_dictionary.md) | Hard 🔥 |
-| 9 | [Person Relationships](questions/graphs/person_relationships.md) | Medium ⚡ |
-| 10 | [Region in Binary Matrix](questions/graphs/region_in_a_binary_matrix.md) | Medium ⚡ |
-| 11 | [Rotting Oranges](questions/graphs/rotting_oranges.md) | Medium ⚡ |
+| **Medium Problems (9)** |||
+| 2 | [Clone Graph](questions/graphs/clone_graph.md) | Medium ⚡ |
+| 3 | [Course Schedule](questions/graphs/course_schedule.md) | Medium ⚡ |
+| 4 | [Cycle in Directed Graph](questions/graphs/cycle_in_directed_graph.md) | Medium ⚡ |
+| 5 | [Cycle in Undirected Graph](questions/graphs/cycle_in_undirected_graph.md) | Medium ⚡ |
+| 6 | [Number of Islands](questions/graphs/number_of_islands.md) | Medium ⚡ |
+| 7 | [Person Relationships](questions/graphs/person_relationships.md) | Medium ⚡ |
+| 8 | [Region in Binary Matrix](questions/graphs/region_in_a_binary_matrix.md) | Medium ⚡ |
+| 9 | [Rotting Oranges](questions/graphs/rotting_oranges.md) | Medium ⚡ |
+| 10 | [Topological Sort](questions/graphs/topological_sort.md) | Medium ⚡ |
+| **Hard Problems (3)** |||
+| 11 | [Alien Dictionary](questions/graphs/alien_dictionary.md) | Hard 🔥 |
 | 12 | [Word Ladder I](questions/graphs/word_ladder_I.md) | Hard 🔥 |
 | 13 | [Word Ladder II](questions/graphs/word_ladder_II.md) | Hard 🔥 |
 
@@ -295,29 +313,32 @@ questions/
 
 | # | Problem | Difficulty |
 |---|---------|------------|
+| **Easy Problems (3)** |||
 | 1 | [Fibonacci Number](questions/dynamic_programming/fibonacci_number.md) | Easy ✅ |
 | 2 | [Climbing Stairs](questions/dynamic_programming/climbing_stairs.md) | Easy ✅ |
 | 3 | [Min Cost Climbing Stairs](questions/dynamic_programming/min_cost_climbing_stairs.md) | Easy ✅ |
-| 4 | [Maximum Subarray Sum (Kadane's)](questions/dynamic_programming/maximum_subarray_sum.md) | Medium ⚡ |
-| 5 | [Maximum Product Subarray](questions/dynamic_programming/maximum_product_subarray.md) | Medium ⚡ |
+| **Medium Problems (17)** |||
+| 4 | [Coin Change](questions/dynamic_programming/coin_change.md) | Medium ⚡ |
+| 5 | [Edit Distance](questions/dynamic_programming/edit_distance.md) | Medium ⚡ |
 | 6 | [House Robber (Max Sum Without Adjacent)](questions/dynamic_programming/house_robber.md) | Medium ⚡ |
-| 7 | [Min Cost Path in Grid](questions/dynamic_programming/min_cost_path.md) | Medium ⚡ |
+| 7 | [Interleaving String](questions/dynamic_programming/interleaving_string.md) | Medium ⚡ |
 | 8 | [Jump Game (Min Jumps to Reach End)](questions/dynamic_programming/jump_game.md) | Medium ⚡ |
 | 9 | [0/1 Knapsack](questions/dynamic_programming/knapsack_0_1.md) | Medium ⚡ |
-| 10 | [Partition Equal Subset Sum](questions/dynamic_programming/partition_equal_subset_sum.md) | Medium ⚡ |
-| 11 | [Coin Change](questions/dynamic_programming/coin_change.md) | Medium ⚡ |
-| 12 | [Rod Cutting Problem](questions/dynamic_programming/rod_cutting.md) | Medium ⚡ |
-| 13 | [Longest Common Subsequence](questions/dynamic_programming/longest_common_subsequence.md) | Medium ⚡ |
-| 14 | [Longest Common Substring](questions/dynamic_programming/longest_common_substring.md) | Medium ⚡ |
-| 15 | [Longest Increasing Subsequence](questions/dynamic_programming/longest_increasing_subsequence.md) | Medium ⚡ |
-| 16 | [Longest Palindromic Subsequence](questions/dynamic_programming/longest_palindromic_subsequence.md) | Medium ⚡ |
-| 17 | [Longest Bitonic Subsequence](questions/dynamic_programming/longest_bitonic_subsequence.md) | Medium ⚡ |
-| 18 | [Edit Distance](questions/dynamic_programming/edit_distance.md) | Medium ⚡ |
-| 19 | [Interleaving String](questions/dynamic_programming/interleaving_string.md) | Medium ⚡ |
+| 10 | [Longest Bitonic Subsequence](questions/dynamic_programming/longest_bitonic_subsequence.md) | Medium ⚡ |
+| 11 | [Longest Common Subsequence](questions/dynamic_programming/longest_common_subsequence.md) | Medium ⚡ |
+| 12 | [Longest Common Substring](questions/dynamic_programming/longest_common_substring.md) | Medium ⚡ |
+| 13 | [Longest Increasing Subsequence](questions/dynamic_programming/longest_increasing_subsequence.md) | Medium ⚡ |
+| 14 | [Longest Palindromic Subsequence](questions/dynamic_programming/longest_palindromic_subsequence.md) | Medium ⚡ |
+| 15 | [Maximum Product Subarray](questions/dynamic_programming/maximum_product_subarray.md) | Medium ⚡ |
+| 16 | [Maximum Subarray Sum (Kadane's)](questions/dynamic_programming/maximum_subarray_sum.md) | Medium ⚡ |
+| 17 | [Min Cost Path in Grid](questions/dynamic_programming/min_cost_path.md) | Medium ⚡ |
+| 18 | [Partition Equal Subset Sum](questions/dynamic_programming/partition_equal_subset_sum.md) | Medium ⚡ |
+| 19 | [Rod Cutting Problem](questions/dynamic_programming/rod_cutting.md) | Medium ⚡ |
 | 20 | [Word Break](questions/dynamic_programming/word_break.md) | Medium ⚡ |
-| 21 | [Palindrome Partitioning II](questions/dynamic_programming/palindrome_partitioning.md) | Hard 🔥 |
-| 22 | [Matrix Chain Multiplication](questions/dynamic_programming/matrix_chain_multiplication.md) | Hard 🔥 |
-| 23 | [Maximal Rectangle](questions/dynamic_programming/maximal_rectangle.md) | Hard 🔥 |
+| **Hard Problems (3)** |||
+| 21 | [Matrix Chain Multiplication](questions/dynamic_programming/matrix_chain_multiplication.md) | Hard 🔥 |
+| 22 | [Maximal Rectangle](questions/dynamic_programming/maximal_rectangle.md) | Hard 🔥 |
+| 23 | [Palindrome Partitioning II](questions/dynamic_programming/palindrome_partitioning.md) | Hard 🔥 |
 
 </details>
 
