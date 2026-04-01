@@ -1,6 +1,6 @@
 # 📚 Data Structures & Algorithms Solutions
 
-Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 135 commonly asked coding interview problems.
+Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 136 commonly asked coding interview problems.
 
 ---
 
@@ -19,7 +19,7 @@ Welcome to my **comprehensive DSA Solutions Repository**! This repository contai
 
 ```
 questions/
-├── arrays/               # Array & Matrix problems (28 problems)
+├── arrays/               # Array & Matrix problems (30 problems)
 ├── strings/              # String processing & algorithms (8 problems)
 ├── linked_lists/         # Linked List manipulations (16 problems)
 ├── stacks/               # Stack-based problems (9 problems)
@@ -33,55 +33,59 @@ questions/
 
 ## 🔥 Problem Categories
 
-### 📊 Arrays & Matrix (28 Problems)
+### 📊 Arrays & Matrix (30 Problems)
 **Foundation Level** - Master fundamental array techniques, two pointers, sliding window, and matrix operations.
 
 | Problem | Difficulty | Key Concepts |
 |---------|------------|--------------|
 | [Two Sum](questions/arrays/two_sum.md) | Easy ✅ | HashMap, Two Pointers |
+| [Best Time to Buy and Sell Stock](questions/arrays/best_time_to_buy_and_sell_stock.md) | Easy ✅ | Kadane's Algorithm, Greedy |
 | [3Sum](questions/arrays/3-sum.md) | Medium ⚡ | Two Pointers, Sorting |
 | [Container With Most Water](questions/arrays/container_with_most_water.md) | Medium ⚡ | Two Pointers |
 | [Rotate Image](questions/arrays/rotate_image.md) | Medium ⚡ | Matrix Manipulation |
 | [Spiral Matrix](questions/arrays/spiral_matrix.md) | Medium ⚡ | Matrix Traversal |
+| [Minimum Arrows to Burst Balloons](questions/arrays/minimum_arrows_to_burst_balloons.md) | Medium ⚡ | Greedy, Interval Scheduling |
 | [Median of Two Sorted Arrays](questions/arrays/median_of_two_sorted_arrays.md) | Hard 🔥 | Binary Search |
 | [First Missing Positive](questions/arrays/missing_positive.md) | Hard 🔥 | Cyclic Sort |
 
 <details>
-<summary><strong>📋 Complete Arrays List (28 problems)</strong></summary>
+<summary><strong>📋 Complete Arrays List (30 problems)</strong></summary>
 
 | # | Problem | Difficulty | 
 |---|---------|------------|
-| **Easy Problems (7)** |||
-| 1 | [Missing Number](questions/arrays/missing_number.md) | Easy ✅ |
+| **Easy Problems (8)** |||
+| 1 | [Best Time to Buy and Sell Stock](questions/arrays/best_time_to_buy_and_sell_stock.md) | Easy ✅ |
 | 2 | [Insert in Sorted Array](questions/arrays/insert_in_sorted_array.md) | Easy ✅ |
-| 3 | [Second Largest Element](questions/arrays/second_largest.md) | Easy ✅ |
-| 4 | [Two Sum](questions/arrays/two_sum.md) | Easy ✅ |
-| 5 | [Subarray with Given Sum](questions/arrays/subarray_sum.md) | Easy ✅ |
-| 6 | [Max Consecutive Ones](questions/arrays/max_consecutive_ones.md) | Easy ✅ |
+| 3 | [Max Consecutive Ones](questions/arrays/max_consecutive_ones.md) | Easy ✅ |
+| 4 | [Missing Number](questions/arrays/missing_number.md) | Easy ✅ |
+| 5 | [Second Largest Element](questions/arrays/second_largest.md) | Easy ✅ |
+| 6 | [Subarray with Given Sum](questions/arrays/subarray_sum.md) | Easy ✅ |
 | 7 | [Tic Tac Toe Winner](questions/arrays/tic_tac_toe.md) | Easy ✅ |
-| **Medium Problems (17)** |||
-| 8 | [Sort Array of 0s, 1s, 2s](questions/arrays/sort012.md) | Medium ⚡ |
-| 9 | [Majority Element](questions/arrays/majority_element.md) | Medium ⚡ |
-| 10 | [3Sum](questions/arrays/3-sum.md) | Medium ⚡ |
-| 11 | [Container With Most Water](questions/arrays/container_with_most_water.md) | Medium ⚡ |
-| 12 | [Subarray with K Elements](questions/arrays/subarray_k_elements.md) | Medium ⚡ |
-| 13 | [Subarray Sum Equals K](questions/arrays/subarray_sum_equals_k.md) | Medium ⚡ |
-| 14 | [Rotate Image](questions/arrays/rotate_image.md) | Medium ⚡ |
-| 15 | [Gas Station](questions/arrays/gas_station.md) | Medium ⚡ |
-| 16 | [Spiral Matrix](questions/arrays/spiral_matrix.md) | Medium ⚡ |
-| 17 | [Find Duplicate Number](questions/arrays/duplicate_number.md) | Medium ⚡ |
-| 18 | [Largest Number](questions/arrays/largest_number.md) | Medium ⚡ |
-| 19 | [Meeting Rooms](questions/arrays/number_of_meeting_rooms.md) | Medium ⚡ |
-| 20 | [Peak Element](questions/arrays/peak_element.md) | Medium ⚡ |
+| 8 | [Two Sum](questions/arrays/two_sum.md) | Easy ✅ |
+| **Medium Problems (18)** |||
+| 9 | [3Sum](questions/arrays/3-sum.md) | Medium ⚡ |
+| 10 | [Container With Most Water](questions/arrays/container_with_most_water.md) | Medium ⚡ |
+| 11 | [Find Duplicate Number](questions/arrays/duplicate_number.md) | Medium ⚡ |
+| 12 | [First & Last Position](questions/arrays/first_and_last_position_in_sorted_array.md) | Medium ⚡ |
+| 13 | [Gas Station](questions/arrays/gas_station.md) | Medium ⚡ |
+| 14 | [Largest Number](questions/arrays/largest_number.md) | Medium ⚡ |
+| 15 | [Majority Element](questions/arrays/majority_element.md) | Medium ⚡ |
+| 16 | [Meeting Rooms](questions/arrays/number_of_meeting_rooms.md) | Medium ⚡ |
+| 17 | [Minimum Arrows to Burst Balloons](questions/arrays/minimum_arrows_to_burst_balloons.md) | Medium ⚡ |
+| 18 | [Minimum in Rotated Array](questions/arrays/minimum_in_rotated_sorted_array.md) | Medium ⚡ |
+| 19 | [Peak Element](questions/arrays/peak_element.md) | Medium ⚡ |
+| 20 | [Rotate Image](questions/arrays/rotate_image.md) | Medium ⚡ |
 | 21 | [Search in 2D Matrix](questions/arrays/search_in_2d_matrix.md) | Medium ⚡ |
 | 22 | [Search in Rotated Array](questions/arrays/search_in_rotated_sorted_array.md) | Medium ⚡ |
-| 23 | [First & Last Position](questions/arrays/first_and_last_position_in_sorted_array.md) | Medium ⚡ |
-| 24 | [Minimum in Rotated Array](questions/arrays/minimum_in_rotated_sorted_array.md) | Medium ⚡ |
+| 23 | [Sort Array of 0s, 1s, 2s](questions/arrays/sort012.md) | Medium ⚡ |
+| 24 | [Spiral Matrix](questions/arrays/spiral_matrix.md) | Medium ⚡ |
+| 25 | [Subarray with K Elements](questions/arrays/subarray_k_elements.md) | Medium ⚡ |
+| 26 | [Subarray Sum Equals K](questions/arrays/subarray_sum_equals_k.md) | Medium ⚡ |
 | **Hard Problems (4)** |||
-| 25 | [Median of Two Sorted Arrays](questions/arrays/median_of_two_sorted_arrays.md) | Hard 🔥 |
-| 26 | [First Missing Positive](questions/arrays/missing_positive.md) | Hard 🔥 |
-| 27 | [Merge Intervals](questions/arrays/merge_intervals.md) | Hard 🔥 |
-| 28 | [Next Permutation](questions/arrays/next_permutation.md) | Hard 🔥 |
+| 27 | [First Missing Positive](questions/arrays/missing_positive.md) | Hard 🔥 |
+| 28 | [Median of Two Sorted Arrays](questions/arrays/median_of_two_sorted_arrays.md) | Hard 🔥 |
+| 29 | [Merge Intervals](questions/arrays/merge_intervals.md) | Hard 🔥 |
+| 30 | [Next Permutation](questions/arrays/next_permutation.md) | Hard 🔥 |
 
 </details>
 
@@ -403,7 +407,7 @@ Each problem follows this format:
 
 Track your progress with our **iterative learning path**:
 
-- [ ] **Arrays & Matrix** (28/28) - Foundation
+- [ ] **Arrays & Matrix** (30/30) - Foundation
 - [ ] **Strings** (8/8) - Building on Arrays  
 - [ ] **Linked Lists** (16/16) - Introduce Pointers
 - [ ] **Stacks & Queues** (9/9) - Linear Structures
@@ -412,7 +416,7 @@ Track your progress with our **iterative learning path**:
 - [ ] **Graphs** (13/13) - Advanced Structures
 - [ ] **Dynamic Programming** (23/23) - Master Optimization
 
-**Total: 135 Problems**
+**Total: 136 Problems**
 
 ---
 

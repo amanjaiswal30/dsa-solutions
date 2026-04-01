@@ -11,7 +11,7 @@ description: "Comprehensive collection of 100+ Data Structures & Algorithms solu
 [![Language](https://img.shields.io/badge/Language-Java-orange.svg)](https://java.com)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Welcome to the **ultimate DSA interview preparation resource**! This repository contains **135 well-structured Java solutions** for coding interview problems from **FAANG** and top tech companies.
+Welcome to the **ultimate DSA interview preparation resource**! This repository contains **136 well-structured Java solutions** for coding interview problems from **FAANG** and top tech companies.
 
 ---
 
@@ -31,7 +31,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
 <div class="stats-grid">
   <div class="stat-card">
     <h3>📊 Arrays & Matrix</h3>
-    <p><strong>28 Problems</strong></p>
+    <p><strong>30 Problems</strong></p>
     <p>Two Pointers, Sliding Window, Matrix Operations</p>
   </div>
   
@@ -79,7 +79,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
   
   <div class="stat-card total">
     <h3>🎯 Total</h3>
-    <p><strong>135 Problems</strong></p>
+    <p><strong>136 Problems</strong></p>
     <p>Complete Interview Coverage</p>
   </div>
 </div>
@@ -346,7 +346,7 @@ Join our community of learners and contributors!
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=amanjaiswal30&show_icons=true&theme=radical)
 
 **Languages Used:** Java (Primary), Markdown (Documentation)  
-**Total Files:** 135 problem solutions + documentation  
+**Total Files:** 136 problem solutions + documentation  
 **Last Updated:** February 2026  
 **License:** MIT License
 
