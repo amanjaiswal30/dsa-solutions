@@ -40,40 +40,119 @@ Given an array of integers `nums` sorted in **non-decreasing order** and a targe
 
 ---
 
-## 🔹 Java Code (Two-pass Binary Search)
+## 🔹 Java Code (Two-pass Binary Search with findLeft and findRight)
 
 ```java
 public class FirstLastPosition {
 
     public static int[] searchRange(int[] nums, int target) {
         int[] result = new int[]{-1, -1};
-
-        // Find first occurrence
-        int left = 0, right = nums.length - 1;
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if (nums[mid] < target) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
+        
+        if (nums == null || nums.length == 0) {
+            return result;
         }
-        if (left >= nums.length || nums[left] != target) return result; // target not found
-        result[0] = left;
-
-        // Find last occurrence
-        right = nums.length - 1; // reset right
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if (nums[mid] <= target) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
+        
+        // Find first (leftmost) occurrence
+        int first = findLeft(nums, target);
+        
+        // If target not found, return [-1, -1]
+        if (first == -1) {
+            return result;
         }
-        result[1] = right;
-
+        
+        // Find last (rightmost) occurrence
+        int last = findRight(nums, target);
+        
+        result[0] = first;
+        result[1] = last;
+        
         return result;
+    }
+    
+    // Helper method to find leftmost (first) occurrence
+    private static int findLeft(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        int result = -1;
+        
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            
+            if (nums[mid] == target) {
+                result = mid;           // Found target, but keep searching left
+                right = mid - 1;        // Continue searching in left half
+            } else if (nums[mid] < target) {
+                left = mid + 1;         // Search in right half
+            } else {
+                right = mid - 1;        // Search in left half
+            }
+        }
+        
+        return result;
+    }
+    
+    // Helper method to find rightmost (last) occurrence
+    private static int findRight(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        int result = -1;
+        
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            
+            if (nums[mid] == target) {
+                result = mid;           // Found target, but keep searching right
+                left = mid + 1;         // Continue searching in right half
+            } else if (nums[mid] < target) {
+                left = mid + 1;         // Search in right half
+            } else {
+                right = mid - 1;        // Search in left half
+            }
+        }
+        
+        return result;
+    }
+
+    public static void main(String[] args) {
+        // Test Case 1
+        int[] nums1 = {5, 7, 7, 8, 8, 10};
+        int target1 = 8;
+        int[] result1 = searchRange(nums1, target1);
+        System.out.println("Input: [5,7,7,8,8,10], target = 8");
+        System.out.println("Output: [" + result1[0] + ", " + result1[1] + "]");
+        System.out.println("Expected: [3, 4]\n");
+
+        // Test Case 2
+        int[] nums2 = {5, 7, 7, 8, 8, 10};
+        int target2 = 6;
+        int[] result2 = searchRange(nums2, target2);
+        System.out.println("Input: [5,7,7,8,8,10], target = 6");
+        System.out.println("Output: [" + result2[0] + ", " + result2[1] + "]");
+        System.out.println("Expected: [-1, -1]\n");
+
+        // Test Case 3
+        int[] nums3 = {};
+        int target3 = 0;
+        int[] result3 = searchRange(nums3, target3);
+        System.out.println("Input: [], target = 0");
+        System.out.println("Output: [" + result3[0] + ", " + result3[1] + "]");
+        System.out.println("Expected: [-1, -1]\n");
+
+        // Test Case 4: All elements are target
+        int[] nums4 = {1, 1, 1, 1, 1};
+        int target4 = 1;
+        int[] result4 = searchRange(nums4, target4);
+        System.out.println("Input: [1,1,1,1,1], target = 1");
+        System.out.println("Output: [" + result4[0] + ", " + result4[1] + "]");
+        System.out.println("Expected: [0, 4]\n");
+
+        // Test Case 5: Single element
+        int[] nums5 = {1};
+        int target5 = 1;
+        int[] result5 = searchRange(nums5, target5);
+        System.out.println("Input: [1], target = 1");
+        System.out.println("Output: [" + result5[0] + ", " + result5[1] + "]");
+        System.out.println("Expected: [0, 0]\n");
     }
 }
 ```
