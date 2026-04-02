@@ -1,6 +1,6 @@
 # 📚 Data Structures & Algorithms Solutions
 
-Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 136 commonly asked coding interview problems.
+Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 136 commonly asked coding interview problems, plus **Low-Level Design** implementations for system design interviews.
 
 ---
 
@@ -26,7 +26,8 @@ questions/
 ├── trees/                # Binary Tree & BST problems (34 problems)
 ├── heaps/                # Heap & Priority Queue problems (4 problems)
 ├── graphs/               # Graph algorithms & traversals (13 problems)
-└── dynamic_programming/  # DP problems with detailed explanations (23 problems)
+├── dynamic_programming/  # DP problems with detailed explanations (23 problems)
+└── low_level_design/     # LLD System Design (3 problems)
 ```
 
 ---
@@ -346,6 +347,28 @@ questions/
 
 </details>
 
+### 🏗️ Low-Level Design (3 Problems)
+**Object-Oriented System Design** - Master system design interviews with comprehensive LLD implementations.
+
+| Problem | Difficulty | Key Concepts |
+|---------|------------|--------------|
+| [Parking Lot System](questions/low_level_design/parking_lot.md) | Medium ⚡ | OOP, Design Patterns, Concurrency |
+| [Vending Machine System](questions/low_level_design/vending_machine.md) | Medium ⚡ | State Machine, Transaction Management, Change Algorithm |
+| [Stack Overflow System](questions/low_level_design/stack_overflow.md) | Hard 🔥 | Scalability, Database Design, Complex Relationships |
+
+<details>
+<summary><strong>📋 Complete LLD List (3 problems)</strong></summary>
+
+| # | Problem | Difficulty |
+|---|---------|------------|
+| **Medium Problems (2)** |||
+| 1 | [Parking Lot System](questions/low_level_design/parking_lot.md) | Medium ⚡ |
+| 2 | [Vending Machine System](questions/low_level_design/vending_machine.md) | Medium ⚡ |
+| **Hard Problems (1)** |||
+| 3 | [Stack Overflow System](questions/low_level_design/stack_overflow.md) | Hard 🔥 |
+
+</details>
+
 ---
 
 ## 🚀 How to Use This Repository
@@ -415,8 +438,9 @@ Track your progress with our **iterative learning path**:
 - [ ] **Heaps** (4/4) - Special Tree Structures
 - [ ] **Graphs** (13/13) - Advanced Structures
 - [ ] **Dynamic Programming** (23/23) - Master Optimization
+- [ ] **Low-Level Design** (3/3) - System Design
 
-**Total: 136 Problems**
+**Total: 136 DSA Problems + 3 LLD Problems**
 
 ---
 
@@ -441,6 +465,24 @@ We welcome contributions! Here's how you can help:
 - **Efficiency**: Include optimal solutions with complexity analysis  
 - **Testing**: Cover edge cases and constraints
 - **Documentation**: Clear explanations and comments
+
+---
+
+## 🎯 What Makes This Different?
+
+### DSA Problems
+- ✅ **136 Problems** across 8 categories
+- ✅ Multiple approaches (Brute Force → Optimal)
+- ✅ Detailed complexity analysis
+- ✅ Interview tips and edge cases
+
+### Low-Level Design
+- ✅ **3 Complete System Designs** (Parking Lot, Vending Machine, Stack Overflow)
+- ✅ Systematic approach: Requirements → Entities → Relationships → Implementation
+- ✅ Full Java implementation with design patterns
+- ✅ Class diagrams and database schemas
+- ✅ Scalability and concurrency discussions
+- ✅ Interview discussion points
 
 ---
 
