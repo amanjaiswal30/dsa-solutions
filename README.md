@@ -27,7 +27,7 @@ questions/
 ├── heaps/                # Heap & Priority Queue problems (4 problems)
 ├── graphs/               # Graph algorithms & traversals (13 problems)
 ├── dynamic_programming/  # DP problems with detailed explanations (23 problems)
-└── low_level_design/     # LLD System Design (3 problems)
+└── low_level_design/     # LLD System Design (6 problems)
 ```
 
 ---
@@ -347,25 +347,31 @@ questions/
 
 </details>
 
-### 🏗️ Low-Level Design (3 Problems)
+### 🏗️ Low-Level Design (6 Problems)
 **Object-Oriented System Design** - Master system design interviews with comprehensive LLD implementations.
 
 | Problem | Difficulty | Key Concepts |
 |---------|------------|--------------|
 | [Parking Lot System](questions/low_level_design/parking_lot.md) | Medium ⚡ | OOP, Design Patterns, Concurrency |
 | [Vending Machine System](questions/low_level_design/vending_machine.md) | Medium ⚡ | State Machine, Transaction Management, Change Algorithm |
+| [Logging Framework](questions/low_level_design/logging_framework.md) | Hard 🔥 | Strategy Pattern, Template Method, Async Processing |
+| [Traffic Signal Control System](questions/low_level_design/traffic_signal_system.md) | Hard 🔥 | Real-Time Systems, Safety Validation, State Machines |
+| [Task Management System](questions/low_level_design/task_management_system.md) | Hard 🔥 | Composite Pattern, Graph Algorithms, Optimistic Locking |
 | [Stack Overflow System](questions/low_level_design/stack_overflow.md) | Hard 🔥 | Scalability, Database Design, Complex Relationships |
 
 <details>
-<summary><strong>📋 Complete LLD List (3 problems)</strong></summary>
+<summary><strong>📋 Complete LLD List (6 problems)</strong></summary>
 
 | # | Problem | Difficulty |
 |---|---------|------------|
 | **Medium Problems (2)** |||
 | 1 | [Parking Lot System](questions/low_level_design/parking_lot.md) | Medium ⚡ |
 | 2 | [Vending Machine System](questions/low_level_design/vending_machine.md) | Medium ⚡ |
-| **Hard Problems (1)** |||
-| 3 | [Stack Overflow System](questions/low_level_design/stack_overflow.md) | Hard 🔥 |
+| **Hard Problems (4)** |||
+| 3 | [Logging Framework](questions/low_level_design/logging_framework.md) | Hard 🔥 |
+| 4 | [Traffic Signal Control System](questions/low_level_design/traffic_signal_system.md) | Hard 🔥 |
+| 5 | [Task Management System](questions/low_level_design/task_management_system.md) | Hard 🔥 |
+| 6 | [Stack Overflow System](questions/low_level_design/stack_overflow.md) | Hard 🔥 |
 
 </details>
 
@@ -438,9 +444,9 @@ Track your progress with our **iterative learning path**:
 - [ ] **Heaps** (4/4) - Special Tree Structures
 - [ ] **Graphs** (13/13) - Advanced Structures
 - [ ] **Dynamic Programming** (23/23) - Master Optimization
-- [ ] **Low-Level Design** (3/3) - System Design
+- [ ] **Low-Level Design** (6/6) - System Design
 
-**Total: 136 DSA Problems + 3 LLD Problems**
+**Total: 136 DSA Problems + 6 LLD Problems**
 
 ---
 
@@ -477,11 +483,11 @@ We welcome contributions! Here's how you can help:
 - ✅ Interview tips and edge cases
 
 ### Low-Level Design
-- ✅ **3 Complete System Designs** (Parking Lot, Vending Machine, Stack Overflow)
+- ✅ **6 Complete System Designs** (Parking Lot, Vending Machine, Logging Framework, Traffic Signal, Task Management, Stack Overflow)
 - ✅ Systematic approach: Requirements → Entities → Relationships → Implementation
 - ✅ Full Java implementation with design patterns
 - ✅ Class diagrams and database schemas
-- ✅ Scalability and concurrency discussions
+- ✅ Scalability, concurrency, and safety discussions
 - ✅ Interview discussion points
 
 ---
