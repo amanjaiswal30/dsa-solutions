@@ -79,13 +79,13 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
   
   <div class="stat-card">
     <h3>🏗️ Low-Level Design</h3>
-    <p><strong>6 Systems</strong></p>
+    <p><strong>11 Systems</strong></p>
     <p>OOP, Design Patterns, Scalability</p>
   </div>
   
   <div class="stat-card total">
     <h3>🎯 Total</h3>
-    <p><strong>136 DSA + 6 LLD</strong></p>
+    <p><strong>136 DSA + 11 LLD</strong></p>
     <p>Complete Interview Coverage</p>
   </div>
 </div>
@@ -352,7 +352,7 @@ Join our community of learners and contributors!
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=amanjaiswal30&show_icons=true&theme=radical)
 
 **Languages Used:** Java (Primary), Markdown (Documentation)  
-**Total Files:** 142 problem solutions + documentation  
+**Total Files:** 147 problem solutions + documentation  
 **Last Updated:** February 2026  
 **License:** MIT License
 
