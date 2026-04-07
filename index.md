@@ -11,7 +11,7 @@ description: "Comprehensive collection of 100+ Data Structures & Algorithms solu
 [![Language](https://img.shields.io/badge/Language-Java-orange.svg)](https://java.com)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Welcome to the **ultimate DSA interview preparation resource**! This repository contains **136 well-structured Java solutions** for coding interview problems from **FAANG** and top tech companies.
+Welcome to the **ultimate DSA interview preparation resource**! This repository contains **137 well-structured Java solutions** for coding interview problems from **FAANG** and top tech companies.
 
 ---
 
@@ -43,7 +43,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
   
   <div class="stat-card">
     <h3>🔗 Linked Lists</h3>
-    <p><strong>16 Problems</strong></p>
+    <p><strong>17 Problems</strong></p>
     <p>List Manipulation, Fast/Slow Pointers</p>
   </div>
   
@@ -85,7 +85,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
   
   <div class="stat-card total">
     <h3>🎯 Total</h3>
-    <p><strong>136 DSA + 11 LLD</strong></p>
+    <p><strong>137 DSA + 11 LLD</strong></p>
     <p>Complete Interview Coverage</p>
   </div>
 </div>
@@ -134,7 +134,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
 |----------|-------|------------------|------------|
 | [**Arrays & Matrix**](questions/arrays/) | 25 | Easy → Hard | Two Pointers, Sliding Window, Binary Search |
 | [**Strings**](questions/strings/) | 8 | Easy → Hard | Pattern Matching, Sliding Window |
-| [**Linked Lists**](questions/linked_lists/) | 16 | Easy → Hard | Fast/Slow Pointers, List Reversal |
+| [**Linked Lists**](questions/linked_lists/) | 17 | Easy → Hard | Fast/Slow Pointers, List Reversal |
 | [**Stacks & Queues**](questions/stacks/) | 9 | Easy → Hard | Monotonic Stack, Expression Evaluation |
 | [**Trees & BST**](questions/trees/) | 34 | Easy → Hard | Tree Traversals, BST Operations, LCA |
 | [**Heaps**](questions/heaps/) | 4 | Medium → Hard | Priority Queues, Top K Problems |
@@ -352,7 +352,7 @@ Join our community of learners and contributors!
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=amanjaiswal30&show_icons=true&theme=radical)
 
 **Languages Used:** Java (Primary), Markdown (Documentation)  
-**Total Files:** 147 problem solutions + documentation  
+**Total Files:** 148 problem solutions + documentation  
 **Last Updated:** February 2026  
 **License:** MIT License
 

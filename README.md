@@ -1,6 +1,6 @@
 # 📚 Data Structures & Algorithms Solutions
 
-Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 136 commonly asked coding interview problems, plus **11 comprehensive Low-Level Design** implementations for system design interviews.
+Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 137 commonly asked coding interview problems, plus **11 comprehensive Low-Level Design** implementations for system design interviews.
 
 ---
 
@@ -21,7 +21,7 @@ Welcome to my **comprehensive DSA Solutions Repository**! This repository contai
 questions/
 ├── arrays/               # Array & Matrix problems (30 problems)
 ├── strings/              # String processing & algorithms (8 problems)
-├── linked_lists/         # Linked List manipulations (16 problems)
+├── linked_lists/         # Linked List manipulations (17 problems)
 ├── stacks/               # Stack-based problems (9 problems)
 ├── trees/                # Binary Tree & BST problems (34 problems)
 ├── heaps/                # Heap & Priority Queue problems (4 problems)
@@ -118,7 +118,7 @@ questions/
 
 </details>
 
-### 🔗 Linked Lists (16 Problems)
+### 🔗 Linked Lists (17 Problems)
 **Introduce Pointers** - Comprehensive linked list manipulation techniques and algorithms.
 
 | Problem | Difficulty | Key Concepts |
@@ -126,32 +126,34 @@ questions/
 | [Reverse Linked List](questions/linked_lists/reverse_linked_list.md) | Easy ✅ | Two Pointers |
 | [Merge Two Sorted Lists](questions/linked_lists/merge_k_sorted_list.md) | Easy ✅ | Merge Algorithm |
 | [Detect Cycle](questions/linked_lists/detect_and_remove_loop.md) | Medium ⚡ | Floyd's Algorithm |
+| [LRU Cache](questions/linked_lists/lru_cache.md) | Medium ⚡ | HashMap + Doubly Linked List |
 | [Clone Random Pointer List](questions/linked_lists/clone_linked_list.md) | Medium ⚡ | HashMap + Deep Copy |
 
 <details>
-<summary><strong>📋 Complete Linked Lists (16 problems)</strong></summary>
+<summary><strong>📋 Complete Linked Lists (17 problems)</strong></summary>
 
 | # | Problem | Difficulty |
 |---|---------|------------|
 | **Easy Problems (2)** |||
 | 1 | [Middle of Linked List](questions/linked_lists/linked_list_middle.md) | Easy ✅ |
 | 2 | [Reverse Linked List](questions/linked_lists/reverse_linked_list.md) | Easy ✅ |
-| **Medium Problems (12)** |||
+| **Medium Problems (13)** |||
 | 3 | [Add Two Numbers](questions/linked_lists/add_two_numbers_list.md) | Medium ⚡ |
 | 4 | [Clone Random Pointer List](questions/linked_lists/clone_linked_list.md) | Medium ⚡ |
 | 5 | [Delete M after N Nodes](questions/linked_lists/delete_m_nodes_after_n_nodes.md) | Medium ⚡ |
 | 6 | [Detect and Remove Loop](questions/linked_lists/detect_and_remove_loop.md) | Medium ⚡ |
 | 7 | [Intersection Point](questions/linked_lists/linked_list_intersection.md) | Medium ⚡ |
-| 8 | [Palindrome Linked List](questions/linked_lists/linked_list_pallindrome.md) | Medium ⚡ |
-| 9 | [Length of Loop](questions/linked_lists/length_of_loop.md) | Medium ⚡ |
-| 10 | [Remove Nth Node from End](questions/linked_lists/remove_nth_node_from_end.md) | Medium ⚡ |
-| 11 | [Reorder List](questions/linked_lists/reorder_list.md) | Medium ⚡ |
-| 12 | [Rotate Linked List](questions/linked_lists/rotate_linked_list.md) | Medium ⚡ |
-| 13 | [Segregate Odd Even Values](questions/linked_lists/segregate_odd_even_list.md) | Medium ⚡ |
-| 14 | [Segregate Odd Even Positions](questions/linked_lists/segregate_odd_even_position.md) | Medium ⚡ |
+| 8 | [Length of Loop](questions/linked_lists/length_of_loop.md) | Medium ⚡ |
+| 9 | [LRU Cache](questions/linked_lists/lru_cache.md) | Medium ⚡ |
+| 10 | [Palindrome Linked List](questions/linked_lists/linked_list_pallindrome.md) | Medium ⚡ |
+| 11 | [Remove Nth Node from End](questions/linked_lists/remove_nth_node_from_end.md) | Medium ⚡ |
+| 12 | [Reorder List](questions/linked_lists/reorder_list.md) | Medium ⚡ |
+| 13 | [Rotate Linked List](questions/linked_lists/rotate_linked_list.md) | Medium ⚡ |
+| 14 | [Segregate Odd Even Values](questions/linked_lists/segregate_odd_even_list.md) | Medium ⚡ |
+| 15 | [Segregate Odd Even Positions](questions/linked_lists/segregate_odd_even_position.md) | Medium ⚡ |
 | **Hard Problems (2)** |||
-| 15 | [Merge K Sorted Lists](questions/linked_lists/merge_k_sorted_list.md) | Hard 🔥 |
-| 16 | [Reverse in Groups of K](questions/linked_lists/reverse_linked_list_group.md) | Hard 🔥 |
+| 16 | [Merge K Sorted Lists](questions/linked_lists/merge_k_sorted_list.md) | Hard 🔥 |
+| 17 | [Reverse in Groups of K](questions/linked_lists/reverse_linked_list_group.md) | Hard 🔥 |
 
 </details>
 
@@ -448,7 +450,7 @@ Track your progress with our **iterative learning path**:
 
 - [ ] **Arrays & Matrix** (30/30) - Foundation
 - [ ] **Strings** (8/8) - Building on Arrays  
-- [ ] **Linked Lists** (16/16) - Introduce Pointers
+- [ ] **Linked Lists** (17/17) - Introduce Pointers
 - [ ] **Stacks & Queues** (9/9) - Linear Structures
 - [ ] **Trees & BST** (34/34) - Hierarchical Structures
 - [ ] **Heaps** (4/4) - Special Tree Structures
@@ -456,7 +458,7 @@ Track your progress with our **iterative learning path**:
 - [ ] **Dynamic Programming** (23/23) - Master Optimization
 - [ ] **Low-Level Design** (11/11) - System Design
 
-**Total: 136 DSA Problems + 11 LLD Problems**
+**Total: 137 DSA Problems + 11 LLD Problems**
 
 ---
 
@@ -487,7 +489,7 @@ We welcome contributions! Here's how you can help:
 ## 🎯 What Makes This Different?
 
 ### DSA Problems
-- ✅ **136 Problems** across 8 categories
+- ✅ **137 Problems** across 8 categories
 - ✅ Multiple approaches (Brute Force → Optimal)
 - ✅ Detailed complexity analysis
 - ✅ Interview tips and edge cases
