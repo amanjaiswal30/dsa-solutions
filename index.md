@@ -79,13 +79,13 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
   
   <div class="stat-card">
     <h3>🏗️ Low-Level Design</h3>
-    <p><strong>11 Systems</strong></p>
+    <p><strong>31 Systems</strong></p>
     <p>OOP, Design Patterns, Scalability</p>
   </div>
   
   <div class="stat-card total">
     <h3>🎯 Total</h3>
-    <p><strong>137 DSA + 11 LLD</strong></p>
+    <p><strong>137 DSA + 31 LLD</strong></p>
     <p>Complete Interview Coverage</p>
   </div>
 </div>
@@ -132,7 +132,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
 
 | Category | Count | Difficulty Range | Key Skills |
 |----------|-------|------------------|------------|
-| [**Arrays & Matrix**](questions/arrays/) | 25 | Easy → Hard | Two Pointers, Sliding Window, Binary Search |
+| [**Arrays & Matrix**](questions/arrays/) | 30 | Easy → Hard | Two Pointers, Sliding Window, Binary Search |
 | [**Strings**](questions/strings/) | 8 | Easy → Hard | Pattern Matching, Sliding Window |
 | [**Linked Lists**](questions/linked_lists/) | 17 | Easy → Hard | Fast/Slow Pointers, List Reversal |
 | [**Stacks & Queues**](questions/stacks/) | 9 | Easy → Hard | Monotonic Stack, Expression Evaluation |
@@ -140,6 +140,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
 | [**Heaps**](questions/heaps/) | 4 | Medium → Hard | Priority Queues, Top K Problems |
 | [**Graphs**](questions/graphs/) | 13 | Easy → Hard | DFS, BFS, Topological Sort, Shortest Path |
 | [**Dynamic Programming**](questions/dynamic_programming/) | 23 | Easy → Hard | Memoization, Tabulation, Space Optimization |
+| [**Low-Level Design**](questions/low_level_design/) | 31 | Medium → Hard | OOP, Design Patterns, System Architecture |
 
 ---
 
@@ -352,7 +353,7 @@ Join our community of learners and contributors!
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=amanjaiswal30&show_icons=true&theme=radical)
 
 **Languages Used:** Java (Primary), Markdown (Documentation)  
-**Total Files:** 148 problem solutions + documentation  
+**Total Files:** 168 problem solutions + documentation  
 **Last Updated:** February 2026  
 **License:** MIT License
 
