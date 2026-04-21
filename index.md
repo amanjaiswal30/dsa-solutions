@@ -79,13 +79,13 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
   
   <div class="stat-card">
     <h3>🏗️ Low-Level Design</h3>
-    <p><strong>31 Systems</strong></p>
+    <p><strong>20 Systems</strong></p>
     <p>OOP, Design Patterns, Scalability</p>
   </div>
   
   <div class="stat-card total">
     <h3>🎯 Total</h3>
-    <p><strong>137 DSA + 31 LLD</strong></p>
+    <p><strong>137 DSA + 20 LLD</strong></p>
     <p>Complete Interview Coverage</p>
   </div>
 </div>
@@ -140,7 +140,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
 | [**Heaps**](questions/heaps/) | 4 | Medium → Hard | Priority Queues, Top K Problems |
 | [**Graphs**](questions/graphs/) | 13 | Easy → Hard | DFS, BFS, Topological Sort, Shortest Path |
 | [**Dynamic Programming**](questions/dynamic_programming/) | 23 | Easy → Hard | Memoization, Tabulation, Space Optimization |
-| [**Low-Level Design**](questions/low_level_design/) | 31 | Medium → Hard | OOP, Design Patterns, System Architecture |
+| [**Low-Level Design**](questions/low_level_design/) | 20 | Medium → Hard | OOP, Design Patterns, System Architecture |
 
 ---
 

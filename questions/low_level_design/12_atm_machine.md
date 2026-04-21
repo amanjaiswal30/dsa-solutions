@@ -1,4 +1,4 @@
-# Low-Level Design: ATM System
+# Low-Level Design: ATM Machine
 
 **Difficulty:** Hard 🔥
 

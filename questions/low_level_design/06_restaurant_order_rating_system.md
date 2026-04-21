@@ -1,4 +1,4 @@
-# Low-Level Design: Restaurant Management System
+# Low-Level Design: Restaurant Order & Rating System
 
 **Difficulty:** Medium-Hard ⚡
 
@@ -9,6 +9,8 @@
 ## 📋 Interview Approach
 
 This document follows a **systematic interview approach** showing exactly how to tackle this problem in a real interview setting.
+
+**Scope note:** The title emphasizes **orders and ratings**; the narrative below still covers **full venue operations** (tables, KDS, billing) like Toast/Square. In a shorter interview, focus on **order lifecycle**, **menu**, **off-prem delivery**, and **per-order ratings**; treat floor/staff sections as optional depth.
 
 ---
 

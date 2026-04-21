@@ -1,4 +1,4 @@
-# Low-Level Design: Digital Wallet Service
+# Low-Level Design: Digital Wallet
 
 **Difficulty:** Hard 🔥
 

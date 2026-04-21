@@ -1,4 +1,4 @@
-# Low-Level Design: Amazon E-commerce Platform
+# Low-Level Design: Order & Inventory Management
 
 **Difficulty:** Hard 🔥
 
@@ -10,13 +10,15 @@
 
 This document follows a **systematic interview approach** showing exactly how to tackle this problem in a real interview setting.
 
+**Scope note:** The walkthrough below uses a **large retail / marketplace** example (Amazon-like) because it is the richest published reference for **SKU-level inventory**, **multi-warehouse stock**, **reservations**, and **order lines** together. In the interview, you can narrow the scope to **catalog + inventory + cart/checkout + orders** and treat search, recommendations, and deep payments as interfaces.
+
 ---
 
 ## 🎯 Step 1: Understand the Problem (5 minutes)
 
 ### What the Interviewer Says:
 
-*"Design a low-level object model and core services for a large e-commerce platform like Amazon: catalog, inventory across warehouses, third-party sellers, cart and checkout, orders, payments, pricing and promotions, search, recommendations, reviews, shipping, returns, addresses, notifications, Prime, and time-limited deals."*
+*"Design a low-level object model and core services for **order and inventory management**: product catalog, inventory across warehouses, reservations during checkout, order placement, and consistent stock decrements—optionally with third-party sellers and split shipments."*
 
 ### Clarifying Questions to Ask:
 

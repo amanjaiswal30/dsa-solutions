@@ -1,4 +1,4 @@
-# Low-Level Design: Traffic Signal Control System
+# Low-Level Design: Traffic Control System
 
 **Difficulty:** Hard 🔥
 

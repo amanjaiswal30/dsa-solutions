@@ -1,6 +1,6 @@
 # 📚 Data Structures & Algorithms Solutions
 
-Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 137 commonly asked coding interview problems, plus **31 comprehensive Low-Level Design** implementations for system design interviews.
+Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 137 commonly asked coding interview problems, **20 curated Low-Level Design** implementations, and a **High-Level Design (HLD) topic checklist** for system design interview prep (no long-form HLD write-ups here—use the list to drive whiteboard practice).
 
 ---
 
@@ -27,7 +27,8 @@ questions/
 ├── heaps/                # Heap & Priority Queue problems (4 problems)
 ├── graphs/               # Graph algorithms & traversals (13 problems)
 ├── dynamic_programming/  # DP problems with detailed explanations (23 problems)
-└── low_level_design/     # LLD System Design (31 problems)
+├── low_level_design/     # LLD System Design (20 problems)
+└── high_level_design/    # HLD topics checklist ([README](questions/high_level_design/README.md))
 ```
 
 ---
@@ -349,84 +350,41 @@ questions/
 
 </details>
 
-### 🏗️ Low-Level Design (31 Problems)
-**Object-Oriented System Design** - Master system design interviews with comprehensive LLD implementations.
+### 🏗️ Low-Level Design (20 Problems)
+**Object-Oriented System Design** — curated LLD topics (numbered filenames match this order).
 
-| Problem | Difficulty | Key Concepts |
-|---------|------------|--------------|
-| [Parking Lot System](questions/low_level_design/parking_lot.md) | Medium ⚡ | OOP, Design Patterns, Concurrency |
-| [Snake and Ladder Game](questions/low_level_design/snake_and_ladder_game.md) | Medium ⚡ | Board Games, Strategy Pattern, Rule Engine |
-| [Tic Tac Toe Game](questions/low_level_design/tic_tac_toe_game.md) | Medium ⚡ | Strategy Pattern, Minimax Algorithm, Game State Management |
-| [Vending Machine System](questions/low_level_design/vending_machine.md) | Medium ⚡ | State Machine, Transaction Management, Change Algorithm |
-| [Library Management System](questions/low_level_design/library_management_system.md) | Medium-Hard ⚡ | Policy Pattern, Domain Events, Hold Queues, ILL |
-| [Restaurant Management System](questions/low_level_design/restaurant_management_system.md) | Medium-Hard ⚡ | Table Management, KDS Routing, Bill Splitting, Inventory |
-| [Airline Management System](questions/low_level_design/airline_management_system.md) | Hard 🔥 | Seat Inventory, Yield Management, Overbooking, Flight Status |
-| [Amazon E-commerce Platform](questions/low_level_design/amazon.md) | Hard 🔥 | Marketplace, Inventory, Seller Platform, Search, Recommendations |
-| [ATM System](questions/low_level_design/atm_system.md) | Hard 🔥 | Transaction Processing, Cash Management, Security |
-| [Car Rental System](questions/low_level_design/car_rental_system.md) | Hard 🔥 | Fleet Management, Reservations, Dynamic Pricing, Inspections |
-| [Chess Game](questions/low_level_design/chess_game.md) | Hard 🔥 | Move Validation, Check/Checkmate Detection, AI with Minimax |
-| [Concert Booking System](questions/low_level_design/concert_booking_system.md) | Hard 🔥 | Seat Locking, High Concurrency, Dynamic Pricing, Ticket Resale |
-| [Course Registration System](questions/low_level_design/course_registration_system.md) | Hard 🔥 | Enrollment, Prerequisites, Schedule Conflicts, Concurrency |
-| [Cricinfo](questions/low_level_design/cricinfo.md) | Hard 🔥 | Live Scoring, Ball-by-Ball Commentary, Real-Time Updates |
-| [Digital Wallet Service](questions/low_level_design/digital_wallet_service.md) | Hard 🔥 | P2P Transfers, Double-Entry Ledger, Multi-Currency, Fraud Detection |
-| [Distributed Cache System](questions/low_level_design/distributed_cache_system.md) | Hard 🔥 | Consistent Hashing, Eviction Policies, Replication, Pub/Sub |
-| [Elevator System](questions/low_level_design/elevator_system.md) | Hard 🔥 | SCAN Algorithm, State Machine, Dispatcher, Capacity Management |
-| [Food Delivery Platform](questions/low_level_design/food_delivery_platform.md) | Hard 🔥 | Multi-Party Coordination, Delivery Matching, Real-Time Tracking |
-| [Hotel Management System](questions/low_level_design/hotel_management_system.md) | Hard 🔥 | Room Inventory, Dynamic Pricing, Housekeeping, Folio Management |
-| [LinkedIn System](questions/low_level_design/linkedin.md) | Hard 🔥 | Microservices, Feed Generation, Sharding, Search Optimization |
-| [Logging Framework](questions/low_level_design/logging_framework.md) | Hard 🔥 | Strategy Pattern, Template Method, Async Processing |
-| [Movie Ticket Booking System](questions/low_level_design/movie_ticket_booking_system.md) | Hard 🔥 | Seat Inventory, Showtime Management, Concurrency, F&B Orders |
-| [Online Auction System](questions/low_level_design/online_auction_system.md) | Hard 🔥 | Bid Management, Proxy Bidding, Anti-Snipe, Multiple Auction Types |
-| [Pub/Sub Messaging System](questions/low_level_design/pub_sub_system.md) | Hard 🔥 | Partitioning, Consumer Groups, Delivery Guarantees, Replication |
-| [Splitwise](questions/low_level_design/splitwise.md) | Hard 🔥 | Expense Splitting, Debt Simplification, Balance Calculation |
-| [Spotify](questions/low_level_design/spotify.md) | Hard 🔥 | Music Streaming, CDN, Recommendations, Cross-Device Sync |
-| [Stack Overflow System](questions/low_level_design/stack_overflow.md) | Hard 🔥 | Scalability, Database Design, Complex Relationships |
-| [Stock Brokerage System](questions/low_level_design/stock_brokerage_system.md) | Hard 🔥 | Order Matching Engine, Real-Time Trading, Transaction Consistency |
-| [Task Management System](questions/low_level_design/task_management_system.md) | Hard 🔥 | Composite Pattern, Graph Algorithms, Optimistic Locking |
-| [Traffic Signal Control System](questions/low_level_design/traffic_signal_system.md) | Hard 🔥 | Real-Time Systems, Safety Validation, State Machines |
-| [Uber Ride-Sharing](questions/low_level_design/uber.md) | Hard 🔥 | Geolocation, Driver Matching, Surge Pricing, Real-Time Tracking |
+| # | Topic | File |
+|---|-------|------|
+| 01 | Parking Lot System | [01_parking_lot_system.md](questions/low_level_design/01_parking_lot_system.md) |
+| 02 | Movie Ticket Booking System | [02_movie_ticket_booking_system.md](questions/low_level_design/02_movie_ticket_booking_system.md) |
+| 03 | Chess Game | [03_chess_game.md](questions/low_level_design/03_chess_game.md) |
+| 04 | Customer Issue Resolution System | [04_customer_issue_resolution_system.md](questions/low_level_design/04_customer_issue_resolution_system.md) |
+| 05 | Dunzo / Delivery System | [05_dunzo_delivery_system.md](questions/low_level_design/05_dunzo_delivery_system.md) |
+| 06 | Restaurant Order & Rating System | [06_restaurant_order_rating_system.md](questions/low_level_design/06_restaurant_order_rating_system.md) |
+| 07 | Meeting Scheduler | [07_meeting_scheduler.md](questions/low_level_design/07_meeting_scheduler.md) |
+| 08 | Splitwise | [08_splitwise.md](questions/low_level_design/08_splitwise.md) |
+| 09 | Order & Inventory Management | [09_order_inventory_management.md](questions/low_level_design/09_order_inventory_management.md) |
+| 10 | Text Editor | [10_text_editor.md](questions/low_level_design/10_text_editor.md) |
+| 11 | Vending Machine | [11_vending_machine.md](questions/low_level_design/11_vending_machine.md) |
+| 12 | ATM Machine | [12_atm_machine.md](questions/low_level_design/12_atm_machine.md) |
+| 13 | Tic Tac Toe | [13_tic_tac_toe.md](questions/low_level_design/13_tic_tac_toe.md) |
+| 14 | Car Rental System | [14_car_rental_system.md](questions/low_level_design/14_car_rental_system.md) |
+| 15 | Digital Wallet | [15_digital_wallet.md](questions/low_level_design/15_digital_wallet.md) |
+| 16 | Elevator System | [16_elevator_system.md](questions/low_level_design/16_elevator_system.md) |
+| 17 | Logging Framework | [17_logging_framework.md](questions/low_level_design/17_logging_framework.md) |
+| 18 | Stack Overflow | [18_stack_overflow.md](questions/low_level_design/18_stack_overflow.md) |
+| 19 | Ride Booking System (Uber / Ola) | [19_ride_booking_system.md](questions/low_level_design/19_ride_booking_system.md) |
+| 20 | Traffic Control System | [20_traffic_control_system.md](questions/low_level_design/20_traffic_control_system.md) |
 
-<details>
-<summary><strong>📋 Complete LLD List (31 problems)</strong></summary>
+### ☁️ High-Level Design (HLD) — topics to prepare
 
-| # | Problem | Difficulty |
-|---|---------|------------|
-| **Medium Problems (4)** |||
-| 1 | [Parking Lot System](questions/low_level_design/parking_lot.md) | Medium ⚡ |
-| 2 | [Snake and Ladder Game](questions/low_level_design/snake_and_ladder_game.md) | Medium ⚡ |
-| 3 | [Tic Tac Toe Game](questions/low_level_design/tic_tac_toe_game.md) | Medium ⚡ |
-| 4 | [Vending Machine System](questions/low_level_design/vending_machine.md) | Medium ⚡ |
-| **Medium-Hard Problems (2)** |||
-| 5 | [Library Management System](questions/low_level_design/library_management_system.md) | Medium-Hard ⚡ |
-| 6 | [Restaurant Management System](questions/low_level_design/restaurant_management_system.md) | Medium-Hard ⚡ |
-| **Hard Problems (25)** |||
-| 7 | [Airline Management System](questions/low_level_design/airline_management_system.md) | Hard 🔥 |
-| 8 | [Amazon E-commerce Platform](questions/low_level_design/amazon.md) | Hard 🔥 |
-| 9 | [ATM System](questions/low_level_design/atm_system.md) | Hard 🔥 |
-| 10 | [Car Rental System](questions/low_level_design/car_rental_system.md) | Hard 🔥 |
-| 11 | [Chess Game](questions/low_level_design/chess_game.md) | Hard 🔥 |
-| 12 | [Concert Booking System](questions/low_level_design/concert_booking_system.md) | Hard 🔥 |
-| 13 | [Course Registration System](questions/low_level_design/course_registration_system.md) | Hard 🔥 |
-| 14 | [Cricinfo](questions/low_level_design/cricinfo.md) | Hard 🔥 |
-| 15 | [Digital Wallet Service](questions/low_level_design/digital_wallet_service.md) | Hard 🔥 |
-| 16 | [Distributed Cache System](questions/low_level_design/distributed_cache_system.md) | Hard 🔥 |
-| 17 | [Elevator System](questions/low_level_design/elevator_system.md) | Hard 🔥 |
-| 18 | [Food Delivery Platform (Zomato/Swiggy)](questions/low_level_design/food_delivery_platform.md) | Hard 🔥 |
-| 19 | [Hotel Management System](questions/low_level_design/hotel_management_system.md) | Hard 🔥 |
-| 20 | [LinkedIn System](questions/low_level_design/linkedin.md) | Hard 🔥 |
-| 21 | [Logging Framework](questions/low_level_design/logging_framework.md) | Hard 🔥 |
-| 22 | [Movie Ticket Booking System](questions/low_level_design/movie_ticket_booking_system.md) | Hard 🔥 |
-| 23 | [Online Auction System](questions/low_level_design/online_auction_system.md) | Hard 🔥 |
-| 24 | [Pub/Sub Messaging System](questions/low_level_design/pub_sub_system.md) | Hard 🔥 |
-| 25 | [Splitwise](questions/low_level_design/splitwise.md) | Hard 🔥 |
-| 26 | [Spotify](questions/low_level_design/spotify.md) | Hard 🔥 |
-| 27 | [Stack Overflow System](questions/low_level_design/stack_overflow.md) | Hard 🔥 |
-| 28 | [Stock Brokerage System](questions/low_level_design/stock_brokerage_system.md) | Hard 🔥 |
-| 29 | [Task Management System](questions/low_level_design/task_management_system.md) | Hard 🔥 |
-| 30 | [Traffic Signal Control System](questions/low_level_design/traffic_signal_system.md) | Hard 🔥 |
-| 31 | [Uber Ride-Sharing](questions/low_level_design/uber.md) | Hard 🔥 |
+Full checklist with short study hints: **[questions/high_level_design/README.md](questions/high_level_design/README.md)**. Use it as a **checklist** for mock interviews and whiteboard practice (requirements, APIs, data model, scaling, failures, trade-offs).
 
-</details>
+**Core building blocks:** Rate limiter · Consistent hashing · Key-value store · UUID generator · URL shortener  
+
+**Systems & pipelines:** Web crawler · News feed system · Chat system · Distributed message queue · Metrics, monitoring & alerting · Notification system  
+
+**Domain-style:** Hotel reservation system · Trending videos · Gaming leaderboard · Payment system · Digital wallet  
 
 ---
 
@@ -497,9 +455,9 @@ Track your progress with our **iterative learning path**:
 - [ ] **Heaps** (4/4) - Special Tree Structures
 - [ ] **Graphs** (13/13) - Advanced Structures
 - [ ] **Dynamic Programming** (23/23) - Master Optimization
-- [ ] **Low-Level Design** (31/31) - System Design
+- [ ] **Low-Level Design** (20/20) - System Design
 
-**Total: 137 DSA Problems + 31 LLD Problems**
+**Total: 137 DSA Problems + 20 LLD Problems**
 
 ---
 
@@ -536,7 +494,7 @@ We welcome contributions! Here's how you can help:
 - ✅ Interview tips and edge cases
 
 ### Low-Level Design
-- ✅ **31 Complete System Designs** (Parking Lot, Vending Machine, Tic Tac Toe, Snake and Ladder, Library Management, Restaurant Management, ATM, Airline Management, Amazon E-commerce, Car Rental, Chess Game, Concert Booking, Course Registration, Cricinfo, Digital Wallet, Distributed Cache, Elevator, Food Delivery Platform, Hotel Management, LinkedIn, Logging Framework, Movie Ticket Booking, Online Auction, Pub/Sub System, Splitwise, Spotify, Stack Overflow, Stock Brokerage, Task Management, Traffic Signal, Uber)
+- ✅ **20 Complete System Designs** (Parking Lot, Movie Ticket Booking, Chess, Customer Issue Resolution, Dunzo/Delivery, Restaurant Order & Rating, Meeting Scheduler, Splitwise, Order & Inventory, Text Editor, Vending Machine, ATM, Tic Tac Toe, Car Rental, Digital Wallet, Elevator, Logging Framework, Stack Overflow, Ride Booking, Traffic Control)
 - ✅ Systematic approach: Requirements → Entities → Relationships → Implementation
 - ✅ Full Java implementation with design patterns
 - ✅ Class diagrams and database schemas

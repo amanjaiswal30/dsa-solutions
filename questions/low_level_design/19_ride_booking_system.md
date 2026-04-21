@@ -1,4 +1,4 @@
-# Low-Level Design: Uber (Ride-Sharing Platform)
+# Low-Level Design: Ride Booking System (Uber / Ola)
 
 **Difficulty:** Hard 🔥
 
@@ -15,7 +15,7 @@ This document follows a **systematic interview approach** showing exactly how to
 ## 🎯 Step 1: Understand the Problem (8–12 minutes)
 
 ### What the Interviewer Says:
-*"Design a ride-sharing platform like Uber where riders request trips, drivers are matched by proximity and ETA, fares reflect demand (surge), trips are tracked in real time, payments settle at the end (including split fare), and both sides rate each other."*
+*"Design a ride-booking platform (Uber / Ola–style) where riders request trips, drivers are matched by proximity and ETA, fares reflect demand (surge), trips are tracked in real time, payments settle at the end (including split fare), and both sides rate each other."*
 
 ### Clarifying Questions to Ask:
 

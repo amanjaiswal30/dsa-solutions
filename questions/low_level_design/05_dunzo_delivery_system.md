@@ -1,4 +1,4 @@
-# Low-Level Design: Food Delivery Platform (Zomato / Swiggy)
+# Low-Level Design: Dunzo / Delivery System
 
 **Difficulty:** Hard 🔥
 
@@ -10,14 +10,14 @@
 
 This document follows a **systematic interview approach** showing exactly how to tackle this problem in a real interview setting.
 
-**Scope note:** This is a **three-sided marketplace** (customers, restaurants, delivery partners), not an internal restaurant management system (tables, floor staff, in-venue inventory). Emphasis: **partner matching**, **real-time coordination**, and **multi-party order lifecycle**.
+**Scope note:** Same pattern as Zomato/Swiggy/Dunzo: a **three-sided marketplace** (customers, stores/restaurants, delivery partners). Emphasis: **partner matching**, **real-time coordination**, and **multi-party order lifecycle**—not in-venue table service.
 
 ---
 
 ## 🎯 Step 1: Understand the Problem (5 minutes)
 
 ### What the Interviewer Says:
-*"Design a food delivery platform that connects customers with restaurants and delivery partners: discovery, ordering, payments, live tracking, and settlement for restaurants and riders."*
+*"Design a hyperlocal delivery system (Dunzo / Instamart-style or food delivery) that connects customers, merchants or restaurants, and delivery partners: discovery, ordering, payments, live tracking, and settlement for stores and riders."*
 
 ### Clarifying Questions to Ask:
 
