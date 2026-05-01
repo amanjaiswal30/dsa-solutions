@@ -37,9 +37,18 @@ Given an unsorted integer array, find the **smallest missing positive integer**.
 
 ---
 
-### 3. Optimal (In-place Hashing)
+### 3. Optimal (In-place Hashing — cyclic swaps)
 - Use the array itself to mark presence by swapping elements to their correct position.
 - After placing numbers in their right positions, iterate to find the first index where `nums[i] != i+1`.
+- **Time Complexity:** O(n)
+- **Space Complexity:** O(1)
+
+---
+
+### 4. Optimal (Three-pass index marking)
+- **Pass 1 — bound:** The answer lies in **[1, n + 1]** for `n = nums.length`. Anything **≤ 0** or **> n** cannot be that missing number, so rewrite those cells to **`n + 1`** (a sentinel **strictly larger** than the largest value we still care about, namely **`n`**).
+- **Pass 2 — mark:** For each `x = |nums[i]|`, if **`1 ≤ x ≤ n`**, treat **`x`** as “seen” by making **`nums[x - 1]`** negative (use **`Math.abs`** when flipping so duplicates do not flip a mark back to positive).
+- **Pass 3 — scan:** The first index **`i`** with **`nums[i] > 0`** means **`i + 1`** was never marked → **first missing positive**. If every slot is negative, return **`n + 1`**.
 - **Time Complexity:** O(n)
 - **Space Complexity:** O(1)
 
@@ -123,6 +132,36 @@ public class FirstMissingPositive {
     }
 
     // -----------------------
+    // 4. Three-pass index marking (sign flip)
+    // -----------------------
+    public static int firstMissingPositiveThreePass(int[] nums) {
+        int n = nums.length;
+
+        // Pass 1: irrelevant values → n + 1 (sentinel above largest useful positive n)
+        for (int i = 0; i < n; i++) {
+            if (nums[i] <= 0 || nums[i] > n) {
+                nums[i] = n + 1;
+            }
+        }
+
+        // Pass 2: mark that x exists by negating nums[x - 1]
+        for (int i = 0; i < n; i++) {
+            int x = Math.abs(nums[i]);
+            if (x >= 1 && x <= n) {
+                nums[x - 1] = -Math.abs(nums[x - 1]);
+            }
+        }
+
+        // Pass 3: first index still positive → missing is i + 1
+        for (int i = 0; i < n; i++) {
+            if (nums[i] > 0) {
+                return i + 1;
+            }
+        }
+        return n + 1;
+    }
+
+    // -----------------------
     // Helper Method: Swap
     // -----------------------
     private static void swap(int[] nums, int i, int j) {
@@ -137,11 +176,12 @@ public class FirstMissingPositive {
 
 ## 🔹 Complexity Analysis
 
-| Approach                 | Time Complexity | Space Complexity |
-|--------------------------|-----------------|------------------|
-| Brute Force              | O(n²)           | O(1)             |
-| HashSet / Extra Space    | O(n)            | O(n)             |
-| Optimal In-place Hashing | O(n)            | O(1)             |
+| Approach                       | Time Complexity | Space Complexity |
+|--------------------------------|-----------------|------------------|
+| Brute Force                    | O(n²)           | O(1)             |
+| HashSet / Extra Space          | O(n)            | O(n)             |
+| Optimal — cyclic swaps         | O(n)            | O(1)             |
+| Optimal — three-pass marking   | O(n)            | O(1)             |
 
 ---
 
