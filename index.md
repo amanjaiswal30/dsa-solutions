@@ -134,7 +134,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
 |----------|-------|------------------|------------|
 | [**Arrays & Matrix**](questions/arrays/) | 30 | Easy → Hard | Two Pointers, Sliding Window, Binary Search |
 | [**Strings**](questions/strings/) | 8 | Easy → Hard | Pattern Matching, Sliding Window |
-| [**Linked Lists**](questions/linked_lists/) | 17 | Easy → Hard | Fast/Slow Pointers, List Reversal |
+| [**Linked Lists**](questions/linked_lists/) | 18 | Easy → Hard | Fast/Slow Pointers, List Reversal |
 | [**Stacks & Queues**](questions/stacks/) | 9 | Easy → Hard | Monotonic Stack, Expression Evaluation |
 | [**Trees & BST**](questions/trees/) | 34 | Easy → Hard | Tree Traversals, BST Operations, LCA |
 | [**Heaps**](questions/heaps/) | 4 | Medium → Hard | Priority Queues, Top K Problems |

@@ -19,11 +19,12 @@ Input: `[30, 60, 90]` → Output: `[1, 1, 0]`
 ---
 
 ## 💡 Logic & Intuition
-- For each day, we want the **next warmer day**.
-- Three main approaches:
-    1. **Brute Force:** check all future days for each day.
-    2. **Stack-Based (Optimal):** use a monotonic decreasing stack.
-    3. **DP / Next-Greater-Index:** traverse backward using previously computed answers.
+- For each day, we want the **next warmer day** to the **right**.
+- Main approaches:
+    1. **Brute Force:** scan forward from each `i`.
+    2. **Stack left → right:** indices on a **monotonic decreasing** stack; warmer day at `i` resolves pending colder days.
+    3. **Stack right → left (from end of array):** scan **`i = n - 1 … 0`**. Stack holds indices of days **already seen to the right** with **increasing** temperatures toward the **top**; before pushing `i`, **pop** while `T[peek] <= T[i]`. If stack non-empty, **`answer[i] = peek - i`** (top is the **nearest** warmer day to the right). Each index is pushed and popped at most once → **O(n)** time, **O(n)** stack.
+    4. **DP / jump using `answer`:** backward pass using previously computed waits to **skip** blocks (no stack).
 
 ---
 
@@ -51,7 +52,7 @@ public class DailyTemperatures {
         return answer;
     }
 
-    // Approach 2: Stack-Based (Optimal)
+    // Approach 2: Stack left → right (monotonic decreasing)
     public int[] dailyTemperaturesStack(int[] temperatures) {
         int n = temperatures.length;
         int[] answer = new int[n];
@@ -61,6 +62,25 @@ public class DailyTemperatures {
             while (!stack.isEmpty() && temperatures[i] > temperatures[stack.peek()]) {
                 int idx = stack.pop();
                 answer[idx] = i - idx;
+            }
+            stack.push(i);
+        }
+
+        return answer;
+    }
+
+    // Approach 2b: Stack right → left — scan from end of array
+    public int[] dailyTemperaturesStackFromEnd(int[] temperatures) {
+        int n = temperatures.length;
+        int[] answer = new int[n];
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = n - 1; i >= 0; i--) {
+            while (!stack.isEmpty() && temperatures[stack.peek()] <= temperatures[i]) {
+                stack.pop();
+            }
+            if (!stack.isEmpty()) {
+                answer[i] = stack.peek() - i;
             }
             stack.push(i);
         }
@@ -93,11 +113,12 @@ public class DailyTemperatures {
 
 ## 🔹 Complexity Analysis
 
-| Approach                | Time Complexity | Space Complexity |
-|-------------------------|-----------------|------------------|
-| Brute Force             | O(n²)           | O(n)             |
-| Stack-Based (Optimal)   | O(n)            | O(n)             |
-| DP / Backward Traversal | O(n)            | O(n)             |
+| Approach                    | Time Complexity | Space Complexity |
+|-----------------------------|-----------------|------------------|
+| Brute Force                 | O(n²)           | O(1)             |
+| Stack (left → right)        | O(n)            | O(n)             |
+| Stack (right → left / end)  | O(n)            | O(n)             |
+| DP / backward jump          | O(n) amortized  | O(1)             |
 
 ---
 

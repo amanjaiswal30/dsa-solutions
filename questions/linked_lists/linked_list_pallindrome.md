@@ -12,10 +12,9 @@ Given the head of a singly linked list, determine whether it is a **palindrome**
 
 ## 💡 Logic & Intuition
 - We need to check if the list reads the same from both directions. To do that:
-    1. Find the **middle** of the list.
-    2. **Reverse** the second half.
-    3. Compare the two halves node by node.
-    4. (Optionally) Restore the list to its original form.
+    1. Find the **middle** with **`slow` / `fast`** using **`while (fast != null && fast.next != null)`** (same as *Middle of Linked List*: second middle when length is even).
+    2. Set **`secondHead`** to the start of the right half (**`slow`** if length is even, **`slow.next`** if odd), **reverse** from there, then compare from **`head`** against the reversed list.
+    3. (Optional) Restoring the original list in-place is harder without a clean split; often skipped for the check-only version.
 
 ---
 
@@ -28,9 +27,8 @@ Given the head of a singly linked list, determine whether it is a **palindrome**
 - **Space Complexity:** O(n)
 
 ### 2. Optimal (Reverse Second Half in-place)
-- Use **fast and slow pointers** to find the midpoint.
-- Reverse the **second half** in place.
-- Compare the first half and the reversed second half.
+- Use **slow / fast** like **Middle of Linked List** (LeetCode 876): **`while (fast != null && fast.next != null)`** — **even** length ends with **`slow`** as the first node of the right half; **odd** length ends with **`fast`** on the last node and **`slow`** on the middle.
+- **`secondHead = (fast == null) ? slow : slow.next`**, **`reverse(secondHead)`**, then walk **`head`** and the reversed head in lockstep until the reversed list is exhausted (no explicit split / **`null`** cut needed for the palindrome check).
 - **Time Complexity:** O(n)
 - **Space Complexity:** O(1)
 
@@ -70,27 +68,22 @@ public class PalindromeLinkedList {
     public static boolean isPalindromeOptimal(ListNode head) {
         if (head == null || head.next == null) return true;
 
-        // Step 1: Find middle
+        // Step 1: Find middle (same as Middle of LL: second middle when length is even)
         ListNode slow = head, fast = head;
-        while (fast.next != null && fast.next.next != null) {
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
 
-        // Step 2: Reverse second half
-        ListNode secondHalf = reverse(slow.next);
+        ListNode secondHead = (fast == null) ? slow : slow.next;
+        ListNode secondHalf = reverse(secondHead);
 
-        // Step 3: Compare both halves
         ListNode firstHalf = head;
-        ListNode copySecondHalf = secondHalf; // to restore later if needed
         while (secondHalf != null) {
             if (firstHalf.val != secondHalf.val) return false;
             firstHalf = firstHalf.next;
             secondHalf = secondHalf.next;
         }
-
-        // Step 4 (Optional): Restore the list
-        // slow.next = reverse(copySecondHalf);
 
         return true;
     }

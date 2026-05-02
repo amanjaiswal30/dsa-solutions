@@ -1,6 +1,6 @@
 # 📚 Data Structures & Algorithms Solutions
 
-Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 137 commonly asked coding interview problems, **20 curated Low-Level Design** implementations, and a **High-Level Design (HLD) topic checklist** for system design interview prep (no long-form HLD write-ups here—use the list to drive whiteboard practice).
+Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 138 commonly asked coding interview problems, **20 curated Low-Level Design** implementations, and a **High-Level Design (HLD) topic checklist** for system design interview prep (no long-form HLD write-ups here—use the list to drive whiteboard practice).
 
 ---
 
@@ -21,7 +21,7 @@ Welcome to my **comprehensive DSA Solutions Repository**! This repository contai
 questions/
 ├── arrays/               # Array & Matrix problems (30 problems)
 ├── strings/              # String processing & algorithms (8 problems)
-├── linked_lists/         # Linked List manipulations (17 problems)
+├── linked_lists/         # Linked List manipulations (18 problems)
 ├── stacks/               # Stack-based problems (9 problems)
 ├── trees/                # Binary Tree & BST problems (34 problems)
 ├── heaps/                # Heap & Priority Queue problems (4 problems)
@@ -119,26 +119,27 @@ questions/
 
 </details>
 
-### 🔗 Linked Lists (17 Problems)
+### 🔗 Linked Lists (18 Problems)
 **Introduce Pointers** - Comprehensive linked list manipulation techniques and algorithms.
 
 | Problem | Difficulty | Key Concepts |
 |---------|------------|--------------|
 | [Reverse Linked List](questions/linked_lists/reverse_linked_list.md) | Easy ✅ | Two Pointers |
+| [Swap Nodes in Pairs](questions/linked_lists/swap_nodes_in_pairs.md) | Medium ⚡ | Dummy Node |
 | [Merge Two Sorted Lists](questions/linked_lists/merge_k_sorted_list.md) | Easy ✅ | Merge Algorithm |
 | [Detect Cycle](questions/linked_lists/detect_and_remove_loop.md) | Medium ⚡ | Floyd's Algorithm |
 | [LRU Cache](questions/linked_lists/lru_cache.md) | Medium ⚡ | HashMap + Doubly Linked List |
 | [Clone Random Pointer List](questions/linked_lists/clone_linked_list.md) | Medium ⚡ | HashMap + Deep Copy |
 
 <details>
-<summary><strong>📋 Complete Linked Lists (17 problems)</strong></summary>
+<summary><strong>📋 Complete Linked Lists (18 problems)</strong></summary>
 
 | # | Problem | Difficulty |
 |---|---------|------------|
 | **Easy Problems (2)** |||
 | 1 | [Middle of Linked List](questions/linked_lists/linked_list_middle.md) | Easy ✅ |
 | 2 | [Reverse Linked List](questions/linked_lists/reverse_linked_list.md) | Easy ✅ |
-| **Medium Problems (13)** |||
+| **Medium Problems (14)** |||
 | 3 | [Add Two Numbers](questions/linked_lists/add_two_numbers_list.md) | Medium ⚡ |
 | 4 | [Clone Random Pointer List](questions/linked_lists/clone_linked_list.md) | Medium ⚡ |
 | 5 | [Delete M after N Nodes](questions/linked_lists/delete_m_nodes_after_n_nodes.md) | Medium ⚡ |
@@ -152,9 +153,10 @@ questions/
 | 13 | [Rotate Linked List](questions/linked_lists/rotate_linked_list.md) | Medium ⚡ |
 | 14 | [Segregate Odd Even Values](questions/linked_lists/segregate_odd_even_list.md) | Medium ⚡ |
 | 15 | [Segregate Odd Even Positions](questions/linked_lists/segregate_odd_even_position.md) | Medium ⚡ |
+| 16 | [Swap Nodes in Pairs](questions/linked_lists/swap_nodes_in_pairs.md) | Medium ⚡ |
 | **Hard Problems (2)** |||
-| 16 | [Merge K Sorted Lists](questions/linked_lists/merge_k_sorted_list.md) | Hard 🔥 |
-| 17 | [Reverse in Groups of K](questions/linked_lists/reverse_linked_list_group.md) | Hard 🔥 |
+| 17 | [Merge K Sorted Lists](questions/linked_lists/merge_k_sorted_list.md) | Hard 🔥 |
+| 18 | [Reverse in Groups of K](questions/linked_lists/reverse_linked_list_group.md) | Hard 🔥 |
 
 </details>
 
@@ -457,7 +459,7 @@ Track your progress with our **iterative learning path**:
 - [ ] **Dynamic Programming** (23/23) - Master Optimization
 - [ ] **Low-Level Design** (20/20) - System Design
 
-**Total: 137 DSA Problems + 20 LLD Problems**
+**Total: 138 DSA Problems + 20 LLD Problems**
 
 ---
 
@@ -488,7 +490,7 @@ We welcome contributions! Here's how you can help:
 ## 🎯 What Makes This Different?
 
 ### DSA Problems
-- ✅ **137 Problems** across 8 categories
+- ✅ **138 Problems** across 8 categories
 - ✅ Multiple approaches (Brute Force → Optimal)
 - ✅ Detailed complexity analysis
 - ✅ Interview tips and edge cases

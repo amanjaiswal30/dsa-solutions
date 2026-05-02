@@ -21,17 +21,17 @@ Rearrange the nodes **in-place** without altering the node values.
 
 ## 💡 Logic & Intuition
 - The problem can be broken down into **three subproblems**:
-    1. Find the **middle node** of the list using fast and slow pointers.
-    2. **Reverse the second half** of the list.
-    3. **Merge the two halves** alternately to achieve the required order.
-- This ensures nodes are reordered **in-place** with **O(1) extra space**.
+    1. Find the middle with **`slow` / `fast`** using **`while (fast != null && fast.next != null)`** (same as *Middle of Linked List* LeetCode 876 / palindrome). **`secondHead = (fast == null) ? slow : slow.next`** starts the right half.
+    2. **Split** before reverse + merge: **even** length — walk **`p` from `head`** until **`p.next == slow`**, then **`p.next = null`**; **odd** — **`slow.next = null`** after **`secondHead`** is fixed. Splitting avoids a **cycle** when weaving (reorder **splices**; palindrome may only compare).
+    3. **Reverse** the second half, then **merge** alternately (`L1`, `Ln`, `L2`, …).
+- **O(1) extra space**, in-place.
 
 ---
 
 ## 🔹 Approach (Optimized)
-1. Use two pointers (`slow` and `fast`) to find the middle node.
-2. Reverse the second half of the list starting from the middle.
-3. Merge nodes from the first half and the reversed second half alternately.
+1. **`slow` / `fast`:** **`while (fast != null && fast.next != null)`**; **`secondHead = (fast == null) ? slow : slow.next`**.
+2. **Split:** **even** (`fast == null`) — **`p`** from **`head`** until **`p.next == slow`**, **`p.next = null`**; **odd** — **`slow.next = null`**.
+3. **Reverse** **`secondHead`**, then **merge** alternately.
 
 **Time Complexity:** O(n)  
 **Space Complexity:** O(1)
@@ -53,16 +53,26 @@ public static class ListNode {
 public static void reorderList(ListNode head) {
     if (head == null || head.next == null) return;
 
-    // Step 1: Find the middle of the list
+    // Step 1: Middle (same as Middle of LL / palindrome)
     ListNode slow = head, fast = head;
-    while (fast.next != null && fast.next.next != null) {
+    while (fast != null && fast.next != null) {
         slow = slow.next;
         fast = fast.next.next;
     }
 
-    // Step 2: Reverse second half
-    ListNode second = reverseList(slow.next);
-    slow.next = null;  // Split the list into two halves
+    // Step 2: Right half + split (required before merge; see Logic)
+    ListNode secondHead = (fast == null) ? slow : slow.next;
+    if (fast == null) {
+        ListNode p = head;
+        while (p.next != slow) {
+            p = p.next;
+        }
+        p.next = null;
+    } else {
+        slow.next = null;
+    }
+
+    ListNode second = reverseList(secondHead);
 
     // Step 3: Merge two halves
     ListNode first = head;
