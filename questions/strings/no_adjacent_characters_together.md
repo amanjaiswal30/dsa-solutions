@@ -25,9 +25,9 @@ Explanation:
 ---
 
 ## 🔹 Intuition
-- Use a **max-heap (priority queue)** to always place the character with **highest remaining count**.
-- Place characters one by one, keeping track of the **previous character** to avoid consecutive repeats.
-- If the most frequent character cannot be placed, return `""`.
+- **Feasibility:** Let **`maxFreq`** be the largest character count. You can avoid adjacent equals **iff** **`maxFreq <= (n + 1) / 2`** — otherwise one letter would need more than half the slots on one “parity” (evens or odds), which is impossible.
+- **Max freq first (no heap):** Find the letter with **`maxFreq`**. Fill **every other index** starting at **`0`** (`0, 2, 4, …`) with that letter until it’s exhausted. Then reset **`idx`** to **`1`** if you ran past the end of the array, and place **all remaining letters** by stepping **`idx += 2`** (same parity stride), wrapping **`idx` to `1`** when **`idx >= n`**. Separating the dominant letter onto one parity guarantees it never touches itself.
+- **Heap variant:** Repeatedly take the **largest remaining count** that isn’t the previous placed character — same idea, different scheduling.
 
 ---
 
@@ -61,12 +61,65 @@ Explanation:
 
 ---
 
+### 3. Max frequency + alternating indices (no heap)
+- Scan counts → track **`maxFreq`** and which letter **`letter`** achieves it.
+- If **`maxFreq > (n + 1) / 2`** → return **`""`**.
+- **`char[] ans = new char[n]`**, **`idx = 0`**: while **`count[letter] > 0`**, set **`ans[idx] = letter`**, **`idx += 2`**, decrement count.
+- If **`idx >= n`**, set **`idx = 1`** (switch to odd slots).
+- For every other **`i`**, while **`count[i] > 0`**: if **`idx >= n`** then **`idx = 1`**; **`ans[idx] = i`**, **`idx += 2`**, decrement.
+
+**Time Complexity:** O(n)  
+**Space Complexity:** O(26) for counts + O(n) for output
+
+---
+
 ## 🔹 Java Code
 
 ```java
 import java.util.*;
 
 public class NoAdjacentCharacters {
+
+    /** Approach 3: max freq + alternating slots — O(n), no heap */
+    public static String rearrangeStringMaxFreq(String s) {
+        int[] cnt = new int[26];
+        int maxFreq = 0;
+        int letter = 0;
+        for (char c : s.toCharArray()) {
+            int i = c - 'a';
+            cnt[i]++;
+            if (cnt[i] > maxFreq) {
+                maxFreq = cnt[i];
+                letter = i;
+            }
+        }
+        int n = s.length();
+        if (maxFreq > (n + 1) / 2) {
+            return "";
+        }
+
+        char[] ans = new char[n];
+        int idx = 0;
+        while (cnt[letter] > 0) {
+            ans[idx] = (char) (letter + 'a');
+            idx += 2;
+            cnt[letter]--;
+        }
+        if (idx >= n) {
+            idx = 1;
+        }
+        for (int i = 0; i < 26; i++) {
+            while (cnt[i] > 0) {
+                if (idx >= n) {
+                    idx = 1;
+                }
+                ans[idx] = (char) (i + 'a');
+                idx += 2;
+                cnt[i]--;
+            }
+        }
+        return new String(ans);
+    }
 
     public static String rearrangeString(String s) {
         int[] freq = new int[26];
@@ -109,10 +162,11 @@ public class NoAdjacentCharacters {
 
 ## 🔹 Complexity Analysis
 
-| Approach                  | Time Complexity | Space Complexity |
-|---------------------------|----------------|-----------------|
-| Count + Sorting           | O(n log n)     | O(26)           |
-| Max Heap / Priority Queue | O(n)           | O(26 + n)       |
+| Approach                         | Time Complexity | Space Complexity |
+|----------------------------------|----------------|------------------|
+| Count + Sorting                  | O(n log n)     | O(26)            |
+| Max Heap / Priority Queue        | O(n)           | O(26 + n)        |
+| Max freq + alternating indices   | O(n)           | O(26 + n)        |
 
 ---
 

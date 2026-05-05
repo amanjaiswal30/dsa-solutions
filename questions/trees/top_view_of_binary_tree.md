@@ -31,7 +31,7 @@ Given the root of a **binary tree**, return the **top view** of the tree.
 
 ### 1. BFS with Map
 - Use a `TreeMap<Integer, Integer>` or `HashMap<Integer, Integer>` + track min/max HD.
-- Queue stores `(node, HD)` pairs.
+- Two **`Queue`s** in lockstep — **`nodes`** and **`horizontalDist`** — no **`Pair`** (JDK collections only).
 - For each node:
     - If HD not seen before → add node value to map.
     - Enqueue children with updated HD.
@@ -47,35 +47,41 @@ Given the root of a **binary tree**, return the **top view** of the tree.
 ```java
 import java.util.*;
 
-class Node {
+class TreeNode {
     int val;
-    Node left, right;
-    Node(int val) { this.val = val; }
+    TreeNode left, right;
+    TreeNode(int val) { this.val = val; }
 }
 
 public class TopViewBinaryTree {
 
-    public static List<Integer> topView(Node root) {
+    public static List<Integer> topView(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         if (root == null) return result;
 
         Map<Integer, Integer> map = new HashMap<>();
-        Queue<Pair<Node, Integer>> queue = new LinkedList<>();
-        int minHD = 0, maxHD = 0;
+        Queue<TreeNode> nodes = new LinkedList<>();
+        Queue<Integer> horizontalDist = new LinkedList<>();
+        int minHD = 0;
+        int maxHD = 0;
 
-        queue.add(new Pair<>(root, 0));
+        nodes.add(root);
+        horizontalDist.add(0);
 
-        while (!queue.isEmpty()) {
-            Pair<Node, Integer> p = queue.poll();
-            Node node = p.getKey();
-            int hd = p.getValue();
+        while (!nodes.isEmpty()) {
+            TreeNode node = nodes.poll();
+            int hd = horizontalDist.poll();
 
-            if (!map.containsKey(hd)) {
-                map.put(hd, node.val);
+            map.putIfAbsent(hd, node.val);
+
+            if (node.left != null) {
+                nodes.add(node.left);
+                horizontalDist.add(hd - 1);
             }
-
-            if (node.left != null) queue.add(new Pair<>(node.left, hd - 1));
-            if (node.right != null) queue.add(new Pair<>(node.right, hd + 1));
+            if (node.right != null) {
+                nodes.add(node.right);
+                horizontalDist.add(hd + 1);
+            }
 
             minHD = Math.min(minHD, hd);
             maxHD = Math.max(maxHD, hd);
@@ -84,16 +90,7 @@ public class TopViewBinaryTree {
         for (int i = minHD; i <= maxHD; i++) {
             result.add(map.get(i));
         }
-
         return result;
-    }
-
-    // Simple Pair class
-    static class Pair<K,V> {
-        private K key; private V value;
-        public Pair(K k, V v) { key = k; value = v; }
-        public K getKey() { return key; }
-        public V getValue() { return value; }
     }
 }
 ```

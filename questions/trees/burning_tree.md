@@ -25,6 +25,8 @@ The fire spreads from a burning node to its **adjacent nodes** (left child, righ
 
 The BFS approach is straightforward and easy to implement; the DFS approach is slightly more clever and avoids explicit parent maps but is a bit trickier.
 
+For BFS, treat each wave as **one minute**: after processing the current frontier, set **`burnedThisLevel = true`** if any **new** neighbor was enqueued. **`if (burnedThisLevel) minutes++;`** — only advance time when fire actually spread this round (equivalent to checking the queue non-empty after the wave, but reads as “did we ignite anyone new?”).
+
 ---
 
 ## 🔹 Approaches
@@ -32,7 +34,7 @@ The BFS approach is straightforward and easy to implement; the DFS approach is s
 ### 1. BFS using Parent Pointers (Recommended)
 - First pass: traverse tree and build `parent` map for every node (so we can move to parent in BFS).
 - Find the actual `Node` that corresponds to the target value (if only value given).
-- Run BFS from target node; each level is 1 minute. Count levels until all nodes visited.
+- Run BFS from target node; each level is 1 minute. After each level, **`if (burnedThisLevel) minutes++`**.
 
 **Time Complexity:** O(n)  
 **Space Complexity:** O(n)
@@ -109,8 +111,9 @@ public class BurnBinaryTree {
                 }
             }
 
-            // only increment minutes if we actually spread fire this minute
-            if (!q.isEmpty()) minutes++;
+            if (burnedThisLevel) {
+                minutes++;
+            }
         }
 
         return minutes;
@@ -207,14 +210,26 @@ public class BurnBinaryTree {
 
         while (!q.isEmpty()) {
             int sz = q.size();
+            boolean burnedThisLevel = false;
             for (int i = 0; i < sz; i++) {
                 Node cur = q.poll();
-                if (cur.left != null && visited.add(cur.left)) q.add(cur.left);
-                if (cur.right != null && visited.add(cur.right)) q.add(cur.right);
+                if (cur.left != null && visited.add(cur.left)) {
+                    q.add(cur.left);
+                    burnedThisLevel = true;
+                }
+                if (cur.right != null && visited.add(cur.right)) {
+                    q.add(cur.right);
+                    burnedThisLevel = true;
+                }
                 Node p = parent.get(cur);
-                if (p != null && visited.add(p)) q.add(p);
+                if (p != null && visited.add(p)) {
+                    q.add(p);
+                    burnedThisLevel = true;
+                }
             }
-            if (!q.isEmpty()) minutes++;
+            if (burnedThisLevel) {
+                minutes++;
+            }
         }
         return minutes;
     }

@@ -215,11 +215,11 @@ public class BestTimeToBuyAndSellStock {
 
 ### 3. With Transaction Fee
 **Q:** What if each transaction has a fee?  
-**A:** Keep two bests—**holding** vs **flat cash**—and subtract **`fee` on each sell** (LeetCode assumes fee on sell); see **Transaction fee** under Variations below.
+**A:** Track **`cash`** (best profit, **no** shares) vs **`hold`** (best profit, **one** share, buy cost folded in); subtract **`fee`** on each sell (LeetCode **714**); see **Transaction fee** under Variations below.
 
 ### 4. With Cooldown
 **Q:** What if you must wait 1 day after selling before buying again?  
-**A:** Model three profits per day—**holding** stock, **just sold** (next day is frozen for buys), **resting** (flat, allowed to buy)—and sweep with `Math.max` only; see **Cooldown** under Variations below.
+**A:** Three states **`buy`**, **`holding`**, **`cooldown`** (see **Cooldown** below): **`dp[day][3]`** or three rolling ints.
 
 ---
 
@@ -244,10 +244,10 @@ The first four map to LeetCode **121**, **122**, **123**, and **188**. Same inpu
 | **II** | **Unlimited** transactions (no overlap) | Greedy: sum all upward day-to-day moves |
 | **III** | At most **2** complete round-trips | Extend variant I: `minPrice1`/`maxProfit1`, then `minPrice2`/`maxProfit2` |
 | **IV** | At most **k** transactions | Same recurrence as III: `minPrice[j]` / `maxProfit[j]` for `j = 0..k-1` |
-| **Cooldown** | Unlimited trades + **1-day buy freeze** after each sell | Three-state DP: `hold`, `sold`, `rest` |
-| **Transaction fee** | Unlimited trades + **`fee` per sell** | Two states: `hold`, `cash` (flat) |
+| **Cooldown** | Unlimited trades + **1-day buy freeze** after each sell | Three states **`buy` / `holding` / `cooldown`** (`dp[i][3]` or rolling) |
+| **Transaction fee** | Unlimited trades + **`fee` per sell** | Two states: **`cash`** (no stock), **`hold`** (long 1 share) |
 
-**Same folding style:** Variants **I–IV** use `Math.min` / `Math.max` as above. **Cooldown** uses three scalars—buy only from **rest**, sell only from **hold**, **rest** absorbs yesterday’s **sold**. **Transaction fee** uses two scalars—buy from **`cash`**, sell adds **`price - fee`** into **`cash`**; snapshot **`prevCash`** before updating **`cash`** so **`hold`** stays consistent with variant **II** logic plus the fee on exit.
+**Same folding style:** Variants **I–IV** use `Math.min` / `Math.max` as above. **Cooldown:** only **`buy − price`** enters **`holding`** (no buy the day after a close); **`holding + price`** enters **`cooldown`**; **`buy`** becomes **`max(buy, cooldown)`** so the freeze can end. **Transaction fee:** **`cash`** / **`hold`**; the buy step uses **`cashBeforeSell`** (same “read **old** values, then assign **next**” order as rolling cooldown).
 
 ---
 
@@ -367,47 +367,89 @@ public static int maxProfitKTransactions(int k, int[] prices) {
 
 ### Cooldown — unlimited trades with 1-day freeze after sell
 
-**Rule:** As many buy/sell rounds as you want (one share at a time). After any **sell**, you **cannot buy** on the **next** day; later days are fine.
+**Rule (LeetCode 309):** Unlimited round-trips, **at most one share** at a time. If you **sell** on day `i`, you **may not buy** on day `i + 1`. You **may** buy again on day `i + 2` and later.
 
-**Idea:** Track best profit in three situations:
+**Three states**
 
-| State | Meaning |
-|-------|--------|
-| `hold` | Own a share after today’s actions |
-| `sold` | End today **right after selling** (tomorrow you must not buy from this path) |
-| `rest` | No share and **allowed to buy** tomorrow (were flat, or cooldown just ended) |
+Each is **best profit at end of that day** in that state:
 
-For each price `p`, save `prevSold`, then:
+| Index | Variable | Meaning |
+|:-----:|----------|---------|
+| **0** | **`buy`** | No stock; **you may buy tomorrow.** |
+| **1** | **`holding`** | You **own one share** (open long). |
+| **2** | **`cooldown`** | No stock; you **sold today** → **no buy tomorrow**. |
 
-- `sold = hold + p` — sell today (must have been holding).
-- `hold = max(hold, rest - p)` — keep holding, or **buy today** only from `rest` (not from a path that sold yesterday).
-- `rest = max(rest, prevSold)` — stay flat, or enter rest coming **from** a sale **yesterday** (cooldown cleared).
+**Transitions** for `prices[i]` (read **yesterday**, write **today**):
 
-Before the loop, seed **`hold`** with the **same rule as inside the loop**: you may only buy from **`rest`**, so after day 0 use **`hold = rest - prices[0]`** (with **`rest == 0`**, that is spending `prices[0]` to hold one share—reads as “pay from flat cash,” not a bare negation). Run the three transitions for **`i = 1 … n-1`**; later **`hold = max(hold, rest - prices[i])`** can replace that first buy with a better entry day. Return **`max(sold, rest)`**.
+| | Formula |
+|--|---------|
+| **`buy`** | `max(buy, cooldown)` |
+| **`holding`** | `max(holding, buy − price)` |
+| **`cooldown`** | `holding + price` |
 
-**Example:** `prices = [1,2,3,0,2]` → **3** (e.g. buy 1 sell 2, skip buy while cooldown, buy 0 sell 2).
+**Day 0:** `buy = 0`, `holding = −prices[0]`, `cooldown = 0`.
+
+**Return:** `max(buy, cooldown)` — not **`holding`** (still in a position until you exit).
+
+**Example:** `prices = [1,2,3,0,2]` → **3** (e.g. buy 1 → sell 2 → skip one buy day → buy 0 → sell 2).
+
+**1) Easiest to read — `dp[day][state]` (O(n) time, O(n) space)**
+
+Each row is one day; you literally fill the table.
 
 ```java
-/** Best Time to Buy and Sell Stock with Cooldown — O(n) time, O(1) space (LeetCode 309) */
+/** Cooldown — explicit DP table (LeetCode 309), O(n) time / O(n) space */
+public static int maxProfitWithCooldownTable(int[] prices) {
+    if (prices == null || prices.length == 0) {
+        return 0;
+    }
+    final int BUY = 0, HOLDING = 1, COOLDOWN = 2;
+    int n = prices.length;
+    int[][] dp = new int[n][3];
+
+    dp[0][BUY] = 0;
+    dp[0][HOLDING] = -prices[0];
+    dp[0][COOLDOWN] = 0;
+
+    for (int i = 1; i < n; i++) {
+        int p = prices[i];
+        dp[i][BUY] = Math.max(dp[i - 1][BUY], dp[i - 1][COOLDOWN]);
+        dp[i][HOLDING] = Math.max(dp[i - 1][HOLDING], dp[i - 1][BUY] - p);
+        dp[i][COOLDOWN] = dp[i - 1][HOLDING] + p;
+    }
+    return Math.max(dp[n - 1][BUY], dp[n - 1][COOLDOWN]);
+}
+```
+
+**2) Same math, O(1) space — rolling**
+
+```java
+/** Cooldown — rolling: buy / holding / cooldown (LeetCode 309), O(n) time / O(1) space */
 public static int maxProfitWithCooldown(int[] prices) {
     if (prices == null || prices.length == 0) {
         return 0;
     }
 
-    int rest = 0;
-    int sold = 0;
-    int hold = rest - prices[0]; // same as loop body: buy from rest → equity -= price
+    int buy = 0;
+    int holding = -prices[0];
+    int cooldown = 0;
 
     for (int i = 1; i < prices.length; i++) {
-        int p = prices[i];
-        int prevSold = sold;
-        sold = hold + p;
-        hold = Math.max(hold, rest - p);
-        rest = Math.max(rest, prevSold);
+        int price = prices[i];
+
+        int nextBuy = Math.max(buy, cooldown);
+        int nextHolding = Math.max(holding, buy - price);
+        int nextCooldown = holding + price;
+
+        buy = nextBuy;
+        holding = nextHolding;
+        cooldown = nextCooldown;
     }
-    return Math.max(sold, rest);
+    return Math.max(buy, cooldown);
 }
 ```
+
+**`BUY` / `HOLDING` / `COOLDOWN`** in the table are the same three slots as **`buy` / `holding` / `cooldown`** here.
 
 ---
 
@@ -415,37 +457,37 @@ public static int maxProfitWithCooldown(int[] prices) {
 
 **Rule:** Unlimited buys/sells (one share at a time). Each **sell** pays a fixed **`fee`** (LeetCode **714**; fee comes out of sale proceeds).
 
-**Idea:** Like variant **II**, but only two tracked bests:
+**Idea:** Like variant **II**, but two scalars — **camelCase state nouns**; use **`cashBeforeSell`** when the buy transition must see **`cash`** before the sell transition updates it:
 
-| State | Meaning |
-|-------|--------|
-| `cash` | Max profit when **not** holding (liquid; may buy tomorrow). |
-| `hold` | Max profit when **holding** one share (paid `price` when bought). |
+| Variable | Meaning |
+|----------|---------|
+| **`cash`** | Best profit with **zero** shares (fully liquid; you may buy). |
+| **`hold`** | Best profit while **holding exactly one** share (buy cost is folded into this balance). |
 
-Each day at price `p`, save **`prevCash`**, then:
+Each day at **`price`**, set **`cashBeforeSell = cash`**, then:
 
-- **`cash = max(cash, hold + p - fee)`** — stay flat, or **sell** today and pay **`fee`**.
-- **`hold = max(hold, prevCash - p)`** — keep holding, or **buy** using yesterday’s flat balance (**not** today’s updated `cash`, same pattern as cooldown’s `prevSold`).
+1. **Sell (optional):** **`cash = max(cash, hold + price − fee)`** — stay flat, or sell and pay **`fee`**.
+2. **Buy (optional):** **`hold = max(hold, cashBeforeSell − price)`** — keep the position, or buy using **`cash`** from **before** step 1 (same snapshot pattern as rolling **`buy` / `holding` / `cooldown`**).
 
-Seed **`hold = cash - prices[0]`** with **`cash == 0`** so day 0 matches “buy from flat.” Loop **`i = 1 … n-1`**. Answer **`cash`** (optimal schedule ends flat after a sell; holding alone never beats realizing).
+Seed **`hold = cash − prices[0]`** with **`cash = 0`**. Loop **`i = 1 … n−1`**. Return **`cash`** (best answer ends with no open long).
 
 **Example:** `prices = [1, 3, 2, 8, 4, 9]`, `fee = 2` → **8** (LeetCode sample).
 
 ```java
-/** Best Time to Buy and Sell Stock with Transaction Fee — O(n) time, O(1) space (LeetCode 714) */
+/** Transaction fee (LeetCode 714) — O(n) time, O(1) space */
 public static int maxProfitWithFee(int[] prices, int fee) {
     if (prices == null || prices.length == 0) {
         return 0;
     }
 
     int cash = 0;
-    int hold = cash - prices[0]; // buy on day 0: equity -= prices[0]
+    int hold = cash - prices[0];
 
     for (int i = 1; i < prices.length; i++) {
-        int p = prices[i];
-        int prevCash = cash;
-        cash = Math.max(cash, hold + p - fee);
-        hold = Math.max(hold, prevCash - p);
+        int price = prices[i];
+        int cashBeforeSell = cash;
+        cash = Math.max(cash, hold + price - fee);
+        hold = Math.max(hold, cashBeforeSell - price);
     }
     return cash;
 }

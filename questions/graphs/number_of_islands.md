@@ -51,7 +51,7 @@ grid = [
 This problem is identical to finding the **number of connected components** in a 2D grid.
 
 Each `'1'` is a **node**, and each connection (up, down, left, right) forms an **edge**.  
-We traverse every `'1'` and mark all connected land cells as visited.
+Use a **`boolean[][] visited`** (same shape as the grid) so you never revisit a land cell; the input grid can stay read-only for DFS/BFS.
 
 We can solve this using:
 - **DFS (recursive or iterative)**
@@ -64,8 +64,8 @@ We can solve this using:
 
 ### 1. DFS Approach
 - Traverse each cell.
-- When `'1'` is found, start a DFS to mark all connected land cells as visited.
-- Increment island count after each DFS call.
+- When **`grid[i][j] == '1'`** and **`!visited[i][j]`**, start DFS: set **`visited`** for every reachable `'1'`.
+- Increment island count once per new component.
 
 **Time Complexity:** O(n × m)  
 **Space Complexity:** O(n × m) (for recursion stack)
@@ -73,8 +73,7 @@ We can solve this using:
 ---
 
 ### 2. BFS Approach
-- Similar to DFS, but use a queue to explore level by level.
-- Each BFS expansion marks an entire island as visited.
+- Same as DFS, but use a queue; enqueue land cells and flip **`visited[r][c]`** when you first see them (two **`Queue<Integer>`** for row/col, or one queue of encoded index).
 
 **Time Complexity:** O(n × m)  
 **Space Complexity:** O(n × m)
@@ -94,61 +93,66 @@ We can solve this using:
 ## 🔹 Java Code (DFS, BFS, Union-Find)
 
 ```java
+import java.util.*;
+
 public class NumberOfIslands {
 
-    // Directions: up, down, left, right
-    private static final int[][] DIRS = {{1,0}, {-1,0}, {0,1}, {0,-1}};
+    private static final int[][] DIRS = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
-    // 1. DFS Approach
     public static int numIslandsDFS(char[][] grid) {
         if (grid == null || grid.length == 0) return 0;
         int n = grid.length, m = grid[0].length;
+        boolean[][] visited = new boolean[n][m];
         int count = 0;
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if (grid[i][j] == '1') {
-                    dfs(grid, i, j, n, m);
+                if (grid[i][j] == '1' && !visited[i][j]) {
+                    dfs(grid, visited, i, j, n, m);
                     count++;
                 }
             }
         }
-
         return count;
     }
 
-    private static void dfs(char[][] grid, int i, int j, int n, int m) {
-        if (i < 0 || j < 0 || i >= n || j >= m || grid[i][j] == '0') return;
-        grid[i][j] = '0'; // mark visited
+    private static void dfs(char[][] grid, boolean[][] visited, int i, int j, int n, int m) {
+        if (i < 0 || j < 0 || i >= n || j >= m || grid[i][j] != '1' || visited[i][j])
+            return;
+        visited[i][j] = true;
 
         for (int[] d : DIRS) {
-            dfs(grid, i + d[0], j + d[1], n, m);
+            dfs(grid, visited, i + d[0], j + d[1], n, m);
         }
     }
 
-    // 2. BFS Approach
     public static int numIslandsBFS(char[][] grid) {
         if (grid == null || grid.length == 0) return 0;
         int n = grid.length, m = grid[0].length;
+        boolean[][] visited = new boolean[n][m];
         int count = 0;
-        Queue<int[]> queue = new ArrayDeque<>();
+        Queue<Integer> rowQ = new ArrayDeque<>();
+        Queue<Integer> colQ = new ArrayDeque<>();
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if (grid[i][j] == '1') {
-                    count++;
-                    queue.add(new int[]{i, j});
-                    grid[i][j] = '0';
+                if (grid[i][j] != '1' || visited[i][j]) continue;
 
-                    while (!queue.isEmpty()) {
-                        int[] cell = queue.poll();
-                        for (int[] d : DIRS) {
-                            int x = cell[0] + d[0];
-                            int y = cell[1] + d[1];
-                            if (x >= 0 && y >= 0 && x < n && y < m && grid[x][y] == '1') {
-                                grid[x][y] = '0';
-                                queue.add(new int[]{x, y});
-                            }
+                count++;
+                visited[i][j] = true;
+                rowQ.add(i);
+                colQ.add(j);
+
+                while (!rowQ.isEmpty()) {
+                    int r = rowQ.poll();
+                    int c = colQ.poll();
+                    for (int[] d : DIRS) {
+                        int x = r + d[0];
+                        int y = c + d[1];
+                        if (x >= 0 && y >= 0 && x < n && y < m && grid[x][y] == '1' && !visited[x][y]) {
+                            visited[x][y] = true;
+                            rowQ.add(x);
+                            colQ.add(y);
                         }
                     }
                 }
@@ -201,14 +205,12 @@ public class NumberOfIslands {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if (grid[i][j] == '1') {
-                    grid[i][j] = '0';
-                    for (int[] d : DIRS) {
-                        int x = i + d[0];
-                        int y = j + d[1];
-                        if (x >= 0 && y >= 0 && x < n && y < m && grid[x][y] == '1') {
-                            uf.union(i * m + j, x * m + y);
-                        }
+                if (grid[i][j] != '1') continue;
+                for (int[] d : DIRS) {
+                    int x = i + d[0];
+                    int y = j + d[1];
+                    if (x >= 0 && y >= 0 && x < n && y < m && grid[x][y] == '1') {
+                        uf.union(i * m + j, x * m + y);
                     }
                 }
             }
@@ -224,9 +226,9 @@ public class NumberOfIslands {
 
 | Approach        | Time Complexity | Space Complexity |
 |-----------------|-----------------|------------------|
-| DFS             | O(n × m)        | O(n × m)         |
-| BFS             | O(n × m)        | O(n × m)         |
-| Union-Find (DSU)| O(n × m * α(nm))| O(n × m)         |
+| DFS             | O(n × m)        | O(n × m) (`visited` + recursion stack) |
+| BFS             | O(n × m)        | O(n × m) (`visited` + queue) |
+| Union-Find (DSU)| O(n × m * α(nm))| O(n × m) (parent array) |
 
 ---
 
@@ -242,5 +244,5 @@ public class NumberOfIslands {
 ## 🔹 Follow-Up Questions
 1. How would you modify this to support **8-directional connectivity**?
 2. Can you return the **size of each island** in a list?
-3. How can you perform this **without altering the input grid**?
+3. When is **`visited[][]`** preferable to **flipping `'1'` → `'0'`** in-place?
 4. How can you extend this logic to **count lakes (regions of water surrounded by land)**?

@@ -55,7 +55,7 @@ After 4 minutes, all oranges are rotten.
 ## 🔹 Approach (BFS)
 
 1. Traverse the grid and:
-    - Add all rotten oranges `(2)` to the queue.
+    - Enqueue each rotten orange as **two parallel queues** — **`rows`** and **`cols`** (no custom cell type).
     - Count total fresh oranges.
 2. While the queue is not empty:
     - For each rotten orange, rot all its adjacent fresh neighbors.
@@ -72,56 +72,48 @@ import java.util.*;
 
 public class RottingOranges {
 
-    static class Cell {
-        int row, col;
-        Cell(int r, int c) {
-            row = r;
-            col = c;
-        }
-    }
-
     public static int orangesRotting(int[][] grid) {
         if (grid == null || grid.length == 0) return 0;
 
-        int rows = grid.length, cols = grid[0].length;
-        Queue<Cell> queue = new ArrayDeque<>();
+        int m = grid.length, n = grid[0].length;
+        Queue<Integer> rowQ = new ArrayDeque<>();
+        Queue<Integer> colQ = new ArrayDeque<>();
         int freshCount = 0;
 
-        // Step 1: Add all initially rotten oranges to queue
-        for (int r = 0; r < rows; r++) {
-            for (int c = 0; c < cols; c++) {
+        for (int r = 0; r < m; r++) {
+            for (int c = 0; c < n; c++) {
                 if (grid[r][c] == 2) {
-                    queue.add(new Cell(r, c));
+                    rowQ.add(r);
+                    colQ.add(c);
                 } else if (grid[r][c] == 1) {
                     freshCount++;
                 }
             }
         }
 
-        // If no fresh orange, time = 0
         if (freshCount == 0) return 0;
 
         int minutes = 0;
-        int[][] directions = {{1,0}, {-1,0}, {0,1}, {0,-1}};
+        int[][] directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
-        // Step 2: BFS traversal
-        while (!queue.isEmpty()) {
-            int size = queue.size();
+        while (!rowQ.isEmpty()) {
+            int size = rowQ.size();
             boolean rottedThisMinute = false;
 
             for (int i = 0; i < size; i++) {
-                Cell cell = queue.poll();
+                int r = rowQ.poll();
+                int c = colQ.poll();
                 for (int[] d : directions) {
-                    int newRow = cell.row + d[0];
-                    int newCol = cell.col + d[1];
+                    int nr = r + d[0];
+                    int nc = c + d[1];
 
-                    if (newRow < 0 || newCol < 0 || newRow >= rows || newCol >= cols || grid[newRow][newCol] != 1)
-                        continue;
-
-                    grid[newRow][newCol] = 2;  // rot the orange
-                    freshCount--;
-                    queue.add(new Cell(newRow, newCol));
-                    rottedThisMinute = true;
+                    if (nr >= 0 && nc >= 0 && nr < m && nc < n && grid[nr][nc] == 1) {
+                        grid[nr][nc] = 2;
+                        freshCount--;
+                        rowQ.add(nr);
+                        colQ.add(nc);
+                        rottedThisMinute = true;
+                    }
                 }
             }
 
