@@ -11,7 +11,7 @@ description: "Comprehensive collection of 100+ Data Structures & Algorithms solu
 [![Language](https://img.shields.io/badge/Language-Java-orange.svg)](https://java.com)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Welcome to the **ultimate DSA interview preparation resource**! This repository contains **137 well-structured Java solutions** for coding interview problems from **FAANG** and top tech companies.
+Welcome to the **ultimate DSA interview preparation resource**! This repository contains **139 well-structured Java solutions** for coding interview problems from **FAANG** and top tech companies.
 
 ---
 
@@ -31,7 +31,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
 <div class="stats-grid">
   <div class="stat-card">
     <h3>📊 Arrays & Matrix</h3>
-    <p><strong>30 Problems</strong></p>
+    <p><strong>31 Problems</strong></p>
     <p>Two Pointers, Sliding Window, Matrix Operations</p>
   </div>
   
@@ -132,7 +132,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
 
 | Category | Count | Difficulty Range | Key Skills |
 |----------|-------|------------------|------------|
-| [**Arrays & Matrix**](questions/arrays/) | 30 | Easy → Hard | Two Pointers, Sliding Window, Binary Search |
+| [**Arrays & Matrix**](questions/arrays/) | 31 | Easy → Hard | Two Pointers, Sliding Window, Binary Search |
 | [**Strings**](questions/strings/) | 8 | Easy → Hard | Pattern Matching, Sliding Window |
 | [**Linked Lists**](questions/linked_lists/) | 18 | Easy → Hard | Fast/Slow Pointers, List Reversal |
 | [**Stacks & Queues**](questions/stacks/) | 9 | Easy → Hard | Monotonic Stack, Expression Evaluation |

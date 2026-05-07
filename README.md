@@ -1,6 +1,6 @@
 # 📚 Data Structures & Algorithms Solutions
 
-Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 138 commonly asked coding interview problems, **20 curated Low-Level Design** implementations, and a **High-Level Design (HLD) topic checklist** for system design interview prep (no long-form HLD write-ups here—use the list to drive whiteboard practice).
+Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 139 commonly asked coding interview problems, **20 curated Low-Level Design** implementations, and a **High-Level Design (HLD) topic checklist** for system design interview prep (no long-form HLD write-ups here—use the list to drive whiteboard practice).
 
 ---
 
@@ -19,7 +19,7 @@ Welcome to my **comprehensive DSA Solutions Repository**! This repository contai
 
 ```
 questions/
-├── arrays/               # Array & Matrix problems (30 problems)
+├── arrays/               # Array & Matrix problems (31 problems)
 ├── strings/              # String processing & algorithms (8 problems)
 ├── linked_lists/         # Linked List manipulations (18 problems)
 ├── stacks/               # Stack-based problems (9 problems)
@@ -35,12 +35,13 @@ questions/
 
 ## 🔥 Problem Categories
 
-### 📊 Arrays & Matrix (30 Problems)
+### 📊 Arrays & Matrix (31 Problems)
 **Foundation Level** - Master fundamental array techniques, two pointers, sliding window, and matrix operations.
 
 | Problem | Difficulty | Key Concepts |
 |---------|------------|--------------|
 | [Two Sum](questions/arrays/two_sum.md) | Easy ✅ | HashMap, Two Pointers |
+| [Shift All Zeros to the End](questions/arrays/shift_zeros_to_end.md) | Easy ✅ | Two Pointers, In-Place Partition |
 | [Best Time to Buy and Sell Stock](questions/arrays/best_time_to_buy_and_sell_stock.md) | Easy ✅ | Kadane's Algorithm, Greedy |
 | [3Sum](questions/arrays/3-sum.md) | Medium ⚡ | Two Pointers, Sorting |
 | [Container With Most Water](questions/arrays/container_with_most_water.md) | Medium ⚡ | Two Pointers |
@@ -51,11 +52,11 @@ questions/
 | [First Missing Positive](questions/arrays/missing_positive.md) | Hard 🔥 | Cyclic Sort |
 
 <details>
-<summary><strong>📋 Complete Arrays List (30 problems)</strong></summary>
+<summary><strong>📋 Complete Arrays List (31 problems)</strong></summary>
 
 | # | Problem | Difficulty | 
 |---|---------|------------|
-| **Easy Problems (8)** |||
+| **Easy Problems (9)** |||
 | 1 | [Best Time to Buy and Sell Stock](questions/arrays/best_time_to_buy_and_sell_stock.md) | Easy ✅ |
 | 2 | [Insert in Sorted Array](questions/arrays/insert_in_sorted_array.md) | Easy ✅ |
 | 3 | [Max Consecutive Ones](questions/arrays/max_consecutive_ones.md) | Easy ✅ |
@@ -64,30 +65,31 @@ questions/
 | 6 | [Subarray with Given Sum](questions/arrays/subarray_sum.md) | Easy ✅ |
 | 7 | [Tic Tac Toe Winner](questions/arrays/tic_tac_toe.md) | Easy ✅ |
 | 8 | [Two Sum](questions/arrays/two_sum.md) | Easy ✅ |
+| 9 | [Shift All Zeros to the End](questions/arrays/shift_zeros_to_end.md) | Easy ✅ |
 | **Medium Problems (18)** |||
-| 9 | [3Sum](questions/arrays/3-sum.md) | Medium ⚡ |
-| 10 | [Container With Most Water](questions/arrays/container_with_most_water.md) | Medium ⚡ |
-| 11 | [Find Duplicate Number](questions/arrays/duplicate_number.md) | Medium ⚡ |
-| 12 | [First & Last Position](questions/arrays/first_and_last_position_in_sorted_array.md) | Medium ⚡ |
-| 13 | [Gas Station](questions/arrays/gas_station.md) | Medium ⚡ |
-| 14 | [Largest Number](questions/arrays/largest_number.md) | Medium ⚡ |
-| 15 | [Majority Element](questions/arrays/majority_element.md) | Medium ⚡ |
-| 16 | [Meeting Rooms](questions/arrays/number_of_meeting_rooms.md) | Medium ⚡ |
-| 17 | [Minimum Arrows to Burst Balloons](questions/arrays/minimum_arrows_to_burst_balloons.md) | Medium ⚡ |
-| 18 | [Minimum in Rotated Array](questions/arrays/minimum_in_rotated_sorted_array.md) | Medium ⚡ |
-| 19 | [Peak Element](questions/arrays/peak_element.md) | Medium ⚡ |
-| 20 | [Rotate Image](questions/arrays/rotate_image.md) | Medium ⚡ |
-| 21 | [Search in 2D Matrix](questions/arrays/search_in_2d_matrix.md) | Medium ⚡ |
-| 22 | [Search in Rotated Array](questions/arrays/search_in_rotated_sorted_array.md) | Medium ⚡ |
-| 23 | [Sort Array of 0s, 1s, 2s](questions/arrays/sort012.md) | Medium ⚡ |
-| 24 | [Spiral Matrix](questions/arrays/spiral_matrix.md) | Medium ⚡ |
-| 25 | [Subarray with K Elements](questions/arrays/subarray_k_elements.md) | Medium ⚡ |
-| 26 | [Subarray Sum Equals K](questions/arrays/subarray_sum_equals_k.md) | Medium ⚡ |
+| 10 | [3Sum](questions/arrays/3-sum.md) | Medium ⚡ |
+| 11 | [Container With Most Water](questions/arrays/container_with_most_water.md) | Medium ⚡ |
+| 12 | [Find Duplicate Number](questions/arrays/duplicate_number.md) | Medium ⚡ |
+| 13 | [First & Last Position](questions/arrays/first_and_last_position_in_sorted_array.md) | Medium ⚡ |
+| 14 | [Gas Station](questions/arrays/gas_station.md) | Medium ⚡ |
+| 15 | [Largest Number](questions/arrays/largest_number.md) | Medium ⚡ |
+| 16 | [Majority Element](questions/arrays/majority_element.md) | Medium ⚡ |
+| 17 | [Meeting Rooms](questions/arrays/number_of_meeting_rooms.md) | Medium ⚡ |
+| 18 | [Minimum Arrows to Burst Balloons](questions/arrays/minimum_arrows_to_burst_balloons.md) | Medium ⚡ |
+| 19 | [Minimum in Rotated Array](questions/arrays/minimum_in_rotated_sorted_array.md) | Medium ⚡ |
+| 20 | [Peak Element](questions/arrays/peak_element.md) | Medium ⚡ |
+| 21 | [Rotate Image](questions/arrays/rotate_image.md) | Medium ⚡ |
+| 22 | [Search in 2D Matrix](questions/arrays/search_in_2d_matrix.md) | Medium ⚡ |
+| 23 | [Search in Rotated Array](questions/arrays/search_in_rotated_sorted_array.md) | Medium ⚡ |
+| 24 | [Sort Array of 0s, 1s, 2s](questions/arrays/sort012.md) | Medium ⚡ |
+| 25 | [Spiral Matrix](questions/arrays/spiral_matrix.md) | Medium ⚡ |
+| 26 | [Subarray with K Elements](questions/arrays/subarray_k_elements.md) | Medium ⚡ |
+| 27 | [Subarray Sum Equals K](questions/arrays/subarray_sum_equals_k.md) | Medium ⚡ |
 | **Hard Problems (4)** |||
-| 27 | [First Missing Positive](questions/arrays/missing_positive.md) | Hard 🔥 |
-| 28 | [Median of Two Sorted Arrays](questions/arrays/median_of_two_sorted_arrays.md) | Hard 🔥 |
-| 29 | [Merge Intervals](questions/arrays/merge_intervals.md) | Hard 🔥 |
-| 30 | [Next Permutation](questions/arrays/next_permutation.md) | Hard 🔥 |
+| 28 | [First Missing Positive](questions/arrays/missing_positive.md) | Hard 🔥 |
+| 29 | [Median of Two Sorted Arrays](questions/arrays/median_of_two_sorted_arrays.md) | Hard 🔥 |
+| 30 | [Merge Intervals](questions/arrays/merge_intervals.md) | Hard 🔥 |
+| 31 | [Next Permutation](questions/arrays/next_permutation.md) | Hard 🔥 |
 
 </details>
 
@@ -449,7 +451,7 @@ Each problem follows this format:
 
 Track your progress with our **iterative learning path**:
 
-- [ ] **Arrays & Matrix** (30/30) - Foundation
+- [ ] **Arrays & Matrix** (31/31) - Foundation
 - [ ] **Strings** (8/8) - Building on Arrays  
 - [ ] **Linked Lists** (17/17) - Introduce Pointers
 - [ ] **Stacks & Queues** (9/9) - Linear Structures
@@ -459,7 +461,7 @@ Track your progress with our **iterative learning path**:
 - [ ] **Dynamic Programming** (23/23) - Master Optimization
 - [ ] **Low-Level Design** (20/20) - System Design
 
-**Total: 138 DSA Problems + 20 LLD Problems**
+**Total: 139 DSA Problems + 20 LLD Problems**
 
 ---
 
@@ -490,7 +492,7 @@ We welcome contributions! Here's how you can help:
 ## 🎯 What Makes This Different?
 
 ### DSA Problems
-- ✅ **138 Problems** across 8 categories
+- ✅ **139 Problems** across 8 categories
 - ✅ Multiple approaches (Brute Force → Optimal)
 - ✅ Detailed complexity analysis
 - ✅ Interview tips and edge cases
