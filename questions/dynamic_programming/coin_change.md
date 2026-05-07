@@ -219,7 +219,60 @@ For `coins=[1,2,5]`, `amount=11`:
 
 ---
 
-## 4️⃣ Dynamic Programming – Optimized (Coin Loop Outside) ⭐
+## 4️⃣ 2D DP — **coin index** × **amount**
+
+### Explanation
+
+Let **`dp[i][a]`** = minimum number of coins to make amount **`a`** using **only** **`coins[0] … coins[i − 1]`** (first **`i`** denominations). Rows are **`i = 0 … n`**, columns **`a = 0 … amount`**.
+
+- **`dp[i][0] = 0`** — zero coins for amount zero.
+- **`dp[0][a] = ∞`** for **`a > 0`** — no coins available, impossible.
+- For **`i ≥ 1`** and **`a ≥ 1`**:
+  - **`dp[i][a] = dp[i − 1][a]`** — do not use **`coins[i − 1]`** in this step (only smaller denominations).
+  - Or use **one** coin **`coins[i − 1]`** and allow **more** of the same type: **`1 + dp[i][a − coins[i − 1]]`** if **`coins[i − 1] ≤ a`**.
+
+The inner recurrence **`dp[i][a − coin]`** still uses row **`i`**, so each denomination is **unbounded**. Answer is **`dp[n][amount]`**.
+
+**Space:** **`O(n × amount)`** for the full table; the recurrence only needs **previous row** **`dp[i − 1][·]`** and **current row** **`dp[i][·]`**, so you can compress to **`O(amount)`** (same idea as the **1D** tabulation in §3).
+
+### Code (Java)
+
+```java
+import java.util.Arrays;
+
+public class CoinChange {
+
+    /** 2D tabulation: dp[i][a] = min coins for amount a using first i coin types */
+    public int coinChange2D(int[] coins, int amount) {
+        int n = coins.length;
+        int INF = amount + 1;
+        int[][] dp = new int[n + 1][amount + 1];
+
+        Arrays.fill(dp[0], INF);
+        dp[0][0] = 0;
+
+        for (int i = 1; i <= n; i++) {
+            dp[i][0] = 0;
+            int c = coins[i - 1];
+            for (int a = 1; a <= amount; a++) {
+                dp[i][a] = dp[i - 1][a];
+                if (c <= a) {
+                    dp[i][a] = Math.min(dp[i][a], 1 + dp[i][a - c]);
+                }
+            }
+        }
+        return dp[n][amount] > amount ? -1 : dp[n][amount];
+    }
+}
+```
+
+### Complexity
+- **Time:** **`O(n × amount)`**
+- **Space:** **`O(n × amount)`** (full table); **`O(amount)`** if only two rows are kept.
+
+---
+
+## 5️⃣ Dynamic Programming – Optimized (Coin Loop Outside) ⭐
 
 ### Explanation
 Alternative ordering: loop through coins first, then amounts.  
@@ -262,6 +315,7 @@ public class CoinChange {
 | Recursive (Brute Force) | O(amount^n) | O(amount) | ❌ Never |
 | Memoization (Top-Down) | O(amount×n) | O(amount) | ✅ Good |
 | Tabulation (Bottom-Up) | O(amount×n) | O(amount) | ⭐ Best |
+| 2D DP (coin index × amount) | O(amount×n) | O(amount×n) (or O(amount) rolling row) | Teaching / clarity |
 | Optimized Order | O(amount×n) | O(amount) | ⭐ Best |
 
 ---
