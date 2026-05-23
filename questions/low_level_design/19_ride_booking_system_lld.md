@@ -54,15 +54,39 @@ _Deduced from the flows above — each entity should appear in at least one step
 ```mermaid
 classDiagram
     class Customer
-    class Driver
-    class DriverAssignmentStrategy
-    class FixedPricingStrategy
-    class Location
-    class Main
-    class NearestDriverAssignmentStrategy
-    class PricingStrategy
-    class Ride
-    class RideBookingService
+    class Driver {
+        +acceptRide()
+    }
+    class DriverAssignmentStrategy {
+        +assignDriver()
+    }
+    class FixedPricingStrategy {
+        +getEstimatedPrice()
+    }
+    class Location {
+        +distanceTo()
+    }
+    class Main {
+        +main()
+    }
+    class NearestDriverAssignmentStrategy {
+        +assignDriver()
+    }
+    class PricingStrategy {
+        +getEstimatedPrice()
+    }
+    class Ride {
+        +toString()
+    }
+    class RideBookingService {
+        +getInstance()
+        +addCustomer()
+        +addRide()
+        +addDriver()
+        +getPrice()
+        +bookRide()
+        +assignDriver()
+    }
     class RideStatus {
         <<enumeration>>
     }
@@ -77,27 +101,302 @@ classDiagram
 
 ## 3. Reference implementation (Java)
 
-Companion project: **`LLD/Uber/`**. Copies below for browsing on GitHub (logical order, not A–Z).
+Reference implementation from **`LLD/Uber/`** (all sources in this file).
 
-**Run locally:**
+Classes in **logical order**: enums → interfaces → domain → strategies → services → `Main`.
+
+**Run:**
 ```bash
 cd LLD/Uber
 javac src/*.java
 java -cp src Main
 ```
 
-| # | Source |
-|---|--------|
-| 1 | [`RideStatus.java`](code/19_ride_booking_system_lld/RideStatus.java) |
-| 2 | [`DriverAssignmentStrategy.java`](code/19_ride_booking_system_lld/DriverAssignmentStrategy.java) |
-| 3 | [`PricingStrategy.java`](code/19_ride_booking_system_lld/PricingStrategy.java) |
-| 4 | [`Customer.java`](code/19_ride_booking_system_lld/Customer.java) |
-| 5 | [`Driver.java`](code/19_ride_booking_system_lld/Driver.java) |
-| 6 | [`FixedPricingStrategy.java`](code/19_ride_booking_system_lld/FixedPricingStrategy.java) |
-| 7 | [`NearestDriverAssignmentStrategy.java`](code/19_ride_booking_system_lld/NearestDriverAssignmentStrategy.java) |
-| 8 | [`Location.java`](code/19_ride_booking_system_lld/Location.java) |
-| 9 | [`Ride.java`](code/19_ride_booking_system_lld/Ride.java) |
-| 10 | [`User.java`](code/19_ride_booking_system_lld/User.java) |
-| 11 | [`RideBookingService.java`](code/19_ride_booking_system_lld/RideBookingService.java) |
-| 12 | [`Main.java`](code/19_ride_booking_system_lld/Main.java) |
+### `RideStatus.java`
+
+```java
+public enum RideStatus {
+    FINDING_DRIVER,
+    DRIVER_ASSIGNED,
+    DRIVER_REACHED,
+    IN_PROGRESS,
+    CANCELLED,
+    COMPLETED
+}
+```
+
+### `DriverAssignmentStrategy.java`
+
+```java
+import java.util.List;
+
+public interface DriverAssignmentStrategy {
+    Driver assignDriver(List<Driver> driverList, Location source);
+}
+```
+
+### `PricingStrategy.java`
+
+```java
+public interface PricingStrategy {
+    double getEstimatedPrice(Location from, Location to);
+}
+```
+
+### `Customer.java`
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class Customer extends User {
+    List<Ride> pastRides;
+    public Customer(String name, String email) {
+        super(name, email);
+        this.pastRides = new ArrayList<>();
+    }
+}
+```
+
+### `Driver.java`
+
+```java
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Driver extends User {
+    List<Ride> previousRides;
+    boolean isAvailable;
+    Location location;
+    public Driver(String name, String email, Location location) {
+        super(name, email);
+        this.location = location;
+        this.isAvailable = true;
+        this.previousRides = new ArrayList<>();
+    }
+
+    void acceptRide(Ride ride) {
+        this.previousRides.add(ride);
+        this.isAvailable = false;
+    }
+}
+```
+
+### `FixedPricingStrategy.java`
+
+```java
+public class FixedPricingStrategy  implements PricingStrategy{
+    @Override
+    public double getEstimatedPrice(Location from, Location to) {
+        return 2.0 * from.distanceTo(to);
+    }
+}
+```
+
+### `NearestDriverAssignmentStrategy.java`
+
+```java
+import java.util.List;
+
+public class NearestDriverAssignmentStrategy implements DriverAssignmentStrategy {
+    @Override
+    public Driver assignDriver(List<Driver> driverList, Location source) {
+        double minDistance = Double.MAX_VALUE;
+        Driver nearestDriver = null;
+        for (Driver driver : driverList) {
+            if (driver.isAvailable && driver.location.distanceTo(source) < minDistance) {
+                minDistance = driver.location.distanceTo(source);
+                nearestDriver = driver;
+            }
+        }
+
+        return nearestDriver;
+    }
+}
+```
+
+### `Location.java`
+
+```java
+public class Location {
+    double latitude;
+    double longitude;
+
+    public Location(double latitude, double longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    double distanceTo(Location location) {
+        double x = Math.abs(location.latitude - this.latitude);
+        double y = Math.abs(location.longitude - this.longitude);
+        return Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
+    }
+}
+```
+
+### `Ride.java`
+
+```java
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+public class Ride {
+    String rideId;
+    Location start;
+    Location end;
+    double price;
+    Customer bookedByCustomer;
+    Driver driver;
+    RideStatus rideStatus;
+    LocalDateTime rideTime;
+
+
+    public Ride(Location start, Location end, double price, Customer bookedByCustomer) {
+        this.start = start;
+        this.rideId = UUID.randomUUID().toString();
+        this.end = end;
+        this.price = price;
+        this.bookedByCustomer = bookedByCustomer;
+        this.driver = null;
+        this.rideTime = LocalDateTime.now();
+        this.rideStatus = RideStatus.FINDING_DRIVER;
+    }
+
+    @Override
+    public String toString() {
+        return "Ride{" +
+                "rideId='" + rideId + '\'' +
+                ", start=" + start +
+                ", end=" + end +
+                ", price=" + price +
+                ", bookedByCustomer=" + bookedByCustomer +
+                ", driver=" + driver +
+                ", rideStatus=" + rideStatus +
+                ", rideTime=" + rideTime +
+                '}';
+    }
+}
+```
+
+### `User.java`
+
+```java
+import java.util.UUID;
+
+abstract class User {
+String name;
+String id;
+String email;
+
+    public User(String name, String email) {
+        this.name = name;
+        this.id = UUID.randomUUID().toString();
+        this.email = email;
+    }
+}
+```
+
+### `RideBookingService.java`
+
+```java
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class RideBookingService {
+    Map<String, Customer> customerMap;
+    Map<String, Ride> rideMap;
+    Map<String, Driver> driverMap;
+    DriverAssignmentStrategy driverAssignmentStrategy;
+    private static  RideBookingService instance;
+    private RideBookingService(DriverAssignmentStrategy driverAssignmentStrategy) {
+        customerMap = new HashMap<>();
+        rideMap = new HashMap<>();
+        driverMap = new HashMap<>();
+        this.driverAssignmentStrategy = driverAssignmentStrategy;
+
+    }
+
+    public static RideBookingService getInstance(DriverAssignmentStrategy driverAssignmentStrategy) {
+        if (instance == null) {
+            instance = new RideBookingService(driverAssignmentStrategy);
+        }
+        return instance;
+    }
+
+    void addCustomer(Customer customer) {
+        customerMap.put(customer.id, customer);
+    }
+
+
+
+    void addRide(Ride ride) {
+        rideMap.put(ride.rideId, ride);
+    }
+    void addDriver(Driver driver) {
+        driverMap.put(driver.id, driver);
+    }
+
+    double getPrice(PricingStrategy pricingStrategy, Location from, Location to) {
+        return 2 * pricingStrategy.getEstimatedPrice(from, to);
+    }
+
+    Ride bookRide(Customer customer, Location from, Location to, PricingStrategy pricingStrategy) {
+        double price = getPrice(pricingStrategy, from, to);
+        Ride ride = new Ride(from, to, price, customer);
+        rideMap.put(ride.rideId, ride);
+        return ride;
+    }
+
+    Driver assignDriver(Ride ride) {
+        Driver driver = driverAssignmentStrategy.assignDriver(driverMap.values().stream().toList(), ride.start);
+        if (driver != null) {
+            driver.isAvailable = false;
+            ride.driver = driver;
+            ride.rideStatus = RideStatus.DRIVER_ASSIGNED;
+            return driver;
+        }
+        return null;
+    }
+
+
+}
+```
+
+### `Main.java`
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        DriverAssignmentStrategy driverAssignmentStrategy = new NearestDriverAssignmentStrategy();
+        RideBookingService rideBookingService = RideBookingService.getInstance(driverAssignmentStrategy);
+        Customer aman = new Customer("Aman","emamkl");
+        Customer ben = new Customer("Ben","emamkl");
+        Customer jan = new Customer("Jan","emamkl");
+        Driver kamlesh = new Driver("Kamlesh", "enak", new Location(32.12,43.54));
+        Driver raju = new Driver("Raju", "eana", new Location(12.23,54.21));
+        rideBookingService.addCustomer(aman);
+        rideBookingService.addCustomer(ben);
+        rideBookingService.addCustomer(jan);
+        rideBookingService.addDriver(kamlesh);
+        rideBookingService.addDriver(raju);
+
+        Ride ride = rideBookingService.bookRide(aman, new Location(53.21,32.11), new Location(11.32,23.45), new FixedPricingStrategy());
+        Ride ride2 = rideBookingService.bookRide(ben, new Location(53.21,32.11), new Location(11.32,23.45), new FixedPricingStrategy());
+        Ride ride3 = rideBookingService.bookRide(ben, new Location(53.21,32.11), new Location(11.32,23.45), new FixedPricingStrategy());
+        System.out.println(ride);
+        System.out.println(ride2);
+        System.out.println(ride3);
+        rideBookingService.assignDriver(ride);
+        System.out.println(ride);
+        rideBookingService.assignDriver(ride2);
+        System.out.println(ride2);
+        rideBookingService.assignDriver(ride3);
+        System.out.println(ride3);
+
+    }
+}
+```
 

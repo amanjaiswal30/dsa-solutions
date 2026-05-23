@@ -50,15 +50,88 @@ _Deduced from the flows above — each entity should appear in at least one step
 
 ### Class diagram
 
-![17_logging_framework_lld class diagram](../../assets/images/low_level_design/17_logging_framework_lld.svg)
+```mermaid
+classDiagram
+    class Appender {
+        +append()
+    }
+    class ConsoleAppender {
+        +append()
+    }
+    class ErrorConsoleAppender {
+        +append()
+    }
+    class FileAppender {
+        +append()
+    }
+    class InMemoryAppender {
+        +append()
+        +snapshot()
+    }
+    class LogEvent {
+        +getTimestamp()
+        +getLevel()
+        +getLoggerName()
+        +getMessage()
+        +getThreadName()
+    }
+    class LogLevel {
+        <<enumeration>>
+    }
+    class Logger {
+        +getParent()
+        +setParent()
+        +setLevel()
+        +setAdditive()
+        +isAdditive()
+        +addAppender()
+        +getOwnAppenders()
+        +getEffectiveLevel()
+        +trace()
+        +debug()
+    }
+    class LoggerFactory {
+        +service()
+        +getLogger()
+        +setLogLevel()
+        +addAppender()
+        +addRootAppender()
+    }
+    class LoggerService {
+        +getInstance()
+        +getRootLogger()
+        +getLogger()
+        +createLogger()
+        +resolveParent()
+        +setLogLevel()
+        +getLogLevel()
+        +addAppender()
+        +addRootAppender()
+        +publish()
+    }
+    class Main {
+        +main()
+    }
+    Appender <|.. ConsoleAppender
+    Appender <|.. ErrorConsoleAppender
+    Appender <|.. FileAppender
+    Appender <|.. InMemoryAppender
+    LogEvent --> InMemoryAppender
+    LogLevel --> LogEvent
+    Appender --> Logger
+    LogLevel --> Logger
+    LoggerService --> Logger
+    LogLevel --> LoggerService
+    Logger --> LoggerService
+```
 
 ---
 
 ## 3. Reference implementation (Java)
 
-Sources from companion project **`LLD/Logger/`** (flat `src/`).
+Reference implementation from **`LLD/Logger/`** (all sources in this file).
 
-Classes are listed in **logical order** (enums → interfaces → domain → strategies → services → `Main`), not alphabetically.
+Classes in **logical order**: enums → interfaces → domain → strategies → services → `Main`.
 
 **Run:**
 ```bash
@@ -95,6 +168,120 @@ public enum LogLevel {
 ```java
 public interface Appender {
     void append(LogEvent event);
+}
+```
+
+### `Logger.java`
+
+```java
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Logger {
+    private final String name;
+    private final LoggerService service;
+    private volatile LogLevel level;
+    private volatile Logger parent;
+    private volatile boolean additive = true;
+    private final List<Appender> appenders = new ArrayList<>();
+
+    public Logger(String name, LoggerService service) {
+        this.name = name;
+        this.service = service;
+    }
+
+    public Logger getParent() {
+        return parent;
+    }
+
+    public void setParent(Logger parent) {
+        this.parent = parent;
+    }
+
+    public void setLevel(LogLevel level) {
+        this.level = level;
+    }
+
+    public void setAdditive(boolean additive) {
+        this.additive = additive;
+    }
+
+    public boolean isAdditive() {
+        return additive;
+    }
+
+    public synchronized void addAppender(Appender appender) {
+        appenders.add(appender);
+    }
+
+    public synchronized List<Appender> getOwnAppenders() {
+        return Collections.unmodifiableList(new ArrayList<>(appenders));
+    }
+
+    public LogLevel getEffectiveLevel() {
+        if (level != null) {
+            return level;
+        }
+        if (parent != null) {
+            return parent.getEffectiveLevel();
+        }
+        return service.getLogLevel();
+    }
+
+    public void trace(String message) {
+        log(LogLevel.TRACE, message);
+    }
+
+    public void debug(String message) {
+        log(LogLevel.DEBUG, message);
+    }
+
+    public void info(String message) {
+        log(LogLevel.INFO, message);
+    }
+
+    public void warn(String message) {
+        log(LogLevel.WARN, message);
+    }
+
+    public void error(String message) {
+        log(LogLevel.ERROR, message);
+    }
+
+    public void fatal(String message) {
+        log(LogLevel.FATAL, message);
+    }
+
+    public void log(LogLevel eventLevel, String message) {
+        if (!eventLevel.isEnabledFor(getEffectiveLevel())) {
+            return;
+        }
+
+        LogEvent event = new LogEvent(eventLevel, name, message);
+        service.publish(this, event);
+    }
+}
+```
+
+### `InMemoryAppender.java`
+
+```java
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class InMemoryAppender implements Appender {
+    private final List<LogEvent> events = new ArrayList<>();
+
+    @Override
+    public synchronized void append(LogEvent event) {
+        events.add(event);
+    }
+
+    public synchronized List<LogEvent> snapshot() {
+        return Collections.unmodifiableList(new ArrayList<>(events));
+    }
 }
 ```
 
@@ -210,27 +397,6 @@ public class LogEvent {
 }
 ```
 
-### `InMemoryAppender.java`
-
-```java
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-public class InMemoryAppender implements Appender {
-    private final List<LogEvent> events = new ArrayList<>();
-
-    @Override
-    public synchronized void append(LogEvent event) {
-        events.add(event);
-    }
-
-    public synchronized List<LogEvent> snapshot() {
-        return Collections.unmodifiableList(new ArrayList<>(events));
-    }
-}
-```
-
 ### `LoggerFactory.java`
 
 ```java
@@ -267,99 +433,6 @@ public final class LoggerFactory {
 
     public static void addRootAppender(Appender appender) {
         service().addRootAppender(appender);
-    }
-}
-```
-
-### `Logger.java`
-
-```java
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-public class Logger {
-    private final String name;
-    private final LoggerService service;
-    private volatile LogLevel level;
-    private volatile Logger parent;
-    private volatile boolean additive = true;
-    private final List<Appender> appenders = new ArrayList<>();
-
-    public Logger(String name, LoggerService service) {
-        this.name = name;
-        this.service = service;
-    }
-
-    public Logger getParent() {
-        return parent;
-    }
-
-    public void setParent(Logger parent) {
-        this.parent = parent;
-    }
-
-    public void setLevel(LogLevel level) {
-        this.level = level;
-    }
-
-    public void setAdditive(boolean additive) {
-        this.additive = additive;
-    }
-
-    public boolean isAdditive() {
-        return additive;
-    }
-
-    public synchronized void addAppender(Appender appender) {
-        appenders.add(appender);
-    }
-
-    public synchronized List<Appender> getOwnAppenders() {
-        return Collections.unmodifiableList(new ArrayList<>(appenders));
-    }
-
-    public LogLevel getEffectiveLevel() {
-        if (level != null) {
-            return level;
-        }
-        if (parent != null) {
-            return parent.getEffectiveLevel();
-        }
-        return service.getLogLevel();
-    }
-
-    public void trace(String message) {
-        log(LogLevel.TRACE, message);
-    }
-
-    public void debug(String message) {
-        log(LogLevel.DEBUG, message);
-    }
-
-    public void info(String message) {
-        log(LogLevel.INFO, message);
-    }
-
-    public void warn(String message) {
-        log(LogLevel.WARN, message);
-    }
-
-    public void error(String message) {
-        log(LogLevel.ERROR, message);
-    }
-
-    public void fatal(String message) {
-        log(LogLevel.FATAL, message);
-    }
-
-    public void log(LogLevel eventLevel, String message) {
-        if (!eventLevel.isEnabledFor(getEffectiveLevel())) {
-            return;
-        }
-
-        LogEvent event = new LogEvent(eventLevel, name, message);
-        service.publish(this, event);
     }
 }
 ```

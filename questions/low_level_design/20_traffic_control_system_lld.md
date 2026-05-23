@@ -50,55 +50,251 @@ _Deduced from the flows above — each entity should appear in at least one step
 
 ### Class diagram
 
-```mermaid
-classDiagram
-    class Direction {
-        <<enumeration>>
-    }
-    class Intersection
-    class Main
-    class Phase
-    class RoundRobinSignalStrategy
-    class SignalColor {
-        <<enumeration>>
-    }
-    class SignalStrategy
-    class SignalTiming
-    class TrafficControlService
-    class TrafficMode {
-        <<enumeration>>
-    }
-    class TrafficSignal
-    SignalStrategy <|.. RoundRobinSignalStrategy
-    SignalTiming --> RoundRobinSignalStrategy
-    SignalStrategy --> TrafficControlService
-    TrafficMode --> TrafficControlService
-```
+![20_traffic_control_system_lld class diagram](../../assets/images/low_level_design/20_traffic_control_system_lld.svg)
 
 ---
 
 ## 3. Reference implementation (Java)
 
-Companion project: **`LLD/Traffic Control System/`**. Copies below for browsing on GitHub (logical order, not A–Z).
+Sources from companion project **`LLD/Traffic Control System/`** (flat `src/`).
 
-**Run locally:**
+Classes are listed in **logical order** (enums → interfaces → domain → strategies → services → `Main`), not alphabetically.
+
+**Run:**
 ```bash
 cd LLD/Traffic Control System
 javac src/*.java
 java -cp src Main
 ```
 
-| # | Source |
-|---|--------|
-| 1 | [`Direction.java`](code/20_traffic_control_system_lld/Direction.java) |
-| 2 | [`SignalColor.java`](code/20_traffic_control_system_lld/SignalColor.java) |
-| 3 | [`TrafficMode.java`](code/20_traffic_control_system_lld/TrafficMode.java) |
-| 4 | [`SignalStrategy.java`](code/20_traffic_control_system_lld/SignalStrategy.java) |
-| 5 | [`RoundRobinSignalStrategy.java`](code/20_traffic_control_system_lld/RoundRobinSignalStrategy.java) |
-| 6 | [`Intersection.java`](code/20_traffic_control_system_lld/Intersection.java) |
-| 7 | [`Phase.java`](code/20_traffic_control_system_lld/Phase.java) |
-| 8 | [`SignalTiming.java`](code/20_traffic_control_system_lld/SignalTiming.java) |
-| 9 | [`TrafficSignal.java`](code/20_traffic_control_system_lld/TrafficSignal.java) |
-| 10 | [`TrafficControlService.java`](code/20_traffic_control_system_lld/TrafficControlService.java) |
-| 11 | [`Main.java`](code/20_traffic_control_system_lld/Main.java) |
+### `Direction.java`
+
+```java
+public enum Direction {
+    NORTH,
+    SOUTH,
+    EAST,
+    WEST,
+}
+```
+
+### `SignalColor.java`
+
+```java
+public enum SignalColor {
+    RED,
+    GREEN,
+    YELLOW,
+}
+```
+
+### `TrafficMode.java`
+
+```java
+public enum TrafficMode {
+    NORMAL,
+    PEAK
+}
+```
+
+### `SignalStrategy.java`
+
+```java
+import java.util.List;
+
+public interface SignalStrategy {
+    List<Phase> getPhasePlan(Intersection intersection, TrafficMode trafficMode);
+}
+```
+
+### `Intersection.java`
+
+```java
+import java.util.Map;
+
+public class Intersection {
+    String id;
+    Map<Direction, TrafficSignal> signalMap;
+}
+```
+
+### `Phase.java`
+
+```java
+public class Phase {
+    Direction direction;
+    SignalTiming signalTiming;
+
+    public Phase(Direction direction, SignalTiming signalTiming) {
+        this.direction = direction;
+        this.signalTiming = signalTiming;
+    }
+}
+```
+
+### `SignalTiming.java`
+
+```java
+public class SignalTiming {
+    int greenSec;
+    int yellowSec;
+
+    public SignalTiming(int greenSec, int yellowSec) {
+        this.greenSec = greenSec;
+        this.yellowSec = yellowSec;
+    }
+}
+```
+
+### `RoundRobinSignalStrategy.java`
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+public class RoundRobinSignalStrategy implements SignalStrategy {
+
+    private final SignalTiming normalTiming;
+    private final SignalTiming peakTiming;
+
+    public RoundRobinSignalStrategy(SignalTiming normalTiming, SignalTiming peakTiming) {
+        this.normalTiming = normalTiming;
+        this.peakTiming = peakTiming;
+    }
+
+    @Override
+    public List<Phase> getPhasePlan(Intersection intersection, TrafficMode trafficMode) {
+        List<Phase> phases = new ArrayList<>();
+        if (intersection == null || intersection.signalMap == null || intersection.signalMap.isEmpty()) {
+            return phases;
+        }
+
+        SignalTiming timing = (trafficMode == TrafficMode.PEAK) ? peakTiming : normalTiming;
+
+        // Deterministic order avoids random switching behavior.
+        Direction[] order = new Direction[] {
+                Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST
+        };
+
+        Map<Direction, TrafficSignal> signalMap = intersection.signalMap;
+        for (Direction direction : order) {
+            if (signalMap.containsKey(direction)) {
+                phases.add(new Phase(direction, timing));
+            }
+        }
+        return phases;
+    }
+}
+```
+
+### `TrafficControlService.java`
+
+```java
+import java.util.List;
+import java.util.Map;
+
+public class TrafficControlService {
+
+    private final SignalStrategy signalStrategy;
+    private TrafficMode trafficMode;
+
+    public TrafficControlService(SignalStrategy signalStrategy, TrafficMode initialMode) {
+        this.signalStrategy = signalStrategy;
+        this.trafficMode = initialMode;
+    }
+
+    public void setTrafficMode(TrafficMode trafficMode) {
+        this.trafficMode = trafficMode;
+    }
+
+    public void runOneCycle(Intersection intersection) {
+        List<Phase> plan = signalStrategy.getPhasePlan(intersection, trafficMode);
+        if (plan.isEmpty()) {
+            System.out.println("No phases available for intersection: " +
+                    (intersection != null ? intersection.id : "null"));
+            return;
+        }
+
+        System.out.println("Running cycle for intersection: " + intersection.id + " [Mode=" + trafficMode + "]");
+
+        for (Phase phase : plan) {
+            setAllRed(intersection.signalMap);
+
+            TrafficSignal active = intersection.signalMap.get(phase.direction);
+            if (active == null) {
+                continue;
+            }
+
+            active.signalColor = SignalColor.GREEN;
+            System.out.println("GREEN  -> " + phase.direction + " for " + phase.signalTiming.greenSec + " sec");
+
+            active.signalColor = SignalColor.YELLOW;
+            System.out.println("YELLOW -> " + phase.direction + " for " + phase.signalTiming.yellowSec + " sec");
+
+            active.signalColor = SignalColor.RED;
+            System.out.println("RED    -> " + phase.direction);
+        }
+    }
+
+    private void setAllRed(Map<Direction, TrafficSignal> signalMap) {
+        for (TrafficSignal signal : signalMap.values()) {
+            signal.signalColor = SignalColor.RED;
+        }
+    }
+}
+```
+
+### `TrafficSignal.java`
+
+```java
+public class TrafficSignal {
+    String id;
+    Direction direction;
+    SignalColor signalColor;
+
+
+}
+```
+
+### `Main.java`
+
+```java
+import java.util.EnumMap;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Intersection intersection = buildIntersection("INT-1");
+
+        SignalStrategy strategy = new RoundRobinSignalStrategy(
+                new SignalTiming(30, 5), // NORMAL
+                new SignalTiming(45, 5)  // PEAK
+        );
+
+        TrafficControlService service = new TrafficControlService(strategy, TrafficMode.NORMAL);
+        service.runOneCycle(intersection);
+
+        System.out.println("---- Switching to PEAK mode ----");
+        service.setTrafficMode(TrafficMode.PEAK);
+        service.runOneCycle(intersection);
+    }
+
+    private static Intersection buildIntersection(String id) {
+        Intersection intersection = new Intersection();
+        intersection.id = id;
+        intersection.signalMap = new EnumMap<>(Direction.class);
+
+        for (Direction direction : Direction.values()) {
+            TrafficSignal signal = new TrafficSignal();
+            signal.id = id + "-" + direction;
+            signal.direction = direction;
+            signal.signalColor = SignalColor.RED;
+            intersection.signalMap.put(direction, signal);
+        }
+
+        return intersection;
+    }
+}
+```
 

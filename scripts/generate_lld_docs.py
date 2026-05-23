@@ -17,7 +17,6 @@ from lld_java_analysis import (
 LLD_ROOT = Path("/Users/aman.jaiswal/Desktop/LLD")
 REPO_ROOT = Path("/Users/aman.jaiswal/Desktop/dsa-solutions")
 OUT_DIR = REPO_ROOT / "questions/low_level_design"
-CODE_DIR = OUT_DIR / "code"
 ASSETS_ROOT = REPO_ROOT / "assets"
 
 
@@ -550,17 +549,6 @@ def render_entities(entities: list[tuple[str, str, str]]) -> str:
 
 BLANK_IMPLEMENTATION = ""
 
-def sync_java_files(topic: LldTopic, files: list[tuple[str, str]]) -> Path:
-    dest = CODE_DIR / topic.slug
-    if dest.exists():
-        for old in dest.glob("*.java"):
-            old.unlink()
-    dest.mkdir(parents=True, exist_ok=True)
-    for name, source in files:
-        (dest / name).write_text(source, encoding="utf-8")
-    return dest
-
-
 def render_code(topic: LldTopic) -> str:
     if not topic.project:
         return BLANK_IMPLEMENTATION
@@ -568,25 +556,24 @@ def render_code(topic: LldTopic) -> str:
     if not files:
         return "_Companion project folder exists but no `src/*.java` files found._\n"
 
-    sync_java_files(topic, files)
-    code_rel = f"code/{topic.slug}"
-
     lines = [
-        f"Companion project: **`LLD/{topic.project}/`**. Copies below for browsing on GitHub (logical order, not A–Z).",
+        f"Reference implementation from **`LLD/{topic.project}/`** (all sources in this file).",
         "",
-        "**Run locally:**",
+        "Classes in **logical order**: enums → interfaces → domain → strategies → services → `Main`.",
+        "",
+        "**Run:**",
         "```bash",
         f"cd LLD/{topic.project}",
         "javac src/*.java",
         "java -cp src Main",
         "```",
         "",
-        "| # | Source |",
-        "|---|--------|",
     ]
-    for i, (name, _) in enumerate(files, 1):
-        lines.append(f"| {i} | [`{name}`]({code_rel}/{name}) |")
-    lines.append("")
+    for name, source in files:
+        lines.append(f"### `{name}`\n")
+        lines.append("```java")
+        lines.append(source.rstrip("\n"))
+        lines.append("```\n")
     return "\n".join(lines)
 
 
@@ -688,6 +675,12 @@ def main() -> None:
         path = OUT_DIR / f"{topic.slug}.md"
         path.write_text(render_doc(topic), encoding="utf-8")
         print(f"Wrote {path.name}")
+
+    code_dir = OUT_DIR / "code"
+    if code_dir.is_dir():
+        import shutil
+        shutil.rmtree(code_dir)
+        print("Removed questions/low_level_design/code/ (sources live in each *_lld.md)")
 
     for old in old_suffixes:
         old_path = OUT_DIR / old

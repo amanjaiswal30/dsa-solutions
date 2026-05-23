@@ -28,6 +28,14 @@ RE_FIELD = re.compile(
 )
 RE_GENERIC = re.compile(r"(?:List|Map|Set|Queue|Optional)<(?:[\w.]+,\s*)?(\w+)>")
 RE_LOCAL_CLASS = re.compile(r"\b([A-Z][a-zA-Z0-9]*)\b")
+RE_METHOD_DECL = re.compile(
+    r"^\s+(?!(?:if|for|while|switch|catch|else|return|throw|new)\b)"
+    r"(?:@\w+(?:\([^)]*\))?\s+)*"
+    r"(?:(?:public|private|protected)\s+)?"
+    r"(?:static\s+)?(?:synchronized\s+)?"
+    r"([A-Za-z][\w.<>,\[\]]*)\s+(\w+)\s*\([^)]*\)\s*(?:\{|throws|;)",
+    re.MULTILINE,
+)
 
 
 @dataclass
@@ -73,9 +81,25 @@ def parse_java_file(path: Path) -> JavaType | None:
         if base and base[0].isupper() and base not in JAVA_STD:
             refs.add(base)
 
-    # public methods (sample for diagram)
-    methods = re.findall(r"public\s+(?:static\s+)?[\w<>,\s]+\s+(\w+)\s*\(", content)
-    public_methods = [x for x in methods if x not in {"class", "enum", "interface"}][:6]
+    skip_names = {"class", "enum", "interface", name}
+    methods: list[str] = []
+    seen_m: set[str] = set()
+    for _ret, mname in RE_METHOD_DECL.findall(content):
+        if mname in skip_names or mname in seen_m:
+            continue
+        seen_m.add(mname)
+        methods.append(mname)
+        if len(methods) >= 10:
+            break
+    if kind == "interface" and not methods:
+        for mname in re.findall(
+            r"^\s*[\w<>,\s\[\]]+\s+(\w+)\s*\([^)]*\)\s*;",
+            content,
+            re.MULTILINE,
+        ):
+            if mname not in seen_m:
+                seen_m.add(mname)
+                methods.append(mname)
 
     return JavaType(
         name=name,
@@ -84,7 +108,7 @@ def parse_java_file(path: Path) -> JavaType | None:
         extends=extends,
         implements=implements,
         fields=sorted(refs),
-        methods=public_methods,
+        methods=methods,
     )
 
 
@@ -178,7 +202,7 @@ def logical_file_order(types: dict[str, JavaType]) -> list[str]:
 
 
 def mermaid_class_diagram(types: dict[str, JavaType]) -> str:
-    """Compact diagram for GitHub (native Mermaid); no method lists to avoid huge graphs."""
+    """Class diagram with public methods for interview readability (GitHub Mermaid)."""
     lines = ["classDiagram"]
     names = set(types.keys())
 
@@ -186,6 +210,11 @@ def mermaid_class_diagram(types: dict[str, JavaType]) -> str:
         if t.kind == "enum":
             lines.append(f"    class {t.name} {{")
             lines.append("        <<enumeration>>")
+            lines.append("    }")
+        elif t.methods:
+            lines.append(f"    class {t.name} {{")
+            for m in t.methods[:10]:
+                lines.append(f"        +{m}()")
             lines.append("    }")
         else:
             lines.append(f"    class {t.name}")

@@ -55,13 +55,26 @@ _Deduced from the flows above — each entity should appear in at least one step
 classDiagram
     class Answer
     class Comment
-    class Main
+    class Main {
+        +main()
+    }
     class Post
     class Question
     class QuestionStatus {
         <<enumeration>>
     }
-    class StackOverflowService
+    class StackOverflowService {
+        +getInstance()
+        +registerUser()
+        +askQuestion()
+        +postAnswer()
+        +acceptAnswer()
+        +addComment()
+        +vote()
+        +getScore()
+        +getQuestionById()
+        +listQuestions()
+    }
     class Tag
     class User
     class Vote
@@ -80,26 +93,360 @@ classDiagram
 
 ## 3. Reference implementation (Java)
 
-Companion project: **`LLD/Stack Overflow/`**. Copies below for browsing on GitHub (logical order, not A–Z).
+Reference implementation from **`LLD/Stack Overflow/`** (all sources in this file).
 
-**Run locally:**
+Classes in **logical order**: enums → interfaces → domain → strategies → services → `Main`.
+
+**Run:**
 ```bash
 cd LLD/Stack Overflow
 javac src/*.java
 java -cp src Main
 ```
 
-| # | Source |
-|---|--------|
-| 1 | [`QuestionStatus.java`](code/18_stack_overflow_lld/QuestionStatus.java) |
-| 2 | [`VoteType.java`](code/18_stack_overflow_lld/VoteType.java) |
-| 3 | [`Answer.java`](code/18_stack_overflow_lld/Answer.java) |
-| 4 | [`Question.java`](code/18_stack_overflow_lld/Question.java) |
-| 5 | [`Comment.java`](code/18_stack_overflow_lld/Comment.java) |
-| 6 | [`Post.java`](code/18_stack_overflow_lld/Post.java) |
-| 7 | [`Tag.java`](code/18_stack_overflow_lld/Tag.java) |
-| 8 | [`User.java`](code/18_stack_overflow_lld/User.java) |
-| 9 | [`Vote.java`](code/18_stack_overflow_lld/Vote.java) |
-| 10 | [`StackOverflowService.java`](code/18_stack_overflow_lld/StackOverflowService.java) |
-| 11 | [`Main.java`](code/18_stack_overflow_lld/Main.java) |
+### `QuestionStatus.java`
+
+```java
+public enum QuestionStatus {
+    OPEN,
+    CLOSED
+}
+```
+
+### `VoteType.java`
+
+```java
+public enum VoteType {
+    UPVOTE,
+    DOWNVOTE,
+}
+```
+
+### `Answer.java`
+
+```java
+public class Answer extends Post {
+    boolean accepted;
+    public Answer(String content, User createdBy) {
+        super(content,createdBy);
+        this.accepted = false;
+    }
+}
+```
+
+### `Question.java`
+
+```java
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+public class Question extends Post {
+    String title;
+    List<Tag>  tags;
+    List<Answer> answerList;
+    QuestionStatus questionStatus;
+    public Question(String title, String content, List<Tag> tags, User createdBy) {
+        super(content, createdBy);
+        this.title = title;
+        this.tags = tags;
+        this.answerList = new ArrayList<>();
+    }
+}
+```
+
+### `Comment.java`
+
+```java
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+public class Comment {
+    String id;
+    User user;
+    Post post;
+    String content;
+    LocalDateTime createdAt;
+
+    public Comment(User user, Post post, String content) {
+        this.user = user;
+        this.post = post;
+        this.content = content;
+        this.createdAt = LocalDateTime.now();
+        this.id = UUID.randomUUID().toString();
+    }
+}
+```
+
+### `Post.java`
+
+```java
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+abstract class Post {
+    String id;
+    String content;
+    LocalDateTime createdAt;
+    List<Comment> comments;
+    List<Vote> votes;
+    User createdBy;
+
+    public Post(String content, User user) {
+        this.content = content;
+        this.createdAt = LocalDateTime.now();
+        this.id = UUID.randomUUID().toString();
+        this.votes = new ArrayList<>();
+        this.comments = new ArrayList<>();
+        this.createdBy = user;
+    }
+}
+```
+
+### `Tag.java`
+
+```java
+import java.util.UUID;
+
+public class Tag {
+    String id;
+    String name;
+    public Tag(String name) {
+        this.id = UUID.randomUUID().toString();
+        this.name = name;
+    }
+}
+```
+
+### `User.java`
+
+```java
+import java.util.UUID;
+
+public class User {
+    String id;
+    String name;
+
+    public User(String name) {
+        this.name = name;
+        this.id = UUID.randomUUID().toString();
+    }
+}
+```
+
+### `Vote.java`
+
+```java
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+public class Vote {
+    String id;
+    User user;
+    Post post;
+    VoteType voteType;
+    LocalDateTime createdAt;
+
+    public Vote(User user, VoteType voteType, Post post) {
+        this.user = user;
+        this.voteType = voteType;
+        this.post = post;
+        this.id = UUID.randomUUID().toString();
+        this.createdAt = LocalDateTime.now();
+    }
+}
+```
+
+### `StackOverflowService.java`
+
+```java
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
+public final class StackOverflowService {
+    private static final StackOverflowService INSTANCE = new StackOverflowService();
+
+    private final Map<String, User> users = new LinkedHashMap<>();
+    private final Map<String, Question> questions = new LinkedHashMap<>();
+    private final Map<String, Answer> answers = new LinkedHashMap<>();
+    private final Map<String, Post> posts = new LinkedHashMap<>();
+
+    private StackOverflowService() {}
+
+    public static StackOverflowService getInstance() {
+        return INSTANCE;
+    }
+
+    public User registerUser(String name) {
+        User user = new User(name);
+        users.put(user.id, user);
+        return user;
+    }
+
+    public Question askQuestion(User user, String title, String content, List<String> tagNames) {
+        validateUser(user);
+
+        List<Tag> tags = new ArrayList<>();
+        for (String tagName : tagNames) {
+            tags.add(new Tag(tagName));
+        }
+
+        Question question = new Question(title, content, tags, user);
+        question.questionStatus = QuestionStatus.OPEN;
+
+        questions.put(question.id, question);
+        posts.put(question.id, question);
+        return question;
+    }
+
+    public Answer postAnswer(User user, String questionId, String content) {
+        validateUser(user);
+
+        Question question = getExistingQuestion(questionId);
+        if (question.questionStatus == QuestionStatus.CLOSED) {
+            throw new IllegalStateException("Question is closed.");
+        }
+
+        Answer answer = new Answer(content, user);
+        question.answerList.add(answer);
+
+        answers.put(answer.id, answer);
+        posts.put(answer.id, answer);
+        return answer;
+    }
+
+    public void acceptAnswer(User questionOwner, String questionId, String answerId) {
+        validateUser(questionOwner);
+        Question question = getExistingQuestion(questionId);
+
+        if (!question.createdBy.id.equals(questionOwner.id)) {
+            throw new IllegalStateException("Only question owner can accept an answer.");
+        }
+
+        Answer toAccept = answers.get(answerId);
+        if (toAccept == null || !question.answerList.contains(toAccept)) {
+            throw new IllegalArgumentException("Answer does not belong to this question.");
+        }
+
+        for (Answer answer : question.answerList) {
+            answer.accepted = false;
+        }
+        toAccept.accepted = true;
+    }
+
+    public Comment addComment(User user, String postId, String content) {
+        validateUser(user);
+        Post post = getExistingPost(postId);
+
+        Comment comment = new Comment(user, post, content);
+        post.comments.add(comment);
+        return comment;
+    }
+
+    public void vote(User user, String postId, VoteType voteType) {
+        validateUser(user);
+        Post post = getExistingPost(postId);
+
+        // one vote per user per post
+        post.votes.removeIf(v -> v.user.id.equals(user.id));
+        post.votes.add(new Vote(user, voteType, post));
+    }
+
+    public int getScore(String postId) {
+        Post post = getExistingPost(postId);
+        int score = 0;
+        for (Vote vote : post.votes) {
+            score += (vote.voteType == VoteType.UPVOTE) ? 1 : -1;
+        }
+        return score;
+    }
+
+    public Question getQuestionById(String questionId) {
+        return getExistingQuestion(questionId);
+    }
+
+    public List<Question> listQuestions() {
+        return new ArrayList<>(questions.values());
+    }
+
+    private void validateUser(User user) {
+        Objects.requireNonNull(user, "User cannot be null.");
+        if (!users.containsKey(user.id)) {
+            throw new IllegalArgumentException("User is not registered.");
+        }
+    }
+
+    private Question getExistingQuestion(String questionId) {
+        Question question = questions.get(questionId);
+        if (question == null) {
+            throw new IllegalArgumentException("Question not found: " + questionId);
+        }
+        return question;
+    }
+
+    private Post getExistingPost(String postId) {
+        Post post = posts.get(postId);
+        if (post == null) {
+            throw new IllegalArgumentException("Post not found: " + postId);
+        }
+        return post;
+    }
+}
+```
+
+### `Main.java`
+
+```java
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        StackOverflowService service = StackOverflowService.getInstance();
+
+        User aman = service.registerUser("Aman");
+        User rita = service.registerUser("Rita");
+        User dev = service.registerUser("Dev");
+
+        Question question = service.askQuestion(
+                aman,
+                "How to design Stack Overflow LLD?",
+                "Need entities, service, and flow.",
+                Arrays.asList("java", "lld", "design")
+        );
+
+        Answer answer1 = service.postAnswer(rita, question.id, "Start with Post abstraction.");
+        Answer answer2 = service.postAnswer(dev, question.id, "Use one singleton service first.");
+
+        service.addComment(aman, question.id, "Thanks for the quick answers!");
+        service.addComment(aman, answer2.id, "Can you add repository layer later?");
+
+        service.vote(aman, answer1.id, VoteType.UPVOTE);
+        service.vote(aman, answer2.id, VoteType.UPVOTE);
+        service.vote(rita, question.id, VoteType.UPVOTE);
+        service.vote(dev, question.id, VoteType.DOWNVOTE);
+
+        service.acceptAnswer(aman, question.id, answer2.id);
+
+        System.out.println("Question: " + question.title);
+        System.out.println("Question score: " + service.getScore(question.id));
+        System.out.println("Question comments: " + question.comments.size());
+        System.out.println("Answers count: " + question.answerList.size());
+
+        for (Answer answer : question.answerList) {
+            System.out.println(
+                    "- " + answer.content
+                            + " | accepted=" + answer.accepted
+                            + " | score=" + service.getScore(answer.id)
+                            + " | comments=" + answer.comments.size()
+            );
+        }
+    }
+}
+```
 
