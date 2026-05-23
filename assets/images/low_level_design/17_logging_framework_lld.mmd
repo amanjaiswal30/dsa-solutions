@@ -1,0 +1,60 @@
+classDiagram
+    class Appender
+    class ConsoleAppender {
+        +append()
+    }
+    class ErrorConsoleAppender {
+        +append()
+    }
+    class FileAppender {
+        +append()
+    }
+    class InMemoryAppender {
+        +append()
+        +snapshot()
+    }
+    class LogEvent {
+        +getTimestamp()
+        +getLevel()
+        +getLoggerName()
+        +getMessage()
+        +getThreadName()
+    }
+    class LogLevel {
+        <<enumeration>>
+    }
+    class Logger {
+        +getParent()
+        +setParent()
+        +setLevel()
+        +setAdditive()
+        +isAdditive()
+    }
+    class LoggerFactory {
+        +getLogger()
+        +getLogger()
+        +setLogLevel()
+        +addAppender()
+        +addAppender()
+    }
+    class LoggerService {
+        +getInstance()
+        +getRootLogger()
+        +getLogger()
+        +setLogLevel()
+        +getLogLevel()
+    }
+    class Main {
+        +main()
+    }
+    Appender <|.. ConsoleAppender
+    Appender <|.. ErrorConsoleAppender
+    Appender <|.. FileAppender
+    Appender <|.. InMemoryAppender
+    LogEvent --> InMemoryAppender
+    LogLevel --> LogEvent
+    Appender --> Logger
+    LogLevel --> Logger
+    LoggerService --> Logger
+    LogLevel --> LoggerService
+    Logger --> LoggerService

@@ -1,0 +1,8 @@
+public enum RideStatus {
+    FINDING_DRIVER,
+    DRIVER_ASSIGNED,
+    DRIVER_REACHED,
+    IN_PROGRESS,
+    CANCELLED,
+    COMPLETED
+}

@@ -1,0 +1,30 @@
+classDiagram
+    class Answer
+    class Comment
+    class Main {
+        +main()
+    }
+    class Post
+    class Question
+    class QuestionStatus {
+        <<enumeration>>
+    }
+    class StackOverflowService {
+        +getInstance()
+        +registerUser()
+        +askQuestion()
+        +postAnswer()
+        +acceptAnswer()
+    }
+    class Tag
+    class User
+    class Vote
+    class VoteType {
+        <<enumeration>>
+    }
+    Post <|-- Answer
+    Post <|-- Question
+    Answer --> StackOverflowService
+    Post --> StackOverflowService
+    Question --> StackOverflowService
+    User --> StackOverflowService

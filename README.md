@@ -370,7 +370,7 @@ questions/
 2. **Entities & relationships** — nouns and verbs from the flow; table + who-owns-whom.
 3. **Reference implementation (Java)** — code only after flow and model are agreed (classes listed in logical order, not A–Z).
 
-Each implemented topic includes a **class diagram** image under `assets/images/low_level_design/` (e.g. `01_parking_lot_system_lld.svg`).
+Each implemented topic includes a **Mermaid class diagram** in §2 (renders on GitHub) and Java sources under `questions/low_level_design/code/` (linked from §3 — keeps pages fast to load).
 
 | # | Topic | LLD/Design | Code |
 |---|-------|------------|------|
