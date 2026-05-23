@@ -1,0 +1,29 @@
+classDiagram
+    class Customer
+    class Driver
+    class DriverAssignmentStrategy
+    class FixedPricingStrategy {
+        +getEstimatedPrice()
+    }
+    class Location
+    class Main {
+        +main()
+    }
+    class NearestDriverAssignmentStrategy {
+        +assignDriver()
+    }
+    class PricingStrategy
+    class Ride {
+        +toString()
+    }
+    class RideBookingService {
+        +getInstance()
+    }
+    class RideStatus {
+        <<enumeration>>
+    }
+    class User
+    User <|-- Customer
+    User <|-- Driver
+    PricingStrategy <|.. FixedPricingStrategy
+    DriverAssignmentStrategy <|.. NearestDriverAssignmentStrategy

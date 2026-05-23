@@ -1,0 +1,29 @@
+classDiagram
+    class Direction {
+        <<enumeration>>
+    }
+    class Intersection
+    class Main {
+        +main()
+    }
+    class Phase
+    class RoundRobinSignalStrategy {
+        +getPhasePlan()
+    }
+    class SignalColor {
+        <<enumeration>>
+    }
+    class SignalStrategy
+    class SignalTiming
+    class TrafficControlService {
+        +setTrafficMode()
+        +runOneCycle()
+    }
+    class TrafficMode {
+        <<enumeration>>
+    }
+    class TrafficSignal
+    SignalStrategy <|.. RoundRobinSignalStrategy
+    SignalTiming --> RoundRobinSignalStrategy
+    SignalStrategy --> TrafficControlService
+    TrafficMode --> TrafficControlService
