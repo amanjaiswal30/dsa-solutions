@@ -431,7 +431,7 @@ class LRUCache extends LinkedHashMap<Integer, Integer> {
    **A:** Yes, but not O(1) for eviction. Need to iterate all keys to find LRU.
 
 5. **Q:** How to implement distributed LRU cache across multiple servers?  
-   **A:** See consistent hashing, replication, and eviction in distributed caches; for full LLD practice see the [Low-Level Design](../low_level_design/) collection (e.g. [Stack Overflow](../low_level_design/18_stack_overflow.md) for large-scale read-heavy designs). ✨
+   **A:** See consistent hashing, replication, and eviction in distributed caches; for full LLD practice see the [Low-Level Design](../low_level_design/) collection (e.g. [Stack Overflow](../low_level_design/18_stack_overflow_lld.md) for large-scale read-heavy designs). ✨
 
 ---
 

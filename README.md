@@ -27,7 +27,7 @@ questions/
 ├── heaps/                # Heap & Priority Queue problems (4 problems)
 ├── graphs/               # Graph algorithms & traversals (13 problems)
 ├── dynamic_programming/  # DP problems with detailed explanations (23 problems)
-├── low_level_design/     # LLD System Design (20 problems)
+├── low_level_design/     # LLD interviews (20 topics, files named *_lld.md)
 └── high_level_design/    # HLD topics checklist ([README](questions/high_level_design/README.md))
 ```
 
@@ -354,31 +354,50 @@ questions/
 
 </details>
 
-### 🏗️ Low-Level Design (20 Problems)
-**Object-Oriented System Design** — curated LLD topics (numbered filenames match this order).
+### 🏗️ Low-Level Design (20 Topics)
 
-| # | Topic | File |
-|---|-------|------|
-| 01 | Parking Lot System | [01_parking_lot_system.md](questions/low_level_design/01_parking_lot_system.md) |
-| 02 | Movie Ticket Booking System | [02_movie_ticket_booking_system.md](questions/low_level_design/02_movie_ticket_booking_system.md) |
-| 03 | Chess Game | [03_chess_game.md](questions/low_level_design/03_chess_game.md) |
-| 04 | Customer Issue Resolution System | [04_customer_issue_resolution_system.md](questions/low_level_design/04_customer_issue_resolution_system.md) |
-| 05 | Dunzo / Delivery System | [05_dunzo_delivery_system.md](questions/low_level_design/05_dunzo_delivery_system.md) |
-| 06 | Restaurant Order & Rating System | [06_restaurant_order_rating_system.md](questions/low_level_design/06_restaurant_order_rating_system.md) |
-| 07 | Meeting Scheduler | [07_meeting_scheduler.md](questions/low_level_design/07_meeting_scheduler.md) |
-| 08 | Splitwise | [08_splitwise.md](questions/low_level_design/08_splitwise.md) |
-| 09 | Order & Inventory Management | [09_order_inventory_management.md](questions/low_level_design/09_order_inventory_management.md) |
-| 10 | Text Editor | [10_text_editor.md](questions/low_level_design/10_text_editor.md) |
-| 11 | Vending Machine | [11_vending_machine.md](questions/low_level_design/11_vending_machine.md) |
-| 12 | ATM Machine | [12_atm_machine.md](questions/low_level_design/12_atm_machine.md) |
-| 13 | Tic Tac Toe | [13_tic_tac_toe.md](questions/low_level_design/13_tic_tac_toe.md) |
-| 14 | Car Rental System | [14_car_rental_system.md](questions/low_level_design/14_car_rental_system.md) |
-| 15 | Digital Wallet | [15_digital_wallet.md](questions/low_level_design/15_digital_wallet.md) |
-| 16 | Elevator System | [16_elevator_system.md](questions/low_level_design/16_elevator_system.md) |
-| 17 | Logging Framework | [17_logging_framework.md](questions/low_level_design/17_logging_framework.md) |
-| 18 | Stack Overflow | [18_stack_overflow.md](questions/low_level_design/18_stack_overflow.md) |
-| 19 | Ride Booking System (Uber / Ola) | [19_ride_booking_system.md](questions/low_level_design/19_ride_booking_system.md) |
-| 20 | Traffic Control System | [20_traffic_control_system.md](questions/low_level_design/20_traffic_control_system.md) |
+**Object-oriented system design** for interviews. Open **LLD/Design** to read flow → entities → code for each topic.
+
+| Coverage | Count |
+|----------|-------|
+| Topics with flow + entities (all) | **20 / 20** |
+| Topics with Java in §3 | **18 / 20** |
+| Topics pending (#03, #10) | **2 / 20** — design doc only, §3 left blank |
+
+**Interview order (do not skip):**
+
+1. **Core flow** — walk through use cases as numbered steps (happy path + important branches).
+2. **Entities & relationships** — nouns and verbs from the flow; table + who-owns-whom.
+3. **Reference implementation (Java)** — code only after flow and model are agreed (classes listed in logical order, not A–Z).
+
+Each implemented topic includes a **class diagram** image under `assets/images/low_level_design/` (e.g. `01_parking_lot_system_lld.svg`).
+
+| # | Topic | LLD/Design | Code |
+|---|-------|------------|------|
+| 01 | Parking Lot System | [LLD/Design](questions/low_level_design/01_parking_lot_system_lld.md) | ✅ |
+| 02 | Movie Ticket Booking System | [LLD/Design](questions/low_level_design/02_movie_ticket_booking_system_lld.md) | ✅ |
+| 03 | Chess Game | | |
+| 04 | Customer Issue Resolution System | [LLD/Design](questions/low_level_design/04_customer_issue_resolution_system_lld.md) | ✅ |
+| 05 | Dunzo / Hyperlocal Delivery | [LLD/Design](questions/low_level_design/05_dunzo_delivery_system_lld.md) | ✅ |
+| 06 | Restaurant Order (Zomato-style) | [LLD/Design](questions/low_level_design/06_restaurant_order_rating_system_lld.md) | ✅ |
+| 07 | Meeting Scheduler | [LLD/Design](questions/low_level_design/07_meeting_scheduler_lld.md) | ✅ |
+| 08 | Splitwise | [LLD/Design](questions/low_level_design/08_splitwise_lld.md) | ✅ |
+| 09 | Order & Inventory Management | [LLD/Design](questions/low_level_design/09_order_inventory_management_lld.md) | ✅ |
+| 10 | Text Editor | | |
+| 11 | Vending Machine | [LLD/Design](questions/low_level_design/11_vending_machine_lld.md) | ✅ |
+| 12 | ATM Machine | [LLD/Design](questions/low_level_design/12_atm_machine_lld.md) | ✅ |
+| 13 | Tic Tac Toe | [LLD/Design](questions/low_level_design/13_tic_tac_toe_lld.md) | ✅ |
+| 14 | Car Rental (ZoomCar-style) | [LLD/Design](questions/low_level_design/14_car_rental_system_lld.md) | ✅ |
+| 15 | Digital Wallet | [LLD/Design](questions/low_level_design/15_digital_wallet_lld.md) | ✅ |
+| 16 | Elevator System | [LLD/Design](questions/low_level_design/16_elevator_system_lld.md) | ✅ |
+| 17 | Logging Framework | [LLD/Design](questions/low_level_design/17_logging_framework_lld.md) | ✅ |
+| 18 | Stack Overflow (Q&A) | [LLD/Design](questions/low_level_design/18_stack_overflow_lld.md) | ✅ |
+| 19 | Ride Booking (Uber-style) | [LLD/Design](questions/low_level_design/19_ride_booking_system_lld.md) | ✅ |
+| 20 | Traffic Control System | [LLD/Design](questions/low_level_design/20_traffic_control_system_lld.md) | ✅ |
+
+✅ = full Java reference in section 3 (synced from companion `LLD/` project). Rows **03** and **10** are intentionally blank until implementations are added.
+
+Regenerate all LLD pages: `python3 scripts/generate_lld_docs.py`
 
 ### ☁️ High-Level Design (HLD) — topics to prepare
 

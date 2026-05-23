@@ -140,7 +140,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
 | [**Heaps**](questions/heaps/) | 4 | Medium → Hard | Priority Queues, Top K Problems |
 | [**Graphs**](questions/graphs/) | 13 | Easy → Hard | DFS, BFS, Topological Sort, Shortest Path |
 | [**Dynamic Programming**](questions/dynamic_programming/) | 23 | Easy → Hard | Memoization, Tabulation, Space Optimization |
-| [**Low-Level Design**](questions/low_level_design/) | 20 | Medium → Hard | OOP, Design Patterns, System Architecture |
+| [**Low-Level Design**](questions/low_level_design/) (`*_lld.md`) | 20 | Medium → Hard | Flow → Entities → Java (interview order) |
 
 ---
 
