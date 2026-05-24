@@ -85,7 +85,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
   
   <div class="stat-card total">
     <h3>🎯 Total</h3>
-    <p><strong>137 DSA + 20 LLD</strong></p>
+    <p><strong>137 DSA + 21 LLD</strong></p>
     <p>Complete Interview Coverage</p>
   </div>
 </div>
@@ -140,7 +140,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
 | [**Heaps**](questions/heaps/) | 4 | Medium → Hard | Priority Queues, Top K Problems |
 | [**Graphs**](questions/graphs/) | 13 | Easy → Hard | DFS, BFS, Topological Sort, Shortest Path |
 | [**Dynamic Programming**](questions/dynamic_programming/) | 23 | Easy → Hard | Memoization, Tabulation, Space Optimization |
-| [**Low-Level Design**](questions/low_level_design/) (`*_lld.md`) | 20 | Medium → Hard | Flow → Entities → Java (interview order) |
+| [**Low-Level Design**](questions/low_level_design/) (`*_lld.md`) | 21 | Medium → Hard | Flow → Entities → Java (interview order) |
 
 ---
 

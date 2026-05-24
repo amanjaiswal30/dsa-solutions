@@ -529,6 +529,42 @@ TOPICS: list[LldTopic] = [
             "TrafficControlService applies SignalStrategy so one conflicting path is green",
         ],
     ),
+    LldTopic(
+        "21", "21_task_management_system_lld", "Task Management System (Jira-style)", "Hard 🔥", "60–75 min",
+        "Jira",
+        [
+            ("Create & organize work", [
+                "Register **users** (Developer, Scrum Master, Product Owner) and **issues** (Epic, Story, Task).",
+                "Build hierarchy: **Epic → Story → Task**, plus **sub-tasks** on a Task.",
+                "Create **Sprint** with date range; add Epic (and related Story/Task tree) to sprint.",
+                "Assign issues to users; add **labels**; transition **IssueState** (OPEN → IN_PROGRESS → … → RESOLVED).",
+            ]),
+            ("Block / unblock", [
+                "Mark issue **blocked by** another issue (dependency).",
+                "Clear blocker when unblocked.",
+            ]),
+            ("Query board", [
+                "Filter issues by state, assignee, type, or blocked status.",
+            ]),
+        ],
+        [
+            ("TaskManagementService", "Singleton facade", "users, sprints, issues maps; workflow APIs"),
+            ("Issue", "Abstract work item", "title, state, assignee, labels, blockedBy"),
+            ("Epic / Story / Task", "Issue hierarchy", "Epic→stories, Story→tasks, Task→children"),
+            ("Sprint", "Time box", "start, end, issues list"),
+            ("User", "Person", "Developer, ScrumMaster, ProductOwner roles"),
+            ("Label", "Tag", "name"),
+            ("IssueState / IssueType", "Enums", "workflow + EPIC/STORY/TASK"),
+        ],
+        [
+            "Issue <|-- Epic, Story, Task",
+            "User <|-- Developer, ScrumMaster, ProductOwner",
+            "Epic **1—*** Story **1—*** Task; Task **parent/children** for sub-tasks",
+            "Sprint **1—*** Issue (flat list; tree collected when adding from Epic root)",
+            "TaskManagementService owns registration, assignment, transitions, blocking, queries",
+        ],
+        ["Issue is package-private abstract base — concrete types are public"],
+    ),
 ]
 
 

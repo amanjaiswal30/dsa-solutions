@@ -1,6 +1,6 @@
 # 📚 Data Structures & Algorithms Solutions
 
-Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 139 commonly asked coding interview problems, **20 curated Low-Level Design** implementations, and a **High-Level Design (HLD) topic checklist** for system design interview prep (no long-form HLD write-ups here—use the list to drive whiteboard practice).
+Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 139 commonly asked coding interview problems, **21 curated Low-Level Design** implementations, and a **High-Level Design (HLD) topic checklist** for system design interview prep (no long-form HLD write-ups here—use the list to drive whiteboard practice).
 
 ---
 
@@ -27,7 +27,7 @@ questions/
 ├── heaps/                # Heap & Priority Queue problems (4 problems)
 ├── graphs/               # Graph algorithms & traversals (13 problems)
 ├── dynamic_programming/  # DP problems with detailed explanations (23 problems)
-├── low_level_design/     # LLD interviews (20 topics, files named *_lld.md)
+├── low_level_design/     # LLD interviews (21 topics, files named *_lld.md)
 └── high_level_design/    # HLD topics checklist ([README](questions/high_level_design/README.md))
 ```
 
@@ -354,15 +354,15 @@ questions/
 
 </details>
 
-### 🏗️ Low-Level Design (20 Topics)
+### 🏗️ Low-Level Design (21 Topics)
 
 **Object-oriented system design** for interviews. Open **LLD/Design** to read flow → entities → code for each topic.
 
 | Coverage | Count |
 |----------|-------|
-| Topics with flow + entities (all) | **20 / 20** |
-| Topics with Java in §3 | **18 / 20** |
-| Topics pending (#03, #10) | **2 / 20** — design doc only, §3 left blank |
+| Topics with flow + entities (all) | **21 / 21** |
+| Topics with Java in §3 | **19 / 21** |
+| Topics pending (#03, #10) | **2 / 21** — design doc only, §3 left blank |
 
 **Interview order (do not skip):**
 
@@ -394,6 +394,7 @@ Each implemented topic is a **single `*_lld.md` file**: flow, Mermaid class diag
 | 18 | Stack Overflow (Q&A) | [LLD/Design](questions/low_level_design/18_stack_overflow_lld.md) | ✅ |
 | 19 | Ride Booking (Uber-style) | [LLD/Design](questions/low_level_design/19_ride_booking_system_lld.md) | ✅ |
 | 20 | Traffic Control System | [LLD/Design](questions/low_level_design/20_traffic_control_system_lld.md) | ✅ |
+| 21 | Task Management System (Jira-style) | [LLD/Design](questions/low_level_design/21_task_management_system_lld.md) | ✅ |
 
 ✅ = full Java reference in section 3 (synced from companion `LLD/` project). Rows **03** and **10** are intentionally blank until implementations are added.
 
@@ -480,7 +481,7 @@ Track your progress with our **iterative learning path**:
 - [ ] **Dynamic Programming** (23/23) - Master Optimization
 - [ ] **Low-Level Design** (20/20) - System Design
 
-**Total: 139 DSA Problems + 20 LLD Problems**
+**Total: 139 DSA Problems + 21 LLD Problems**
 
 ---
 
