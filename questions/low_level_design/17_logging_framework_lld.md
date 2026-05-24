@@ -23,10 +23,11 @@ Do not open with a class diagram or code dumps before the flow is clear.
 
 ### 1.1 Log event
 
-1. App requests **logger** by hierarchical name (`com.shop.order`).
-2. Logger checks **level** (inherits from parent if unset).
-3. Event fan-out to attached **appenders** (console, file, memory).
-4. If **additive**, parent appenders also receive event.
+1. App calls **`LoggerFactory.getLogger(name)`** (hierarchical name, e.g. `com.shop.order.payment`).
+2. Factory resolves **parent** chain up to `ROOT` and caches loggers.
+3. Logger checks **effective level** (own level, else parent, else global default).
+4. `Logger.log` builds **LogEvent** → **`LoggerFactory.publish`** collects appenders (own + parents if additive).
+5. Each **Appender** writes the event (console, file, in-memory, error console).
 
 ---
 
@@ -36,17 +37,22 @@ _Deduced from the flows above — each entity should appear in at least one step
 
 | Entity | Responsibility | Key fields / collaborators |
 |--------|----------------|----------------------------|
-| **Logger** | Named node | level, appenders, additive flag |
-| **LoggerService / LoggerFactory** | Registry | hierarchy, root |
-| **LogEvent** | Payload | level, message, timestamp |
+| **LoggerFactory** | Static facade / registry | loggerCache, rootLogger, getLogger, publish, collectAppenders |
+| **Logger** | Named node | level, parent, appenders, additive, trace…fatal API |
+| **LogEvent** | Immutable payload | timestamp, level, loggerName, message, thread |
 | **Appender** | Sink interface | append(LogEvent) |
-| **ConsoleAppender / FileAppender / …** | Outputs | concrete sinks |
-| **LogLevel** | Filter threshold | DEBUG … FATAL |
+| **ConsoleAppender / FileAppender / ErrorConsoleAppender / InMemoryAppender** | Concrete sinks |  |
+| **LogLevel** | Severity + filter | TRACE…FATAL, isEnabledFor |
 
 ### Relationships
 
-- Parent Logger **1—*** child Logger (name prefix tree)
-- Logger **1—*** Appender; propagation controlled by additive
+- LoggerFactory **1—*** many Logger (cached by name); parent links form a tree to ROOT
+- Logger **1—*** Appender (own list); **additive** controls walking up to parent appenders
+- Logger.log → LoggerFactory.publish → Appender.append(LogEvent)
+
+### Design notes
+
+- LoggerService removed — registry and publish live on LoggerFactory (static facade)
 
 ### Class diagram
 
@@ -91,23 +97,15 @@ classDiagram
         +debug()
     }
     class LoggerFactory {
-        +service()
         +getLogger()
-        +setLogLevel()
-        +addAppender()
-        +addRootAppender()
-    }
-    class LoggerService {
-        +getInstance()
-        +getRootLogger()
-        +getLogger()
-        +createLogger()
-        +resolveParent()
         +setLogLevel()
         +getLogLevel()
         +addAppender()
         +addRootAppender()
         +publish()
+        +createLogger()
+        +resolveParent()
+        +collectAppenders()
     }
     class Main {
         +main()
@@ -120,9 +118,8 @@ classDiagram
     LogLevel --> LogEvent
     Appender --> Logger
     LogLevel --> Logger
-    LoggerService --> Logger
-    LogLevel --> LoggerService
-    Logger --> LoggerService
+    LogLevel --> LoggerFactory
+    Logger --> LoggerFactory
 ```
 
 ---
@@ -180,15 +177,13 @@ import java.util.List;
 
 public class Logger {
     private final String name;
-    private final LoggerService service;
     private volatile LogLevel level;
     private volatile Logger parent;
     private volatile boolean additive = true;
     private final List<Appender> appenders = new ArrayList<>();
 
-    public Logger(String name, LoggerService service) {
+    public Logger(String name) {
         this.name = name;
-        this.service = service;
     }
 
     public Logger getParent() {
@@ -226,7 +221,7 @@ public class Logger {
         if (parent != null) {
             return parent.getEffectiveLevel();
         }
-        return service.getLogLevel();
+        return LoggerFactory.getLogLevel();
     }
 
     public void trace(String message) {
@@ -259,7 +254,7 @@ public class Logger {
         }
 
         LogEvent event = new LogEvent(eventLevel, name, message);
-        service.publish(this, event);
+        LoggerFactory.publish(this, event);
     }
 }
 ```
@@ -400,16 +395,31 @@ public class LogEvent {
 ### `LoggerFactory.java`
 
 ```java
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
 public final class LoggerFactory {
+    private static final String ROOT_NAME = "ROOT";
+    private static volatile LogLevel logLevel = LogLevel.INFO;
+    private static final Map<String, Logger> loggerCache = new ConcurrentHashMap<>();
+    private static final Logger rootLogger;
+
+    static {
+        rootLogger = new Logger(ROOT_NAME);
+        rootLogger.setAdditive(false);
+        loggerCache.put(ROOT_NAME, rootLogger);
+    }
+
     private LoggerFactory() {
     }
 
-    private static LoggerService service() {
-        return LoggerService.getInstance();
-    }
-
     public static Logger getLogger(String name) {
-        return service().getLogger(name);
+        if (name == null || name.isBlank() || ROOT_NAME.equals(name)) {
+            return rootLogger;
+        }
+        return loggerCache.computeIfAbsent(name, LoggerFactory::createLogger);
     }
 
     public static Logger getLogger(Class<?> type) {
@@ -420,67 +430,46 @@ public final class LoggerFactory {
     }
 
     public static void setLogLevel(LogLevel logLevel) {
-        service().setLogLevel(logLevel);
+        LoggerFactory.logLevel = logLevel;
+    }
+
+    static LogLevel getLogLevel() {
+        return logLevel;
     }
 
     public static void addAppender(String loggerName, Appender appender) {
-        service().addAppender(loggerName, appender);
+        Logger logger = loggerCache.get(loggerName);
+        if (logger == null) {
+            throw new IllegalStateException("Logger must be created before adding appenders: " + loggerName);
+        }
+        logger.addAppender(appender);
     }
 
     public static void addAppender(Logger logger, Appender appender) {
-        service().addAppender(logger, appender);
+        if (logger == null) {
+            throw new IllegalArgumentException("Logger cannot be null");
+        }
+        logger.addAppender(appender);
     }
 
     public static void addRootAppender(Appender appender) {
-        service().addRootAppender(appender);
-    }
-}
-```
-
-### `LoggerService.java`
-
-```java
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-
-public class LoggerService {
-    private static final String ROOT_NAME = "ROOT";
-    private static final LoggerService INSTANCE = new LoggerService();
-
-    private volatile LogLevel logLevel = LogLevel.INFO;
-    private final Map<String, Logger> loggerCache = new ConcurrentHashMap<>();
-    private final Logger rootLogger;
-
-    private LoggerService() {
-        rootLogger = new Logger(ROOT_NAME, this);
-        rootLogger.setAdditive(false);
-        loggerCache.put(ROOT_NAME, rootLogger);
+        rootLogger.addAppender(appender);
     }
 
-    public static LoggerService getInstance() {
-        return INSTANCE;
-    }
-
-    public Logger getRootLogger() {
-        return rootLogger;
-    }
-
-    public Logger getLogger(String name) {
-        if (name == null || name.isBlank() || ROOT_NAME.equals(name)) {
-            return rootLogger;
+    static void publish(Logger sourceLogger, LogEvent event) {
+        Set<Appender> appenders = collectAppenders(sourceLogger);
+        for (Appender appender : appenders) {
+            appender.append(event);
         }
-        return loggerCache.computeIfAbsent(name, this::createLogger);
     }
 
-    private Logger createLogger(String name) {
-        Logger logger = new Logger(name, this);
+    private static Logger createLogger(String name) {
+        Logger logger = new Logger(name);
         logger.setParent(resolveParent(name));
         return logger;
     }
 
-    private Logger resolveParent(String name) {
+    private static Logger resolveParent(String name) {
         int lastDot = name.lastIndexOf('.');
         if (lastDot <= 0) {
             return rootLogger;
@@ -489,42 +478,7 @@ public class LoggerService {
         return getLogger(parentName);
     }
 
-    public void setLogLevel(LogLevel logLevel) {
-        this.logLevel = logLevel;
-    }
-
-    public LogLevel getLogLevel() {
-        return logLevel;
-    }
-
-    public void addAppender(String loggerName, Appender appender) {
-        Logger logger = loggerCache.get(loggerName);
-        if (logger == null) {
-            throw new IllegalStateException("Logger must be created before adding appenders: " + loggerName);
-        }
-        logger.addAppender(appender);
-    }
-
-    public void addAppender(Logger logger, Appender appender) {
-        if (logger == null) {
-            throw new IllegalArgumentException("Logger cannot be null");
-        }
-        logger.addAppender(appender);
-    }
-
-    public void addRootAppender(Appender appender) {
-        rootLogger.addAppender(appender);
-    }
-
-    public void publish(Logger sourceLogger, LogEvent event) {
-        Set<Appender> appenders = collectAppenders(sourceLogger);
-        for (Appender appender : appenders) {
-            appender.append(event);
-        }
-    }
-
-
-    private Set<Appender> collectAppenders(Logger sourceLogger) {
+    private static Set<Appender> collectAppenders(Logger sourceLogger) {
         Set<Appender> collected = new LinkedHashSet<>();
         Logger cursor = sourceLogger;
         while (cursor != null) {

@@ -50,15 +50,49 @@ _Deduced from the flows above — each entity should appear in at least one step
 
 ### Class diagram
 
-![20_traffic_control_system_lld class diagram](../../assets/images/low_level_design/20_traffic_control_system_lld.svg)
+```mermaid
+classDiagram
+    class Direction {
+        <<enumeration>>
+    }
+    class Intersection
+    class Main {
+        +main()
+        +buildIntersection()
+    }
+    class Phase
+    class RoundRobinSignalStrategy {
+        +getPhasePlan()
+    }
+    class SignalColor {
+        <<enumeration>>
+    }
+    class SignalStrategy {
+        +getPhasePlan()
+    }
+    class SignalTiming
+    class TrafficControlService {
+        +setTrafficMode()
+        +runOneCycle()
+        +setAllRed()
+    }
+    class TrafficMode {
+        <<enumeration>>
+    }
+    class TrafficSignal
+    SignalStrategy <|.. RoundRobinSignalStrategy
+    SignalTiming --> RoundRobinSignalStrategy
+    SignalStrategy --> TrafficControlService
+    TrafficMode --> TrafficControlService
+```
 
 ---
 
 ## 3. Reference implementation (Java)
 
-Sources from companion project **`LLD/Traffic Control System/`** (flat `src/`).
+Reference implementation from **`LLD/Traffic Control System/`** (all sources in this file).
 
-Classes are listed in **logical order** (enums → interfaces → domain → strategies → services → `Main`), not alphabetically.
+Classes in **logical order**: enums → interfaces → domain → strategies → services → `Main`.
 
 **Run:**
 ```bash
@@ -107,45 +141,6 @@ public interface SignalStrategy {
 }
 ```
 
-### `Intersection.java`
-
-```java
-import java.util.Map;
-
-public class Intersection {
-    String id;
-    Map<Direction, TrafficSignal> signalMap;
-}
-```
-
-### `Phase.java`
-
-```java
-public class Phase {
-    Direction direction;
-    SignalTiming signalTiming;
-
-    public Phase(Direction direction, SignalTiming signalTiming) {
-        this.direction = direction;
-        this.signalTiming = signalTiming;
-    }
-}
-```
-
-### `SignalTiming.java`
-
-```java
-public class SignalTiming {
-    int greenSec;
-    int yellowSec;
-
-    public SignalTiming(int greenSec, int yellowSec) {
-        this.greenSec = greenSec;
-        this.yellowSec = yellowSec;
-    }
-}
-```
-
 ### `RoundRobinSignalStrategy.java`
 
 ```java
@@ -185,6 +180,57 @@ public class RoundRobinSignalStrategy implements SignalStrategy {
         }
         return phases;
     }
+}
+```
+
+### `Intersection.java`
+
+```java
+import java.util.Map;
+
+public class Intersection {
+    String id;
+    Map<Direction, TrafficSignal> signalMap;
+}
+```
+
+### `Phase.java`
+
+```java
+public class Phase {
+    Direction direction;
+    SignalTiming signalTiming;
+
+    public Phase(Direction direction, SignalTiming signalTiming) {
+        this.direction = direction;
+        this.signalTiming = signalTiming;
+    }
+}
+```
+
+### `SignalTiming.java`
+
+```java
+public class SignalTiming {
+    int greenSec;
+    int yellowSec;
+
+    public SignalTiming(int greenSec, int yellowSec) {
+        this.greenSec = greenSec;
+        this.yellowSec = yellowSec;
+    }
+}
+```
+
+### `TrafficSignal.java`
+
+```java
+public class TrafficSignal {
+    String id;
+    Direction direction;
+    SignalColor signalColor;
+
+
 }
 ```
 
@@ -242,18 +288,6 @@ public class TrafficControlService {
             signal.signalColor = SignalColor.RED;
         }
     }
-}
-```
-
-### `TrafficSignal.java`
-
-```java
-public class TrafficSignal {
-    String id;
-    Direction direction;
-    SignalColor signalColor;
-
-
 }
 ```
 
