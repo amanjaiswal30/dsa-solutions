@@ -432,14 +432,15 @@ TOPICS: list[LldTopic] = [
         [
             ("Log event", [
                 "App calls **`LoggerFactory.getLogger(name)`** (hierarchical name, e.g. `com.shop.order.payment`).",
-                "Factory resolves **parent** chain up to `ROOT` and caches loggers.",
-                "Logger checks **effective level** (own level, else parent, else global default).",
+                "Factory resolves **parent** chain up to **`ROOT`** and caches loggers.",
+                "Logger checks **effective level**: own level → walk parents → default **`INFO`** if unset.",
+                "`LoggerFactory.setLogLevel` sets level on **`ROOT`** only (children inherit via parent chain).",
                 "`Logger.log` builds **LogEvent** → **`LoggerFactory.publish`** collects appenders (own + parents if additive).",
                 "Each **Appender** writes the event (console, file, in-memory, error console).",
             ]),
         ],
         [
-            ("LoggerFactory", "Static facade / registry", "loggerCache, rootLogger, getLogger, publish, collectAppenders"),
+            ("LoggerFactory", "Static facade / registry", "rootLogger (INFO at startup), loggerCache, publish, collectAppenders"),
             ("Logger", "Named node", "level, parent, appenders, additive, trace…fatal API"),
             ("LogEvent", "Immutable payload", "timestamp, level, loggerName, message, thread"),
             ("Appender", "Sink interface", "append(LogEvent)"),
@@ -448,10 +449,11 @@ TOPICS: list[LldTopic] = [
         ],
         [
             "LoggerFactory **1—*** many Logger (cached by name); parent links form a tree to ROOT",
+            "ROOT starts at **INFO**; `setLogLevel` updates ROOT — children inherit through `getEffectiveLevel()`",
             "Logger **1—*** Appender (own list); **additive** controls walking up to parent appenders",
             "Logger.log → LoggerFactory.publish → Appender.append(LogEvent)",
         ],
-        ["LoggerService removed — registry and publish live on LoggerFactory (static facade)"],
+        [],
     ),
     LldTopic(
         "18", "18_stack_overflow_lld", "Stack Overflow (Q&A)", "Hard 🔥", "60–75 min",

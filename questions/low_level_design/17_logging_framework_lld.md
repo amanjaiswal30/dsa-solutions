@@ -24,10 +24,11 @@ Do not open with a class diagram or code dumps before the flow is clear.
 ### 1.1 Log event
 
 1. App calls **`LoggerFactory.getLogger(name)`** (hierarchical name, e.g. `com.shop.order.payment`).
-2. Factory resolves **parent** chain up to `ROOT` and caches loggers.
-3. Logger checks **effective level** (own level, else parent, else global default).
-4. `Logger.log` builds **LogEvent** → **`LoggerFactory.publish`** collects appenders (own + parents if additive).
-5. Each **Appender** writes the event (console, file, in-memory, error console).
+2. Factory resolves **parent** chain up to **`ROOT`** and caches loggers.
+3. Logger checks **effective level**: own level → walk parents → default **`INFO`** if unset.
+4. `LoggerFactory.setLogLevel` sets level on **`ROOT`** only (children inherit via parent chain).
+5. `Logger.log` builds **LogEvent** → **`LoggerFactory.publish`** collects appenders (own + parents if additive).
+6. Each **Appender** writes the event (console, file, in-memory, error console).
 
 ---
 
@@ -37,7 +38,7 @@ _Deduced from the flows above — each entity should appear in at least one step
 
 | Entity | Responsibility | Key fields / collaborators |
 |--------|----------------|----------------------------|
-| **LoggerFactory** | Static facade / registry | loggerCache, rootLogger, getLogger, publish, collectAppenders |
+| **LoggerFactory** | Static facade / registry | rootLogger (INFO at startup), loggerCache, publish, collectAppenders |
 | **Logger** | Named node | level, parent, appenders, additive, trace…fatal API |
 | **LogEvent** | Immutable payload | timestamp, level, loggerName, message, thread |
 | **Appender** | Sink interface | append(LogEvent) |
@@ -47,12 +48,9 @@ _Deduced from the flows above — each entity should appear in at least one step
 ### Relationships
 
 - LoggerFactory **1—*** many Logger (cached by name); parent links form a tree to ROOT
+- ROOT starts at **INFO**; `setLogLevel` updates ROOT — children inherit through `getEffectiveLevel()`
 - Logger **1—*** Appender (own list); **additive** controls walking up to parent appenders
 - Logger.log → LoggerFactory.publish → Appender.append(LogEvent)
-
-### Design notes
-
-- LoggerService removed — registry and publish live on LoggerFactory (static facade)
 
 ### Class diagram
 
@@ -99,7 +97,6 @@ classDiagram
     class LoggerFactory {
         +getLogger()
         +setLogLevel()
-        +getLogLevel()
         +addAppender()
         +addRootAppender()
         +publish()
@@ -118,7 +115,6 @@ classDiagram
     LogLevel --> LogEvent
     Appender --> Logger
     LogLevel --> Logger
-    LogLevel --> LoggerFactory
     Logger --> LoggerFactory
 ```
 
@@ -221,7 +217,7 @@ public class Logger {
         if (parent != null) {
             return parent.getEffectiveLevel();
         }
-        return LoggerFactory.getLogLevel();
+        return LogLevel.INFO;
     }
 
     public void trace(String message) {
@@ -402,12 +398,12 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public final class LoggerFactory {
     private static final String ROOT_NAME = "ROOT";
-    private static volatile LogLevel logLevel = LogLevel.INFO;
     private static final Map<String, Logger> loggerCache = new ConcurrentHashMap<>();
     private static final Logger rootLogger;
 
     static {
         rootLogger = new Logger(ROOT_NAME);
+        rootLogger.setLevel(LogLevel.INFO);
         rootLogger.setAdditive(false);
         loggerCache.put(ROOT_NAME, rootLogger);
     }
@@ -430,11 +426,7 @@ public final class LoggerFactory {
     }
 
     public static void setLogLevel(LogLevel logLevel) {
-        LoggerFactory.logLevel = logLevel;
-    }
-
-    static LogLevel getLogLevel() {
-        return logLevel;
+        rootLogger.setLevel(logLevel);
     }
 
     public static void addAppender(String loggerName, Appender appender) {
