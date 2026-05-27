@@ -1,6 +1,6 @@
 # 📚 Data Structures & Algorithms Solutions
 
-Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 139 commonly asked coding interview problems, **21 curated Low-Level Design** implementations, and a **High-Level Design (HLD) topic checklist** for system design interview prep (no long-form HLD write-ups here—use the list to drive whiteboard practice).
+Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 140 commonly asked coding interview problems, **21 curated Low-Level Design** implementations, and a **High-Level Design (HLD) topic checklist** for system design interview prep (no long-form HLD write-ups here—use the list to drive whiteboard practice).
 
 ---
 
@@ -26,7 +26,7 @@ questions/
 ├── trees/                # Binary Tree & BST problems (34 problems)
 ├── heaps/                # Heap & Priority Queue problems (4 problems)
 ├── graphs/               # Graph algorithms & traversals (13 problems)
-├── dynamic_programming/  # DP problems with detailed explanations (23 problems)
+├── dynamic_programming/  # DP problems with detailed explanations (24 problems)
 ├── low_level_design/     # LLD interviews (21 topics, files named *_lld.md)
 └── high_level_design/    # HLD topics checklist ([README](questions/high_level_design/README.md))
 ```
@@ -298,7 +298,7 @@ questions/
 
 </details>
 
-### 🎯 Dynamic Programming (23 Problems)
+### 🎯 Dynamic Programming (24 Problems)
 **Master Optimization** - Learn memoization, tabulation, and space optimization techniques through classic DP patterns.
 
 | Problem | Difficulty | Key Concepts |
@@ -315,13 +315,14 @@ questions/
 | [Edit Distance](questions/dynamic_programming/edit_distance.md) | Medium ⚡ | String DP, Levenshtein Distance |
 | [Word Break](questions/dynamic_programming/word_break.md) | Medium ⚡ | String Segmentation, Trie |
 | [Longest Increasing Subsequence](questions/dynamic_programming/longest_increasing_subsequence.md) | Medium ⚡ | Binary Search, O(n log n) |
+| [Russian Doll Envelopes](questions/dynamic_programming/russian_doll_envelopes.md) | Hard 🔥 | 2D LIS, Sorting |
 | [Min Cost Path in Grid](questions/dynamic_programming/min_cost_path.md) | Medium ⚡ | Grid DP, Path Finding |
 | [Jump Game (Min Jumps)](questions/dynamic_programming/jump_game.md) | Medium ⚡ | Greedy, BFS, DP |
 | [Palindrome Partitioning II](questions/dynamic_programming/palindrome_partitioning.md) | Hard 🔥 | Interval DP, Min Cuts |
 | [Matrix Chain Multiplication](questions/dynamic_programming/matrix_chain_multiplication.md) | Hard 🔥 | Interval DP, Optimization |
 
 <details>
-<summary><strong>📋 Complete DP List (23 problems)</strong></summary>
+<summary><strong>📋 Complete DP List (24 problems)</strong></summary>
 
 | # | Problem | Difficulty |
 |---|---------|------------|
@@ -347,10 +348,11 @@ questions/
 | 18 | [Partition Equal Subset Sum](questions/dynamic_programming/partition_equal_subset_sum.md) | Medium ⚡ |
 | 19 | [Rod Cutting Problem](questions/dynamic_programming/rod_cutting.md) | Medium ⚡ |
 | 20 | [Word Break](questions/dynamic_programming/word_break.md) | Medium ⚡ |
-| **Hard Problems (3)** |||
+| **Hard Problems (4)** |||
 | 21 | [Matrix Chain Multiplication](questions/dynamic_programming/matrix_chain_multiplication.md) | Hard 🔥 |
 | 22 | [Maximal Rectangle](questions/dynamic_programming/maximal_rectangle.md) | Hard 🔥 |
 | 23 | [Palindrome Partitioning II](questions/dynamic_programming/palindrome_partitioning.md) | Hard 🔥 |
+| 24 | [Russian Doll Envelopes](questions/dynamic_programming/russian_doll_envelopes.md) | Hard 🔥 |
 
 </details>
 
@@ -478,10 +480,10 @@ Track your progress with our **iterative learning path**:
 - [ ] **Trees & BST** (34/34) - Hierarchical Structures
 - [ ] **Heaps** (4/4) - Special Tree Structures
 - [ ] **Graphs** (13/13) - Advanced Structures
-- [ ] **Dynamic Programming** (23/23) - Master Optimization
+- [ ] **Dynamic Programming** (24/24) - Master Optimization
 - [ ] **Low-Level Design** (20/20) - System Design
 
-**Total: 139 DSA Problems + 21 LLD Problems**
+**Total: 140 DSA Problems + 21 LLD Problems**
 
 ---
 
@@ -512,7 +514,7 @@ We welcome contributions! Here's how you can help:
 ## 🎯 What Makes This Different?
 
 ### DSA Problems
-- ✅ **139 Problems** across 8 categories
+- ✅ **140 Problems** across 8 categories
 - ✅ Multiple approaches (Brute Force → Optimal)
 - ✅ Detailed complexity analysis
 - ✅ Interview tips and edge cases

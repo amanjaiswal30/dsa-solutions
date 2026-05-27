@@ -500,6 +500,8 @@ public class LISVariations {
 
 **Problem:** Find maximum number of envelopes that can fit inside each other.
 
+**Full write-up:** [Russian Doll Envelopes](russian_doll_envelopes.md)
+
 #### Code (Java)
 
 ```java
@@ -665,7 +667,7 @@ public class LISComplete {
 ## 💡 Pattern Recognition
 
 **Problems that reduce to LIS:**
-- Russian Doll Envelopes
+- [Russian Doll Envelopes](russian_doll_envelopes.md)
 - Building Bridges
 - Box Stacking
 - Activity Selection variants

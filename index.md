@@ -11,7 +11,7 @@ description: "Comprehensive collection of 100+ Data Structures & Algorithms solu
 [![Language](https://img.shields.io/badge/Language-Java-orange.svg)](https://java.com)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Welcome to the **ultimate DSA interview preparation resource**! This repository contains **139 well-structured Java solutions** for coding interview problems from **FAANG** and top tech companies.
+Welcome to the **ultimate DSA interview preparation resource**! This repository contains **140 well-structured Java solutions** for coding interview problems from **FAANG** and top tech companies.
 
 ---
 
@@ -73,7 +73,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
   
   <div class="stat-card">
     <h3>🎯 Dynamic Programming</h3>
-    <p><strong>23 Problems</strong></p>
+    <p><strong>24 Problems</strong></p>
     <p>Memoization, Tabulation, Optimization</p>
   </div>
   
@@ -85,7 +85,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
   
   <div class="stat-card total">
     <h3>🎯 Total</h3>
-    <p><strong>137 DSA + 21 LLD</strong></p>
+    <p><strong>140 DSA + 21 LLD</strong></p>
     <p>Complete Interview Coverage</p>
   </div>
 </div>
@@ -139,7 +139,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
 | [**Trees & BST**](questions/trees/) | 34 | Easy → Hard | Tree Traversals, BST Operations, LCA |
 | [**Heaps**](questions/heaps/) | 4 | Medium → Hard | Priority Queues, Top K Problems |
 | [**Graphs**](questions/graphs/) | 13 | Easy → Hard | DFS, BFS, Topological Sort, Shortest Path |
-| [**Dynamic Programming**](questions/dynamic_programming/) | 23 | Easy → Hard | Memoization, Tabulation, Space Optimization |
+| [**Dynamic Programming**](questions/dynamic_programming/) | 24 | Easy → Hard | Memoization, Tabulation, Space Optimization |
 | [**Low-Level Design**](questions/low_level_design/) (`*_lld.md`) | 21 | Medium → Hard | Flow → Entities → Java (interview order) |
 
 ---
