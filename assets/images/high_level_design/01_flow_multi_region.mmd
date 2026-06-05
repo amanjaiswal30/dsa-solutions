@@ -1,20 +1,7 @@
-flowchart TB
-    CP[Global Control Plane] -->|push rules + regional quotas| REG
+flowchart TD
+    CP[Global Control Plane] --> US[US — Gateway + Redis — 500/min]
+    CP --> EU[EU — Gateway + Redis — 300/min]
+    CP --> AP[APAC — Gateway + Redis — 200/min]
+    NOTE[Global cap 1000/min — slight overshoot OK]
 
-    subgraph REG["Per-region rate limiting"]
-        subgraph US["US Region — quota 500/min"]
-            GW_US[Gateway] --> R_US[(Redis US)]
-        end
-        subgraph EU["EU Region — quota 300/min"]
-            GW_EU[Gateway] --> R_EU[(Redis EU)]
-        end
-        subgraph APAC["APAC Region — quota 200/min"]
-            GW_AP[Gateway] --> R_AP[(Redis APAC)]
-        end
-    end
-
-    C_US([US clients]) --> GW_US
-    C_EU([EU clients]) --> GW_EU
-    C_AP([APAC clients]) --> GW_AP
-
-    Note1["Global cap 1000/min<br/>slight overshoot OK if all regions max out"]
+    style NOTE fill:#fff3cd,stroke:#ffc107,color:#1a1a1a

@@ -1,0 +1,21 @@
+sequenceDiagram
+    autonumber
+    participant B as Browser
+    participant LB as Load Balancer
+    participant API as Redirect Service
+    participant C as Cache
+    participant DB as URL DB
+
+    B->>LB: GET /abc12X
+    LB->>API: forward
+    API->>C: get abc12X
+    alt cache hit
+        C-->>API: long_url
+        API-->>B: 302 Found → long_url
+    else cache miss
+        C-->>API: miss
+        API->>DB: lookup abc12X
+        DB-->>API: long_url
+        API->>C: populate cache
+        API-->>B: 302 Found → long_url
+    end

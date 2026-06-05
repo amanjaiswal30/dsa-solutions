@@ -1,0 +1,8 @@
+flowchart LR
+    C([Clients]) --> GW[Gateway / Router]
+    GW --> RING[Consistent Hash Ring<br/>+ vnode map]
+    RING --> N1[Node A]
+    RING --> N2[Node B]
+    RING --> N3[Node C]
+    CP[Cluster Manager] -.->|membership| RING
+    CP -.->|rebalance| N1 & N2 & N3

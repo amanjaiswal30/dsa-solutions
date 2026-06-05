@@ -1,0 +1,8 @@
+flowchart TD
+    START[Need short code] --> COUNTER[Counter + Base62 encode]
+    START --> HASH[Hash long URL + truncate]
+    COUNTER --> PRO1[No collision — sequential]
+    HASH --> CON1[Collision handling needed]
+    COUNTER --> SCALE[Shard counter ranges per DB]
+
+    style PRO1 fill:#d4edda,stroke:#28a745,color:#1a1a1a

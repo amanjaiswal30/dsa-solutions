@@ -1,0 +1,8 @@
+flowchart LR
+    ID[64-bit ID] --> T[41 bits — timestamp ms]
+    ID --> DC[5 bits — datacenter]
+    ID --> M[5 bits — machine]
+    ID --> S[12 bits — sequence per ms]
+    NOTE[Sortable by time — ~4096 ids/ms per machine]
+
+    style NOTE fill:#fff3cd,stroke:#ffc107,color:#1a1a1a

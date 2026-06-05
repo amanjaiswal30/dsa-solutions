@@ -1,0 +1,11 @@
+flowchart TD
+    RING[Hash ring 0 → 2π] --> V1[vnode A-1]
+    RING --> V2[vnode A-2]
+    RING --> V3[vnode A-3]
+    RING --> V4[vnode B-1]
+    RING --> V5[vnode B-2]
+    V1 & V2 & V3 --> PA[Physical Node A]
+    V4 & V5 --> PB[Physical Node B]
+    BENEFIT[Even key spread — no hot spots]
+
+    style BENEFIT fill:#d4edda,stroke:#28a745,color:#1a1a1a

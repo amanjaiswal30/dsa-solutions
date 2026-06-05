@@ -8,21 +8,19 @@ Conversational mock-interview write-ups: **flows first**, then **FR/NFR**, then 
 
 | # | Topic | Doc | Focus |
 |---|-------|-----|-------|
-| 01 | **Rate limiter** | [01_rate_limiter_hld.md](01_rate_limiter_hld.md) | Token bucket, Redis/Lua, hot keys, multi-region, fail-open vs closed |
+| 01 | **Rate limiter** | [01_rate_limiter_hld.md](01_rate_limiter_hld.md) | Token bucket, Redis/Lua, hot keys, multi-region |
+| 02 | **Consistent hashing** | [02_consistent_hashing_hld.md](02_consistent_hashing_hld.md) | Hash ring, virtual nodes, add/remove, replication |
+| 03 | **Key-value store** | [03_key_value_store_hld.md](03_key_value_store_hld.md) | Cassandra-style, quorum W/R, hinted handoff, LSM |
+| 04 | **Unique ID generator** | [04_unique_id_generator_hld.md](04_unique_id_generator_hld.md) | Snowflake, clock skew, machine ID leases |
+| 05 | **URL shortener** | [05_url_shortener_hld.md](05_url_shortener_hld.md) | Base62 encoding, 302 redirect, read-heavy cache |
 
 ---
 
 ## Topics to prepare (coming next)
 
-Use the list below as a **checklist** for whiteboard practice until a full doc exists.
-
 ### Core building blocks
 
-1. ~~**Rate limiter**~~ — [done](01_rate_limiter_hld.md)
-2. **Consistent hashing** — virtual nodes, ring membership, minimal remapping on node add/remove.
-3. **Key-value store** — replication, quorum (R/W), hinted handoff, anti-entropy, CAP trade-offs.
-4. **UUID generator** — uniqueness across machines, clock skew, Snowflake-style IDs, collision handling.
-5. **URL shortener** — encoding, redirect path, analytics, scale, collision-free short codes.
+1. ~~Rate limiter~~ · ~~Consistent hashing~~ · ~~Key-value store~~ · ~~UUID generator~~ · ~~URL shortener~~
 
 ### Systems & pipelines
 
@@ -48,13 +46,11 @@ Use the list below as a **checklist** for whiteboard practice until a full doc e
 Each write-up follows the same interview arc:
 
 1. **Vague opening question** — interviewer says little; you clarify.
-2. **Expected flows** — allow path, deny path, admin/config (sequence diagrams).
+2. **Expected flows** — sequence diagrams for happy path + failure paths.
 3. **Functional & non-functional requirements** — explicit table before architecture.
-4. **Start small** — one box, in-memory; interviewer pokes holes.
-5. **Scale up** — shared store → algorithms → control plane → sharding → multi-region.
-6. **Component Q&A** — back-and-forth on gateway, Redis, control plane.
+4. **Start small** — one box; interviewer pokes holes.
+5. **Scale up** — algorithms, replication, caching, sharding.
+6. **Component Q&A** — back-and-forth on each box.
 7. **Failures, metrics, trade-offs** — how you close the interview.
-
-For any topic, be ready to cover: **requirements**, **APIs or flows**, **data model**, **scaling**, **failure modes**, and **trade-offs**.
 
 **Regenerate diagrams:** `python3 scripts/render_hld_diagrams.py` (requires Node + `@mermaid-js/mermaid-cli` via `npx`).

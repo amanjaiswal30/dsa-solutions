@@ -1,0 +1,7 @@
+flowchart TD
+    READ[Read returns multiple versions] --> COMP{versions differ?}
+    COMP -->|No| RETURN[Return latest to client]
+    COMP -->|Yes| REPAIR[Write newest to stale replicas]
+    REPAIR --> RETURN
+
+    style RETURN fill:#d4edda,stroke:#28a745,color:#1a1a1a

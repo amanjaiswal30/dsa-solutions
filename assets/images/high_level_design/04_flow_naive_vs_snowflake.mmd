@@ -1,0 +1,11 @@
+flowchart TD
+    subgraph NAIVE["Naive approaches"]
+        DB[(DB auto-increment)] --> SPOF[Single DB bottleneck]
+        UUID[UUID v4 random] --> SORT[Not time-sortable]
+    end
+
+    subgraph SNOW["Snowflake-style"]
+        SF[Local generation] --> FAST[No central DB per id]
+        SF --> SORT2[Time-ordered]
+        SF --> UNIQUE[Unique across cluster]
+    end

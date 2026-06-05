@@ -1,0 +1,9 @@
+flowchart LR
+    C([Clients]) --> CO[Coordinator nodes]
+    CO --> RING[Partitioner + Token Ring]
+    RING --> N1[Node + SSTable]
+    RING --> N2[Node + SSTable]
+    RING --> N3[Node + SSTable]
+    N1 <-.->|gossip| N2
+    N2 <-.->|gossip| N3
+    BG[Compaction / Repair] -.-> N1 & N2 & N3

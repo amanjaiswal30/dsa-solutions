@@ -1,0 +1,7 @@
+flowchart LR
+    B([Browser]) --> CDN[CDN / Edge]
+    CDN -->|miss| API[Redirect API]
+    API --> CACHE[(Redis Cache)]
+    CACHE -->|miss| DB[(Sharded DB)]
+
+    style CDN fill:#d4edda,stroke:#28a745,color:#1a1a1a

@@ -1,0 +1,9 @@
+flowchart TD
+    W[Write quorum W] --> R[Read quorum R]
+    R --> CHECK{W + R > N?}
+    CHECK -->|Yes| STRONG[Strong consistency likely]
+    CHECK -->|No| EVENTUAL[Eventual consistency — stale reads possible]
+    EX["Example N=3: W=2,R=2 strong | W=1,R=1 fast"]
+
+    style STRONG fill:#d4edda,stroke:#28a745,color:#1a1a1a
+    style EVENTUAL fill:#fff3cd,stroke:#ffc107,color:#1a1a1a

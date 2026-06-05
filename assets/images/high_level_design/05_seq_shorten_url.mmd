@@ -1,0 +1,14 @@
+sequenceDiagram
+    autonumber
+    participant U as User
+    participant API as Shortener API
+    participant DB as URL DB
+    participant C as Cache
+
+    U->>API: POST /shorten {long_url}
+    API->>C: cache get long_url
+    C-->>API: miss
+    API->>DB: insert mapping
+    DB-->>API: short_code=abc12X
+    API->>C: cache set
+    API-->>U: {short_url: https://go/abc12X}

@@ -409,8 +409,12 @@ Index and topic checklist: **[questions/high_level_design/README.md](questions/h
 | # | Topic | Doc |
 |---|-------|-----|
 | 01 | Rate limiter | [01_rate_limiter_hld.md](questions/high_level_design/01_rate_limiter_hld.md) |
+| 02 | Consistent hashing | [02_consistent_hashing_hld.md](questions/high_level_design/02_consistent_hashing_hld.md) |
+| 03 | Key-value store (Cassandra-style) | [03_key_value_store_hld.md](questions/high_level_design/03_key_value_store_hld.md) |
+| 04 | Unique ID generator | [04_unique_id_generator_hld.md](questions/high_level_design/04_unique_id_generator_hld.md) |
+| 05 | URL shortener | [05_url_shortener_hld.md](questions/high_level_design/05_url_shortener_hld.md) |
 
-**More topics to prepare:** Consistent hashing · Key-value store · UUID generator · URL shortener  
+**More topics to prepare:** Web crawler · News feed · Chat system · Message queue · Notification system  
 
 **Systems & pipelines:** Web crawler · News feed system · Chat system · Distributed message queue · Metrics, monitoring & alerting · Notification system  
 

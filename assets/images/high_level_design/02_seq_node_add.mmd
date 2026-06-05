@@ -1,0 +1,14 @@
+sequenceDiagram
+    autonumber
+    participant Ops as Operator
+    participant CP as Cluster Manager
+    participant NEW as New Node D
+    participant A as Node A
+    participant B as Node B
+
+    Ops->>CP: add Node D to ring
+    CP->>NEW: join cluster
+    CP->>A: replicate keys in range (C→D)
+    CP->>B: replicate keys in range (B→D)
+    Note over A,B,NEW: Only keys between predecessor and D move
+    CP-->>Ops: rebalance complete

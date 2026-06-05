@@ -1,0 +1,13 @@
+sequenceDiagram
+    autonumber
+    participant CO as Coordinator
+    participant P as Primary (down)
+    participant N1 as Next Replica
+    participant H as Hint Store on N1
+
+    CO->>P: write key K
+    P--xCO: timeout
+    CO->>N1: write K + hint(for=P)
+    N1->>H: store data + hint
+    Note over H: When P recovers, N1 hands off K
+    N1-->>CO: ack

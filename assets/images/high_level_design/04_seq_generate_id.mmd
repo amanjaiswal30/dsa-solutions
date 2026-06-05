@@ -1,0 +1,12 @@
+sequenceDiagram
+    autonumber
+    participant C as Client / Service
+    participant API as ID Service
+    participant G as ID Generator
+    participant ZK as ZooKeeper / Lease
+
+    C->>API: POST /ids (batch=1)
+    API->>G: nextId()
+    G->>G: compose: time | machine | sequence
+    G-->>API: 1234567890123456789
+    API-->>C: {id: 1234567890123456789}

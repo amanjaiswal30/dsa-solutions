@@ -1,0 +1,15 @@
+flowchart LR
+    subgraph BAD["Naive hash(key) % N"]
+        K1[key=foo] --> H1["hash % 3 = 1"]
+        H1 --> N1[Node 1]
+    end
+
+    subgraph GOOD["Consistent hashing ring"]
+        K2[key=foo] --> H2[hash on ring]
+        H2 --> CW[walk clockwise]
+        CW --> N2[first node ≥ hash]
+    end
+
+    NOTE[N% change remaps ~all keys vs ~1/N keys]
+
+    style NOTE fill:#fff3cd,stroke:#ffc107,color:#1a1a1a

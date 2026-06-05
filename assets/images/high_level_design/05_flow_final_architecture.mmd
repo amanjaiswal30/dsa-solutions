@@ -1,0 +1,7 @@
+flowchart LR
+    U([Users]) --> API[API — shorten]
+    B([Browsers]) --> CDN[CDN + Redirect]
+    CDN --> CACHE[(Redis)]
+    CACHE --> DB[(Sharded URL DB)]
+    API --> DB
+    KAFKA[Kafka] -.->|click events| ANALYTICS[Analytics]

@@ -1,0 +1,16 @@
+sequenceDiagram
+    autonumber
+    participant C as Client
+    participant CO as Coordinator
+    participant R1 as Replica 1
+    participant R2 as Replica 2
+    participant R3 as Replica 3
+
+    C->>CO: GET key=user:1, R=2
+    CO->>R1: read
+    CO->>R2: read
+    CO->>R3: read
+    R1-->>CO: v5, Alice
+    R2-->>CO: v5, Alice
+    Note over CO: 2 matching reads ≥ R
+    CO-->>C: 200 OK, Alice

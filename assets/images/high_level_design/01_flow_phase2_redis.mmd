@@ -1,19 +1,8 @@
-flowchart TB
-    subgraph Phase2["Phase 2 — Multiple gateways, shared Redis"]
-        C([Clients]) --> LB[Load Balancer]
-        LB --> GW1[Gateway 1]
-        LB --> GW2[Gateway 2]
-        LB --> GWN[Gateway N]
+flowchart LR
+    C([Clients]) --> LB[Load Balancer]
+    LB --> GW[Gateways x N]
+    GW --> RL[Limiter Lib]
+    RL --> REDIS[(Redis Cluster)]
+    GW --> SVC[Backends]
 
-        GW1 --> RL[Rate Limiter Client<br/>embedded library]
-        GW2 --> RL
-        GWN --> RL
-
-        RL --> REDIS[(Redis Cluster<br/>atomic INCR / Lua)]
-        GW1 --> SVC[Backend Microservices]
-        GW2 --> SVC
-        GWN --> SVC
-    end
-
-    GW1 -.->|all instances share<br/>same counter| REDIS
-    GW2 -.-> REDIS
+    GW -.->|shared counter| REDIS

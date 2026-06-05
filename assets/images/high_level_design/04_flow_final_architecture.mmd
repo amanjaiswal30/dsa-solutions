@@ -1,0 +1,5 @@
+flowchart LR
+    SVC[Microservices] --> API[ID Generator API]
+    API --> GEN[Snowflake Generator]
+    ZK[Coordination Service] -.->|machine id lease| GEN
+    GEN --> OUT[64-bit unique sortable ID]

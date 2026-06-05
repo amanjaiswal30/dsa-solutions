@@ -1,0 +1,17 @@
+sequenceDiagram
+    autonumber
+    participant C as Client
+    participant CO as Coordinator
+    participant P as Primary Replica
+    participant R1 as Replica 1
+    participant R2 as Replica 2
+
+    C->>CO: PUT key=user:1, value=Alice, W=2
+    CO->>CO: partition key → token ring
+    CO->>P: write
+    CO->>R1: write
+    CO->>R2: write
+    P-->>CO: ack
+    R1-->>CO: ack
+    Note over CO: 2 acks ≥ W — success
+    CO-->>C: 200 OK

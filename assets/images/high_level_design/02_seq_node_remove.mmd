@@ -1,0 +1,15 @@
+sequenceDiagram
+    autonumber
+    participant C as Client
+    participant GW as Gateway
+    participant R as Ring
+    participant DEAD as Node C (down)
+    participant D as Node D (successor)
+
+    GW->>R: lookup key K
+    R-->>GW: primary was Node C
+    GW->>DEAD: read K
+    DEAD--xGW: timeout
+    GW->>D: read K from successor
+    D-->>GW: value (replica)
+    GW-->>C: 200 OK

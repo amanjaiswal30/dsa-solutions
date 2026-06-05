@@ -1,11 +1,9 @@
 flowchart TD
-    START([Incoming request]) --> LOAD[Load bucket state from Redis<br/>tokens, last_refill_ts]
-    LOAD --> REFILL[Refill tokens:<br/>tokens += elapsed × rate<br/>cap at burst size]
+    START([Request]) --> LOAD[Load bucket from Redis]
+    LOAD --> REFILL[Refill tokens]
     REFILL --> CHECK{tokens >= 1?}
-    CHECK -->|Yes| DEC[Decrement 1 token<br/>persist to Redis]
-    DEC --> ALLOW([Allow request<br/>return remaining])
-    CHECK -->|No| DENY([Deny request<br/>return retry_after])
-    DENY --> R429[Gateway returns 429]
+    CHECK -->|Yes| DEC[Decrement + save] --> ALLOW([Allow])
+    CHECK -->|No| DENY([Deny → 429])
 
-    style ALLOW fill:#e0ffe0
-    style DENY fill:#ffe0e0
+    style ALLOW fill:#d4edda,stroke:#28a745,color:#1a1a1a
+    style DENY fill:#f8d7da,stroke:#dc3545,color:#1a1a1a

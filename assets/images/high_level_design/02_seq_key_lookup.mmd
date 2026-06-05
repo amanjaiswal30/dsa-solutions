@@ -1,0 +1,16 @@
+sequenceDiagram
+    autonumber
+    participant C as Client
+    participant LB as Load Balancer
+    participant GW as Gateway
+    participant R as Hash Ring
+    participant N as Storage Node
+
+    C->>LB: GET object key=user:42
+    LB->>GW: forward
+    GW->>R: hash(user:42) = 0x8F2A
+    R->>R: walk ring clockwise<br/>first vnode ≥ 0x8F2A
+    R-->>GW: primary = Node C
+    GW->>N: read key from Node C
+    N-->>GW: value
+    GW-->>C: 200 OK

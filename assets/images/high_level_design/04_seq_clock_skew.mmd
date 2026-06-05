@@ -1,0 +1,13 @@
+sequenceDiagram
+    autonumber
+    participant G as Generator
+    participant CLK as System Clock
+
+    G->>CLK: now_ms = 1717524000
+    CLK-->>G: 1717524000
+    G->>G: sequence++
+    Note over G: NTP step — clock goes backward
+    G->>CLK: now_ms = 1717523990
+    CLK-->>G: 1717523990
+    G->>G: reject or wait until last_timestamp
+    G-->>G: throw ClockMovedBackwards
