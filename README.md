@@ -1,6 +1,6 @@
 # 📚 Data Structures & Algorithms Solutions
 
-Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 140 commonly asked coding interview problems, **21 curated Low-Level Design** implementations, and a **High-Level Design (HLD) topic checklist** for system design interview prep (no long-form HLD write-ups here—use the list to drive whiteboard practice).
+Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 140 commonly asked coding interview problems, **21 curated Low-Level Design** implementations, and **High-Level Design (HLD) mock-interview write-ups** (conversational style: flows → requirements → scale up).
 
 ---
 
@@ -28,7 +28,7 @@ questions/
 ├── graphs/               # Graph algorithms & traversals (13 problems)
 ├── dynamic_programming/  # DP problems with detailed explanations (24 problems)
 ├── low_level_design/     # LLD interviews (21 topics, files named *_lld.md)
-└── high_level_design/    # HLD topics checklist ([README](questions/high_level_design/README.md))
+└── high_level_design/    # HLD mock interviews ([README](questions/high_level_design/README.md))
 ```
 
 ---
@@ -402,11 +402,15 @@ Each implemented topic is a **single `*_lld.md` file**: flow, Mermaid class diag
 
 Regenerate all LLD pages: `python3 scripts/generate_lld_docs.py`
 
-### ☁️ High-Level Design (HLD) — topics to prepare
+### ☁️ High-Level Design (HLD) — mock interview write-ups
 
-Full checklist with short study hints: **[questions/high_level_design/README.md](questions/high_level_design/README.md)**. Use it as a **checklist** for mock interviews and whiteboard practice (requirements, APIs, data model, scaling, failures, trade-offs).
+Index and topic checklist: **[questions/high_level_design/README.md](questions/high_level_design/README.md)**. Each doc is a **conversational mock interview** — vague opener, flows first, FR/NFR, then design small and scale with component Q&A.
 
-**Core building blocks:** Rate limiter · Consistent hashing · Key-value store · UUID generator · URL shortener  
+| # | Topic | Doc |
+|---|-------|-----|
+| 01 | Rate limiter | [01_rate_limiter_hld.md](questions/high_level_design/01_rate_limiter_hld.md) |
+
+**More topics to prepare:** Consistent hashing · Key-value store · UUID generator · URL shortener  
 
 **Systems & pipelines:** Web crawler · News feed system · Chat system · Distributed message queue · Metrics, monitoring & alerting · Notification system  
 
