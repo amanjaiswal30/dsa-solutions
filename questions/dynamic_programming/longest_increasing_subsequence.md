@@ -517,30 +517,33 @@ public class LISVariations {
             return b[1] - a[1];
         });
         
-        // Find LIS on heights
-        int[] heights = new int[envelopes.length];
-        for (int i = 0; i < envelopes.length; i++) {
-            heights[i] = envelopes[i][1];
-        }
-        
-        return lengthOfLISOptimal(heights);
-    }
-    
-    private int lengthOfLISOptimal(int[] nums) {
-        List<Integer> tails = new ArrayList<>();
-        
-        for (int num : nums) {
-            int pos = Collections.binarySearch(tails, num);
-            if (pos < 0) pos = -(pos + 1);
-            
-            if (pos == tails.size()) {
-                tails.add(num);
+        // LIS on heights via patience sorting (MAZHARMIK Approach-4)
+        List<Integer> sorted = new ArrayList<>();
+        for (int[] e : envelopes) {
+            int h = e[1];
+            int index = binarySearch(sorted, h);
+            if (index == sorted.size()) {
+                sorted.add(h);
             } else {
-                tails.set(pos, num);
+                sorted.set(index, h);
             }
         }
-        
-        return tails.size();
+        return sorted.size();
+    }
+    
+    private int binarySearch(List<Integer> sorted, int target) {
+        int left = 0, right = sorted.size();
+        int result = sorted.size();
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (sorted.get(mid) < target) {
+                left = mid + 1;
+            } else {
+                result = mid;
+                right = mid;
+            }
+        }
+        return result;
     }
 }
 ```

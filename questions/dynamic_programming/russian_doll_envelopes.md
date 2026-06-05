@@ -49,7 +49,7 @@ Naively checking all pairs is O(n²). The key reduction is **2D longest increasi
 
 1. **Sort** envelopes by **width ascending**. For equal widths, sort **height descending** (so only one envelope per width can appear in a valid chain).
 2. After sorting, finding the longest nesting chain equals **LIS on the height array**.
-3. Use the **O(n log n) LIS** (patience sorting / tails + binary search) on heights.
+3. Use **patience sorting + lower_bound** (MAZHARMIK LIS Approach-4) on heights — O(n log n).
 
 **Why height descending for equal width?**  
 If two envelopes share width `w`, you cannot nest one inside the other (width must be strictly greater). Descending heights prevent both from contributing to the same increasing height subsequence.
@@ -67,24 +67,50 @@ If two envelopes share width `w`, you cannot nest one inside the other (width mu
 
 ---
 
-### 2. LIS with Binary Search — O(n log n) ⭐
+### 2. Patience Sorting + lower_bound — O(n log n) ⭐
 - Same sort; scan `envelopes[i][1]` directly.
-- Maintain `tails[]` (smallest ending height for each subsequence length).
-- For each height, **hand-written binary search** on `tails` for the insert/replace index (no `Collections`).
+- Maintain `sorted` list (smallest ending height for each chain length) — [MAZHARMIK LIS Approach-4](https://github.com/MAZHARMIK/Interview_DS_Algo/blob/master/DP/LIS%20%26%20Variants/Longest%20Increasing%20Subsequence.cpp).
+- For each height, use **lower_bound** (hand-written binary search): first index where `sorted[i] >= height`.
+  - If at end → append (extend chain).
+  - Else → replace (keep smallest tail for that length).
 
 **Time:** O(n log n)  
 **Space:** O(n)
+
+#### Why each step?
+
+| Step | What we do | Why |
+|------|------------|-----|
+| **1. Sort width ↑, height ↓** | `Arrays.sort` with custom comparator | Width must strictly increase in any valid chain, so we process envelopes left-to-right by width. Equal widths cannot nest, so we sort heights **descending** — only the first (tallest) of each width group can extend an increasing height subsequence. |
+| **2. Reduce to LIS on heights** | After sort, scan only `e[1]` | Width order is already fixed; nesting now depends only on strictly increasing heights. This turns a 2D problem into classic LIS. |
+| **3. Maintain `sorted` list** | `sorted[i]` = smallest ending height of any chain of length `i + 1` | Smaller tails leave more room for future envelopes. We never need to store every chain — only the best tail per length. |
+| **4. `lower_bound` on each height** | Binary search for first index where `sorted[i] >= h` | Finds the **shortest** chain that can accept `h` (replace tail) or signals that `h` starts a new longest chain (append). Using `>=` (not `>`) prevents equal heights from stacking in the same chain. |
+| **5. Replace or append** | `set(index, h)` or `add(h)` | Replace when a chain of that length can end with a **smaller** height (better for future envelopes). Append when `h` is larger than every tail — the maximum chain length grows by one. |
+| **6. Return `sorted.size()`** | Length of the list | Each index in `sorted` represents one chain length; final size equals the longest strictly increasing height subsequence = max nesting count. |
+
+**Walkthrough** on `[[5,4],[6,4],[6,7],[2,3]]` after sort → `[[2,3],[5,4],[6,7],[6,4]]`:
+
+| Height | `sorted` after | Action | Why |
+|--------|----------------|--------|-----|
+| 3 | `[3]` | append | first envelope |
+| 4 | `[3, 4]` | append | 4 > 3, new chain length |
+| 7 | `[3, 4, 7]` | append | 7 > 4, extend again |
+| 4 | `[3, 4, 7]` | replace index 1 (`4 → 4`) | same height; `lower_bound` finds index 1, replace keeps tail minimal (no length change) |
+
+Answer: `sorted.size() = 3`.
 
 ---
 
 ## 🔹 Java Code
 
 ```java
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class RussianDollEnvelopes {
 
-    /** O(n^2) — LIS DP; only dp[] extra, heights from sorted envelopes */
+    /** O(n²) LIS DP on heights after sorting by width ↑, height ↓. */
     public int maxEnvelopesDp(int[][] envelopes) {
         sortEnvelopes(envelopes);
         int n = envelopes.length;
@@ -103,38 +129,49 @@ public class RussianDollEnvelopes {
         return best;
     }
 
-    /** O(n log n) — tails[] + manual binary search for LIS position */
+    /**
+     * Returns the maximum number of nested envelopes in O(n log n) time.
+     * After sorting, the problem becomes LIS on heights using patience sorting.
+     */
     public int maxEnvelopes(int[][] envelopes) {
         sortEnvelopes(envelopes);
-        int n = envelopes.length;
-        int[] tails = new int[n];
-        int size = 0;
+        List<Integer> sorted = new ArrayList<>();
 
         for (int[] e : envelopes) {
             int h = e[1];
-            int pos = binarySearch(tails, size, h);
-            tails[pos] = h;
-            if (pos == size) {
-                size++;
-            }
-        }
-        return size;
-    }
+            int index = lowerBound(sorted, h);
 
-    /** First index in tails[0..size) where tails[i] >= target (insert position) */
-    private int binarySearch(int[] tails, int size, int target) {
-        int lo = 0, hi = size;
-        while (lo < hi) {
-            int mid = lo + (hi - lo) / 2;
-            if (tails[mid] < target) {
-                lo = mid + 1;
+            if (index == sorted.size()) {
+                sorted.add(h);           // h beats every tail → chain grows by 1
             } else {
-                hi = mid;
+                sorted.set(index, h);    // swap in a smaller tail for this chain length
             }
         }
-        return lo;
+        return sorted.size();
     }
 
+    /**
+     * First index i where sorted[i] >= target (lower_bound).
+     * Equal values replace instead of extend, keeping the subsequence strictly increasing.
+     */
+    private int lowerBound(List<Integer> sorted, int target) {
+        int left = 0;
+        int right = sorted.size();
+        int result = sorted.size();
+
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (sorted.get(mid) < target) {
+                left = mid + 1;
+            } else {
+                result = mid;
+                right = mid;
+            }
+        }
+        return result;
+    }
+
+    /** Width ascending; height descending on ties (same width cannot both appear in a chain). */
     private void sortEnvelopes(int[][] envelopes) {
         Arrays.sort(envelopes, (a, b) -> {
             if (a[0] != b[0]) {
@@ -153,7 +190,7 @@ public class RussianDollEnvelopes {
 | Approach | Time | Space |
 |----------|------|-------|
 | DP LIS on heights | O(n²) | O(n) |
-| LIS + binary search | O(n log n) | O(n) |
+| Patience sorting + lower_bound | O(n log n) | O(n) |
 
 Sorting costs O(n log n) in both cases.
 
