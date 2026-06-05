@@ -1,0 +1,16 @@
+flowchart TB
+    C([Clients]) --> LB[Load Balancer]
+    LB --> GW[API Gateway<br/>+ Rate Limiter Library]
+
+    GW -->|1. sync check| REDIS[(Redis Cluster<br/>sharded by api_key)]
+    GW -->|2. if allowed| SVC[Backend Microservices]
+
+    ADM([Operators]) --> CP[Control Plane API]
+    CP --> STORE[(Rules DB)]
+    CP -.->|push rules vN| GW
+
+    GW --> MET[Metrics / Logs / Alerts<br/>allowed, denied, latency, hot keys]
+
+    GW -->|deny| R429([429 + Retry-After])
+
+    style R429 fill:#ffe0e0

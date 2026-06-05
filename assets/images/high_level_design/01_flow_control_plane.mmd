@@ -1,0 +1,16 @@
+flowchart TB
+    subgraph ControlPlane["Control plane — rule distribution"]
+        ADM([Admin Dashboard]) --> CP[Control Plane API]
+        CP --> VAL{valid rule?}
+        VAL -->|No| ERR([400 Bad Request])
+        VAL -->|Yes| DB[(Rules DB<br/>versioned rules)]
+        DB --> PUB[Config Bus<br/>etcd / SNS / poll]
+    end
+
+    PUB --> GW1[Gateway 1<br/>local rule cache]
+    PUB --> GW2[Gateway 2<br/>local rule cache]
+    PUB --> GWN[Gateway N<br/>local rule cache]
+
+    GW1 --> REDIS[(Redis Cluster)]
+    GW2 --> REDIS
+    GWN --> REDIS

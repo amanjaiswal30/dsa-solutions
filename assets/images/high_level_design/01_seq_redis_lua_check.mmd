@@ -1,0 +1,16 @@
+sequenceDiagram
+    autonumber
+    participant GW as Gateway
+    participant RL as Limiter Client
+    participant R as Redis Primary
+
+    GW->>RL: checkLimit(api_key, limit=100)
+    RL->>R: EVALSHA token_bucket.lua<br/>KEYS[1]=rate:{key}<br/>ARGV[1]=100, ARGV[2]=60
+    Note over R: Atomic in single thread:<br/>1. refill tokens by elapsed time<br/>2. if tokens >= 1: decrement, allow<br/>3. else: deny
+    alt tokens available
+        R-->>RL: {allowed: 1, remaining: 73, reset: 1717524060}
+        RL-->>GW: allow
+    else bucket empty
+        R-->>RL: {allowed: 0, retry_after: 42}
+        RL-->>GW: deny → 429
+    end

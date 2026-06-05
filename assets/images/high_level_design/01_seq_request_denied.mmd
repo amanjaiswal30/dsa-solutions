@@ -1,0 +1,15 @@
+sequenceDiagram
+    autonumber
+    participant C as Client
+    participant GW as API Gateway
+    participant RL as Rate Limiter
+    participant R as Redis
+
+    C->>GW: POST /api/resource<br/>Header: X-API-Key: pk_free_xyz
+    GW->>GW: resolve rule<br/>(plan: free → 100 req/min)
+    GW->>RL: checkLimit(key=pk_free_xyz, rule=free)
+    RL->>R: EVAL lua_script<br/>INCR rate:pk_free_xyz:bucket
+    R-->>RL: count=101, allowed=false
+    RL-->>GW: {allowed: false, retry_after: 37}
+    Note over GW: Backend NOT called — saves capacity
+    GW-->>C: 429 Too Many Requests<br/>Retry-After: 37<br/>X-RateLimit-Remaining: 0

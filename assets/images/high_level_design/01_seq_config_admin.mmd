@@ -1,0 +1,18 @@
+sequenceDiagram
+    autonumber
+    participant A as Admin / Ops
+    participant CP as Control Plane API
+    participant DB as Rules DB
+    participant BUS as Config Bus
+    participant GW1 as Gateway 1
+    participant GW2 as Gateway 2
+
+    A->>CP: PUT /rules/plan_free<br/>{limit: 100, window: 60s, burst: 20}
+    CP->>CP: validate rule (limit > 0)
+    CP->>DB: persist rule v12
+    CP->>BUS: publish rules_v12
+    BUS-->>GW1: push rules_v12
+    BUS-->>GW2: push rules_v12
+    GW1->>GW1: refresh local rule cache
+    GW2->>GW2: refresh local rule cache
+    Note over GW1,GW2: New requests use updated limits immediately

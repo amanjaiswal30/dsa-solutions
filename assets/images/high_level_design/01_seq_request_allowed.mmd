@@ -1,0 +1,19 @@
+sequenceDiagram
+    autonumber
+    participant C as Client
+    participant LB as Load Balancer
+    participant GW as API Gateway
+    participant RL as Rate Limiter
+    participant R as Redis
+    participant BE as Backend Service
+
+    C->>LB: GET /api/resource<br/>Header: X-API-Key: pk_live_abc
+    LB->>GW: forward request
+    GW->>GW: resolve rule for api_key<br/>(plan: pro → 1000 req/min)
+    GW->>RL: checkLimit(key=pk_live_abc, rule=pro)
+    RL->>R: EVAL lua_script<br/>INCR rate:pk_live_abc:bucket
+    R-->>RL: count=42, allowed=true
+    RL-->>GW: {allowed: true, remaining: 958, reset_at: 1717524000}
+    GW->>BE: forward request
+    BE-->>GW: 200 OK + body
+    GW-->>C: 200 OK<br/>X-RateLimit-Limit: 1000<br/>X-RateLimit-Remaining: 958<br/>X-RateLimit-Reset: 1717524000

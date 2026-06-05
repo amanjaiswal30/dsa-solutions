@@ -1,0 +1,12 @@
+flowchart TD
+    REQ([HTTP request arrives]) --> AUTH[Auth middleware<br/>extract api_key]
+    AUTH --> RULE[Lookup cached rule<br/>for api_key / endpoint]
+    RULE --> RL[Rate limiter check]
+    RL --> DEC{allowed?}
+    DEC -->|Yes| ROUTE[Route to backend service]
+    ROUTE --> RESP([200 + rate limit headers])
+    DEC -->|No| BLOCK([429 Too Many Requests<br/>Retry-After header])
+    DEC -->|Redis down + fail-open| ROUTE
+
+    style RESP fill:#e0ffe0
+    style BLOCK fill:#ffe0e0

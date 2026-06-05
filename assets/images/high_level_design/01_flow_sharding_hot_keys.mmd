@@ -1,0 +1,15 @@
+flowchart TB
+    GW[Gateway instances] --> LC{local token<br/>budget left?}
+    LC -->|Yes| LOCAL[consume local token<br/>no Redis hop]
+    LOCAL --> OK([allow — fast path])
+    LC -->|No| HASH[shard = hash api_key mod N]
+    HASH --> S1[Redis Shard 1]
+    HASH --> S2[Redis Shard 2]
+    HASH --> SN[Redis Shard N]
+
+    HOT[Hot key: celebrity tenant] -.->|split into| SUB1[key:shard_1]
+    HOT -.-> SUB2[key:shard_2]
+    HOT -.-> SUBK[key:shard_K]
+    SUB1 & SUB2 & SUBK --> S2
+
+    style OK fill:#e0ffe0

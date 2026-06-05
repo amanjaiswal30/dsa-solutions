@@ -1,0 +1,14 @@
+flowchart TB
+    subgraph Phase1["Phase 1 — Single gateway, in-memory"]
+        C([Client]) --> GW[API Gateway]
+        GW --> CHECK{count for key<br/>in current window?}
+        CHECK -->|count < 100| INC[increment counter<br/>in HashMap]
+        INC --> FWD[forward to backend]
+        FWD --> OK([200 OK])
+        CHECK -->|count >= 100| DENY([429 Too Many Requests])
+        GW -.-> MEM[(In-memory Map<br/>api_key:window → count)]
+        INC -.-> MEM
+    end
+
+    style DENY fill:#ffe0e0
+    style OK fill:#e0ffe0

@@ -1,0 +1,18 @@
+sequenceDiagram
+    autonumber
+    participant C as Client
+    participant GW as API Gateway
+    participant RL as Limiter Client
+    participant R as Redis
+    participant BE as Backend
+
+    C->>GW: HTTP request
+    GW->>RL: checkLimit(key)
+    RL->>R: EVAL lua_script
+    R--xRL: timeout / connection refused
+    RL->>RL: circuit breaker OPEN<br/>policy = fail-open
+    RL-->>GW: {allowed: true, degraded: true}
+    Note over GW: Alert fired: redis_unavailable
+    GW->>BE: forward request (no block)
+    BE-->>GW: 200 OK
+    GW-->>C: 200 OK
