@@ -61,10 +61,22 @@ def render_mmd(mmd: Path) -> bool:
 
 
 def main() -> None:
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Render HLD Mermaid diagrams to SVG.")
+    parser.add_argument(
+        "--missing-only",
+        action="store_true",
+        help="Only render .mmd files that do not yet have a .svg sibling.",
+    )
+    args = parser.parse_args()
+
     files = sorted(ASSETS.glob("*.mmd"))
+    if args.missing_only:
+        files = [f for f in files if not f.with_suffix(".svg").is_file()]
     if not files:
-        print("No .mmd files found.", file=sys.stderr)
-        sys.exit(1)
+        print("Nothing to render.")
+        return
     ok = sum(render_mmd(f) for f in files)
     print(f"Rendered {ok}/{len(files)} diagrams.")
 

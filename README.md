@@ -1,6 +1,6 @@
 # 📚 Data Structures & Algorithms Solutions
 
-Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 140 commonly asked coding interview problems, **21 curated Low-Level Design** implementations, and **High-Level Design (HLD) mock-interview write-ups** (conversational style: flows → requirements → scale up).
+Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 140 commonly asked coding interview problems, **21 curated Low-Level Design** implementations, and **High-Level Design (HLD)** topics.
 
 ---
 
@@ -28,7 +28,7 @@ questions/
 ├── graphs/               # Graph algorithms & traversals (13 problems)
 ├── dynamic_programming/  # DP problems with detailed explanations (24 problems)
 ├── low_level_design/     # LLD interviews (21 topics, files named *_lld.md)
-└── high_level_design/    # HLD mock interviews ([README](questions/high_level_design/README.md))
+└── high_level_design/    # HLD topics ([README](questions/high_level_design/README.md))
 ```
 
 ---
@@ -402,23 +402,17 @@ Each implemented topic is a **single `*_lld.md` file**: flow, Mermaid class diag
 
 Regenerate all LLD pages: `python3 scripts/generate_lld_docs.py`
 
-### ☁️ High-Level Design (HLD) — mock interview write-ups
+### ☁️ High-Level Design (HLD)
 
-Index and topic checklist: **[questions/high_level_design/README.md](questions/high_level_design/README.md)**. Each doc is a **conversational mock interview** — vague opener, flows first, FR/NFR, then design small and scale with component Q&A.
+Topics: **[questions/high_level_design/README.md](questions/high_level_design/README.md)**
 
-| # | Topic | Doc |
-|---|-------|-----|
-| 01 | Rate limiter | [01_rate_limiter_hld.md](questions/high_level_design/01_rate_limiter_hld.md) |
-| 02 | Consistent hashing | [02_consistent_hashing_hld.md](questions/high_level_design/02_consistent_hashing_hld.md) |
-| 03 | Key-value store (Cassandra-style) | [03_key_value_store_hld.md](questions/high_level_design/03_key_value_store_hld.md) |
-| 04 | Unique ID generator | [04_unique_id_generator_hld.md](questions/high_level_design/04_unique_id_generator_hld.md) |
-| 05 | URL shortener | [05_url_shortener_hld.md](questions/high_level_design/05_url_shortener_hld.md) |
-
-**More topics to prepare:** Web crawler · News feed · Chat system · Message queue · Notification system  
-
-**Systems & pipelines:** Web crawler · News feed system · Chat system · Distributed message queue · Metrics, monitoring & alerting · Notification system  
-
-**Domain-style:** Hotel reservation system · Trending videos · Gaming leaderboard · Payment system · Digital wallet  
+1. Rate limiter
+2. Consistent hashing
+3. Key-value store
+4. Unique ID generator
+5. URL shortener
+6. Notification system
+7. Chat system
 
 ---
 
