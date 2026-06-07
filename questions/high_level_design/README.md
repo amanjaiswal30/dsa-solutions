@@ -1,6 +1,8 @@
 # High-Level Design (HLD)
 
-Topics to prepare:
+**[Open HLD interview transcripts →](https://amanjaiswal30.github.io/dsa-solutions/questions/high_level_design/hld-combined.html)**
+
+Interactive mock-interview write-ups covering:
 
 1. Rate limiter
 2. Consistent hashing

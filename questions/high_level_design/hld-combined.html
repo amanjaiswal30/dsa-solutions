@@ -1,0 +1,2086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HLD Interview Transcripts</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Syne:wght@400;700;800&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#07090f;--s1:#0c1018;--s2:#111620;--s3:#161d2a;
+  --b1:#1a2334;--b2:#1f2b3e;
+  --y:#f0c040;--g:#3ddba8;--r:#f04870;--b:#4899f0;--p:#a070f0;--o:#f08850;
+  --t0:#dde8ff;--t1:#8099cc;--t2:#384860;--t3:#1a2838;
+  --mono:'JetBrains Mono',monospace;--sans:'Syne',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--t0);font-family:var(--mono);min-height:100vh;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:46px;
+  background:rgba(7,9,15,.97);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--b1);display:flex;align-items:center;padding:0 12px;overflow-x:auto;}
+nav::-webkit-scrollbar{display:none;}
+.logo{font-family:var(--sans);font-weight:800;font-size:13px;letter-spacing:2px;color:var(--y);
+  margin-right:10px;flex-shrink:0;padding-right:10px;border-right:1px solid var(--b1);}
+.ntab{padding:0 11px;height:46px;display:flex;align-items:center;gap:5px;cursor:pointer;
+  font-size:10px;color:var(--t2);border-bottom:2px solid transparent;transition:.12s;flex-shrink:0;white-space:nowrap;}
+.ntab:hover{color:var(--t1);}
+.ntab.on{color:var(--y);border-bottom-color:var(--y);}
+.nn{color:var(--t3);font-size:9px;}
+
+/* LAYOUT */
+main{margin-top:46px;}
+.page{display:none;max-width:860px;margin:0 auto;padding:32px 20px 100px;}
+.page.on{display:block;}
+
+/* TOPIC HEADER */
+.th{margin-bottom:36px;padding-bottom:20px;border-bottom:1px solid var(--b1);}
+.th-eye{font-size:9px;letter-spacing:3px;color:var(--t2);text-transform:uppercase;margin-bottom:8px;}
+.th-title{font-family:var(--sans);font-size:40px;font-weight:800;color:#fff;line-height:1.05;margin-bottom:6px;}
+.th-title em{color:var(--y);font-style:normal;}
+.th-sub{font-size:12px;color:var(--t1);line-height:1.6;margin-bottom:12px;}
+.tags{display:flex;gap:5px;flex-wrap:wrap;}
+.tag{font-size:10px;padding:2px 8px;border-radius:20px;}
+.ty{background:#f0c04014;color:var(--y);border:1px solid #f0c04030;}
+.tg{background:#3ddba814;color:var(--g);border:1px solid #3ddba830;}
+.tb{background:#4899f014;color:var(--b);border:1px solid #4899f030;}
+.tr{background:#f0487014;color:var(--r);border:1px solid #f0487030;}
+.tp{background:#a070f014;color:var(--p);border:1px solid #a070f030;}
+.to{background:#f0885014;color:var(--o);border:1px solid #f0885030;}
+
+/* PHASE LABEL */
+.phase-label{display:flex;align-items:center;gap:10px;margin:36px 0 20px;position:relative;}
+.phase-label::before{content:'';position:absolute;left:0;right:0;top:50%;height:1px;background:var(--b1);}
+.phase-pill{position:relative;background:var(--y);color:#000;font-size:10px;font-weight:700;
+  padding:4px 12px;border-radius:20px;letter-spacing:1px;white-space:nowrap;font-family:var(--mono);}
+.phase-title-text{position:relative;font-size:11px;color:var(--t1);white-space:nowrap;
+  background:var(--bg);padding:0 8px;}
+
+/* INTERVIEW TURNS */
+.turn{display:flex;gap:14px;margin-bottom:2px;position:relative;}
+.turn+.turn{margin-top:0;}
+
+/* Connector line between turns */
+.turn:not(:last-child)::after{
+  content:'';position:absolute;left:17px;top:38px;bottom:-2px;
+  width:1px;background:var(--b1);
+}
+
+.avatar{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;
+  justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:4px;}
+.int-av{background:rgba(61,219,168,.1);color:var(--g);border:1px solid rgba(61,219,168,.25);}
+.you-av{background:rgba(240,192,64,.1);color:var(--y);border:1px solid rgba(240,192,64,.25);}
+
+.turn-body{flex:1;padding-bottom:22px;}
+.turn-meta{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.speaker{font-size:11px;font-weight:600;}
+.int-speaker{color:var(--g);}
+.you-speaker{color:var(--y);}
+.stage{font-size:9px;color:var(--t2);background:var(--s2);border:1px solid var(--b1);
+  padding:2px 7px;border-radius:10px;letter-spacing:.5px;}
+
+.bubble{font-size:13px;line-height:1.9;color:var(--t0);}
+.int-turn .bubble{color:var(--g);}
+.bubble code{background:var(--s2);border:1px solid var(--b2);padding:1px 6px;border-radius:3px;color:var(--y);font-size:11.5px;}
+.bubble strong{color:#fff;font-weight:600;}
+.bubble em{color:var(--y);font-style:normal;}
+.bubble ul{list-style:none;margin:8px 0;display:flex;flex-direction:column;gap:5px;}
+.bubble ul li{padding-left:16px;position:relative;font-size:12.5px;color:var(--t1);}
+.bubble ul li::before{content:'→';position:absolute;left:0;color:var(--t2);font-size:10px;top:3px;}
+.bubble ul li strong{color:var(--t0);}
+
+/* INLINE ANNOTATIONS — why notes */
+.why-box{background:var(--s1);border:1px solid var(--b1);border-left:3px solid var(--y);
+  border-radius:0 6px 6px 0;padding:10px 14px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--t1);}
+.why-box .why-label{font-size:9px;color:var(--y);letter-spacing:1px;text-transform:uppercase;
+  margin-bottom:4px;font-weight:600;}
+.why-box.green{border-left-color:var(--g);}
+.why-box.green .why-label{color:var(--g);}
+.why-box.red{border-left-color:var(--r);}
+.why-box.red .why-label{color:var(--r);}
+.why-box.blue{border-left-color:var(--b);}
+.why-box.blue .why-label{color:var(--b);}
+
+/* SCHEMA BOXES */
+.schema-box{background:var(--s1);border:1px solid var(--b1);border-radius:8px;overflow:hidden;margin:10px 0;}
+.schema-hdr{padding:8px 13px;background:var(--s2);border-bottom:1px solid var(--b1);
+  font-size:10px;color:var(--t1);letter-spacing:1px;text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;}
+.schema-hdr span{color:var(--y);}
+pre.schema{font-family:var(--mono);font-size:11.5px;line-height:1.75;color:var(--g);
+  padding:12px 14px;overflow-x:auto;margin:0;}
+pre.schema .cm{color:var(--t2);}
+pre.schema .ck{color:var(--b);}
+pre.schema .cv{color:var(--y);}
+
+/* QUICK REF at end of topic */
+.qr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px;}
+@media(max-width:700px){.qr-grid{grid-template-columns:1fr;}}
+.qr-card{background:var(--s1);border:1px solid var(--b1);border-radius:8px;padding:14px;}
+.qr-title{font-family:var(--sans);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+  margin-bottom:10px;color:var(--t1);}
+.qr-card ul{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.qr-card ul li{font-size:11.5px;color:var(--t1);padding-left:12px;position:relative;line-height:1.5;}
+.qr-card ul li::before{content:'·';position:absolute;left:0;color:var(--t2);}
+.qr-card ul li strong{color:var(--t0);}
+
+/* SECTION DIVIDER */
+.sec-div{height:1px;background:var(--b1);margin:32px 0;}
+</style>
+
+<style>
+.diag-block {
+  background: var(--s1);
+  border: 1px solid var(--b1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 16px 0 24px;
+}
+.final-diag { border-color: var(--y); }
+.diag-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--t2);
+  padding: 8px 14px;
+  background: var(--s2);
+  border-bottom: 1px solid var(--b1);
+}
+.final-diag .diag-label { color: var(--y); }
+.diag-svg-inner { background: var(--bg); overflow-x: auto; }
+.diag-svg-inner svg { display: block; width: 100%; height: auto; }
+</style>
+
+</head>
+<body>
+<nav>
+  <div class="logo">HLD INTERVIEWS</div>
+  <div class="ntab on" onclick="go(0)"><span class="nn">01</span>Rate Limiter</div>
+  <div class="ntab" onclick="go(1)"><span class="nn">02</span>Consistent Hashing</div>
+  <div class="ntab" onclick="go(2)"><span class="nn">03</span>Key-Value Store</div>
+  <div class="ntab" onclick="go(3)"><span class="nn">04</span>Unique ID Gen</div>
+  <div class="ntab" onclick="go(4)"><span class="nn">05</span>URL Shortener</div>
+  <div class="ntab" onclick="go(5)"><span class="nn">06</span>Notification System</div>
+  <div class="ntab" onclick="go(6)"><span class="nn">07</span>Chat System</div>
+  <div class="ntab" onclick="go(7)"><span class="nn">08</span>Web Crawler</div>
+  <div class="ntab" onclick="go(8)"><span class="nn">09</span>Google Drive</div>
+</nav>
+<main>
+<div class="page on" id="p0">
+<div class="th">
+  <div class="th-eye">System Design Interview — Topic 01 of 09</div>
+  <div class="th-title">Rate <em>Limiter</em></div>
+  <div class="th-sub">Throttle API traffic per user/IP/token. Hot path — must add &lt;5ms. Must never block prod if limiter fails.</div>
+  <div class="tags">
+    <span class="tag ty">Token Bucket</span><span class="tag tg">Sliding Window</span>
+    <span class="tag tb">Redis Cluster</span><span class="tag tr">Lua Script</span>
+    <span class="tag tp">Fail-Open</span><span class="tag to">L1 Cache</span>
+  </div>
+</div>
+
+<!-- OPENING -->
+<div class="phase-label">
+  <div class="phase-pill">OPENING</div>
+  <div class="phase-title-text">Vague question, no details</div>
+</div>
+
+<div class="turn int-turn">
+  <div class="avatar int-av">INT</div>
+  <div class="turn-body">
+    <div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
+    <div class="bubble">We're seeing some users hammer our API — bots, scrapers, angry customers. Design a rate limiter.</div>
+  </div>
+</div>
+
+<!-- CLARIFICATION -->
+<div class="phase-label">
+  <div class="phase-pill">CLARIFICATION</div>
+  <div class="phase-title-text">Nail scope before drawing anything</div>
+</div>
+
+<div class="turn">
+  <div class="avatar you-av">YOU</div>
+  <div class="turn-body">
+    <div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Clarifying Questions</span></div>
+    <div class="bubble">Before I start — a few things to scope this:
+      <ul>
+        <li>Are we limiting per <strong>user ID, IP, or API key</strong>? Each has different tradeoffs.</li>
+        <li>Is this <strong>server-side middleware</strong> at the API Gateway level, or per-microservice?</li>
+        <li>What's the <strong>scale</strong> — DAU, peak RPS?</li>
+        <li>Do different users have different limits — free vs paid tiers?</li>
+        <li>What should we return when the limit is hit — 429? Any specific headers?</li>
+        <li>Do we need <strong>burst support</strong> — allow short spikes above the limit?</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="turn int-turn">
+  <div class="avatar int-av">INT</div>
+  <div class="turn-body">
+    <div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Parameters</span></div>
+    <div class="bubble">Server-side, API Gateway level. Limit per user ID. 10 million users, free tier gets 60 req/min, paid gets 1000. Peak around 1.5 million req/sec across the platform. Return 429 with standard headers. Burst — yes, paid users should be able to spike.</div>
+  </div>
+</div>
+
+<!-- FR NFR -->
+<div class="phase-label">
+  <div class="phase-pill">REQUIREMENTS</div>
+  <div class="phase-title-text">FR + NFR — always write these out loud</div>
+</div>
+
+<div class="turn">
+  <div class="avatar you-av">YOU</div>
+  <div class="turn-body">
+    <div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">FR + NFR</span></div>
+    <div class="bubble"><strong>Functional:</strong>
+      <ul>
+        <li>Limit N requests per minute per userId — configurable per tier</li>
+        <li>HTTP 429 on breach with headers: <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code>, <code>X-RateLimit-Reset</code>, <code>Retry-After</code></li>
+        <li>Burst support for paid users</li>
+        <li>Allowlist for internal services</li>
+      </ul>
+      <strong>Non-Functional:</strong>
+      <ul>
+        <li><strong>Latency:</strong> &lt;5ms added to every request — this is in the hot path</li>
+        <li><strong>Availability:</strong> if the limiter is down, <em>fail open</em> — never block production traffic because the limiter failed</li>
+        <li><strong>Consistency:</strong> eventual is fine — small over-allowance at window boundaries is acceptable</li>
+        <li><strong>Scale:</strong> 10M users, 1.5M req/sec — needs very fast shared state</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- API DESIGN -->
+<div class="phase-label">
+  <div class="phase-pill">API DESIGN</div>
+  <div class="phase-title-text">What does the interface look like?</div>
+</div>
+
+<div class="turn">
+  <div class="avatar you-av">YOU</div>
+  <div class="turn-body">
+    <div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">API Contract</span></div>
+    <div class="bubble">The rate limiter is middleware — not a standalone API. Every inbound request passes through it before hitting any service. The interface is:
+      <ul>
+        <li><code>isAllowed(userId, endpoint) → {allowed: bool, remaining: int, resetAt: epoch}</code></li>
+        <li>On <code>allowed=false</code>: gateway returns 429, sets response headers, does NOT forward request</li>
+        <li>On <code>allowed=true</code>: gateway forwards, decrements counter in background</li>
+      </ul>
+      For the <strong>rules API</strong> (admin updating tier limits):
+      <ul>
+        <li><code>PUT /rl/rules/{tier} → {limit, windowSec, burstCapacity}</code></li>
+        <li>Changes propagate to all gateway nodes within 30 seconds</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 1 -->
+<div class="phase-label">
+  <div class="phase-pill">PHASE 1</div>
+  <div class="phase-title-text">Single server — start simple</div>
+</div>
+<div class="diag-block" id="d-rl1"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="rl1"></div></div>
+
+<div class="turn">
+  <div class="avatar you-av">YOU</div>
+  <div class="turn-body">
+    <div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Single Server Design</span></div>
+    <div class="bubble">Simplest design: one API server, in-memory HashMap on that server.
+      <ul>
+        <li>Key: <code>userId</code>, Value: <code>{count, windowStart}</code></li>
+        <li>On each request: if <code>now - windowStart &gt; 60s</code>, reset. If <code>count &lt; limit</code>, increment and allow. Else 429.</li>
+        <li>O(1) lookup, zero network calls, sub-millisecond.</li>
+      </ul>
+    </div>
+    <div class="why-box">
+      <div class="why-label">Why HashMap</div>
+      O(1) average lookup and insert. Thread-safe with ConcurrentHashMap. No serialization overhead. Perfect for in-process state.
+    </div>
+  </div>
+</div>
+
+<div class="turn int-turn">
+  <div class="avatar int-av">INT</div>
+  <div class="turn-body">
+    <div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Scale</span></div>
+    <div class="bubble">We run 200 API servers behind the load balancer. What breaks?</div>
+  </div>
+</div>
+
+<div class="turn">
+  <div class="avatar you-av">YOU</div>
+  <div class="turn-body">
+    <div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Identifying Bottleneck</span></div>
+    <div class="bubble">The counters are local to each server. User A sends 200 requests — load balancer distributes them, so each server sees ~1 request. Every server's counter is 1, limit is 60, all pass. The rate limit is effectively multiplied by 200. <strong>We need shared state visible to all servers.</strong>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 2 -->
+<div class="phase-label">
+  <div class="phase-pill">PHASE 2</div>
+  <div class="phase-title-text">Add Redis — centralized shared counter</div>
+</div>
+<div class="diag-block" id="d-rl2"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="rl2"></div></div>
+
+<div class="turn">
+  <div class="avatar you-av">YOU</div>
+  <div class="turn-body">
+    <div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Redis Design</span></div>
+    <div class="bubble">Replace the local HashMap with Redis. All API servers share one Redis — counters are consistent across the fleet.</div>
+    <div class="why-box blue">
+      <div class="why-label">Why Redis specifically</div>
+      Redis is single-threaded — operations are inherently atomic. <code>INCR</code> returns the new value atomically, no compare-and-swap needed. Sub-millisecond latency. Supports TTL natively. ~200K ops/sec on a single node.
+    </div>
+
+    Now let me think about the algorithm. I have a few options:
+    <ul>
+      <li><strong>Fixed Window Counter</strong> — simplest, but has a boundary burst problem</li>
+      <li><strong>Sliding Window Log</strong> — exact, but memory heavy</li>
+      <li><strong>Sliding Window Counter</strong> — good balance, my default choice</li>
+      <li><strong>Token Bucket</strong> — best for burst support which paid users need</li>
+    </ul>
+    I'll use <strong>Sliding Window Counter</strong> as baseline, and <strong>Token Bucket</strong> for paid users with burst.
+  </div>
+</div>
+
+<div class="turn int-turn">
+  <div class="avatar int-av">INT</div>
+  <div class="turn-body">
+    <div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Redis Key</span></div>
+    <div class="bubble">What exactly does the Redis key look like? What data type? What's the TTL?</div>
+  </div>
+</div>
+
+<div class="turn">
+  <div class="avatar you-av">YOU</div>
+  <div class="turn-body">
+    <div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Key Design</span></div>
+    <div class="bubble">For <strong>Sliding Window Counter</strong> — I split the 60s window into 6 buckets of 10s each:
+      <ul>
+        <li>Key: <code>rl:swc:{userId}:{floor(epoch_ms / 10000)}</code></li>
+        <li>Example: <code>rl:swc:u9182:171724322</code></li>
+        <li>Type: <strong>String (integer counter)</strong></li>
+        <li>Commands: <code>INCR key</code> on each request, <code>EXPIRE key 120</code> (keep 2 windows)</li>
+        <li>Read: <code>MGET</code> of 6 consecutive bucket keys, sum them</li>
+        <li>TTL: 120s — two full windows so we don't lose data at window edge</li>
+      </ul>
+    </div>
+    <div class="why-box">
+      <div class="why-label">Why floor(epoch / 10000) in the key</div>
+      This makes the bucket key deterministic and identical across all API servers without coordination. Server A and Server B compute the same bucket key for the same timestamp because they both just do the same integer division. Clock drift of &lt;1ms (NTP guarantee) is irrelevant at a 10s bucket granularity.
+    </div>
+    <div class="why-box green">
+      <div class="why-label">Why String not Hash or List</div>
+      INCR only works on String type. It's atomic and returns the new value in one operation. Using a Hash would require HINCRBY + HGET — two operations, or a Lua script. String + INCR is the simplest atomic solution.
+    </div>
+
+    For <strong>Token Bucket</strong> (paid users, burst support):
+    <ul>
+      <li>Key: <code>rl:tb:{userId}</code></li>
+      <li>Type: <strong>Hash</strong> with fields <code>t</code> (float tokens remaining) and <code>r</code> (last refill epoch ms)</li>
+      <li>Must use a <strong>Lua script</strong> for atomicity — HMGET + compute + HMSET is not atomic otherwise</li>
+    </ul>
+
+    <div class="schema-box">
+      <div class="schema-hdr">🔴 <span>Lua Script — Token Bucket (atomic read-modify-write)</span></div>
+      <pre class="schema">-- KEYS[1]="rl:tb:{userId}"
+-- ARGV: capacity, rate(tokens/sec), now_ms, cost
+local data    = redis.call('HMGET', KEYS[1], 't', 'r')
+local tokens  = tonumber(data[1]) or tonumber(ARGV[1])
+local last    = tonumber(data[2]) or tonumber(ARGV[3])
+local elapsed = (tonumber(ARGV[3]) - last) / 1000.0
+tokens = math.min(tonumber(ARGV[1]), tokens + elapsed * tonumber(ARGV[2]))
+if tokens &lt; tonumber(ARGV[4]) then
+  return {0, math.ceil((tonumber(ARGV[4])-tokens)/tonumber(ARGV[2])*1000)}
+end
+tokens = tokens - tonumber(ARGV[4])
+redis.call('HMSET', KEYS[1], 't', tokens, 'r', ARGV[3])
+redis.call('EXPIRE', KEYS[1], 3600)
+return {1, 0}   -- {allowed, retry_after_ms}</pre>
+    </div>
+    <div class="why-box">
+      <div class="why-label">Why Lua and not MULTI/EXEC</div>
+      MULTI/EXEC (transactions) still requires sending multiple round trips. Lua runs server-side as a single atomic operation — no round trips between read and write. Also preload with <code>SCRIPT LOAD</code> and call via <code>EVALSHA</code> for zero parsing overhead per call.
+    </div>
+  </div>
+</div>
+
+<div class="turn int-turn">
+  <div class="avatar int-av">INT</div>
+  <div class="turn-body">
+    <div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Single Redis</span></div>
+    <div class="bubble">Single Redis handles 200K ops/sec. You have 1.5M req/sec. What now?</div>
+  </div>
+</div>
+
+<!-- PHASE 3 -->
+<div class="phase-label">
+  <div class="phase-pill">PHASE 3</div>
+  <div class="phase-title-text">Scale Redis — cluster + local cache</div>
+</div>
+<div class="diag-block" id="d-rl3"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="rl3"></div></div>
+
+<div class="turn">
+  <div class="avatar you-av">YOU</div>
+  <div class="turn-body">
+    <div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Redis Cluster</span></div>
+    <div class="bubble">Two moves here:
+      <ul>
+        <li><strong>Redis Cluster</strong> — shard by userId. Consistent hash on userId means all <code>rl:{userId}:*</code> keys for one user land on the same shard. No cross-shard ops needed per request.</li>
+        <li><strong>L1 in-process cache</strong> — Caffeine LRU cache on each API server, keyed by userId, TTL 100ms. On cache hit: no Redis call at all. At ~80% hit rate this cuts Redis ops from 1.5M/sec to ~300K/sec across the fleet.</li>
+      </ul>
+    </div>
+    <div class="why-box">
+      <div class="why-label">Why shard by userId and not by endpoint</div>
+      All rate limit keys for one user must be on the same shard so a single MGET can fetch all 6 bucket keys in one roundtrip. If we sharded by something else, a single user's 6 bucket keys might span multiple shards, requiring multiple roundtrips.
+    </div>
+    <div class="why-box green">
+      <div class="why-label">Why 100ms TTL on L1 cache</div>
+      100ms over-allowance is acceptable per NFR (eventual consistency). At 60 req/min = 1/sec, 100ms = 0.1 extra request possible — negligible. But 100ms TTL reduces Redis pressure by ~80% for high-frequency callers. The tradeoff is explicitly in our NFR.
+    </div>
+  </div>
+</div>
+
+<div class="turn int-turn">
+  <div class="avatar int-av">INT</div>
+  <div class="turn-body">
+    <div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Redis Down</span></div>
+    <div class="bubble">What happens if a Redis shard goes down?</div>
+  </div>
+</div>
+
+<div class="turn">
+  <div class="avatar you-av">YOU</div>
+  <div class="turn-body">
+    <div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Fail-Open Strategy</span></div>
+    <div class="bubble">Fail open — never fail closed. If Redis is unavailable, the API server falls back to the L1 Caffeine cache only. Requests may slightly exceed limits during the degradation window (typically &lt;30s until replica promotion). We emit a <code>rate_limiter.degraded_mode=true</code> metric and alert on-call. This is a deliberate tradeoff — a rate limiter outage must not become a service outage.
+    </div>
+    <div class="why-box red">
+      <div class="why-label">Why fail-open not fail-closed</div>
+      Failing closed (blocking all requests when Redis is down) would take the entire product offline every time Redis has a hiccup. The purpose of a rate limiter is to protect against abuse — occasional over-allowance during a 30-second Redis failover is vastly preferable to taking the whole platform down.
+    </div>
+  </div>
+</div>
+
+<div class="turn int-turn">
+  <div class="avatar int-av">INT</div>
+  <div class="turn-body">
+    <div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Tier Limits</span></div>
+    <div class="bubble">How do you change a user's tier limit without redeploying all 200 servers?</div>
+  </div>
+</div>
+
+<div class="turn">
+  <div class="avatar you-av">YOU</div>
+  <div class="turn-body">
+    <div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Config Service</span></div>
+    <div class="bubble">Rules Config Service backed by <strong>PostgreSQL</strong>.
+      <div class="schema-box">
+        <div class="schema-hdr">🗄 <span>PostgreSQL — Rules Config DB</span></div>
+        <pre class="schema"><span class="cm">-- Small table, strong consistency, admin writes</span>
+CREATE TABLE rl_rules (
+  tier       VARCHAR(20)  NOT NULL,
+  endpoint   VARCHAR(255) NOT NULL DEFAULT '*',
+  limit_n    INT          NOT NULL,
+  window_sec INT          NOT NULL DEFAULT 60,
+  burst      INT,                    <span class="cm">-- NULL = no burst (free tier)</span>
+  PRIMARY KEY (tier, endpoint)
+);
+<span class="cm">-- Example rows:</span>
+<span class="cm">-- ('free', '*', 60, 60, NULL)</span>
+<span class="cm">-- ('paid', '*', 1000, 60, 2000)</span>
+<span class="cm">-- ('paid', '/search', 200, 60, 400)</span></pre>
+      </div>
+      API servers cache rules in-process with a 30s TTL. On admin update, Config Service publishes to Redis Pub/Sub channel <code>rl:config:updated</code>. All API servers subscribed to that channel invalidate their cache immediately. Changes propagate in &lt;1s in practice.
+    </div>
+    <div class="why-box">
+      <div class="why-label">Why PostgreSQL for rules, not Redis</div>
+      Rules are written infrequently by admins — strong consistency and durability matter more than speed. PostgreSQL gives us ACID, a schema, and audit history. Redis is the read cache (30s TTL) and pub/sub for invalidation. DB is source of truth; Redis is the fast path.
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 4 — FINAL -->
+<div class="phase-label">
+  <div class="phase-pill">FINAL DESIGN</div>
+  <div class="phase-title-text">Pull it all together</div>
+</div>
+<div class="diag-block" id="d-rl4"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="rl4"></div></div>
+
+<div class="turn">
+  <div class="avatar you-av">YOU</div>
+  <div class="turn-body">
+    <div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Final Architecture</span></div>
+    <div class="bubble">The complete system:
+      <ul>
+        <li><strong>CDN / WAF</strong> — IP-level DDoS protection, bot fingerprinting, country blocks. Before requests hit our servers.</li>
+        <li><strong>API Gateway (Rate Limiter Middleware)</strong> — on every request: (1) extract userId from JWT, (2) check L1 Caffeine cache (100ms TTL), (3) on miss: MGET 6 bucket keys from Redis shard (or EVALSHA for token bucket), (4) if exceeded: 429, else forward.</li>
+        <li><strong>Redis Cluster</strong> — 20 shards, consistent hash on userId. Each shard: primary + replica. Sentinel for failover.</li>
+        <li><strong>Config Service</strong> — PostgreSQL backed. Rules cached in-process (30s TTL) + Redis Pub/Sub invalidation.</li>
+        <li><strong>Fail-open</strong> — Redis unavailable → L1 only → degraded_mode metric → alert.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="turn int-turn">
+  <div class="avatar int-av">INT</div>
+  <div class="turn-body">
+    <div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Final Probe</span></div>
+    <div class="bubble">Any gaps? What would you add given more time?</div>
+  </div>
+</div>
+
+<div class="turn">
+  <div class="avatar you-av">YOU</div>
+  <div class="turn-body">
+    <div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Gaps & Extensions</span></div>
+    <div class="bubble">A few things I'd add:
+      <ul>
+        <li><strong>Observability</strong> — counter metric for every 429 with labels <code>(userId_tier, endpoint)</code>. Alert if exceeded rate spikes suddenly (indicates bot attack).</li>
+        <li><strong>Dynamic denylist</strong> — for known-bad IPs or users, bypass rate limiting and always return 403. Separate Redis Set <code>rl:denylist</code> checked first.</li>
+        <li><strong>Allowlist for internal services</strong> — Redis Set <code>rl:allowlist</code> with internal serviceIds. SISMEMBER before any counter check.</li>
+        <li><strong>Rate limit by composite key</strong> — <code>(userId, endpoint)</code> for per-route limits. Paid users might have 1000/min overall but only 200/min for the expensive <code>/search</code> endpoint.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- QUICK REF -->
+<div class="sec-div"></div>
+<div class="qr-grid">
+  <div class="qr-card">
+    <div class="qr-title">🗄 Redis Keys</div>
+    <ul>
+      <li><strong>Sliding Counter:</strong> <code>rl:swc:{uid}:{bucket}</code> → String, 6 buckets of 10s, TTL 120s</li>
+      <li><strong>Token Bucket:</strong> <code>rl:tb:{uid}</code> → Hash {t, r}, TTL 3600s, Lua EVALSHA</li>
+      <li><strong>Tier cache:</strong> <code>user:tier:{uid}</code> → String, TTL 300s</li>
+      <li><strong>Allowlist:</strong> <code>rl:allowlist</code> → Set, no TTL</li>
+    </ul>
+  </div>
+  <div class="qr-card">
+    <div class="qr-title">🐘 PostgreSQL Schema</div>
+    <ul>
+      <li><strong>rl_rules</strong>: PK (tier, endpoint) → {limit_n, window_sec, burst}</li>
+      <li>Written by admins only. Strong consistency needed.</li>
+      <li>Cached in-proc 30s + Pub/Sub invalidation</li>
+      <li>Redis is cache; Postgres is source of truth</li>
+    </ul>
+  </div>
+  <div class="qr-card">
+    <div class="qr-title">⚖ Key Decisions</div>
+    <ul>
+      <li>Shard Redis by userId → all keys on same shard</li>
+      <li>Lua script → atomic token bucket read-modify-write</li>
+      <li>L1 Caffeine 100ms → cuts Redis ops by 80%</li>
+      <li>Fail-open → never block prod for limiter failure</li>
+      <li>EVALSHA → zero Lua parsing overhead per call</li>
+    </ul>
+  </div>
+</div>
+</div>
+<!-- ═══════════════════════ TOPIC 02 — CONSISTENT HASHING ═══════════════════════ -->
+
+<div class="page" id="p1">
+<div class="th">
+  <div class="th-eye">System Design Interview — Topic 02 of 09</div>
+  <div class="th-title">Consistent <em>Hashing</em></div>
+  <div class="th-sub">Distribute data across nodes so adding or removing a node reshuffles ~1/N keys instead of ~100%.</div>
+  <div class="tags"><span class="tag ty">Ring Hash</span><span class="tag tg">Virtual Nodes</span><span class="tag tb">TreeMap O(log N)</span><span class="tag tr">Preference List</span><span class="tag tp">W+R&gt;N Quorum</span></div>
+</div>
+
+<div class="phase-label"><div class="phase-pill">OPENING</div></div>
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
+<div class="bubble">We have a 10-node cache cluster. Every time we add a single node, our cache hit rate crashes to near zero for 30 minutes. Figure out why and fix it.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">CLARIFICATION + ROOT CAUSE</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Diagnosing the Problem</span></div>
+<div class="bubble">I know exactly what's happening — you're using <strong>modulo hashing</strong>: <code>node = hash(key) % N</code>. When N changes from 10 to 11, the formula changes for nearly every key. Specifically ~(N-1)/N ≈ 91% of all keys remap to a different node simultaneously. The entire cache goes cold at once. We need consistent hashing.</div>
+<div class="why-box red"><div class="why-label">The Math</div>key with hash 4,829,301: 4829301 % 10 = 1 (Node 1). Add a node: 4829301 % 11 = 7 (Node 7). Moved. This happens for ~91% of keys the moment N changes by 1.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 1</div><div class="phase-title-text">Consistent Hash Ring — basic concept</div></div>
+<div class="diag-block" id="d-ch1"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="ch1"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Core Idea</span></div>
+<div class="bubble">Imagine a ring with positions 0 to 2³²-1. Hash each server's name/IP to a position on the ring. Hash each key to a position. The key's owner is the <strong>first server you hit walking clockwise</strong> from the key's position. When you add Server D, it claims a position. The only keys that move are those between D and its counter-clockwise predecessor — roughly K/N keys. Everything else is untouched.</div>
+<div class="why-box green"><div class="why-label">Why This Works</div>Adding/removing a node only affects the adjacent arc, not the entire key space. ~1/N keys move vs ~91% with modulo.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Uneven Load</span></div>
+<div class="bubble">What if Server A happens to own 60% of the ring? One server does all the work.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 2</div><div class="phase-title-text">Virtual Nodes — even distribution</div></div>
+<div class="diag-block" id="d-ch2"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="ch2"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Virtual Nodes</span></div>
+<div class="bubble">That's the key weakness of a basic ring with few servers — arc sizes are random and can be wildly uneven. Fix: <strong>virtual nodes</strong>. Instead of one ring position per server, we assign each physical server 150 positions. Hash <code>"ServerA-0"</code>, <code>"ServerA-1"</code>, ..., <code>"ServerA-149"</code> — each lands at a different ring position. The physical server owns whichever real keys fall in any of its 150 arcs. Now load is near-uniform because each server has many small scattered arcs. When a server fails, its 150 arcs each shift to a different successor — load spreads across all peers, not one.</div>
+<div class="why-box"><div class="why-label">Why 150 vnodes specifically</div>At 150 vnodes per server, standard deviation of load across servers is &lt;5%. Below 50: unacceptable unevenness. Above 300: diminishing returns. 150–256 is the production sweet spot — Cassandra uses 256 by default.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Implementation</span></div>
+<div class="bubble">How do you actually look up which server owns a key? What data structure, what's the complexity?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">TreeMap Implementation</span></div>
+<div class="bubble"><code>TreeMap&lt;Long, ServerNode&gt;</code> — keys are ring positions (uint64 hash), values are server references. The map is kept sorted. Lookup is: <code>ring.ceilingEntry(hash(key))</code> — returns the smallest position ≥ hash. If null (hash is past the last entry): <code>ring.firstEntry()</code> to wrap around. That's the owning server. O(log N) where N = total vnode count. With 3 servers × 150 vnodes = 450 entries → log₂(450) ≈ 9 comparisons. Negligible.</div>
+<div class="schema-box"><div class="schema-hdr">💻 <span>TreeMap Operations</span></div>
+<pre class="schema"><span class="cm">// Add a server (150 vnodes)</span>
+for (int i = 0; i &lt; NUM_VNODES; i++) {
+  long pos = hash(server.id + "-" + i);
+  ring.put(pos, server);
+}
+
+<span class="cm">// Remove a server</span>
+for (int i = 0; i &lt; NUM_VNODES; i++) {
+  ring.remove(hash(server.id + "-" + i));
+}
+
+<span class="cm">// Lookup: which server owns key K?</span>
+long pos = hash(key);
+Map.Entry&lt;Long, Server&gt; e = ring.ceilingEntry(pos);
+Server owner = (e != null) ? e.getValue() : ring.firstEntry().getValue();</pre></div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Replication</span></div>
+<div class="bubble">How do you replicate data for fault tolerance using this ring?</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 3</div><div class="phase-title-text">Preference List — DynamoDB-style replication</div></div>
+<div class="diag-block" id="d-ch3"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="ch3"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Replication Strategy</span></div>
+<div class="bubble">Preference list. For key K, the primary is the first server clockwise (owner). The replicas are the next N-1 servers clockwise, skipping vnodes of the same physical server. So if N=3: primary + 2 replicas on 3 distinct physical machines. For writes: require W=2 nodes to acknowledge. For reads: read from R=2 nodes. W+R=4 &gt; N=3 → at least one node is in both sets → reads always see the latest write → strong consistency.</div>
+<div class="why-box"><div class="why-label">Why W=2 R=2 specifically</div>W+R &gt; N is the quorum condition for strong consistency. W=1,R=1: max availability, eventual consistency. W=3,R=1: max write durability. W=2,R=2 is the balanced middle ground — tolerates one node failure while maintaining consistency.</div>
+<div style="margin-top:8px">For always-writable behavior (Dynamo-style): use <strong>sloppy quorum</strong> — if the primary is down, next healthy node accepts the write with a "hint." When primary recovers, hinted handoff replays the buffered writes.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Where is this used?</span></div>
+<div class="bubble">Where does this show up in real systems you know?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Real-World Examples</span></div>
+<div class="bubble"><ul>
+<li><strong>Cassandra</strong> — token ring, 256 vnodes per node by default. Each node owns a token range.</li>
+<li><strong>DynamoDB</strong> — preference list with N=3, hinted handoff, always-writable.</li>
+<li><strong>Redis Cluster</strong> — 16,384 fixed hash slots (conceptually the same thing with a fixed ring size). Each node owns a range of slots.</li>
+<li><strong>Memcached</strong> — client-side ketama library implements consistent hashing with 160 vnodes/server.</li>
+</ul>In my current work on API Gateway at Workday — our Rate Limiter shards Redis by userId using consistent hashing so all keys for a user always land on the same shard.</div></div></div>
+
+<div class="sec-div"></div>
+<div class="qr-grid">
+  <div class="qr-card"><div class="qr-title">🔢 Algorithm</div><ul>
+    <li>Ring: 0 to 2³² positions</li><li>Hash server + key → ring position</li>
+    <li>Owner: first server clockwise</li><li>Add/remove: ~1/N keys move</li>
+    <li>150–256 vnodes per physical server</li></ul></div>
+  <div class="qr-card"><div class="qr-title">💻 Implementation</div><ul>
+    <li>TreeMap&lt;Long,Server&gt; sorted by position</li>
+    <li>Lookup: ceilingEntry(hash(key)) O(log N)</li>
+    <li>Wrap-around: firstEntry() if null</li>
+    <li>3 servers × 150 = 450 entries → ~9 comparisons</li>
+    <li>Hash fn: MD5/SHA1 → uint64</li></ul></div>
+  <div class="qr-card"><div class="qr-title">⚖ Replication</div><ul>
+    <li>Preference list: next N-1 distinct servers</li>
+    <li>N=3, W=2, R=2 → W+R&gt;N = strong consistency</li>
+    <li>Sloppy quorum: always writable</li>
+    <li>Hinted handoff on node recovery</li>
+    <li>LWW or vector clocks for conflict resolution</li></ul></div>
+</div>
+</div>
+
+<!-- ═══════════════════════ TOPIC 03 — KEY-VALUE STORE ═══════════════════════ -->
+
+<div class="page" id="p2">
+<div class="th">
+  <div class="th-eye">System Design Interview — Topic 03 of 09</div>
+  <div class="th-title">Key-Value <em>Store</em></div>
+  <div class="th-sub">Design a distributed KV store like DynamoDB. 10TB, 100K writes/sec, 500K reads/sec, tunable consistency.</div>
+  <div class="tags"><span class="tag ty">LSM Tree</span><span class="tag tg">Bloom Filter</span><span class="tag tb">WAL + Memtable</span><span class="tag tr">CAP: AP</span><span class="tag tp">Gossip</span><span class="tag to">Hinted Handoff</span></div>
+</div>
+
+<div class="phase-label"><div class="phase-pill">OPENING</div></div>
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
+<div class="bubble">Design a distributed key-value store. Support get, put, delete. Think DynamoDB or Redis at scale.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">CLARIFICATION + FR/NFR</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Clarifying + Requirements</span></div>
+<div class="bubble">A few questions: value sizes — small blobs or potentially large? Read-heavy or write-heavy ratio? Strong or eventual consistency? Total data volume and peak QPS? TTL support needed?
+<br><br><strong>Given your answers (10TB, 100K writes/sec, 500K reads/sec, eventual OK, values &lt;10KB, TTL yes):</strong>
+<ul>
+<li><strong>FR:</strong> get(key), put(key, value), delete(key), TTL per key, configurable consistency</li>
+<li><strong>NFR:</strong> 10TB data, 100K writes/sec, 500K reads/sec, &lt;10ms p99 read, tunable consistency (W+R vs N), horizontal scale, no single point of failure</li>
+</ul></div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 1</div><div class="phase-title-text">Single node — what storage engine?</div></div>
+<div class="diag-block" id="d-kv1"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="kv1"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Storage Engine Choice</span></div>
+<div class="bubble">10TB means we can't use a pure in-memory HashMap — that would need 10TB of RAM. We need a disk-based storage engine. Two main choices: <strong>B-Tree</strong> (MySQL, Postgres) or <strong>LSM Tree</strong> (RocksDB, Cassandra). For 100K writes/sec, I'll go LSM Tree.</div>
+<div class="why-box"><div class="why-label">Why LSM Tree over B-Tree</div>B-Tree does random in-place page updates on disk — each write potentially rewrites multiple B-tree pages → write amplification → ceiling of ~10–50K writes/sec on SSD. LSM Tree always writes sequentially — WAL append → Memtable insert → SSTable flush. Sequential writes are 10–100× faster than random writes. At 100K writes/sec, LSM is the only viable choice.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — LSM Write Path</span></div>
+<div class="bubble">Walk me through the write path in an LSM Tree. What happens step by step when I call put("key", "value")?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">LSM Write Path</span></div>
+<div class="bubble">
+<ul>
+<li><strong>Step 1 — WAL:</strong> Append the write to the Write-Ahead Log — a sequential, append-only file on disk. This is for crash recovery. If the server dies right after this, the WAL can be replayed on restart.</li>
+<li><strong>Step 2 — Memtable:</strong> Write to the in-memory Memtable — a sorted structure (Red-Black Tree or SkipList). O(log n) insert. This is where the actual data lives while it's hot. We ACK the client <em>here</em> — after Memtable write, not after disk flush.</li>
+<li><strong>Step 3 — SSTable Flush:</strong> When Memtable reaches a size threshold (typically 64MB), it's flushed to disk as an immutable SSTable — a Sorted String Table. During flush we also build a Bloom Filter and a sparse index for that SSTable.</li>
+<li><strong>Step 4 — Compaction:</strong> Background process merges SSTables — removes duplicates, purges tombstones (deletes), keeps data sorted. Leveled compaction (RocksDB default) keeps each level's total size bounded, improving read performance.</li>
+</ul>
+<strong>Delete</strong> is a special case — it writes a <em>tombstone</em> marker. The key appears absent on reads. Physical deletion happens during compaction.
+</div>
+<div class="why-box green"><div class="why-label">Why ACK after Memtable, not SSTable flush</div>Flushing to SSTable takes ~seconds (64MB write). Waiting for that would give us terrible write latency. The WAL in step 1 gives us durability — even if we crash between Memtable and SSTable, we can replay the WAL. So it's safe to ACK after the faster Memtable write.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Read Path</span></div>
+<div class="bubble">Now the read path. get("key") — walk me through it. 10TB means many SSTables on disk — how do you avoid reading all of them?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">LSM Read Path + Bloom Filter</span></div>
+<div class="bubble">Read path checks in order from newest to oldest:
+<ul>
+<li><strong>1. Memtable</strong> — in-memory, O(log n) lookup. If found, return it (most recent version).</li>
+<li><strong>2. Block Cache</strong> — recently read SSTable blocks cached in RAM (LRU). Hot keys served entirely from here.</li>
+<li><strong>3. Bloom Filter per SSTable</strong> — before touching disk, check the Bloom Filter. If it says "definitely not here" → skip this SSTable. If "maybe here" → read from disk. A Bloom Filter with 1% false positive rate eliminates ~99% of unnecessary disk reads for missing keys.</li>
+<li><strong>4. SSTable binary search</strong> — use the sparse index to find the approximate byte offset, then binary search within that block on disk.</li>
+</ul>
+</div>
+<div class="why-box"><div class="why-label">Why Bloom Filter — the key insight</div>Most get() calls for missing keys would otherwise require reading every SSTable on disk. Bloom Filter is a probabilistic bit array: set bits for every key on SSTable creation. On query: if any hash position is 0 → key DEFINITELY absent → skip this SSTable entirely. Zero false negatives. ~1% false positives (still need to read disk occasionally). This is what makes LSM reads practical at scale.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Distribution</span></div>
+<div class="bubble">10TB doesn't fit on one machine. How do you distribute?</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 2</div><div class="phase-title-text">Distribute — consistent hashing + quorum</div></div>
+<div class="diag-block" id="d-kv2"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="kv2"></div></div>
+<div class="diag-block" id="d-kv3"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="kv3"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Distribution Design</span></div>
+<div class="bubble">Consistent hashing on the key — partition the data across N nodes with 150 vnodes per node for even distribution. For replication: DynamoDB-style preference list. N=3, primary + 2 replicas on distinct physical nodes. Write to W=2, read from R=2. W+R=4 &gt; N=3 → strong consistency when all nodes are up.
+<br><br>For membership and failure detection: <strong>Gossip protocol</strong>. Each node pings K random peers every ~1s, exchanges membership state. Information spreads in O(log N) rounds. No central coordinator.
+</div>
+<div class="why-box"><div class="why-label">Why no central coordinator for membership</div>A central coordinator is a single point of failure and a bottleneck. Gossip is fully decentralized — any node can go down without affecting membership propagation. Convergence in O(log N) rounds means a 1000-node cluster stabilizes in ~10 rounds (~10 seconds), which is fast enough for failure detection.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Conflicts</span></div>
+<div class="bubble">Network partition. Two replicas accept concurrent writes to the same key. How do you reconcile?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Conflict Resolution</span></div>
+<div class="bubble">Two options: <strong>Last-Write-Wins (LWW)</strong> — each write gets a wall-clock timestamp, on conflict the higher timestamp wins. Simple, rare data loss on true concurrent writes. Or <strong>Vector Clocks</strong> — each write tagged with {nodeId → counter}. On read: if one version's vector dominates the other, take the newer one. If neither dominates (truly concurrent), surface both to the caller for application-level resolution — DynamoDB's approach. I'd default to LWW for simplicity unless the application explicitly needs conflict detection.</div></div></div>
+
+<div class="sec-div"></div>
+<div class="qr-grid">
+  <div class="qr-card"><div class="qr-title">🗄 LSM Write Path</div><ul>
+    <li><strong>WAL</strong> → append-only, crash durability</li>
+    <li><strong>Memtable</strong> → in-RAM SkipList, ACK client here</li>
+    <li><strong>SSTable</strong> → flush at 64MB, immutable</li>
+    <li><strong>Compaction</strong> → merge, dedup, rm tombstones</li>
+    <li>Delete = tombstone marker (physical rm in compaction)</li></ul></div>
+  <div class="qr-card"><div class="qr-title">🔍 LSM Read Path</div><ul>
+    <li>Memtable first (most recent writes)</li>
+    <li>Block Cache (hot SSTable blocks in RAM)</li>
+    <li>Bloom Filter: ~99% skip on miss (key insight)</li>
+    <li>Sparse Index → binary search within block</li>
+    <li>Leveled compaction reduces read amplification</li></ul></div>
+  <div class="qr-card"><div class="qr-title">🌐 Distribution</div><ul>
+    <li>Consistent hash + 150 vnodes</li>
+    <li>N=3, W=2, R=2 preference list</li>
+    <li>Sloppy quorum + hinted handoff</li>
+    <li>Gossip: O(log N) failure propagation</li>
+    <li>LWW or vector clocks for conflicts</li></ul></div>
+</div>
+</div>
+
+<!-- ═══════════════════════ TOPIC 04 — UNIQUE ID ═══════════════════════ -->
+
+<div class="page" id="p3">
+<div class="th">
+  <div class="th-eye">System Design Interview — Topic 04 of 09</div>
+  <div class="th-title">Unique ID <em>Generator</em></div>
+  <div class="th-sub">64-bit time-sortable IDs at 4.2 billion/sec across a cluster. No per-request coordination. Pure local state.</div>
+  <div class="tags"><span class="tag ty">Snowflake 64-bit</span><span class="tag tg">Time-sortable</span><span class="tag tb">ZooKeeper MachineID</span><span class="tag tr">Clock Skew</span><span class="tag tp">4.2B IDs/sec</span></div>
+</div>
+
+<div class="phase-label"><div class="phase-pill">OPENING</div></div>
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
+<div class="bubble">Design a distributed unique ID generator. These IDs will be primary keys in our database tables across multiple datacenters.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">CLARIFICATION + FR/NFR</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Clarifying</span></div>
+<div class="bubble">A few questions — 64-bit integer or string format like UUID? Must IDs be time-sortable (newer > older numerically)? How many IDs per second do we need? Multiple datacenters? Is a central coordinator acceptable?
+<br><br><strong>Given your answers (64-bit numeric, time-sortable yes, &gt;10K/sec with headroom, multi-DC, prefer no coordinator per request):</strong>
+<ul>
+<li><strong>FR:</strong> Globally unique 64-bit integer IDs, monotonically increasing per machine, time-sortable</li>
+<li><strong>NFR:</strong> Sub-microsecond generation, no per-request network call, works across DCs</li>
+</ul></div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 1</div><div class="phase-title-text">Options evaluation — rule out the bad ones</div></div>
+<div class="diag-block" id="d-uid1"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="uid1"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Evaluating Options</span></div>
+<div class="bubble">Let me quickly rule out alternatives:
+<ul>
+<li><strong>DB auto-increment</strong> — single DB = SPOF, ~10K IDs/sec ceiling. Doesn't scale multi-DC.</li>
+<li><strong>UUID v4</strong> — 128-bit, not sortable, random → B-tree fragmentation as a PK. Not what we want.</li>
+<li><strong>Redis INCR</strong> — centralized, single point of failure, bottleneck at scale.</li>
+<li><strong>Snowflake (Twitter)</strong> — 64-bit, time-sortable, no per-request coordinator, decentralized. This is the answer.</li>
+</ul></div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Bit Layout</span></div>
+<div class="bubble">Walk me through the Snowflake bit layout. Why is each field sized the way it is?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Bit Layout Rationale</span></div>
+<div class="bubble">64 bits total:
+<ul>
+<li><strong>Bit 63 (1b) — Sign:</strong> Always 0. Java's long is signed — bit 63=1 means negative. Keeping it 0 ensures all IDs are positive longs. No casting needed.</li>
+<li><strong>Bits 22–62 (41b) — Timestamp:</strong> Milliseconds since a custom epoch (e.g. 2020-01-01). 2⁴¹ ms = 69.7 years. We pick a recent epoch to maximize the usable window.</li>
+<li><strong>Bits 17–21 (5b) — Datacenter ID:</strong> 0–31 = 32 DCs. Assigned at deploy time. Static at runtime. Prevents cross-DC collisions.</li>
+<li><strong>Bits 12–16 (5b) — Worker ID:</strong> 0–31 per DC = 1024 total generators. Assigned by ZooKeeper at startup. Prevents within-DC collisions.</li>
+<li><strong>Bits 0–11 (12b) — Sequence:</strong> 0–4095 per millisecond. Auto-increment per request, reset on new ms. 4096 × 1024 = 4.2B IDs/sec cluster-wide.</li>
+</ul></div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Machine ID</span></div>
+<div class="bubble">Two workers start simultaneously and both try to claim machine ID 17. What prevents duplicate IDs?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">ZooKeeper Assignment</span></div>
+<div class="bubble">ZooKeeper. Each worker creates an <strong>ephemeral sequential ZNode</strong> at <code>/id-gen/workers/worker-</code> on startup. ZK appends a globally unique monotonically increasing integer. Worker reads its ZNode's sequence number, uses it as <code>machineId % 1024</code>. ZK guarantees no two nodes get the same number. On crash: ephemeral ZNode auto-deletes (ZK session timeout ~5s) → ID recycled for the next worker. At any moment, no two live workers share a machineId.</div>
+<div class="why-box"><div class="why-label">Why ZooKeeper only at startup, not per ID</div>If ZK were consulted per ID generation, we'd have a network call on every request — killing the sub-microsecond goal. ZK is only used once per worker lifecycle (startup). After that, the worker generates IDs purely locally. ZK goes down → no impact on ID generation for running workers.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Clock Skew</span></div>
+<div class="bubble">NTP corrects the clock backward by 5ms on a generator node. What happens?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Clock Skew Handling</span></div>
+<div class="bubble">We track <code>lastTimestamp</code> in memory. Before generating each ID: <code>currentMs = monotonicClock.now()</code>. If <code>currentMs &lt; lastTimestamp</code>:
+<ul>
+<li>Small drift (≤10ms): <strong>spin-wait</strong> until clock catches up. Max added latency: 10ms on rare NTP correction. Log the event.</li>
+<li>Large drift (&gt;10ms): <strong>throw ClockSkewException</strong> and alert. This indicates a system problem — NTP misconfiguration, VM time jump, hardware issue. Fail loudly rather than silently generate duplicate IDs.</li>
+</ul>
+Use monotonic clock (CLOCK_MONOTONIC) for comparisons — it never goes backward even during NTP adjustments. Use wall clock only for the actual timestamp value embedded in the ID.</div></div></div>
+
+
+<div class="diag-block final-diag" id="d-uid2"><div class="diag-label">Final Architecture</div><div class="diag-svg-inner" data-fn="uid2"></div></div>
+<div class="sec-div"></div>
+<div class="qr-grid">
+  <div class="qr-card"><div class="qr-title">📐 Bit Layout</div><ul>
+    <li><strong>1b</strong> sign — always 0 (positive long)</li>
+    <li><strong>41b</strong> timestamp ms — 69.7 years</li>
+    <li><strong>5b</strong> DC ID — 32 datacenters</li>
+    <li><strong>5b</strong> worker ID — 32/DC = 1024 total</li>
+    <li><strong>12b</strong> sequence — 4096/ms → 4.2B/sec cluster</li></ul></div>
+  <div class="qr-card"><div class="qr-title">⚡ Generation Logic</div><ul>
+    <li>Pure local state — no network per ID</li>
+    <li>ZooKeeper: startup machineId only</li>
+    <li>Clock backward ≤10ms → spin-wait</li>
+    <li>Clock backward &gt;10ms → throw + alert</li>
+    <li>Sequence overflow → waitUntilNextMs()</li></ul></div>
+  <div class="qr-card"><div class="qr-title">🆚 vs Alternatives</div><ul>
+    <li>DB auto-increment: SPOF, ~10K/sec</li>
+    <li>UUID v4: 128-bit, not sortable, B-tree frag</li>
+    <li>Redis INCR: centralized bottleneck</li>
+    <li>Snowflake ✓: 64-bit, sortable, no coord/req</li>
+    <li>ULID: sortable string (use if string PK OK)</li></ul></div>
+</div>
+</div>
+
+<!-- ═══════════════════════ TOPIC 05 — URL SHORTENER ═══════════════════════ -->
+
+<div class="page" id="p4">
+<div class="th">
+  <div class="th-eye">System Design Interview — Topic 05 of 09</div>
+  <div class="th-title">URL <em>Shortener</em></div>
+  <div class="th-sub">Design bit.ly — shorten URLs, redirect 1B times/day at 11K/sec, analytics async. 3-layer cache.</div>
+  <div class="tags"><span class="tag ty">Base62 Snowflake</span><span class="tag tg">Redis Cache</span><span class="tag tb">Kafka Analytics</span><span class="tag tr">302+CDN</span><span class="tag tp">MySQL Sharded</span><span class="tag to">ClickHouse OLAP</span></div>
+</div>
+
+<div class="phase-label"><div class="phase-pill">OPENING</div></div>
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
+<div class="bubble">Design a URL shortener like bit.ly.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">CLARIFICATION + FR/NFR + ESTIMATES</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Clarifying + Estimates</span></div>
+<div class="bubble">Questions: How many URLs created per day? Redirects per day? Custom aliases? Expiry? Click analytics — real-time or eventual? Retention period?
+<br><br><strong>With your numbers (100M new/day, 1B redirects/day, custom aliases yes, expiry yes, analytics eventual, 5yr retention):</strong>
+<ul>
+<li><strong>Scale:</strong> 1B redirects/day = ~11,600 redirects/sec. 100M new/day = ~1,160 writes/sec.</li>
+<li><strong>Storage:</strong> 100M/day × 5yr × 365 = 182B URLs × ~500B = ~91TB. Needs sharding.</li>
+<li><strong>NFR:</strong> Redirect latency &lt;20ms p99. High availability. Read-heavy (100:1 redirect:write). Redirects must be fast — in the critical path of user experience.</li>
+</ul></div></div></div>
+
+<div class="phase-label"><div class="phase-pill">API DESIGN</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">API Design</span></div>
+<div class="bubble">Two main endpoints:
+<ul>
+<li><code>POST /shorten</code> — body: {longUrl, customAlias?, expiresAt?} → response: {shortUrl, shortCode, expiresAt}</li>
+<li><code>GET /{shortCode}</code> → HTTP 302 redirect to longUrl (or 410 if expired)</li>
+<li><code>GET /stats/{shortCode}</code> → {totalClicks, clicksByDay, clicksByCountry} (from analytics store)</li>
+<li><code>DELETE /{shortCode}</code> → deactivate (soft delete)</li>
+</ul></div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 1</div><div class="phase-title-text">Single server + MySQL — naive</div></div>
+<div class="diag-block" id="d-url1"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="url1"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Simple Design + Short Code Generation</span></div>
+<div class="bubble">One web server. MySQL for storage. For the short code, two approaches:
+<ul>
+<li><strong>Hash-based:</strong> MD5(longUrl) → take first 7 chars Base62. Natural dedup but has collision risk at scale.</li>
+<li><strong>ID-based (preferred):</strong> Generate Snowflake ID → Base62 encode → 7 chars. 62⁷ = 3.5T unique codes — ~96 years at 100M/day. No collisions possible by construction.</li>
+</ul>I'll go ID-based.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — DB Schema</span></div>
+<div class="bubble">What's the MySQL schema? What's indexed and why? And what's your shard key?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">DB Schema Design</span></div>
+<div class="bubble">
+<div class="schema-box"><div class="schema-hdr">🗄 <span>MySQL — urls table (sharded by short_code)</span></div>
+<pre class="schema">CREATE TABLE urls (
+  short_code    VARCHAR(7)    NOT NULL,   <span class="cm">-- shard key + PK</span>
+  long_url      TEXT          NOT NULL,
+  long_url_hash BIGINT        NOT NULL,   <span class="cm">-- FNV64(long_url) for dedup</span>
+  user_id       BIGINT        NOT NULL,
+  created_at    DATETIME(3)   NOT NULL DEFAULT NOW(3),
+  expires_at    DATETIME(3)   DEFAULT NULL,
+  is_active     TINYINT(1)    DEFAULT 1,
+  is_custom     TINYINT(1)    DEFAULT 0,
+  PRIMARY KEY   (short_code),             <span class="cm">-- redirect read path</span>
+  INDEX idx_user  (user_id, created_at), <span class="cm">-- "my links" list</span>
+  INDEX idx_dedup (long_url_hash),       <span class="cm">-- dedup check on write</span>
+  INDEX idx_expiry (expires_at)          <span class="cm">-- TTL cleanup job</span>
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</pre></div>
+</div>
+<div class="why-box"><div class="why-label">Why shard by short_code</div>The redirect read path is always: GET /abc1234 → look up by short_code. If we shard by short_code, every redirect query hits exactly one shard — O(1) lookup, no cross-shard join. The write path generates a Snowflake ID, encodes to Base62 (= short_code), then hashes short_code to find the right shard. Perfectly consistent.</div>
+<div style="margin-top:8px;font-size:12.5px;color:var(--t1)">At 182B URLs: say 50 shards × ~3.6B rows each → well within MySQL's comfortable range (InnoDB handles billions of rows).</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Scale Reads</span></div>
+<div class="bubble">11,600 redirects/sec. MySQL can handle ~5K reads/sec per shard. What do you do?</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 2</div><div class="phase-title-text">Redis cache + CDN — serve 99% from cache</div></div>
+<div class="diag-block" id="d-url2"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="url2"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Caching Strategy</span></div>
+<div class="bubble">Three-layer cache. Pareto principle: top 20% of URLs get 80% of traffic. So caching aggressively at multiple layers works well.
+<ul>
+<li><strong>L1 — CDN (Cloudflare/CloudFront):</strong> Return 302 with <code>Cache-Control: max-age=300</code>. CDN caches the redirect for 5 minutes at edge. Viral URLs never hit our servers at all after first hit.</li>
+<li><strong>L2 — Redis Cluster:</strong> Key <code>url:{shortCode}</code> → longUrl string. LRU eviction. TTL aligned with expires_at. ~90% hit rate for non-CDN traffic.</li>
+<li><strong>L3 — MySQL:</strong> Only for cold misses. Single PK lookup on the right shard.</li>
+</ul>
+</div>
+<div class="why-box"><div class="why-label">Why 302 not 301</div>301 is permanent — browsers cache it indefinitely. Once cached, the browser never calls us again → we lose all analytics. Also can't revoke a 301 for deactivated URLs. 302 with Cache-Control: max-age=300 gives us CDN caching (speed) AND analytics (we see the first request per 5-minute window per edge node) AND revocability (after 300s the CDN fetches fresh). Best of both worlds.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Analytics</span></div>
+<div class="bubble">How do you track clicks without adding latency to the redirect?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Async Analytics</span></div>
+<div class="bubble">Fire-and-forget Kafka publish on each redirect — non-blocking, no awaiting. The redirect response goes to the client immediately.
+<ul>
+<li><strong>Kafka topic:</strong> <code>url-clicks</code>, <strong>partition key: shortCode</strong> — all clicks for a URL go to one partition, preserving order. Message: {shortCode, userId, timestamp, userAgent, IP, referrer}</li>
+<li><strong>Consumer:</strong> analytics-workers → batch write to <strong>ClickHouse</strong></li>
+<li><strong>Real-time counter:</strong> <code>INCR clicks:{shortCode}</code> in Redis for dashboard display</li>
+</ul>
+<div class="schema-box"><div class="schema-hdr">📊 <span>ClickHouse — url_clicks table (OLAP)</span></div>
+<pre class="schema">CREATE TABLE url_clicks (
+  short_code   String,
+  user_id      UInt64,
+  clicked_at   DateTime,
+  country      String,
+  device_type  String,
+  referrer     String
+) ENGINE = MergeTree()
+PARTITION BY toYYYYMM(clicked_at)  <span class="cm">-- partition by month</span>
+ORDER BY (short_code, clicked_at); <span class="cm">-- fast per-URL time-series queries</span></pre></div>
+</div>
+<div class="why-box"><div class="why-label">Why ClickHouse for analytics</div>ClickHouse is a columnar OLAP store — perfect for "total clicks for URL X between dates A and B" queries. MergeTree engine with ORDER BY (short_code, clicked_at) means these queries read only relevant columns, and data is physically sorted for that access pattern. MySQL would struggle at 1B rows with aggregation queries.</div></div></div>
+
+
+<div class="diag-block final-diag" id="d-url3"><div class="diag-label">Final Architecture</div><div class="diag-svg-inner" data-fn="url3"></div></div>
+
+<div class="diag-block" id="d-url3"><div class="diag-label">Final Architecture — 3-Layer Cache + Async Analytics</div><div class="diag-svg-inner" data-fn="url3"></div></div>
+<div class="sec-div"></div>
+<div class="qr-grid">
+  <div class="qr-card"><div class="qr-title">🗄 MySQL Schema</div><ul>
+    <li><strong>Shard key:</strong> short_code (redirect path always one shard)</li>
+    <li>PK: short_code — O(1) redirect lookup</li>
+    <li>INDEX (user_id, created_at) — "my links"</li>
+    <li>INDEX (long_url_hash) — dedup on write</li>
+    <li>INDEX (expires_at) — TTL cleanup job</li></ul></div>
+  <div class="qr-card"><div class="qr-title">⚡ Redis + CDN</div><ul>
+    <li><code>url:{shortCode}</code> → longUrl, TTL=expires_at</li>
+    <li><code>clicks:{shortCode}</code> → INCR (dashboard)</li>
+    <li>LRU eviction, write-through on create</li>
+    <li>CDN 302+max-age=300: viral URLs at edge</li>
+    <li>302 not 301: analytics + revocable</li></ul></div>
+  <div class="qr-card"><div class="qr-title">📊 Analytics</div><ul>
+    <li>Kafka url-clicks, partition: shortCode</li>
+    <li>Fire-and-forget (non-blocking redirect)</li>
+    <li>ClickHouse MergeTree: fast aggregations</li>
+    <li>ORDER BY (short_code, clicked_at)</li>
+    <li>PARTITION BY month: efficient time range</li></ul></div>
+</div>
+</div>
+<!-- ═══════════════════════ TOPIC 06 — NOTIFICATION SYSTEM ═══════════════════════ -->
+
+<div class="page" id="p5">
+<div class="th">
+  <div class="th-eye">System Design Interview — Topic 06 of 09</div>
+  <div class="th-title">Notification <em>System</em></div>
+  <div class="th-sub">50M notifications/day. Push + Email + SMS. Kafka fan-out, DLQ retry, celebrity problem, idempotency.</div>
+  <div class="tags"><span class="tag ty">Kafka Fan-out</span><span class="tag tg">FCM + APNS</span><span class="tag tb">DLQ Retry</span><span class="tag tr">At-least-once</span><span class="tag tp">Celebrity Problem</span><span class="tag to">PostgreSQL State</span></div>
+</div>
+
+<div class="phase-label"><div class="phase-pill">OPENING</div></div>
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
+<div class="bubble">Design a notification system. Think Instagram — someone likes your photo, you get a push notification.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">CLARIFICATION + FR/NFR</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Clarifying</span></div>
+<div class="bubble">Which channels — push (iOS/Android), email, SMS? Volume? Real-time or a few seconds acceptable? User can opt out per channel? Max follower count we need to handle?
+<br><br><strong>Given: all three channels, 50M notifications/day, &lt;5s acceptable, opt-out per channel, up to 10M followers (celebrities):</strong>
+<ul>
+<li><strong>FR:</strong> Multi-channel delivery (push/email/SMS), user preference per channel, retry on failure, click analytics</li>
+<li><strong>NFR:</strong> At-least-once delivery, decoupled from triggering services, channels scale independently, idempotent delivery</li>
+</ul></div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 1</div><div class="phase-title-text">Naive — synchronous direct calls (what breaks)</div></div>
+<div class="diag-block" id="d-notif1"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="notif1"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Naive Design + Problems</span></div>
+<div class="bubble">Naive approach: when a "like" event fires, synchronously call APNS, SendGrid, Twilio inline in the handler. This immediately has problems:
+<ul>
+<li>APNS is slow (500ms spike) → your Like Service handler blocks for 500ms</li>
+<li>Crash mid-send → notification permanently lost</li>
+<li>No retry → 3rd party 503 = silent drop</li>
+<li>Can't scale push workers independently from email workers</li>
+</ul>
+We need async decoupling via a message queue. Kafka.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Kafka Design</span></div>
+<div class="bubble">Walk me through the Kafka topics, partition keys, and consumer groups. Why those choices?</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 2</div><div class="phase-title-text">Kafka pipeline — topics, partitions, consumers</div></div>
+<div class="diag-block" id="d-notif2"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="notif2"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Kafka Architecture</span></div>
+<div class="bubble">The pipeline has two layers of Kafka:
+<ul>
+<li><strong>events-raw topic</strong> — partition key: <code>recipientUserId</code>. Triggering services (Like, Comment, Follow) publish raw events here. Partition by recipientId ensures all events for one user go to one partition → consumed by one Notification Service instance → ordered delivery per user.</li>
+<li><strong>Notification Service</strong> — consumes events-raw. Looks up user prefs from Redis (<code>user:prefs:{uid}</code>). Fetches device tokens. Checks celebrity threshold. Fan-out: publishes to <code>notif-push</code>, <code>notif-email</code>, <code>notif-sms</code> topics. Partition key for all: <code>userId</code>.</li>
+<li><strong>Three separate channel topics</strong> — each has its own consumer group, independently scalable. Push workers → FCM/APNS. Email workers → SendGrid. SMS workers → Twilio.</li>
+</ul>
+</div>
+<div class="why-box"><div class="why-label">Why three separate Kafka topics (not one with a channel field)</div>Each channel has radically different throughput requirements and 3rd party rate limits. SendGrid allows 100 emails/sec. FCM allows 1000 push/sec. SMS is much slower. With separate topics, each consumer group throttles independently without affecting others. If email workers fall behind (SendGrid is slow), push notifications continue unaffected.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — DB Schema</span></div>
+<div class="bubble">What do you store in the database? What's the schema and why that DB?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">DB Design</span></div>
+<div class="bubble"><strong>PostgreSQL</strong> for notification state — ACID guarantees matter here (we must not double-send), low write volume (1 write per notification), relational structure.
+<div class="schema-box"><div class="schema-hdr">🗄 <span>PostgreSQL — notifications table</span></div>
+<pre class="schema">CREATE TABLE notifications (
+  notification_id  UUID          PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id          BIGINT        NOT NULL,
+  channel          VARCHAR(10)   NOT NULL,   <span class="cm">-- 'push'|'email'|'sms'</span>
+  status           VARCHAR(20)   NOT NULL DEFAULT 'PENDING',
+                                             <span class="cm">-- PENDING|SENT|FAILED|DLQ|PERM_FAILED</span>
+  attempt_count    SMALLINT      DEFAULT 0,
+  payload          JSONB         NOT NULL,   <span class="cm">-- {event_type, title, body, data}</span>
+  created_at       TIMESTAMPTZ   NOT NULL DEFAULT NOW(),
+  sent_at          TIMESTAMPTZ,
+  error_message    TEXT,
+  INDEX (user_id, created_at DESC),         <span class="cm">-- user's notification history</span>
+  INDEX (status, created_at)                <span class="cm">-- DLQ processor: find FAILED ones</span>
+);
+
+CREATE TABLE device_tokens (
+  user_id    BIGINT        NOT NULL,
+  platform   VARCHAR(10)   NOT NULL,         <span class="cm">-- 'ios'|'android'|'web'</span>
+  token      TEXT          NOT NULL,
+  is_active  BOOLEAN       DEFAULT TRUE,
+  last_seen  TIMESTAMPTZ   NOT NULL DEFAULT NOW(),
+  UNIQUE (user_id, token),
+  INDEX (user_id, platform, is_active)       <span class="cm">-- lookup tokens for push</span>
+);</pre></div>
+</div>
+<div class="why-box"><div class="why-label">Why PostgreSQL not Cassandra here</div>Notification state needs ACID — specifically, the idempotency check (SELECT status WHERE notification_id=X) and the subsequent UPDATE must not race. Cassandra's eventual consistency could allow double-sends. Volume is low (~50M/day = ~580 writes/sec) — well within PostgreSQL's comfortable range. Cassandra's strengths (massive write throughput, time-series) aren't needed here.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — DLQ + Idempotency</span></div>
+<div class="bubble">FCM returns 503. How does your system handle it? And how do you prevent sending the same notification twice on retry?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">DLQ + Idempotency</span></div>
+<div class="bubble">On 503: exponential backoff — wait 1s, retry. Wait 2s, retry. Wait 4s, final attempt. After 3 failures: publish to <code>notif-push-dlq</code> with full payload + metadata. DLQ processor (separate consumer group) retries hourly. If still failing after 10 total attempts: UPDATE status=PERM_FAILED, alert on-call. Never retry indefinitely.
+<br><br>Idempotency: before every 3rd party call, <strong>SELECT status FROM notifications WHERE notification_id=X</strong>. If status=SENT → skip. Also pass the notification_id as an idempotency key header to FCM/SendGrid/Twilio — they deduplicate on their end too. Double protection: our DB check prevents the call, 3rd party idempotency key prevents double delivery even if we somehow make the call twice.</div>
+<div class="why-box green"><div class="why-label">Why UUID as notification_id (not Snowflake)</div>Idempotency keys are typically UUIDs in 3rd party APIs (FCM, SendGrid). Using UUID natively as our PK avoids translation. The notifications table is not a time-series table where sort order matters for queries — we query by status or user_id — so UUID randomness doesn't hurt index performance the way it would in a sequential-insert table.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Celebrity</span></div>
+<div class="bubble">Celebrity with 10M followers posts. What happens to your pipeline?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Celebrity Fan-out Problem</span></div>
+<div class="bubble">Fan-out on write for 10M followers = 10M Kafka messages instantly. Push workers overwhelmed. Entire pipeline for all users backs up. This is the celebrity problem.
+<br><br>Solution: <strong>hybrid fan-out</strong>. Define a celebrity threshold — e.g., &gt;500K followers. For regular users: fan-out on write (small count, fast). For celebrities: <strong>fan-out on read</strong> — store the event in a <code>celebrity_events</code> table. When a follower opens the app, the feed service pulls recent celebrity events for all followed celebrities and merges into their notification feed. No write amplification spike.</div>
+<div class="why-box"><div class="why-label">Why 500K as threshold</div>At 500K followers, fan-out on write generates 500K Kafka messages per post. At ~1KB per message, that's 500MB in one burst. For most systems this is manageable. At 10M followers, it's 10GB — a serious spike. The threshold should be configurable via feature flag and tuned based on your consumer throughput.</div></div></div>
+
+<div class="sec-div"></div>
+<div class="qr-grid">
+  <div class="qr-card"><div class="qr-title">📨 Kafka Topics</div><ul>
+    <li><strong>events-raw</strong>: partition by recipientUserId</li>
+    <li><strong>notif-push/email/sms</strong>: partition by userId</li>
+    <li><strong>notif-*-dlq</strong>: after 3 failures, retry hourly</li>
+    <li>Separate topics = independent channel scaling</li>
+    <li>Kafka lag monitoring: alert if >1M msgs</li></ul></div>
+  <div class="qr-card"><div class="qr-title">🗄 PostgreSQL Schema</div><ul>
+    <li><strong>notifications</strong>: PK UUID, status tracking</li>
+    <li>INDEX (user_id, created_at) — history view</li>
+    <li>INDEX (status) — DLQ processor query</li>
+    <li><strong>device_tokens</strong>: UNIQUE(user_id, token)</li>
+    <li>Redis: user:prefs:{uid} Hash, TTL 5min</li></ul></div>
+  <div class="qr-card"><div class="qr-title">🔄 Reliability</div><ul>
+    <li>Idempotency: DB check before every send</li>
+    <li>3rd party idempotency key header too</li>
+    <li>DLQ: 3 retries → hourly retry → PERM_FAILED</li>
+    <li>Celebrity: fan-out on read (>500K followers)</li>
+    <li>FCM/APNS: offline delivery up to 28 days</li></ul></div>
+</div>
+</div>
+
+<!-- ═══════════════════════ TOPIC 07 — CHAT SYSTEM ═══════════════════════ -->
+
+<div class="page" id="p6">
+<div class="th">
+  <div class="th-eye">System Design Interview — Topic 07 of 09</div>
+  <div class="th-title">Chat <em>System</em></div>
+  <div class="th-sub">Real-time 1-1 + group (500 members). 50M DAU, 100M msgs/day. Presence, typing, read receipts, offline sync.</div>
+  <div class="tags"><span class="tag ty">WebSocket</span><span class="tag tg">Cassandra</span><span class="tag tb">Redis Pub/Sub</span><span class="tag tr">Heartbeat Presence</span><span class="tag tp">Cursor Sync</span><span class="tag to">PostgreSQL Metadata</span></div>
+</div>
+
+<div class="phase-label"><div class="phase-pill">OPENING</div></div>
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
+<div class="bubble">Design a chat system like WhatsApp or Slack.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">CLARIFICATION + FR/NFR</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Clarifying</span></div>
+<div class="bubble">1-1 only or groups too, and max group size? Typing indicators, read receipts, online presence? History retention? DAU and messages per day? Media or text-only?
+<br><br><strong>Given: 1-1 and group (max 500), all features, indefinite history, 50M DAU, 100M msgs/day, text only:</strong>
+<ul>
+<li><strong>FR:</strong> Send/receive messages 1-1 and group, presence (online/offline), typing indicators, read receipts, offline sync</li>
+<li><strong>NFR:</strong> &lt;100ms message delivery when both online, no message loss, messages ordered per conversation, 100M msgs/day write throughput</li>
+</ul></div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 1</div><div class="phase-title-text">Single server — protocol choice first</div></div>
+<div class="diag-block" id="d-chat1"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="chat1"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Protocol Decision</span></div>
+<div class="bubble">Before anything, I need to decide how the server pushes messages to clients. Three options: HTTP polling, long polling, WebSocket.
+<ul>
+<li>Polling: client asks every 5s. 50M users × polling every 5s = 10M HTTP requests/sec just for empty polls. And 5s latency. Not viable.</li>
+<li>Long polling: better latency but each message received requires a new HTTP connection setup. Half-duplex.</li>
+<li><strong>WebSocket</strong>: persistent TCP, full duplex. 2-byte frame overhead vs 300-byte HTTP header. Client and server both send freely. This is the right choice for chat.</li>
+</ul>
+Single server: A and B both connect via WebSocket. Server routes in-process. Works perfectly for one server.
+</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Cross-Server</span></div>
+<div class="bubble">We scale to 500 Chat Servers. User A is on Server 1. User B is on Server 2. A sends B a message. What happens?</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 2</div><div class="phase-title-text">Multi-server routing via Redis Pub/Sub + Cassandra</div></div>
+<div class="diag-block" id="d-chat2"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="chat2"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Cross-Server Routing</span></div>
+<div class="bubble">Server 1 can't push directly to B — it doesn't have B's WebSocket. We need:
+<ul>
+<li><strong>Connection registry in Redis:</strong> <code>ws:conn:{userId}</code> → chatServerId. Server 1 looks up B's server.</li>
+<li><strong>Redis Pub/Sub for routing:</strong> Server 1 publishes to channel <code>msg:user:{userId-B}</code>. Server 2 is subscribed to this channel (for all its connected users). Server 2 receives it, pushes to B's WebSocket.</li>
+</ul>
+In parallel, Server 1 persists the message to Cassandra — regardless of whether B is online.
+</div>
+<div class="why-box"><div class="why-label">Why Redis Pub/Sub for routing, not Kafka</div>Kafka is persistent, ordered, at-least-once. For live message routing between chat servers, we need sub-ms latency and we don't need persistence (message is already in Cassandra). Redis Pub/Sub is ephemeral, sub-ms, exactly right. Kafka adds 5–50ms broker overhead — too slow for real-time chat routing. Kafka IS used for analytics and offline notification triggering.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — DB Schema</span></div>
+<div class="bubble">100M messages per day, indefinite retention. What database, what schema, and why that partition key?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Cassandra Schema</span></div>
+<div class="bubble"><strong>Cassandra</strong> for message storage — write-heavy append workload, time-series access pattern, horizontal scale built-in.
+<div class="schema-box"><div class="schema-hdr">🗄 <span>Cassandra — messages table</span></div>
+<pre class="schema">CREATE TABLE messages (
+  channel_id   BIGINT,     <span class="cm">-- PARTITION KEY: all msgs of channel together</span>
+  message_id   BIGINT,     <span class="cm">-- Snowflake ID — time-sortable, CLUSTER KEY DESC</span>
+  sender_id    BIGINT,
+  content      TEXT,
+  msg_type     TEXT,       <span class="cm">-- 'text'|'image'|'system'|'deleted'</span>
+  created_at   TIMESTAMP,
+  PRIMARY KEY  (channel_id, message_id)
+) WITH CLUSTERING ORDER BY (message_id DESC);
+
+<span class="cm">-- Read last 50 messages (single partition, fastest possible):</span>
+SELECT * FROM messages WHERE channel_id = X LIMIT 50;
+
+<span class="cm">-- Cursor pagination (offline sync):</span>
+SELECT * FROM messages
+WHERE channel_id = X AND message_id &lt; cursor_id
+LIMIT 50;
+
+CREATE TABLE read_receipts (
+  channel_id           BIGINT,    <span class="cm">-- partition key</span>
+  user_id              BIGINT,    <span class="cm">-- clustering key</span>
+  last_read_message_id BIGINT,    <span class="cm">-- Snowflake ID</span>
+  updated_at           TIMESTAMP,
+  PRIMARY KEY (channel_id, user_id)
+);</pre></div>
+</div>
+<div class="why-box"><div class="why-label">Why partition by channel_id</div>The read access pattern for chat is always "give me the last N messages of channel X." Partitioning by channel_id puts all messages of a conversation in one Cassandra partition → single partition read → extremely fast. If we partitioned by user_id, reading a conversation would require reading two user partitions and joining — impossible in Cassandra, expensive in any DB.</div>
+<div class="why-box blue" style="margin-top:8px"><div class="why-label">Why Snowflake ID as clustering key (not UUID or timestamp)</div>Snowflake IDs are time-sortable 64-bit integers. DESC clustering order means most recent messages are physically stored first → LIMIT 50 reads the 50 most recent without sorting. A UUID would give random order requiring a sort. A plain timestamp would have millisecond-resolution collisions for high-frequency chat.</div>
+<br>For channel and member metadata: <strong>PostgreSQL</strong> — this is relational data (channels have members, members have roles), low write volume, needs JOINs like "list all channels for user X."
+<div class="schema-box"><div class="schema-hdr">🗄 <span>PostgreSQL — channel metadata</span></div>
+<pre class="schema">CREATE TABLE channels (
+  channel_id   BIGINT       PRIMARY KEY,  <span class="cm">-- Snowflake</span>
+  channel_type VARCHAR(10)  NOT NULL,     <span class="cm">-- 'direct'|'group'</span>
+  name         TEXT,
+  created_by   BIGINT,
+  created_at   TIMESTAMPTZ  DEFAULT NOW()
+);
+CREATE TABLE channel_members (
+  channel_id  BIGINT   NOT NULL,
+  user_id     BIGINT   NOT NULL,
+  role        VARCHAR(10) DEFAULT 'member',  <span class="cm">-- 'owner'|'admin'|'member'</span>
+  joined_at   TIMESTAMPTZ DEFAULT NOW(),
+  PRIMARY KEY (channel_id, user_id),
+  INDEX (user_id, channel_id)               <span class="cm">-- "list user's channels"</span>
+);</pre></div>
+</div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Presence</span></div>
+<div class="bubble">How does A know if B is online right now?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Presence + Typing + Read Receipts</span></div>
+<div class="bubble"><strong>Presence — Heartbeat TTL:</strong> Client sends a heartbeat WebSocket event every 5 seconds. Server: <code>SET ws:online:{userId} 1 EX 10</code>. TTL = 10s = 2× heartbeat interval. If no heartbeat for 10s → key expires → user offline. Check: <code>EXISTS ws:online:{userId}</code> → O(1). No explicit logout event needed — handles network drops and clean disconnects identically.
+<br><br><strong>Typing indicators — Pure Pub/Sub (no DB write):</strong> A types → client sends typing_start event → Server PUBLISHes to <code>typing:{channelId}</code> → member servers push "A is typing..." to online members → client auto-hides after 3s. Resend typing_start every 2s while still typing. Zero DB writes. 100% ephemeral.
+<br><br><strong>Read receipts — Per conversation, not per message:</strong> <code>read_receipts</code> table in Cassandra. When B opens a conversation: UPSERT <code>last_read_message_id</code> = latest message in that channel. "Read by N" query: count WHERE last_read_message_id ≥ target_msg_id. O(members), NOT O(messages).
+</div>
+<div class="why-box"><div class="why-label">Why per-conversation read receipts, not per-message</div>Per-message receipts in a group of 500 would require 500 rows per message. In a channel with 10K messages, that's 5M rows per channel just for receipts. Per-conversation: exactly 500 rows for a 500-member group, regardless of message count. Same UX — you can still show whether a message was read by checking if last_read_message_id ≥ that message's ID.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Offline</span></div>
+<div class="bubble">B was offline for 3 hours. How do they get missed messages?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Offline Sync</span></div>
+<div class="bubble">Messages are always persisted to Cassandra regardless of B's online status. On reconnect: B's client sends its <code>last_seen_message_id</code> per channel (stored in client's local SQLite/IndexedDB). Server queries: <code>SELECT * FROM messages WHERE channel_id=X AND message_id &gt; cursor_id LIMIT 100</code>. Returns exactly the missed messages. Client updates its local cursor. Fast and precise — no polling, no timestamp ambiguity, no duplicates.</div></div></div>
+
+
+
+<div class="diag-block" id="d-chat3"><div class="diag-label">Phase 3 — Ephemeral State Architecture</div><div class="diag-svg-inner" data-fn="chat3"></div></div>
+<div class="sec-div"></div>
+<div class="qr-grid">
+  <div class="qr-card"><div class="qr-title">🗄 Cassandra Schema</div><ul>
+    <li><strong>PARTITION:</strong> channel_id (all msgs together)</li>
+    <li><strong>CLUSTER:</strong> message_id DESC (Snowflake → recent first)</li>
+    <li>Single partition read for last N messages</li>
+    <li>read_receipts: PK=(channel_id, user_id)</li>
+    <li>Hot channel: add YYYYMM to partition key</li></ul></div>
+  <div class="qr-card"><div class="qr-title">⚡ Redis State</div><ul>
+    <li><code>ws:conn:{uid}</code> → chatServerId (routing)</li>
+    <li><code>ws:online:{uid}</code> → 1 TTL 10s (presence)</li>
+    <li><code>msg:user:{uid}</code> → pub/sub (delivery)</li>
+    <li><code>typing:{chanId}</code> → pub/sub (ephemeral)</li>
+    <li>Zero DB writes for typing + presence</li></ul></div>
+  <div class="qr-card"><div class="qr-title">🐘 PostgreSQL</div><ul>
+    <li>channels + channel_members (relational)</li>
+    <li>INDEX(user_id, channel_id) — "list user's chats"</li>
+    <li>Cassandra: time-series (high volume)</li>
+    <li>PostgreSQL: metadata (relational, low volume)</li>
+    <li>Offline sync: cursor = last_seen_message_id</li></ul></div>
+</div>
+</div>
+
+<!-- ═══════════════════════ TOPIC 08 — WEB CRAWLER ═══════════════════════ -->
+
+<div class="page" id="p7">
+<div class="th">
+  <div class="th-eye">System Design Interview — Topic 08 of 09</div>
+  <div class="th-title">Web <em>Crawler</em></div>
+  <div class="th-sub">Crawl 1B pages. Distributed fetch, parse, dedup, index. Politeness per domain. Priority scheduling.</div>
+  <div class="tags"><span class="tag ty">URL Frontier</span><span class="tag tg">Bloom Filter</span><span class="tag tb">SimHash Near-Dup</span><span class="tag tr">robots.txt Politeness</span><span class="tag tp">Cassandra</span><span class="tag to">Elasticsearch</span></div>
+</div>
+
+<div class="phase-label"><div class="phase-pill">OPENING</div></div>
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
+<div class="bubble">Design a web crawler.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">CLARIFICATION + FR/NFR</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Clarifying</span></div>
+<div class="bubble">Purpose — build a search engine index, or something specific like price monitoring? Scale — how many pages, how fresh should the index be? Do we need to honor robots.txt? What's the target URL depth?
+<br><br><strong>Given: general-purpose search index, 1B pages, refresh popular pages daily, robots.txt yes:</strong>
+<ul>
+<li><strong>FR:</strong> Crawl URLs, extract content, discover new links, deduplicate URLs and content, build index, respect robots.txt and politeness</li>
+<li><strong>NFR:</strong> 1B pages, popular pages refreshed daily, politeness (max 1–3 req/sec per domain), fault tolerant, scalable horizontally</li>
+</ul></div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 1</div><div class="phase-title-text">Single crawler — what breaks immediately</div></div>
+<div class="diag-block" id="d-wc1"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="wc1"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Single Crawler Analysis</span></div>
+<div class="bubble">Single machine: seed URLs → fetch page → parse HTML → extract links → deduplicate → add to queue → repeat. Max throughput: ~100 pages/sec (network + CPU bound). At 1B pages: 1B / 100 = 10M seconds = ~115 days. Way too slow. Also no dedup at scale — an in-memory HashSet of 1B URLs requires ~50GB RAM. Need distributed architecture.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 2</div><div class="phase-title-text">Distributed pipeline — URL Frontier + Worker pools</div></div>
+<div class="diag-block" id="d-wc2"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="wc2"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Distributed Design</span></div>
+<div class="bubble">The core pipeline is: <strong>URL Frontier → Fetcher Workers → Parser Workers → Indexer Workers</strong>, with dedup gates between stages.
+<br><br><strong>URL Frontier — Kafka, partitioned by domain:</strong> This is the queue of URLs to crawl. Not a DB table — Kafka handles billions of messages natively, durable, replayable. Partition key = domain (e.g., hash of hostname). Why domain? Because politeness means we should crawl each domain slowly (1–3 req/sec). Partitioning by domain means one Fetcher worker instance "owns" a domain's partition → easy to enforce politeness without distributed coordination.
+</div>
+<div class="why-box"><div class="why-label">Why Kafka for URL frontier, not a DB queue</div>A DB queue (SELECT ... FOR UPDATE SKIP LOCKED) works for small scale but becomes a bottleneck at billions of URLs. Kafka handles billions of messages, distributed, replicated, replay-able. The partition-by-domain design also gives us politeness for free — no need for a separate distributed rate limiter per domain.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Deduplication</span></div>
+<div class="bubble">How do you prevent crawling the same URL twice? And how do you detect duplicate content at different URLs?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Two-Layer Dedup</span></div>
+<div class="bubble"><strong>URL dedup — Bloom Filter:</strong> Before adding any URL to the Kafka frontier, check a Bloom Filter. At 1B URLs with 1% false positive rate: ~1GB RAM. If "definitely not seen" → add to frontier. If "maybe seen" (1% false positive) → skip. False positives mean occasionally skipping an unseen URL — rare and acceptable. Zero false negatives mean we never miss URLs we've definitely seen. For high-value URLs, back the Bloom Filter with a Redis Set for exact recent dedup (last 24h).
+<br><br><strong>Content near-dedup — SimHash:</strong> Two URLs can have nearly identical content (e.g., same article syndicated across 100 sites). SimHash: compute a 64-bit fingerprint of the page content. Store fingerprints in Cassandra. Before indexing a new page: compare its SimHash with stored fingerprints. If Hamming distance &lt; 3 (meaning ≥61 of 64 bits match): near-duplicate → skip indexing. This catches "99% similar" content that exact hash would miss.
+</div>
+<div class="schema-box"><div class="schema-hdr">🗄 <span>Cassandra — crawled_urls (URL metadata + dedup)</span></div>
+<pre class="schema">CREATE TABLE crawled_urls (
+  url_fingerprint   BIGINT,    <span class="cm">-- SimHash(normalized_url), PARTITION KEY</span>
+  url               TEXT,
+  domain            TEXT,
+  last_crawled_at   TIMESTAMP,
+  http_status       INT,
+  content_hash      TEXT,      <span class="cm">-- SHA256(content) for exact dedup</span>
+  content_simhash   BIGINT,    <span class="cm">-- SimHash(content) for near-dup</span>
+  crawl_interval_s  INT,       <span class="cm">-- recrawl frequency (scheduler updates)</span>
+  page_rank         FLOAT,
+  PRIMARY KEY (url_fingerprint)
+);
+CREATE TABLE domain_politeness (
+  domain            TEXT  PRIMARY KEY,
+  last_crawled_at   TIMESTAMP,
+  crawl_delay_sec   INT   DEFAULT 1,  <span class="cm">-- from robots.txt</span>
+  robots_txt        TEXT,             <span class="cm">-- cached content</span>
+  robots_cached_at  TIMESTAMP
+);</pre></div>
+<div class="why-box"><div class="why-label">Why Cassandra for crawl metadata</div>Cassandra: write-heavy (updating last_crawled_at for 1B URLs frequently), simple PK lookup by url_fingerprint, horizontal scale, no complex queries needed. MySQL would struggle with 1B rows at this write frequency. The access pattern is always "does this URL exist, and when was it last crawled" — perfect for Cassandra's PK lookup.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — robots.txt + Politeness</span></div>
+<div class="bubble">How do you honor robots.txt at scale without adding latency to every fetch?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Politeness Strategy</span></div>
+<div class="bubble">Cache robots.txt per domain in Cassandra <code>domain_politeness</code> table, TTL 1hr. Before crawling any URL from a domain: check the cached robots.txt. If cache miss: fetch robots.txt first (before crawling any page from that domain). Parse Disallow rules and Crawl-Delay.
+<br><br>Enforce politeness at the Fetcher worker level: since Kafka is partitioned by domain, each Fetcher instance owns specific domains. It simply sleeps <code>max(crawl_delay, 1000/max_rps)</code> ms between consecutive requests to the same domain. No distributed coordination needed — domain isolation is free from the Kafka partition design.
+<br><br>Circuit breaker: if a domain returns 5xx for 10 consecutive requests → pause crawling that domain for exponential backoff (5min, 10min, 20min...).</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Indexing</span></div>
+<div class="bubble">Where do you store the crawled content, and how do you make it searchable?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Storage + Indexing</span></div>
+<div class="bubble"><strong>Raw HTML → S3:</strong> Object key: <code>crawl/{YYYY/MM/DD}/{url_fingerprint}.html.gz</code>. gzip compressed. Cheap, durable, infinitely scalable. S3 is not searchable — just raw storage.
+<br><br><strong>Search index → Elasticsearch:</strong> Indexer workers parse extracted text, title, headers → index into ES. PageRank score stored per document. Queries combine BM25 text relevance with PageRank boost.
+<div class="schema-box"><div class="schema-hdr">🔍 <span>Elasticsearch — web_pages index mapping</span></div>
+<pre class="schema">{
+  "mappings": {
+    "properties": {
+      "url":          {"type": "keyword"},
+      "domain":       {"type": "keyword"},
+      "title":        {"type": "text", "analyzer": "english"},
+      "content":      {"type": "text", "analyzer": "english"},
+      "page_rank":    {"type": "float"},
+      "crawled_at":   {"type": "date"},
+      "content_hash": {"type": "keyword"}   <span class="cm">// dedup check on index</span>
+    }
+  }
+}
+<span class="cm">// Query: BM25 relevance + PageRank boost</span>
+{"query": {"function_score": {
+  "query": {"match": {"content": "query term"}},
+  "field_value_factor": {"field": "page_rank", "modifier": "log1p"}
+}}}</pre></div>
+</div></div></div>
+
+
+<div class="diag-block final-diag" id="d-wc3"><div class="diag-label">Final Architecture</div><div class="diag-svg-inner" data-fn="wc3"></div></div>
+<div class="sec-div"></div>
+<div class="qr-grid">
+  <div class="qr-card"><div class="qr-title">🗄 DB Choices</div><ul>
+    <li><strong>Kafka:</strong> URL frontier (partition by domain)</li>
+    <li><strong>Cassandra:</strong> crawled_urls + domain_politeness</li>
+    <li><strong>S3:</strong> raw HTML (gzip, content-addressed)</li>
+    <li><strong>Elasticsearch:</strong> inverted index + PageRank</li>
+    <li><strong>Bloom Filter:</strong> URL dedup (in-memory, 1GB)</li></ul></div>
+  <div class="qr-card"><div class="qr-title">🔁 Dedup Strategy</div><ul>
+    <li>URL exact dedup: Bloom Filter O(1) check</li>
+    <li>~1% false positive: skip URLs OK occasionally</li>
+    <li>Content exact: SHA256(content) → Cassandra</li>
+    <li>Content near-dup: SimHash hamming distance &lt;3</li>
+    <li>Redis Set: exact dedup for recent 24h URLs</li></ul></div>
+  <div class="qr-card"><div class="qr-title">🤝 Politeness</div><ul>
+    <li>robots.txt: cache 1hr in Cassandra</li>
+    <li>Crawl-Delay: enforce at Fetcher (no coord needed)</li>
+    <li>Domain partition: inherent politeness isolation</li>
+    <li>Max 1–3 req/sec per domain</li>
+    <li>Circuit breaker on 5xx burst (exponential backoff)</li></ul></div>
+</div>
+</div>
+
+<!-- ═══════════════════════ TOPIC 09 — GOOGLE DRIVE ═══════════════════════ -->
+
+<div class="page" id="p8">
+<div class="th">
+  <div class="th-eye">System Design Interview — Topic 09 of 09</div>
+  <div class="th-title">Google <em>Drive</em></div>
+  <div class="th-sub">Cloud file storage — upload, download, share, sync, collaborate. Chunked upload, dedup, versioning, real-time notifications.</div>
+  <div class="tags"><span class="tag ty">Chunked Upload</span><span class="tag tg">Content Dedup SHA256</span><span class="tag tb">Delta Sync</span><span class="tag tr">Pre-signed URLs</span><span class="tag tp">MySQL Sharded</span><span class="tag to">Real-time Collab</span></div>
+</div>
+
+<div class="phase-label"><div class="phase-pill">OPENING</div></div>
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
+<div class="bubble">Design Google Drive.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">CLARIFICATION + FR/NFR</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Clarifying</span></div>
+<div class="bubble">File types — all types including large files? Collaboration — multiple users editing simultaneously? Sync — desktop client? Versioning — how many versions kept? Scale — DAU and storage?
+<br><br><strong>Given: all file types up to 5GB, real-time collaboration (Google Docs style is out of scope — just file-level), desktop sync client, 30 versions kept, 1B users, avg 15GB storage each:</strong>
+<ul>
+<li><strong>FR:</strong> Upload/download files, folder hierarchy, sharing with permissions (view/comment/edit), version history, desktop sync, collaborator notifications on file change</li>
+<li><strong>NFR:</strong> Resumable uploads (network drops), content dedup to save storage, delta sync (only changed parts), eventual consistency for sync (strong for permissions)</li>
+</ul></div></div></div>
+
+<div class="phase-label"><div class="phase-pill">API DESIGN</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">API Design</span></div>
+<div class="bubble">Key APIs:
+<ul>
+<li><code>POST /files/init</code> — body: {name, mime_type, chunk_hashes[]} → response: {file_id, missing_chunk_ids[], pre_signed_urls{}}</li>
+<li><code>PUT &lt;pre_signed_s3_url&gt;</code> — client uploads chunk directly to S3 (no proxy)</li>
+<li><code>POST /files/{file_id}/complete</code> — signals all chunks uploaded, creates version</li>
+<li><code>GET /files/{file_id}/download</code> → {signed_cdn_url}</li>
+<li><code>GET /files/{file_id}/versions</code> → [{version_id, created_at, size, created_by}]</li>
+<li><code>PUT /files/{file_id}/permissions</code> — body: {grantee_id, access_level}</li>
+<li><code>GET /sync?since={checkpoint}</code> — returns changed files since last sync</li>
+</ul></div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 1</div><div class="phase-title-text">Naive upload — what breaks for large files</div></div>
+<div class="diag-block" id="d-gd1"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="gd1"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Naive vs Chunked</span></div>
+<div class="bubble">Naive: client POSTs full file to app server, server stores to S3. Problems:
+<ul>
+<li>5GB upload over mobile with flaky connection → connection drops at 4.9GB → restart from zero</li>
+<li>App server becomes a proxy — wastes bandwidth, adds latency</li>
+<li>Two users upload the same file — stored twice</li>
+</ul>
+Solution: <strong>chunked upload with pre-signed S3 URLs</strong>. Split file into 4MB chunks. Client uploads directly to S3. Only re-upload failed chunks on resume. Content-address chunks by SHA256 for automatic dedup.
+</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — DB Schema</span></div>
+<div class="bubble">Walk me through the complete database schema. What DB, what tables, what's the shard key, and why those choices?</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 2</div><div class="phase-title-text">DB Design — MySQL sharded + S3</div></div>
+<div class="diag-block" id="d-gd2"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="gd2"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Complete DB Schema</span></div>
+<div class="bubble"><strong>MySQL (InnoDB, sharded by user_id)</strong> for all file metadata — relational structure (files have owners, versions, permissions), ACID for permission changes, low-to-medium write volume.
+<div class="schema-box"><div class="schema-hdr">🗄 <span>MySQL — files + versions (shard key: user_id)</span></div>
+<pre class="schema">CREATE TABLE files (
+  file_id            BIGINT       PRIMARY KEY,  <span class="cm">-- Snowflake</span>
+  user_id            BIGINT       NOT NULL,     <span class="cm">-- owner, SHARD KEY</span>
+  parent_folder_id   BIGINT       DEFAULT NULL, <span class="cm">-- NULL = root</span>
+  name               VARCHAR(255) NOT NULL,
+  mime_type          VARCHAR(100),
+  current_version_id BIGINT,                   <span class="cm">-- FK → file_versions</span>
+  is_deleted         TINYINT(1)   DEFAULT 0,
+  created_at         DATETIME(3)  DEFAULT NOW(3),
+  updated_at         DATETIME(3)  DEFAULT NOW(3) ON UPDATE NOW(3),
+  INDEX (user_id, parent_folder_id),            <span class="cm">-- "list folder contents"</span>
+  INDEX (user_id, updated_at DESC)              <span class="cm">-- "recent files" / sync delta</span>
+) ENGINE=InnoDB;
+
+CREATE TABLE file_versions (
+  version_id   BIGINT   PRIMARY KEY,    <span class="cm">-- Snowflake</span>
+  file_id      BIGINT   NOT NULL,
+  version_num  INT      NOT NULL,
+  size_bytes   BIGINT   NOT NULL,
+  chunk_ids    JSON     NOT NULL,       <span class="cm">-- ordered array of chunk SHA256s</span>
+  created_by   BIGINT   NOT NULL,
+  created_at   DATETIME(3) DEFAULT NOW(3),
+  INDEX (file_id, version_num DESC)     <span class="cm">-- version history page</span>
+) ENGINE=InnoDB;
+
+CREATE TABLE chunks (
+  chunk_id     VARCHAR(64) PRIMARY KEY, <span class="cm">-- SHA256(chunk_bytes) = content-addr</span>
+  s3_key       TEXT        NOT NULL,   <span class="cm">-- S3 object path</span>
+  size_bytes   INT         NOT NULL,
+  ref_count    INT         DEFAULT 1   <span class="cm">-- dedup: how many versions use this chunk</span>
+) ENGINE=InnoDB;
+
+CREATE TABLE file_permissions (
+  permission_id  BIGINT      PRIMARY KEY,
+  file_id        BIGINT      NOT NULL,
+  grantee_id     BIGINT      NOT NULL,
+  grantee_type   VARCHAR(10) NOT NULL,    <span class="cm">-- 'user'|'group'|'public'</span>
+  access_level   VARCHAR(10) NOT NULL,   <span class="cm">-- 'viewer'|'commenter'|'editor'</span>
+  created_at     DATETIME(3) DEFAULT NOW(3),
+  UNIQUE (file_id, grantee_id),
+  INDEX (grantee_id, file_id)            <span class="cm">-- "shared with me" view</span>
+) ENGINE=InnoDB;</pre></div>
+</div>
+<div class="why-box"><div class="why-label">Why shard by user_id not file_id</div>"List my files in folder X" is the most common query — it needs all files owned by a user. If we shard by user_id, all of a user's files are on one shard → single shard query, no cross-shard join. If we sharded by file_id, listing a user's files would require fan-out across all shards and aggregation. The tradeoff: a power user with millions of files creates a hot shard. Mitigate with sub-sharding (user_id % N) or cell-based architecture.</div>
+<div class="why-box blue" style="margin-top:8px"><div class="why-label">Why chunk_id = SHA256(chunk_bytes) — content-addressing</div>Two users who upload the same file share the same chunks. chunk_id = SHA256(chunk) means both file_versions records point to the same S3 object. ref_count tracks how many versions reference a chunk. Garbage collection: when ref_count reaches 0, delete the S3 object. This is how Google Drive achieves significant storage savings — identical chunks across users and versions are stored exactly once.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Upload Flow</span></div>
+<div class="bubble">Walk me through the exact upload flow step by step. Where do the bytes go?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Upload Flow</span></div>
+<div class="bubble">
+<ul>
+<li><strong>1.</strong> Client splits file into 4MB chunks. Computes <code>SHA256(chunk)</code> for each. Sends <code>POST /files/init</code> with {name, chunk_hashes[]}.</li>
+<li><strong>2.</strong> Metadata Service checks the <code>chunks</code> table: which chunk_ids already exist (ref_count > 0 = already stored). Returns pre-signed S3 URLs <em>only for missing chunks</em>. Already-existing chunks: no upload needed.</li>
+<li><strong>3.</strong> Client uploads missing chunks <strong>directly to S3</strong> via pre-signed URLs. No bytes go through our servers. S3 handles the bandwidth. Parallel uploads: up to 5 chunks simultaneously.</li>
+<li><strong>4.</strong> Client calls <code>POST /files/{file_id}/complete</code>. Metadata Service: INSERT into file_versions with the ordered chunk_ids array, UPDATE files.current_version_id, UPDATE chunks.ref_count for all chunks.</li>
+<li><strong>5.</strong> Kafka event published to <code>file-events</code> topic. Notification Service consumes → WebSocket push to collaborators.</li>
+</ul>
+<strong>Resume on failure:</strong> If the upload is interrupted, client re-calls <code>POST /files/init</code> with the same chunk_hashes. Server returns pre-signed URLs for still-missing chunks. Client re-uploads only those. Never re-uploads completed chunks.
+</div>
+<div class="why-box green"><div class="why-label">Why pre-signed URLs (client → S3 direct)</div>Without pre-signed URLs, all file bytes would go: Client → Our Server → S3. Our server becomes a bandwidth proxy — needs massive network capacity, adds latency, and costs compute just to pass bytes through. Pre-signed URLs let S3 handle the bandwidth directly. Our server only handles tiny metadata API calls. S3 verifies the signature and stores the chunk. We never see the bytes.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Desktop Sync</span></div>
+<div class="bubble">Desktop client has 50,000 files. User edits one file. How does the sync client know what changed, and how does it minimize bandwidth?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Delta Sync</span></div>
+<div class="bubble"><strong>What changed — event-driven + checkpoint sync:</strong> Sync client subscribes to WebSocket events. When a file changes, Notification Service pushes {file_id, new_version_id} immediately. Client doesn't need to poll. For reconnect after offline: <code>GET /sync?since={last_checkpoint}</code> returns all files with updated_at &gt; checkpoint. That's the INDEX (user_id, updated_at DESC) on the files table — fast range query on one shard.
+<br><br><strong>Minimize bandwidth — delta chunks:</strong> When file_versions.chunk_ids changes between version N and N+1, only some chunks differ. The sync client downloads only the chunk_ids in version N+1 that aren't already in its local cache (it tracks which chunk SHA256s it has locally). For a 100MB file where only 4MB changed: only 1 chunk is downloaded, not the full file. 96% bandwidth saved.</div>
+<div class="why-box"><div class="why-label">Why chunk-level delta sync, not byte-level diff</div>Byte-level diff (rsync algorithm) is more bandwidth efficient but requires server-side computation of the diff per file per client. At billions of files this is expensive server-side. Chunk-level delta: the client already knows its local chunks (SHA256s), the server returns the new chunk list, client figures out which are missing. Zero server-side computation, purely client-driven. 4MB chunks means typical edits change 1–3 chunks, achieving 90%+ bandwidth savings.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Final Probe</span></div>
+<div class="bubble">Two users edit the same file simultaneously. How do you handle the conflict?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Conflict Resolution</span></div>
+<div class="bubble">Google Drive's approach for binary files: last-write-wins at the version level, with explicit conflict notification. If both users save simultaneously: both create new version records. The system detects a conflict (both versions have the same parent version_id). The user who saves second is notified: "A conflict was detected. Your changes are saved as version N. [Other user]'s version is M. You can compare both versions." User manually resolves. We keep both versions in history. For text files where real-time co-editing is needed (Docs), that's a separate system using operational transforms — outside scope here.</div></div></div>
+
+
+<div class="diag-block final-diag" id="d-gd3"><div class="diag-label">Final Architecture</div><div class="diag-svg-inner" data-fn="gd3"></div></div>
+<div class="sec-div"></div>
+<div class="qr-grid">
+  <div class="qr-card"><div class="qr-title">🗄 MySQL Schema</div><ul>
+    <li><strong>Shard key: user_id</strong> (all user's files together)</li>
+    <li>files: PK file_id, INDEX(user_id, updated_at)</li>
+    <li>file_versions: chunk_ids JSON array</li>
+    <li>chunks: PK=SHA256 (content-addressed dedup)</li>
+    <li>file_permissions: UNIQUE(file_id, grantee_id)</li></ul></div>
+  <div class="qr-card"><div class="qr-title">☁ Upload Flow</div><ul>
+    <li>Client: split into 4MB chunks, SHA256 each</li>
+    <li>POST /init: server returns missing chunk URLs only</li>
+    <li>Client uploads direct to S3 (no proxy)</li>
+    <li>POST /complete: create version, update ref_count</li>
+    <li>Resume: re-init, only missing chunks re-uploaded</li></ul></div>
+  <div class="qr-card"><div class="qr-title">🔄 Sync + Collab</div><ul>
+    <li>WebSocket: real-time file change events</li>
+    <li>GET /sync?since=checkpoint: offline reconnect</li>
+    <li>Delta sync: only changed chunk_ids downloaded</li>
+    <li>Kafka file-events → Notification Svc → WS push</li>
+    <li>Conflict: both versions kept, user notified</li></ul></div>
+</div>
+</div></main>
+<script>
+const C={Y:'#f0c040',G:'#3ddba8',R:'#f04870',B:'#4899f0',P:'#a070f0',O:'#f08850',CY:'#38d4f0',
+  T0:'#dde8ff',T1:'#8099cc',T2:'#384860',T3:'#1a2838',
+  BG:'#07090f',S1:'#0c1018',S2:'#111620',BD:'#1a2334'};
+const MN="'JetBrains Mono',monospace";
+function sv(w,h){return `<svg viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto;">`;}
+function ev(){return '</svg>';}
+function defs(){
+  const cs=[C.Y,C.G,C.R,C.B,C.P,C.O,C.CY,C.T1,C.T2,'#fff'];
+  return '<defs>'+cs.map(c=>{const id='a'+c.replace('#','');return `<marker id="${id}" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3z" fill="${c}"/></marker>`;}).join('')+'</defs>';
+}
+function bx(x,y,w,h,title,sub,color,icon=''){
+  let o=`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="7" fill="${color}18" stroke="${color}82" stroke-width="1.5"/>`;
+  o+=`<rect x="${x}" y="${y}" width="${w}" height="3" rx="7" fill="${color}"/>`;
+  const tx=icon?x+w/2+9:x+w/2;
+  if(icon) o+=`<text x="${x+14}" y="${y+h/2+(sub?-5:1)}" font-size="14" text-anchor="middle" dominant-baseline="middle">${icon}</text>`;
+  o+=`<text x="${tx}" y="${y+h/2+(sub?-9:1)}" font-family="${MN}" font-size="12" font-weight="600" fill="${C.T0}" text-anchor="middle" dominant-baseline="middle">${title}</text>`;
+  if(sub) o+=`<text x="${tx}" y="${y+h/2+9}" font-family="${MN}" font-size="10" fill="${C.T1}" text-anchor="middle" dominant-baseline="middle">${sub}</text>`;
+  return o;
+}
+function ar(x1,y1,x2,y2,color=C.T1,label='',dash=false){
+  const id='a'+color.replace('#','');
+  const dx=x2-x1,dy=y2-y1,len=Math.sqrt(dx*dx+dy*dy)||1;
+  const ex=x2-8*dx/len,ey=y2-8*dy/len;
+  let o=`<line x1="${x1}" y1="${y1}" x2="${ex}" y2="${ey}" stroke="${color}" stroke-width="1.8" ${dash?'stroke-dasharray="5,3"':''} marker-end="url(#${id})"/>`;
+  if(label){const mx=(x1+x2)/2,my=(y1+y2)/2,nx=-dy/len*10,ny=dx/len*10;o+=`<text x="${mx+nx}" y="${my+ny}" font-family="${MN}" font-size="9" fill="${color}" text-anchor="middle" dominant-baseline="middle">${label}</text>`;}
+  return o;
+}
+function tx(x,y,t,sz=10,fill=C.T1,anchor='middle',bold=false){
+  return `<text x="${x}" y="${y}" font-family="${MN}" font-size="${sz}" fill="${fill}" text-anchor="${anchor}" dominant-baseline="middle" ${bold?'font-weight="600"':''}>${t}</text>`;
+}
+function rg(x,y,w,h,lbl,color){
+  return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="8" fill="${color}07" stroke="${color}32" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="${x+9}" y="${y+14}" font-family="${MN}" font-size="9" fill="${color}68" letter-spacing="0.8">${lbl}</text>`;
+}
+function fan(x1,cy,x2,ys,color=C.T1){
+  let o='';
+  ys.forEach(y2=>{
+    o+=`<line x1="${x1}" y1="${cy}" x2="${x1+18}" y2="${cy}" stroke="${color}" stroke-width="1.5"/>`;
+    o+=`<line x1="${x1+18}" y1="${cy}" x2="${x1+18}" y2="${y2}" stroke="${color}" stroke-width="1.5"/>`;
+    const id='a'+color.replace('#','');
+    o+=`<line x1="${x1+18}" y1="${y2}" x2="${x2-8}" y2="${y2}" stroke="${color}" stroke-width="1.5" marker-end="url(#${id})"/>`;
+  });
+  return o;
+}
+function warn_bar(x,y,w,msg,c=C.R){
+  return `<rect x="${x}" y="${y}" width="${w}" height="16" rx="3" fill="${c}12" stroke="${c}28" stroke-width="1"/>
+  <text x="${x+w/2}" y="${y+8}" font-family="${MN}" font-size="9" fill="${c}" text-anchor="middle" dominant-baseline="middle">${msg}</text>`;
+}
+
+// ─── RATE LIMITER ─────────────────────────────────────────────────────────────
+function rl1(){
+  const W=700,H=190;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(18,70,110,58,'Client','1.67M req/s',C.P,'💻');
+  s+=ar(128,99,195,99,C.B,'HTTP');s+=ar(128,110,196,110,C.R,'',false);
+  s+=bx(195,48,198,118,'API Server','HashMap: uid→{count,ts}',C.G);
+  s+=tx(294,128,'O(1) check, no network',9,C.T2);
+  s+=ar(393,88,462,88,C.T1,'ok');s+=bx(462,58,198,78,'Upstream','actual API',C.B);
+  s+=warn_bar(18,172,664,'⚠  Local state: breaks with >1 server. Counter reset on restart. Cannot scale horizontally.');
+  return s+ev();
+}
+function rl2(){
+  const W=800,H=288;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=tx(400,16,'PROBLEM: Each server counts locally. User distributes across 3 → limit bypassed.',10,C.R,'middle',true);
+  s+=bx(18,106,98,58,'Client','300 req/min',C.P,'💻');s+=ar(116,135,168,135,C.B);
+  s+=bx(168,110,105,58,'LB','round-robin',C.B);
+  [[58,1,'local=100'],[132,2,'local=100'],[206,3,'local=100']].forEach(([y,n,cnt])=>{
+    s+=`<line x1="273" y1="139" x2="273" y2="${y+38}" stroke="${C.T2}" stroke-width="1.2"/>`;
+    s+=ar(273,y+38,315,y+38,C.T2);
+    s+=bx(315,y,188,58,`API Server ${n}`,cnt,C.R);
+    s+=tx(409,y+70,'sees 100 req → limit=100 → all pass',8,C.T2);
+  });
+  s+=`<rect x="18" y="248" width="766" height="34" rx="5" fill="${C.R}12" stroke="${C.R}32" stroke-width="1"/>`;
+  s+=tx(401,259,'⚠  User sends 300 req/min. limit=100. Each server sees only 100. NONE trigger 429.',9,C.R,'middle',true);
+  s+=tx(401,273,'Shared state visible to ALL servers is required. This is the fundamental problem.',9,C.T1,'middle');
+  return s+ev();
+}
+function rl3(){
+  const W=870,H=315;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(14,118,98,58,'Client','10M users',C.P,'💻');s+=ar(112,147,162,147,C.B);
+  s+=bx(162,118,108,58,'LB','',C.B);
+  [[48,1],[130,2],[212,3]].forEach(([y,n])=>{
+    s+=`<line x1="270" y1="147" x2="270" y2="${y+40}" stroke="${C.T2}" stroke-width="1.2"/>`;
+    s+=ar(270,y+40,312,y+40,C.G);s+=bx(312,y,175,58,`API Server ${n}`,'RL Middleware',C.G);
+    s+=ar(487,y+29,538,y+29,C.Y,'INCR');
+  });
+  s+=bx(538,103,198,118,'Redis (single node)','Shared counter',C.Y,'⚡');
+  s+=tx(637,192,'KEY: rl:{uid}:{window}',9,C.Y,'middle',true);
+  s+=tx(637,207,'TYPE: String (integer)',9,C.T2,'middle');
+  s+=tx(637,222,'INCR → atomic return N',9,C.T2,'middle');
+  s+=tx(637,237,'if N==1: EXPIRE 60',9,C.T2,'middle');
+  s+=`<rect x="538" y="235" width="295" height="24" rx="4" fill="${C.Y}10" stroke="${C.Y}35" stroke-width="1"/>`;
+  s+=tx(685,247,'"rl:u9182:28620720" → 47  TTL:13s',9,C.Y);
+  s+=warn_bar(14,296,845,'⚠  Single Redis = SPOF. 1.67M req/s exceeds single node (~200K ops/s). Must shard.');
+  return s+ev();
+}
+function rl4(){
+  const W=970,H=500;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(12,20,128,53,'CDN / WAF','DDoS · IP blocklists',C.R,'🛡');s+=ar(140,46,190,46,C.T1);
+  s+=bx(190,20,115,53,'Load Balancer','consistent hash uid',C.B);
+  [12,95,178,261].forEach((y,i)=>{
+    s+=`<line x1="305" y1="46" x2="305" y2="${y+36}" stroke="${C.T2}" stroke-width="1.2"/>`;
+    s+=ar(305,y+36,345,y+36,C.G);s+=bx(345,y,198,63,`API Server ${i+1}`,'RL Middleware + L1 Caffeine',C.G);
+    s+=ar(543,y+31,593,y+31,C.Y,'miss only');
+  });
+  s+=`<rect x="345" y="344" width="198" height="68" rx="6" fill="${C.G}10" stroke="${C.G}32" stroke-width="1"/>`;
+  s+=tx(444,362,'L1 Caffeine Cache',9,C.G,'middle',true);s+=tx(444,378,'TTL: 100ms',8,C.T1,'middle');
+  s+=tx(444,393,'~80% hit rate',8,C.T1,'middle');s+=tx(444,408,'fail-open on Redis down',8,C.G,'middle');
+  s+=rg(593,5,255,330,'REDIS CLUSTER (shard by userId)',C.Y);
+  [['Shard A','uid 0–33%'],['Shard B','uid 33–66%'],['Shard C','uid 66–100%']].forEach(([n,r],i)=>{
+    const y=22+i*100;s+=bx(603,y,108,78,n,r,C.Y);
+    s+=ar(711,y+39,742,y+39,C.T2,'',true);s+=bx(742,y,98,78,'Replica','standby',C.T2);
+  });
+  s+=bx(593,345,255,68,'Rules Config Service','tier→limit DB + 30s cache + Pub/Sub',C.P,'⚙');
+  s+=`<rect x="345" y="422" width="198" height="68" rx="6" fill="${C.G}08" stroke="${C.G}28" stroke-width="1"/>`;
+  s+=tx(444,440,'FAIL-OPEN',9,C.G,'middle',true);s+=tx(444,456,'Redis down → L1 only',8,C.T1,'middle');
+  s+=tx(444,472,'emit degraded_mode metric',8,C.T1,'middle');s+=tx(444,487,'never block production',8,C.G,'middle');
+  s+=warn_bar(12,488,970,'✓  CDN→LB→API+L1cache→Redis Cluster + Config Service. Fail-open. <5ms hot path.',C.G);
+  return s+ev();
+}
+
+// ─── KV STORE ─────────────────────────────────────────────────────────────────
+function kv1(){
+  const W=640,H=188;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(18,72,92,54,'Client','',C.P,'💻');s+=ar(110,99,168,99,C.B,'get/put');s+=ar(110,112,169,112,C.R,'',false);
+  s+=bx(168,44,200,125,'KV Server','',C.G);
+  s+=tx(268,90,'HashMap',17,C.Y,'middle',true);s+=tx(268,111,'key→value (all RAM)',9,C.T1,'middle');s+=tx(268,127,'get:O(1) put:O(1)',9,C.G,'middle');
+  s+=warn_bar(18,174,605,'⚠  10TB won\'t fit in RAM. Crash = data gone. Single server = SPOF. No persistence.');
+  return s+ev();
+}
+function kv2(){
+  const W=970,H=400;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=tx(26,16,'WRITE PATH',10,C.Y,'start',true);
+  [[10,42,86,76,'Client','put(k,v)',C.P,'💻'],[126,42,115,76,'WAL','Seq disk write\ndurability',C.R,'📝'],[271,42,128,76,'Memtable','In-RAM SkipList\nO(log n)',C.G,'⚡'],[429,42,112,76,'SSTable L0','Immutable\nsorted file',C.B,'💾'],[571,42,112,76,'Compact L1-Ln','BG merge\ndedup+tombstone',C.Y,'🔄'],[713,42,115,76,'ACK Client','after Memtable\nWAL=durability',C.G,'✓']].forEach(([x,y,w,h,t,sub,c,ic],i,arr)=>{
+    s+=bx(x,y,w,h,t,sub,c,ic);
+    if(i<arr.length-1) s+=ar(x+w,y+h/2,arr[i+1][0],y+h/2,c);
+  });
+  s+=tx(350,130,'← ack here (WAL=safe)',8,C.G,'middle');s+=tx(484,130,'← flush at 64MB',8,C.B,'middle');
+  s+=tx(26,158,'READ PATH',10,C.Y,'start',true);
+  [[10,178,86,76,'Client','get(k)',C.P,'💻'],[126,178,115,76,'Memtable','Check first\nmost recent',C.G,'⚡'],[271,178,118,76,'Block Cache','Hot SSTable\nblocks RAM',C.B,'🗄'],[419,178,126,76,'Bloom Filter','~99% skip\nmissing keys',C.O,'🔍'],[575,178,112,76,'SSTable','Binary search\ndisk read',C.Y,'💾']].forEach(([x,y,w,h,t,sub,c,ic],i,arr)=>{
+    s+=bx(x,y,w,h,t,sub,c,ic);
+    if(i<arr.length-1) s+=ar(x+w,y+h/2,arr[i+1][0],y+h/2,C.T1,'miss',true);
+  });
+  s+=`<rect x="726" y="178" width="228" height="76" rx="5" fill="${C.R}10" stroke="${C.R}32" stroke-width="1"/>`;
+  s+=tx(840,204,'DELETE = Tombstone',10,C.R,'middle',true);s+=tx(840,222,'val=⌀ marker written',8,C.T1,'middle');s+=tx(840,238,'physical remove: compaction',8,C.T2,'middle');
+  s+=`<rect x="419" y="268" width="260" height="52" rx="5" fill="${C.O}10" stroke="${C.O}30" stroke-width="1"/>`;
+  s+=tx(549,285,'Bloom Filter: ~1% false pos.',9,C.O,'middle',true);s+=tx(549,302,'"Definitely absent" → skip disk',8,C.T1,'middle');s+=tx(549,318,'"Maybe present" → read SSTable',8,C.T1,'middle');
+  s+=warn_bar(10,378,950,'✓  Sequential writes always → 100K+ writes/sec. Bloom filter skips 99% of unnecessary disk reads.',C.G);
+  return s+ev();
+}
+function kv3(){
+  const W=960,H=415;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(12,178,90,58,'Client','',C.P,'💻');s+=ar(102,207,156,207,C.B);
+  s+=bx(156,178,126,58,'Coordinator','any node',C.B);s+=tx(219,248,'hash(key)→ring',8,C.B,'middle');
+  [[52,'Primary',true],[180,'Replica 1',false],[308,'Replica 2',false]].forEach(([y,role,p])=>{
+    s+=`<line x1="196" y1="207" x2="196" y2="${y+45}" stroke="${C.G}" stroke-width="1.4"/>`;
+    s+=ar(196,y+45,294,y+45,C.G);s+=bx(294,y,193,88,`Node: ${role}`,'WAL+Memtable+SSTables',C.G);
+    if(p){s+=`<rect x="294" y="${y+62}" width="56" height="20" rx="3" fill="${C.G}22" stroke="${C.G}52" stroke-width="1"/>`;s+=tx(322,y+72,'W=2 ack',8,C.G,'middle',true);}
+  });
+  s+=`<rect x="294" y="268" width="193" height="22" rx="4" fill="${C.Y}12" stroke="${C.Y}32" stroke-width="1"/>`;
+  s+=tx(390,279,'N=3 W=2 R=2 W+R>N ✓',9,C.Y,'middle',true);
+  s+=rg(540,28,338,205,'GOSSIP — Decentralized Membership',C.P);
+  const gp=[[566,112],[668,86],[758,124],[718,188],[580,194]];
+  gp.forEach(([x,y],i)=>{s+=`<circle cx="${x}" cy="${y}" r="18" fill="${[C.G,C.B,C.Y,C.P,C.O][i]}20" stroke="${[C.G,C.B,C.Y,C.P,C.O][i]}" stroke-width="1.5"/>`;s+=tx(x,y,`N${i+1}`,8,[C.G,C.B,C.Y,C.P,C.O][i],'middle',true);});
+  [[0,1],[1,2],[2,3],[3,4],[4,0],[1,3]].forEach(([a,b])=>s+=`<line x1="${gp[a][0]}" y1="${gp[a][1]}" x2="${gp[b][0]}" y2="${gp[b][1]}" stroke="${C.BD}" stroke-width="1" stroke-dasharray="3,2"/>`);
+  s+=tx(708,55,'Each node pings K random peers ~1s',8,C.T2,'middle');s+=tx(708,70,'Failure: O(log N) gossip rounds',8,C.P,'middle');
+  s+=rg(540,248,338,108,'HINTED HANDOFF — Always Writable',C.R);
+  s+=tx(708,274,'Node A down → Node D accepts write',8,C.T1,'middle');s+=tx(708,290,'with hint "replay to A"',8,C.R,'middle',true);s+=tx(708,306,'A recovers → D replays → consistent',8,C.T1,'middle');s+=tx(708,322,'= sloppy quorum = always writable ✓',8,C.G,'middle',true);
+  s+=warn_bar(12,394,936,'✓  Consistent hash + quorum replication + gossip + hinted handoff = DynamoDB architecture.',C.G);
+  return s+ev();
+}
+
+// ─── UNIQUE ID ─────────────────────────────────────────────────────────────────
+function uid1(){
+  const W=920,H=288;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  const segs=[{bits:1,lbl:'Sign',sub:'0 always',c:C.T2},{bits:41,lbl:'Timestamp ms',sub:'custom epoch',c:C.G},{bits:5,lbl:'DC ID',sub:'5b=32DCs',c:C.B},{bits:5,lbl:'Worker',sub:'5b=32/DC',c:C.Y},{bits:12,lbl:'Sequence',sub:'4096/ms',c:C.R}];
+  let cx=10,tot=900;
+  segs.forEach(({bits,lbl,sub,c})=>{
+    const w=Math.max((bits/64)*tot,33);
+    s+=`<rect x="${cx}" y="26" width="${w}" height="78" rx="5" fill="${c}16" stroke="${c}" stroke-width="2"/>`;
+    s+=`<rect x="${cx}" y="26" width="${w}" height="4" rx="5" fill="${c}"/>`;
+    s+=tx(cx+w/2,62,lbl,11,c,'middle',true);s+=tx(cx+w/2,77,sub,8,C.T2,'middle');s+=tx(cx+w/2,99,`${bits}b`,8,c+'aa','middle');
+    cx+=w+3;
+  });
+  s+=tx(10,18,'Bit 63',7,C.T2,'start');s+=tx(910,18,'Bit 0',7,C.T2,'end');
+  s+=`<rect x="10" y="115" width="900" height="${5*26+12}" rx="6" fill="${C.S1}" stroke="${C.BD}" stroke-width="1"/>`;
+  [['Sign (1b)','Always 0. Java long: bit63=1 = negative. Keep 0 = all IDs positive longs.',C.T2],['Timestamp (41b)','ms since custom epoch (e.g.2020-01-01). 2⁴¹ms = 69.7 years of IDs.',C.G],['Datacenter (5b)','0–31 = 32 DCs. Assigned at deploy via config. Static at runtime.',C.B],['Worker (5b)','0–31 = 32/DC = 1024 total. Assigned by ZooKeeper at startup.',C.Y],['Sequence (12b)','0–4095 per ms. Auto-inc, resets each ms. Spin-wait on overflow.',C.R]].forEach(([l,d,c],i)=>{
+    s+=tx(22,135+i*26,l,9,c,'start',true);s+=tx(172,135+i*26,d,9.5,C.T1,'start');
+  });
+  s+=`<rect x="10" y="275" width="900" height="12" rx="3" fill="${C.Y}12" stroke="${C.Y}32" stroke-width="1"/>`;
+  s+=tx(455,281,'Capacity: 4096/ms × 1024 workers = 4.2 billion IDs/sec | No network call | Sub-microsecond generation',8,C.Y,'middle',true);
+  return s+ev();
+}
+function uid2(){
+  const W=950,H=348;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=rg(10,10,335,205,'ZooKeeper — Atomic Machine ID Assignment',C.B);
+  [[36,0],[108,1],[180,2]].forEach(([y,i])=>{s+=bx(20,y,118,53,`Worker ${i+1}`,'startup',C.G);s+=ar(138,y+26,178,y+26,C.B);});
+  s+=bx(178,34,145,190,'ZooKeeper','Ephemeral sequential\nznodes\n\nAtomic global\nguarantee',C.B);
+  [[36,'machineId=1'],[108,'machineId=2'],[180,'machineId=3']].forEach(([y,id])=>{
+    s+=ar(323,y+26,360,y+26,C.Y);s+=`<rect x="361" y="${y+11}" width="92" height="28" rx="4" fill="${C.Y}18" stroke="${C.Y}48" stroke-width="1"/>`;s+=tx(407,y+25,id,9,C.Y,'middle',true);
+  });
+  s+=tx(227,224,'Crash → ZNode auto-deletes → ID recycled',8,C.T2,'middle');s+=tx(227,238,'No two LIVE workers share machineId',8,C.G,'middle',true);
+  s+=rg(470,10,470,325,'ID Generation — Pure Local State (no network)',C.G);
+  [['currentMs = monotonicClock.now()',C.G,'use monotonic NOT wall clock'],['','',''],['if currentMs < lastMs:',C.R,''],['  if drift ≤ 10ms: spin-wait until caught up',C.Y,'small NTP correction'],['  else: throw ClockSkewException()',C.R,'large drift = system issue, alert'],['','',''],['if currentMs == lastMs:',C.B,'same millisecond'],['  seq = (seq + 1) & 0xFFF',C.B,'12-bit mask'],['  if seq == 0: waitUntilNextMs()',C.Y,'overflow → spin-wait'],['','',''],['else: seq = 0',C.G,'new ms'],['lastMs = currentMs',C.G,''],['','',''],['id = (currentMs-EPOCH) << 22',C.Y,''],['   | (dcId          << 17)',C.B,''],['   | (workerId      << 12)',C.G,''],['   | seq',C.R,''],['','',''],['return id  ✓',C.G,'no lock · no network · sub-μs']].forEach(([code,c,comment],i)=>{
+    if(!code) return;const y=30+i*13;
+    s+=tx(480,y,code,9.5,c,'start',code.startsWith('return')||code.includes('<<'));
+    if(comment) s+=tx(932,y,comment,7.5,C.T2,'end');
+  });
+  s+=warn_bar(10,334,930,'✓  No network per ID. No lock. Handles clock skew + overflow. 4.2B IDs/sec cluster.',C.G);
+  return s+ev();
+}
+
+// ─── URL SHORTENER ─────────────────────────────────────────────────────────────
+function url1(){
+  const W=710,H=210;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(14,75,96,57,'Client','100M new/day\n11K redirects/s',C.P,'💻');
+  s+=ar(110,94,172,94,C.B,'POST');s+=ar(110,108,173,108,C.G,'GET',false);
+  s+=bx(172,46,196,128,'Web Server','generate code\nstore DB\nlookup DB',C.G);
+  s+=ar(368,94,422,94,C.Y,'R/W');s+=ar(368,108,423,108,C.Y,'',false);
+  s+=bx(422,58,248,110,'MySQL','urls table\nPK: short_code\nINDEX: long_url_hash',C.Y,'🗄');
+  s+=warn_bar(14,195,680,'⚠  No cache. Single DB bottleneck. No analytics. No redundancy. 11K/s will overwhelm.');
+  return s+ev();
+}
+function url2(){
+  const W=910,H=312;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(10,126,96,57,'Client','',C.P,'💻');s+=ar(106,154,156,154,C.B);s+=bx(156,126,107,57,'LB','',C.B);
+  [[58,1],[136,2],[214,3]].forEach(([y,n])=>{s+=`<line x1="263" y1="154" x2="263" y2="${y+38}" stroke="${C.T2}" stroke-width="1.2"/>`;s+=ar(263,y+38,303,y+38,C.G);s+=bx(303,y,165,57,'Redirect Svc','check cache first',C.G);s+=ar(468,y+28,517,y+28,C.Y,'cache chk');});
+  s+=bx(517,104,148,106,'Redis Cache','url:{code}→longUrl\nTTL=expires_at\nLRU eviction',C.Y,'⚡');
+  s+=ar(665,154,715,154,C.T2,'miss',true);s+=bx(715,116,162,78,'MySQL (Sharded)','PK: short_code\nShard key: short_code',C.B,'🗄');
+  s+=tx(796,204,'Consistent hash on short_code',8,C.B,'middle');s+=tx(796,218,'redirect → right shard O(1)',8,C.T2,'middle');
+  s+=warn_bar(10,295,893,'✓  Redis ~90% read hit rate. Sharded MySQL by short_code: redirect always hits right shard O(1).',C.G);
+  return s+ev();
+}
+function url3(){
+  const W=975,H=408;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(8,160,90,57,'Client','',C.P,'💻');s+=ar(98,188,148,188,C.B);
+  s+=bx(148,127,138,118,'CDN Edge','302+max-age=300\nHit→0ms to origin\nViral at edge',C.R,'🌐');
+  s+=ar(286,188,336,188,C.T2,'miss',true);s+=bx(336,160,104,57,'LB','',C.B);
+  [[82,1],[160,2],[238,3]].forEach(([y,n])=>{s+=`<line x1="440" y1="188" x2="440" y2="${y+38}" stroke="${C.T2}" stroke-width="1.2"/>`;s+=ar(440,y+38,478,y+38,C.G);s+=bx(478,y,150,57,'Redirect Svc','',C.G);s+=ar(628,y+28,678,y+28,C.Y);});
+  s+=bx(678,93,125,112,'Redis','url:{code}',C.Y,'⚡');s+=ar(803,148,852,148,C.T2,'miss',true);s+=bx(852,113,108,77,'MySQL\nShards','PK: short_code',C.B,'🗄');
+  s+=ar(553,238,553,288,C.P,'async',true);
+  s+=bx(385,289,228,76,'Kafka url-clicks','partition: shortCode\n{code,uid,ts,ua,ip}',C.P,'📨');
+  s+=ar(613,326,662,326,C.P);s+=bx(662,289,188,76,'ClickHouse','OLAP: clicks/day\ngeo/device analytics',C.P,'📊');
+  s+=`<rect x="678" y="218" width="174" height="28" rx="4" fill="${C.Y}10" stroke="${C.Y}32" stroke-width="1"/>`;
+  s+=tx(765,232,'INCR clicks:{code} dashboard',8,C.Y,'middle');
+  s+=warn_bar(8,390,960,'✓  CDN→Redis→MySQL = 3 layers. 302+max-age=300 = CDN cache + analytics. Kafka fully async.',C.G);
+  return s+ev();
+}
+
+// ─── NOTIFICATION ──────────────────────────────────────────────────────────────
+function notif1(){
+  const W=770,H=228;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(12,85,115,76,'Event Source','Like·Comment\nFollow·Mention',C.P,'⚡');
+  [[15,C.G,'APNS'],[103,C.B,'SendGrid'],[191,C.R,'Twilio']].forEach(([y,c,nm])=>{
+    s+=`<line x1="127" y1="123" x2="150" y2="${y+29}" stroke="${C.R}" stroke-width="1.5" stroke-dasharray="4,3"/>`;
+    s+=ar(150,y+29,197,y+29,C.R);s+=bx(197,y,153,57,nm,'direct sync call',c);
+  });
+  s+=`<rect x="370" y="22" width="386" height="198" rx="7" fill="${C.R}09" stroke="${C.R}30" stroke-width="1"/>`;
+  s+=tx(563,44,'Problems: Synchronous',10,C.R,'middle',true);
+  ['✗  APNS 500ms → handler blocks','✗  Crash → notification lost forever','✗  No retry on 3rd party 503','✗  100K burst → 100K direct calls NOW','✗  Channels cannot scale independently','✗  No ordering guarantee per user'].forEach((p,i)=>s+=tx(380,68+i*25,p,9.5,C.T1,'start'));
+  s+=warn_bar(12,212,752,'⚠  Zero durability. Zero retry. Tight coupling. Cannot evolve channels independently.');
+  return s+ev();
+}
+function notif2(){
+  const W=1005,H=518;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  [[C.P,'Like Svc',18],[C.B,'Comment',107],[C.O,'Follow',196]].forEach(([c,nm,y])=>{s+=bx(8,y,113,57,nm,'',c);s+=ar(121,y+28,160,y+28,c);});
+  s+=bx(160,97,145,96,'Kafka\nevents-raw','key:recipientId',C.P,'📨');s+=ar(305,145,347,145,C.P);
+  s+=bx(347,86,180,135,'Notification\nService','• Redis prefs lookup\n• device token fetch\n• celebrity check',C.G,'⚙');
+  s+=ar(437,86,437,52,C.Y,'',true);s+=bx(347,8,180,57,'Redis Prefs','user:prefs:{uid}\nuser:devices:{uid}',C.Y,'⚡');
+  [['Push Workers',27,C.G,'notif-push','FCM+APNS'],['Email Workers',161,C.B,'notif-email','SendGrid'],['SMS Workers',295,C.R,'notif-sms','Twilio']].forEach(([wname,y,c,topic,wk])=>{
+    s+=`<line x1="527" y1="153" x2="527" y2="${y+44}" stroke="${c}" stroke-width="1.4"/>`;s+=ar(527,y+44,572,y+44,c);
+    s+=bx(572,y,150,70,'Kafka '+topic,'key:userId',c,'📨');s+=ar(722,y+35,766,y+35,c);
+    s+=bx(766,y,145,70,wname,wk,c,'⚙');
+    s+=ar(911,y+35,950,y+35,C.R,'',true);
+    s+=`<rect x="950" y="${y+20}" width="38" height="28" rx="4" fill="${C.R}18" stroke="${C.R}48" stroke-width="1"/>`;s+=tx(969,y+34,'DLQ',8,C.R,'middle',true);
+  });
+  s+=`<rect x="347" y="235" width="180" height="56" rx="5" fill="${C.P}10" stroke="${C.P}32" stroke-width="1"/>`;
+  s+=tx(437,252,'Celebrity >500K:',8,C.P,'middle',true);s+=tx(437,267,'skip write fan-out',8,C.T1,'middle');s+=tx(437,282,'→ read fan-out on open',8,C.P,'middle');
+  s+=`<rect x="8" y="384" width="990" height="64" rx="6" fill="${C.S1}" stroke="${C.BD}" stroke-width="1"/>`;
+  s+=tx(498,402,'RETRY: FCM→503→wait 1s→retry→503→wait 2s→retry→503→wait 4s→fail',8,C.R,'middle',true);
+  s+=tx(498,418,'After 3 failures: publish to notif-push-dlq {notif_id, attempt_count:3, last_err:503}',8,C.T1,'middle');
+  s+=tx(498,434,'DLQ Processor: retry hourly. Still failing: status=PERM_FAILED, alert on-call.',8,C.T2,'middle');
+  s+=tx(498,450,'Idempotency: check notification_id in DB before EVERY send. Prevents double-delivery.',8,C.Y,'middle',true);
+  s+=warn_bar(8,460,990,'✓  Decoupled. At-least-once (Kafka). DLQ retry. Celebrity read fan-out. Channel-independent scaling.',C.G);
+  return s+ev();
+}
+
+// ─── CHAT ──────────────────────────────────────────────────────────────────────
+function chat1(){
+  const W=655,H=228;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(14,86,95,57,'Client A','',C.P,'💬');s+=ar(109,103,168,103,C.G,'WS ↕');s+=ar(109,116,169,116,C.G,'',false);
+  s+=bx(168,46,216,142,'Chat Server','Handle WS\nRoute in-process\nPersist to DB',C.G,'🖥');
+  s+=ar(384,103,446,103,C.G,'WS ↕');s+=ar(384,116,447,116,C.G,'',false);s+=bx(446,86,95,57,'Client B','',C.P,'💬');
+  s+=ar(276,188,276,212,C.Y,'persist',true);s+=bx(168,192,216,34,'MySQL — messages table','',C.Y);
+  s+=warn_bar(14,215,625,'⚠  A and B must be on SAME server. LB distributes randomly — not guaranteed. Cannot scale.');
+  return s+ev();
+}
+function chat2(){
+  const W=988,H=438;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(8,170,93,57,'Client A','',C.P,'💬');s+=ar(101,188,155,188,C.G,'WS');s+=ar(101,201,156,201,C.G,'',false);
+  s+=bx(155,110,175,136,'Chat Server 1','A\'s WS\n①persist ②lookup\n③publish B\'s chan',C.G,'🖥');
+  s+=rg(385,26,258,225,'SHARED REDIS STATE',C.Y);
+  s+=bx(394,50,240,57,'ws:conn:{uid}','→ chatServerId (routing)',C.Y);
+  s+=bx(394,118,240,57,'ws:online:{uid}','→ "1" TTL 10s (presence)',C.G);
+  s+=bx(394,186,240,57,'msg:user:{uid}','pub/sub channel (routing)',C.O);
+  s+=ar(330,160,396,116,C.Y,'②lookup',true);s+=ar(330,183,395,203,C.O,'③pub',true);
+  s+=bx(385,270,258,86,'Cassandra','PARTITION: channel_id\nCLUSTER: msg_id DESC\nsingle partition read',C.B,'🗄');
+  s+=ar(330,142,387,306,C.B,'①persist',true);
+  s+=ar(652,205,702,188,C.O,'sub fires →');s+=bx(702,110,180,136,'Chat Server 2','B\'s WS\nreceive pub/sub\npush to B socket',C.G,'🖥');
+  s+=ar(882,188,934,188,C.G,'WS push');s+=ar(882,201,935,201,C.G,'',false);s+=bx(934,170,40,57,'B','',C.P,'💬');
+  s+=`<rect x="702" y="270" width="272" height="66" rx="6" fill="${C.P}10" stroke="${C.P}30" stroke-width="1"/>`;
+  s+=tx(838,290,'B offline: msg persisted to Cassandra.',8,C.T1,'middle');s+=tx(838,306,'B reconnects → send last_seen_msg_id.',8,C.T1,'middle');s+=tx(838,322,'WHERE msg_id > last_seen LIMIT 100',8,C.Y,'middle',true);
+  s+=warn_bar(8,380,975,'✓  Redis pub/sub: any-server routing sub-ms. Cassandra: channel_id partition = single read for history.',C.G);
+  return s+ev();
+}
+function chat3(){
+  const W=988,H=395;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=tx(494,16,'Ephemeral State — Presence · Typing · Read Receipts · Offline Sync',12,C.T0,'middle',true);
+  s+=rg(8,33,300,142,'ONLINE PRESENCE — Heartbeat',C.G);
+  s+=bx(18,55,94,51,'Client','beat every 5s',C.P);s+=ar(112,80,160,80,C.G);s+=bx(160,55,126,51,'Chat Server','SET EX 10',C.G);
+  s+=tx(18,128,'ws:online:{uid}=1 EX 10s',8,C.Y,'start',true);s+=tx(18,142,'No beat→expire→offline O(1)',8,C.G,'start');
+  s+=rg(8,188,300,170,'TYPING — Pub/Sub Only (No DB)',C.P);
+  s+=tx(18,210,'A types → WS typing_start event',8,C.T1,'start');s+=tx(18,225,'PUB to typing:{chanId}',8,C.P,'start',true);s+=tx(18,240,'Members\' servers receive → push indicator',8,C.T1,'start');s+=tx(18,255,'Client auto-hides after 3s no event',8,C.T2,'start');s+=tx(18,270,'Resend every 2s if still typing',8,C.T2,'start');s+=tx(18,285,'No DB write. 100% in-flight ephemeral.',8,C.G,'start',true);s+=tx(18,300,'500 members = 499 pub/sub msgs → trivial',8,C.T2,'start');
+  s+=rg(323,33,316,170,'READ RECEIPTS — Per Conversation',C.B);
+  s+=tx(333,55,'Table: read_receipts',9,C.B,'start',true);s+=tx(333,72,'PK: (channel_id, user_id)',8,C.Y,'start');s+=tx(333,88,'field: last_read_message_id',8,C.T1,'start');s+=tx(333,110,'B opens chat → UPSERT latest msg_id',8,C.T1,'start');s+=tx(333,126,'"Read by N": last_read_msg ≥ msg_id',8,C.B,'start');s+=tx(333,142,'O(members) NOT O(messages) ✓',8,C.G,'start',true);s+=tx(333,158,'WS read event → update DB + pub/sub',8,C.T2,'start');
+  s+=rg(323,218,316,148,'OFFLINE SYNC — Cursor Based',C.O);
+  s+=tx(333,240,'B reconnects → sends cursor per channel:',8,C.O,'start',true);s+=tx(333,256,'last_seen_message_id (client local DB)',8,C.T1,'start');s+=tx(333,272,'Server: WHERE channel_id=X',8,C.T1,'start');s+=tx(333,288,'AND msg_id > cursor LIMIT 100',8,C.O,'start');s+=tx(333,304,'Returns missed msgs → client syncs',8,C.G,'start',true);s+=tx(333,320,'Push notif already alerted B to reconnect',8,C.T2,'start');
+  s+=rg(653,33,325,325,'ALL REDIS STATE',C.Y);
+  [['ws:conn:{uid}','→ chatServerId','routing'],['ws:online:{uid}','→ 1 (TTL 10s)','presence'],['msg:user:{uid}','→ pub/sub','delivery'],['typing:{chanId}','→ uid:typing','typing']].forEach(([k,v,p],i)=>{
+    const y=56+i*68;s+=`<rect x="661" y="${y}" width="308" height="52" rx="5" fill="${C.S2}" stroke="${C.BD}" stroke-width="1"/>`;
+    s+=tx(671,y+13,k,9,C.Y,'start',true);s+=tx(671,y+29,v,8.5,C.G,'start');s+=tx(961,y+13,p,7.5,C.T2,'end');
+  });
+  s+=warn_bar(8,378,975,'✓  Zero DB writes for presence/typing. Read receipts O(members). Offline sync: cursor-based, exact.',C.G);
+  return s+ev();
+}
+
+// ─── WEB CRAWLER ───────────────────────────────────────────────────────────────
+function wc1(){
+  const W=680,H=195;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(14,72,105,57,'Seed URLs','Initial list',C.B,'🌱');s+=ar(119,100,178,100,C.T1);
+  s+=bx(178,52,196,115,'Single Crawler','Fetch→Parse→Extract\nStore→Deduplicate',C.G,'🕷');
+  s+=ar(374,88,432,88,C.Y,'store');s+=bx(432,58,218,108,'Storage','URL frontier (queue)\nVisited DB\nContent store',C.Y,'🗄');
+  s+=ar(374,104,433,104,C.Y,'',false);
+  s+=warn_bar(14,178,650,'⚠  Single machine: ~100 pages/sec max. Cannot crawl billions of pages. No dedup at scale. SPOF.');
+  return s+ev();
+}
+function wc2(){
+  const W=990,H=400;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(10,162,108,57,'Seed URLs','+ discovered URLs',C.B,'🌱');s+=ar(118,190,165,190,C.T1);
+  s+=bx(165,125,165,118,'URL Frontier\n(Priority Queue)','Kafka topics\nsharded by domain\nhostname politeness',C.Y,'📋');
+  fan(330,183,372,[80,160,240,320],C.G);
+  [0,1,2,3].forEach(i=>{
+    const y=58+i*78;s+=bx(372,y,188,65,`Crawler Worker ${i+1}`,'Fetch→Parse→Extract',C.G,'🕷');
+    s+=ar(560,y+32,608,y+32,C.T1);s+=ar(560,y+32,608,y+32,C.T1);
+  });
+  s+=rg(608,22,262,195,'DEDUP + STORE',C.B);
+  s+=bx(618,42,242,57,'URL Seen Check','Bloom Filter → Redis Set\nfingerprint dedup',C.B);
+  s+=bx(618,112,242,57,'Content Dedup','SimHash fingerprint\nfor near-dup detection',C.CY);
+  s+=bx(618,182,242,57,'Content Store','S3 / Blob storage\nraw HTML + metadata',C.Y,'🗄');
+  s+=ar(618,70,608,70,C.B,'',true);
+  s+=rg(608,252,262,130,'POLITENESS',C.R);
+  s+=tx(618,275,'Rate limit per domain',8,C.T1,'start');s+=tx(618,291,'Crawl-Delay from robots.txt',8,C.T1,'start');s+=tx(618,307,'Max concurrent per host: 1-3',8,C.T1,'start');s+=tx(618,323,'Honor robots.txt disallow',8,C.T1,'start');s+=tx(618,339,'User-Agent header required',8,C.T1,'start');
+  s+=`<rect x="8" y="376" width="975" height="20" rx="4" fill="${C.G}08" stroke="${C.G}22" stroke-width="1"/>`;
+  s+=tx(490,386,'✓  Kafka sharded by domain = politeness per host. Bloom filter dedup. SimHash for near-duplicate content.',8,C.G,'middle',true);
+  return s+ev();
+}
+function wc3(){
+  const W=990,H=385;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=tx(495,18,'Full Architecture — Distributed Web Crawler',11,C.T0,'middle',true);
+  s+=bx(8,42,118,57,'URL Frontier','Kafka\nsharded by domain',C.Y,'📋');
+  // Connect frontier to workers
+  s+=`<line x1="126" y1="70" x2="144" y2="70" stroke="${C.T1}" stroke-width="1.5"/>`;
+  s+=`<line x1="144" y1="70" x2="144" y2="299" stroke="${C.T1}" stroke-width="1.5"/>`;
+  [208,268,328].forEach(y2=>{s+=`<line x1="144" y1="${y2}" x2="180" y2="${y2}" stroke="${C.T1}" stroke-width="1.5" marker-end="url(#a${C.T1.replace('#','')})"/>`;});
+  [['Fetch Workers','HTTP/HTTPS requests',180],['Parse Workers','HTML→links+content',240],['Indexer Workers','Process+rank+store',300]].forEach(([t,sub,y])=>{
+    s+=bx(180,y,195,57,t,sub,C.G,'⚙');
+    s+=ar(375,y+28,423,y+28,C.T1);
+  });
+  s+=rg(423,32,260,142,'DEDUP PIPELINE',C.B);
+  s+=bx(433,52,240,52,'URL Bloom Filter','seen URLs (false-pos ok)',C.B);
+  s+=bx(433,116,240,52,'Content SimHash','near-dup detection',C.CY);
+  s+=ar(673,78,712,78,C.T1);s+=bx(712,42,118,57,'S3 Raw HTML','gzip compressed',C.Y,'🗄');
+  s+=ar(673,142,712,142,C.T1);s+=bx(712,112,118,57,'Cassandra','doc metadata\nPK: url_hash',C.B,'🗄');
+  s+=ar(712,182,712,210,C.T1);s+=bx(634,212,196,57,'Elasticsearch','Inverted index\nfull-text search',C.G,'🔍');
+  s+=rg(423,192,378,148,'SCHEDULER + POLITENESS',C.P);
+  s+=tx(433,215,'Scheduler: priority = PageRank × freshness',8,C.T1,'start');s+=tx(433,232,'Recrawl: popular=1day, static=30days',8,C.T1,'start');s+=tx(433,249,'robots.txt: cache per domain 1hr',8,C.T1,'start');s+=tx(433,266,'Rate limiter: 1-3 req/sec per host',8,C.T1,'start');s+=tx(433,283,'DNS resolver pool: cache TTL 5min',8,C.T1,'start');s+=tx(433,300,'Circuit breaker: pause on 5xx burst',8,C.R,'start');
+  s+=`<rect x="8" y="366" width="975" height="16" rx="3" fill="${C.G}08" stroke="${C.G}20" stroke-width="1"/>`;
+  s+=tx(490,374,'✓  Final: Kafka frontier → Workers pipeline → Bloom+SimHash dedup → S3+Cassandra+ES storage.',8,C.G,'middle',true);
+  return s+ev();
+}
+
+// ─── GOOGLE DRIVE ──────────────────────────────────────────────────────────────
+function gd1(){
+  const W=690,H=200;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(14,72,96,57,'Client','Upload file\nDownload file',C.P,'💻');s+=ar(110,92,175,92,C.B,'POST file');s+=ar(110,107,176,107,C.G,'GET file',false);
+  s+=bx(175,50,200,120,'App Server','Handle upload\nHandle download\nStore metadata',C.G);
+  s+=ar(375,90,432,90,C.Y,'store bytes');s+=bx(432,58,225,110,'Single Storage','Raw files on disk\nMetadata in DB\nno chunking',C.Y,'🗄');
+  s+=warn_bar(14,182,658,'⚠  Large file = one big HTTP upload. No resume. No dedup. Single storage SPOF. No versioning.');
+  return s+ev();
+}
+function gd2(){
+  const W=990,H=395;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(8,162,96,57,'Client','',C.P,'💻');
+  s+=ar(104,182,155,182,C.B,'metadata API');s+=bx(155,128,175,118,'Metadata\nService','file_id, chunk_ids\nversion, owner\npermissions',C.G,'⚙');
+  s+=ar(330,188,378,188,C.B,'pre-sign URL');s+=bx(378,145,175,82,'Storage\nService','chunk pre-sign URLs\nupload coordination',C.G,'⚙');
+  s+=ar(104,200,156,200,C.G,'direct chunks',false);s+=ar(553,188,603,188,C.CY,'direct upload');
+  s+=bx(603,145,195,82,'S3 / Blob Store','Chunked storage\nContent-addr: hash(chunk)',C.CY,'☁');
+  s+=ar(330,162,380,150,C.B,'',true);
+  s+=bx(155,268,175,82,'MySQL Metadata','files, chunks, versions\npermissions tables',C.B,'🗄');s+=ar(330,308,378,278,C.B,'',true);
+  s+=bx(378,258,175,82,'Redis Cache','file metadata\nchunk location cache',C.Y,'⚡');
+  s+=ar(553,162,603,155,C.CY,'',true);
+  s+=warn_bar(8,376,975,'✓  Chunking: resume on failure. Content-addr: automatic dedup. Pre-signed URLs: no proxy overhead.',C.G);
+  return s+ev();
+}
+function gd3(){
+  const W=990,H=428;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=tx(495,18,'Final Architecture — Google Drive / Cloud Storage',11,C.T0,'middle',true);
+  s+=bx(8,155,96,57,'Client A','Upload / Edit',C.P,'💻');s+=bx(8,250,96,57,'Client B','Collaborator',C.P,'💻');
+  s+=ar(104,183,155,183,C.B,'API calls');s+=ar(104,278,156,248,C.B,'');
+  s+=bx(155,42,170,118,'API Gateway','Auth / Rate limit\nRoute requests',C.B,'🛡');
+  s+=bx(155,178,170,118,'Metadata Svc','file/version/perm\nmanagement',C.G,'⚙');
+  s+=ar(325,102,374,72,C.T1);s+=bx(374,42,175,82,'Notification Svc','WebSocket/SSE\nreal-time collab events',C.G,'🔔');
+  s+=ar(325,228,374,228,C.T1);s+=bx(374,178,175,118,'MySQL (sharded)','files, versions,\nchunks, permissions\nPK: file_id/user_id',C.B,'🗄');
+  s+=ar(549,198,598,198,C.T1);s+=bx(598,148,175,118,'Redis Cache','metadata cache\nfile_id→metadata\nuser sessions',C.Y,'⚡');
+  s+=ar(325,188,375,145,C.CY,'',true);s+=bx(374,108,175,57,'Pre-sign URL Svc','chunk upload tokens\nCDN signed URLs',C.CY,'🔑');
+  s+=ar(549,137,598,107,C.CY,'',true);s+=bx(598,72,175,57,'S3 Chunks','hash(chunk)→chunk\ncontent-addressed',C.CY,'☁');
+  s+=ar(773,102,822,82,C.T1);s+=bx(822,42,155,82,'CDN','serve downloads\ncache popular files',C.R,'🌐');
+  s+=ar(773,192,822,182,C.T1);s+=bx(822,152,155,118,'Kafka','file-events topic\nfor sync, audit,\nnotifications',C.P,'📨');
+  s+=ar(822,105,822,152,C.T1);
+  s+=`<rect x="8" y="360" width="975" height="60" rx="5" fill="${C.S1}" stroke="${C.BD}" stroke-width="1"/>`;
+  s+=tx(490,378,'UPLOAD FLOW: Client splits file into 4MB chunks → API Gateway → Metadata Svc creates file record + chunk_ids',8,C.T1,'middle');s+=tx(490,394,'→ Pre-sign Svc returns S3 pre-signed URLs per chunk → Client uploads chunks DIRECTLY to S3 (no proxy)',8,C.T1,'middle');s+=tx(490,410,'→ Client confirms completion → Metadata Svc assembles version → Kafka event → Notification Svc → collaborators notified.',8,C.G,'middle',true);
+  return s+ev();
+}
+
+function ch1(){
+    const W=800,H=268;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+    s+=tx(400,16,'Modulo hash(key)%N — change N by 1 = ~91% of all keys remap',10,C.T0,'middle',true);
+    [['key:user123','4,829,301','% 10 = 1'],['key:order456','9,182,736','% 10 = 6'],['key:item789','2,837,461','% 10 = 1']].forEach(([k,h,n],i)=>{
+      const y=50+i*58;s+=bx(15,y,126,46,k,'',C.P);s+=ar(141,y+23,198,y+23,C.T1);
+      s+=tx(198+112/2,y+12,`hash=${h}`,8,C.T2,'middle');s+=tx(198+112/2,y+28,n,9,C.Y,'middle',true);s+=ar(310,y+23,375,y+23,C.T1);
+    });
+    s+=rg(375,40,145,190,'10 NODES (N=10)',C.G);
+    for(let i=0;i<10;i++){const x=384+(i%2)*65,y=58+Math.floor(i/2)*34,hi=i===1||i===6;s+=`<rect x="${x}" y="${y}" width="52" height="22" rx="4" fill="${hi?C.G:C.T3}20" stroke="${hi?C.G:C.T3}" stroke-width="1.2"/>`;s+=tx(x+26,y+11,`N-${i}`,8,hi?C.G:C.T2,'middle');}
+    s+=ar(522,135,574,135,C.R,'+1 node');
+    s+=rg(578,40,195,190,'AFTER: N=11',C.R);
+    s+=tx(674,98,'~91%',34,C.R,'middle',true);s+=tx(674,133,'remapped!',11,C.R,'middle',true);s+=tx(674,162,'cache hit rate',9,C.T2,'middle');s+=tx(674,178,'→ 0% ❌',12,C.R,'middle',true);
+    s+=warn_bar(15,245,770,'⚠  Modulo hash: N changes by 1 = formula changes for ~91% of keys. Cache cold. Catastrophic.');
+    return s+ev();
+  }
+
+function ch2(){
+    const W=860,H=428;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+    const CX=215,CY=205,R=148;s+=`<circle cx="${CX}" cy="${CY}" r="${R}" fill="none" stroke="${C.BD}" stroke-width="2.5"/>`;
+    s+=tx(CX,CY-5,'Hash Ring',9,C.T2,'middle');s+=tx(CX,CY+10,'0 → 2³²',8,C.T3,'middle');
+    [{name:'Server A',a:'A',deg:38,c:C.G},{name:'Server B',a:'B',deg:162,c:C.B},{name:'Server C',a:'C',deg:285,c:C.Y}].forEach(({name,a,deg,c})=>{
+      const rad=deg*Math.PI/180,sx=CX+R*Math.cos(rad),sy=CY+R*Math.sin(rad);
+      s+=`<circle cx="${sx.toFixed(1)}" cy="${sy.toFixed(1)}" r="21" fill="${c}1e" stroke="${c}" stroke-width="2"/>`;
+      s+=tx(sx,sy,a,12,c,'middle',true);const lx=CX+(R+50)*Math.cos(rad),ly=CY+(R+50)*Math.sin(rad);s+=tx(lx,ly,name,9,c,'middle',true);
+    });
+    [{name:'key:user',deg:308,c:C.P},{name:'key:order',deg:202,c:C.O}].forEach(({name,deg,c})=>{
+      const rad=deg*Math.PI/180,kx=CX+(R-23)*Math.cos(rad),ky=CY+(R-23)*Math.sin(rad);
+      s+=`<circle cx="${kx.toFixed(1)}" cy="${ky.toFixed(1)}" r="12" fill="${c}18" stroke="${c}" stroke-width="1.5" stroke-dasharray="3,2"/>`;
+      s+=tx(kx,ky+24,name,7,c,'middle');
+    });
+    s+=rg(418,18,425,196,'HOW IT WORKS',C.G);
+    [['1','Hash server name → ring position (0–2³²)',C.G],['2','Hash key → ring position',C.P],['3','Owner = first server clockwise from key',C.T0],['4','Add server: only predecessor arc reshuffles (~K/N)',C.G],['5','Remove server: its keys shift to next CW server',C.G],['6','All other keys: completely untouched ✓',C.G]].forEach(([n,d,c],i)=>{
+      const y=48+i*30;s+=`<circle cx="438" cy="${y}" r="10" fill="${c}20" stroke="${c}" stroke-width="1.5"/>`;s+=tx(438,y,n,8,c,'middle');s+=tx(454,y,d,10,c,'start');
+    });
+    s+=rg(418,230,425,168,'EXAMPLES',C.Y);
+    [['key:user @308°','→ Server C @285° (first CW)',C.Y],['key:order @202°','→ Server C @285° (first CW from 202°)',C.Y],['Add Server D @248°','Only arc 202°–248° moves to D. Nothing else.',C.G]].forEach(([a,b,c],i)=>{
+      const y=256+i*38;s+=tx(428,y,a,8,C.T2,'start');s+=tx(428,y+14,b,9,c,'start',true);
+    });
+    s+=warn_bar(15,410,830,'✓  ~1/N keys remapped on change vs ~91% with modulo. Topology-safe.',C.G);
+    return s+ev();
+  }
+
+function ch3(){
+    const W=900,H=388;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+    const CX1=168,CY=184,R=120;
+    s+=tx(CX1,18,'Without Vnodes',11,C.R,'middle',true);s+=`<circle cx="${CX1}" cy="${CY}" r="${R}" fill="none" stroke="${C.BD}" stroke-width="2"/>`;
+    [{d:15,c:C.G},{d:48,c:C.B},{d:80,c:C.Y}].forEach(({d,c})=>{const rad=d*Math.PI/180,sx=CX1+R*Math.cos(rad),sy=CY+R*Math.sin(rad);s+=`<circle cx="${sx.toFixed(1)}" cy="${sy.toFixed(1)}" r="18" fill="${c}22" stroke="${c}" stroke-width="2"/>`;});
+    s+=`<path d="M${(CX1+R*Math.cos(80*Math.PI/180)).toFixed(0)} ${(CY+R*Math.sin(80*Math.PI/180)).toFixed(0)} A${R} ${R} 0 1 1 ${(CX1+R*Math.cos(15*Math.PI/180)).toFixed(0)} ${(CY+R*Math.sin(15*Math.PI/180)).toFixed(0)}" fill="none" stroke="${C.R}" stroke-width="5" stroke-opacity=".3"/>`;
+    s+=tx(CX1-22,CY+44,'A owns ~82% ❌',9,C.R,'middle',true);
+    const CX2=508;let seed=42;const lcg=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
+    s+=tx(CX2,18,'With Virtual Nodes (150/server)',11,C.G,'middle',true);s+=`<circle cx="${CX2}" cy="${CY}" r="${R}" fill="none" stroke="${C.BD}" stroke-width="2"/>`;
+    [[C.G,'A'],[C.B,'B'],[C.Y,'C']].forEach(([c,n],ci)=>{for(let j=0;j<11;j++){const d=ci*120+j*10+(lcg()*8-4),rad=d*Math.PI/180,sx=CX2+R*Math.cos(rad),sy=CY+R*Math.sin(rad);s+=`<circle cx="${sx.toFixed(1)}" cy="${sy.toFixed(1)}" r="8" fill="${c}28" stroke="${c}" stroke-width="1.5"/>`;s+=tx(sx,sy,n,7,c,'middle',true);}});
+    s+=tx(CX2,CY,'even load ✓',9,C.G,'middle',true);
+    s+=rg(692,18,193,305,'TreeMap<Long,Server>',C.Y);
+    s+=tx(788,42,'sorted by ring position',7,C.T2,'middle');
+    [['0x1A2F','→ A-0'],['0x3F8B','→ B-0'],['0x5C14','→ A-1'],['0x7D43','→ C-0'],['0x9A2F','→ B-1'],['...','...']].forEach(([k,v],i)=>{
+      const y=58+i*33,c=v.includes('A')?C.G:v.includes('B')?C.B:v.includes('C')?C.Y:C.T2;
+      s+=`<rect x="700" y="${y}" width="73" height="21" rx="3" fill="${c}18" stroke="${c}52" stroke-width="1"/>`;s+=tx(736,y+10.5,k,8,c,'middle');
+      s+=`<rect x="777" y="${y}" width="98" height="21" rx="3" fill="${C.S2}" stroke="${C.BD}" stroke-width="1"/>`;s+=tx(826,y+10.5,v,8,C.T0,'middle');
+    });
+    s+=tx(788,260,'ceilingEntry(hash)',7,C.G,'middle');s+=tx(788,274,'→ O(log N)',8,C.G,'middle',true);s+=tx(788,288,'wrap: firstEntry()',7,C.T2,'middle');
+    s+=warn_bar(15,368,870,'✓  150+ vnodes = near-uniform load. Failure spreads across ALL servers not just one.',C.G);
+    return s+ev();
+  }
+
+
+
+const DIAGRAM_FNS = {
+  rl1, rl2, rl3, rl4,
+  ch1, ch2, ch3,
+  kv1, kv2, kv3,
+  uid1, uid2,
+  url1, url2, url3,
+  notif1, notif2,
+  chat1, chat2, chat3,
+  wc1, wc2, wc3,
+  gd1, gd2, gd3,
+};
+
+function renderAllDiagrams() {
+  document.querySelectorAll('[data-fn]').forEach(el => {
+    const fn = el.getAttribute('data-fn');
+    if (DIAGRAM_FNS[fn]) {
+      try { el.innerHTML = DIAGRAM_FNS[fn](); }
+      catch(e) { el.innerHTML = '<div style="padding:12px;color:#f04870;font-size:11px">Error: ' + e.message + '</div>'; }
+    }
+  });
+}
+
+function go(i) {
+  document.querySelectorAll('.page').forEach((p,idx) => p.classList.toggle('on', idx === i));
+  document.querySelectorAll('.ntab').forEach((n,idx) => n.classList.toggle('on', idx === i));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+document.addEventListener('DOMContentLoaded', renderAllDiagrams);
+</script>
+</body>
+</html>

@@ -404,7 +404,9 @@ Regenerate all LLD pages: `python3 scripts/generate_lld_docs.py`
 
 ### ☁️ High-Level Design (HLD)
 
-Topics: **[questions/high_level_design/README.md](questions/high_level_design/README.md)**
+**[Open HLD interview transcripts →](https://amanjaiswal30.github.io/dsa-solutions/questions/high_level_design/hld-combined.html)**
+
+Topics:
 
 1. Rate limiter
 2. Consistent hashing
