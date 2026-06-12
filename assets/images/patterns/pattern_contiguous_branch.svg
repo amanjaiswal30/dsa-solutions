@@ -1,0 +1,47 @@
+<svg width="700" height="420" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="420" fill="#F8F9FA" rx="10"/>
+  <rect width="700" height="44" fill="#16A34A" rx="10"/>
+  <rect y="34" width="700" height="10" fill="#16A34A"/>
+  <text x="20" y="28" font-family="Arial" font-size="15" font-weight="bold" fill="white">Contiguous branch  sliding window family</text>
+
+  <rect x="200" y="65" width="300" height="44" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2" rx="22"/>
+  <text x="350" y="93" font-family="Arial" font-size="12" font-weight="bold" fill="#1E3A8A" text-anchor="middle">Contiguous subarray or substring</text>
+
+  <line x1="350" y1="109" x2="350" y2="135" stroke="#6B7280" stroke-width="2"/>
+  <polygon points="346,135 350,145 354,135" fill="#6B7280"/>
+
+  <polygon points="350,150 400,175 350,200" fill="#FFF7ED" stroke="#EA580C" stroke-width="2"/>
+  <text x="375" y="180" font-family="Arial" font-size="11" font-weight="bold" fill="#7C2D12" text-anchor="middle">Fixed k?</text>
+
+  <line x1="400" y1="165" x2="480" y2="130" stroke="#16A34A" stroke-width="2"/>
+  <text x="430" y="140" font-family="Arial" font-size="10" fill="#16A34A">yes</text>
+  <rect x="480" y="100" width="190" height="70" fill="#DCFCE7" stroke="#16A34A" stroke-width="2" rx="8"/>
+  <text x="575" y="125" font-family="Arial" font-size="11" font-weight="bold" fill="#14532D" text-anchor="middle">Fixed sliding window</text>
+  <text x="575" y="145" font-family="Arial" font-size="10" fill="#166534" text-anchor="middle">max sum in window of size k</text>
+  <text x="575" y="160" font-family="Arial" font-size="9" fill="#166534" text-anchor="middle">subarray of size k</text>
+
+  <line x1="400" y1="185" x2="480" y2="220" stroke="#EA580C" stroke-width="2"/>
+  <text x="430" y="215" font-family="Arial" font-size="10" fill="#EA580C">no</text>
+  <polygon points="530,205 580,230 530,255" fill="#FFF7ED" stroke="#EA580C" stroke-width="2"/>
+  <text x="555" y="228" font-family="Arial" font-size="9" font-weight="bold" fill="#7C2D12" text-anchor="middle">Longest/</text>
+  <text x="555" y="242" font-family="Arial" font-size="9" font-weight="bold" fill="#7C2D12" text-anchor="middle">shortest +</text>
+  <text x="555" y="256" font-family="Arial" font-size="9" font-weight="bold" fill="#7C2D12" text-anchor="middle">constraint?</text>
+
+  <line x1="580" y1="220" x2="620" y2="195" stroke="#16A34A" stroke-width="2"/>
+  <text x="595" y="200" font-family="Arial" font-size="10" fill="#16A34A">yes</text>
+  <rect x="40" y="250" width="280" height="80" fill="#DCFCE7" stroke="#16A34A" stroke-width="2" rx="8"/>
+  <text x="180" y="275" font-family="Arial" font-size="11" font-weight="bold" fill="#14532D" text-anchor="middle">Variable window + HashMap / int[26]</text>
+  <text x="180" y="295" font-family="Arial" font-size="10" fill="#166534" text-anchor="middle">longest substring K distinct</text>
+  <text x="180" y="312" font-family="Arial" font-size="10" fill="#166534" text-anchor="middle">minimum window substring</text>
+  <text x="180" y="328" font-family="Arial" font-size="9" fill="#888" text-anchor="middle">expand right, shrink left until valid</text>
+
+  <line x1="580" y1="240" x2="620" y2="310" stroke="#EA580C" stroke-width="2"/>
+  <text x="595" y="285" font-family="Arial" font-size="10" fill="#EA580C">no</text>
+  <rect x="380" y="290" width="280" height="70" fill="#DCFCE7" stroke="#16A34A" stroke-width="2" rx="8"/>
+  <text x="520" y="315" font-family="Arial" font-size="11" font-weight="bold" fill="#14532D" text-anchor="middle">Monotonic deque</text>
+  <text x="520" y="335" font-family="Arial" font-size="10" fill="#166534" text-anchor="middle">sliding window maximum / minimum</text>
+  <text x="520" y="352" font-family="Arial" font-size="9" fill="#888" text-anchor="middle">min/max inside each window as you slide</text>
+
+  <rect x="20" y="370" width="660" height="36" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="350" y="392" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">Signal: "subarray of size k" ’ fixed · "longest/shortest with count" ’ variable · min/max per window ’ deque</text>
+</svg>

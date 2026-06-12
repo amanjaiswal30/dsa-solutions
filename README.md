@@ -25,11 +25,13 @@ questions/
 ├── stacks/               # Stack-based problems (9 problems)
 ├── trees/                # Binary Tree & BST problems (34 problems)
 ├── heaps/                # Heap & Priority Queue problems (4 problems)
-├── graphs/               # Graph algorithms & traversals (13 problems)
+├── graphs/               # Graph algorithms & traversals (16 problems)
 ├── dynamic_programming/  # DP problems with detailed explanations (24 problems)
 ├── low_level_design/     # LLD interviews (21 topics, files named *_lld.md)
 └── high_level_design/    # HLD topics ([README](questions/high_level_design/README.md))
 ```
+
+**Pattern guides:** [sliding window · two pointers · prefix map · binary search · tree BFS](questions/pattern_guides.md)
 
 ---
 
@@ -258,16 +260,19 @@ questions/
 | [Median from Data Stream](questions/heaps/median_from_data_stream.md) | Hard 🔥 | Two Heaps |
 | [Merge K Sorted Arrays](questions/heaps/merge_k_sorted_arrays.md) | Hard 🔥 | Min Heap, Merge |
 
-### 🌐 Graph Algorithms (13 Problems)
-**Advanced Structures** - Explore DFS, BFS, topological sort, and advanced graph algorithms.
+### 🌐 Graph Algorithms (16 Problems)
+**Advanced Structures** - Explore DFS, BFS, flood fill, topological sort, and advanced graph algorithms.
 
 | Problem | Difficulty | Key Concepts |
 |---------|------------|--------------|
+| [Flood Fill](questions/graphs/flood_fill.md) | Easy ✅ | DFS, BFS, Connected Component |
 | [Find If Path Exists](questions/graphs/find_if_path_exists.md) | Easy ✅ | DFS, BFS, Union-Find |
+| [Surrounded Regions](questions/graphs/surrounded_regions.md) | Medium ⚡ | DFS, BFS, Border Traversal |
 | [Cycle in Undirected Graph](questions/graphs/cycle_in_undirected_graph.md) | Medium ⚡ | DFS, BFS, Union-Find |
 | [Cycle in Directed Graph](questions/graphs/cycle_in_directed_graph.md) | Medium ⚡ | DFS, Recursion Stack |
 | [Topological Sort](questions/graphs/topological_sort.md) | Medium ⚡ | DFS, BFS, Kahn's Algorithm |
 | [Number of Islands](questions/graphs/number_of_islands.md) | Medium ⚡ | DFS, BFS, Connected Components |
+| [Largest Island](questions/graphs/largest_island.md) | Medium ⚡ | DFS, BFS, Component Size |
 | [Course Schedule](questions/graphs/course_schedule.md) | Medium ⚡ | Topological Sort, Cycle Detection |
 | [Clone Graph](questions/graphs/clone_graph.md) | Medium ⚡ | Graph Traversal, HashMap |
 | [Alien Dictionary](questions/graphs/alien_dictionary.md) | Hard 🔥 | Topological Sort, Graph Construction |
@@ -275,26 +280,29 @@ questions/
 | [Word Ladder II](questions/graphs/word_ladder_II.md) | Hard 🔥 | BFS, Path Reconstruction |
 
 <details>
-<summary><strong>📋 Complete Graphs List (13 problems)</strong></summary>
+<summary><strong>📋 Complete Graphs List (16 problems)</strong></summary>
 
 | # | Problem | Difficulty |
 |---|---------|------------|
-| **Easy Problems (1)** |||
-| 1 | [Find If Path Exists](questions/graphs/find_if_path_exists.md) | Easy ✅ |
-| **Medium Problems (9)** |||
-| 2 | [Clone Graph](questions/graphs/clone_graph.md) | Medium ⚡ |
-| 3 | [Course Schedule](questions/graphs/course_schedule.md) | Medium ⚡ |
-| 4 | [Cycle in Directed Graph](questions/graphs/cycle_in_directed_graph.md) | Medium ⚡ |
-| 5 | [Cycle in Undirected Graph](questions/graphs/cycle_in_undirected_graph.md) | Medium ⚡ |
-| 6 | [Number of Islands](questions/graphs/number_of_islands.md) | Medium ⚡ |
-| 7 | [Person Relationships](questions/graphs/person_relationships.md) | Medium ⚡ |
-| 8 | [Region in Binary Matrix](questions/graphs/region_in_a_binary_matrix.md) | Medium ⚡ |
-| 9 | [Rotting Oranges](questions/graphs/rotting_oranges.md) | Medium ⚡ |
-| 10 | [Topological Sort](questions/graphs/topological_sort.md) | Medium ⚡ |
+| **Easy Problems (2)** |||
+| 1 | [Flood Fill](questions/graphs/flood_fill.md) | Easy ✅ |
+| 2 | [Find If Path Exists](questions/graphs/find_if_path_exists.md) | Easy ✅ |
+| **Medium Problems (11)** |||
+| 3 | [Clone Graph](questions/graphs/clone_graph.md) | Medium ⚡ |
+| 4 | [Course Schedule](questions/graphs/course_schedule.md) | Medium ⚡ |
+| 5 | [Cycle in Directed Graph](questions/graphs/cycle_in_directed_graph.md) | Medium ⚡ |
+| 6 | [Cycle in Undirected Graph](questions/graphs/cycle_in_undirected_graph.md) | Medium ⚡ |
+| 7 | [Number of Islands](questions/graphs/number_of_islands.md) | Medium ⚡ |
+| 8 | [Largest Island](questions/graphs/largest_island.md) | Medium ⚡ |
+| 9 | [Person Relationships](questions/graphs/person_relationships.md) | Medium ⚡ |
+| 10 | [Region in Binary Matrix](questions/graphs/region_in_a_binary_matrix.md) | Medium ⚡ |
+| 11 | [Rotting Oranges](questions/graphs/rotting_oranges.md) | Medium ⚡ |
+| 12 | [Surrounded Regions](questions/graphs/surrounded_regions.md) | Medium ⚡ |
+| 13 | [Topological Sort](questions/graphs/topological_sort.md) | Medium ⚡ |
 | **Hard Problems (3)** |||
-| 11 | [Alien Dictionary](questions/graphs/alien_dictionary.md) | Hard 🔥 |
-| 12 | [Word Ladder I](questions/graphs/word_ladder_I.md) | Hard 🔥 |
-| 13 | [Word Ladder II](questions/graphs/word_ladder_II.md) | Hard 🔥 |
+| 14 | [Alien Dictionary](questions/graphs/alien_dictionary.md) | Hard 🔥 |
+| 15 | [Word Ladder I](questions/graphs/word_ladder_I.md) | Hard 🔥 |
+| 16 | [Word Ladder II](questions/graphs/word_ladder_II.md) | Hard 🔥 |
 
 </details>
 

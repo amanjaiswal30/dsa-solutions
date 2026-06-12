@@ -1,0 +1,103 @@
+<svg width="900" height="560" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="560" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Flood Fill</text>
+  <rect x="800" y="12" width="82" height="28" fill="#27AE60" rx="14"/>
+  <text x="841" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Easy</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">sr=1, sc=1, color=2  recolor all 4-connected pixels with original color 1</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Paint-bucket on a grid. Same connected-component traversal as Number of Islands, but mutate cells instead of counting.</text>
+
+  <!-- Before grid -->
+  <text x="120" y="130" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Before</text>
+  <g transform="translate(55,140)">
+    <rect x="0" y="0" width="40" height="40" fill="#E74C3C" stroke="#333"/>
+    <rect x="40" y="0" width="40" height="40" fill="#E74C3C" stroke="#333"/>
+    <rect x="80" y="0" width="40" height="40" fill="#E74C3C" stroke="#333"/>
+    <rect x="0" y="40" width="40" height="40" fill="#E74C3C" stroke="#333"/>
+    <rect x="40" y="40" width="40" height="40" fill="#E74C3C" stroke="#333" stroke-width="3"/>
+    <rect x="80" y="40" width="40" height="40" fill="#BDC3C7" stroke="#333"/>
+    <rect x="0" y="80" width="40" height="40" fill="#E74C3C" stroke="#333"/>
+    <rect x="40" y="80" width="40" height="40" fill="#BDC3C7" stroke="#333"/>
+    <rect x="80" y="80" width="40" height="40" fill="#E74C3C" stroke="#333"/>
+    <text x="60" y="115" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">start (1,1)</text>
+  </g>
+
+  <text x="210" y="200" font-family="Arial" font-size="24" fill="#3498DB">’</text>
+
+  <!-- After grid -->
+  <text x="320" y="130" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">After (color=2)</text>
+  <g transform="translate(255,140)">
+    <rect x="0" y="0" width="40" height="40" fill="#3498DB" stroke="#333"/>
+    <rect x="40" y="0" width="40" height="40" fill="#3498DB" stroke="#333"/>
+    <rect x="80" y="0" width="40" height="40" fill="#3498DB" stroke="#333"/>
+    <rect x="0" y="40" width="40" height="40" fill="#3498DB" stroke="#333"/>
+    <rect x="40" y="40" width="40" height="40" fill="#3498DB" stroke="#333"/>
+    <rect x="80" y="40" width="40" height="40" fill="#BDC3C7" stroke="#333"/>
+    <rect x="0" y="80" width="40" height="40" fill="#3498DB" stroke="#333"/>
+    <rect x="80" y="80" width="40" height="40" fill="#E74C3C" stroke="#333"/>
+    <rect x="40" y="80" width="40" height="40" fill="#BDC3C7" stroke="#333"/>
+  </g>
+
+  <!-- Approach 1: DFS -->
+  <rect x="15" y="270" width="270" height="250" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="270" width="270" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="295" width="270" height="15" fill="#E74C3C"/>
+  <text x="150" y="295" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 1: DFS</text>
+  <text x="150" y="308" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(M×N) time | O(M×N) stack</text>
+  <text x="25" y="330" font-family="Arial" font-size="10" fill="#333">1. original = image[sr][sc]</text>
+  <text x="25" y="346" font-family="Arial" font-size="10" fill="#333">2. if original == color ’ return</text>
+  <text x="25" y="362" font-family="Arial" font-size="10" fill="#333">3. image[r][c] = color; recurse 4 dirs</text>
+  <text x="25" y="378" font-family="Arial" font-size="10" fill="#333">4. skip if OOB or != original</text>
+  <text x="25" y="404" font-family="Arial" font-size="10" font-weight="bold" fill="#E74C3C">Recolor in-place ’ no visited[]</text>
+  <text x="25" y="422" font-family="Arial" font-size="10" fill="#888">Same pattern as island flood-fill</text>
+  <text x="25" y="440" font-family="Arial" font-size="10" fill="#888">Early exit avoids infinite loop</text>
+  <text x="25" y="458" font-family="Arial" font-size="10" fill="#888">Large grid ’ use BFS / stack</text>
+
+  <!-- Arrow -->
+  <line x1="285" y1="395" x2="325" y2="395" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="325,391 333,395 325,399" fill="#7F8C8D"/>
+
+  <!-- Approach 2: BFS -->
+  <rect x="335" y="270" width="270" height="250" fill="#FFFFFF" stroke="#E67E22" stroke-width="2" rx="7"/>
+  <rect x="335" y="270" width="270" height="40" fill="#E67E22" rx="7"/>
+  <rect x="335" y="295" width="270" height="15" fill="#E67E22"/>
+  <text x="470" y="295" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 2: BFS</text>
+  <text x="470" y="308" font-family="Arial" font-size="10" fill="#FAD7A0" text-anchor="middle">O(M×N) time | O(M×N) queue</text>
+  <text x="345" y="330" font-family="Arial" font-size="10" fill="#333">1. Enqueue (sr, sc); recolor start</text>
+  <text x="345" y="346" font-family="Arial" font-size="10" fill="#333">2. Poll cell; check 4 neighbors</text>
+  <text x="345" y="362" font-family="Arial" font-size="10" fill="#333">3. If neighbor == original:</text>
+  <text x="355" y="378" font-family="Arial" font-size="10" fill="#333">recolor + enqueue</text>
+  <text x="345" y="404" font-family="Arial" font-size="10" font-weight="bold" fill="#E67E22">Iterative  no stack overflow</text>
+  <text x="345" y="422" font-family="Arial" font-size="10" fill="#888">Level-by-level expansion</text>
+  <text x="345" y="440" font-family="Arial" font-size="10" fill="#888">Preferred for huge components</text>
+
+  <!-- Arrow -->
+  <line x1="605" y1="395" x2="645" y2="395" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="645,391 653,395 645,399" fill="#7F8C8D"/>
+
+  <!-- Key insight -->
+  <rect x="655" y="270" width="230" height="250" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="655" y="270" width="230" height="40" fill="#27AE60" rx="7"/>
+  <rect x="655" y="295" width="230" height="15" fill="#27AE60"/>
+  <text x="770" y="295" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Key insight</text>
+  <text x="665" y="330" font-family="Arial" font-size="10" fill="#333">Grid = implicit graph</text>
+  <text x="665" y="348" font-family="Arial" font-size="10" fill="#333">Edge = same original color</text>
+  <text x="665" y="366" font-family="Arial" font-size="10" fill="#333">+ 4-directional neighbor</text>
+  <text x="665" y="392" font-family="Arial" font-size="10" font-weight="bold" fill="#27AE60">vs Number of Islands:</text>
+  <text x="665" y="410" font-family="Arial" font-size="10" fill="#333">Islands ’ count components</text>
+  <text x="665" y="428" font-family="Arial" font-size="10" fill="#333">Flood fill ’ fill one component</text>
+  <text x="665" y="454" font-family="Arial" font-size="10" fill="#888">4-dir only (no diagonals)</text>
+  <text x="665" y="472" font-family="Arial" font-size="10" fill="#888">original == color ’ no-op</text>
+
+  <!-- Legend -->
+  <rect x="420" y="130" width="14" height="14" fill="#E74C3C" stroke="#333"/>
+  <text x="440" y="142" font-family="Arial" font-size="10" fill="#555">color 1 (original)</text>
+  <rect x="540" y="130" width="14" height="14" fill="#3498DB" stroke="#333"/>
+  <text x="560" y="142" font-family="Arial" font-size="10" fill="#555">color 2 (new)</text>
+  <rect x="660" y="130" width="14" height="14" fill="#BDC3C7" stroke="#333"/>
+  <text x="680" y="142" font-family="Arial" font-size="10" fill="#555">0 (unchanged)</text>
+</svg>

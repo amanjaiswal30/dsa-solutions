@@ -1,137 +1,214 @@
 # Array & string problems — pattern decision tree
 
-Three views: **mindmap** (families at a glance), **flowchart** (questions → pattern), **text tree** (no Mermaid). Many problems **combine** patterns (e.g. **window + hash map**). This is a **heuristic**, not a proof.
+Four views: **mindmap** (families at a glance), **flowchart** (decisions → pattern, with examples), **compact LR flow**, **text trees** (split ASCII + numbered + expanded branch). Many problems **combine** patterns (e.g. **window + hash map**). This is a **heuristic**, not a proof.
+
+**See also:** [Binary search loop tips](binary_search_tips.md) · [Tree BFS level tips](tree_bfs_tips.md)
+
+---
+
+## 0 · Quick tips — when to use what
+
+### Sliding window
+
+| Use | Signals | Skip window |
+|-----|---------|-------------|
+| **Fixed-size window** | "subarray of size `k`", max/min in every window of length `k` | Need non-contiguous elements |
+| **Variable window** | "longest/shortest substring/subarray" with a **count constraint** (at most K distinct, sum ≤ X) | Need **all** subarrays enumerated |
+| **Window + deque** | Min/max **inside** each window as you slide (not just sum/count) | Constraint is on **sorted pairs**, not a segment |
+
+**Expand / shrink rule:** grow `right` until constraint breaks → record answer → shrink `left` until valid again (variable window).
+
+---
+
+### Two pointers
+
+| Variant | When | Examples |
+|---------|------|----------|
+| **Opposite ends** (`i`, `j` on sorted array) | Pairs/triplets, palindrome check, container area, merge two sorted | [3Sum](arrays/3-sum.md), [Container with most water](arrays/container_with_most_water.md) |
+| **Same direction (slow / fast)** | In-place partition, remove duplicates, move zeros | [Shift zeros](arrays/shift_zeros_to_end.md) |
+| **Two sorted arrays/lists** | Merge, intersection, median of two | [Median of two sorted arrays](arrays/median_of_two_sorted_arrays.md) |
+
+**Use two pointers when:** array/string is **sorted** (or you sort once) and you compare/move ends toward a target — **O(n)** not **O(n²)**.
+
+---
+
+### Prefix sum / prefix map
+
+| Use | Signals |
+|-----|---------|
+| **Prefix sum array** | Many range-sum queries `sum(i..j)` on **static** array |
+| **Prefix + HashMap** | Count subarrays with sum = `K`, or "how many prefixes have sum = X" |
+| **Running prefix (no array)** | Single pass subarray sum problems |
+
+**Map keys:** often `prefixSum` → count or earliest index. Formula: `prefix[j] - prefix[i] = K` → look for `prefix[i] = prefix[j] - K`.
+
+**Not prefix:** need **longest** substring with **character constraint** → sliding window + map, not prefix alone.
+
+---
+
+### HashMap / HashSet
+
+| Use | Signals |
+|-----|---------|
+| **HashMap** | Count frequency, store index of last seen, complement `target - x` | [Two sum](arrays/two_sum.md) |
+| **HashSet** | Duplicate detection, O(1) membership | Cycle in array, unique chars |
+| **`int[26]` / `int[128]`** | Lowercase letters / small fixed alphabet | Prefer over map when bounds are tiny |
+
+---
+
+### Binary search (on array)
+
+| Use | Signals |
+|-----|---------|
+| **BS on sorted array** | Exact find → `low <= high` | [Binary search tips](binary_search_tips.md) |
+| **BS on rotated / boundary** | Min in rotated, first/last position → `low < high` | [Minimum in rotated](arrays/minimum_in_rotated_sorted_array.md) |
+| **BS on answer** | "Minimize the maximum", "smallest X such that feasible(X)" | Monotonic feasibility |
+
+---
+
+### Other array/string tools
+
+| Pattern | When |
+|---------|------|
+| **Monotonic stack** | Next greater/smaller, histogram area, daily temperatures |
+| **Sort + greedy** | Intervals, meeting rooms, non-overlapping |
+| **Kadane / DP** | Max subarray sum, state depends on **ending at i** not any subarray |
+| **Rolling hash** | Many equal-length substring comparisons |
+| **Trie** | Prefix queries over a **dictionary** of words |
 
 ---
 
 ## 1 · Mindmap (overview)
 
-```mermaid
-mindmap
-  root((Array and String))
-    Contiguous segment
-      Fixed k window
-        sum max in k
-      Variable window
-        counts distinct
-        HashMap int26
-      Sliding min max
-        monotonic deque
-    Range and sums
-      Prefix sum
-      Subarray sum K
-        plus HashMap
-    Order and search
-      Binary search on array
-      Sort two pointers
-      Binary search on answer
-    Lookup structure
-      HashMap HashSet
-      Monotonic stack
-      Next greater smaller
-    Scheduling
-      Sort greedy sweep
-    Optimal substructure
-      DP two strings
-      DP substring
-    String tooling
-      Rolling hash
-      Trie
-```
+![](../assets/images/patterns/pattern_mindmap.svg)
 
 ---
 
 ## 2 · Flowchart (decisions → pattern)
 
-Start at **Array or string** → **Contiguous?** → **yes** = left box (window family); **no** = right box (follow the chain top to bottom).
+Read top → bottom. **Diamond** = question; **rounded** = start; **rectangle** = pattern to use.
 
-```mermaid
-flowchart TB
-  classDef root fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px,color:#1e3a8a
-  classDef q fill:#fff7ed,stroke:#ea580c,stroke-width:1.5px,color:#7c2d12
-  classDef p fill:#dcfce7,stroke:#16a34a,stroke-width:1.5px,color:#14532d
+**Compact view** (two main branches):
 
-  R([Array or string])
-  class R root
+![](../assets/images/patterns/pattern_overview.svg)
 
-  R --> Q0{Contiguous<br/>subarray or substring?}
-  class Q0 q
+**Split decision tree:**
 
-  subgraph WIN [Contiguous]
-    direction TB
-    A1{Fixed length k?}
-    A1 -->|yes| P1[Fixed sliding window]
-    A1 -->|no| A2{Longest or shortest<br/>under count constraint?}
-    A2 -->|yes| P2[Variable window plus map or int26]
-    A2 -->|no| P3[Monotonic deque window min or max]
-  end
+![](../assets/images/patterns/pattern_split_tree.svg)
 
-  subgraph REST [Not contiguous]
-    direction TB
-    B1{Range sums many queries<br/>or subarray sum equals K?}
-    B1 -->|yes| P4[Prefix sum optional HashMap]
-    B1 -->|no| B2{Sorted or sort unlocks pairs?}
-    B2 -->|yes| B2a{Single value or boundary?}
-    B2a -->|yes| P5[Binary search on sorted array]
-    B2a -->|no| P6[Sort plus two pointers]
-    B2 -->|no| B3{O1 by value freq or index?}
-    B3 -->|yes| P7[HashMap or HashSet]
-    B3 -->|no| B4{Next greater smaller or bars?}
-    B4 -->|yes| P8[Monotonic stack]
-    B4 -->|no| B5{Minimize max feasible X monotone?}
-    B5 -->|yes| P9[Binary search on answer]
-    B5 -->|no| B6{Intervals deadlines overlap?}
-    B6 -->|yes| P10[Sort plus greedy sweep]
-    B6 -->|no| B7{Two strings optimal overlap?}
-    B7 -->|yes| P11[DP]
-    B7 -->|no| B8{String pattern or dictionary?}
-    B8 -->|yes| B8a{Many equal length substring compares?}
-    B8a -->|yes| P12[Rolling hash]
-    B8a -->|no| B8b{Prefix queries many words?}
-    B8b -->|yes| P13[Trie]
-    B8b -->|no| P14[Re-read constraints]
-    B8 -->|no| P14
-  end
+**Contiguous branch** (sliding window family):
 
-  Q0 -->|yes| A1
-  Q0 -->|no| B1
+![](../assets/images/patterns/pattern_contiguous_branch.svg)
 
-  class A1,A2,B1,B2,B2a,B3,B4,B5,B6,B7,B8,B8a,B8b q
-  class P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14 p
-```
+**Non-contiguous branch** (full array scan):
+
+![](../assets/images/patterns/pattern_non_contiguous_branch.svg)
 
 ---
 
 ## 3 · Text tree (same logic as flowchart)
 
+### Split diagram (two branches)
+
+```
+                    ┌─────────────────────────┐
+                    │  Array / String problem │
+                    └───────────┬─────────────┘
+                                │
+                    ┌───────────▼───────────────┐
+                    │ Contiguous subarray or    │
+                    │ substring?                │
+                    └───────────┬───────────────┘
+              ┌─────────────────┴─────────────────┐
+             YES                                   NO
+              │                                     │
+   ┌──────────▼──────────┐            ┌───────────▼───────────┐
+   │  SLIDING WINDOW     │            │  NON-CONTIGUOUS PATH    │
+   │  (segment on array) │            │  (scan full problem)   │
+   └──────────┬──────────┘            └───────────┬───────────┘
+              │                                   │
+   ┌──────────▼──────────┐            ┌───────────▼───────────┐
+   │ Fixed length k?     │            │ Range sum / sum = K?  │
+   └──┬──────────────┬───┘            └──┬────────────────┬───┘
+     yes            no                  yes               no
+      │              │                   │                 │
+      ▼              ▼                   ▼                 ▼
+ ┌─────────┐  ┌─────────────┐    ┌─────────────┐   ┌──────────────┐
+ │ FIXED   │  │ Longest /   │    │ PREFIX SUM  │   │ Sorted or    │
+ │ WINDOW  │  │ shortest +  │    │ + HashMap   │   │ sort helps?  │
+ │         │  │ constraint? │    └─────────────┘   └──┬───────┬───┘
+ └─────────┘  └──┬──────┬───┘                         yes      no
+                 yes    no                            │        │
+                  │      │                    ┌──────▼──┐  ┌──▼───────────┐
+                  ▼      ▼                    │ One     │  │ O(1) lookup? │
+           ┌──────────┐ ┌──────────┐         │ target? │  └──┬───────┬───┘
+           │ VARIABLE │ │ MONOTONIC│         └──┬───┬──┘    yes      no
+           │ WINDOW   │ │ DEQUE    │           y   n         │        │
+           │ + map    │ │ min/max  │            │   │         ▼        ▼
+           └──────────┘ └──────────┘            ▼   ▼    ┌───────┐ ┌──────────┐
+                                               BS  2PTR   │ HASH  │ │ Next gr? │
+                                               on  3Sum   │ MAP   │ └──┬───┬───┘
+                                               arr pairs  └───────┘   y   n
+                                                                      │   │
+                                                                      ▼   ▼
+                                                                   STACK  BS on answer
+                                                                            │
+                                                                            ▼
+                                                                    … greedy · DP · trie
+```
+
+### Full decision tree (numbered)
+
 ```
 Array / string
-├─ contiguous subarray or substring?
-│  ├─ YES
-│  │  ├─ fixed length k        → fixed sliding window
-│  │  ├─ variable length + constraint
-│  │  │   └─ counts / distinct  → variable window + HashMap or int[26]
-│  │  └─ min/max *inside* window as you slide → monotonic deque
-│  └─ NO
-│     ├─ many range sums OR “subarray sum = K” / count by sum
-│     │  └─ prefix sum (+ HashMap for “sum → index/count”)
-│     ├─ sorted (or sort unlocks pairs / intervals)
-│     │  ├─ single target / boundary     → binary search on array
-│     │  └─ pairs, triplets, intervals   → sort + two pointers (or greedy)
-│     ├─ O(1) by value / frequency / “complement”
-│     │  └─ HashMap / HashSet
-│     ├─ “next greater / smaller” or histogram bars
-│     │  └─ monotonic stack
-│     ├─ “minimize maximum” chunk / capacity / split (monotone feasible(mid))
-│     │  └─ binary search on answer
-│     ├─ intervals, deadlines, max non-overlapping
-│     │  └─ sort + greedy (often sweep)
-│     ├─ optimal over two strings / substring structure
-│     │  └─ DP (1D/2D by problem)
-│     └─ else
-│        ├─ string-heavy: pattern / many substring compares → rolling hash
-│        ├─ string-heavy: many prefixes / dictionary → trie
-│        └─ otherwise → re-read constraints; hash / greedy / ad hoc
+│
+├─ [1] Contiguous subarray or substring?
+│   ├─ YES
+│   │   ├─ [1a] Fixed length k?              → FIXED SLIDING WINDOW
+│   │   ├─ [1b] Longest/shortest + constraint → VARIABLE WINDOW + HashMap / int[26]
+│   │   └─ [1c] Min/max inside each window    → MONOTONIC DEQUE
+│   │
+│   └─ NO  (answer is NOT necessarily a sliding segment)
+│       ├─ [2] Range sums / subarray sum = K? → PREFIX SUM (+ HashMap)
+│       ├─ [3] Sorted or sort unlocks pairs?
+│       │   ├─ single target / boundary       → BINARY SEARCH
+│       │   └─ pairs, triplets, intervals     → SORT + TWO POINTERS
+│       ├─ [4] O(1) by value / complement?    → HashMap / HashSet
+│       ├─ [5] Next greater/smaller / bars?   → MONOTONIC STACK
+│       ├─ [6] Minimize max, feasible(mid)?   → BINARY SEARCH ON ANSWER
+│       ├─ [7] Intervals / deadlines?         → SORT + GREEDY
+│       ├─ [8] Optimal on two strings?        → DP
+│       └─ [9] Else
+│           ├─ many substring compares        → ROLLING HASH
+│           ├─ dictionary / prefix words      → TRIE
+│           └─ otherwise                      → re-read constraints
+```
+
+### Non-contiguous branch (expanded)
+
+```
+[1] NO — not a pure sliding segment
+ │
+ ├─ [2] Range sums / subarray sum = K? ──────────────► PREFIX SUM + HashMap
+ │
+ ├─ [3] Sorted or sort helps?
+ │      ├─ one target / boundary ────────────────────► BINARY SEARCH
+ │      └─ pairs · triplets · intervals ─────────────► SORT + TWO POINTERS
+ │
+ ├─ [4] O(1) lookup / complement? ───────────────────► HashMap / HashSet
+ │
+ ├─ [5] Next greater / smaller / histogram? ─────────► MONOTONIC STACK
+ │
+ ├─ [6] Minimize max, feasible(mid) monotone? ───────► BINARY SEARCH ON ANSWER
+ │
+ ├─ [7] Intervals / deadlines / overlap? ────────────► SORT + GREEDY
+ │
+ ├─ [8] Optimal on two strings? ─────────────────────► DP
+ │
+ └─ [9] String-specific?
+        ├─ many equal-length substring compares ─────► ROLLING HASH
+        ├─ dictionary / prefix word queries ─────────► TRIE
+        └─ none of the above ────────────────────────► re-read constraints
 ```
 
 ---

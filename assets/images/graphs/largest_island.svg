@@ -1,0 +1,111 @@
+<svg width="900" height="560" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="560" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Largest Island</text>
+  <rect x="780" y="12" width="102" height="28" fill="#E67E22" rx="14"/>
+  <text x="831" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">Find max area among all 4-connected land components.</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Same flood-fill as Number of Islands, but track component size and keep the maximum.</text>
+
+  <!-- Grid -->
+  <text x="175" y="130" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Grid (1 = land, 0 = water)</text>
+  <g transform="translate(55,140)">
+    <!-- row 0 -->
+    <rect x="0" y="0" width="30" height="30" fill="#BDC3C7" stroke="#333"/>
+    <rect x="30" y="0" width="30" height="30" fill="#BDC3C7" stroke="#333"/>
+    <rect x="60" y="0" width="30" height="30" fill="#27AE60" stroke="#333"/>
+    <rect x="90" y="0" width="30" height="30" fill="#BDC3C7" stroke="#333"/>
+    <rect x="120" y="0" width="30" height="30" fill="#BDC3C7" stroke="#333"/>
+    <!-- row 1 -->
+    <rect x="0" y="30" width="30" height="30" fill="#BDC3C7" stroke="#333"/>
+    <rect x="30" y="30" width="30" height="30" fill="#BDC3C7" stroke="#333"/>
+    <rect x="60" y="30" width="30" height="30" fill="#BDC3C7" stroke="#333"/>
+    <rect x="90" y="30" width="30" height="30" fill="#BDC3C7" stroke="#333"/>
+    <rect x="120" y="30" width="30" height="30" fill="#F39C12" stroke="#333" stroke-width="3"/>
+    <!-- row 2 -->
+    <rect x="0" y="60" width="30" height="30" fill="#BDC3C7" stroke="#333"/>
+    <rect x="30" y="60" width="30" height="30" fill="#F39C12" stroke="#333" stroke-width="3"/>
+    <rect x="60" y="60" width="30" height="30" fill="#F39C12" stroke="#333" stroke-width="3"/>
+    <rect x="90" y="60" width="30" height="30" fill="#BDC3C7" stroke="#333"/>
+    <rect x="120" y="60" width="30" height="30" fill="#F39C12" stroke="#333" stroke-width="3"/>
+    <!-- row 3 -->
+    <rect x="0" y="90" width="30" height="30" fill="#BDC3C7" stroke="#333"/>
+    <rect x="30" y="90" width="30" height="30" fill="#27AE60" stroke="#333"/>
+    <rect x="60" y="90" width="30" height="30" fill="#27AE60" stroke="#333"/>
+    <rect x="90" y="90" width="30" height="30" fill="#BDC3C7" stroke="#333"/>
+    <rect x="120" y="90" width="30" height="30" fill="#27AE60" stroke="#333"/>
+  </g>
+
+  <!-- Island sizes -->
+  <rect x="240" y="145" width="200" height="130" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="255" y="168" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">Component sizes:</text>
+  <rect x="255" y="178" width="12" height="12" fill="#27AE60" stroke="#333"/>
+  <text x="275" y="188" font-family="Arial" font-size="10" fill="#555">Green island ’ area 3</text>
+  <rect x="255" y="198" width="12" height="12" fill="#F39C12" stroke="#333"/>
+  <text x="275" y="208" font-family="Arial" font-size="10" fill="#555">Orange island ’ area 4 (max)</text>
+  <text x="255" y="232" font-family="Arial" font-size="12" font-weight="bold" fill="#E67E22">Answer: 4</text>
+  <text x="255" y="252" font-family="Arial" font-size="10" fill="#888">Return max over all islands</text>
+  <text x="255" y="268" font-family="Arial" font-size="10" fill="#888">No land ’ return 0</text>
+
+  <!-- Approach 1 -->
+  <rect x="15" y="270" width="270" height="250" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="270" width="270" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="295" width="270" height="15" fill="#E74C3C"/>
+  <text x="150" y="295" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 1: DFS + visited[]</text>
+  <text x="150" y="308" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(M x N) time | O(M x N) space</text>
+  <text x="25" y="330" font-family="Arial" font-size="10" fill="#333">1. Scan every cell</text>
+  <text x="25" y="346" font-family="Arial" font-size="10" fill="#333">2. On unvisited land, DFS</text>
+  <text x="25" y="362" font-family="Arial" font-size="10" fill="#333">3. Return 1 + sum of 4 neighbors</text>
+  <text x="25" y="378" font-family="Arial" font-size="10" fill="#333">4. maxArea = max(maxArea, size)</text>
+  <text x="25" y="404" font-family="Arial" font-size="10" font-weight="bold" fill="#E74C3C">Count while traversing</text>
+  <text x="25" y="422" font-family="Arial" font-size="10" fill="#888">Grid stays read-only</text>
+  <text x="25" y="440" font-family="Arial" font-size="10" fill="#888">Same as Number of Islands + max</text>
+  <text x="25" y="458" font-family="Arial" font-size="10" fill="#888">Recursive area accumulation</text>
+
+  <line x1="285" y1="395" x2="325" y2="395" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="325,391 333,395 325,399" fill="#7F8C8D"/>
+
+  <!-- Approach 2 -->
+  <rect x="335" y="270" width="270" height="250" fill="#FFFFFF" stroke="#E67E22" stroke-width="2" rx="7"/>
+  <rect x="335" y="270" width="270" height="40" fill="#E67E22" rx="7"/>
+  <rect x="335" y="295" width="270" height="15" fill="#E67E22"/>
+  <text x="470" y="295" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 2: BFS + visited[]</text>
+  <text x="470" y="308" font-family="Arial" font-size="10" fill="#FAD7A0" text-anchor="middle">O(M x N) time | O(M x N) queue</text>
+  <text x="345" y="330" font-family="Arial" font-size="10" fill="#333">1. Enqueue start land cell</text>
+  <text x="345" y="346" font-family="Arial" font-size="10" fill="#333">2. area++ on each dequeue</text>
+  <text x="345" y="362" font-family="Arial" font-size="10" fill="#333">3. Enqueue unvisited land nbrs</text>
+  <text x="345" y="378" font-family="Arial" font-size="10" fill="#333">4. Update max after BFS ends</text>
+  <text x="345" y="404" font-family="Arial" font-size="10" font-weight="bold" fill="#E67E22">Iterative, no stack overflow</text>
+  <text x="345" y="422" font-family="Arial" font-size="10" fill="#888">Level-by-level expansion</text>
+  <text x="345" y="440" font-family="Arial" font-size="10" fill="#888">Good for wide islands</text>
+  <text x="345" y="458" font-family="Arial" font-size="10" fill="#888">Same max tracking logic</text>
+
+  <line x1="605" y1="395" x2="645" y2="395" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="645,391 653,395 645,399" fill="#7F8C8D"/>
+
+  <!-- Key insight -->
+  <rect x="655" y="270" width="230" height="250" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="655" y="270" width="230" height="40" fill="#27AE60" rx="7"/>
+  <rect x="655" y="295" width="230" height="15" fill="#27AE60"/>
+  <text x="770" y="295" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Key insight</text>
+  <text x="665" y="330" font-family="Arial" font-size="10" fill="#333">Number of Islands ’ count</text>
+  <text x="665" y="348" font-family="Arial" font-size="10" fill="#333">Largest Island ’ max size</text>
+  <text x="665" y="366" font-family="Arial" font-size="10" fill="#333">One extra variable: maxArea</text>
+  <text x="665" y="392" font-family="Arial" font-size="10" font-weight="bold" fill="#27AE60">Alternative:</text>
+  <text x="665" y="410" font-family="Arial" font-size="10" fill="#333">Sink 1 to 0 in-place (no visited)</text>
+  <text x="665" y="428" font-family="Arial" font-size="10" fill="#333">Follow-up: flip one 0 (LC 827)</text>
+  <text x="665" y="454" font-family="Arial" font-size="10" fill="#888">4-dir only</text>
+  <text x="665" y="472" font-family="Arial" font-size="10" fill="#888">Each cell visited once</text>
+
+  <!-- Legend -->
+  <rect x="480" y="145" width="14" height="14" fill="#27AE60" stroke="#333"/>
+  <text x="500" y="157" font-family="Arial" font-size="10" fill="#555">Land (1)</text>
+  <rect x="480" y="165" width="14" height="14" fill="#BDC3C7" stroke="#333"/>
+  <text x="500" y="177" font-family="Arial" font-size="10" fill="#555">Water (0)</text>
+  <rect x="480" y="185" width="14" height="14" fill="#F39C12" stroke="#333" stroke-width="2"/>
+  <text x="500" y="197" font-family="Arial" font-size="10" fill="#555">Largest island (area 4)</text>
+</svg>

@@ -1,0 +1,26 @@
+flowchart TB
+    START(["Array / String problem"])
+    Q{Contiguous subarray<br/>or substring?}
+
+    START --> Q
+
+    Q -->|YES| WIN["Sliding window family"]
+    WIN --> W1["Fixed window — max sum in k"]
+    WIN --> W2["Variable window + map — longest K distinct"]
+    WIN --> W3["Monotonic deque — window min/max"]
+
+    Q -->|NO| REST["Non-contiguous path"]
+    REST --> N1["Prefix sum + HashMap — sum = K"]
+    REST --> N2["Binary search / two pointers — sorted"]
+    REST --> N3["HashMap · stack · BS answer · greedy · DP · trie"]
+
+    style START fill:#dbeafe,stroke:#1d4ed8,color:#1e3a8a
+    style Q fill:#fff7ed,stroke:#ea580c,color:#7c2d12
+    style WIN fill:#f0fdf4,stroke:#16a34a,color:#14532d
+    style REST fill:#eef2ff,stroke:#4f46e5,color:#312e81
+    style W1 fill:#dcfce7,stroke:#16a34a,color:#14532d
+    style W2 fill:#dcfce7,stroke:#16a34a,color:#14532d
+    style W3 fill:#dcfce7,stroke:#16a34a,color:#14532d
+    style N1 fill:#e0e7ff,stroke:#4f46e5,color:#312e81
+    style N2 fill:#e0e7ff,stroke:#4f46e5,color:#312e81
+    style N3 fill:#e0e7ff,stroke:#4f46e5,color:#312e81

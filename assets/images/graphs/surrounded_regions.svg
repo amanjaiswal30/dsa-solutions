@@ -1,0 +1,118 @@
+<svg width="900" height="560" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="560" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Surrounded Regions</text>
+  <rect x="780" y="12" width="102" height="28" fill="#E67E22" rx="14"/>
+  <text x="831" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">Flip surrounded O to X. Border-connected O stays.</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Reverse thinking: mark safe O from border first, then capture the rest.</text>
+
+  <!-- Before grid -->
+  <text x="120" y="130" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Before</text>
+  <g transform="translate(55,140)">
+    <rect x="0" y="0" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="40" y="0" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="80" y="0" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="120" y="0" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="0" y="40" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="40" y="40" width="40" height="40" fill="#3498DB" stroke="#333"/>
+    <rect x="80" y="40" width="40" height="40" fill="#3498DB" stroke="#333"/>
+    <rect x="120" y="40" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="0" y="80" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="40" y="80" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="80" y="80" width="40" height="40" fill="#3498DB" stroke="#333"/>
+    <rect x="120" y="80" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="0" y="120" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="40" y="120" width="40" height="40" fill="#3498DB" stroke="#333" stroke-width="3"/>
+    <rect x="80" y="120" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="120" y="120" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <text x="80" y="175" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">O at (3,1) touches border</text>
+  </g>
+
+  <text x="230" y="210" font-family="Arial" font-size="24" fill="#3498DB">&#8594;</text>
+
+  <!-- After grid -->
+  <text x="350" y="130" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">After</text>
+  <g transform="translate(285,140)">
+    <rect x="0" y="0" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="40" y="0" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="80" y="0" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="120" y="0" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="0" y="40" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="40" y="40" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="80" y="40" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="120" y="40" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="0" y="80" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="40" y="80" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="80" y="80" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="120" y="80" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="0" y="120" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="40" y="120" width="40" height="40" fill="#3498DB" stroke="#333" stroke-width="3"/>
+    <rect x="80" y="120" width="40" height="40" fill="#34495E" stroke="#333"/>
+    <rect x="120" y="120" width="40" height="40" fill="#34495E" stroke="#333"/>
+  </g>
+
+  <!-- Legend -->
+  <rect x="480" y="140" width="14" height="14" fill="#34495E" stroke="#333"/>
+  <text x="500" y="152" font-family="Arial" font-size="10" fill="#555">X (captured / wall)</text>
+  <rect x="480" y="162" width="14" height="14" fill="#3498DB" stroke="#333"/>
+  <text x="500" y="174" font-family="Arial" font-size="10" fill="#555">O (safe / water)</text>
+  <rect x="480" y="184" width="14" height="14" fill="#27AE60" stroke="#333"/>
+  <text x="500" y="196" font-family="Arial" font-size="10" fill="#555">T (temp safe mark)</text>
+
+  <!-- Approach 1: DFS -->
+  <rect x="15" y="270" width="270" height="250" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="270" width="270" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="295" width="270" height="15" fill="#E74C3C"/>
+  <text x="150" y="295" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Border DFS</text>
+  <text x="150" y="308" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(M x N) time | O(M x N) stack</text>
+  <text x="25" y="330" font-family="Arial" font-size="10" fill="#333">1. DFS from every border O</text>
+  <text x="25" y="346" font-family="Arial" font-size="10" fill="#333">2. Mark reachable O as T</text>
+  <text x="25" y="362" font-family="Arial" font-size="10" fill="#333">3. Scan: O to X, T to O</text>
+  <text x="25" y="378" font-family="Arial" font-size="10" fill="#333">4. X cells unchanged</text>
+  <text x="25" y="404" font-family="Arial" font-size="10" font-weight="bold" fill="#E74C3C">Reverse the problem</text>
+  <text x="25" y="422" font-family="Arial" font-size="10" fill="#888">Find non-capturable first</text>
+  <text x="25" y="440" font-family="Arial" font-size="10" fill="#888">Same 4-dir traversal</text>
+  <text x="25" y="458" font-family="Arial" font-size="10" fill="#888">In-place with temp char T</text>
+
+  <!-- Arrow -->
+  <line x1="285" y1="395" x2="325" y2="395" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="325,391 333,395 325,399" fill="#7F8C8D"/>
+
+  <!-- Approach 2: BFS -->
+  <rect x="335" y="270" width="270" height="250" fill="#FFFFFF" stroke="#E67E22" stroke-width="2" rx="7"/>
+  <rect x="335" y="270" width="270" height="40" fill="#E67E22" rx="7"/>
+  <rect x="335" y="295" width="270" height="15" fill="#E67E22"/>
+  <text x="470" y="295" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Border BFS</text>
+  <text x="470" y="308" font-family="Arial" font-size="10" fill="#FAD7A0" text-anchor="middle">O(M x N) time | O(M x N) queue</text>
+  <text x="345" y="330" font-family="Arial" font-size="10" fill="#333">1. Enqueue all border O cells</text>
+  <text x="345" y="346" font-family="Arial" font-size="10" fill="#333">2. BFS; mark neighbors T</text>
+  <text x="345" y="362" font-family="Arial" font-size="10" fill="#333">3. Final scan flips O to X</text>
+  <text x="345" y="378" font-family="Arial" font-size="10" fill="#333">4. Restore T back to O</text>
+  <text x="345" y="404" font-family="Arial" font-size="10" font-weight="bold" fill="#E67E22">No recursion depth risk</text>
+  <text x="345" y="422" font-family="Arial" font-size="10" fill="#888">Preferred on large boards</text>
+  <text x="345" y="440" font-family="Arial" font-size="10" fill="#888">Seed from 4 edges</text>
+  <text x="345" y="458" font-family="Arial" font-size="10" fill="#888">Avoid duplicate enqueues</text>
+
+  <!-- Arrow -->
+  <line x1="605" y1="395" x2="645" y2="395" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="645,391 653,395 645,399" fill="#7F8C8D"/>
+
+  <!-- Key insight -->
+  <rect x="655" y="270" width="230" height="250" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="655" y="270" width="230" height="40" fill="#27AE60" rx="7"/>
+  <rect x="655" y="295" width="230" height="15" fill="#27AE60"/>
+  <text x="770" y="295" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Key insight</text>
+  <text x="665" y="330" font-family="Arial" font-size="10" fill="#333">Border O can never be captured</text>
+  <text x="665" y="348" font-family="Arial" font-size="10" fill="#333">Anything connected to border is safe</text>
+  <text x="665" y="366" font-family="Arial" font-size="10" fill="#333">Only interior O gets flipped</text>
+  <text x="665" y="392" font-family="Arial" font-size="10" font-weight="bold" fill="#27AE60">Related problems:</text>
+  <text x="665" y="410" font-family="Arial" font-size="10" fill="#333">Flood Fill - single seed</text>
+  <text x="665" y="428" font-family="Arial" font-size="10" fill="#333">Number of Islands - count comps</text>
+  <text x="665" y="454" font-family="Arial" font-size="10" fill="#888">4-dir only (no diagonals)</text>
+  <text x="665" y="472" font-family="Arial" font-size="10" fill="#888">Use T or visited[] for safe mark</text>
+</svg>

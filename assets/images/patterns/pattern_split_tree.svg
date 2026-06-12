@@ -1,0 +1,61 @@
+<svg width="900" height="480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="480" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="44" fill="#2C3E50" rx="10"/>
+  <rect y="34" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="28" font-family="Arial" font-size="15" font-weight="bold" fill="white">Split decision tree  contiguous vs non-contiguous</text>
+
+  <rect x="300" y="58" width="300" height="36" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2" rx="6"/>
+  <text x="450" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#1E3A8A" text-anchor="middle">Array / String problem</text>
+
+  <line x1="450" y1="94" x2="450" y2="115" stroke="#6B7280" stroke-width="2"/>
+  <polygon points="450,120 520,150 450,180" fill="#FFF7ED" stroke="#EA580C" stroke-width="2"/>
+  <text x="485" y="148" font-family="Arial" font-size="10" fill="#7C2D12" text-anchor="middle">Contiguous</text>
+  <text x="485" y="162" font-family="Arial" font-size="10" fill="#7C2D12" text-anchor="middle">subarray?</text>
+
+  <!-- YES branch left -->
+  <line x1="450" y1="150" x2="200" y2="150" stroke="#16A34A" stroke-width="2"/>
+  <text x="300" y="142" font-family="Arial" font-size="11" font-weight="bold" fill="#16A34A">YES</text>
+  <rect x="60" y="195" width="280" height="36" fill="#DCFCE7" stroke="#16A34A" stroke-width="2" rx="6"/>
+  <text x="200" y="218" font-family="Arial" font-size="11" font-weight="bold" fill="#14532D" text-anchor="middle">SLIDING WINDOW family</text>
+
+  <rect x="30" y="250" width="85" height="55" fill="#F0FDF4" stroke="#16A34A" rx="5"/>
+  <text x="72" y="272" font-family="Arial" font-size="9" font-weight="bold" fill="#14532D" text-anchor="middle">FIXED</text>
+  <text x="72" y="288" font-family="Arial" font-size="9" fill="#166534" text-anchor="middle">window k</text>
+
+  <rect x="125" y="250" width="95" height="55" fill="#F0FDF4" stroke="#16A34A" rx="5"/>
+  <text x="172" y="272" font-family="Arial" font-size="9" font-weight="bold" fill="#14532D" text-anchor="middle">VARIABLE</text>
+  <text x="172" y="288" font-family="Arial" font-size="9" fill="#166534" text-anchor="middle">window+map</text>
+
+  <rect x="230" y="250" width="95" height="55" fill="#F0FDF4" stroke="#16A34A" rx="5"/>
+  <text x="277" y="272" font-family="Arial" font-size="9" font-weight="bold" fill="#14532D" text-anchor="middle">DEQUE</text>
+  <text x="277" y="288" font-family="Arial" font-size="9" fill="#166534" text-anchor="middle">min/max</text>
+
+  <!-- NO branch right -->
+  <line x1="520" y1="150" x2="700" y2="150" stroke="#4F46E5" stroke-width="2"/>
+  <text x="600" y="142" font-family="Arial" font-size="11" font-weight="bold" fill="#4F46E5">NO</text>
+  <rect x="520" y="195" width="340" height="36" fill="#E0E7FF" stroke="#4F46E5" stroke-width="2" rx="6"/>
+  <text x="690" y="218" font-family="Arial" font-size="11" font-weight="bold" fill="#312E81" text-anchor="middle">NON-CONTIGUOUS path</text>
+
+  <rect x="500" y="250" width="100" height="45" fill="#EEF2FF" stroke="#4F46E5" rx="5"/>
+  <text x="550" y="278" font-family="Arial" font-size="9" fill="#312E81" text-anchor="middle">Prefix+Map</text>
+  <rect x="610" y="250" width="80" height="45" fill="#EEF2FF" stroke="#4F46E5" rx="5"/>
+  <text x="650" y="278" font-family="Arial" font-size="9" fill="#312E81" text-anchor="middle">BS / 2ptr</text>
+  <rect x="700" y="250" width="70" height="45" fill="#EEF2FF" stroke="#4F46E5" rx="5"/>
+  <text x="735" y="278" font-family="Arial" font-size="9" fill="#312E81" text-anchor="middle">Hash</text>
+  <rect x="780" y="250" width="70" height="45" fill="#EEF2FF" stroke="#4F46E5" rx="5"/>
+  <text x="815" y="278" font-family="Arial" font-size="9" fill="#312E81" text-anchor="middle">Stack</text>
+
+  <rect x="530" y="310" width="90" height="45" fill="#EEF2FF" stroke="#4F46E5" rx="5"/>
+  <text x="575" y="338" font-family="Arial" font-size="9" fill="#312E81" text-anchor="middle">BS answer</text>
+  <rect x="630" y="310" width="80" height="45" fill="#EEF2FF" stroke="#4F46E5" rx="5"/>
+  <text x="670" y="338" font-family="Arial" font-size="9" fill="#312E81" text-anchor="middle">Greedy</text>
+  <rect x="720" y="310" width="50" height="45" fill="#EEF2FF" stroke="#4F46E5" rx="5"/>
+  <text x="745" y="338" font-family="Arial" font-size="9" fill="#312E81" text-anchor="middle">DP</text>
+  <rect x="780" y="310" width="70" height="45" fill="#EEF2FF" stroke="#4F46E5" rx="5"/>
+  <text x="815" y="338" font-family="Arial" font-size="9" fill="#312E81" text-anchor="middle">Trie</text>
+
+  <rect x="20" y="380" width="860" height="80" fill="#FFFFFF" stroke="#DEE2E6" rx="6"/>
+  <text x="450" y="405" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Quick rule</text>
+  <text x="450" y="425" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">Contiguous segment with expand/shrink? ’ window family</text>
+  <text x="450" y="445" font-family="Arial" font-size="10" fill="#555" text-anchor="middle">Sum over ranges, sorted pairs, lookup, stack, feasibility, intervals, strings? ’ right branch</text>
+</svg>

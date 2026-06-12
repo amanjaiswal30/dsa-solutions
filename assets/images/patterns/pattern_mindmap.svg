@@ -1,0 +1,67 @@
+<svg width="900" height="520" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="520" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="48" fill="#2C3E50" rx="10"/>
+  <rect y="38" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="30" font-family="Arial" font-size="16" font-weight="bold" fill="white">Array &amp; String  pattern families (mindmap)</text>
+
+  <ellipse cx="450" cy="95" rx="95" ry="32" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
+  <text x="450" y="100" font-family="Arial" font-size="13" font-weight="bold" fill="#1E3A8A" text-anchor="middle">Array &amp; String</text>
+
+  <!-- Contiguous -->
+  <line x1="380" y1="120" x2="140" y2="175" stroke="#16A34A" stroke-width="2"/>
+  <rect x="30" y="160" width="220" height="36" fill="#DCFCE7" stroke="#16A34A" stroke-width="2" rx="6"/>
+  <text x="140" y="183" font-family="Arial" font-size="12" font-weight="bold" fill="#14532D" text-anchor="middle">Contiguous</text>
+  <rect x="20" y="210" width="100" height="50" fill="#F0FDF4" stroke="#16A34A" rx="5"/>
+  <text x="70" y="232" font-family="Arial" font-size="10" font-weight="bold" fill="#14532D" text-anchor="middle">Fixed window</text>
+  <text x="70" y="248" font-family="Arial" font-size="9" fill="#166534" text-anchor="middle">max sum in k</text>
+  <rect x="130" y="210" width="110" height="50" fill="#F0FDF4" stroke="#16A34A" rx="5"/>
+  <text x="185" y="232" font-family="Arial" font-size="10" font-weight="bold" fill="#14532D" text-anchor="middle">Variable window</text>
+  <text x="185" y="248" font-family="Arial" font-size="9" fill="#166534" text-anchor="middle">longest / min window</text>
+  <rect x="20" y="270" width="100" height="50" fill="#F0FDF4" stroke="#16A34A" rx="5"/>
+  <text x="70" y="292" font-family="Arial" font-size="10" font-weight="bold" fill="#14532D" text-anchor="middle">Deque window</text>
+  <text x="70" y="308" font-family="Arial" font-size="9" fill="#166534" text-anchor="middle">sliding min/max</text>
+
+  <!-- Sums -->
+  <line x1="430" y1="125" x2="450" y2="175" stroke="#4F46E5" stroke-width="2"/>
+  <rect x="340" y="160" width="220" height="36" fill="#E0E7FF" stroke="#4F46E5" stroke-width="2" rx="6"/>
+  <text x="450" y="183" font-family="Arial" font-size="12" font-weight="bold" fill="#312E81" text-anchor="middle">Sums &amp; ranges</text>
+  <rect x="350" y="210" width="90" height="45" fill="#EEF2FF" stroke="#4F46E5" rx="5"/>
+  <text x="395" y="237" font-family="Arial" font-size="10" fill="#312E81" text-anchor="middle">Prefix sum</text>
+  <rect x="450" y="210" width="100" height="45" fill="#EEF2FF" stroke="#4F46E5" rx="5"/>
+  <text x="500" y="230" font-family="Arial" font-size="10" fill="#312E81" text-anchor="middle">Prefix +</text>
+  <text x="500" y="245" font-family="Arial" font-size="10" fill="#312E81" text-anchor="middle">HashMap</text>
+
+  <!-- Search -->
+  <line x1="500" y1="120" x2="700" y2="175" stroke="#EA580C" stroke-width="2"/>
+  <rect x="600" y="160" width="220" height="36" fill="#FFF7ED" stroke="#EA580C" stroke-width="2" rx="6"/>
+  <text x="710" y="183" font-family="Arial" font-size="12" font-weight="bold" fill="#7C2D12" text-anchor="middle">Search &amp; order</text>
+  <rect x="590" y="210" width="100" height="55" fill="#FFFBEB" stroke="#EA580C" rx="5"/>
+  <text x="640" y="232" font-family="Arial" font-size="10" font-weight="bold" fill="#7C2D12" text-anchor="middle">Binary search</text>
+  <text x="640" y="248" font-family="Arial" font-size="9" fill="#9A3412" text-anchor="middle">exact · boundary</text>
+  <text x="640" y="260" font-family="Arial" font-size="9" fill="#9A3412" text-anchor="middle">on answer</text>
+  <rect x="700" y="210" width="120" height="55" fill="#FFFBEB" stroke="#EA580C" rx="5"/>
+  <text x="760" y="232" font-family="Arial" font-size="10" font-weight="bold" fill="#7C2D12" text-anchor="middle">Sort + 2ptr</text>
+  <text x="760" y="248" font-family="Arial" font-size="9" fill="#9A3412" text-anchor="middle">3Sum · intervals</text>
+
+  <!-- Structures -->
+  <line x1="400" y1="125" x2="200" y2="360" stroke="#6B7280" stroke-width="2"/>
+  <rect x="80" y="345" width="240" height="36" fill="#F3F4F6" stroke="#6B7280" stroke-width="2" rx="6"/>
+  <text x="200" y="368" font-family="Arial" font-size="12" font-weight="bold" fill="#374151" text-anchor="middle">Structures</text>
+  <rect x="60" y="395" width="90" height="40" fill="#FFFFFF" stroke="#6B7280" rx="5"/>
+  <text x="105" y="420" font-family="Arial" font-size="10" fill="#374151" text-anchor="middle">HashMap/Set</text>
+  <rect x="160" y="395" width="90" height="40" fill="#FFFFFF" stroke="#6B7280" rx="5"/>
+  <text x="205" y="420" font-family="Arial" font-size="10" fill="#374151" text-anchor="middle">Mono stack</text>
+  <rect x="260" y="395" width="80" height="40" fill="#FFFFFF" stroke="#6B7280" rx="5"/>
+  <text x="300" y="420" font-family="Arial" font-size="10" fill="#374151" text-anchor="middle">Kadane/DP</text>
+
+  <!-- Strings -->
+  <line x1="520" y1="125" x2="700" y2="360" stroke="#9333EA" stroke-width="2"/>
+  <rect x="600" y="345" width="220" height="36" fill="#F3E8FF" stroke="#9333EA" stroke-width="2" rx="6"/>
+  <text x="710" y="368" font-family="Arial" font-size="12" font-weight="bold" fill="#581C87" text-anchor="middle">Strings</text>
+  <rect x="610" y="395" width="90" height="40" fill="#FAF5FF" stroke="#9333EA" rx="5"/>
+  <text x="655" y="420" font-family="Arial" font-size="10" fill="#581C87" text-anchor="middle">Rolling hash</text>
+  <rect x="710" y="395" width="70" height="40" fill="#FAF5FF" stroke="#9333EA" rx="5"/>
+  <text x="745" y="420" font-family="Arial" font-size="10" fill="#581C87" text-anchor="middle">Trie</text>
+
+  <text x="450" y="500" font-family="Arial" font-size="10" fill="#6B7280" text-anchor="middle">Many problems combine patterns (e.g. window + HashMap, prefix + HashMap)</text>
+</svg>

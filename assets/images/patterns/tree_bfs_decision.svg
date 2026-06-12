@@ -1,0 +1,63 @@
+<svg width="900" height="540" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="540" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="48" fill="#2C3E50" rx="10"/>
+  <rect y="38" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="30" font-family="Arial" font-size="16" font-weight="bold" fill="white">Tree BFS  when to use levelSize loop?</text>
+
+  <!-- Two BFS shapes -->
+  <rect x="20" y="65" width="410" height="155" fill="#FFFFFF" stroke="#16A34A" stroke-width="2" rx="8"/>
+  <text x="225" y="88" font-family="Arial" font-size="12" font-weight="bold" fill="#14532D" text-anchor="middle">A · With level snapshot (USE levelSize)</text>
+  <rect x="35" y="100" width="380" height="105" fill="#F0FDF4" stroke="#16A34A" rx="4"/>
+  <text x="50" y="120" font-family="Courier New" font-size="10" fill="#14532D">while (!queue.isEmpty()) {</text>
+  <text x="50" y="138" font-family="Courier New" font-size="10" fill="#E74C3C" font-weight="bold">  int sz = queue.size();  // freeze level</text>
+  <text x="50" y="156" font-family="Courier New" font-size="10" fill="#14532D">  for (int i = 0; i &lt; sz; i++) {</text>
+  <text x="50" y="174" font-family="Courier New" font-size="10" fill="#14532D">    node = queue.poll(); /* enqueue children */</text>
+  <text x="50" y="192" font-family="Courier New" font-size="10" fill="#14532D">  }</text>
+  <text x="50" y="210" font-family="Courier New" font-size="10" fill="#14532D">}</text>
+
+  <rect x="470" y="65" width="410" height="155" fill="#FFFFFF" stroke="#6B7280" stroke-width="2" rx="8"/>
+  <text x="675" y="88" font-family="Arial" font-size="12" font-weight="bold" fill="#374151" text-anchor="middle">B · Simple queue (NO levelSize)</text>
+  <rect x="485" y="100" width="380" height="105" fill="#F9FAFB" stroke="#6B7280" rx="4"/>
+  <text x="500" y="120" font-family="Courier New" font-size="10" fill="#374151">while (!queue.isEmpty()) {</text>
+  <text x="500" y="145" font-family="Courier New" font-size="10" fill="#374151">  node = queue.poll();</text>
+  <text x="500" y="170" font-family="Courier New" font-size="10" fill="#374151">  /* process; enqueue children */</text>
+  <text x="500" y="195" font-family="Courier New" font-size="10" fill="#374151">}</text>
+
+  <!-- Decision flow -->
+  <rect x="300" y="240" width="300" height="36" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2" rx="18"/>
+  <text x="450" y="263" font-family="Arial" font-size="12" font-weight="bold" fill="#1E3A8A" text-anchor="middle">Tree + BFS problem</text>
+
+  <line x1="380" y1="276" x2="180" y2="320" stroke="#16A34A" stroke-width="2"/>
+  <polygon points="180,325 240,350 180,375" fill="#FFF7ED" stroke="#EA580C" stroke-width="2"/>
+  <text x="210" y="348" font-family="Arial" font-size="9" fill="#7C2D12" text-anchor="middle">Output/logic</text>
+  <text x="210" y="362" font-family="Arial" font-size="9" fill="#7C2D12" text-anchor="middle">needs depth d?</text>
+  <text x="250" y="335" font-family="Arial" font-size="10" fill="#16A34A">YES</text>
+
+  <rect x="20" y="390" width="260" height="120" fill="#DCFCE7" stroke="#16A34A" stroke-width="2" rx="8"/>
+  <text x="150" y="415" font-family="Arial" font-size="11" font-weight="bold" fill="#14532D" text-anchor="middle">Use levelSize loop</text>
+  <text x="35" y="435" font-family="Arial" font-size="9" fill="#166534">" Level order traversal (List&lt;List&gt;)</text>
+  <text x="35" y="452" font-family="Arial" font-size="9" fill="#166534">" Right/left view (last/first per level)</text>
+  <text x="35" y="469" font-family="Arial" font-size="9" fill="#166534">" Zigzag · avg per level · min depth</text>
+  <text x="35" y="486" font-family="Arial" font-size="9" fill="#166534">" Connect next pointers per level</text>
+  <text x="35" y="503" font-family="Arial" font-size="9" fill="#888">Each inner loop = one horizontal layer</text>
+
+  <line x1="520" y1="276" x2="720" y2="320" stroke="#6B7280" stroke-width="2"/>
+  <polygon points="720,325 780,350 720,375" fill="#FFF7ED" stroke="#EA580C" stroke-width="2"/>
+  <text x="750" y="348" font-family="Arial" font-size="9" fill="#7C2D12" text-anchor="middle">Only visit</text>
+  <text x="750" y="362" font-family="Arial" font-size="9" fill="#7C2D12" text-anchor="middle">every node?</text>
+  <text x="680" y="335" font-family="Arial" font-size="10" fill="#6B7280">NO</text>
+
+  <rect x="620" y="390" width="260" height="120" fill="#F3F4F6" stroke="#6B7280" stroke-width="2" rx="8"/>
+  <text x="750" y="415" font-family="Arial" font-size="11" font-weight="bold" fill="#374151" text-anchor="middle">Simple poll loop</text>
+  <text x="635" y="435" font-family="Arial" font-size="9" fill="#555">" Count/sum/find any target</text>
+  <text x="635" y="452" font-family="Arial" font-size="9" fill="#555">" Early exit (path exists)</text>
+  <text x="635" y="469" font-family="Arial" font-size="9" fill="#555">" Or store (node, depth) on queue</text>
+  <text x="635" y="486" font-family="Arial" font-size="9" fill="#555">" Grid multi-source: (r,c,dist)</text>
+  <text x="635" y="503" font-family="Arial" font-size="9" fill="#888">Level loop adds no value here</text>
+
+  <!-- Pitfall -->
+  <rect x="300" y="390" width="300" height="55" fill="#FEF2F2" stroke="#E74C3C" rx="6"/>
+  <text x="450" y="412" font-family="Arial" font-size="10" font-weight="bold" fill="#E74C3C" text-anchor="middle">Pitfall</text>
+  <text x="450" y="430" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">Never call queue.size() inside for without snapshot</text>
+  <text x="450" y="445" font-family="Arial" font-size="9" fill="#555" text-anchor="middle">Path sum / diameter ’ DFS, not level BFS</text>
+</svg>

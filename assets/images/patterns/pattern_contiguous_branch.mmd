@@ -1,0 +1,17 @@
+flowchart TD
+    START(["Contiguous subarray or substring"])
+    Q1{Fixed length k?}
+    Q2{Longest / shortest<br/>with count constraint?}
+
+    START --> Q1
+    Q1 -->|yes| P1["Fixed sliding window<br/>──────────────<br/>max sum in window of size k"]
+    Q1 -->|no| Q2
+    Q2 -->|yes| P2["Variable window + HashMap / int26<br/>──────────────<br/>longest substring K distinct<br/>minimum window substring"]
+    Q2 -->|no| P3["Monotonic deque<br/>──────────────<br/>sliding window maximum / minimum"]
+
+    style START fill:#dbeafe,stroke:#1d4ed8,color:#1e3a8a
+    style Q1 fill:#fff7ed,stroke:#ea580c,color:#7c2d12
+    style Q2 fill:#fff7ed,stroke:#ea580c,color:#7c2d12
+    style P1 fill:#dcfce7,stroke:#16a34a,color:#14532d
+    style P2 fill:#dcfce7,stroke:#16a34a,color:#14532d
+    style P3 fill:#dcfce7,stroke:#16a34a,color:#14532d

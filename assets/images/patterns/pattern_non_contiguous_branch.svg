@@ -1,0 +1,91 @@
+<svg width="900" height="680" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="680" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="44" fill="#4F46E5" rx="10"/>
+  <rect y="34" width="900" height="10" fill="#4F46E5"/>
+  <text x="20" y="28" font-family="Arial" font-size="15" font-weight="bold" fill="white">Non-contiguous branch  full array scan</text>
+
+  <rect x="275" y="58" width="350" height="40" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2" rx="20"/>
+  <text x="450" y="84" font-family="Arial" font-size="12" font-weight="bold" fill="#1E3A8A" text-anchor="middle">Not contiguous  scan full problem</text>
+
+  <!-- Column of decisions -->
+  <g font-family="Arial" font-size="10">
+    <polygon points="450,115 500,140 450,165" fill="#FFF7ED" stroke="#EA580C" stroke-width="1.5"/>
+    <text x="475" y="145" fill="#7C2D12" text-anchor="middle">Sum = K?</text>
+    <text x="560" y="145" fill="#16A34A">yes ’</text>
+    <rect x="600" y="120" width="160" height="40" fill="#E0E7FF" stroke="#4F46E5" rx="6"/>
+    <text x="680" y="145" fill="#312E81" text-anchor="middle" font-weight="bold">Prefix + HashMap</text>
+
+    <line x1="450" y1="165" x2="450" y2="180" stroke="#6B7280" stroke-width="1.5"/>
+    <polygon points="450,185 500,210 450,235" fill="#FFF7ED" stroke="#EA580C" stroke-width="1.5"/>
+    <text x="475" y="215" fill="#7C2D12" text-anchor="middle">Sorted?</text>
+    <text x="560" y="205" fill="#16A34A">yes ’</text>
+    <polygon points="620,195 660,215 620,235" fill="#FFF7ED" stroke="#EA580C" stroke-width="1.5"/>
+    <text x="640" y="220" fill="#7C2D12" text-anchor="middle" font-size="9">One target?</text>
+    <text x="700" y="205" fill="#16A34A">y’</text>
+    <rect x="730" y="188" width="140" height="30" fill="#E0E7FF" stroke="#4F46E5" rx="5"/>
+    <text x="800" y="208" fill="#312E81" text-anchor="middle" font-size="9">Binary search</text>
+    <text x="700" y="230" fill="#EA580C">n’</text>
+    <rect x="730" y="218" width="140" height="30" fill="#E0E7FF" stroke="#4F46E5" rx="5"/>
+    <text x="800" y="238" fill="#312E81" text-anchor="middle" font-size="9">Sort + 2 pointers</text>
+
+    <line x1="450" y1="235" x2="450" y2="250" stroke="#6B7280" stroke-width="1.5"/>
+    <polygon points="450,255 500,280 450,305" fill="#FFF7ED" stroke="#EA580C" stroke-width="1.5"/>
+    <text x="475" y="285" fill="#7C2D12" text-anchor="middle">Hash lookup?</text>
+    <text x="560" y="285" fill="#16A34A">yes ’</text>
+    <rect x="600" y="260" width="160" height="40" fill="#E0E7FF" stroke="#4F46E5" rx="6"/>
+    <text x="680" y="285" fill="#312E81" text-anchor="middle" font-weight="bold">HashMap / HashSet</text>
+
+    <line x1="450" y1="305" x2="450" y2="320" stroke="#6B7280" stroke-width="1.5"/>
+    <polygon points="450,325 500,350 450,375" fill="#FFF7ED" stroke="#EA580C" stroke-width="1.5"/>
+    <text x="475" y="355" fill="#7C2D12" text-anchor="middle">Next gr/sm?</text>
+    <text x="560" y="355" fill="#16A34A">yes ’</text>
+    <rect x="600" y="330" width="160" height="40" fill="#E0E7FF" stroke="#4F46E5" rx="6"/>
+    <text x="680" y="355" fill="#312E81" text-anchor="middle" font-weight="bold">Monotonic stack</text>
+
+    <line x1="450" y1="375" x2="450" y2="390" stroke="#6B7280" stroke-width="1.5"/>
+    <polygon points="450,395 500,420 450,445" fill="#FFF7ED" stroke="#EA580C" stroke-width="1.5"/>
+    <text x="475" y="425" fill="#7C2D12" text-anchor="middle">BS on answer?</text>
+    <text x="560" y="425" fill="#16A34A">yes ’</text>
+    <rect x="600" y="400" width="160" height="40" fill="#E0E7FF" stroke="#4F46E5" rx="6"/>
+    <text x="680" y="425" fill="#312E81" text-anchor="middle" font-weight="bold">BS on answer</text>
+
+    <line x1="450" y1="445" x2="450" y2="460" stroke="#6B7280" stroke-width="1.5"/>
+    <polygon points="450,465 500,490 450,515" fill="#FFF7ED" stroke="#EA580C" stroke-width="1.5"/>
+    <text x="475" y="495" fill="#7C2D12" text-anchor="middle">Intervals?</text>
+    <text x="560" y="495" fill="#16A34A">yes ’</text>
+    <rect x="600" y="470" width="160" height="40" fill="#E0E7FF" stroke="#4F46E5" rx="6"/>
+    <text x="680" y="495" fill="#312E81" text-anchor="middle" font-weight="bold">Sort + greedy</text>
+
+    <line x1="450" y1="515" x2="450" y2="530" stroke="#6B7280" stroke-width="1.5"/>
+    <polygon points="450,535 500,560 450,585" fill="#FFF7ED" stroke="#EA580C" stroke-width="1.5"/>
+    <text x="475" y="565" fill="#7C2D12" text-anchor="middle">Two strings?</text>
+    <text x="560" y="565" fill="#16A34A">yes ’</text>
+    <rect x="600" y="540" width="160" height="40" fill="#E0E7FF" stroke="#4F46E5" rx="6"/>
+    <text x="680" y="565" fill="#312E81" text-anchor="middle" font-weight="bold">DP 1D / 2D</text>
+
+    <line x1="450" y1="585" x2="450" y2="600" stroke="#6B7280" stroke-width="1.5"/>
+    <polygon points="450,605 500,630 450,655" fill="#FFF7ED" stroke="#EA580C" stroke-width="1.5"/>
+    <text x="475" y="630" fill="#7C2D12" text-anchor="middle">String / dict?</text>
+    <text x="560" y="620" fill="#16A34A">many cmp’</text>
+    <rect x="600" y="605" width="75" height="30" fill="#E0E7FF" stroke="#4F46E5" rx="5"/>
+    <text x="638" y="625" fill="#312E81" text-anchor="middle" font-size="9">Rolling hash</text>
+    <text x="560" y="645" fill="#EA580C">else’</text>
+    <rect x="600" y="638" width="75" height="30" fill="#E0E7FF" stroke="#4F46E5" rx="5"/>
+    <text x="638" y="658" fill="#312E81" text-anchor="middle" font-size="9">Trie</text>
+    <rect x="685" y="638" width="100" height="30" fill="#F3F4F6" stroke="#6B7280" rx="5"/>
+    <text x="735" y="658" fill="#374151" text-anchor="middle" font-size="9">Re-read constraints</text>
+  </g>
+
+  <!-- Left legend -->
+  <rect x="20" y="120" width="200" height="200" fill="#FFFFFF" stroke="#DEE2E6" rx="6"/>
+  <text x="120" y="142" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Read top ’ bottom</text>
+  <text x="30" y="165" font-family="Arial" font-size="10" fill="#555">Each diamond = question</text>
+  <text x="30" y="185" font-family="Arial" font-size="10" fill="#555">yes ’ pattern on right</text>
+  <text x="30" y="205" font-family="Arial" font-size="10" fill="#555">no ’ next question down</text>
+  <rect x="30" y="220" width="14" height="14" fill="#FFF7ED" stroke="#EA580C"/>
+  <text x="50" y="232" font-family="Arial" font-size="9" fill="#555">Decision</text>
+  <rect x="30" y="242" width="14" height="14" fill="#E0E7FF" stroke="#4F46E5"/>
+  <text x="50" y="254" font-family="Arial" font-size="9" fill="#555">Pattern</text>
+  <text x="30" y="280" font-family="Arial" font-size="9" fill="#888">Examples: Two Sum, 3Sum,</text>
+  <text x="30" y="295" font-family="Arial" font-size="9" fill="#888">subarray sum K, LCS, trie</text>
+</svg>

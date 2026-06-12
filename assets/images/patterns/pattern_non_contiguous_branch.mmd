@@ -1,0 +1,39 @@
+flowchart TD
+    START(["Not contiguous — full array scan"])
+
+    Q2{Range sum or<br/>subarray sum = K?}
+    Q3{Sorted or sort<br/>helps pairs?}
+    Q3a{One target /<br/>boundary?}
+    Q4{O1 lookup /<br/>complement?}
+    Q5{Next greater /<br/>smaller?}
+    Q6{Minimize max X<br/>feasible mid?}
+    Q7{Intervals /<br/>deadlines?}
+    Q8{Optimal on<br/>two strings?}
+    Q9{String pattern /<br/>dictionary?}
+    Q9a{Many substring<br/>compares?}
+
+    START --> Q2
+    Q2 -->|yes| P2["Prefix sum + HashMap"]
+    Q2 -->|no| Q3
+    Q3 -->|yes| Q3a
+    Q3a -->|yes| P3a["Binary search<br/>exact / first / last / rotated"]
+    Q3a -->|no| P3b["Sort + two pointers<br/>3Sum · container water · intervals"]
+    Q3 -->|no| Q4
+    Q4 -->|yes| P4["HashMap / HashSet<br/>Two Sum · frequency"]
+    Q4 -->|no| Q5
+    Q5 -->|yes| P5["Monotonic stack<br/>daily temps · histogram"]
+    Q5 -->|no| Q6
+    Q6 -->|yes| P6["Binary search on answer<br/>split array · ship packages"]
+    Q6 -->|no| Q7
+    Q7 -->|yes| P7["Sort + greedy sweep<br/>meeting rooms · arrows"]
+    Q7 -->|no| Q8
+    Q8 -->|yes| P8["DP 1D / 2D<br/>LCS · edit distance · word break"]
+    Q8 -->|no| Q9
+    Q9 -->|yes| Q9a
+    Q9a -->|yes| P9a["Rolling hash"]
+    Q9a -->|no| P9b["Trie"]
+    Q9 -->|no| P9c["Re-read constraints"]
+
+    style START fill:#dbeafe,stroke:#1d4ed8,color:#1e3a8a
+    style Q2,Q3,Q3a,Q4,Q5,Q6,Q7,Q8,Q9,Q9a fill:#fff7ed,stroke:#ea580c,color:#7c2d12
+    style P2,P3a,P3b,P4,P5,P6,P7,P8,P9a,P9b,P9c fill:#e0e7ff,stroke:#4f46e5,color:#312e81

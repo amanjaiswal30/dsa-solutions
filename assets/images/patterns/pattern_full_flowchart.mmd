@@ -1,0 +1,34 @@
+flowchart TD
+    START(["Array / String problem"])
+    Q0{Contiguous<br/>subarray or substring?}
+
+    START --> Q0
+
+    Q0 -->|YES| CQ1{Fixed k?}
+    CQ1 -->|yes| CP1["Fixed window"]
+    CQ1 -->|no| CQ2{Longest/shortest<br/>+ constraint?}
+    CQ2 -->|yes| CP2["Variable window + map"]
+    CQ2 -->|no| CP3["Monotonic deque"]
+
+    Q0 -->|NO| NQ1{Sum = K?}
+    NQ1 -->|yes| NP1["Prefix + HashMap"]
+    NQ1 -->|no| NQ2{Sorted?}
+    NQ2 -->|yes| NQ2a{One target?}
+    NQ2a -->|yes| NP2["Binary search"]
+    NQ2a -->|no| NP3["Sort + 2 pointers"]
+    NQ2 -->|no| NQ3{Hash lookup?}
+    NQ3 -->|yes| NP4["HashMap"]
+    NQ3 -->|no| NQ4{Next gr/sm?}
+    NQ4 -->|yes| NP5["Stack"]
+    NQ4 -->|no| NQ5{BS on answer?}
+    NQ5 -->|yes| NP6["BS answer"]
+    NQ5 -->|no| NQ6{Intervals?}
+    NQ6 -->|yes| NP7["Greedy"]
+    NQ6 -->|no| NQ7{Two strings?}
+    NQ7 -->|yes| NP8["DP"]
+    NQ7 -->|no| NP9["Hash / trie / re-read"]
+
+    style START fill:#dbeafe,stroke:#1d4ed8
+    style Q0,CQ1,CQ2,NQ1,NQ2,NQ2a,NQ3,NQ4,NQ5,NQ6,NQ7 fill:#fff7ed,stroke:#ea580c
+    style CP1,CP2,CP3 fill:#dcfce7,stroke:#16a34a
+    style NP1,NP2,NP3,NP4,NP5,NP6,NP7,NP8,NP9 fill:#e0e7ff,stroke:#4f46e5

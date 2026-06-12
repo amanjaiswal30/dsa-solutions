@@ -1,0 +1,58 @@
+<svg width="900" height="520" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="520" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="48" fill="#2C3E50" rx="10"/>
+  <rect y="38" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="30" font-family="Arial" font-size="16" font-weight="bold" fill="white">Binary search  which loop condition?</text>
+
+  <!-- Decision tree -->
+  <rect x="300" y="65" width="300" height="36" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2" rx="18"/>
+  <text x="450" y="88" font-family="Arial" font-size="12" font-weight="bold" fill="#1E3A8A" text-anchor="middle">Binary search problem</text>
+
+  <line x1="350" y1="101" x2="200" y2="140" stroke="#16A34A" stroke-width="2"/>
+  <polygon points="200,145 260,170 200,195" fill="#FFF7ED" stroke="#EA580C" stroke-width="2"/>
+  <text x="230" y="168" font-family="Arial" font-size="10" fill="#7C2D12" text-anchor="middle">Exact target</text>
+  <text x="230" y="182" font-family="Arial" font-size="10" fill="#7C2D12" text-anchor="middle">in sorted data?</text>
+  <text x="280" y="155" font-family="Arial" font-size="10" fill="#16A34A">YES</text>
+
+  <rect x="30" y="210" width="340" height="120" fill="#DCFCE7" stroke="#16A34A" stroke-width="2" rx="8"/>
+  <text x="200" y="235" font-family="Arial" font-size="13" font-weight="bold" fill="#14532D" text-anchor="middle">low &lt;= high (closed interval)</text>
+  <text x="200" y="258" font-family="Arial" font-size="10" fill="#166534" text-anchor="middle">if (nums[mid] == target) return mid</text>
+  <text x="200" y="276" font-family="Arial" font-size="10" fill="#166534" text-anchor="middle">else if (nums[mid] &lt; target) low = mid + 1</text>
+  <text x="200" y="294" font-family="Arial" font-size="10" fill="#166534" text-anchor="middle">else high = mid - 1</text>
+  <text x="200" y="318" font-family="Arial" font-size="9" fill="#888" text-anchor="middle">Classic BS · search in 2D matrix</text>
+
+  <line x1="550" y1="101" x2="700" y2="140" stroke="#EA580C" stroke-width="2"/>
+  <polygon points="700,145 760,170 700,195" fill="#FFF7ED" stroke="#EA580C" stroke-width="2"/>
+  <text x="730" y="162" font-family="Arial" font-size="10" fill="#7C2D12" text-anchor="middle">Boundary /</text>
+  <text x="730" y="176" font-family="Arial" font-size="10" fill="#7C2D12" text-anchor="middle">first/last /</text>
+  <text x="730" y="190" font-family="Arial" font-size="10" fill="#7C2D12" text-anchor="middle">BS on answer?</text>
+  <text x="660" y="155" font-family="Arial" font-size="10" fill="#EA580C">NO</text>
+
+  <rect x="530" y="210" width="340" height="120" fill="#FFF7ED" stroke="#EA580C" stroke-width="2" rx="8"/>
+  <text x="700" y="235" font-family="Arial" font-size="13" font-weight="bold" fill="#7C2D12" text-anchor="middle">low &lt; high (half-open)</text>
+  <text x="700" y="258" font-family="Arial" font-size="10" fill="#9A3412" text-anchor="middle">Min feasible: if (ok(mid)) high = mid else low = mid+1</text>
+  <text x="700" y="276" font-family="Arial" font-size="10" fill="#9A3412" text-anchor="middle">Max feasible: if (ok(mid)) low = mid else high = mid-1</text>
+  <text x="700" y="294" font-family="Arial" font-size="10" fill="#9A3412" text-anchor="middle">Rotated min: high = mid (keep mid as candidate)</text>
+  <text x="700" y="318" font-family="Arial" font-size="9" fill="#888" text-anchor="middle">Lower bound · rotated array · ship packages</text>
+
+  <!-- Sub-branches for BS on answer -->
+  <line x1="700" y1="195" x2="700" y2="205" stroke="#6B7280" stroke-width="1"/>
+  <rect x="560" y="350" width="140" height="70" fill="#FEF3C7" stroke="#D97706" rx="6"/>
+  <text x="630" y="372" font-family="Arial" font-size="10" font-weight="bold" fill="#92400E" text-anchor="middle">Minimize answer</text>
+  <text x="630" y="390" font-family="Arial" font-size="9" fill="#78350F" text-anchor="middle">high = mid when feasible</text>
+  <text x="630" y="405" font-family="Arial" font-size="9" fill="#78350F" text-anchor="middle">Koko · ship within D days</text>
+
+  <rect x="720" y="350" width="140" height="70" fill="#FEF3C7" stroke="#D97706" rx="6"/>
+  <text x="790" y="372" font-family="Arial" font-size="10" font-weight="bold" fill="#92400E" text-anchor="middle">Maximize answer</text>
+  <text x="790" y="390" font-family="Arial" font-size="9" fill="#78350F" text-anchor="middle">low = mid when feasible</text>
+  <text x="790" y="405" font-family="Arial" font-size="9" fill="#78350F" text-anchor="middle">Split array largest sum</text>
+
+  <!-- Mistakes box -->
+  <rect x="30" y="350" width="480" height="130" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="8"/>
+  <text x="270" y="375" font-family="Arial" font-size="12" font-weight="bold" fill="#E74C3C" text-anchor="middle">Common mistakes</text>
+  <text x="45" y="398" font-family="Arial" font-size="10" fill="#333">" Mix templates (low &lt; high but always high = mid - 1)</text>
+  <text x="45" y="418" font-family="Arial" font-size="10" fill="#333">" mid = (low+high)/2 when low = mid possible ’ use low + (high-low)/2</text>
+  <text x="45" y="438" font-family="Arial" font-size="10" fill="#333">" high = mid - 1 for lower-bound style ’ use high = mid</text>
+  <text x="45" y="458" font-family="Arial" font-size="10" fill="#333">" Off-by-one: insert position often needs high = n (not n-1)</text>
+  <text x="45" y="478" font-family="Arial" font-size="9" fill="#888">Pick one template per problem and keep mid/low/high updates consistent</text>
+</svg>
