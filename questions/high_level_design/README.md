@@ -11,3 +11,9 @@ Interactive mock-interview write-ups covering:
 5. URL shortener
 6. Notification system
 7. Chat system
+8. Web crawler
+9. Google Drive
+10. Search autocomplete
+11. Metrics monitoring (Grafana-like)
+12. Top-K trending videos
+13. Distributed job scheduler

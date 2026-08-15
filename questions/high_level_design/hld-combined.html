@@ -18,12 +18,13 @@ html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--t0);font-family:var(--mono);min-height:100vh;}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:46px;
+nav{position:sticky;top:0;z-index:100;
   background:rgba(7,9,15,.97);backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--b1);display:flex;align-items:center;padding:0 12px;overflow-x:auto;}
-nav::-webkit-scrollbar{display:none;}
+  border-bottom:1px solid var(--b1);display:flex;align-items:center;flex-wrap:wrap;
+  padding:0 12px;row-gap:0;}
 .logo{font-family:var(--sans);font-weight:800;font-size:13px;letter-spacing:2px;color:var(--y);
-  margin-right:10px;flex-shrink:0;padding-right:10px;border-right:1px solid var(--b1);}
+  margin-right:10px;flex-shrink:0;padding-right:10px;border-right:1px solid var(--b1);
+  height:46px;display:flex;align-items:center;}
 .ntab{padding:0 11px;height:46px;display:flex;align-items:center;gap:5px;cursor:pointer;
   font-size:10px;color:var(--t2);border-bottom:2px solid transparent;transition:.12s;flex-shrink:0;white-space:nowrap;}
 .ntab:hover{color:var(--t1);}
@@ -31,7 +32,6 @@ nav::-webkit-scrollbar{display:none;}
 .nn{color:var(--t3);font-size:9px;}
 
 /* LAYOUT */
-main{margin-top:46px;}
 .page{display:none;max-width:860px;margin:0 auto;padding:32px 20px 100px;}
 .page.on{display:block;}
 
@@ -166,11 +166,15 @@ pre.schema .cv{color:var(--y);}
   <div class="ntab" onclick="go(6)"><span class="nn">07</span>Chat System</div>
   <div class="ntab" onclick="go(7)"><span class="nn">08</span>Web Crawler</div>
   <div class="ntab" onclick="go(8)"><span class="nn">09</span>Google Drive</div>
+  <div class="ntab" onclick="go(9)"><span class="nn">10</span>Search Autocomplete</div>
+  <div class="ntab" onclick="go(10)"><span class="nn">11</span>Metrics Monitoring</div>
+  <div class="ntab" onclick="go(11)"><span class="nn">12</span>Top-K Trending</div>
+  <div class="ntab" onclick="go(12)"><span class="nn">13</span>Job Scheduler</div>
 </nav>
 <main>
 <div class="page on" id="p0">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 01 of 09</div>
+  <div class="th-eye">System Design Interview — Topic 01 of 13</div>
   <div class="th-title">Rate <em>Limiter</em></div>
   <div class="th-sub">Throttle API traffic per user/IP/token. Hot path — must add &lt;5ms. Must never block prod if limiter fails.</div>
   <div class="tags">
@@ -588,7 +592,7 @@ CREATE TABLE rl_rules (
 
 <div class="page" id="p1">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 02 of 09</div>
+  <div class="th-eye">System Design Interview — Topic 02 of 13</div>
   <div class="th-title">Consistent <em>Hashing</em></div>
   <div class="th-sub">Distribute data across nodes so adding or removing a node reshuffles ~1/N keys instead of ~100%.</div>
   <div class="tags"><span class="tag ty">Ring Hash</span><span class="tag tg">Virtual Nodes</span><span class="tag tb">TreeMap O(log N)</span><span class="tag tr">Preference List</span><span class="tag tp">W+R&gt;N Quorum</span></div>
@@ -686,7 +690,7 @@ Server owner = (e != null) ? e.getValue() : ring.firstEntry().getValue();</pre><
 
 <div class="page" id="p2">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 03 of 09</div>
+  <div class="th-eye">System Design Interview — Topic 03 of 13</div>
   <div class="th-title">Key-Value <em>Store</em></div>
   <div class="th-sub">Design a distributed KV store like DynamoDB. 10TB, 100K writes/sec, 500K reads/sec, tunable consistency.</div>
   <div class="tags"><span class="tag ty">LSM Tree</span><span class="tag tg">Bloom Filter</span><span class="tag tb">WAL + Memtable</span><span class="tag tr">CAP: AP</span><span class="tag tp">Gossip</span><span class="tag to">Hinted Handoff</span></div>
@@ -785,7 +789,7 @@ Server owner = (e != null) ? e.getValue() : ring.firstEntry().getValue();</pre><
 
 <div class="page" id="p3">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 04 of 09</div>
+  <div class="th-eye">System Design Interview — Topic 04 of 13</div>
   <div class="th-title">Unique ID <em>Generator</em></div>
   <div class="th-sub">64-bit time-sortable IDs at 4.2 billion/sec across a cluster. No per-request coordination. Pure local state.</div>
   <div class="tags"><span class="tag ty">Snowflake 64-bit</span><span class="tag tg">Time-sortable</span><span class="tag tb">ZooKeeper MachineID</span><span class="tag tr">Clock Skew</span><span class="tag tp">4.2B IDs/sec</span></div>
@@ -875,7 +879,7 @@ Use monotonic clock (CLOCK_MONOTONIC) for comparisons — it never goes backward
 
 <div class="page" id="p4">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 05 of 09</div>
+  <div class="th-eye">System Design Interview — Topic 05 of 13</div>
   <div class="th-title">URL <em>Shortener</em></div>
   <div class="th-sub">Design bit.ly — shorten URLs, redirect 1B times/day at 11K/sec, analytics async. 3-layer cache.</div>
   <div class="tags"><span class="tag ty">Base62 Snowflake</span><span class="tag tg">Redis Cache</span><span class="tag tb">Kafka Analytics</span><span class="tag tr">302+CDN</span><span class="tag tp">MySQL Sharded</span><span class="tag to">ClickHouse OLAP</span></div>
@@ -1007,7 +1011,7 @@ ORDER BY (short_code, clicked_at); <span class="cm">-- fast per-URL time-series 
 
 <div class="page" id="p5">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 06 of 09</div>
+  <div class="th-eye">System Design Interview — Topic 06 of 13</div>
   <div class="th-title">Notification <em>System</em></div>
   <div class="th-sub">50M notifications/day. Push + Email + SMS. Kafka fan-out, DLQ retry, celebrity problem, idempotency.</div>
   <div class="tags"><span class="tag ty">Kafka Fan-out</span><span class="tag tg">FCM + APNS</span><span class="tag tb">DLQ Retry</span><span class="tag tr">At-least-once</span><span class="tag tp">Celebrity Problem</span><span class="tag to">PostgreSQL State</span></div>
@@ -1129,7 +1133,7 @@ CREATE TABLE device_tokens (
 
 <div class="page" id="p6">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 07 of 09</div>
+  <div class="th-eye">System Design Interview — Topic 07 of 13</div>
   <div class="th-title">Chat <em>System</em></div>
   <div class="th-sub">Real-time 1-1 + group (500 members). 50M DAU, 100M msgs/day. Presence, typing, read receipts, offline sync.</div>
   <div class="tags"><span class="tag ty">WebSocket</span><span class="tag tg">Cassandra</span><span class="tag tb">Redis Pub/Sub</span><span class="tag tr">Heartbeat Presence</span><span class="tag tp">Cursor Sync</span><span class="tag to">PostgreSQL Metadata</span></div>
@@ -1274,7 +1278,7 @@ CREATE TABLE channel_members (
 
 <div class="page" id="p7">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 08 of 09</div>
+  <div class="th-eye">System Design Interview — Topic 08 of 13</div>
   <div class="th-title">Web <em>Crawler</em></div>
   <div class="th-sub">Crawl 1B pages. Distributed fetch, parse, dedup, index. Politeness per domain. Priority scheduling.</div>
   <div class="tags"><span class="tag ty">URL Frontier</span><span class="tag tg">Bloom Filter</span><span class="tag tb">SimHash Near-Dup</span><span class="tag tr">robots.txt Politeness</span><span class="tag tp">Cassandra</span><span class="tag to">Elasticsearch</span></div>
@@ -1399,7 +1403,7 @@ CREATE TABLE domain_politeness (
 
 <div class="page" id="p8">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 09 of 09</div>
+  <div class="th-eye">System Design Interview — Topic 09 of 13</div>
   <div class="th-title">Google <em>Drive</em></div>
   <div class="th-sub">Cloud file storage — upload, download, share, sync, collaborate. Chunked upload, dedup, versioning, real-time notifications.</div>
   <div class="tags"><span class="tag ty">Chunked Upload</span><span class="tag tg">Content Dedup SHA256</span><span class="tag tb">Delta Sync</span><span class="tag tr">Pre-signed URLs</span><span class="tag tp">MySQL Sharded</span><span class="tag to">Real-time Collab</span></div>
@@ -1550,7 +1554,401 @@ CREATE TABLE file_permissions (
     <li>Kafka file-events → Notification Svc → WS push</li>
     <li>Conflict: both versions kept, user notified</li></ul></div>
 </div>
-</div></main>
+</div>
+
+<!-- ═══════════════════════ TOPIC 10 — SEARCH AUTOCOMPLETE ═══════════════════════ -->
+
+<div class="page" id="p9">
+<div class="th">
+  <div class="th-eye">System Design Interview — Topic 10 of 13</div>
+  <div class="th-title">Search <em>Autocomplete</em></div>
+  <div class="th-sub">Typeahead suggestions as the user types. Sub-100ms p99. Trie + popularity ranking. Hot-prefix cache. Real-time query log updates.</div>
+  <div class="tags"><span class="tag ty">Prefix Trie</span><span class="tag tg">Top-K Heap</span><span class="tag tb">Redis Cache</span><span class="tag tr">&lt;100ms p99</span><span class="tag tp">Kafka Query Logs</span><span class="tag to">Fuzzy Optional</span></div>
+</div>
+
+<div class="phase-label"><div class="phase-pill">OPENING</div></div>
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
+<div class="bubble">Design a search autocomplete system — like Google typeahead or Amazon product suggestions.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">CLARIFICATION + FR/NFR + ESTIMATES</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Clarifying + Estimates</span></div>
+<div class="bubble">Questions: How many unique queries in the corpus? QPS of suggestion requests? Max suggestions returned? Personalization? Fuzzy / typo tolerance? Multi-language?
+<br><br><strong>Given: 100M unique queries, 50K suggestion QPS peak, top-10 results, popularity-ranked (no personalization in v1), exact prefix match first, fuzzy later:</strong>
+<ul>
+<li><strong>FR:</strong> Given prefix → return top-K most popular completions. Update rankings as queries are searched. Empty / too-short prefix → no call or empty list.</li>
+<li><strong>NFR:</strong> p99 &lt; 100ms (typeahead feels instant). High availability. Freshness: new viral queries appear within minutes, not days.</li>
+<li><strong>Estimates:</strong> Avg 5 keystrokes per search → ~250K prefix lookups/sec at peak if every keystroke hits backend. Must cache aggressively. Corpus 100M queries × ~50B ≈ 5GB raw — fits in memory per shard if sharded by first chars.</li>
+</ul></div></div></div>
+
+<div class="phase-label"><div class="phase-pill">API DESIGN</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">API Design</span></div>
+<div class="bubble">Key endpoints:
+<ul>
+<li><code>GET /v1/suggest?q={prefix}&amp;limit=10</code> → <code>{suggestions:[{text, score}]}</code></li>
+<li><code>POST /v1/query-log</code> — body: <code>{query, user_id?, ts}</code> (async from search box submit — feeds ranking)</li>
+<li>Client rule: only call after ≥2 chars + 30–50ms debounce.</li>
+</ul></div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 1</div><div class="phase-title-text">In-memory Trie — what breaks at scale</div></div>
+<div class="diag-block" id="d-ac1"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="ac1"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Naive Trie</span></div>
+<div class="bubble">Classic solution: a <strong>prefix trie</strong>. Each node has children map + a min-heap / sorted list of top-K completions at that node (precomputed). Lookup: walk prefix → return node's top-K. O(|prefix|) time.
+<br><br>Problems at 100M queries + 250K QPS:
+<ul>
+<li>Single-machine trie won't fit + SPOF</li>
+<li>Every keystroke hits origin — too much load</li>
+<li>Updating heaps on every search is write-heavy</li>
+</ul></div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Ranking</span></div>
+<div class="bubble">How do you rank suggestions? Frequency alone? What about recency for trending queries?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Scoring</span></div>
+<div class="bubble">Score ≈ <code>α · log(1 + count_7d) + β · recency_boost</code>. Count from query logs aggregated over a sliding window (e.g. 7 days) so old stale queries decay. Recency boost for sudden spikes (same idea as trending). Store score with each completion leaf; precompute top-K at each trie node offline so the online path never sorts millions of leaves.</div>
+<div class="why-box"><div class="why-label">Why precompute top-K on nodes (not DFS at query time)</div>At query time, walking a popular prefix like "how" could touch millions of leaves. Sorting them online blows the 100ms budget. Instead, batch jobs recompute each node's top-10 from children periodically. Online path: walk |prefix| nodes → return cached list. Constant work.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 2</div><div class="phase-title-text">Sharded trie service + hot-prefix cache</div></div>
+<div class="diag-block" id="d-ac2"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="ac2"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Distributed Design</span></div>
+<div class="bubble"><strong>Shard by first 1–2 characters</strong> of the normalized prefix (after lowercasing / unicode NFKC). "ha…" always hits the same shard. Trie lives fully in RAM per shard.
+<br><br><strong>Hot-prefix Redis cache:</strong> Key <code>sug:{prefix}</code> → JSON top-10, TTL 5–15 min. Top prefixes ("a", "the", "how t") absorb most QPS at CDN/Redis — origin trie rarely touched for short prefixes.
+<br><br><strong>Update path (async):</strong> Search submits → Kafka <code>query-logs</code> → Flink/Spark aggregates counts → publish score deltas → trie builders rebuild node heaps → atomically swap trie snapshot (or reload shard). Never mutate online path synchronously.
+</div>
+<div class="schema-box"><div class="schema-hdr">🗄 <span>Cassandra / MySQL — query_stats (offline)</span></div>
+<pre class="schema">CREATE TABLE query_stats (
+  query_norm     TEXT,           <span class="cm">-- normalized query string</span>
+  window_start   DATE,           <span class="cm">-- day bucket</span>
+  search_count   BIGINT,
+  score          DOUBLE,         <span class="cm">-- computed ranking score</span>
+  PRIMARY KEY (query_norm, window_start)
+);
+<span class="cm">-- Online: Redis sug:{prefix} → [{text, score}, ...]</span>
+<span class="cm">-- Trie shard: in-memory snapshot loaded from S3 artifact</span></pre></div>
+<div class="why-box green"><div class="why-label">Why shard by prefix, not by hash(query)</div>Autocomplete lookup key is the <em>prefix</em>, not the full query. Hashing full queries would scatter children of the same prefix across shards → fan-out every keystroke. Prefix sharding keeps the entire subtree local.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Typo tolerance</span></div>
+<div class="bubble">User types "amazn". How do you still suggest "amazon"?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Fuzzy Layer</span></div>
+<div class="bubble">v1: exact prefix only. v2: if exact results &lt; K, run a fuzzy pass — BK-tree / edit-distance ≤1–2 on the last token, or use Elasticsearch completion suggester / n-gram index for misspellings. Cap fuzzy work (small candidate set) so p99 stays under budget. Never run expensive fuzzy on every keystroke for short prefixes.</div></div></div>
+
+<div class="diag-block final-diag" id="d-ac3"><div class="diag-label">Final Architecture</div><div class="diag-svg-inner" data-fn="ac3"></div></div>
+<div class="sec-div"></div>
+<div class="qr-grid">
+  <div class="qr-card"><div class="qr-title">⚡ Online Path</div><ul>
+    <li>Debounce client ≥2 chars</li>
+    <li>CDN / Redis <code>sug:{prefix}</code></li>
+    <li>Miss → trie shard by first chars</li>
+    <li>Return precomputed top-K</li>
+    <li>p99 target &lt;100ms</li></ul></div>
+  <div class="qr-card"><div class="qr-title">🧠 Data Structures</div><ul>
+    <li>Trie with top-K at each node</li>
+    <li>Score: freq × recency window</li>
+    <li>Offline rebuild → atomic swap</li>
+    <li>Fuzzy: edit-distance fallback</li>
+    <li>Normalize: lower + NFKC</li></ul></div>
+  <div class="qr-card"><div class="qr-title">📨 Updates</div><ul>
+    <li>Kafka query-logs on submit</li>
+    <li>Aggregate sliding window counts</li>
+    <li>Publish trie snapshot to S3</li>
+    <li>Shards hot-reload snapshot</li>
+    <li>Viral queries: minutes, not days</li></ul></div>
+</div>
+</div>
+
+<!-- ═══════════════════════ TOPIC 11 — METRICS MONITORING ═══════════════════════ -->
+
+<div class="page" id="p10">
+<div class="th">
+  <div class="th-eye">System Design Interview — Topic 11 of 13</div>
+  <div class="th-title">Metrics <em>Monitoring</em></div>
+  <div class="th-sub">Grafana-like metrics aggregation &amp; analytics. Collect, store, query, alert on time-series at massive cardinality. Pull + push paths.</div>
+  <div class="tags"><span class="tag ty">Time-Series DB</span><span class="tag tg">PromQL-style</span><span class="tag tb">Cardinality</span><span class="tag tr">Alertmanager</span><span class="tag tp">Rollups</span><span class="tag to">Pushgateway</span></div>
+</div>
+
+<div class="phase-label"><div class="phase-pill">OPENING</div></div>
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
+<div class="bubble">Design a metrics aggregation and visualization system — think Prometheus + Grafana. Collect metrics from services, store them, query them, alert on them.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">CLARIFICATION + FR/NFR + ESTIMATES</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Clarifying + Estimates</span></div>
+<div class="bubble">Questions: Pull or push? Metric types (counter/gauge/histogram)? Retention? Cardinality expectations? Multi-tenant? Alerting required?
+<br><br><strong>Given: 10K services × 200 metrics × 10 label combos ≈ 20M active series, 15s scrape, 30-day raw + 1yr rollups, dashboards + alerts:</strong>
+<ul>
+<li><strong>FR:</strong> Ingest metrics, PromQL-like range/instant queries, Grafana-style dashboards, threshold/anomaly alerts, multi-tenant isolation optional.</li>
+<li><strong>NFR:</strong> Ingest durable; query p95 &lt;1s for typical dashboard panels; alerts fire within 1–2 scrape intervals; handle cardinality spikes without melting the cluster.</li>
+<li><strong>Estimates:</strong> 20M series × (60/15)=4 scrapes/min → ~80M samples/min ≈ 1.3M samples/sec. At ~16B/sample compressed → tens of MB/s write — needs a purpose-built TSDB, not Postgres rows.</li>
+</ul></div></div></div>
+
+<div class="phase-label"><div class="phase-pill">API / DATA MODEL</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Data Model</span></div>
+<div class="bubble">A metric sample is: <code>{name, labels{}, value, timestamp}</code>. Types: counter, gauge, histogram (bucketed), summary.
+<ul>
+<li><code>GET /api/v1/query?query=...</code> — instant vector</li>
+<li><code>GET /api/v1/query_range?query=...&amp;start&amp;end&amp;step</code> — range for Grafana panels</li>
+<li><code>POST /api/v1/write</code> — remote-write (push path for short-lived jobs)</li>
+<li>Alert rules: YAML / API → Alertmanager-style routing</li>
+</ul>
+<div class="schema-box"><div class="schema-hdr">📊 <span>Logical series identity</span></div>
+<pre class="schema">series_id = hash(metric_name + sorted(labels))
+<span class="cm">-- e.g. http_requests_total{svc="checkout",code="500"}</span>
+<span class="cm">-- High cardinality killer: user_id / request_id as labels</span></pre></div>
+</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 1</div><div class="phase-title-text">Single Prometheus — what breaks</div></div>
+<div class="diag-block" id="d-met1"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="met1"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Single Box Limits</span></div>
+<div class="bubble">One Prometheus scrapes all targets, stores local TSDB, Grafana queries it. Works for small clusters. Breaks when: series count exceeds RAM for head block, scrape fan-out too large, single retention disk fills, HA (Prometheus is pull + local disk — not HA by default).</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 2</div><div class="phase-title-text">Agent → Kafka → TSDB + Query + Alert</div></div>
+<div class="diag-block" id="d-met2"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="met2"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Scaled Pipeline</span></div>
+<div class="bubble"><strong>Collection:</strong> Sidecar / node agent (or Prometheus federation). Prefer <em>pull</em> for long-running services (service discovery + scrape); <em>push</em> gateway for batch/cron jobs.
+<br><br><strong>Ingest buffer:</strong> Kafka topic <code>metrics-raw</code>, partition by <code>series_id</code> (or tenant). Decouples collectors from storage; absorbs spikes.
+<br><br><strong>TSDB writers:</strong> Consume Kafka → write to sharded time-series store (VictoriaMetrics / Cortex / Mimir / ClickHouse for analytics-heavy). Shard by hash(series_id).
+<br><br><strong>Rollups:</strong> Raw 15s for 7–30d; 5m / 1h aggregates for longer retention. Compactor job downsamples.
+<br><br><strong>Query tier:</strong> Stateless queriers fan-out to relevant shards, merge/downsample for step. Grafana talks only to queriers.
+<br><br><strong>Alerting:</strong> Ruler evaluates recording/alert rules on a schedule → Alertmanager → PagerDuty/Slack. Deduplicate by fingerprint.
+</div>
+<div class="why-box"><div class="why-label">Why Kafka in front of the TSDB</div>Direct write from 10K agents creates thundering herds and backpressure nightmares. Kafka gives durable buffer, replay on TSDB outage, and natural sharding. Tradeoff: +seconds of ingest lag — fine for dashboards/alerts (scrape already 15s).</div>
+<div class="why-box red" style="margin-top:8px"><div class="why-label">Cardinality is the #1 failure mode</div>One bad label (<code>user_id</code>) turns 200 metrics into billions of series → OOM. Mitigations: label allowlists, per-tenant series limits, drop/relabel rules at agent, hot-series detection + quarantine.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Query</span></div>
+<div class="bubble">Grafana asks for rate(http_requests_total[5m]) over 6 hours. How does the query path work?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Query Path</span></div>
+<div class="bubble">Querier parses PromQL → identifies matching series via inverted label index → fans out range reads to shards owning those series → merges samples → computes <code>rate</code> over 5m windows at each step → returns matrix to Grafana. Cache recent dashboard queries in Redis (same panel refreshes every 30s). Prefer recording rules for expensive repeated expressions.</div></div></div>
+
+<div class="diag-block final-diag" id="d-met3"><div class="diag-label">Final Architecture</div><div class="diag-svg-inner" data-fn="met3"></div></div>
+<div class="sec-div"></div>
+<div class="qr-grid">
+  <div class="qr-card"><div class="qr-title">📥 Ingest</div><ul>
+    <li>Pull scrape + push gateway</li>
+    <li>Kafka metrics-raw buffer</li>
+    <li>Shard writers by series_id</li>
+    <li>Cardinality guards at agent</li>
+    <li>~1.3M samples/sec design point</li></ul></div>
+  <div class="qr-card"><div class="qr-title">🗄 Storage</div><ul>
+    <li>TSDB: Victoria/Mimir/CH</li>
+    <li>Raw short TTL + rollups</li>
+    <li>Label inverted index</li>
+    <li>Compactor downsamples</li>
+    <li>Per-tenant isolation optional</li></ul></div>
+  <div class="qr-card"><div class="qr-title">📈 Query + Alert</div><ul>
+    <li>Stateless queriers + Grafana</li>
+    <li>PromQL range/instant</li>
+    <li>Recording rules for heavy expr</li>
+    <li>Ruler → Alertmanager</li>
+    <li>Dedup by alert fingerprint</li></ul></div>
+</div>
+</div>
+
+<!-- ═══════════════════════ TOPIC 12 — TOP-K TRENDING ═══════════════════════ -->
+
+<div class="page" id="p11">
+<div class="th">
+  <div class="th-eye">System Design Interview — Topic 12 of 13</div>
+  <div class="th-title">Top-K <em>Trending</em></div>
+  <div class="th-sub">Trending videos like YouTube/TikTok. Sliding-window velocity, not all-time views. Approximate counts at insane write QPS. Geo + category facets.</div>
+  <div class="tags"><span class="tag ty">Sliding Window</span><span class="tag tg">Count-Min Sketch</span><span class="tag tb">Redis ZSET</span><span class="tag tr">Kafka Streams</span><span class="tag tp">Decay Score</span><span class="tag to">Geo Shards</span></div>
+</div>
+
+<div class="phase-label"><div class="phase-pill">OPENING</div></div>
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
+<div class="bubble">Design a top-K trending videos system. Millions of views per second. Users open the app and see "Trending now".</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">CLARIFICATION + FR/NFR + ESTIMATES</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Clarifying + Estimates</span></div>
+<div class="bubble">Questions: Trending window (1h / 24h)? Global vs per-country / category? Exact or approximate OK? How fresh must the list be? Fraud / view-bot filtering?
+<br><br><strong>Given: 24h window with 1h "hot" boost, top-100 global + per-geo, approximate OK (±5%), refresh every 1–5 min, 5M view events/sec peak:</strong>
+<ul>
+<li><strong>FR:</strong> Ingest view/like/share events; compute trending score; serve top-K lists (global, geo, category); exclude spam.</li>
+<li><strong>NFR:</strong> Ingest at millions/sec; read path cheap (precomputed lists); staleness ≤5 min; approximate counts fine.</li>
+<li><strong>Estimate:</strong> Exact per-video counters in one Redis = hot-key melt. Need sharding + sketches + hierarchical aggregation.</li>
+</ul></div></div></div>
+
+<div class="phase-label"><div class="phase-pill">SCORING MODEL</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">What is "trending"?</span></div>
+<div class="bubble"><strong>Trending ≠ most viewed all-time.</strong> It's <em>velocity</em> in a recent window, often with time decay:
+<pre class="schema">score = (views_1h × w1 + views_24h × w2 + likes × w3)
+        / (age_hours + 2)^γ</pre>
+Age dampens older viral spikes so new risers can surface. Interview: state the formula, then implement approximate counts behind it.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 1</div><div class="phase-title-text">Naive counter — what breaks</div></div>
+<div class="diag-block" id="d-trend1"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="trend1"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Naive</span></div>
+<div class="bubble"><code>INCR video:{id}:views</code> + periodic <code>ZADD trending score id</code>. Breaks: 5M INCR/sec on hot videos (celebrity upload) → single Redis key hotspot; exact global sort of billions of videos every minute is impossible.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 2</div><div class="phase-title-text">Stream → shard local top-K → merge</div></div>
+<div class="diag-block" id="d-trend2"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="trend2"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Distributed Top-K</span></div>
+<div class="bubble">
+<ul>
+<li><strong>Kafka</strong> <code>view-events</code>, partition by <code>video_id</code> (or geo+video).</li>
+<li><strong>Stream processors</strong> maintain per-shard sliding-window counts (tumbling 1-min buckets in RocksDB / Redis). Optionally <strong>Count-Min Sketch</strong> for heavy-hitter detection when cardinality is huge.</li>
+<li>Each shard keeps a local <strong>top-K' (K'=500)</strong> ZSET for its partition.</li>
+<li><strong>Aggregator</strong> every 1 min: pull shard top-K' → merge → compute global top-100 → write to Redis <code>trending:global</code> + <code>trending:{country}</code>.</li>
+<li><strong>Read path:</strong> API / CDN only reads the precomputed ZSET — O(K), never touches raw events.</li>
+</ul>
+<div class="schema-box"><div class="schema-hdr">⚡ <span>Redis serving keys</span></div>
+<pre class="schema">trending:global          ZSET  score → video_id   <span class="cm">-- top 100</span>
+trending:geo:US          ZSET  score → video_id
+trending:cat:music       ZSET  score → video_id
+video:meta:{id}          HASH  title, thumb, creator   <span class="cm">-- hydrate</span>
+<span class="cm">-- Bucket counts (stream state): views:{video}:{yyyyMMddHH}</span></pre></div>
+</div>
+<div class="why-box"><div class="why-label">Why local top-K' then merge (not global sort)</div>True global top-100 must appear in <em>some</em> shard's local top-K' if K' is large enough relative to shard count (standard distributed top-K). Merging 50 shards × 500 = 25K candidates is cheap. Sorting all videos on earth is not.</div>
+<div class="why-box blue" style="margin-top:8px"><div class="why-label">Hot video write path</div>Partition by video_id still concentrates a mega-viral video on one partition. Mitigate: sub-shard hot keys (video_id + bucket), or sample views (1-in-N) for scoring — trending doesn't need exact counts.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Fraud</span></div>
+<div class="bubble">Bots inflate views. How do you protect trending?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Abuse Controls</span></div>
+<div class="bubble">Dedupe by (user_id or device_id, video_id) in a short window (HyperLogLog / Bloom + Redis SET with TTL). Rate-limit anomalous IPs. Down-weight views lacking watch-time signal. Shadow-ban suspicious creators from trending. Keep fraud pipeline async so ingest stays fast — better a slightly dirty score than blocking the event path.</div></div></div>
+
+<div class="diag-block final-diag" id="d-trend3"><div class="diag-label">Final Architecture</div><div class="diag-svg-inner" data-fn="trend3"></div></div>
+<div class="sec-div"></div>
+<div class="qr-grid">
+  <div class="qr-card"><div class="qr-title">📨 Ingest</div><ul>
+    <li>Kafka view-events @ video_id</li>
+    <li>Optional sampling for mega-hot</li>
+    <li>Async fraud / dedupe</li>
+    <li>1-min tumbling buckets</li>
+    <li>CMS for heavy hitters</li></ul></div>
+  <div class="qr-card"><div class="qr-title">🧮 Compute</div><ul>
+    <li>Per-shard local top-K'</li>
+    <li>Periodic merge → global K</li>
+    <li>score = velocity / age^γ</li>
+    <li>Geo + category facets</li>
+    <li>Staleness 1–5 min OK</li></ul></div>
+  <div class="qr-card"><div class="qr-title">📖 Serve</div><ul>
+    <li>Redis ZSET precomputed</li>
+    <li>CDN cache top lists</li>
+    <li>Hydrate video meta separately</li>
+    <li>Never query raw stream on read</li>
+    <li>Approx ±5% acceptable</li></ul></div>
+</div>
+</div>
+
+<!-- ═══════════════════════ TOPIC 13 — DISTRIBUTED JOB SCHEDULER ═══════════════════════ -->
+
+<div class="page" id="p12">
+<div class="th">
+  <div class="th-eye">System Design Interview — Topic 13 of 13</div>
+  <div class="th-title">Job <em>Scheduler</em></div>
+  <div class="th-sub">Distributed cron / job scheduler. Schedule, enqueue, lease to workers, retry with backoff, DLQ. Exactly-once execution where it matters.</div>
+  <div class="tags"><span class="tag ty">Cron Schedules</span><span class="tag tg">Lease / Lock</span><span class="tag tb">At-least-once</span><span class="tag tr">DLQ</span><span class="tag tp">Priority Queues</span><span class="tag to">Idempotent Workers</span></div>
+</div>
+
+<div class="phase-label"><div class="phase-pill">OPENING</div></div>
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
+<div class="bubble">Design a distributed job scheduler — like cron at scale, or Airflow/Celery/Sidekiq for millions of jobs.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">CLARIFICATION + FR/NFR</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Clarifying</span></div>
+<div class="bubble">Questions: One-shot vs recurring (cron)? Latency from schedule→start? Throughput? Priorities? Exactly-once required? Multi-tenant quotas? Job payload size?
+<br><br><strong>Given: recurring + one-shot, millions of schedules, start within a few seconds of due time, at-least-once with idempotent handlers, priorities, retries + DLQ:</strong>
+<ul>
+<li><strong>FR:</strong> Create/update/delete schedules; enqueue due jobs; workers claim &amp; execute; retry/backoff; cancel; observe status.</li>
+<li><strong>NFR:</strong> HA (no single cron leader SPOF for execution), horizontal workers, no lost jobs, bounded double-execution, fair multi-tenant optional.</li>
+</ul></div></div></div>
+
+<div class="phase-label"><div class="phase-pill">API DESIGN</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">API</span></div>
+<div class="bubble">
+<ul>
+<li><code>POST /schedules</code> — {cron|run_at, payload, queue, max_attempts, timeout}</li>
+<li><code>POST /jobs</code> — one-shot enqueue</li>
+<li><code>GET /jobs/{id}</code> — status (PENDING|RUNNING|SUCCEEDED|FAILED|DLQ)</li>
+<li><code>POST /jobs/{id}/cancel</code></li>
+<li>Workers: long-poll / gRPC <code>Claim(queue, lease_sec)</code> → <code>Complete</code> / <code>Fail</code></li>
+</ul></div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 1</div><div class="phase-title-text">Single cron + DB — what breaks</div></div>
+<div class="diag-block" id="d-job1"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="job1"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Naive</span></div>
+<div class="bubble">One process: every minute <code>SELECT * FROM schedules WHERE next_run &lt;= now()</code>, insert jobs, workers poll. Breaks: leader crash misses a minute; table scan at millions of schedules; thundering herd on the minute boundary; no lease → two workers run same job.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 2</div><div class="phase-title-text">Scheduler shard + leased work queue</div></div>
+<div class="diag-block" id="d-job2"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="job2"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Core Design</span></div>
+<div class="bubble"><strong>Schedules DB</strong> (Postgres), sharded by <code>schedule_id</code>. Each shard has a <strong>scheduler worker</strong> (leader per shard via lease/ZooKeeper/Postgres advisory lock) that only scans <em>its</em> partition: <code>WHERE shard=X AND next_run_at &lt;= now() ORDER BY next_run_at LIMIT N FOR UPDATE SKIP LOCKED</code>.
+<br><br><strong>Enqueue:</strong> Insert immutable job row + push to queue (Redis Streams / SQS / Kafka). Advance <code>next_run_at</code> using cron expression (idempotent tick: store <code>last_enqueued_for</code> tick id so restarts don't double-enqueue).
+<br><br><strong>Workers claim with lease:</strong>
+<ul>
+<li><code>Claim</code>: move job to RUNNING, set <code>lease_owner</code>, <code>lease_until = now()+30s</code></li>
+<li>Worker heartbeats to extend lease while running</li>
+<li>On success: SUCCEEDED</li>
+<li>On fail / lease expiry: attempts++ ; if &lt; max → requeue with backoff; else → DLQ</li>
+</ul>
+<div class="schema-box"><div class="schema-hdr">🗄 <span>PostgreSQL — schedules + jobs</span></div>
+<pre class="schema">CREATE TABLE schedules (
+  schedule_id     UUID PRIMARY KEY,
+  shard           INT  NOT NULL,
+  cron_expr       TEXT,                <span class="cm">-- null if one-shot template</span>
+  payload         JSONB NOT NULL,
+  queue           TEXT NOT NULL,
+  next_run_at     TIMESTAMPTZ NOT NULL,
+  last_tick_id    TEXT,                <span class="cm">-- idempotent enqueue</span>
+  enabled         BOOLEAN DEFAULT TRUE,
+  INDEX (shard, next_run_at)           <span class="cm">-- scheduler scan</span>
+);
+
+CREATE TABLE jobs (
+  job_id          UUID PRIMARY KEY,
+  schedule_id     UUID,
+  queue           TEXT NOT NULL,
+  payload         JSONB NOT NULL,
+  status          TEXT NOT NULL,       <span class="cm">-- PENDING/RUNNING/...</span>
+  attempts        INT DEFAULT 0,
+  max_attempts    INT DEFAULT 5,
+  lease_owner     TEXT,
+  lease_until     TIMESTAMPTZ,
+  run_after       TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  priority        INT DEFAULT 0,
+  INDEX (queue, status, priority DESC, run_after)  <span class="cm">-- claim</span>
+);</pre></div>
+</div>
+<div class="why-box"><div class="why-label">Why leases instead of "delete on claim"</div>If a worker dies after claim, delete-on-claim loses the job. Lease expiry returns work to the pool → at-least-once. Workers must be <strong>idempotent</strong> (job_id as idempotency key in side effects) because double delivery after lease timeout is possible.</div>
+<div class="why-box green" style="margin-top:8px"><div class="why-label">Why SKIP LOCKED</div>Multiple scheduler replicas can race the same due rows. <code>FOR UPDATE SKIP LOCKED</code> lets each grab a disjoint batch without waiting — classic pattern for multi-consumer DB queues.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Exactly once</span></div>
+<div class="bubble">Can you make execution exactly-once?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Semantics</span></div>
+<div class="bubble">True end-to-end exactly-once across arbitrary side effects is extremely hard. Practical approach: <strong>at-least-once delivery + exactly-once side effects via idempotency keys</strong> (job_id). For DB updates: transactional outbox. For external APIs: pass Idempotency-Key. Don't promise "exactly-once scheduler" — promise "no lost jobs, duplicates handled."</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Minute stampede</span></div>
+<div class="bubble">10M jobs all due at midnight UTC. How do you avoid melting the system?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Load Shedding</span></div>
+<div class="bubble">Jitter <code>next_run_at</code> by ±N seconds when computing cron. Shard schedules. Rate-limit enqueue per tenant. Priority queues so critical jobs skip the pile. Spill to more workers via autoscaling on queue depth. Optionally "calendar queue" hierarchical timing wheels so you don't scan 10M rows every second — only buckets that are due.</div></div></div>
+
+<div class="diag-block final-diag" id="d-job3"><div class="diag-label">Final Architecture</div><div class="diag-svg-inner" data-fn="job3"></div></div>
+<div class="sec-div"></div>
+<div class="qr-grid">
+  <div class="qr-card"><div class="qr-title">🗄 Control Plane</div><ul>
+    <li>Schedules sharded + next_run_at index</li>
+    <li>Per-shard scheduler lease</li>
+    <li>Idempotent tick_id enqueue</li>
+    <li>Cron → next_run advance</li>
+    <li>Jitter to avoid midnights</li></ul></div>
+  <div class="qr-card"><div class="qr-title">⚙️ Execution</div><ul>
+    <li>Claim with lease + heartbeat</li>
+    <li>At-least-once + idempotent workers</li>
+    <li>Backoff retry → DLQ</li>
+    <li>Priority + run_after</li>
+    <li>SKIP LOCKED multi-consumer</li></ul></div>
+  <div class="qr-card"><div class="qr-title">📡 Observability</div><ul>
+    <li>Queue depth / lease expiry metrics</li>
+    <li>Per-tenant fair quotas</li>
+    <li>Dead-letter replay API</li>
+    <li>Job status timeline</li>
+    <li>Autoscaling on lag</li></ul></div>
+</div>
+</div>
+
+</main>
 <script>
 const C={Y:'#f0c040',G:'#3ddba8',R:'#f04870',B:'#4899f0',P:'#a070f0',O:'#f08850',CY:'#38d4f0',
   T0:'#dde8ff',T1:'#8099cc',T2:'#384860',T3:'#1a2838',
@@ -2052,6 +2450,155 @@ function ch3(){
 
 
 
+
+// ─── SEARCH AUTOCOMPLETE ───────────────────────────────────────────────────────
+function ac1(){
+  const W=720,H=210;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(14,76,100,58,'Client','keystrokes',C.P,'💻');s+=ar(114,105,175,105,C.B,'prefix');
+  s+=bx(175,50,210,120,'Single Server','In-memory Trie\ntop-K at each node',C.G,'🔤');
+  s+=ar(385,105,445,105,C.Y);s+=bx(445,68,240,90,'Query Stats DB','frequency table\nfull corpus',C.Y,'🗄');
+  s+=warn_bar(14,192,690,"⚠  SPOF. Won't fit 100M queries + 250K QPS. Every keystroke hits origin. Updates mutate hot path.");
+  return s+ev();
+}
+function ac2(){
+  const W=960,H=340;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(10,140,96,58,'Client','debounce ≥2',C.P,'💻');s+=ar(106,169,155,169,C.B);
+  s+=bx(155,140,110,58,'CDN / Edge','hot prefixes',C.R,'🌐');s+=ar(265,169,315,169,C.T2,'miss',true);
+  s+=bx(315,125,145,88,'Redis Cache','sug:{prefix}\nTTL 5–15m',C.Y,'⚡');s+=ar(460,169,510,169,C.T2,'miss',true);
+  s+=bx(510,40,175,88,'Trie Shard A','prefix a–m',C.G,'🔤');
+  s+=bx(510,150,175,88,'Trie Shard B','prefix n–z',C.G,'🔤');
+  s+=bx(510,260,175,58,'Shard by 1–2 chars','subtree local',C.B);
+  s+=ar(685,84,740,84,C.P,'reload',true);s+=bx(740,50,200,100,'Kafka query-logs\n→ Aggregate\n→ S3 snapshot',C.P,'📨');
+  s+=warn_bar(10,322,940,'✓  Most QPS served from CDN/Redis. Trie shards only on miss. Offline rebuild, atomic swap.',C.G);
+  return s+ev();
+}
+function ac3(){
+  const W=980,H=390;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=tx(490,16,'Final — Search Autocomplete',11,C.T0,'middle',true);
+  s+=bx(8,150,90,58,'Users','typeahead',C.P,'💻');s+=ar(98,179,145,179,C.B);
+  s+=bx(145,130,130,100,'API / CDN','debounce\nrate limit',C.B,'🛡');
+  s+=ar(275,179,325,179,C.Y);s+=bx(325,130,150,100,'Redis','sug:{prefix}\nhot top-K',C.Y,'⚡');
+  s+=ar(475,160,525,100,C.G,'miss');s+=bx(525,50,170,90,'Trie Shards','RAM prefix trees\nprecomputed top-K',C.G,'🔤');
+  s+=ar(475,200,525,250,C.P,'async');s+=bx(525,230,170,90,'Kafka + Flink','query-logs\nwindow counts',C.P,'📨');
+  s+=ar(695,275,745,275,C.P);s+=bx(745,230,210,90,'Stats Store + S3','query_stats\ntrie snapshots',C.Y,'🗄');
+  s+=ar(830,230,830,140,C.G,'hot reload',true);s+=ar(695,95,745,95,C.G);
+  s+=bx(745,50,210,90,'Fuzzy (optional)','edit-distance ≤2\nonly if exact < K',C.O,'🔍');
+  s+=warn_bar(8,370,965,'✓  Online: CDN→Redis→Trie. Offline: logs→scores→snapshot reload. Fuzzy is fallback only.',C.G);
+  return s+ev();
+}
+
+// ─── METRICS MONITORING ────────────────────────────────────────────────────────
+function met1(){
+  const W=760,H=220;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  [[20,40,'Svc A'],[20,110,'Svc B'],[20,180,'Svc C']].forEach(([x,y,n],i)=>{s+=bx(x,y-20,100,50,n,'/metrics',C.P);s+=ar(x+100,y+5,175,90,C.G,'scrape');});
+  s+=bx(175,55,220,110,'Prometheus','local TSDB\nsingle node',C.G,'📈');
+  s+=ar(395,110,455,110,C.B);s+=bx(455,70,260,90,'Grafana','dashboards only\nno HA storage',C.B,'📊');
+  s+=warn_bar(14,205,730,'⚠  Single TSDB SPOF. Cardinality OOM. Limited retention. No durable multi-tenant ingest buffer.');
+  return s+ev();
+}
+function met2(){
+  const W=980,H=360;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(8,50,110,58,'Agents','pull + push',C.P,'📡');s+=ar(118,79,170,79,C.T1);
+  s+=bx(170,40,160,78,'Kafka\nmetrics-raw','key: series_id',C.P,'📨');
+  s+=ar(330,79,380,79,C.Y);
+  s+=bx(380,30,175,100,'TSDB Writers','shard by series\nremote-write',C.Y,'✍');
+  s+=ar(555,80,605,80,C.B);s+=bx(605,30,175,100,'TSDB Shards','VM / Mimir / CH\nraw + rollups',C.B,'🗄');
+  s+=bx(380,160,175,80,'Compactor','downsample\n5m / 1h',C.O,'🔄');
+  s+=bx(605,160,175,80,'Queriers','PromQL merge\nstateless',C.G,'🔍');
+  s+=ar(780,200,830,200,C.G);s+=bx(830,160,135,80,'Grafana','panels',C.G,'📊');
+  s+=bx(380,270,400,58,'Ruler + Alertmanager','rules → PagerDuty / Slack',C.R,'🚨');
+  s+=warn_bar(8,340,965,'✓  Kafka absorbs spikes. Sharded TSDB. Queriers scale out. Alerts decoupled via ruler.',C.G);
+  return s+ev();
+}
+function met3(){
+  const W=990,H=400;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=tx(495,16,'Final — Metrics Aggregation (Grafana-class)',11,C.T0,'middle',true);
+  s+=bx(8,60,120,70,'Services','exporters',C.P);s+=bx(8,160,120,70,'Batch Jobs','pushgateway',C.P);
+  s+=ar(128,95,175,95,C.T1);s+=ar(128,195,175,150,C.T1);
+  s+=bx(175,80,150,100,'Collectors','SD + scrape\nrelabel / drop',C.G,'📡');
+  s+=ar(325,130,375,130,C.P);s+=bx(375,80,160,100,'Kafka','metrics-raw\ncard. guards',C.P,'📨');
+  s+=ar(535,130,585,130,C.Y);s+=bx(585,50,175,90,'Ingesters','per-series shard',C.Y,'✍');
+  s+=bx(585,160,175,90,'TSDB + Index','labels → series\nrollups',C.B,'🗄');
+  s+=bx(585,270,175,70,'Compactor','retention tiers',C.O);
+  s+=bx(800,50,170,90,'Queriers','PromQL',C.G,'🔍');s+=bx(800,160,170,90,'Grafana UI','dashboards',C.G,'📊');
+  s+=bx(800,270,170,70,'Alertmanager','routes + mute',C.R,'🚨');
+  s+=ar(760,95,800,95,C.G);s+=ar(760,205,800,205,C.G);s+=ar(672,250,800,290,C.R,'',true);
+  s+=warn_bar(8,380,975,'✓  Pull+push → Kafka → sharded TSDB → queriers/Grafana + ruler/alerts. Cardinality limits mandatory.',C.G);
+  return s+ev();
+}
+
+// ─── TOP-K TRENDING ────────────────────────────────────────────────────────────
+function trend1(){
+  const W=740,H=210;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(14,76,110,58,'View events','5M/sec',C.P,'▶');s+=ar(124,105,185,105,C.R,'INCR');
+  s+=bx(185,55,220,110,'Single Redis','video counters\n+ one ZSET',C.R,'⚡');
+  s+=ar(405,105,465,105,C.B);s+=bx(465,70,240,80,'API','ZREVRANGE 0 99',C.B);
+  s+=warn_bar(14,192,710,'⚠  Hot video key melts. Global sort of all videos impossible. Exact counts unnecessary.');
+  return s+ev();
+}
+function trend2(){
+  const W=980,H=350;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(8,145,100,58,'Clients','views/likes',C.P,'▶');s+=ar(108,174,160,174,C.P);
+  s+=bx(160,120,160,100,'Kafka\nview-events','partition: video_id',C.P,'📨');
+  fan(320,170,365,[60,140,220,300],C.G);
+  [0,1,2,3].forEach(i=>{const y=40+i*80;s+=bx(365,y,175,60,`Stream Shard ${i+1}`,"window counts\nlocal top-K'",C.G);});
+  s+=ar(540,170,595,170,C.Y);s+=bx(595,120,170,100,'Aggregator',"merge K'→K\nscore+decay",C.Y,'🧮');
+  s+=ar(765,170,820,170,C.B);s+=bx(820,120,145,100,'Redis ZSET','trending:*\nserve only',C.B,'⚡');
+  s+=warn_bar(8,330,965,"✓  Local top-K' + merge. Read path never touches raw events. Approx OK.",C.G);
+  return s+ev();
+}
+function trend3(){
+  const W=990,H=400;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=tx(495,16,'Final — Top-K Trending Videos',11,C.T0,'middle',true);
+  s+=bx(8,140,100,70,'App','view events',C.P,'▶');s+=ar(108,175,155,175,C.P);
+  s+=bx(155,120,150,100,'Kafka','view-events\n+ samples',C.P,'📨');
+  s+=ar(305,170,355,170,C.G);s+=bx(355,90,180,90,'Stream Proc',"buckets + CMS\nlocal top-K'",C.G,'⚙');
+  s+=bx(355,210,180,80,'Fraud async','dedupe HLL\nwatch-time',C.R,'🛡');
+  s+=ar(535,135,585,135,C.Y);s+=bx(585,90,175,100,'Merger','global / geo\n/ category',C.Y,'🧮');
+  s+=ar(760,140,810,140,C.B);s+=bx(810,70,160,90,'Redis + CDN','ZSET lists',C.B,'⚡');
+  s+=bx(810,190,160,90,'Meta store','title/thumb\nhydrate',C.Y,'🗄');
+  s+=ar(760,250,810,235,C.T1,'',true);
+  s+=warn_bar(8,380,975,'✓  score=velocity/age^γ. Shard→merge→ZSET. Fraud off hot path. ±5% counts fine.',C.G);
+  return s+ev();
+}
+
+// ─── DISTRIBUTED JOB SCHEDULER ─────────────────────────────────────────────────
+function job1(){
+  const W=720,H=210;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(14,70,130,70,'Cron process','every 1 min\nSELECT due',C.R,'⏰');
+  s+=ar(144,105,205,105,C.Y);s+=bx(205,60,220,90,'Schedules DB','next_run scan\nsingle leader',C.Y,'🗄');
+  s+=ar(425,105,485,105,C.G);s+=bx(485,70,200,70,'Workers','poll jobs',C.G,'⚙');
+  s+=warn_bar(14,192,690,'⚠  Leader miss = skipped minute. Table scan melts. No lease = double run.');
+  return s+ev();
+}
+function job2(){
+  const W=980,H=355;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(8,140,120,70,'API','CRUD schedules\nenqueue one-shot',C.B,'🛡');
+  s+=ar(128,175,180,175,C.Y);s+=bx(180,110,180,120,'Postgres shards','schedules+jobs\nSKIP LOCKED',C.Y,'🗄');
+  s+=ar(360,150,415,90,C.G);s+=bx(415,40,185,90,'Scheduler\n(per shard lease)','due→enqueue\ntick_id idempotent',C.G,'⏰');
+  s+=ar(360,200,415,230,C.P);s+=bx(415,200,185,90,'Work Queue','Redis/SQS/Kafka\npriority + delay',C.P,'📨');
+  s+=ar(600,245,655,245,C.G);s+=bx(655,180,150,100,'Workers','Claim+lease\nheartbeat',C.G,'⚙');
+  s+=ar(805,230,860,230,C.R,'',true);s+=bx(860,200,100,70,'DLQ','max attempts',C.R);
+  s+=warn_bar(8,335,965,'✓  Sharded due-scan. Leased execution. Idempotent tick + worker side effects.',C.G);
+  return s+ev();
+}
+function job3(){
+  const W=990,H=410;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=tx(495,16,'Final — Distributed Job Scheduler',11,C.T0,'middle',true);
+  s+=bx(8,80,130,80,'Clients','schedule APIs',C.P,'💻');s+=ar(138,120,185,120,C.B);
+  s+=bx(185,60,160,100,'Control API','auth, quotas\nvalidate cron',C.B,'🛡');
+  s+=ar(345,110,395,110,C.Y);s+=bx(395,50,185,110,'Schedule Shards','next_run_at index\nshard leaders',C.Y,'🗄');
+  s+=bx(395,190,185,90,'Job rows','lease_until\nattempts',C.Y);
+  s+=ar(580,100,630,100,C.G);s+=bx(630,50,160,90,'Dispatchers','enqueue due\njitter midnight',C.G,'⏰');
+  s+=ar(790,95,840,95,C.P);s+=bx(840,50,135,90,'Queues','P0 / P1 / delay',C.P,'📨');
+  s+=bx(630,170,160,90,'Workers','lease+HB\nidempotent',C.G,'⚙');
+  s+=bx(840,170,135,90,'DLQ + UI','replay',C.R,'🚨');
+  s+=bx(630,290,345,70,'Metrics','depth, lag, lease expiry, success rate',C.O,'📈');
+  s+=ar(710,260,710,290,C.O,'',true);s+=ar(900,260,900,290,C.O,'',true);
+  s+=warn_bar(8,390,975,'✓  At-least-once + idempotency keys. Leases recover crashes. Shards + jitter survive midnights.',C.G);
+  return s+ev();
+}
+
 const DIAGRAM_FNS = {
   rl1, rl2, rl3, rl4,
   ch1, ch2, ch3,
@@ -2062,6 +2609,10 @@ const DIAGRAM_FNS = {
   chat1, chat2, chat3,
   wc1, wc2, wc3,
   gd1, gd2, gd3,
+  ac1, ac2, ac3,
+  met1, met2, met3,
+  trend1, trend2, trend3,
+  job1, job2, job3,
 };
 
 function renderAllDiagrams() {
