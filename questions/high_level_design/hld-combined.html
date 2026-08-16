@@ -193,11 +193,12 @@ pre.schema .cv{color:var(--y);}
   <div class="ntab" onclick="go(12)"><span class="nn">13</span>Job Scheduler</div>
   <div class="ntab" onclick="go(13)"><span class="nn">14</span>Distributed Cache</div>
   <div class="ntab" onclick="go(14)"><span class="nn">15</span>News Feed</div>
+  <div class="ntab" onclick="go(15)"><span class="nn">16</span>Google Docs</div>
 </nav>
 <main>
 <div class="page on" id="p0">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 01 of 15</div>
+  <div class="th-eye">System Design Interview — Topic 01 of 16</div>
   <div class="th-title">Rate <em>Limiter</em></div>
   <div class="th-sub">Throttle API traffic per user/IP/token. Hot path — must add &lt;5ms. Must never block prod if limiter fails.</div>
   <div class="tags">
@@ -634,7 +635,7 @@ CREATE TABLE rl_rules (
 
 <div class="page" id="p1">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 02 of 15</div>
+  <div class="th-eye">System Design Interview — Topic 02 of 16</div>
   <div class="th-title">Consistent <em>Hashing</em></div>
   <div class="th-sub">Distribute data across nodes so adding or removing a node reshuffles ~1/N keys instead of ~100%.</div>
   <div class="tags"><span class="tag ty">Ring Hash</span><span class="tag tg">Virtual Nodes</span><span class="tag tb">TreeMap O(log N)</span><span class="tag tr">Preference List</span><span class="tag tp">W+R&gt;N Quorum</span></div>
@@ -750,7 +751,7 @@ Server owner = (e != null) ? e.getValue() : ring.firstEntry().getValue();</pre><
 
 <div class="page" id="p2">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 03 of 15</div>
+  <div class="th-eye">System Design Interview — Topic 03 of 16</div>
   <div class="th-title">Key-Value <em>Store</em></div>
   <div class="th-sub">Design a distributed KV store like DynamoDB. 10TB, 100K writes/sec, 500K reads/sec, tunable consistency.</div>
   <div class="tags"><span class="tag ty">LSM Tree</span><span class="tag tg">Bloom Filter</span><span class="tag tb">WAL + Memtable</span><span class="tag tr">CAP: AP</span><span class="tag tp">Gossip</span><span class="tag to">Hinted Handoff</span></div>
@@ -867,7 +868,7 @@ Server owner = (e != null) ? e.getValue() : ring.firstEntry().getValue();</pre><
 
 <div class="page" id="p3">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 04 of 15</div>
+  <div class="th-eye">System Design Interview — Topic 04 of 16</div>
   <div class="th-title">Unique ID <em>Generator</em></div>
   <div class="th-sub">64-bit time-sortable IDs at 4.2 billion/sec across a cluster. No per-request coordination. Pure local state.</div>
   <div class="tags"><span class="tag ty">Snowflake 64-bit</span><span class="tag tg">Time-sortable</span><span class="tag tb">ZooKeeper MachineID</span><span class="tag tr">Clock Skew</span><span class="tag tp">4.2B IDs/sec</span></div>
@@ -975,7 +976,7 @@ Use monotonic clock (CLOCK_MONOTONIC) for comparisons — it never goes backward
 
 <div class="page" id="p4">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 05 of 15</div>
+  <div class="th-eye">System Design Interview — Topic 05 of 16</div>
   <div class="th-title">URL <em>Shortener</em></div>
   <div class="th-sub">Design bit.ly — shorten URLs, redirect 1B times/day at 11K/sec, analytics async. 3-layer cache.</div>
   <div class="tags"><span class="tag ty">Base62 Snowflake</span><span class="tag tg">Redis Cache</span><span class="tag tb">Kafka Analytics</span><span class="tag tr">302+CDN</span><span class="tag tp">MySQL Sharded</span><span class="tag to">ClickHouse OLAP</span></div>
@@ -1126,7 +1127,7 @@ ORDER BY (short_code, clicked_at); <span class="cm">-- fast per-URL time-series 
 
 <div class="page" id="p5">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 06 of 15</div>
+  <div class="th-eye">System Design Interview — Topic 06 of 16</div>
   <div class="th-title">Notification <em>System</em></div>
   <div class="th-sub">50M notifications/day. Push + Email + SMS. Kafka fan-out, DLQ retry, celebrity problem, idempotency.</div>
   <div class="tags"><span class="tag ty">Kafka Fan-out</span><span class="tag tg">FCM + APNS</span><span class="tag tb">DLQ Retry</span><span class="tag tr">At-least-once</span><span class="tag tp">Celebrity Problem</span><span class="tag to">PostgreSQL State</span></div>
@@ -1267,7 +1268,7 @@ CREATE TABLE device_tokens (
 
 <div class="page" id="p6">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 07 of 15</div>
+  <div class="th-eye">System Design Interview — Topic 07 of 16</div>
   <div class="th-title">Chat <em>System</em></div>
   <div class="th-sub">Real-time 1-1 + group (500 members). 50M DAU, 100M msgs/day. Presence, typing, read receipts, offline sync.</div>
   <div class="tags"><span class="tag ty">WebSocket</span><span class="tag tg">Cassandra</span><span class="tag tb">Redis Pub/Sub</span><span class="tag tr">Heartbeat Presence</span><span class="tag tp">Cursor Sync</span><span class="tag to">PostgreSQL Metadata</span></div>
@@ -1430,10 +1431,10 @@ CREATE TABLE channel_members (
 
 <div class="page" id="p7">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 08 of 15</div>
+  <div class="th-eye">System Design Interview — Topic 08 of 16</div>
   <div class="th-title">Web <em>Crawler</em></div>
-  <div class="th-sub">Crawl 1B pages. Distributed fetch, parse, dedup, index. Politeness per domain. Priority scheduling.</div>
-  <div class="tags"><span class="tag ty">URL Frontier</span><span class="tag tg">Bloom Filter</span><span class="tag tb">SimHash Near-Dup</span><span class="tag tr">robots.txt Politeness</span><span class="tag tp">Cassandra</span><span class="tag to">Elasticsearch</span></div>
+  <div class="th-sub">Crawl up to 10B pages from seed URLs in &lt;5 days. SQS-based frontier + parsing pipeline, DynamoDB URL metadata, per-host politeness, DLQ on repeated failure.</div>
+  <div class="tags"><span class="tag ty">SQS Frontier Queue</span><span class="tag tg">Bloom Filter Dedup</span><span class="tag tb">DynamoDB Metadata</span><span class="tag tr">Per-Host Rate Limit</span><span class="tag tp">S3 Raw + Parsed</span><span class="tag to">DLQ Retry</span></div>
 </div>
 
 
@@ -1460,11 +1461,11 @@ CREATE TABLE channel_members (
 
 <div class="phase-label"><div class="phase-pill">CLARIFICATION + FR/NFR</div></div>
 <div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Clarifying</span></div>
-<div class="bubble">Purpose — build a search engine index, or something specific like price monitoring? Scale — how many pages, how fresh should the index be? Do we need to honor robots.txt? What's the target URL depth?
-<br><br><strong>Given: general-purpose search index, 1B pages, refresh popular pages daily, robots.txt yes:</strong>
+<div class="bubble">Purpose — build a search engine index, or something specific like price monitoring? Scale — how many pages, how fresh should the index be? Do we need to honor robots.txt? What happens when a fetch fails?
+<br><br><strong>Given: general-purpose search index, HTML pages only, max 10B pages, crawl the seed set in under 5 days, robots.txt + crawl-delay respected, duplicates filtered, resume without losing progress on failure:</strong>
 <ul>
-<li><strong>FR:</strong> Crawl URLs, extract content, discover new links, deduplicate URLs and content, build index, respect robots.txt and politeness</li>
-<li><strong>NFR:</strong> 1B pages, popular pages refreshed daily, politeness (max 1–3 req/sec per domain), fault tolerant, scalable horizontally</li>
+<li><strong>FR:</strong> Crawl the full web starting from seed URLs, fetch + parse each page, extract text and discovered links, re-queue discovered URLs, deduplicate URLs and content, store raw HTML and parsed data, (optional) index for search</li>
+<li><strong>NFR:</strong> Fault tolerance — resume crawling without losing progress; politeness — honor robots.txt and don't overload a single host; efficient — crawl the full seed set in &lt;5 days; scalable to 10B pages; idempotent retries via a dead-letter queue</li>
 </ul></div></div></div>
 
 <div class="phase-label"><div class="phase-pill">PHASE 1</div><div class="phase-title-text">Single crawler — what breaks immediately</div></div>
@@ -1475,10 +1476,18 @@ CREATE TABLE channel_members (
 <div class="phase-label"><div class="phase-pill">PHASE 2</div><div class="phase-title-text">Distributed pipeline — URL Frontier + Worker pools</div></div>
 <div class="diag-block" id="d-wc2"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="wc2"></div></div>
 <div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Distributed Design</span></div>
-<div class="bubble">The core pipeline is: <strong>URL Frontier → Fetcher Workers → Parser Workers → Indexer Workers</strong>, with dedup gates between stages.
-<br><br><strong>URL Frontier — Kafka, partitioned by domain:</strong> This is the queue of URLs to crawl. Not a DB table — Kafka handles billions of messages natively, durable, replayable. Partition key = domain (e.g., hash of hostname). Why domain? Because politeness means we should crawl each domain slowly (1–3 req/sec). Partitioning by domain means one Fetcher worker instance "owns" a domain's partition → easy to enforce politeness without distributed coordination.
+<div class="bubble">The core pipeline is two decoupled stages, each with its own queue: <strong>Frontier Queue → Crawler (Fetch + Parse) → Parsing Queue → Parsing Workers (Parse + Extract)</strong>.
+<br><br><strong>Frontier Queue — Amazon SQS:</strong> This is the queue of URLs to crawl. A managed queue over a hand-rolled DB queue (<code>SELECT ... FOR UPDATE SKIP LOCKED</code>) — SQS scales to billions of messages, gives us <strong>visibility timeouts</strong> (a URL becomes invisible while a worker is fetching it, and reappears automatically if the worker crashes or times out), and a built-in <strong>DLQ redrive policy</strong> for messages that fail repeatedly. Politeness isn't handled by queue partitioning here — it's a dedicated <strong>Rate Limiter + DNS Cache</strong> service that every Crawler worker checks before it's allowed to fetch from a given host.
+<br><br>Once the Crawler fetches a page, it does three things: saves the raw HTML to <strong>S3</strong>, updates the URL's status and metadata in <strong>DynamoDB</strong>, and pushes the fetched HTML onto a second queue — the <strong>Parsing Queue (SQS)</strong> — for the Parsing Workers to extract text/links out of band from the fetch loop.
 </div>
-<div class="why-box"><div class="why-label">Why Kafka for URL frontier, not a DB queue</div>A DB queue (SELECT ... FOR UPDATE SKIP LOCKED) works for small scale but becomes a bottleneck at billions of URLs. Kafka handles billions of messages, distributed, replicated, replay-able. The partition-by-domain design also gives us politeness for free — no need for a separate distributed rate limiter per domain.</div></div></div>
+<div class="why-box"><div class="why-label">Why two queues (Frontier + Parsing) instead of one pipeline</div>Fetching is I/O-bound and rate-limited per host; parsing is CPU-bound and has no such constraint. Splitting them into separate SQS queues lets each stage scale independently — you can run far more Parsing Workers than Crawler workers without violating per-host politeness, and a slow/broken parser never backs up the fetch path.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Failure Handling</span></div>
+<div class="bubble">A host times out, or a Crawler worker crashes mid-fetch. How do you make sure that URL isn't lost, and that a permanently-broken URL doesn't retry forever?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Retry With Backoff → DLQ</span></div>
+<div class="bubble">SQS is at-least-once by design, so this is mostly free: if a worker crashes or a fetch times out before it deletes the message, the visibility timeout expires and the URL becomes visible again for another worker to pick up — no explicit "requeue" code needed. On top of that we track a retry count (message attribute or a counter in the DynamoDB URL record) and apply exponential backoff (1m, 5m, 15m...) before the message becomes visible again, so a flaky host isn't hammered.
+<br><br>After a configured <code>maxReceiveCount</code> (e.g. 5), SQS's <strong>redrive policy</strong> automatically moves the message to a <strong>Dead-Letter Queue</strong> instead of retrying forever. The DLQ is monitored — a CloudWatch alarm pages on-call if it grows, and URLs in it get inspected manually (bad robots.txt, permanently dead domain, malformed URL, etc.). Crucially, Crawler and Parsing Worker logic must be <strong>idempotent</strong> — refetching or reparsing the same URL twice (because of at-least-once delivery) should be a safe no-op, not a duplicate write.</div></div></div>
 
 <div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Deduplication</span></div>
 <div class="bubble">How do you prevent crawling the same URL twice? And how do you detect duplicate content at different URLs?</div></div></div>
@@ -1487,42 +1496,42 @@ CREATE TABLE channel_members (
 <div class="bubble"><strong>URL dedup — Bloom Filter:</strong> Before adding any URL to the Kafka frontier, check a Bloom Filter. At 1B URLs with 1% false positive rate: ~1GB RAM. If "definitely not seen" → add to frontier. If "maybe seen" (1% false positive) → skip. False positives mean occasionally skipping an unseen URL — rare and acceptable. Zero false negatives mean we never miss URLs we've definitely seen. For high-value URLs, back the Bloom Filter with a Redis Set for exact recent dedup (last 24h).
 <br><br><strong>Content near-dedup — SimHash:</strong> Two URLs can have nearly identical content (e.g., same article syndicated across 100 sites). SimHash: compute a 64-bit fingerprint of the page content. Store fingerprints in Cassandra. Before indexing a new page: compare its SimHash with stored fingerprints. If Hamming distance &lt; 3 (meaning ≥61 of 64 bits match): near-duplicate → skip indexing. This catches "99% similar" content that exact hash would miss.
 </div>
-<div class="schema-box"><div class="schema-hdr">🗄 <span>Cassandra — crawled_urls (URL metadata + dedup)</span></div>
-<pre class="schema">CREATE TABLE crawled_urls (
-  url_fingerprint   BIGINT,    <span class="cm">-- SimHash(normalized_url), PARTITION KEY</span>
-  url               TEXT,
-  domain            TEXT,
-  last_crawled_at   TIMESTAMP,
-  http_status       INT,
-  content_hash      TEXT,      <span class="cm">-- SHA256(content) for exact dedup</span>
-  content_simhash   BIGINT,    <span class="cm">-- SimHash(content) for near-dup</span>
-  crawl_interval_s  INT,       <span class="cm">-- recrawl frequency (scheduler updates)</span>
-  page_rank         FLOAT,
-  PRIMARY KEY (url_fingerprint)
-);
-CREATE TABLE domain_politeness (
-  domain            TEXT  PRIMARY KEY,
-  last_crawled_at   TIMESTAMP,
-  crawl_delay_sec   INT   DEFAULT 1,  <span class="cm">-- from robots.txt</span>
-  robots_txt        TEXT,             <span class="cm">-- cached content</span>
-  robots_cached_at  TIMESTAMP
-);</pre></div>
-<div class="why-box"><div class="why-label">Why Cassandra for crawl metadata</div>Cassandra: write-heavy (updating last_crawled_at for 1B URLs frequently), simple PK lookup by url_fingerprint, horizontal scale, no complex queries needed. MySQL would struggle with 1B rows at this write frequency. The access pattern is always "does this URL exist, and when was it last crawled" — perfect for Cassandra's PK lookup.</div></div></div>
+<div class="schema-box"><div class="schema-hdr">🗄 <span>DynamoDB — url_metadata (status + dedup, PK = url)</span></div>
+<pre class="schema">Table: url_metadata
+  url               <span class="ck">S</span>   <span class="cm">-- Partition Key, e.g. SHA256(normalized_url)</span>
+  domain            <span class="ck">S</span>   <span class="cm">-- GSI: domain-lastCrawlTime-index</span>
+  status            <span class="ck">S</span>   <span class="cm">-- pending | in-progress | success | failed | skipped</span>
+  httpStatus        <span class="ck">N</span>   <span class="cm">-- 200, 404, 500...</span>
+  lastCrawlTime     <span class="ck">N</span>   <span class="cm">-- epoch ms</span>
+  contentType       <span class="ck">S</span>
+  contentHash       <span class="ck">S</span>   <span class="cm">-- SHA256(content), exact dedup</span>
+  contentSimhash    <span class="ck">N</span>   <span class="cm">-- 64-bit fingerprint, near-dup</span>
+  robotsStatus      <span class="ck">S</span>   <span class="cm">-- allowed | disallowed</span>
+  depth             <span class="ck">N</span>   <span class="cm">-- hops from seed URL</span>
+  retryCount        <span class="ck">N</span>
+
+Table: domain_politeness
+  domain            <span class="ck">S</span>   <span class="cm">-- Partition Key</span>
+  crawlDelaySec     <span class="ck">N</span>   <span class="cm">-- from robots.txt, default 1</span>
+  robotsTxt         <span class="ck">S</span>   <span class="cm">-- cached rules</span>
+  robotsCachedAt    <span class="ck">N</span>   <span class="cm">-- TTL attribute, DynamoDB expires item after 1hr</span></pre></div>
+<div class="why-box"><div class="why-label">Why DynamoDB for URL metadata</div>Write-heavy (status update on every fetch, across 10B URLs), single-digit-ms PK lookup by <code>url</code>, on-demand capacity absorbs unpredictable crawl-burst traffic without pre-provisioning, and native TTL attributes make the 1hr robots.txt cache free — no separate expiry job. Eventual consistency is fine here: we don't need a strongly-consistent read to know "have we seen this URL," a Bloom Filter covers the hot path anyway.</div></div></div>
 
 <div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — robots.txt + Politeness</span></div>
 <div class="bubble">How do you honor robots.txt at scale without adding latency to every fetch?</div></div></div>
 
 <div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Politeness Strategy</span></div>
-<div class="bubble">Cache robots.txt per domain in Cassandra <code>domain_politeness</code> table, TTL 1hr. Before crawling any URL from a domain: check the cached robots.txt. If cache miss: fetch robots.txt first (before crawling any page from that domain). Parse Disallow rules and Crawl-Delay.
-<br><br>Enforce politeness at the Fetcher worker level: since Kafka is partitioned by domain, each Fetcher instance owns specific domains. It simply sleeps <code>max(crawl_delay, 1000/max_rps)</code> ms between consecutive requests to the same domain. No distributed coordination needed — domain isolation is free from the Kafka partition design.
-<br><br>Circuit breaker: if a domain returns 5xx for 10 consecutive requests → pause crawling that domain for exponential backoff (5min, 10min, 20min...).</div></div></div>
+<div class="bubble">Cache robots.txt per domain in the DynamoDB <code>domain_politeness</code> table, TTL 1hr via the native TTL attribute. Before crawling any URL from a domain: check the cached robots.txt. If cache miss: fetch robots.txt first (before crawling any page from that domain). Parse Disallow rules and Crawl-Delay.
+<br><br>Enforce politeness with a dedicated <strong>Rate Limiter + DNS Cache</strong> service that every Crawler worker calls before a fetch: a per-host token bucket (Redis, keyed by domain) caps concurrent/per-second requests to that host (<code>max(crawl_delay, 1000/max_rps)</code> spacing), and a DNS cache (5min TTL) avoids re-resolving the same hostname on every request. Because SQS doesn't give us per-host affinity like a partitioned log would, politeness has to be an explicit shared gate rather than "free" from queue layout — but it also means any worker can pull any URL, which is simpler to scale.
+<br><br>Circuit breaker: if a domain returns 5xx for 10 consecutive requests → the Rate Limiter pauses that domain for exponential backoff (5min, 10min, 20min...), independent of the per-URL retry/DLQ path.</div></div></div>
 
-<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Indexing</span></div>
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Storage + Indexing</span></div>
 <div class="bubble">Where do you store the crawled content, and how do you make it searchable?</div></div></div>
 
-<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Storage + Indexing</span></div>
-<div class="bubble"><strong>Raw HTML → S3:</strong> Object key: <code>crawl/{YYYY/MM/DD}/{url_fingerprint}.html.gz</code>. gzip compressed. Cheap, durable, infinitely scalable. S3 is not searchable — just raw storage.
-<br><br><strong>Search index → Elasticsearch:</strong> Indexer workers parse extracted text, title, headers → index into ES. PageRank score stored per document. Queries combine BM25 text relevance with PageRank boost.
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Storage + Optional Indexing</span></div>
+<div class="bubble"><strong>Raw HTML → S3:</strong> the Crawler writes here directly. Object key: <code>crawl/{YYYY/MM/DD}/{url_fingerprint}.html.gz</code>, gzip compressed. Cheap, durable, infinitely scalable — but not searchable, just raw storage.
+<br><br><strong>Parsed text + metadata → S3 / Parquet:</strong> Parsing Workers consume the Parsing Queue, extract clean text/title/links/boilerplate-stripped content, and write it out partitioned by <code>domain/date</code> in Parquet. This is the durable, queryable-by-batch record of "what did we actually extract" — cheap to store at 10B-page scale and columnar so downstream jobs only read the fields they need.
+<br><br><strong>Indexing pipeline (Elasticsearch) — optional, out of the critical path:</strong> a separate consumer reads the parsed data and indexes text/title/headers into ES with a PageRank score per document, so search queries can combine BM25 text relevance with a PageRank boost. Keeping it optional/async means a slow or down index never blocks crawling — it's explicitly out of scope for the core "crawl the web" requirement unless the interviewer asks for a search product on top.
 <div class="schema-box"><div class="schema-hdr">🔍 <span>Elasticsearch — web_pages index mapping</span></div>
 <pre class="schema">{
   "mappings": {
@@ -1546,25 +1555,26 @@ CREATE TABLE domain_politeness (
 
 
 <div class="diag-block final-diag" id="d-wc3"><div class="diag-label">Final Architecture</div><div class="diag-svg-inner" data-fn="wc3"></div></div>
+<div class="diag-block ref-diag"><div class="diag-label">📝 Hand-drawn Reference Sketch</div><div class="diag-svg-inner"><a class="ref-img-link" href="../../assets/images/high_level_design/references/web_crawler_sketch.webp" target="_blank" rel="noopener" title="Open full-resolution sketch"><img src="../../assets/images/high_level_design/references/web_crawler_sketch.webp" alt="Web Crawler hand-drawn reference sketch" loading="lazy"></a></div><div class="ref-hint"><a href="../../assets/images/high_level_design/references/web_crawler_sketch.webp" target="_blank" rel="noopener">Open full resolution ↗</a> — click the sketch to zoom.</div></div>
 <div class="sec-div"></div>
 <div class="qr-grid">
-  <div class="qr-card"><div class="qr-title">🗄 DB Choices</div><ul>
-    <li><strong>Kafka:</strong> URL frontier (partition by domain)</li>
-    <li><strong>Cassandra:</strong> crawled_urls + domain_politeness</li>
-    <li><strong>S3:</strong> raw HTML (gzip, content-addressed)</li>
-    <li><strong>Elasticsearch:</strong> inverted index + PageRank</li>
-    <li><strong>Bloom Filter:</strong> URL dedup (in-memory, 1GB)</li></ul></div>
+  <div class="qr-card"><div class="qr-title">🗄 Storage Choices</div><ul>
+    <li><strong>SQS:</strong> Frontier Queue + Parsing Queue + DLQ</li>
+    <li><strong>DynamoDB:</strong> url_metadata + domain_politeness</li>
+    <li><strong>S3:</strong> raw HTML (gzip) + parsed data (Parquet)</li>
+    <li><strong>Elasticsearch:</strong> optional inverted index + PageRank</li>
+    <li><strong>Bloom Filter:</strong> URL dedup (in-memory, ~1GB)</li></ul></div>
   <div class="qr-card"><div class="qr-title">🔁 Dedup Strategy</div><ul>
     <li>URL exact dedup: Bloom Filter O(1) check</li>
     <li>~1% false positive: skip URLs OK occasionally</li>
-    <li>Content exact: SHA256(content) → Cassandra</li>
+    <li>Content exact: SHA256(content) → DynamoDB</li>
     <li>Content near-dup: SimHash hamming distance &lt;3</li>
     <li>Redis Set: exact dedup for recent 24h URLs</li></ul></div>
-  <div class="qr-card"><div class="qr-title">🤝 Politeness</div><ul>
-    <li>robots.txt: cache 1hr in Cassandra</li>
-    <li>Crawl-Delay: enforce at Fetcher (no coord needed)</li>
-    <li>Domain partition: inherent politeness isolation</li>
-    <li>Max 1–3 req/sec per domain</li>
+  <div class="qr-card"><div class="qr-title">🤝 Politeness + Failures</div><ul>
+    <li>robots.txt: DynamoDB TTL cache, 1hr</li>
+    <li>Rate Limiter + DNS Cache: gates every fetch</li>
+    <li>Max 1–3 req/sec per domain (token bucket)</li>
+    <li>Retry w/ backoff; SQS redrive → DLQ after max tries</li>
     <li>Circuit breaker on 5xx burst (exponential backoff)</li></ul></div>
 </div>
 </div>
@@ -1573,7 +1583,7 @@ CREATE TABLE domain_politeness (
 
 <div class="page" id="p8">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 09 of 15</div>
+  <div class="th-eye">System Design Interview — Topic 09 of 16</div>
   <div class="th-title">Google <em>Drive</em></div>
   <div class="th-sub">Cloud file storage — upload, download, share, sync, collaborate. Chunked upload, dedup, versioning, real-time notifications.</div>
   <div class="tags"><span class="tag ty">Chunked Upload</span><span class="tag tg">Content Dedup SHA256</span><span class="tag tb">Delta Sync</span><span class="tag tr">Pre-signed URLs</span><span class="tag tp">MySQL Sharded</span><span class="tag to">Real-time Collab</span></div>
@@ -1749,7 +1759,7 @@ CREATE TABLE file_permissions (
 
 <div class="page" id="p9">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 10 of 15</div>
+  <div class="th-eye">System Design Interview — Topic 10 of 16</div>
   <div class="th-title">Search <em>Autocomplete</em></div>
   <div class="th-sub">Typeahead suggestions as the user types. Sub-100ms p99. Trie + popularity ranking. Hot-prefix cache. Real-time query log updates.</div>
   <div class="tags"><span class="tag ty">Prefix Trie</span><span class="tag tg">Top-K Heap</span><span class="tag tb">Redis Cache</span><span class="tag tr">&lt;100ms p99</span><span class="tag tp">Kafka Query Logs</span><span class="tag to">Fuzzy Optional</span></div>
@@ -1867,7 +1877,7 @@ CREATE TABLE file_permissions (
 
 <div class="page" id="p10">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 11 of 15</div>
+  <div class="th-eye">System Design Interview — Topic 11 of 16</div>
   <div class="th-title">Metrics <em>Monitoring</em></div>
   <div class="th-sub">Grafana-like metrics aggregation &amp; analytics. Collect, store, query, alert on time-series at massive cardinality. Pull + push paths.</div>
   <div class="tags"><span class="tag ty">Time-Series DB</span><span class="tag tg">PromQL-style</span><span class="tag tb">Cardinality</span><span class="tag tr">Alertmanager</span><span class="tag tp">Rollups</span><span class="tag to">Pushgateway</span></div>
@@ -1972,7 +1982,7 @@ CREATE TABLE file_permissions (
 
 <div class="page" id="p11">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 12 of 15</div>
+  <div class="th-eye">System Design Interview — Topic 12 of 16</div>
   <div class="th-title">Top-K <em>Trending</em></div>
   <div class="th-sub">Trending videos like YouTube/TikTok. Sliding-window velocity, not all-time views. Approximate counts at insane write QPS. Geo + category facets.</div>
   <div class="tags"><span class="tag ty">Sliding Window</span><span class="tag tg">Count-Min Sketch</span><span class="tag tb">Redis ZSET</span><span class="tag tr">Kafka Streams</span><span class="tag tp">Decay Score</span><span class="tag to">Geo Shards</span></div>
@@ -2078,7 +2088,7 @@ video:meta:{id}          HASH  title, thumb, creator   <span class="cm">-- hydra
 
 <div class="page" id="p12">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 13 of 15</div>
+  <div class="th-eye">System Design Interview — Topic 13 of 16</div>
   <div class="th-title">Job <em>Scheduler</em></div>
   <div class="th-sub">Distributed cron / job scheduler. Schedule, enqueue, lease to workers, retry with backoff, DLQ. Exactly-once execution where it matters.</div>
   <div class="tags"><span class="tag ty">Cron Schedules</span><span class="tag tg">Lease / Lock</span><span class="tag tb">At-least-once</span><span class="tag tr">DLQ</span><span class="tag tp">Priority Queues</span><span class="tag to">Idempotent Workers</span></div>
@@ -2215,7 +2225,7 @@ CREATE TABLE jobs (
 
 <div class="page" id="p13">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 14 of 15</div>
+  <div class="th-eye">System Design Interview — Topic 14 of 16</div>
   <div class="th-title">Distributed <em>Cache</em></div>
   <div class="th-sub">In-memory GET/SET/DELETE at 100K req/sec over 1TB. Redis Cluster, consistent hashing, LRU eviction, optional persistence, multi-region.</div>
   <div class="tags"><span class="tag ty">Redis Cluster</span><span class="tag tg">Consistent Hashing</span><span class="tag tb">LRU Eviction</span><span class="tag tr">Master-Replica</span><span class="tag tp">AOF / RDB</span><span class="tag to">Eventual Consistency</span></div>
@@ -2320,7 +2330,7 @@ ratelimit:{userId}   &lt;counter&gt; TTL 60s</pre></div>
 
 <div class="page" id="p14">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 15 of 15</div>
+  <div class="th-eye">System Design Interview — Topic 15 of 16</div>
   <div class="th-title">News <em>Feed</em></div>
   <div class="th-sub">Instagram/Twitter-style feed. 1M posts/day, 10M DAU, 100:1 read:write. Fan-out on write via Kafka, celebrity fan-out on read, feed &lt;200ms.</div>
   <div class="tags"><span class="tag ty">Fan-out on Write</span><span class="tag tg">Kafka</span><span class="tag tb">Cassandra</span><span class="tag tr">Redis Feed Cache</span><span class="tag tp">GraphDB Follows</span><span class="tag to">Celebrity Problem</span></div>
@@ -2422,6 +2432,138 @@ Follow (graph) following_id (PK) / follower_id (CK), created_at</pre></div>
     <li>100:1 read:write → optimize reads</li>
     <li>Multi-region active-active</li>
     <li>Rate-limit posts per user (spam)</li></ul></div>
+</div>
+</div>
+
+<!-- ═══════════════════════ TOPIC 16 — GOOGLE DOCS ═══════════════════════ -->
+<div class="page" id="p15">
+<div class="th">
+  <div class="th-eye">System Design Interview — Topic 16 of 16</div>
+  <div class="th-title">Google <em>Docs</em></div>
+  <div class="th-sub">Real-time collaborative document editing. Concurrent edits stay consistent, cursors sync, revert to any version.</div>
+  <div class="tags"><span class="tag ty">WebSocket</span><span class="tag tg">Kafka Ordering</span><span class="tag tb">Cassandra / HBase</span><span class="tag tr">Operational Transform</span><span class="tag tp">Redis Presence</span><span class="tag to">Snapshot + Revert</span></div>
+</div>
+
+
+<div class="hld-guide">
+  <div class="hld-guide-label">📋 Interview Flow — Use This Order</div>
+  <div class="hld-guide-steps">
+    <span class="hld-guide-step"><em>1</em>FR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>2</em>NFR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>3</em>Entities</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>4</em>API Design</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>5</em>Discuss HLD</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>6</em>Deep Dive</span>
+  </div>
+  <p>Start with <strong>Functional Requirements</strong>, then <strong>Non-Functional Requirements</strong>, lock <strong>Entities / schema</strong>, define the <strong>API</strong>, draw and walk the <strong>HLD</strong>, then <strong>Deep Dive</strong> on bottlenecks, failure modes, and trade-offs. Do not jump to boxes before FR/NFR are agreed.</p>
+</div>
+<div class="phase-label"><div class="phase-pill">OPENING</div></div>
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
+<div class="bubble">Design a collaborative document editor like Google Docs — multiple people editing the same document at the same time.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">CLARIFICATION + FR/NFR</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Clarifying</span></div>
+<div class="bubble">Text documents only, or rich media too? How many concurrent editors on one doc — 2, or hundreds? Do we need to see each other's cursors live? Offline editing? Version history?
+<br><br><strong>Given: text-based documents (initial scope), up to 100 concurrent editors per doc, live cursors, version history + revert, offline mode out of scope, doc size up to 10MB:</strong>
+<ul>
+<li><strong>FR:</strong> Create documents, edit documents, see edits from other editors in real time, see each other's cursors, view version history and revert to a previous version</li>
+<li><strong>NFR:</strong> Eventually consistent across editors (~100ms convergence), low-latency updates, durable documents, no more than 100 concurrent editors per doc, secure/private (per-doc ACLs), highly available, scalable to millions of users and billions of documents</li>
+</ul></div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Entities + API</span></div>
+<div class="bubble">Before you draw anything — what does the data model look like, and what does the client actually call?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Entities + API</span></div>
+<div class="bubble">Core entities: <strong>Document</strong> (docId, ownerId, title, documentVersionId), <strong>Edit Operation</strong> (opId, docId, userId, type, position, data, baseVersion) — the atomic unit every collaborator sends, <strong>Cursor Presence</strong> (docId, userId, cursorPos), and <strong>Document Version</strong> (versionId, docId, createdAt, size) for snapshots. Two kinds of API: plain REST for document/metadata management, and a WebSocket channel for the live editing session.
+<div class="schema-box"><div class="schema-hdr">🔌 <span>API — REST (metadata) + WebSocket (live ops)</span></div>
+<pre class="schema"><span class="cm">-- REST --</span>
+POST /docs                              <span class="cm">-- create, body:{title} → {docId,...}</span>
+GET  /docs/{docId}                      <span class="cm">-- metadata: title, ownerId, documentVersionId</span>
+GET  /docs/{docId}/versions             <span class="cm">-- version history list</span>
+POST /docs/{docId}/versions/{vId}/revert <span class="cm">-- → {newDocumentVersionId}</span>
+
+<span class="cm">-- WebSocket --</span>
+GET  /docs/{docId}/ws                   <span class="cm">-- upgrade; server replays ops since</span>
+                                         <span class="cm">-- client's version + active editors/cursors</span>
+WS SEND {type:"insert"|"delete"|"update", position, data, baseVersionId}</pre></div>
+</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 1</div><div class="phase-title-text">Single server MVP — what breaks first</div></div>
+<div class="diag-block" id="d-gdoc1"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="gdoc1"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Single Server Analysis</span></div>
+<div class="bubble">Simplest version: one app server holds each open document in memory, both clients connect over WebSocket, the server applies edits in the order it receives them and broadcasts to everyone else, then periodically persists to Postgres. Works for a demo. Breaks immediately at scale — in-memory state is lost on restart, one box's WebSocket capacity caps concurrent editors across the whole product, and there's no way to run more than one server without editors on different boxes losing each other's updates.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Conflicts</span></div>
+<div class="bubble">Two people type in the same spot at the same time. How do their edits not corrupt each other?</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 2</div><div class="phase-title-text">Distributed collaboration engine — ordering + conflict resolution</div></div>
+<div class="diag-block" id="d-gdoc2"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="gdoc2"></div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Operational Transform</span></div>
+<div class="bubble">Each edit is sent as an <strong>operation</strong> (insert/delete at a position), not the whole document. The <strong>Document Service (Collaboration Engine)</strong> is the single place that owns a document's canonical order: it assigns each incoming operation a sequence number, and if two ops raced against the same base version, it runs <strong>Operational Transform (OT)</strong> — adjust op B's position against op A, which already landed, so both ops apply cleanly and every client converges to the same text. (CRDTs are the other valid answer here — no central sequencer needed, ops commute by construction — worth mentioning as a trade-off.) The transformed op is broadcast to every connected editor over the WebSocket Gateway, and each client applies it locally.</div>
+<div class="why-box"><div class="why-label">Why OT here vs CRDT</div>OT needs a central authority (this Document Service) to order and transform ops, which is simple to reason about and matches "one doc = one owning shard." CRDTs remove that central point and work better offline/peer-to-peer, but carry higher per-operation metadata overhead and are harder to reason about for arbitrary rich-text edits. Since offline mode is explicitly out of scope, OT with a single owning service per doc is the simpler, defensible choice.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Event Ordering + Storage</span></div>
+<div class="bubble">Where does an operation actually get durably ordered, and what's the source of truth if a server crashes mid-broadcast?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Kafka Ordering + Append-Only Log</span></div>
+<div class="bubble">The Document Service publishes every accepted operation to an <strong>Edit Operations Stream (Kafka)</strong>, partitioned by <code>docId</code>. Partitioning by docId guarantees Kafka preserves strict per-document ordering — exactly the guarantee OT depends on — while unrelated documents scale across partitions independently. A <strong>Stream Processor (Flink)</strong> consumes each partition in order, is the actual source of truth for "what happened and in what order," and appends every operation to a <strong>Document Operations DB</strong> (Cassandra/HBase, append-only, partitioned by docId) — never mutated, only appended to.
+<div class="schema-box"><div class="schema-hdr">🗄 <span>Document Operations DB — append-only op log</span></div>
+<pre class="schema">CREATE TABLE doc_operations (
+  doc_id       TEXT,      <span class="cm">-- PARTITION KEY: all ops of a doc together</span>
+  seq_no       BIGINT,    <span class="cm">-- CLUSTER KEY ASC — Kafka offset-derived, strictly increasing</span>
+  op_id        TEXT,
+  user_id      TEXT,
+  op_type      TEXT,      <span class="cm">-- insert | delete | update</span>
+  position     INT,
+  data         TEXT,
+  base_version TEXT,      <span class="cm">-- op_id this was transformed against</span>
+  created_at   TIMESTAMP,
+  PRIMARY KEY (doc_id, seq_no)
+) WITH CLUSTERING ORDER BY (seq_no ASC);</pre></div>
+</div>
+<div class="why-box"><div class="why-label">Why partition Kafka (and the log) by docId</div>OT and "replay ops since my version" both require a single, total order per document — nothing more, nothing less. Partitioning by docId gives exactly that for free from Kafka's per-partition ordering guarantee, and lets the Document Operations DB use the same partition key so a doc's full history is one physical partition — a fast sequential read for reconnect/replay.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Presence + Idempotency</span></div>
+<div class="bubble">How do editors see each other's live cursors without hammering the database? And WebSockets can redeliver — how do duplicate ops not corrupt the doc?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Redis Presence + At-Least-Once Idempotency</span></div>
+<div class="bubble"><strong>Cursor Presence + doc-level locks — Redis, never the DB:</strong> <code>doc:{docId}:cursors:{userId} → {pos, ts}</code> with a short TTL, broadcast to other connected editors on change. Purely ephemeral — a lost cursor update just means a stale highlight for a second, never a correctness issue, so it never touches the append-only log.
+<br><br><strong>Idempotency:</strong> ops can be delivered more than once (client retry, at-least-once WebSocket/Kafka delivery). Every op carries a client-generated <code>opId</code> + <code>baseVersionId</code>; the Document Service dedupes on <code>opId</code> before assigning a sequence number, so a redelivered op is a safe no-op instead of a double-insert.
+<br><br><strong>Failed operations:</strong> same retry-with-backoff + DLQ pattern as any queue-backed pipeline — an op that can't be applied after repeated attempts (e.g. malformed transform) goes to a DLQ for inspection rather than silently corrupting the document or blocking the stream.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Versioning</span></div>
+<div class="bubble">Version history and revert — replaying billions of tiny ops on every doc load would be far too slow. How do you make that fast?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Snapshot + Revert</span></div>
+<div class="bubble">The Stream Processor periodically triggers a <strong>Snapshot Builder</strong> background job: replay all ops since the last snapshot, materialize the full document, write it to the <strong>Document Version Store</strong> (object storage — GCS/S3), and record a new <code>Document Version</code> row. Opening a doc = load the latest snapshot + replay only the handful of ops since it, not the entire history. <code>GET /docs/{docId}/versions</code> lists snapshots; <code>revert</code> creates a new version pointing back at an old snapshot's content rather than destructively deleting newer history. Other background jobs keep this cheap long-term: <strong>version compaction</strong> merges old snapshots, <strong>old version cleanup</strong> enforces a retention policy, and an <strong>indexing</strong> job pushes searchable text into Elasticsearch — all off the hot editing path.</div></div></div>
+
+<div class="diag-block final-diag" id="d-gdoc3"><div class="diag-label">Final Architecture</div><div class="diag-svg-inner" data-fn="gdoc3"></div></div>
+<div class="diag-block ref-diag"><div class="diag-label">📝 Hand-drawn Reference Sketch</div><div class="diag-svg-inner"><a class="ref-img-link" href="../../assets/images/high_level_design/references/google_docs_sketch.webp" target="_blank" rel="noopener" title="Open full-resolution sketch"><img src="../../assets/images/high_level_design/references/google_docs_sketch.webp" alt="Google Docs hand-drawn reference sketch" loading="lazy"></a></div><div class="ref-hint"><a href="../../assets/images/high_level_design/references/google_docs_sketch.webp" target="_blank" rel="noopener">Open full resolution ↗</a> — click the sketch to zoom.</div></div>
+<div class="sec-div"></div>
+<div class="qr-grid">
+  <div class="qr-card"><div class="qr-title">🗄 Storage Choices</div><ul>
+    <li><strong>Cassandra/HBase:</strong> append-only op log, PK=(docId, seqNo)</li>
+    <li><strong>Kafka:</strong> Edit Operations Stream, partition=docId</li>
+    <li><strong>GCS/S3:</strong> document version snapshots</li>
+    <li><strong>Redis:</strong> live cursors, doc locks (ephemeral only)</li>
+    <li><strong>Spanner/Postgres:</strong> doc metadata + ACLs (strong consistency)</li></ul></div>
+  <div class="qr-card"><div class="qr-title">🔁 Ordering + Conflicts</div><ul>
+    <li>Kafka partition=docId → strict per-doc order</li>
+    <li>Operational Transform resolves concurrent ops</li>
+    <li>opId + baseVersionId → idempotent, dedup on retry</li>
+    <li>Failed ops → retry w/ backoff → DLQ</li>
+    <li>100 editor/doc cap enforced at WS Gateway</li></ul></div>
+  <div class="qr-card"><div class="qr-title">📈 Scale + Ops</div><ul>
+    <li>Stateless WS gateways + stream processors scale out</li>
+    <li>Snapshot + replay-since = fast doc load, not full history</li>
+    <li>Multi-region active-active; monitor p50/p95 op latency</li>
+    <li>Compress old snapshots; TTL old op-log entries</li>
+    <li>AuthN/AuthZ per doc; encrypt in transit + at rest</li></ul></div>
 </div>
 </div>
 
@@ -2775,45 +2917,54 @@ function wc1(){
 function wc2(){
   const W=990,H=400;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
   s+=bx(10,162,108,57,'Seed URLs','+ discovered URLs',C.B,'🌱');s+=ar(118,190,165,190,C.T1);
-  s+=bx(165,125,165,118,'URL Frontier\n(Priority Queue)','Kafka topics\nsharded by domain\nhostname politeness',C.Y,'📋');
+  s+=bx(165,125,165,118,'Frontier Queue','Amazon SQS\nvisibility timeout\n= automatic retry',C.Y,'📋');
+  s+=bx(165,260,165,70,'Rate Limiter\n+ DNS Cache','per-host token bucket\nDNS TTL cache',C.O,'🚦');
+  s+=ar(247,260,247,243,C.O,'gate',true);
   fan(330,183,372,[80,160,240,320],C.G);
   [0,1,2,3].forEach(i=>{
     const y=58+i*78;s+=bx(372,y,188,65,`Crawler Worker ${i+1}`,'Fetch→Parse→Extract',C.G,'🕷');
-    s+=ar(560,y+32,608,y+32,C.T1);s+=ar(560,y+32,608,y+32,C.T1);
+    s+=ar(560,y+32,608,y+32,C.T1);
   });
   s+=rg(608,22,262,195,'DEDUP + STORE',C.B);
   s+=bx(618,42,242,57,'URL Seen Check','Bloom Filter → Redis Set\nfingerprint dedup',C.B);
   s+=bx(618,112,242,57,'Content Dedup','SimHash fingerprint\nfor near-dup detection',C.CY);
-  s+=bx(618,182,242,57,'Content Store','S3 / Blob storage\nraw HTML + metadata',C.Y,'🗄');
+  s+=bx(618,182,242,57,'Storage','S3 raw HTML\nDynamoDB URL metadata',C.Y,'🗄');
   s+=ar(618,70,608,70,C.B,'',true);
   s+=rg(608,252,262,130,'POLITENESS',C.R);
-  s+=tx(618,275,'Rate limit per domain',8,C.T1,'start');s+=tx(618,291,'Crawl-Delay from robots.txt',8,C.T1,'start');s+=tx(618,307,'Max concurrent per host: 1-3',8,C.T1,'start');s+=tx(618,323,'Honor robots.txt disallow',8,C.T1,'start');s+=tx(618,339,'User-Agent header required',8,C.T1,'start');
+  s+=tx(618,275,'Rate Limiter gates every fetch',8,C.T1,'start');s+=tx(618,291,'Crawl-Delay from robots.txt',8,C.T1,'start');s+=tx(618,307,'Max concurrent per host: 1-3',8,C.T1,'start');s+=tx(618,323,'Honor robots.txt disallow',8,C.T1,'start');s+=tx(618,339,'User-Agent header required',8,C.T1,'start');
   s+=`<rect x="8" y="376" width="975" height="20" rx="4" fill="${C.G}08" stroke="${C.G}22" stroke-width="1"/>`;
-  s+=tx(490,386,'✓  Kafka sharded by domain = politeness per host. Bloom filter dedup. SimHash for near-duplicate content.',8,C.G,'middle',true);
+  s+=tx(490,386,'✓  SQS frontier (visibility timeout = free retry) + Rate Limiter/DNS Cache gate every fetch. Bloom + SimHash dedup.',8,C.G,'middle',true);
   return s+ev();
 }
 function wc3(){
-  const W=990,H=385;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
-  s+=tx(495,18,'Full Architecture — Distributed Web Crawler',11,C.T0,'middle',true);
-  s+=bx(8,42,118,57,'URL Frontier','Kafka\nsharded by domain',C.Y,'📋');
-  // Connect frontier to workers
-  s+=`<line x1="126" y1="70" x2="144" y2="70" stroke="${C.T1}" stroke-width="1.5"/>`;
-  s+=`<line x1="144" y1="70" x2="144" y2="299" stroke="${C.T1}" stroke-width="1.5"/>`;
-  [208,268,328].forEach(y2=>{s+=`<line x1="144" y1="${y2}" x2="180" y2="${y2}" stroke="${C.T1}" stroke-width="1.5" marker-end="url(#a${C.T1.replace('#','')})"/>`;});
-  [['Fetch Workers','HTTP/HTTPS requests',180],['Parse Workers','HTML→links+content',240],['Indexer Workers','Process+rank+store',300]].forEach(([t,sub,y])=>{
-    s+=bx(180,y,195,57,t,sub,C.G,'⚙');
-    s+=ar(375,y+28,423,y+28,C.T1);
-  });
-  s+=rg(423,32,260,142,'DEDUP PIPELINE',C.B);
-  s+=bx(433,52,240,52,'URL Bloom Filter','seen URLs (false-pos ok)',C.B);
-  s+=bx(433,116,240,52,'Content SimHash','near-dup detection',C.CY);
-  s+=ar(673,78,712,78,C.T1);s+=bx(712,42,118,57,'S3 Raw HTML','gzip compressed',C.Y,'🗄');
-  s+=ar(673,142,712,142,C.T1);s+=bx(712,112,118,57,'Cassandra','doc metadata\nPK: url_hash',C.B,'🗄');
-  s+=ar(712,182,712,210,C.T1);s+=bx(634,212,196,57,'Elasticsearch','Inverted index\nfull-text search',C.G,'🔍');
-  s+=rg(423,192,378,148,'SCHEDULER + POLITENESS',C.P);
-  s+=tx(433,215,'Scheduler: priority = PageRank × freshness',8,C.T1,'start');s+=tx(433,232,'Recrawl: popular=1day, static=30days',8,C.T1,'start');s+=tx(433,249,'robots.txt: cache per domain 1hr',8,C.T1,'start');s+=tx(433,266,'Rate limiter: 1-3 req/sec per host',8,C.T1,'start');s+=tx(433,283,'DNS resolver pool: cache TTL 5min',8,C.T1,'start');s+=tx(433,300,'Circuit breaker: pause on 5xx burst',8,C.R,'start');
-  s+=`<rect x="8" y="366" width="975" height="16" rx="3" fill="${C.G}08" stroke="${C.G}20" stroke-width="1"/>`;
-  s+=tx(490,374,'✓  Final: Kafka frontier → Workers pipeline → Bloom+SimHash dedup → S3+Cassandra+ES storage.',8,C.G,'middle',true);
+  const W=990,H=430;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=tx(495,14,'Final Architecture — SQS-Driven Distributed Web Crawler',11,C.T0,'middle',true);
+  // external systems
+  s+=bx(300,24,90,44,'DNS',null,C.CY,'🌐');s+=bx(410,24,110,44,'Webpage',null,C.CY,'🌍');
+  s+=ar(330,68,315,120,C.CY,'resolve');s+=ar(455,68,395,120,C.CY,'fetch');
+  // left column: frontier, dlq, rate limiter
+  s+=bx(8,140,150,60,'Frontier Queue','SQS · per-host queue',C.Y,'📋');
+  s+=bx(8,210,150,60,'DLQ','SQS · after max retries',C.R,'⚠');
+  s+=ar(83,200,83,210,C.R,'redrive',true);
+  s+=bx(8,280,150,70,'Rate Limiter\n+ DNS Cache','per-host token bucket\nDNS TTL cache',C.O,'🚦');
+  s+=ar(158,315,195,220,C.O,'check limit');
+  // crawler
+  s+=bx(195,120,220,110,'Crawler','fetch → parse → extract\nlinks, save HTML',C.G,'🕷');
+  s+=ar(158,170,195,170,C.Y,'pull URL');
+  s+=ar(250,225,158,180,C.R,'discovered URLs',true);
+  // storage from crawler
+  s+=bx(460,90,160,50,'S3','raw HTML, gzip',C.Y,'🗄');
+  s+=bx(460,150,170,60,'DynamoDB','url_metadata\nstatus, domain,\nlastCrawlTime',C.B,'🗄');
+  s+=ar(415,145,460,112,C.Y,'save HTML');s+=ar(415,180,460,180,C.B,'update status');
+  // parsing pipeline
+  s+=bx(245,270,150,55,'Parsing Queue','SQS',C.P,'📋');
+  s+=bx(420,270,160,55,'Parsing Workers','parse + extract text',C.G,'⚙');
+  s+=bx(605,270,160,55,'Parsed Data Store','S3 / Parquet\nby domain / date',C.Y,'🗄');
+  s+=bx(790,270,180,55,'Indexing Pipeline','Elasticsearch — optional\nBM25 + PageRank',C.CY,'🔍');
+  s+=ar(280,230,300,270,C.G,'HTML → parse');
+  s+=ar(395,297,420,297,C.G);s+=ar(580,297,605,297,C.G);s+=ar(765,297,790,297,C.CY,'',true);
+  s+=`<rect x="8" y="400" width="962" height="20" rx="4" fill="${C.G}08" stroke="${C.G}22" stroke-width="1"/>`;
+  s+=tx(490,410,'✓  SQS frontier + parsing queues, DynamoDB metadata, S3 raw+parsed storage, per-host rate limit, DLQ on repeated failure.',8,C.G,'middle',true);
   return s+ev();
 }
 
@@ -3076,6 +3227,51 @@ function job3(){
   return s+ev();
 }
 
+// ─── GOOGLE DOCS ───────────────────────────────────────────────────────────────
+function gdoc1(){
+  const W=680,H=210;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(14,58,100,52,'Client A','edits doc',C.P,'💻');s+=ar(114,84,164,84,C.G,'WS ↕');
+  s+=bx(14,132,100,52,'Client B','edits doc',C.P,'💻');s+=ar(114,158,165,158,C.G,'WS ↕',false);
+  s+=bx(164,50,220,142,'App Server','in-memory doc state\napply edits in order\nbroadcast to clients',C.G,'🖥');
+  s+=ar(384,108,432,108,C.Y,'persist');s+=bx(432,80,190,72,'PostgreSQL','doc content blob\nversion snapshot',C.Y,'🗄');
+  s+=warn_bar(14,192,608,'⚠  In-memory state lost on restart. One box caps WS concurrency. Single server = SPOF, no HA.');
+  return s+ev();
+}
+function gdoc2(){
+  const W=990,H=400;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=bx(8,170,140,60,'Editors 1..N','WebSocket clients',C.P,'💻');s+=ar(148,200,196,200,C.G,'WS ↕');
+  s+=bx(196,140,200,120,'WebSocket\nGateway','real-time fan-out\nauth per connection',C.G,'🔌');
+  s+=ar(396,175,444,145,C.T1,'ops');s+=bx(444,90,220,110,'Document Service\n(Collaboration Engine)','apply + transform ops\nmanage sessions\nbroadcast updates',C.G,'⚙');
+  s+=ar(664,120,712,87,C.Y,'cache');s+=bx(712,52,180,70,'Redis Cache','active editors, cursors\ndoc-level locks',C.Y,'⚡');
+  s+=ar(664,170,712,202,C.B,'append');s+=bx(712,162,180,80,'Document\nOperations DB','append-only log\nCassandra / HBase\npartition: docId',C.B,'🗄');
+  s+=ar(554,200,554,270,C.P,'publish ops',true);s+=bx(444,270,220,60,'Edit Operations\nStream','Kafka · partition = docId',C.P,'📨');
+  s+=ar(664,300,712,310,C.CY);s+=bx(712,270,220,80,'Stream Processor','Flink · order per docId\nvalidate & transform\ntrigger snapshots',C.CY,'🌊');
+  s+=`<rect x="8" y="360" width="975" height="20" rx="4" fill="${C.G}08" stroke="${C.G}22" stroke-width="1"/>`;
+  s+=tx(490,370,'✓  Kafka partitioned by docId = strict per-doc ordering. Redis holds ephemeral cursors/locks, never the log.',8,C.G,'middle',true);
+  return s+ev();
+}
+function gdoc3(){
+  const W=990,H=440;let s=sv(W,H)+defs();s+=`<rect width="${W}" height="${H}" fill="${C.BG}"/>`;
+  s+=tx(495,14,'Final Architecture — Real-Time Collaborative Document Editing',11,C.T0,'middle',true);
+  s+=bx(8,80,130,55,'Editors','Web / Mobile',C.P,'💻');
+  s+=ar(138,100,170,47,C.B,'metadata');s+=bx(170,20,160,55,'API Gateway','auth · rate limit\nrouting',C.B,'🛡');
+  s+=ar(138,115,170,157,C.G,'WS ↕');s+=bx(170,130,160,55,'WebSocket\nGateway','real-time (WS)',C.G,'🔌');
+  s+=ar(330,47,365,47,C.T1);s+=bx(365,20,180,55,'Document\nMetadata Svc','create doc, get meta\npermissions',C.G,'⚙');
+  s+=ar(545,47,580,47,C.T1,'CRUD');s+=bx(580,20,160,55,'Metadata DB','doc info, ACLs',C.B,'🗄');
+  s+=ar(330,157,365,155,C.G,'ops');s+=bx(365,110,200,90,'Document Service\n(Collab Engine)','apply/transform ops\nmanage sessions\nbroadcast',C.G,'⚙');
+  s+=ar(565,140,580,140,C.Y,'cache');s+=bx(580,110,160,60,'Redis Cache','active editors, cursors\ndoc locks',C.Y,'⚡');
+  s+=ar(565,190,580,215,C.B,'append');s+=bx(580,185,160,70,'Doc Operations DB','append-only log\nCassandra / HBase',C.B,'🗄');
+  s+=ar(465,200,465,225,C.P,'publish',true);s+=bx(365,225,200,55,'Edit Ops Stream','Kafka · partition=docId',C.P,'📨');
+  s+=ar(465,280,465,300,C.CY);s+=bx(365,300,200,80,'Stream Processor','Flink · order per docId\nvalidate+transform\ntrigger snapshots',C.CY,'🌊');
+  s+=ar(365,340,330,327,C.G,'index',true);s+=bx(170,300,160,55,'Search / Indexer','Elasticsearch',C.G,'🔍');
+  s+=ar(565,340,580,330,C.Y,'snapshot');s+=bx(580,300,180,60,'Document Version\nStore','Snapshots · GCS/S3',C.Y,'🗄');
+  s+=ar(740,220,795,180,C.O,'',true);s+=ar(760,330,795,230,C.O,'',true);
+  s+=bx(795,110,175,120,'Background Jobs','snapshot builder\nversion compaction\nold version cleanup\nindexing',C.O,'🧰');
+  s+=`<rect x="8" y="410" width="962" height="20" rx="4" fill="${C.G}08" stroke="${C.G}22" stroke-width="1"/>`;
+  s+=tx(490,420,'✓  REST for metadata/ACLs, WS for live ops. Kafka+Flink order & snapshot the append-only log; ES + S3 stay async.',8,C.G,'middle',true);
+  return s+ev();
+}
+
 const DIAGRAM_FNS = {
   rl1, rl2, rl3, rl4,
   ch1, ch2, ch3,
@@ -3090,6 +3286,7 @@ const DIAGRAM_FNS = {
   met1, met2, met3,
   trend1, trend2, trend3,
   job1, job2, job3,
+  gdoc1, gdoc2, gdoc3,
 };
 
 function renderAllDiagrams() {
