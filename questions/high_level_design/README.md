@@ -31,4 +31,4 @@ Use this order on the whiteboard:
 5. **Discuss HLD** — Draw architecture and walk the flows  
 6. **Deep Dive** — Bottlenecks, failure modes, trade-offs  
 
-Hand-drawn reference sketches live under `assets/images/high_level_design/references/` (rate limiter, URL shortener, Google Drive, job scheduler, distributed cache, news feed).
+Hand-drawn reference sketches live under `assets/images/high_level_design/references/` (rate limiter, notification system, URL shortener, Google Drive, top-K trending, job scheduler, distributed cache, news feed).

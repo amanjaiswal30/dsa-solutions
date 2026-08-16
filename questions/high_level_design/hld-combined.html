@@ -154,6 +154,12 @@ pre.schema .cv{color:var(--y);}
 .diag-svg-inner img { display: block; width: 100%; height: auto; }
 .ref-diag { border-color: var(--p); }
 .ref-diag .diag-label { color: var(--p); }
+.ref-diag a.ref-img-link { display:block; cursor: zoom-in; }
+.ref-diag a.ref-img-link img { width:100%; height:auto; max-width:100%; }
+.ref-hint{font-size:10px;color:var(--t2);padding:6px 14px;background:var(--s2);
+  border-top:1px solid var(--b1);letter-spacing:.3px;}
+.ref-hint a{color:var(--p);text-decoration:none;}
+.ref-hint a:hover{text-decoration:underline;}
 /* INTERVIEW FLOW GUIDE */
 .hld-guide{background:var(--s1);border:1px solid var(--b1);border-left:3px solid var(--g);
   border-radius:0 8px 8px 0;padding:14px 16px;margin:0 0 28px;font-size:12px;line-height:1.7;color:var(--t1);}
@@ -550,7 +556,7 @@ CREATE TABLE rl_rules (
   <div class="phase-title-text">Pull it all together</div>
 </div>
 <div class="diag-block" id="d-rl4"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="rl4"></div></div>
-<div class="diag-block ref-diag"><div class="diag-label">📝 Hand-drawn Reference Sketch</div><div class="diag-svg-inner"><img src="../../assets/images/high_level_design/references/rate_limiter_sketch.png" alt="Rate Limiter hand-drawn reference sketch" loading="lazy"></div></div>
+<div class="diag-block ref-diag"><div class="diag-label">📝 Hand-drawn Reference Sketch</div><div class="diag-svg-inner"><a class="ref-img-link" href="../../assets/images/high_level_design/references/rate_limiter_sketch.webp" target="_blank" rel="noopener" title="Open full-resolution sketch"><img src="../../assets/images/high_level_design/references/rate_limiter_sketch.webp" alt="Rate Limiter hand-drawn reference sketch" loading="lazy"></a></div><div class="ref-hint"><a href="../../assets/images/high_level_design/references/rate_limiter_sketch.webp" target="_blank" rel="noopener">Open full resolution ↗</a> — click the sketch to zoom.</div></div>
 
 <div class="turn">
   <div class="avatar you-av">YOU</div>
@@ -1093,7 +1099,7 @@ ORDER BY (short_code, clicked_at); <span class="cm">-- fast per-URL time-series 
 <div class="diag-block final-diag" id="d-url3"><div class="diag-label">Final Architecture</div><div class="diag-svg-inner" data-fn="url3"></div></div>
 
 <div class="diag-block" id="d-url3"><div class="diag-label">Final Architecture — 3-Layer Cache + Async Analytics</div><div class="diag-svg-inner" data-fn="url3"></div></div>
-<div class="diag-block ref-diag"><div class="diag-label">📝 Hand-drawn Reference Sketch</div><div class="diag-svg-inner"><img src="../../assets/images/high_level_design/references/url_shortener_sketch.png" alt="URL Shortener hand-drawn reference sketch" loading="lazy"></div></div>
+<div class="diag-block ref-diag"><div class="diag-label">📝 Hand-drawn Reference Sketch</div><div class="diag-svg-inner"><a class="ref-img-link" href="../../assets/images/high_level_design/references/url_shortener_sketch.webp" target="_blank" rel="noopener" title="Open full-resolution sketch"><img src="../../assets/images/high_level_design/references/url_shortener_sketch.webp" alt="URL Shortener hand-drawn reference sketch" loading="lazy"></a></div><div class="ref-hint"><a href="../../assets/images/high_level_design/references/url_shortener_sketch.webp" target="_blank" rel="noopener">Open full resolution ↗</a> — click the sketch to zoom.</div></div>
 <div class="sec-div"></div>
 <div class="qr-grid">
   <div class="qr-card"><div class="qr-title">🗄 MySQL Schema</div><ul>
@@ -1174,6 +1180,7 @@ We need async decoupling via a message queue. Kafka.</div></div></div>
 
 <div class="phase-label"><div class="phase-pill">PHASE 2</div><div class="phase-title-text">Kafka pipeline — topics, partitions, consumers</div></div>
 <div class="diag-block" id="d-notif2"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="notif2"></div></div>
+<div class="diag-block ref-diag"><div class="diag-label">📝 Hand-drawn Reference Sketch</div><div class="diag-svg-inner"><a class="ref-img-link" href="../../assets/images/high_level_design/references/notification_system_sketch.webp" target="_blank" rel="noopener" title="Open full-resolution sketch"><img src="../../assets/images/high_level_design/references/notification_system_sketch.webp" alt="Notification System hand-drawn reference sketch" loading="lazy"></a></div><div class="ref-hint"><a href="../../assets/images/high_level_design/references/notification_system_sketch.webp" target="_blank" rel="noopener">Open full resolution ↗</a> — click the sketch to zoom.</div></div>
 <div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Kafka Architecture</span></div>
 <div class="bubble">The pipeline has two layers of Kafka:
 <ul>
@@ -1714,7 +1721,7 @@ CREATE TABLE file_permissions (
 
 
 <div class="diag-block final-diag" id="d-gd3"><div class="diag-label">Final Architecture</div><div class="diag-svg-inner" data-fn="gd3"></div></div>
-<div class="diag-block ref-diag"><div class="diag-label">📝 Hand-drawn Reference Sketch</div><div class="diag-svg-inner"><img src="../../assets/images/high_level_design/references/google_drive_sketch.png" alt="Google Drive hand-drawn reference sketch" loading="lazy"></div></div>
+<div class="diag-block ref-diag"><div class="diag-label">📝 Hand-drawn Reference Sketch</div><div class="diag-svg-inner"><a class="ref-img-link" href="../../assets/images/high_level_design/references/google_drive_sketch.webp" target="_blank" rel="noopener" title="Open full-resolution sketch"><img src="../../assets/images/high_level_design/references/google_drive_sketch.webp" alt="Google Drive hand-drawn reference sketch" loading="lazy"></a></div><div class="ref-hint"><a href="../../assets/images/high_level_design/references/google_drive_sketch.webp" target="_blank" rel="noopener">Open full resolution ↗</a> — click the sketch to zoom.</div></div>
 <div class="sec-div"></div>
 <div class="qr-grid">
   <div class="qr-card"><div class="qr-title">🗄 MySQL Schema</div><ul>
@@ -2043,6 +2050,7 @@ video:meta:{id}          HASH  title, thumb, creator   <span class="cm">-- hydra
 <div class="bubble">Dedupe by (user_id or device_id, video_id) in a short window (HyperLogLog / Bloom + Redis SET with TTL). Rate-limit anomalous IPs. Down-weight views lacking watch-time signal. Shadow-ban suspicious creators from trending. Keep fraud pipeline async so ingest stays fast — better a slightly dirty score than blocking the event path.</div></div></div>
 
 <div class="diag-block final-diag" id="d-trend3"><div class="diag-label">Final Architecture</div><div class="diag-svg-inner" data-fn="trend3"></div></div>
+<div class="diag-block ref-diag"><div class="diag-label">📝 Hand-drawn Reference Sketch</div><div class="diag-svg-inner"><a class="ref-img-link" href="../../assets/images/high_level_design/references/topk_trending_sketch.webp" target="_blank" rel="noopener" title="Open full-resolution sketch"><img src="../../assets/images/high_level_design/references/topk_trending_sketch.webp" alt="YouTube Top-K Videos hand-drawn reference sketch" loading="lazy"></a></div><div class="ref-hint"><a href="../../assets/images/high_level_design/references/topk_trending_sketch.webp" target="_blank" rel="noopener">Open full resolution ↗</a> — click the sketch to zoom.</div></div>
 <div class="sec-div"></div>
 <div class="qr-grid">
   <div class="qr-card"><div class="qr-title">📨 Ingest</div><ul>
@@ -2179,7 +2187,7 @@ CREATE TABLE jobs (
 <div class="bubble">Jitter <code>next_run_at</code> by ±N seconds when computing cron. Shard schedules. Rate-limit enqueue per tenant. Priority queues so critical jobs skip the pile. Spill to more workers via autoscaling on queue depth. Optionally "calendar queue" hierarchical timing wheels so you don't scan 10M rows every second — only buckets that are due.</div></div></div>
 
 <div class="diag-block final-diag" id="d-job3"><div class="diag-label">Final Architecture</div><div class="diag-svg-inner" data-fn="job3"></div></div>
-<div class="diag-block ref-diag"><div class="diag-label">📝 Hand-drawn Reference Sketch</div><div class="diag-svg-inner"><img src="../../assets/images/high_level_design/references/job_scheduler_sketch.png" alt="Distributed Job Scheduler hand-drawn reference sketch" loading="lazy"></div></div>
+<div class="diag-block ref-diag"><div class="diag-label">📝 Hand-drawn Reference Sketch</div><div class="diag-svg-inner"><a class="ref-img-link" href="../../assets/images/high_level_design/references/job_scheduler_sketch.webp" target="_blank" rel="noopener" title="Open full-resolution sketch"><img src="../../assets/images/high_level_design/references/job_scheduler_sketch.webp" alt="Distributed Job Scheduler hand-drawn reference sketch" loading="lazy"></a></div><div class="ref-hint"><a href="../../assets/images/high_level_design/references/job_scheduler_sketch.webp" target="_blank" rel="noopener">Open full resolution ↗</a> — click the sketch to zoom.</div></div>
 <div class="sec-div"></div>
 <div class="qr-grid">
   <div class="qr-card"><div class="qr-title">🗄 Control Plane</div><ul>
@@ -2284,7 +2292,7 @@ ratelimit:{userId}   &lt;counter&gt; TTL 60s</pre></div>
 <div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Failure Handling</span></div>
 <div class="bubble">Node failure → automatic failover: Redis Sentinel / Cluster promotes a replica to master via leader election; clients get the updated slot map. Network partition → Cluster handles leader election on the majority side. Full memory → LRU eviction kicks in. Durability risk (pure cache loses data on restart) → mitigate with AOF/RDB persistence for warm restarts and S3 snapshots for backup. HA is multi-AZ; multi-region is active-active with cross-region replication.</div></div></div>
 
-<div class="diag-block final-diag ref-diag"><div class="diag-label">📝 Reference Sketch — Full HLD</div><div class="diag-svg-inner"><img src="../../assets/images/high_level_design/references/distributed_cache_sketch.png" alt="Distributed Cache hand-drawn HLD reference sketch" loading="lazy"></div></div>
+<div class="diag-block final-diag ref-diag"><div class="diag-label">📝 Reference Sketch — Full HLD</div><div class="diag-svg-inner"><a class="ref-img-link" href="../../assets/images/high_level_design/references/distributed_cache_sketch.webp" target="_blank" rel="noopener" title="Open full-resolution sketch"><img src="../../assets/images/high_level_design/references/distributed_cache_sketch.webp" alt="Distributed Cache hand-drawn HLD reference sketch" loading="lazy"></a></div><div class="ref-hint"><a href="../../assets/images/high_level_design/references/distributed_cache_sketch.webp" target="_blank" rel="noopener">Open full resolution ↗</a> — click the sketch to zoom.</div></div>
 <div class="sec-div"></div>
 <div class="qr-grid">
   <div class="qr-card"><div class="qr-title">🗄 Topology</div><ul>
@@ -2393,7 +2401,7 @@ Follow (graph) following_id (PK) / follower_id (CK), created_at</pre></div>
 <li><strong>Data structures:</strong> Cassandra wide-column (time-series-like), Redis in-memory cache, Kafka event streaming, GraphDB follow graph.</li>
 </ul></div></div></div>
 
-<div class="diag-block final-diag ref-diag"><div class="diag-label">📝 Reference Sketch — Full HLD</div><div class="diag-svg-inner"><img src="../../assets/images/high_level_design/references/newsfeed_sketch.png" alt="News Feed hand-drawn HLD reference sketch" loading="lazy"></div></div>
+<div class="diag-block final-diag ref-diag"><div class="diag-label">📝 Reference Sketch — Full HLD</div><div class="diag-svg-inner"><a class="ref-img-link" href="../../assets/images/high_level_design/references/newsfeed_sketch.webp" target="_blank" rel="noopener" title="Open full-resolution sketch"><img src="../../assets/images/high_level_design/references/newsfeed_sketch.webp" alt="News Feed hand-drawn HLD reference sketch" loading="lazy"></a></div><div class="ref-hint"><a href="../../assets/images/high_level_design/references/newsfeed_sketch.webp" target="_blank" rel="noopener">Open full resolution ↗</a> — click the sketch to zoom.</div></div>
 <div class="sec-div"></div>
 <div class="qr-grid">
   <div class="qr-card"><div class="qr-title">✍ Write Path</div><ul>
