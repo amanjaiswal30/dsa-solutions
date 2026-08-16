@@ -19,3 +19,16 @@ Interactive mock-interview write-ups covering:
 13. Distributed job scheduler
 14. Distributed cache
 15. News feed system
+
+## Interview flow (every topic)
+
+Use this order on the whiteboard:
+
+1. **FR** — Functional requirements  
+2. **NFR** — Non-functional requirements  
+3. **Entities** — Data model / schema  
+4. **API Design** — Endpoints + contracts  
+5. **Discuss HLD** — Draw architecture and walk the flows  
+6. **Deep Dive** — Bottlenecks, failure modes, trade-offs  
+
+Hand-drawn reference sketches live under `assets/images/high_level_design/references/` (rate limiter, URL shortener, Google Drive, job scheduler, distributed cache, news feed).

@@ -154,6 +154,18 @@ pre.schema .cv{color:var(--y);}
 .diag-svg-inner img { display: block; width: 100%; height: auto; }
 .ref-diag { border-color: var(--p); }
 .ref-diag .diag-label { color: var(--p); }
+/* INTERVIEW FLOW GUIDE */
+.hld-guide{background:var(--s1);border:1px solid var(--b1);border-left:3px solid var(--g);
+  border-radius:0 8px 8px 0;padding:14px 16px;margin:0 0 28px;font-size:12px;line-height:1.7;color:var(--t1);}
+.hld-guide-label{font-size:9px;color:var(--g);letter-spacing:1.2px;text-transform:uppercase;
+  font-weight:600;margin-bottom:8px;}
+.hld-guide-steps{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 8px;align-items:center;}
+.hld-guide-step{background:var(--s2);border:1px solid var(--b2);color:var(--t0);font-size:10.5px;
+  padding:4px 10px;border-radius:999px;font-weight:600;}
+.hld-guide-step em{color:var(--y);font-style:normal;margin-right:4px;}
+.hld-guide-arrow{color:var(--t2);font-size:11px;}
+.hld-guide p{margin:0;font-size:11.5px;color:var(--t1);}
+
 </style>
 
 </head>
@@ -189,6 +201,24 @@ pre.schema .cv{color:var(--y);}
   </div>
 </div>
 
+
+<div class="hld-guide">
+  <div class="hld-guide-label">📋 Interview Flow — Use This Order</div>
+  <div class="hld-guide-steps">
+    <span class="hld-guide-step"><em>1</em>FR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>2</em>NFR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>3</em>Entities</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>4</em>API Design</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>5</em>Discuss HLD</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>6</em>Deep Dive</span>
+  </div>
+  <p>Start with <strong>Functional Requirements</strong>, then <strong>Non-Functional Requirements</strong>, lock <strong>Entities / schema</strong>, define the <strong>API</strong>, draw and walk the <strong>HLD</strong>, then <strong>Deep Dive</strong> on bottlenecks, failure modes, and trade-offs. Do not jump to boxes before FR/NFR are agreed.</p>
+</div>
 <!-- OPENING -->
 <div class="phase-label">
   <div class="phase-pill">OPENING</div>
@@ -520,6 +550,7 @@ CREATE TABLE rl_rules (
   <div class="phase-title-text">Pull it all together</div>
 </div>
 <div class="diag-block" id="d-rl4"><div class="diag-label">Architecture Diagram</div><div class="diag-svg-inner" data-fn="rl4"></div></div>
+<div class="diag-block ref-diag"><div class="diag-label">📝 Hand-drawn Reference Sketch</div><div class="diag-svg-inner"><img src="../../assets/images/high_level_design/references/rate_limiter_sketch.png" alt="Rate Limiter hand-drawn reference sketch" loading="lazy"></div></div>
 
 <div class="turn">
   <div class="avatar you-av">YOU</div>
@@ -603,6 +634,24 @@ CREATE TABLE rl_rules (
   <div class="tags"><span class="tag ty">Ring Hash</span><span class="tag tg">Virtual Nodes</span><span class="tag tb">TreeMap O(log N)</span><span class="tag tr">Preference List</span><span class="tag tp">W+R&gt;N Quorum</span></div>
 </div>
 
+
+<div class="hld-guide">
+  <div class="hld-guide-label">📋 Interview Flow — Use This Order</div>
+  <div class="hld-guide-steps">
+    <span class="hld-guide-step"><em>1</em>FR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>2</em>NFR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>3</em>Entities</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>4</em>API Design</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>5</em>Discuss HLD</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>6</em>Deep Dive</span>
+  </div>
+  <p>Start with <strong>Functional Requirements</strong>, then <strong>Non-Functional Requirements</strong>, lock <strong>Entities / schema</strong>, define the <strong>API</strong>, draw and walk the <strong>HLD</strong>, then <strong>Deep Dive</strong> on bottlenecks, failure modes, and trade-offs. Do not jump to boxes before FR/NFR are agreed.</p>
+</div>
 <div class="phase-label"><div class="phase-pill">OPENING</div></div>
 <div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
 <div class="bubble">We have a 10-node cache cluster. Every time we add a single node, our cache hit rate crashes to near zero for 30 minutes. Figure out why and fix it.</div></div></div>
@@ -701,6 +750,24 @@ Server owner = (e != null) ? e.getValue() : ring.firstEntry().getValue();</pre><
   <div class="tags"><span class="tag ty">LSM Tree</span><span class="tag tg">Bloom Filter</span><span class="tag tb">WAL + Memtable</span><span class="tag tr">CAP: AP</span><span class="tag tp">Gossip</span><span class="tag to">Hinted Handoff</span></div>
 </div>
 
+
+<div class="hld-guide">
+  <div class="hld-guide-label">📋 Interview Flow — Use This Order</div>
+  <div class="hld-guide-steps">
+    <span class="hld-guide-step"><em>1</em>FR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>2</em>NFR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>3</em>Entities</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>4</em>API Design</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>5</em>Discuss HLD</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>6</em>Deep Dive</span>
+  </div>
+  <p>Start with <strong>Functional Requirements</strong>, then <strong>Non-Functional Requirements</strong>, lock <strong>Entities / schema</strong>, define the <strong>API</strong>, draw and walk the <strong>HLD</strong>, then <strong>Deep Dive</strong> on bottlenecks, failure modes, and trade-offs. Do not jump to boxes before FR/NFR are agreed.</p>
+</div>
 <div class="phase-label"><div class="phase-pill">OPENING</div></div>
 <div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
 <div class="bubble">Design a distributed key-value store. Support get, put, delete. Think DynamoDB or Redis at scale.</div></div></div>
@@ -800,6 +867,24 @@ Server owner = (e != null) ? e.getValue() : ring.firstEntry().getValue();</pre><
   <div class="tags"><span class="tag ty">Snowflake 64-bit</span><span class="tag tg">Time-sortable</span><span class="tag tb">ZooKeeper MachineID</span><span class="tag tr">Clock Skew</span><span class="tag tp">4.2B IDs/sec</span></div>
 </div>
 
+
+<div class="hld-guide">
+  <div class="hld-guide-label">📋 Interview Flow — Use This Order</div>
+  <div class="hld-guide-steps">
+    <span class="hld-guide-step"><em>1</em>FR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>2</em>NFR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>3</em>Entities</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>4</em>API Design</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>5</em>Discuss HLD</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>6</em>Deep Dive</span>
+  </div>
+  <p>Start with <strong>Functional Requirements</strong>, then <strong>Non-Functional Requirements</strong>, lock <strong>Entities / schema</strong>, define the <strong>API</strong>, draw and walk the <strong>HLD</strong>, then <strong>Deep Dive</strong> on bottlenecks, failure modes, and trade-offs. Do not jump to boxes before FR/NFR are agreed.</p>
+</div>
 <div class="phase-label"><div class="phase-pill">OPENING</div></div>
 <div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
 <div class="bubble">Design a distributed unique ID generator. These IDs will be primary keys in our database tables across multiple datacenters.</div></div></div>
@@ -890,6 +975,24 @@ Use monotonic clock (CLOCK_MONOTONIC) for comparisons — it never goes backward
   <div class="tags"><span class="tag ty">Base62 Snowflake</span><span class="tag tg">Redis Cache</span><span class="tag tb">Kafka Analytics</span><span class="tag tr">302+CDN</span><span class="tag tp">MySQL Sharded</span><span class="tag to">ClickHouse OLAP</span></div>
 </div>
 
+
+<div class="hld-guide">
+  <div class="hld-guide-label">📋 Interview Flow — Use This Order</div>
+  <div class="hld-guide-steps">
+    <span class="hld-guide-step"><em>1</em>FR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>2</em>NFR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>3</em>Entities</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>4</em>API Design</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>5</em>Discuss HLD</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>6</em>Deep Dive</span>
+  </div>
+  <p>Start with <strong>Functional Requirements</strong>, then <strong>Non-Functional Requirements</strong>, lock <strong>Entities / schema</strong>, define the <strong>API</strong>, draw and walk the <strong>HLD</strong>, then <strong>Deep Dive</strong> on bottlenecks, failure modes, and trade-offs. Do not jump to boxes before FR/NFR are agreed.</p>
+</div>
 <div class="phase-label"><div class="phase-pill">OPENING</div></div>
 <div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
 <div class="bubble">Design a URL shortener like bit.ly.</div></div></div>
@@ -1023,6 +1126,24 @@ ORDER BY (short_code, clicked_at); <span class="cm">-- fast per-URL time-series 
   <div class="tags"><span class="tag ty">Kafka Fan-out</span><span class="tag tg">FCM + APNS</span><span class="tag tb">DLQ Retry</span><span class="tag tr">At-least-once</span><span class="tag tp">Celebrity Problem</span><span class="tag to">PostgreSQL State</span></div>
 </div>
 
+
+<div class="hld-guide">
+  <div class="hld-guide-label">📋 Interview Flow — Use This Order</div>
+  <div class="hld-guide-steps">
+    <span class="hld-guide-step"><em>1</em>FR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>2</em>NFR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>3</em>Entities</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>4</em>API Design</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>5</em>Discuss HLD</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>6</em>Deep Dive</span>
+  </div>
+  <p>Start with <strong>Functional Requirements</strong>, then <strong>Non-Functional Requirements</strong>, lock <strong>Entities / schema</strong>, define the <strong>API</strong>, draw and walk the <strong>HLD</strong>, then <strong>Deep Dive</strong> on bottlenecks, failure modes, and trade-offs. Do not jump to boxes before FR/NFR are agreed.</p>
+</div>
 <div class="phase-label"><div class="phase-pill">OPENING</div></div>
 <div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
 <div class="bubble">Design a notification system. Think Instagram — someone likes your photo, you get a push notification.</div></div></div>
@@ -1145,6 +1266,24 @@ CREATE TABLE device_tokens (
   <div class="tags"><span class="tag ty">WebSocket</span><span class="tag tg">Cassandra</span><span class="tag tb">Redis Pub/Sub</span><span class="tag tr">Heartbeat Presence</span><span class="tag tp">Cursor Sync</span><span class="tag to">PostgreSQL Metadata</span></div>
 </div>
 
+
+<div class="hld-guide">
+  <div class="hld-guide-label">📋 Interview Flow — Use This Order</div>
+  <div class="hld-guide-steps">
+    <span class="hld-guide-step"><em>1</em>FR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>2</em>NFR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>3</em>Entities</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>4</em>API Design</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>5</em>Discuss HLD</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>6</em>Deep Dive</span>
+  </div>
+  <p>Start with <strong>Functional Requirements</strong>, then <strong>Non-Functional Requirements</strong>, lock <strong>Entities / schema</strong>, define the <strong>API</strong>, draw and walk the <strong>HLD</strong>, then <strong>Deep Dive</strong> on bottlenecks, failure modes, and trade-offs. Do not jump to boxes before FR/NFR are agreed.</p>
+</div>
 <div class="phase-label"><div class="phase-pill">OPENING</div></div>
 <div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
 <div class="bubble">Design a chat system like WhatsApp or Slack.</div></div></div>
@@ -1290,6 +1429,24 @@ CREATE TABLE channel_members (
   <div class="tags"><span class="tag ty">URL Frontier</span><span class="tag tg">Bloom Filter</span><span class="tag tb">SimHash Near-Dup</span><span class="tag tr">robots.txt Politeness</span><span class="tag tp">Cassandra</span><span class="tag to">Elasticsearch</span></div>
 </div>
 
+
+<div class="hld-guide">
+  <div class="hld-guide-label">📋 Interview Flow — Use This Order</div>
+  <div class="hld-guide-steps">
+    <span class="hld-guide-step"><em>1</em>FR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>2</em>NFR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>3</em>Entities</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>4</em>API Design</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>5</em>Discuss HLD</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>6</em>Deep Dive</span>
+  </div>
+  <p>Start with <strong>Functional Requirements</strong>, then <strong>Non-Functional Requirements</strong>, lock <strong>Entities / schema</strong>, define the <strong>API</strong>, draw and walk the <strong>HLD</strong>, then <strong>Deep Dive</strong> on bottlenecks, failure modes, and trade-offs. Do not jump to boxes before FR/NFR are agreed.</p>
+</div>
 <div class="phase-label"><div class="phase-pill">OPENING</div></div>
 <div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
 <div class="bubble">Design a web crawler.</div></div></div>
@@ -1415,6 +1572,24 @@ CREATE TABLE domain_politeness (
   <div class="tags"><span class="tag ty">Chunked Upload</span><span class="tag tg">Content Dedup SHA256</span><span class="tag tb">Delta Sync</span><span class="tag tr">Pre-signed URLs</span><span class="tag tp">MySQL Sharded</span><span class="tag to">Real-time Collab</span></div>
 </div>
 
+
+<div class="hld-guide">
+  <div class="hld-guide-label">📋 Interview Flow — Use This Order</div>
+  <div class="hld-guide-steps">
+    <span class="hld-guide-step"><em>1</em>FR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>2</em>NFR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>3</em>Entities</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>4</em>API Design</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>5</em>Discuss HLD</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>6</em>Deep Dive</span>
+  </div>
+  <p>Start with <strong>Functional Requirements</strong>, then <strong>Non-Functional Requirements</strong>, lock <strong>Entities / schema</strong>, define the <strong>API</strong>, draw and walk the <strong>HLD</strong>, then <strong>Deep Dive</strong> on bottlenecks, failure modes, and trade-offs. Do not jump to boxes before FR/NFR are agreed.</p>
+</div>
 <div class="phase-label"><div class="phase-pill">OPENING</div></div>
 <div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
 <div class="bubble">Design Google Drive.</div></div></div>
@@ -1573,6 +1748,24 @@ CREATE TABLE file_permissions (
   <div class="tags"><span class="tag ty">Prefix Trie</span><span class="tag tg">Top-K Heap</span><span class="tag tb">Redis Cache</span><span class="tag tr">&lt;100ms p99</span><span class="tag tp">Kafka Query Logs</span><span class="tag to">Fuzzy Optional</span></div>
 </div>
 
+
+<div class="hld-guide">
+  <div class="hld-guide-label">📋 Interview Flow — Use This Order</div>
+  <div class="hld-guide-steps">
+    <span class="hld-guide-step"><em>1</em>FR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>2</em>NFR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>3</em>Entities</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>4</em>API Design</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>5</em>Discuss HLD</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>6</em>Deep Dive</span>
+  </div>
+  <p>Start with <strong>Functional Requirements</strong>, then <strong>Non-Functional Requirements</strong>, lock <strong>Entities / schema</strong>, define the <strong>API</strong>, draw and walk the <strong>HLD</strong>, then <strong>Deep Dive</strong> on bottlenecks, failure modes, and trade-offs. Do not jump to boxes before FR/NFR are agreed.</p>
+</div>
 <div class="phase-label"><div class="phase-pill">OPENING</div></div>
 <div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
 <div class="bubble">Design a search autocomplete system — like Google typeahead or Amazon product suggestions.</div></div></div>
@@ -1673,6 +1866,24 @@ CREATE TABLE file_permissions (
   <div class="tags"><span class="tag ty">Time-Series DB</span><span class="tag tg">PromQL-style</span><span class="tag tb">Cardinality</span><span class="tag tr">Alertmanager</span><span class="tag tp">Rollups</span><span class="tag to">Pushgateway</span></div>
 </div>
 
+
+<div class="hld-guide">
+  <div class="hld-guide-label">📋 Interview Flow — Use This Order</div>
+  <div class="hld-guide-steps">
+    <span class="hld-guide-step"><em>1</em>FR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>2</em>NFR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>3</em>Entities</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>4</em>API Design</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>5</em>Discuss HLD</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>6</em>Deep Dive</span>
+  </div>
+  <p>Start with <strong>Functional Requirements</strong>, then <strong>Non-Functional Requirements</strong>, lock <strong>Entities / schema</strong>, define the <strong>API</strong>, draw and walk the <strong>HLD</strong>, then <strong>Deep Dive</strong> on bottlenecks, failure modes, and trade-offs. Do not jump to boxes before FR/NFR are agreed.</p>
+</div>
 <div class="phase-label"><div class="phase-pill">OPENING</div></div>
 <div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
 <div class="bubble">Design a metrics aggregation and visualization system — think Prometheus + Grafana. Collect metrics from services, store them, query them, alert on them.</div></div></div>
@@ -1760,6 +1971,24 @@ CREATE TABLE file_permissions (
   <div class="tags"><span class="tag ty">Sliding Window</span><span class="tag tg">Count-Min Sketch</span><span class="tag tb">Redis ZSET</span><span class="tag tr">Kafka Streams</span><span class="tag tp">Decay Score</span><span class="tag to">Geo Shards</span></div>
 </div>
 
+
+<div class="hld-guide">
+  <div class="hld-guide-label">📋 Interview Flow — Use This Order</div>
+  <div class="hld-guide-steps">
+    <span class="hld-guide-step"><em>1</em>FR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>2</em>NFR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>3</em>Entities</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>4</em>API Design</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>5</em>Discuss HLD</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>6</em>Deep Dive</span>
+  </div>
+  <p>Start with <strong>Functional Requirements</strong>, then <strong>Non-Functional Requirements</strong>, lock <strong>Entities / schema</strong>, define the <strong>API</strong>, draw and walk the <strong>HLD</strong>, then <strong>Deep Dive</strong> on bottlenecks, failure modes, and trade-offs. Do not jump to boxes before FR/NFR are agreed.</p>
+</div>
 <div class="phase-label"><div class="phase-pill">OPENING</div></div>
 <div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
 <div class="bubble">Design a top-K trending videos system. Millions of views per second. Users open the app and see "Trending now".</div></div></div>
@@ -1847,6 +2076,24 @@ video:meta:{id}          HASH  title, thumb, creator   <span class="cm">-- hydra
   <div class="tags"><span class="tag ty">Cron Schedules</span><span class="tag tg">Lease / Lock</span><span class="tag tb">At-least-once</span><span class="tag tr">DLQ</span><span class="tag tp">Priority Queues</span><span class="tag to">Idempotent Workers</span></div>
 </div>
 
+
+<div class="hld-guide">
+  <div class="hld-guide-label">📋 Interview Flow — Use This Order</div>
+  <div class="hld-guide-steps">
+    <span class="hld-guide-step"><em>1</em>FR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>2</em>NFR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>3</em>Entities</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>4</em>API Design</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>5</em>Discuss HLD</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>6</em>Deep Dive</span>
+  </div>
+  <p>Start with <strong>Functional Requirements</strong>, then <strong>Non-Functional Requirements</strong>, lock <strong>Entities / schema</strong>, define the <strong>API</strong>, draw and walk the <strong>HLD</strong>, then <strong>Deep Dive</strong> on bottlenecks, failure modes, and trade-offs. Do not jump to boxes before FR/NFR are agreed.</p>
+</div>
 <div class="phase-label"><div class="phase-pill">OPENING</div></div>
 <div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
 <div class="bubble">Design a distributed job scheduler — like cron at scale, or Airflow/Celery/Sidekiq for millions of jobs.</div></div></div>
@@ -1932,6 +2179,7 @@ CREATE TABLE jobs (
 <div class="bubble">Jitter <code>next_run_at</code> by ±N seconds when computing cron. Shard schedules. Rate-limit enqueue per tenant. Priority queues so critical jobs skip the pile. Spill to more workers via autoscaling on queue depth. Optionally "calendar queue" hierarchical timing wheels so you don't scan 10M rows every second — only buckets that are due.</div></div></div>
 
 <div class="diag-block final-diag" id="d-job3"><div class="diag-label">Final Architecture</div><div class="diag-svg-inner" data-fn="job3"></div></div>
+<div class="diag-block ref-diag"><div class="diag-label">📝 Hand-drawn Reference Sketch</div><div class="diag-svg-inner"><img src="../../assets/images/high_level_design/references/job_scheduler_sketch.png" alt="Distributed Job Scheduler hand-drawn reference sketch" loading="lazy"></div></div>
 <div class="sec-div"></div>
 <div class="qr-grid">
   <div class="qr-card"><div class="qr-title">🗄 Control Plane</div><ul>
@@ -1965,6 +2213,24 @@ CREATE TABLE jobs (
   <div class="tags"><span class="tag ty">Redis Cluster</span><span class="tag tg">Consistent Hashing</span><span class="tag tb">LRU Eviction</span><span class="tag tr">Master-Replica</span><span class="tag tp">AOF / RDB</span><span class="tag to">Eventual Consistency</span></div>
 </div>
 
+
+<div class="hld-guide">
+  <div class="hld-guide-label">📋 Interview Flow — Use This Order</div>
+  <div class="hld-guide-steps">
+    <span class="hld-guide-step"><em>1</em>FR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>2</em>NFR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>3</em>Entities</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>4</em>API Design</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>5</em>Discuss HLD</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>6</em>Deep Dive</span>
+  </div>
+  <p>Start with <strong>Functional Requirements</strong>, then <strong>Non-Functional Requirements</strong>, lock <strong>Entities / schema</strong>, define the <strong>API</strong>, draw and walk the <strong>HLD</strong>, then <strong>Deep Dive</strong> on bottlenecks, failure modes, and trade-offs. Do not jump to boxes before FR/NFR are agreed.</p>
+</div>
 <div class="phase-label"><div class="phase-pill">OPENING</div></div>
 <div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
 <div class="bubble">Design a distributed cache — like Redis / Memcached as a service. Services call GET/SET/DELETE on keys.</div></div></div>
@@ -2052,6 +2318,24 @@ ratelimit:{userId}   &lt;counter&gt; TTL 60s</pre></div>
   <div class="tags"><span class="tag ty">Fan-out on Write</span><span class="tag tg">Kafka</span><span class="tag tb">Cassandra</span><span class="tag tr">Redis Feed Cache</span><span class="tag tp">GraphDB Follows</span><span class="tag to">Celebrity Problem</span></div>
 </div>
 
+
+<div class="hld-guide">
+  <div class="hld-guide-label">📋 Interview Flow — Use This Order</div>
+  <div class="hld-guide-steps">
+    <span class="hld-guide-step"><em>1</em>FR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>2</em>NFR</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>3</em>Entities</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>4</em>API Design</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>5</em>Discuss HLD</span>
+    <span class="hld-guide-arrow">→</span>
+    <span class="hld-guide-step"><em>6</em>Deep Dive</span>
+  </div>
+  <p>Start with <strong>Functional Requirements</strong>, then <strong>Non-Functional Requirements</strong>, lock <strong>Entities / schema</strong>, define the <strong>API</strong>, draw and walk the <strong>HLD</strong>, then <strong>Deep Dive</strong> on bottlenecks, failure modes, and trade-offs. Do not jump to boxes before FR/NFR are agreed.</p>
+</div>
 <div class="phase-label"><div class="phase-pill">OPENING</div></div>
 <div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
 <div class="bubble">Design a news feed — users create posts and see their followees' posts in reverse-chronological order.</div></div></div>
