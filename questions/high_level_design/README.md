@@ -20,6 +20,9 @@ Interactive mock-interview write-ups covering:
 14. Distributed cache
 15. News feed system
 16. Google Docs (collaborative document editing)
+17. Facebook Live Comments
+18. Payment system
+19. Uber / ride-hailing
 
 ## Interview flow (every topic)
 
@@ -32,4 +35,4 @@ Use this order on the whiteboard:
 5. **Discuss HLD** — Draw architecture and walk the flows  
 6. **Deep Dive** — Bottlenecks, failure modes, trade-offs  
 
-Hand-drawn reference sketches live under `assets/images/high_level_design/references/` (rate limiter, notification system, URL shortener, web crawler, Google Drive, Google Docs, top-K trending, job scheduler, distributed cache, news feed).
+Hand-drawn reference sketches live under `assets/images/high_level_design/references/` (rate limiter, notification system, URL shortener, web crawler, Google Drive, Google Docs, top-K trending, job scheduler, distributed cache, news feed, metrics monitoring, Facebook Live Comments, payment system, Uber).
