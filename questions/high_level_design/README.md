@@ -17,3 +17,5 @@ Interactive mock-interview write-ups covering:
 11. Metrics monitoring (Grafana-like)
 12. Top-K trending videos
 13. Distributed job scheduler
+14. Distributed cache
+15. News feed system

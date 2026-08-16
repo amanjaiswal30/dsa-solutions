@@ -151,6 +151,9 @@ pre.schema .cv{color:var(--y);}
 .final-diag .diag-label { color: var(--y); }
 .diag-svg-inner { background: var(--bg); overflow-x: auto; }
 .diag-svg-inner svg { display: block; width: 100%; height: auto; }
+.diag-svg-inner img { display: block; width: 100%; height: auto; }
+.ref-diag { border-color: var(--p); }
+.ref-diag .diag-label { color: var(--p); }
 </style>
 
 </head>
@@ -170,11 +173,13 @@ pre.schema .cv{color:var(--y);}
   <div class="ntab" onclick="go(10)"><span class="nn">11</span>Metrics Monitoring</div>
   <div class="ntab" onclick="go(11)"><span class="nn">12</span>Top-K Trending</div>
   <div class="ntab" onclick="go(12)"><span class="nn">13</span>Job Scheduler</div>
+  <div class="ntab" onclick="go(13)"><span class="nn">14</span>Distributed Cache</div>
+  <div class="ntab" onclick="go(14)"><span class="nn">15</span>News Feed</div>
 </nav>
 <main>
 <div class="page on" id="p0">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 01 of 13</div>
+  <div class="th-eye">System Design Interview — Topic 01 of 15</div>
   <div class="th-title">Rate <em>Limiter</em></div>
   <div class="th-sub">Throttle API traffic per user/IP/token. Hot path — must add &lt;5ms. Must never block prod if limiter fails.</div>
   <div class="tags">
@@ -592,7 +597,7 @@ CREATE TABLE rl_rules (
 
 <div class="page" id="p1">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 02 of 13</div>
+  <div class="th-eye">System Design Interview — Topic 02 of 15</div>
   <div class="th-title">Consistent <em>Hashing</em></div>
   <div class="th-sub">Distribute data across nodes so adding or removing a node reshuffles ~1/N keys instead of ~100%.</div>
   <div class="tags"><span class="tag ty">Ring Hash</span><span class="tag tg">Virtual Nodes</span><span class="tag tb">TreeMap O(log N)</span><span class="tag tr">Preference List</span><span class="tag tp">W+R&gt;N Quorum</span></div>
@@ -690,7 +695,7 @@ Server owner = (e != null) ? e.getValue() : ring.firstEntry().getValue();</pre><
 
 <div class="page" id="p2">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 03 of 13</div>
+  <div class="th-eye">System Design Interview — Topic 03 of 15</div>
   <div class="th-title">Key-Value <em>Store</em></div>
   <div class="th-sub">Design a distributed KV store like DynamoDB. 10TB, 100K writes/sec, 500K reads/sec, tunable consistency.</div>
   <div class="tags"><span class="tag ty">LSM Tree</span><span class="tag tg">Bloom Filter</span><span class="tag tb">WAL + Memtable</span><span class="tag tr">CAP: AP</span><span class="tag tp">Gossip</span><span class="tag to">Hinted Handoff</span></div>
@@ -789,7 +794,7 @@ Server owner = (e != null) ? e.getValue() : ring.firstEntry().getValue();</pre><
 
 <div class="page" id="p3">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 04 of 13</div>
+  <div class="th-eye">System Design Interview — Topic 04 of 15</div>
   <div class="th-title">Unique ID <em>Generator</em></div>
   <div class="th-sub">64-bit time-sortable IDs at 4.2 billion/sec across a cluster. No per-request coordination. Pure local state.</div>
   <div class="tags"><span class="tag ty">Snowflake 64-bit</span><span class="tag tg">Time-sortable</span><span class="tag tb">ZooKeeper MachineID</span><span class="tag tr">Clock Skew</span><span class="tag tp">4.2B IDs/sec</span></div>
@@ -879,7 +884,7 @@ Use monotonic clock (CLOCK_MONOTONIC) for comparisons — it never goes backward
 
 <div class="page" id="p4">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 05 of 13</div>
+  <div class="th-eye">System Design Interview — Topic 05 of 15</div>
   <div class="th-title">URL <em>Shortener</em></div>
   <div class="th-sub">Design bit.ly — shorten URLs, redirect 1B times/day at 11K/sec, analytics async. 3-layer cache.</div>
   <div class="tags"><span class="tag ty">Base62 Snowflake</span><span class="tag tg">Redis Cache</span><span class="tag tb">Kafka Analytics</span><span class="tag tr">302+CDN</span><span class="tag tp">MySQL Sharded</span><span class="tag to">ClickHouse OLAP</span></div>
@@ -985,6 +990,7 @@ ORDER BY (short_code, clicked_at); <span class="cm">-- fast per-URL time-series 
 <div class="diag-block final-diag" id="d-url3"><div class="diag-label">Final Architecture</div><div class="diag-svg-inner" data-fn="url3"></div></div>
 
 <div class="diag-block" id="d-url3"><div class="diag-label">Final Architecture — 3-Layer Cache + Async Analytics</div><div class="diag-svg-inner" data-fn="url3"></div></div>
+<div class="diag-block ref-diag"><div class="diag-label">📝 Hand-drawn Reference Sketch</div><div class="diag-svg-inner"><img src="../../assets/images/high_level_design/references/url_shortener_sketch.png" alt="URL Shortener hand-drawn reference sketch" loading="lazy"></div></div>
 <div class="sec-div"></div>
 <div class="qr-grid">
   <div class="qr-card"><div class="qr-title">🗄 MySQL Schema</div><ul>
@@ -1011,7 +1017,7 @@ ORDER BY (short_code, clicked_at); <span class="cm">-- fast per-URL time-series 
 
 <div class="page" id="p5">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 06 of 13</div>
+  <div class="th-eye">System Design Interview — Topic 06 of 15</div>
   <div class="th-title">Notification <em>System</em></div>
   <div class="th-sub">50M notifications/day. Push + Email + SMS. Kafka fan-out, DLQ retry, celebrity problem, idempotency.</div>
   <div class="tags"><span class="tag ty">Kafka Fan-out</span><span class="tag tg">FCM + APNS</span><span class="tag tb">DLQ Retry</span><span class="tag tr">At-least-once</span><span class="tag tp">Celebrity Problem</span><span class="tag to">PostgreSQL State</span></div>
@@ -1133,7 +1139,7 @@ CREATE TABLE device_tokens (
 
 <div class="page" id="p6">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 07 of 13</div>
+  <div class="th-eye">System Design Interview — Topic 07 of 15</div>
   <div class="th-title">Chat <em>System</em></div>
   <div class="th-sub">Real-time 1-1 + group (500 members). 50M DAU, 100M msgs/day. Presence, typing, read receipts, offline sync.</div>
   <div class="tags"><span class="tag ty">WebSocket</span><span class="tag tg">Cassandra</span><span class="tag tb">Redis Pub/Sub</span><span class="tag tr">Heartbeat Presence</span><span class="tag tp">Cursor Sync</span><span class="tag to">PostgreSQL Metadata</span></div>
@@ -1278,7 +1284,7 @@ CREATE TABLE channel_members (
 
 <div class="page" id="p7">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 08 of 13</div>
+  <div class="th-eye">System Design Interview — Topic 08 of 15</div>
   <div class="th-title">Web <em>Crawler</em></div>
   <div class="th-sub">Crawl 1B pages. Distributed fetch, parse, dedup, index. Politeness per domain. Priority scheduling.</div>
   <div class="tags"><span class="tag ty">URL Frontier</span><span class="tag tg">Bloom Filter</span><span class="tag tb">SimHash Near-Dup</span><span class="tag tr">robots.txt Politeness</span><span class="tag tp">Cassandra</span><span class="tag to">Elasticsearch</span></div>
@@ -1403,7 +1409,7 @@ CREATE TABLE domain_politeness (
 
 <div class="page" id="p8">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 09 of 13</div>
+  <div class="th-eye">System Design Interview — Topic 09 of 15</div>
   <div class="th-title">Google <em>Drive</em></div>
   <div class="th-sub">Cloud file storage — upload, download, share, sync, collaborate. Chunked upload, dedup, versioning, real-time notifications.</div>
   <div class="tags"><span class="tag ty">Chunked Upload</span><span class="tag tg">Content Dedup SHA256</span><span class="tag tb">Delta Sync</span><span class="tag tr">Pre-signed URLs</span><span class="tag tp">MySQL Sharded</span><span class="tag to">Real-time Collab</span></div>
@@ -1533,6 +1539,7 @@ CREATE TABLE file_permissions (
 
 
 <div class="diag-block final-diag" id="d-gd3"><div class="diag-label">Final Architecture</div><div class="diag-svg-inner" data-fn="gd3"></div></div>
+<div class="diag-block ref-diag"><div class="diag-label">📝 Hand-drawn Reference Sketch</div><div class="diag-svg-inner"><img src="../../assets/images/high_level_design/references/google_drive_sketch.png" alt="Google Drive hand-drawn reference sketch" loading="lazy"></div></div>
 <div class="sec-div"></div>
 <div class="qr-grid">
   <div class="qr-card"><div class="qr-title">🗄 MySQL Schema</div><ul>
@@ -1560,7 +1567,7 @@ CREATE TABLE file_permissions (
 
 <div class="page" id="p9">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 10 of 13</div>
+  <div class="th-eye">System Design Interview — Topic 10 of 15</div>
   <div class="th-title">Search <em>Autocomplete</em></div>
   <div class="th-sub">Typeahead suggestions as the user types. Sub-100ms p99. Trie + popularity ranking. Hot-prefix cache. Real-time query log updates.</div>
   <div class="tags"><span class="tag ty">Prefix Trie</span><span class="tag tg">Top-K Heap</span><span class="tag tb">Redis Cache</span><span class="tag tr">&lt;100ms p99</span><span class="tag tp">Kafka Query Logs</span><span class="tag to">Fuzzy Optional</span></div>
@@ -1660,7 +1667,7 @@ CREATE TABLE file_permissions (
 
 <div class="page" id="p10">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 11 of 13</div>
+  <div class="th-eye">System Design Interview — Topic 11 of 15</div>
   <div class="th-title">Metrics <em>Monitoring</em></div>
   <div class="th-sub">Grafana-like metrics aggregation &amp; analytics. Collect, store, query, alert on time-series at massive cardinality. Pull + push paths.</div>
   <div class="tags"><span class="tag ty">Time-Series DB</span><span class="tag tg">PromQL-style</span><span class="tag tb">Cardinality</span><span class="tag tr">Alertmanager</span><span class="tag tp">Rollups</span><span class="tag to">Pushgateway</span></div>
@@ -1747,7 +1754,7 @@ CREATE TABLE file_permissions (
 
 <div class="page" id="p11">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 12 of 13</div>
+  <div class="th-eye">System Design Interview — Topic 12 of 15</div>
   <div class="th-title">Top-K <em>Trending</em></div>
   <div class="th-sub">Trending videos like YouTube/TikTok. Sliding-window velocity, not all-time views. Approximate counts at insane write QPS. Geo + category facets.</div>
   <div class="tags"><span class="tag ty">Sliding Window</span><span class="tag tg">Count-Min Sketch</span><span class="tag tb">Redis ZSET</span><span class="tag tr">Kafka Streams</span><span class="tag tp">Decay Score</span><span class="tag to">Geo Shards</span></div>
@@ -1834,7 +1841,7 @@ video:meta:{id}          HASH  title, thumb, creator   <span class="cm">-- hydra
 
 <div class="page" id="p12">
 <div class="th">
-  <div class="th-eye">System Design Interview — Topic 13 of 13</div>
+  <div class="th-eye">System Design Interview — Topic 13 of 15</div>
   <div class="th-title">Job <em>Scheduler</em></div>
   <div class="th-sub">Distributed cron / job scheduler. Schedule, enqueue, lease to workers, retry with backoff, DLQ. Exactly-once execution where it matters.</div>
   <div class="tags"><span class="tag ty">Cron Schedules</span><span class="tag tg">Lease / Lock</span><span class="tag tb">At-least-once</span><span class="tag tr">DLQ</span><span class="tag tp">Priority Queues</span><span class="tag to">Idempotent Workers</span></div>
@@ -1945,6 +1952,184 @@ CREATE TABLE jobs (
     <li>Dead-letter replay API</li>
     <li>Job status timeline</li>
     <li>Autoscaling on lag</li></ul></div>
+</div>
+</div>
+
+<!-- ═══════════════════════ TOPIC 14 — DISTRIBUTED CACHE ═══════════════════════ -->
+
+<div class="page" id="p13">
+<div class="th">
+  <div class="th-eye">System Design Interview — Topic 14 of 15</div>
+  <div class="th-title">Distributed <em>Cache</em></div>
+  <div class="th-sub">In-memory GET/SET/DELETE at 100K req/sec over 1TB. Redis Cluster, consistent hashing, LRU eviction, optional persistence, multi-region.</div>
+  <div class="tags"><span class="tag ty">Redis Cluster</span><span class="tag tg">Consistent Hashing</span><span class="tag tb">LRU Eviction</span><span class="tag tr">Master-Replica</span><span class="tag tp">AOF / RDB</span><span class="tag to">Eventual Consistency</span></div>
+</div>
+
+<div class="phase-label"><div class="phase-pill">OPENING</div></div>
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
+<div class="bubble">Design a distributed cache — like Redis / Memcached as a service. Services call GET/SET/DELETE on keys.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">CLARIFICATION + FR/NFR + ESTIMATES</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Clarifying + Estimates</span></div>
+<div class="bubble">Questions: Data size? QPS? TTL support? Eviction policy? Consistency requirement? Persistence needed or pure cache?
+<br><br><strong>Given: 1TB working set, ~100K req/sec, configurable TTL per key, LRU eviction, eventual consistency acceptable, persistence optional (backup only):</strong>
+<ul>
+<li><strong>FR:</strong> <code>GET/SET/DELETE</code> on key-value pairs; configurable expiration (TTL) per key; evict with LRU policy.</li>
+<li><strong>NFR:</strong> Highly available; low-latency ops (sub-ms in cache); support 1TB data at 100K req/sec.</li>
+<li><strong>Estimate:</strong> 1TB × replication factor 2 (1 master + 1 replica) ≈ 2TB raw; +30% overhead ≈ 2.6TB; with LZ4 compression ≈ 1.5–1.8TB. At 256/512GB nodes → ~8 masters + 8 replicas.</li>
+</ul></div></div></div>
+
+<div class="phase-label"><div class="phase-pill">API / DATA MODEL</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">API + Schema</span></div>
+<div class="bubble">Entities: Key (string), Value (binary-safe string, max 512MB), TTL (int seconds, optional), Metadata (last_access_time, size, version).
+<ul>
+<li><code>GET /v1/cache/{key}</code></li>
+<li><code>SET /v1/cache/{key}</code> — body <code>{ "value": "&lt;data&gt;", "ttl": &lt;seconds&gt; }</code> (ttl optional)</li>
+<li><code>DELETE /v1/cache/{key}</code></li>
+</ul>
+<div class="schema-box"><div class="schema-hdr">⚡ <span>Redis key schema</span></div>
+<pre class="schema">Key pattern : {namespace}:{key}     <span class="cm">-- e.g. user:12345:profile</span>
+Value       : binary-safe string (max 512MB)
+Metadata    : TTL, LRU access time (not exposed), internal version
+
+<span class="cm">-- Examples</span>
+session:{userId}     &lt;json&gt;   TTL 30m
+user:{userId}:profile &lt;json&gt;  TTL 24h
+ratelimit:{userId}   &lt;counter&gt; TTL 60s</pre></div>
+</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">PHASE 1</div><div class="phase-title-text">HLD — Redis Cluster behind an L7 LB</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Architecture</span></div>
+<div class="bubble">Client → <strong>L7 Load Balancer</strong> → <strong>Redis Cluster</strong> (N masters, each with replicas). Keys sharded across masters by <strong>consistent hashing</strong>. Replicas take async replication from masters for read scaling + failover. Optional persistence to S3 snapshot / AOF + RDB for backup. Monitoring via Prometheus + Grafana + Alertmanager.</div>
+<div class="why-box"><div class="why-label">Why consistent hashing for sharding</div>Adding/removing a node only remaps ~K/N keys instead of ~all keys with modulo hashing. Virtual nodes smooth load across physical nodes so no single master becomes a hotspot. (See <a href="#" onclick="go(1);return false;">Consistent Hashing</a> for the ring mechanics.)</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">DEEP DIVES</div></div>
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Eviction + Consistency</span></div>
+<div class="bubble">Memory fills up. What gets evicted? And how consistent are replicas?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Eviction + Consistency</span></div>
+<div class="bubble"><strong>Eviction (LRU):</strong> track last-access time; when memory is full, evict least-recently-used keys. TTL'd keys are removed lazily on access + by a background sweeper (<code>allkeys-lru</code> policy).
+<br><br><strong>Consistency:</strong> eventual — writes ack on master then replicate async, so a replica read may be stale for a few ms. Use read-repair + hinted handoff style recovery on failover. This is the right tradeoff: a cache favors availability + latency over strict consistency.
+<br><br><strong>Data structures supported:</strong> String, Hash (field→value), List, Set, Sorted Set (leaderboard), Bitmap / HyperLogLog. <strong>Batch:</strong> pipeline / MGET to amortize round-trips.</div></div></div>
+
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Probe — Failure</span></div>
+<div class="bubble">A master node dies. What happens?</div></div></div>
+
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Failure Handling</span></div>
+<div class="bubble">Node failure → automatic failover: Redis Sentinel / Cluster promotes a replica to master via leader election; clients get the updated slot map. Network partition → Cluster handles leader election on the majority side. Full memory → LRU eviction kicks in. Durability risk (pure cache loses data on restart) → mitigate with AOF/RDB persistence for warm restarts and S3 snapshots for backup. HA is multi-AZ; multi-region is active-active with cross-region replication.</div></div></div>
+
+<div class="diag-block final-diag ref-diag"><div class="diag-label">📝 Reference Sketch — Full HLD</div><div class="diag-svg-inner"><img src="../../assets/images/high_level_design/references/distributed_cache_sketch.png" alt="Distributed Cache hand-drawn HLD reference sketch" loading="lazy"></div></div>
+<div class="sec-div"></div>
+<div class="qr-grid">
+  <div class="qr-card"><div class="qr-title">🗄 Topology</div><ul>
+    <li>Client → L7 LB → Redis Cluster</li>
+    <li>N masters + replicas</li>
+    <li>Consistent hashing + vnodes</li>
+    <li>Async master→replica replication</li>
+    <li>~8 masters + 8 replicas @ 1TB</li></ul></div>
+  <div class="qr-card"><div class="qr-title">⚡ Behavior</div><ul>
+    <li>GET/SET/DELETE O(1)</li>
+    <li>TTL per key, LRU eviction</li>
+    <li>Eventual consistency</li>
+    <li>Pipeline / MGET batching</li>
+    <li>String/Hash/List/Set/ZSet/HLL</li></ul></div>
+  <div class="qr-card"><div class="qr-title">🛡 Resilience</div><ul>
+    <li>Sentinel/Cluster auto-failover</li>
+    <li>AOF + RDB / S3 snapshot backup</li>
+    <li>Multi-AZ, multi-region active-active</li>
+    <li>Prometheus + Grafana + Alertmanager</li>
+    <li>Full memory → LRU, no crash</li></ul></div>
+</div>
+</div>
+
+<!-- ═══════════════════════ TOPIC 15 — NEWS FEED ═══════════════════════ -->
+
+<div class="page" id="p14">
+<div class="th">
+  <div class="th-eye">System Design Interview — Topic 15 of 15</div>
+  <div class="th-title">News <em>Feed</em></div>
+  <div class="th-sub">Instagram/Twitter-style feed. 1M posts/day, 10M DAU, 100:1 read:write. Fan-out on write via Kafka, celebrity fan-out on read, feed &lt;200ms.</div>
+  <div class="tags"><span class="tag ty">Fan-out on Write</span><span class="tag tg">Kafka</span><span class="tag tb">Cassandra</span><span class="tag tr">Redis Feed Cache</span><span class="tag tp">GraphDB Follows</span><span class="tag to">Celebrity Problem</span></div>
+</div>
+
+<div class="phase-label"><div class="phase-pill">OPENING</div></div>
+<div class="turn int-turn"><div class="avatar int-av">INT</div><div class="turn-body"><div class="turn-meta"><span class="speaker int-speaker">Interviewer</span><span class="stage">Opening</span></div>
+<div class="bubble">Design a news feed — users create posts and see their followees' posts in reverse-chronological order.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">CLARIFICATION + FR/NFR + ESTIMATES</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Clarifying + Estimates</span></div>
+<div class="bubble">Questions: Post rate? DAU? Avg follows per user? Read:write ratio? Latency target? Ranked or chronological?
+<br><br><strong>Given: 1M posts/day, 10M DAU, ~200 follows/user, read:write ≈ 100:1, post ≈ 1KB, chronological, multi-region active-active:</strong>
+<ul>
+<li><strong>FR:</strong> Create posts; view followees' posts in order; support users with many followers; feed loads fast (&lt;200ms); availability ≫ consistency.</li>
+<li><strong>NFR:</strong> 1M posts/day ≈ 11.6 posts/sec; 10M active users; feed &lt;200ms p95; eventual consistency OK.</li>
+</ul></div></div></div>
+
+<div class="phase-label"><div class="phase-pill">API + DATA MODEL</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">API + Schema</span></div>
+<div class="bubble">
+<ul>
+<li><code>POST /v1/post</code> — body <code>{content, mediaUrl?}</code></li>
+<li><code>GET /v1/feed?page={pageNo}&amp;offset={offset}</code> — reverse-chronological</li>
+</ul>
+<div class="schema-box"><div class="schema-hdr">🗄 <span>Cassandra — post + fan-out feed + follow graph</span></div>
+<pre class="schema">Post          PARTITION KEY: user_id  CLUSTERING: created_at DESC
+  post_id UUID, content TEXT, media_url TEXT, like_count INT
+
+Feed (fanout) PARTITION KEY: user_id  CLUSTERING: created_at DESC
+  post_id UUID, author_id UUID, content_snippet TEXT, type TEXT
+
+Follow (graph) following_id (PK) / follower_id (CK), created_at</pre></div>
+</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">KAFKA TOPICS</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Topic Design</span></div>
+<div class="bubble">
+<ul>
+<li><code>post.created</code> — partition key <strong>author</strong> (even distribution of new-post events)</li>
+<li><code>fanout.feed</code> — partition key <strong>followerId</strong> (all fan-out jobs for a follower land in the same partition → ordering)</li>
+<li><code>feed.updated</code> — partition key <strong>userId</strong> (easy cache invalidation)</li>
+</ul></div>
+<div class="why-box"><div class="why-label">Why these partition keys</div><code>post.created</code> by author spreads producer load; <code>fanout.feed</code> by followerId keeps a follower's writes ordered on one partition; <code>feed.updated</code> by userId makes per-user cache invalidation trivial.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">HIGH-LEVEL ARCHITECTURE</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Write + Read Paths</span></div>
+<div class="bubble"><strong>Write:</strong> Client → Post Service → write to Cassandra <code>Post</code> (partition user_id, cluster created_at DESC) → publish <code>post.created</code> to Kafka. <strong>Fan-out Worker</strong> consumes, looks up followers in <strong>GraphDB</strong> (Neo4j/JanusGraph), and writes into each follower's feed via <code>fanout.feed</code> → Feed Store (Cassandra) + Feed Cache (Redis).
+<br><br><strong>Read:</strong> Client → Feed Service → Redis Feed Cache (hit) → else Feed Store Cassandra (miss). Feed served in &lt;200ms because it's precomputed per user.</div>
+<div class="why-box blue"><div class="why-label">Celebrity problem — hybrid fan-out</div>Fan-out on write is great for normal users but explodes for celebrities (10M followers = 10M writes per post). For high-follower accounts, skip write fan-out and <strong>fan-out on read</strong>: pull celebrity posts at read time and merge into the follower's feed. Threshold-based hybrid keeps both write amplification and read latency bounded.</div></div></div>
+
+<div class="phase-label"><div class="phase-pill">DEEP DIVES</div></div>
+<div class="turn"><div class="avatar you-av">YOU</div><div class="turn-body"><div class="turn-meta"><span class="speaker you-speaker">You</span><span class="stage">Partitioning · Cache · Consistency</span></div>
+<div class="bubble">
+<ul>
+<li><strong>Partitioning/Sharding:</strong> consistent hashing; virtual nodes for even load; minimal remap on membership change.</li>
+<li><strong>Cache (Redis):</strong> key <code>feed:{userId}:{pageNo}</code> → list of post IDs (or post objects), TTL 5–15 min, <code>allkeys-lru</code>.</li>
+<li><strong>Indexing/Sorting:</strong> Cassandra clustering on <code>created_at DESC</code>; query with <code>LIMIT</code> for pagination (pageSize ≈ 20).</li>
+<li><strong>Consistency:</strong> post appears in feeds eventually (seconds); read-repair + hinted handoff in Cassandra.</li>
+<li><strong>Data structures:</strong> Cassandra wide-column (time-series-like), Redis in-memory cache, Kafka event streaming, GraphDB follow graph.</li>
+</ul></div></div></div>
+
+<div class="diag-block final-diag ref-diag"><div class="diag-label">📝 Reference Sketch — Full HLD</div><div class="diag-svg-inner"><img src="../../assets/images/high_level_design/references/newsfeed_sketch.png" alt="News Feed hand-drawn HLD reference sketch" loading="lazy"></div></div>
+<div class="sec-div"></div>
+<div class="qr-grid">
+  <div class="qr-card"><div class="qr-title">✍ Write Path</div><ul>
+    <li>Post Svc → Cassandra Post</li>
+    <li>Publish post.created (Kafka)</li>
+    <li>Fan-out Worker → GraphDB followers</li>
+    <li>fanout.feed → Feed Store + Redis</li>
+    <li>Celebrity → skip, fan-out on read</li></ul></div>
+  <div class="qr-card"><div class="qr-title">📖 Read Path</div><ul>
+    <li>Feed Svc → Redis feed:{uid}:{page}</li>
+    <li>Miss → Feed Store Cassandra</li>
+    <li>created_at DESC + LIMIT paginate</li>
+    <li>&lt;200ms precomputed feed</li>
+    <li>Merge celebrity posts on read</li></ul></div>
+  <div class="qr-card"><div class="qr-title">⚖ Trade-offs</div><ul>
+    <li>Fan-out on write = fast read, heavy write</li>
+    <li>Eventual consistency (seconds)</li>
+    <li>100:1 read:write → optimize reads</li>
+    <li>Multi-region active-active</li>
+    <li>Rate-limit posts per user (spam)</li></ul></div>
 </div>
 </div>
 
