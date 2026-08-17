@@ -1,6 +1,6 @@
 # 📚 Data Structures & Algorithms Solutions
 
-Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 140 commonly asked coding interview problems, **21 curated Low-Level Design** implementations, and **High-Level Design (HLD)** topics.
+Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 141 commonly asked coding interview problems, **21 curated Low-Level Design** implementations, and **High-Level Design (HLD)** topics.
 
 ---
 
@@ -22,7 +22,7 @@ questions/
 ├── arrays/               # Array & Matrix problems (31 problems)
 ├── strings/              # String processing & algorithms (8 problems)
 ├── linked_lists/         # Linked List manipulations (18 problems)
-├── stacks/               # Stack-based problems (9 problems)
+├── stacks/               # Stack-based problems (10 problems)
 ├── trees/                # Binary Tree & BST problems (34 problems)
 ├── heaps/                # Heap & Priority Queue problems (4 problems)
 ├── graphs/               # Graph algorithms & traversals (16 problems)
@@ -164,7 +164,7 @@ questions/
 
 </details>
 
-### 📚 Stacks & Queues (9 Problems)
+### 📚 Stacks & Queues (10 Problems)
 **Linear Data Structures** - Stack-based algorithms and queue applications.
 
 | Problem | Difficulty | Key Concepts |
@@ -173,9 +173,10 @@ questions/
 | [Min Stack](questions/stacks/min_stack.md) | Medium ⚡ | Stack Design |
 | [Largest Rectangle in Histogram](questions/stacks/largest_rectangle_in_histogram.md) | Hard 🔥 | Monotonic Stack |
 | [Trapping Rain Water](questions/stacks/trapping_rain_water.md) | Hard 🔥 | Stack, Two Pointers |
+| [Number of Visible People in a Queue](questions/stacks/number_of_visible_people_in_a_queue.md) | Hard 🔥 | Monotonic Stack |
 
 <details>
-<summary><strong>📋 Complete Stacks List (9 problems)</strong></summary>
+<summary><strong>📋 Complete Stacks List (10 problems)</strong></summary>
 
 | # | Problem | Difficulty |
 |---|---------|------------|
@@ -187,10 +188,11 @@ questions/
 | 4 | [Next Greater Element](questions/stacks/next_greater_element.md) | Medium ⚡ |
 | 5 | [Nearest Smallest Element](questions/stacks/nearest_smallest_element.md) | Medium ⚡ |
 | 6 | [Evaluate RPN](questions/stacks/evaluate_reverse_polish_notation.md) | Medium ⚡ |
-| **Hard Problems (3)** |||
+| **Hard Problems (4)** |||
 | 7 | [Largest Rectangle in Histogram](questions/stacks/largest_rectangle_in_histogram.md) | Hard 🔥 |
 | 8 | [Longest Valid Parentheses](questions/stacks/longest_valid_parenthesis.md) | Hard 🔥 |
 | 9 | [Trapping Rain Water](questions/stacks/trapping_rain_water.md) | Hard 🔥 |
+| 10 | [Number of Visible People in a Queue](questions/stacks/number_of_visible_people_in_a_queue.md) | Hard 🔥 |
 
 </details>
 
@@ -496,14 +498,14 @@ Track your progress with our **iterative learning path**:
 - [ ] **Arrays & Matrix** (31/31) - Foundation
 - [ ] **Strings** (8/8) - Building on Arrays  
 - [ ] **Linked Lists** (17/17) - Introduce Pointers
-- [ ] **Stacks & Queues** (9/9) - Linear Structures
+- [ ] **Stacks & Queues** (10/10) - Linear Structures
 - [ ] **Trees & BST** (34/34) - Hierarchical Structures
 - [ ] **Heaps** (4/4) - Special Tree Structures
 - [ ] **Graphs** (13/13) - Advanced Structures
 - [ ] **Dynamic Programming** (24/24) - Master Optimization
 - [ ] **Low-Level Design** (20/20) - System Design
 
-**Total: 140 DSA Problems + 21 LLD Problems**
+**Total: 141 DSA Problems + 21 LLD Problems**
 
 ---
 
@@ -534,7 +536,7 @@ We welcome contributions! Here's how you can help:
 ## 🎯 What Makes This Different?
 
 ### DSA Problems
-- ✅ **140 Problems** across 8 categories
+- ✅ **141 Problems** across 8 categories
 - ✅ Multiple approaches (Brute Force → Optimal)
 - ✅ Detailed complexity analysis
 - ✅ Interview tips and edge cases

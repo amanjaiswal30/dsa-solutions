@@ -11,7 +11,7 @@ description: "Comprehensive collection of 100+ Data Structures & Algorithms solu
 [![Language](https://img.shields.io/badge/Language-Java-orange.svg)](https://java.com)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Welcome to the **ultimate DSA interview preparation resource**! This repository contains **140 well-structured Java solutions** for coding interview problems from **FAANG** and top tech companies.
+Welcome to the **ultimate DSA interview preparation resource**! This repository contains **141 well-structured Java solutions** for coding interview problems from **FAANG** and top tech companies.
 
 ---
 
@@ -49,7 +49,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
   
   <div class="stat-card">
     <h3>📚 Stacks & Queues</h3>
-    <p><strong>9 Problems</strong></p>
+    <p><strong>10 Problems</strong></p>
     <p>Monotonic Stack, Expression Parsing</p>
   </div>
   
@@ -85,7 +85,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
   
   <div class="stat-card total">
     <h3>🎯 Total</h3>
-    <p><strong>140 DSA + 21 LLD</strong></p>
+    <p><strong>141 DSA + 21 LLD</strong></p>
     <p>Complete Interview Coverage</p>
   </div>
 </div>
@@ -135,7 +135,7 @@ Welcome to the **ultimate DSA interview preparation resource**! This repository 
 | [**Arrays & Matrix**](questions/arrays/) | 31 | Easy → Hard | Two Pointers, Sliding Window, Binary Search |
 | [**Strings**](questions/strings/) | 8 | Easy → Hard | Pattern Matching, Sliding Window |
 | [**Linked Lists**](questions/linked_lists/) | 18 | Easy → Hard | Fast/Slow Pointers, List Reversal |
-| [**Stacks & Queues**](questions/stacks/) | 9 | Easy → Hard | Monotonic Stack, Expression Evaluation |
+| [**Stacks & Queues**](questions/stacks/) | 10 | Easy → Hard | Monotonic Stack, Expression Evaluation |
 | [**Trees & BST**](questions/trees/) | 34 | Easy → Hard | Tree Traversals, BST Operations, LCA |
 | [**Heaps**](questions/heaps/) | 4 | Medium → Hard | Priority Queues, Top K Problems |
 | [**Graphs**](questions/graphs/) | 13 | Easy → Hard | DFS, BFS, Topological Sort, Shortest Path |
