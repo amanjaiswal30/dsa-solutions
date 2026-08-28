@@ -1,6 +1,6 @@
 # 📚 Data Structures & Algorithms Solutions
 
-Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 141 commonly asked coding interview problems, **21 curated Low-Level Design** implementations, and **High-Level Design (HLD)** topics.
+Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 143 commonly asked coding interview problems, **21 curated Low-Level Design** implementations, and **High-Level Design (HLD)** topics.
 
 ---
 
@@ -19,10 +19,10 @@ Welcome to my **comprehensive DSA Solutions Repository**! This repository contai
 
 ```
 questions/
-├── arrays/               # Array & Matrix problems (31 problems)
+├── arrays/               # Array & Matrix problems (32 problems)
 ├── strings/              # String processing & algorithms (8 problems)
 ├── linked_lists/         # Linked List manipulations (18 problems)
-├── stacks/               # Stack-based problems (10 problems)
+├── stacks/               # Stack-based problems (11 problems)
 ├── trees/                # Binary Tree & BST problems (34 problems)
 ├── heaps/                # Heap & Priority Queue problems (4 problems)
 ├── graphs/               # Graph algorithms & traversals (16 problems)
@@ -37,7 +37,7 @@ questions/
 
 ## 🔥 Problem Categories
 
-### 📊 Arrays & Matrix (31 Problems)
+### 📊 Arrays & Matrix (32 Problems)
 **Foundation Level** - Master fundamental array techniques, two pointers, sliding window, and matrix operations.
 
 | Problem | Difficulty | Key Concepts |
@@ -54,7 +54,7 @@ questions/
 | [First Missing Positive](questions/arrays/missing_positive.md) | Hard 🔥 | Cyclic Sort |
 
 <details>
-<summary><strong>📋 Complete Arrays List (31 problems)</strong></summary>
+<summary><strong>📋 Complete Arrays List (32 problems)</strong></summary>
 
 | # | Problem | Difficulty | 
 |---|---------|------------|
@@ -68,30 +68,31 @@ questions/
 | 7 | [Tic Tac Toe Winner](questions/arrays/tic_tac_toe.md) | Easy ✅ |
 | 8 | [Two Sum](questions/arrays/two_sum.md) | Easy ✅ |
 | 9 | [Shift All Zeros to the End](questions/arrays/shift_zeros_to_end.md) | Easy ✅ |
-| **Medium Problems (18)** |||
+| **Medium Problems (19)** |||
 | 10 | [3Sum](questions/arrays/3-sum.md) | Medium ⚡ |
 | 11 | [Container With Most Water](questions/arrays/container_with_most_water.md) | Medium ⚡ |
 | 12 | [Find Duplicate Number](questions/arrays/duplicate_number.md) | Medium ⚡ |
 | 13 | [First & Last Position](questions/arrays/first_and_last_position_in_sorted_array.md) | Medium ⚡ |
 | 14 | [Gas Station](questions/arrays/gas_station.md) | Medium ⚡ |
-| 15 | [Largest Number](questions/arrays/largest_number.md) | Medium ⚡ |
-| 16 | [Majority Element](questions/arrays/majority_element.md) | Medium ⚡ |
-| 17 | [Meeting Rooms](questions/arrays/number_of_meeting_rooms.md) | Medium ⚡ |
-| 18 | [Minimum Arrows to Burst Balloons](questions/arrays/minimum_arrows_to_burst_balloons.md) | Medium ⚡ |
-| 19 | [Minimum in Rotated Array](questions/arrays/minimum_in_rotated_sorted_array.md) | Medium ⚡ |
-| 20 | [Peak Element](questions/arrays/peak_element.md) | Medium ⚡ |
-| 21 | [Rotate Image](questions/arrays/rotate_image.md) | Medium ⚡ |
-| 22 | [Search in 2D Matrix](questions/arrays/search_in_2d_matrix.md) | Medium ⚡ |
-| 23 | [Search in Rotated Array](questions/arrays/search_in_rotated_sorted_array.md) | Medium ⚡ |
-| 24 | [Sort Array of 0s, 1s, 2s](questions/arrays/sort012.md) | Medium ⚡ |
-| 25 | [Spiral Matrix](questions/arrays/spiral_matrix.md) | Medium ⚡ |
-| 26 | [Subarray with K Elements](questions/arrays/subarray_k_elements.md) | Medium ⚡ |
-| 27 | [Subarray Sum Equals K](questions/arrays/subarray_sum_equals_k.md) | Medium ⚡ |
+| 15 | [Koko Eating Bananas](questions/arrays/koko_eating_bananas.md) | Medium ⚡ |
+| 16 | [Largest Number](questions/arrays/largest_number.md) | Medium ⚡ |
+| 17 | [Majority Element](questions/arrays/majority_element.md) | Medium ⚡ |
+| 18 | [Meeting Rooms](questions/arrays/number_of_meeting_rooms.md) | Medium ⚡ |
+| 19 | [Minimum Arrows to Burst Balloons](questions/arrays/minimum_arrows_to_burst_balloons.md) | Medium ⚡ |
+| 20 | [Minimum in Rotated Array](questions/arrays/minimum_in_rotated_sorted_array.md) | Medium ⚡ |
+| 21 | [Peak Element](questions/arrays/peak_element.md) | Medium ⚡ |
+| 22 | [Rotate Image](questions/arrays/rotate_image.md) | Medium ⚡ |
+| 23 | [Search in 2D Matrix](questions/arrays/search_in_2d_matrix.md) | Medium ⚡ |
+| 24 | [Search in Rotated Array](questions/arrays/search_in_rotated_sorted_array.md) | Medium ⚡ |
+| 25 | [Sort Array of 0s, 1s, 2s](questions/arrays/sort012.md) | Medium ⚡ |
+| 26 | [Spiral Matrix](questions/arrays/spiral_matrix.md) | Medium ⚡ |
+| 27 | [Subarray with K Elements](questions/arrays/subarray_k_elements.md) | Medium ⚡ |
+| 28 | [Subarray Sum Equals K](questions/arrays/subarray_sum_equals_k.md) | Medium ⚡ |
 | **Hard Problems (4)** |||
-| 28 | [First Missing Positive](questions/arrays/missing_positive.md) | Hard 🔥 |
-| 29 | [Median of Two Sorted Arrays](questions/arrays/median_of_two_sorted_arrays.md) | Hard 🔥 |
-| 30 | [Merge Intervals](questions/arrays/merge_intervals.md) | Hard 🔥 |
-| 31 | [Next Permutation](questions/arrays/next_permutation.md) | Hard 🔥 |
+| 29 | [First Missing Positive](questions/arrays/missing_positive.md) | Hard 🔥 |
+| 30 | [Median of Two Sorted Arrays](questions/arrays/median_of_two_sorted_arrays.md) | Hard 🔥 |
+| 31 | [Merge Intervals](questions/arrays/merge_intervals.md) | Hard 🔥 |
+| 32 | [Next Permutation](questions/arrays/next_permutation.md) | Hard 🔥 |
 
 </details>
 
@@ -164,19 +165,20 @@ questions/
 
 </details>
 
-### 📚 Stacks & Queues (10 Problems)
+### 📚 Stacks & Queues (11 Problems)
 **Linear Data Structures** - Stack-based algorithms and queue applications.
 
 | Problem | Difficulty | Key Concepts |
 |---------|------------|--------------|
 | [Valid Parentheses](questions/stacks/valid_parenthesis.md) | Easy ✅ | Stack |
 | [Min Stack](questions/stacks/min_stack.md) | Medium ⚡ | Stack Design |
+| [Max Stack](questions/stacks/max_stack.md) | Hard 🔥 | Stack Design, TreeMap + Doubly Linked List |
 | [Largest Rectangle in Histogram](questions/stacks/largest_rectangle_in_histogram.md) | Hard 🔥 | Monotonic Stack |
 | [Trapping Rain Water](questions/stacks/trapping_rain_water.md) | Hard 🔥 | Stack, Two Pointers |
 | [Number of Visible People in a Queue](questions/stacks/number_of_visible_people_in_a_queue.md) | Hard 🔥 | Monotonic Stack |
 
 <details>
-<summary><strong>📋 Complete Stacks List (10 problems)</strong></summary>
+<summary><strong>📋 Complete Stacks List (11 problems)</strong></summary>
 
 | # | Problem | Difficulty |
 |---|---------|------------|
@@ -188,11 +190,12 @@ questions/
 | 4 | [Next Greater Element](questions/stacks/next_greater_element.md) | Medium ⚡ |
 | 5 | [Nearest Smallest Element](questions/stacks/nearest_smallest_element.md) | Medium ⚡ |
 | 6 | [Evaluate RPN](questions/stacks/evaluate_reverse_polish_notation.md) | Medium ⚡ |
-| **Hard Problems (4)** |||
+| **Hard Problems (5)** |||
 | 7 | [Largest Rectangle in Histogram](questions/stacks/largest_rectangle_in_histogram.md) | Hard 🔥 |
 | 8 | [Longest Valid Parentheses](questions/stacks/longest_valid_parenthesis.md) | Hard 🔥 |
 | 9 | [Trapping Rain Water](questions/stacks/trapping_rain_water.md) | Hard 🔥 |
 | 10 | [Number of Visible People in a Queue](questions/stacks/number_of_visible_people_in_a_queue.md) | Hard 🔥 |
+| 11 | [Max Stack](questions/stacks/max_stack.md) | Hard 🔥 |
 
 </details>
 
@@ -495,17 +498,17 @@ Each problem follows this format:
 
 Track your progress with our **iterative learning path**:
 
-- [ ] **Arrays & Matrix** (31/31) - Foundation
+- [ ] **Arrays & Matrix** (32/32) - Foundation
 - [ ] **Strings** (8/8) - Building on Arrays  
 - [ ] **Linked Lists** (17/17) - Introduce Pointers
-- [ ] **Stacks & Queues** (10/10) - Linear Structures
+- [ ] **Stacks & Queues** (11/11) - Linear Structures
 - [ ] **Trees & BST** (34/34) - Hierarchical Structures
 - [ ] **Heaps** (4/4) - Special Tree Structures
 - [ ] **Graphs** (13/13) - Advanced Structures
 - [ ] **Dynamic Programming** (24/24) - Master Optimization
 - [ ] **Low-Level Design** (20/20) - System Design
 
-**Total: 141 DSA Problems + 21 LLD Problems**
+**Total: 143 DSA Problems + 21 LLD Problems**
 
 ---
 
@@ -536,7 +539,7 @@ We welcome contributions! Here's how you can help:
 ## 🎯 What Makes This Different?
 
 ### DSA Problems
-- ✅ **141 Problems** across 8 categories
+- ✅ **143 Problems** across 8 categories
 - ✅ Multiple approaches (Brute Force → Optimal)
 - ✅ Detailed complexity analysis
 - ✅ Interview tips and edge cases

@@ -20,6 +20,8 @@ Given an array of integers representing the heights of bars in a histogram, find
 ## 💻 Java Code (All Approaches)
 
 ```java
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Stack;
 
 public class LargestRectangleHistogram {
@@ -61,6 +63,43 @@ public class LargestRectangleHistogram {
 
         return maxArea;
     }
+
+    // Approach 3: Left and Right Boundary Arrays (Optimized, same TC/SC as Approach 2)
+    public int largestRectangleAreaLeftRight(int[] heights) {
+        int n = heights.length;
+        int[] leftSmaller = new int[n];   // nearest index to the left with a strictly smaller bar
+        int[] rightSmaller = new int[n];  // nearest index to the right with a strictly smaller bar
+
+        Deque<Integer> stack = new ArrayDeque<>();
+
+        // Pass 1: fill leftSmaller using a monotonic increasing stack
+        for (int i = 0; i < n; i++) {
+            while (!stack.isEmpty() && heights[stack.peek()] >= heights[i]) {
+                stack.pop();
+            }
+            leftSmaller[i] = stack.isEmpty() ? -1 : stack.peek();
+            stack.push(i);
+        }
+
+        stack.clear();
+
+        // Pass 2: fill rightSmaller using a monotonic increasing stack, scanning right to left
+        for (int i = n - 1; i >= 0; i--) {
+            while (!stack.isEmpty() && heights[stack.peek()] >= heights[i]) {
+                stack.pop();
+            }
+            rightSmaller[i] = stack.isEmpty() ? n : stack.peek();
+            stack.push(i);
+        }
+
+        int maxArea = 0;
+        for (int i = 0; i < n; i++) {
+            int width = rightSmaller[i] - leftSmaller[i] - 1;
+            maxArea = Math.max(maxArea, heights[i] * width);
+        }
+
+        return maxArea;
+    }
 }
 ```
 ---
@@ -76,14 +115,20 @@ public class LargestRectangleHistogram {
   When a lower bar is encountered, pop from stack and calculate area using the popped bar as the smallest bar.  
   Width = `i - stack.peek() - 1` (or `i` if stack is empty). Update max area.
 
+- **Left and Right Boundary Arrays (Optimized):**  
+  Same underlying idea as the stack approach, just split into two explicit passes.  
+  For every bar `i`, precompute `leftSmaller[i]` — the nearest index to the left with a strictly smaller height — and `rightSmaller[i]` — the nearest index to the right with a strictly smaller height. Each is computed with its own monotonic stack in one linear pass.  
+  The widest rectangle with bar `i` as its limiting height then spans `rightSmaller[i] - leftSmaller[i] - 1`. Take the max of `heights[i] * width` over all `i`. Since it still uses a monotonic stack internally (twice, once per direction), it has the **same O(n) time and O(n) space** as Approach 2 — it just trades one combined sweep for two clearer, independent boundary computations.
+
 ---
 
 ## 📊 Complexity Analysis
 
-| Approach                | Time Complexity | Space Complexity |
-|-------------------------|-----------------|------------------|
-| Brute Force             | O(n²)           | O(1)             |
-| Stack-Based (Optimized) | O(n)            | O(n)             |
+| Approach                              | Time Complexity | Space Complexity |
+|-----------------------------------------|-----------------|------------------|
+| Brute Force                           | O(n²)           | O(1)             |
+| Stack-Based (Optimized)               | O(n)            | O(n)             |
+| Left and Right Boundary Arrays (Optimized) | O(n)       | O(n)             |
 
 ---
 
@@ -98,6 +143,6 @@ public class LargestRectangleHistogram {
 ## 🔹 Follow-Up Questions
 - Can this be extended to a **2D matrix of heights** (Maximal Rectangle problem)?
 - How to compute largest rectangle in **streaming input**?
-- Can we track **left and right limits in a single pass** without using an explicit stack?
+- Can you eliminate the explicit `leftSmaller`/`rightSmaller` arrays and merge both boundary computations into the **single combined pass** used in Approach 2?
 
 ---

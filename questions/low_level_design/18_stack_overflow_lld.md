@@ -48,11 +48,22 @@ _Deduced from the flows above — each entity should appear in at least one step
 
 - Question **1—*** Answer; Post hierarchy for comments
 - Vote attached to Question or Answer
+- `Post` implements **`Votable`** and **`Commentable`** — voting and commenting rules (one vote per user, score tallying, comment storage) live on the entity itself, not scattered across the service. The service just calls `post.vote(...)` / `post.addComment(...)` instead of reaching into `post.votes`/`post.comments` directly. This also means any future entity that should be votable or commentable (e.g. a `Comment` that itself accepts votes) can opt in without inheriting from `Post`.
 
 ### Class diagram
 
 ```mermaid
 classDiagram
+    class Votable {
+        <<interface>>
+        +vote(User, VoteType)
+        +getScore()
+    }
+    class Commentable {
+        <<interface>>
+        +addComment(Comment)
+        +getComments()
+    }
     class Answer
     class Comment
     class Main {
@@ -81,6 +92,8 @@ classDiagram
     class VoteType {
         <<enumeration>>
     }
+    Post ..|> Votable
+    Post ..|> Commentable
     Post <|-- Answer
     Post <|-- Question
     Answer --> StackOverflowService
@@ -119,6 +132,26 @@ public enum QuestionStatus {
 public enum VoteType {
     UPVOTE,
     DOWNVOTE,
+}
+```
+
+### `Votable.java`
+
+```java
+public interface Votable {
+    void vote(User user, VoteType voteType);
+    int getScore();
+}
+```
+
+### `Commentable.java`
+
+```java
+import java.util.List;
+
+public interface Commentable {
+    void addComment(Comment comment);
+    List<Comment> getComments();
 }
 ```
 
@@ -187,12 +220,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-abstract class Post {
+abstract class Post implements Votable, Commentable {
     String id;
     String content;
     LocalDateTime createdAt;
-    List<Comment> comments;
-    List<Vote> votes;
+    private final List<Comment> comments;
+    private final List<Vote> votes;
     User createdBy;
 
     public Post(String content, User user) {
@@ -202,6 +235,31 @@ abstract class Post {
         this.votes = new ArrayList<>();
         this.comments = new ArrayList<>();
         this.createdBy = user;
+    }
+
+    @Override
+    public void vote(User user, VoteType voteType) {
+        votes.removeIf(v -> v.user.id.equals(user.id)); // one vote per user
+        votes.add(new Vote(user, voteType, this));
+    }
+
+    @Override
+    public int getScore() {
+        int score = 0;
+        for (Vote vote : votes) {
+            score += (vote.voteType == VoteType.UPVOTE) ? 1 : -1;
+        }
+        return score;
+    }
+
+    @Override
+    public void addComment(Comment comment) {
+        comments.add(comment);
+    }
+
+    @Override
+    public List<Comment> getComments() {
+        return comments;
     }
 }
 ```
@@ -345,26 +403,20 @@ public final class StackOverflowService {
         Post post = getExistingPost(postId);
 
         Comment comment = new Comment(user, post, content);
-        post.comments.add(comment);
+        post.addComment(comment); // Commentable owns its own comment storage
         return comment;
     }
 
     public void vote(User user, String postId, VoteType voteType) {
         validateUser(user);
-        Post post = getExistingPost(postId);
+        Votable votable = getExistingPost(postId); // Post is-a Votable
 
-        // one vote per user per post
-        post.votes.removeIf(v -> v.user.id.equals(user.id));
-        post.votes.add(new Vote(user, voteType, post));
+        votable.vote(user, voteType); // Votable owns the "one vote per user" rule
     }
 
     public int getScore(String postId) {
-        Post post = getExistingPost(postId);
-        int score = 0;
-        for (Vote vote : post.votes) {
-            score += (vote.voteType == VoteType.UPVOTE) ? 1 : -1;
-        }
-        return score;
+        Votable votable = getExistingPost(postId);
+        return votable.getScore();
     }
 
     public Question getQuestionById(String questionId) {
@@ -435,7 +487,7 @@ public class Main {
 
         System.out.println("Question: " + question.title);
         System.out.println("Question score: " + service.getScore(question.id));
-        System.out.println("Question comments: " + question.comments.size());
+        System.out.println("Question comments: " + question.getComments().size());
         System.out.println("Answers count: " + question.answerList.size());
 
         for (Answer answer : question.answerList) {
@@ -443,7 +495,7 @@ public class Main {
                     "- " + answer.content
                             + " | accepted=" + answer.accepted
                             + " | score=" + service.getScore(answer.id)
-                            + " | comments=" + answer.comments.size()
+                            + " | comments=" + answer.getComments().size()
             );
         }
     }
