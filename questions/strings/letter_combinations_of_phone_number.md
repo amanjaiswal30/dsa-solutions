@@ -95,9 +95,18 @@ import java.util.*;
 
 public class LetterCombinationsOfPhoneNumber {
 
-    private static final String[] MAP = {
-        "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"
-    };
+    private static final Map<Character, String> MAP = new HashMap<>();
+
+    static {
+        MAP.put('2', "abc");
+        MAP.put('3', "def");
+        MAP.put('4', "ghi");
+        MAP.put('5', "jkl");
+        MAP.put('6', "mno");
+        MAP.put('7', "pqrs");
+        MAP.put('8', "tuv");
+        MAP.put('9', "wxyz");
+    }
 
     // 1. Backtracking (DFS)
     public static List<String> letterCombinationsDFS(String digits) {
@@ -114,7 +123,7 @@ public class LetterCombinationsOfPhoneNumber {
             return;
         }
 
-        String letters = MAP[digits.charAt(index) - '0'];
+        String letters = MAP.get(digits.charAt(index));
         for (char c : letters.toCharArray()) {
             path.append(c);
             backtrack(digits, index + 1, path, result);
@@ -131,7 +140,7 @@ public class LetterCombinationsOfPhoneNumber {
         queue.add("");
 
         for (char d : digits.toCharArray()) {
-            String letters = MAP[d - '0'];
+            String letters = MAP.get(d);
             int size = queue.size();
             for (int i = 0; i < size; i++) {
                 String prefix = queue.poll();

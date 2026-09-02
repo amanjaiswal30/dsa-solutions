@@ -1,0 +1,117 @@
+<svg width="900" height="560" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="560" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Letter Combinations of a Phone Number</text>
+  <rect x="780" y="12" width="102" height="28" fill="#E67E22" rx="14"/>
+  <text x="831" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">digits = "23" ù ["ad","ae","af","bd","be","bf","cd","ce","cf"]</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Each digit maps to 34 letters. Backtrack: pick letter, recurse, undo.</text>
+
+  <!-- Phone keypad -->
+  <text x="120" y="130" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Keypad mapping</text>
+  <g transform="translate(40,140)" font-family="Arial" font-size="11">
+    <rect x="0" y="0" width="50" height="40" fill="#ECF0F1" stroke="#333"/>
+    <text x="25" y="25" text-anchor="middle" fill="#333">2</text>
+    <text x="25" y="38" text-anchor="middle" font-size="9" fill="#666">abc</text>
+    <rect x="55" y="0" width="50" height="40" fill="#ECF0F1" stroke="#333"/>
+    <text x="80" y="25" text-anchor="middle" fill="#333">3</text>
+    <text x="80" y="38" text-anchor="middle" font-size="9" fill="#666">def</text>
+    <rect x="0" y="45" width="50" height="40" fill="#ECF0F1" stroke="#333"/>
+    <text x="25" y="70" text-anchor="middle" fill="#333">4</text>
+    <text x="25" y="83" text-anchor="middle" font-size="9" fill="#666">ghi</text>
+    <rect x="55" y="45" width="50" height="40" fill="#ECF0F1" stroke="#333"/>
+    <text x="80" y="70" text-anchor="middle" fill="#333">5</text>
+    <text x="80" y="83" text-anchor="middle" font-size="9" fill="#666">jkl</text>
+    <rect x="0" y="90" width="50" height="40" fill="#3498DB" stroke="#333" stroke-width="2"/>
+    <text x="25" y="115" text-anchor="middle" fill="white" font-weight="bold">2</text>
+    <text x="25" y="128" text-anchor="middle" font-size="9" fill="#D6EAF8">abc</text>
+    <rect x="55" y="90" width="50" height="40" fill="#3498DB" stroke="#333" stroke-width="2"/>
+    <text x="80" y="115" text-anchor="middle" fill="white" font-weight="bold">3</text>
+    <text x="80" y="128" text-anchor="middle" font-size="9" fill="#D6EAF8">def</text>
+  </g>
+
+  <!-- Backtracking tree for "23" -->
+  <text x="480" y="130" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">Backtracking tree (digits = "23")</text>
+  <circle cx="480" cy="155" r="18" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
+  <text x="480" y="160" font-family="Arial" font-size="10" fill="#1E3A8A" text-anchor="middle">""</text>
+
+  <line x1="465" y1="170" x2="380" y2="200" stroke="#6B7280" stroke-width="1.5"/>
+  <line x1="480" y1="173" x2="480" y2="200" stroke="#6B7280" stroke-width="1.5"/>
+  <line x1="495" y1="170" x2="580" y2="200" stroke="#6B7280" stroke-width="1.5"/>
+  <circle cx="380" cy="215" r="16" fill="#DCFCE7" stroke="#16A34A"/>
+  <text x="380" y="220" font-family="Arial" font-size="10" fill="#14532D" text-anchor="middle">a</text>
+  <circle cx="480" cy="215" r="16" fill="#DCFCE7" stroke="#16A34A"/>
+  <text x="480" y="220" font-family="Arial" font-size="10" fill="#14532D" text-anchor="middle">b</text>
+  <circle cx="580" cy="215" r="16" fill="#DCFCE7" stroke="#16A34A"/>
+  <text x="580" y="220" font-family="Arial" font-size="10" fill="#14532D" text-anchor="middle">c</text>
+  <text x="330" y="205" font-family="Arial" font-size="9" fill="#888">digit 2</text>
+
+  <line x1="360" y1="230" x2="320" y2="260" stroke="#6B7280" stroke-width="1"/>
+  <line x1="380" y1="232" x2="380" y2="260" stroke="#6B7280" stroke-width="1"/>
+  <line x1="400" y1="230" x2="440" y2="260" stroke="#6B7280" stroke-width="1"/>
+  <rect x="300" y="265" width="36" height="22" fill="#FFF7ED" stroke="#EA580C" rx="4"/>
+  <text x="318" y="280" font-family="Arial" font-size="9" fill="#7C2D12" text-anchor="middle">ad</text>
+  <rect x="362" y="265" width="36" height="22" fill="#FFF7ED" stroke="#EA580C" rx="4"/>
+  <text x="380" y="280" font-family="Arial" font-size="9" fill="#7C2D12" text-anchor="middle">ae</text>
+  <rect x="424" y="265" width="36" height="22" fill="#FFF7ED" stroke="#EA580C" rx="4"/>
+  <text x="442" y="280" font-family="Arial" font-size="9" fill="#7C2D12" text-anchor="middle">af</text>
+  <text x="300" y="258" font-family="Arial" font-size="8" fill="#888">digit 3 ù d,e,f</text>
+
+  <text x="580" y="280" font-family="Arial" font-size="9" fill="#888">& bd,be,bf ù cd,ce,cf</text>
+
+  <!-- Approach 1: DFS -->
+  <rect x="15" y="310" width="270" height="220" fill="#FFFFFF" stroke="#E74C3C" stroke-width="2" rx="7"/>
+  <rect x="15" y="310" width="270" height="40" fill="#E74C3C" rx="7"/>
+  <rect x="15" y="335" width="270" height="15" fill="#E74C3C"/>
+  <text x="150" y="335" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 1: Backtracking DFS</text>
+  <text x="150" y="348" font-family="Arial" font-size="10" fill="#FADBD8" text-anchor="middle">O(4^n ù n) time | O(n) stack</text>
+  <text x="25" y="370" font-family="Arial" font-size="10" fill="#333">1. if index == n ù add path to result</text>
+  <text x="25" y="386" font-family="Arial" font-size="10" fill="#333">2. letters = MAP[digits[index]]</text>
+  <text x="25" y="402" font-family="Arial" font-size="10" fill="#333">3. for each c in letters:</text>
+  <text x="35" y="418" font-family="Arial" font-size="10" fill="#333">append c ù recurse ù backtrack</text>
+  <text x="25" y="444" font-family="Arial" font-size="10" font-weight="bold" fill="#E74C3C">path.deleteCharAt(len-1)</text>
+  <text x="25" y="462" font-family="Arial" font-size="10" fill="#888">StringBuilder for mutable path</text>
+  <text x="25" y="478" font-family="Arial" font-size="10" fill="#888">Classic choose ù explore ù unchoose</text>
+  <text x="25" y="494" font-family="Arial" font-size="10" fill="#888">Empty digits ù return []</text>
+  <text x="25" y="510" font-family="Arial" font-size="10" fill="#888">MAP.get(digit) for lookup</text>
+
+  <line x1="285" y1="420" x2="325" y2="420" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="325,416 333,420 325,424" fill="#7F8C8D"/>
+
+  <!-- Approach 2: BFS -->
+  <rect x="335" y="310" width="270" height="220" fill="#FFFFFF" stroke="#E67E22" stroke-width="2" rx="7"/>
+  <rect x="335" y="310" width="270" height="40" fill="#E67E22" rx="7"/>
+  <rect x="335" y="335" width="270" height="15" fill="#E67E22"/>
+  <text x="470" y="335" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Iterative BFS</text>
+  <text x="470" y="348" font-family="Arial" font-size="10" fill="#FAD7A0" text-anchor="middle">O(4^n ù n) time | O(4^n) queue</text>
+  <text x="345" y="370" font-family="Arial" font-size="10" fill="#333">1. queue = [""]</text>
+  <text x="345" y="386" font-family="Arial" font-size="10" fill="#333">2. for each digit d:</text>
+  <text x="355" y="402" font-family="Arial" font-size="10" fill="#333">snapshot queue.size()</text>
+  <text x="355" y="418" font-family="Arial" font-size="10" fill="#333">expand each prefix + letter</text>
+  <text x="345" y="444" font-family="Arial" font-size="10" font-weight="bold" fill="#E67E22">Level-by-level expansion</text>
+  <text x="345" y="462" font-family="Arial" font-size="10" fill="#888">Same result as DFS</text>
+  <text x="345" y="478" font-family="Arial" font-size="10" fill="#888">More memory (all prefixes)</text>
+  <text x="345" y="494" font-family="Arial" font-size="10" fill="#888">No recursion stack</text>
+  <text x="345" y="510" font-family="Arial" font-size="10" fill="#888">Poll size times per digit</text>
+
+  <line x1="605" y1="420" x2="645" y2="420" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="645,416 653,420 645,424" fill="#7F8C8D"/>
+
+  <!-- Key insight -->
+  <rect x="655" y="310" width="230" height="220" fill="#FFFFFF" stroke="#27AE60" stroke-width="2.5" rx="7"/>
+  <rect x="655" y="310" width="230" height="40" fill="#27AE60" rx="7"/>
+  <rect x="655" y="335" width="230" height="15" fill="#27AE60"/>
+  <text x="770" y="335" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Key insight</text>
+  <text x="665" y="370" font-family="Arial" font-size="10" fill="#333">Cartesian product of</text>
+  <text x="665" y="386" font-family="Arial" font-size="10" fill="#333">letter sets per digit</text>
+  <text x="665" y="412" font-family="Arial" font-size="10" font-weight="bold" fill="#27AE60">Template:</text>
+  <text x="665" y="430" font-family="Arial" font-size="10" fill="#333">subsets ù permutations</text>
+  <text x="665" y="446" font-family="Arial" font-size="10" fill="#333">generate parentheses</text>
+  <text x="665" y="462" font-family="Arial" font-size="10" fill="#333">combination sum</text>
+  <text x="665" y="488" font-family="Arial" font-size="10" fill="#888">n d 4 ù max ~256 results</text>
+  <text x="665" y="504" font-family="Arial" font-size="10" fill="#888">7,9 have 4 letters each</text>
+</svg>
