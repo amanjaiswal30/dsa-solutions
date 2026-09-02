@@ -1,6 +1,6 @@
 # 📚 Data Structures & Algorithms Solutions
 
-Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 143 commonly asked coding interview problems, **21 curated Low-Level Design** implementations, and **High-Level Design (HLD)** topics.
+Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 144 commonly asked coding interview problems, **21 curated Low-Level Design** implementations, and **High-Level Design (HLD)** topics.
 
 ---
 
@@ -20,7 +20,7 @@ Welcome to my **comprehensive DSA Solutions Repository**! This repository contai
 ```
 questions/
 ├── arrays/               # Array & Matrix problems (32 problems)
-├── strings/              # String processing & algorithms (8 problems)
+├── strings/              # String processing & algorithms (9 problems)
 ├── linked_lists/         # Linked List manipulations (18 problems)
 ├── stacks/               # Stack-based problems (11 problems)
 ├── trees/                # Binary Tree & BST problems (34 problems)
@@ -96,31 +96,33 @@ questions/
 
 </details>
 
-### 🔤 String Algorithms (8 Problems)
-**Building on Arrays** - String manipulation, pattern matching, and sliding window techniques.
+### 🔤 String Algorithms (9 Problems)
+**Building on Arrays** - String manipulation, pattern matching, backtracking, and sliding window techniques.
 
 | Problem | Difficulty | Key Concepts |
 |---------|------------|--------------|
+| [Letter Combinations of Phone Number](questions/strings/letter_combinations_of_phone_number.md) | Medium ⚡ | Backtracking, DFS, BFS |
 | [Longest Substring Without Repeating](questions/strings/longest_substring_without_repeating_characters.md) | Medium ⚡ | Sliding Window |
 | [Group Anagrams](questions/strings/group_anagrams.md) | Medium ⚡ | HashMap, Sorting |
 | [Minimum Window Substring](questions/strings/minimum_window_substring.md) | Hard 🔥 | Sliding Window |
 
 <details>
-<summary><strong>📋 Complete Strings List (8 problems)</strong></summary>
+<summary><strong>📋 Complete Strings List (9 problems)</strong></summary>
 
 | # | Problem | Difficulty |
 |---|---------|------------|
 | **Easy Problems (1)** |||
 | 1 | [Binary Numbers 1 to N](questions/strings/1-n_binary-numbers.md) | Easy ✅ |
-| **Medium Problems (4)** |||
+| **Medium Problems (5)** |||
 | 2 | [First Non-Repeating Character](questions/strings/first_non_repeating_character_in_a_stream.md) | Medium ⚡ |
 | 3 | [Group Anagrams](questions/strings/group_anagrams.md) | Medium ⚡ |
-| 4 | [Longest Substring Without Repeating](questions/strings/longest_substring_without_repeating_characters.md) | Medium ⚡ |
-| 5 | [No Adjacent Characters](questions/strings/no_adjacent_characters_together.md) | Medium ⚡ |
+| 4 | [Letter Combinations of Phone Number](questions/strings/letter_combinations_of_phone_number.md) | Medium ⚡ |
+| 5 | [Longest Substring Without Repeating](questions/strings/longest_substring_without_repeating_characters.md) | Medium ⚡ |
+| 6 | [No Adjacent Characters](questions/strings/no_adjacent_characters_together.md) | Medium ⚡ |
 | **Hard Problems (3)** |||
-| 6 | [Longest Duplicate Substring](questions/strings/longest_duplicate_substring.md) | Hard 🔥 |
-| 7 | [Minimum Window Substring](questions/strings/minimum_window_substring.md) | Hard 🔥 |
-| 8 | [Sliding Window Maximum](questions/strings/sliding_window_maximum.md) | Hard 🔥 |
+| 7 | [Longest Duplicate Substring](questions/strings/longest_duplicate_substring.md) | Hard 🔥 |
+| 8 | [Minimum Window Substring](questions/strings/minimum_window_substring.md) | Hard 🔥 |
+| 9 | [Sliding Window Maximum](questions/strings/sliding_window_maximum.md) | Hard 🔥 |
 
 </details>
 
@@ -499,7 +501,7 @@ Each problem follows this format:
 Track your progress with our **iterative learning path**:
 
 - [ ] **Arrays & Matrix** (32/32) - Foundation
-- [ ] **Strings** (8/8) - Building on Arrays  
+- [ ] **Strings** (9/9) - Building on Arrays  
 - [ ] **Linked Lists** (17/17) - Introduce Pointers
 - [ ] **Stacks & Queues** (11/11) - Linear Structures
 - [ ] **Trees & BST** (34/34) - Hierarchical Structures
@@ -508,7 +510,7 @@ Track your progress with our **iterative learning path**:
 - [ ] **Dynamic Programming** (24/24) - Master Optimization
 - [ ] **Low-Level Design** (20/20) - System Design
 
-**Total: 143 DSA Problems + 21 LLD Problems**
+**Total: 144 DSA Problems + 21 LLD Problems**
 
 ---
 
@@ -539,7 +541,7 @@ We welcome contributions! Here's how you can help:
 ## 🎯 What Makes This Different?
 
 ### DSA Problems
-- ✅ **143 Problems** across 8 categories
+- ✅ **144 Problems** across 8 categories
 - ✅ Multiple approaches (Brute Force → Optimal)
 - ✅ Detailed complexity analysis
 - ✅ Interview tips and edge cases
