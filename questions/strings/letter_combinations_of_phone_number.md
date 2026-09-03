@@ -79,9 +79,9 @@ Total combinations ≈ **3^n to 4^n** (worst case when digit `7` or `9` appears 
 ---
 
 ### 2. Iterative (BFS / queue)
-- Start with an empty string in a queue.
-- For each digit, expand every string in the queue by appending each possible letter.
-- After processing all digits, queue holds all combinations.
+- Start with an empty `StringBuilder` in a queue.
+- For each digit, expand every prefix by appending each possible letter (`new StringBuilder(prefix).append(c)`).
+- After processing all digits, convert each `StringBuilder` to `String` for the result.
 
 **Time Complexity:** O(4^n × n)  
 **Space Complexity:** O(4^n) for the queue
@@ -131,26 +131,28 @@ public class LetterCombinationsOfPhoneNumber {
         }
     }
 
-    // 2. Iterative BFS (queue expansion)
+    // 2. Iterative BFS (queue expansion with StringBuilder)
     public static List<String> letterCombinationsBFS(String digits) {
         List<String> result = new ArrayList<>();
         if (digits == null || digits.isEmpty()) return result;
 
-        Queue<String> queue = new ArrayDeque<>();
-        queue.add("");
+        Queue<StringBuilder> queue = new ArrayDeque<>();
+        queue.add(new StringBuilder());
 
         for (char d : digits.toCharArray()) {
             String letters = MAP.get(d);
             int size = queue.size();
             for (int i = 0; i < size; i++) {
-                String prefix = queue.poll();
+                StringBuilder prefix = queue.poll();
                 for (char c : letters.toCharArray()) {
-                    queue.add(prefix + c);
+                    queue.add(new StringBuilder(prefix).append(c));
                 }
             }
         }
 
-        result.addAll(queue);
+        for (StringBuilder sb : queue) {
+            result.add(sb.toString());
+        }
         return result;
     }
 }

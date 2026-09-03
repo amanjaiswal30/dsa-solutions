@@ -66,7 +66,7 @@ public class KokoEatingBananas {
     private long hoursNeeded(int[] piles, int speed) {
         long hours = 0;
         for (int pile : piles) {
-            hours += (pile + speed - 1) / speed; // ceil(pile / speed)
+            hours += (long) Math.ceil(pile / (double) speed);
         }
         return hours;
     }
@@ -84,7 +84,7 @@ public class KokoEatingBananas {
 ## 💡 Intuition Behind Each Approach
 
 - **Brute Force:**
-  Try every possible eating speed starting from `1`. For each candidate speed, compute the total hours needed (using ceiling division per pile) and return the first speed that fits within `h` hours. Worst case checks up to `max(piles)` speeds, each requiring an O(n) feasibility check.
+  Try every possible eating speed starting from `1`. For each candidate speed, compute the total hours needed (`Math.ceil(pile / speed)` per pile) and return the first speed that fits within `h` hours. Worst case checks up to `max(piles)` speeds, each requiring an O(n) feasibility check.
 
 - **Binary Search on Answer (Optimized):**
   The feasibility function `hoursNeeded(piles, speed) <= h` is **monotonic**: if a speed `k` is fast enough, every speed greater than `k` is also fast enough (and slower speeds may or may not work). This monotonic "yes/no" boundary is exactly what binary search needs — search the speed space `[1, max(piles)]` instead of the answer space directly. At each `mid`, check feasibility; if it works, the answer could be smaller so shrink `high`, otherwise push `low` up. Converges to the minimum feasible speed in O(log(max(piles))) iterations, each doing an O(n) feasibility check.

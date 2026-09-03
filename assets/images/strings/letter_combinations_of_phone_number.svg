@@ -88,10 +88,10 @@
   <rect x="335" y="335" width="270" height="15" fill="#E67E22"/>
   <text x="470" y="335" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Approach 2: Iterative BFS</text>
   <text x="470" y="348" font-family="Arial" font-size="10" fill="#FAD7A0" text-anchor="middle">O(4^n ù n) time | O(4^n) queue</text>
-  <text x="345" y="370" font-family="Arial" font-size="10" fill="#333">1. queue = [""]</text>
+  <text x="345" y="370" font-family="Arial" font-size="10" fill="#333">1. queue = [new StringBuilder()]</text>
   <text x="345" y="386" font-family="Arial" font-size="10" fill="#333">2. for each digit d:</text>
   <text x="355" y="402" font-family="Arial" font-size="10" fill="#333">snapshot queue.size()</text>
-  <text x="355" y="418" font-family="Arial" font-size="10" fill="#333">expand each prefix + letter</text>
+  <text x="355" y="418" font-family="Arial" font-size="10" fill="#333">new StringBuilder(prefix).append(c)</text>
   <text x="345" y="444" font-family="Arial" font-size="10" font-weight="bold" fill="#E67E22">Level-by-level expansion</text>
   <text x="345" y="462" font-family="Arial" font-size="10" fill="#888">Same result as DFS</text>
   <text x="345" y="478" font-family="Arial" font-size="10" fill="#888">More memory (all prefixes)</text>
