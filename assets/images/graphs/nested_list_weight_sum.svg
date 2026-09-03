@@ -1,0 +1,53 @@
+<svg width="900" height="480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="480" fill="#F8F9FA" rx="10"/>
+  <rect width="900" height="55" fill="#2C3E50" rx="10"/>
+  <rect y="45" width="900" height="10" fill="#2C3E50"/>
+  <text x="20" y="33" font-family="Arial" font-size="18" font-weight="bold" fill="white">Nested List Weight Sum</text>
+  <rect x="780" y="12" width="100" height="28" fill="#F39C12" rx="14"/>
+  <text x="830" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Medium</text>
+
+  <rect x="15" y="63" width="870" height="44" fill="#FFFFFF" stroke="#DEE2E6" rx="5"/>
+  <text x="30" y="81" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Example:</text>
+  <text x="100" y="81" font-family="Arial" font-size="12" fill="#555">nestedList = [1,[4,[6]]]  ->  1*1 + 4*2 + 6*3 = 27</text>
+  <text x="30" y="98" font-family="Arial" font-size="11" fill="#777">Each integer's weight equals the number of lists it sits inside — deeper integers count more.</text>
+
+  <!-- Depth 1 -->
+  <g transform="translate(60,130)">
+    <rect x="0" y="0" width="780" height="90" fill="#EAF2FB" stroke="#3498DB" rx="6"/>
+    <text x="10" y="18" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">depth 1  (weight x1)</text>
+    <rect x="20" y="30" width="50" height="45" fill="#3498DB" rx="4"/>
+    <text x="45" y="57" font-family="Arial" font-size="16" font-weight="bold" fill="white" text-anchor="middle">1</text>
+    <text x="45" y="90" font-family="Arial" font-size="10" fill="#555" text-anchor="middle" transform="translate(0,-8)">1x1=1</text>
+
+    <!-- Depth 2 nested inside -->
+    <rect x="100" y="20" width="650" height="60" fill="#FDF2E3" stroke="#F39C12" rx="6"/>
+    <text x="110" y="34" font-family="Arial" font-size="11" font-weight="bold" fill="#2C3E50">depth 2  (weight x2)</text>
+    <rect x="120" y="42" width="50" height="30" fill="#F39C12" rx="4"/>
+    <text x="145" y="62" font-family="Arial" font-size="14" font-weight="bold" fill="white" text-anchor="middle">4</text>
+
+    <!-- Depth 3 nested inside depth 2 -->
+    <rect x="200" y="34" width="530" height="38" fill="#FDEDEC" stroke="#E74C3C" rx="6"/>
+    <text x="210" y="46" font-family="Arial" font-size="10" font-weight="bold" fill="#2C3E50">depth 3  (weight x3)</text>
+    <rect x="220" y="50" width="46" height="18" fill="#E74C3C" rx="3"/>
+    <text x="243" y="64" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">6</text>
+  </g>
+
+  <!-- Weighted sums -->
+  <g transform="translate(60,250)">
+    <text x="0" y="0" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">Weighted contributions:</text>
+    <rect x="0" y="15" width="230" height="30" fill="#3498DB" rx="4"/>
+    <text x="115" y="35" font-family="Arial" font-size="13" fill="white" text-anchor="middle">1 x 1 = 1</text>
+    <rect x="250" y="15" width="230" height="30" fill="#F39C12" rx="4"/>
+    <text x="365" y="35" font-family="Arial" font-size="13" fill="white" text-anchor="middle">4 x 2 = 8</text>
+    <rect x="500" y="15" width="230" height="30" fill="#E74C3C" rx="4"/>
+    <text x="615" y="35" font-family="Arial" font-size="13" fill="white" text-anchor="middle">6 x 3 = 18</text>
+  </g>
+
+  <g transform="translate(60,320)">
+    <rect x="0" y="0" width="480" height="50" fill="#27AE60" rx="6"/>
+    <text x="240" y="32" font-family="Arial" font-size="16" font-weight="bold" fill="white" text-anchor="middle">Total = 1 + 8 + 18 = 27</text>
+  </g>
+
+  <text x="60" y="410" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">DFS: sum += value * depth, recurse depth+1 on lists.</text>
+  <text x="60" y="430" font-family="Arial" font-size="12" font-weight="bold" fill="#2C3E50">BFS: sum level totals level-by-level, multiply by current depth.</text>
+</svg>

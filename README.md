@@ -1,6 +1,6 @@
 # 📚 Data Structures & Algorithms Solutions
 
-Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 144 commonly asked coding interview problems, **21 curated Low-Level Design** implementations, and **High-Level Design (HLD)** topics.
+Welcome to my **comprehensive DSA Solutions Repository**! This repository contains **well-structured, optimized Java solutions** for 145 commonly asked coding interview problems, **21 curated Low-Level Design** implementations, and **High-Level Design (HLD)** topics.
 
 ---
 
@@ -25,7 +25,7 @@ questions/
 ├── stacks/               # Stack-based problems (11 problems)
 ├── trees/                # Binary Tree & BST problems (34 problems)
 ├── heaps/                # Heap & Priority Queue problems (4 problems)
-├── graphs/               # Graph algorithms & traversals (16 problems)
+├── graphs/               # Graph algorithms & traversals (17 problems)
 ├── dynamic_programming/  # DP problems with detailed explanations (24 problems)
 ├── low_level_design/     # LLD interviews (21 topics, files named *_lld.md)
 └── high_level_design/    # HLD topics ([README](questions/high_level_design/README.md))
@@ -267,7 +267,7 @@ questions/
 | [Median from Data Stream](questions/heaps/median_from_data_stream.md) | Hard 🔥 | Two Heaps |
 | [Merge K Sorted Arrays](questions/heaps/merge_k_sorted_arrays.md) | Hard 🔥 | Min Heap, Merge |
 
-### 🌐 Graph Algorithms (16 Problems)
+### 🌐 Graph Algorithms (17 Problems)
 **Advanced Structures** - Explore DFS, BFS, flood fill, topological sort, and advanced graph algorithms.
 
 | Problem | Difficulty | Key Concepts |
@@ -287,29 +287,30 @@ questions/
 | [Word Ladder II](questions/graphs/word_ladder_II.md) | Hard 🔥 | BFS, Path Reconstruction |
 
 <details>
-<summary><strong>📋 Complete Graphs List (16 problems)</strong></summary>
+<summary><strong>📋 Complete Graphs List (17 problems)</strong></summary>
 
 | # | Problem | Difficulty |
 |---|---------|------------|
 | **Easy Problems (2)** |||
 | 1 | [Flood Fill](questions/graphs/flood_fill.md) | Easy ✅ |
 | 2 | [Find If Path Exists](questions/graphs/find_if_path_exists.md) | Easy ✅ |
-| **Medium Problems (11)** |||
+| **Medium Problems (12)** |||
 | 3 | [Clone Graph](questions/graphs/clone_graph.md) | Medium ⚡ |
 | 4 | [Course Schedule](questions/graphs/course_schedule.md) | Medium ⚡ |
 | 5 | [Cycle in Directed Graph](questions/graphs/cycle_in_directed_graph.md) | Medium ⚡ |
 | 6 | [Cycle in Undirected Graph](questions/graphs/cycle_in_undirected_graph.md) | Medium ⚡ |
-| 7 | [Number of Islands](questions/graphs/number_of_islands.md) | Medium ⚡ |
-| 8 | [Largest Island](questions/graphs/largest_island.md) | Medium ⚡ |
-| 9 | [Person Relationships](questions/graphs/person_relationships.md) | Medium ⚡ |
-| 10 | [Region in Binary Matrix](questions/graphs/region_in_a_binary_matrix.md) | Medium ⚡ |
-| 11 | [Rotting Oranges](questions/graphs/rotting_oranges.md) | Medium ⚡ |
-| 12 | [Surrounded Regions](questions/graphs/surrounded_regions.md) | Medium ⚡ |
-| 13 | [Topological Sort](questions/graphs/topological_sort.md) | Medium ⚡ |
+| 7 | [Largest Island](questions/graphs/largest_island.md) | Medium ⚡ |
+| 8 | [Nested List Weight Sum](questions/graphs/nested_list_weight_sum.md) | Medium ⚡ |
+| 9 | [Number of Islands](questions/graphs/number_of_islands.md) | Medium ⚡ |
+| 10 | [Person Relationships](questions/graphs/person_relationships.md) | Medium ⚡ |
+| 11 | [Region in Binary Matrix](questions/graphs/region_in_a_binary_matrix.md) | Medium ⚡ |
+| 12 | [Rotting Oranges](questions/graphs/rotting_oranges.md) | Medium ⚡ |
+| 13 | [Surrounded Regions](questions/graphs/surrounded_regions.md) | Medium ⚡ |
+| 14 | [Topological Sort](questions/graphs/topological_sort.md) | Medium ⚡ |
 | **Hard Problems (3)** |||
-| 14 | [Alien Dictionary](questions/graphs/alien_dictionary.md) | Hard 🔥 |
-| 15 | [Word Ladder I](questions/graphs/word_ladder_I.md) | Hard 🔥 |
-| 16 | [Word Ladder II](questions/graphs/word_ladder_II.md) | Hard 🔥 |
+| 15 | [Alien Dictionary](questions/graphs/alien_dictionary.md) | Hard 🔥 |
+| 16 | [Word Ladder I](questions/graphs/word_ladder_I.md) | Hard 🔥 |
+| 17 | [Word Ladder II](questions/graphs/word_ladder_II.md) | Hard 🔥 |
 
 </details>
 
@@ -510,7 +511,7 @@ Track your progress with our **iterative learning path**:
 - [ ] **Dynamic Programming** (24/24) - Master Optimization
 - [ ] **Low-Level Design** (20/20) - System Design
 
-**Total: 144 DSA Problems + 21 LLD Problems**
+**Total: 145 DSA Problems + 21 LLD Problems**
 
 ---
 
@@ -541,7 +542,7 @@ We welcome contributions! Here's how you can help:
 ## 🎯 What Makes This Different?
 
 ### DSA Problems
-- ✅ **144 Problems** across 8 categories
+- ✅ **145 Problems** across 8 categories
 - ✅ Multiple approaches (Brute Force → Optimal)
 - ✅ Detailed complexity analysis
 - ✅ Interview tips and edge cases
