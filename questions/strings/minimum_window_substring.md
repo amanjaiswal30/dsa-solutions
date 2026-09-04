@@ -44,12 +44,18 @@ Same sliding-window idea and **O(\|s\| + \|t\|)** time; pick one style and stay 
 ## 🔹 Approaches
 
 ### 1. Brute Force
-- Check all substrings of `s`.
-- For each substring, check if it contains all characters of `t`.
-- Track the smallest valid substring.
+- Generate every substring `s[left..right]` (outer loop on `left`, inner loop on `right`).
+- For each candidate, call `containsAll(window, t)`:
+  - Build a fresh frequency map of `t`, and set `remaining = t.length()`.
+  - Walk the window character by character. Whenever a character is still needed (`map.get(c) > 0`), **decrement** its count in the map **and decrement `remaining`**.
+  - The window is valid once `remaining == 0` — every occurrence required by `t` has been matched.
+- The map/`remaining` pair is rebuilt **from scratch for every candidate window** — that repeated, wasted recomputation is exactly what the optimized approaches below eliminate.
+- Minor but natural optimization: for a fixed `left`, once a `right` makes `remaining == 0`, stop expanding — any larger `right` only produces a longer (never shorter) valid window for that `left`.
 
-**Time Complexity:** O(n² * m) → n = length of s, m = length of t  
-**Space Complexity:** O(1) for frequency (constant alphabet)
+**Time Complexity:** O(n² · m) → n = length of `s`, m = length of `t` (rebuilding the map + scanning the window for every one of the O(n²) candidate substrings)
+**Space Complexity:** O(m) for the per-call frequency map
+
+**Bridge to the optimized solution:** `remaining` here is already the same idea as **`missing`** in Approach 3 — "how many required occurrences are still unmatched in the current window." The only difference is *how* it's maintained: brute force **resets it to `|t|` and rebuilds the map for every substring**, while the sliding window **keeps one map and one counter alive across the whole scan**, nudging them by ±1 as `right` expands and `left` shrinks. Removing the "rebuild from scratch" step is what collapses O(n² · m) down to O(n + m).
 
 ---
 
@@ -74,6 +80,48 @@ Same sliding-window idea and **O(\|s\| + \|t\|)** time; pick one style and stay 
 import java.util.*;
 
 public class MinimumWindowSubstring {
+
+    /** Brute force: try every substring, check it against a freshly-built need map each time */
+    public static String minWindowBruteForce(String s, String t) {
+        if (t.isEmpty() || s.length() < t.length()) return "";
+
+        int n = s.length();
+        int minLen = Integer.MAX_VALUE;
+        int start = -1;
+
+        for (int left = 0; left < n; left++) {
+            for (int right = left; right < n; right++) {
+                String window = s.substring(left, right + 1);
+                if (containsAll(window, t)) {
+                    if (window.length() < minLen) {
+                        minLen = window.length();
+                        start = left;
+                    }
+                    break; // longer windows from this `left` can't beat the one we just found
+                }
+            }
+        }
+
+        return start == -1 ? "" : s.substring(start, start + minLen);
+    }
+
+    /** Rebuilds a need map from `t` and consumes `window` against it, tracking a remaining count. */
+    private static boolean containsAll(String window, String t) {
+        Map<Character, Integer> need = new HashMap<>();
+        for (char c : t.toCharArray()) {
+            need.put(c, need.getOrDefault(c, 0) + 1);
+        }
+
+        int remaining = t.length();
+        for (char c : window.toCharArray()) {
+            Integer count = need.get(c);
+            if (count != null && count > 0) {
+                need.put(c, count - 1); // decrement: one fewer occurrence of `c` still owed
+                remaining--;            // decrement: one fewer character owed overall
+            }
+        }
+        return remaining == 0;
+    }
 
     /** Optimized: ASCII counts + missing counter — fewer allocations, same asymptotics */
     public static String minWindow(String s, String t) {
@@ -162,7 +210,8 @@ public class MinimumWindowSubstring {
     public static void main(String[] args) {
         String s = "ADOBECODEBANC";
         String t = "ABC";
-        System.out.println(minWindow(s, t)); // BANC
+        System.out.println(minWindowBruteForce(s, t)); // BANC
+        System.out.println(minWindow(s, t));            // BANC
     }
 }
 ```
@@ -173,7 +222,7 @@ public class MinimumWindowSubstring {
 
 | Approach                          | Time Complexity | Space Complexity        |
 |-----------------------------------|----------------|-------------------------|
-| Brute Force                       | O(n² · m)      | O(1) alphabet           |
+| Brute Force                       | O(n² · m)      | O(m) per-call need map  |
 | Sliding window + HashMap          | O(n + m)       | O(|Σ|) map buckets      |
 | Sliding window + `int[]` + missing | O(n + m)    | O(1) for fixed Σ e.g. 128 |
 
